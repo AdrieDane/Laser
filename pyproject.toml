@@ -1,0 +1,96 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "laser-standard-lipidomics"
+version = "0.1.0"
+description = "Standalone LASER workflow for conventional XCMS lipidomics"
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+  "streamlit>=1.56,<2",
+  "plotly>=5.18,<7",
+  "pandas>=2,<4",
+  "numpy>=1.24,<3",
+  "scipy>=1.10,<2",
+  "openpyxl>=3.1,<4",
+  "xlrd>=2,<3",
+  "pyarrow>=20,<25",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff==0.16.3"]
+
+[project.scripts]
+laser-standard = "standard_cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "app"}
+py-modules = [
+  "app",
+  "completed_project",
+  "composition",
+  "errors",
+  "extension_registry",
+  "output_io",
+  "persistent_input_cache",
+  "project_artifacts",
+  "report_lazy",
+  "report_sections",
+  "resource_paths",
+  "saved_project",
+  "saved_project_contract",
+  "scientific_defaults",
+  "standard_adducts",
+  "standard_cli",
+  "standard_mode",
+  "standard_traces",
+  "test_report",
+  "version",
+  "viewer_common",
+]
+
+[tool.setuptools.packages.find]
+where = ["app"]
+include = [
+  "adapters*",
+  "annotator*",
+  "application*",
+  "matlab_annotation*",
+  "presentation*",
+  "standard_lipidomics*",
+]
+
+[tool.setuptools.data-files]
+"rules" = [
+  "app/rules/README.md",
+  "app/rules/lipid_msms_rules.json",
+]
+"methods/standard_lipidomics" = ["methods/standard_lipidomics/README.md"]
+"methods/standard_lipidomics/calibration_libraries" = ["methods/standard_lipidomics/calibration_libraries/*.csv"]
+"reference_data" = [
+  "reference_data/4d_lipid_reference.csv",
+  "reference_data/lipid_wizard_retention_times.csv",
+  "reference_data/matlab_lipid_policy.tsv",
+  "reference_data/standard_lipid_composition_ranges.tsv",
+]
+"reference_data/matlab_pipeline/Code" = ["reference_data/matlab_pipeline/Code/param.json"]
+"reference_data/matlab_pipeline/DataBase" = ["reference_data/matlab_pipeline/DataBase/*.tsv"]
+"reference_data/matlab_pipeline/Project" = ["reference_data/matlab_pipeline/Project/*.tsv"]
+"reference_data/matlab_pipeline/RTDB" = ["reference_data/matlab_pipeline/RTDB/*.tsv"]
+
+[tool.pytest.ini_options]
+testpaths = ["app/tests"]
+pythonpath = ["app"]
+
+[tool.ruff]
+target-version = "py312"
+extend-exclude = ["app/matlab_annotation/vendor"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "B", "PERF", "C90"]
+ignore = ["B008", "B023", "B905", "PERF401", "PERF402"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 35

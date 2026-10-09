@@ -1,0 +1,18 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.Rhistory
+.streamlit/secrets.toml
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+tools/ThermoRawFileParser/
+
+# Local experimental data and sample metadata are not source code.
+peakgrouplist_*.txt
+samples_*.xlsx
+20260722_data/
+mzmine_exports/
+msp_database/

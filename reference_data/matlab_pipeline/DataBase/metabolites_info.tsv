@@ -1,0 +1,195 @@
+name	exported_measurements	confidence_score
+1,3-Diphosphoglyceric acid	HILIC	1
+2,3-Diphosphoglyceric acid	HILIC	1
+2-Dehydrogluconate	HILIC	1
+2-Dehydrogluconate-6P	HILIC	1
+2-Hydroxybutyric acid	HILIC	1
+2-Hydroxyglutarate	HILIC	1
+2-PY	HILIC	1
+2-aminoisobutyric acid	HILIC	1
+2-phosphoglyceric acid	HILIC	1
+3-Hydroxybutyric acid	HILIC	1
+3-Ureidopropionic acid	HILIC	1
+Hydroxybenzoic acid	HILIC	1
+3-aminoisobutyric acid	HILIC	1
+3-methoxytyramine	HILIC	1
+3-phosphoglyceric acid	HILIC	1
+6-Phosphogluconolactone	HILIC	1
+ADP	HILIC	1
+ADP-Ribose	HILIC	1
+AICAR	HILIC	1
+AMP	HILIC	1
+ATP	HILIC	1
+Acetyl-CoA	HILIC	1
+Acetylglutamic acid	HILIC	1
+Adenine	HILIC	1
+Adenosine	HILIC	1
+Adenylthiomethylpentose	HILIC	1
+Adipic acid	HILIC	1
+Alanine	HILIC	1
+Allantoin	HILIC	1
+Alpha-Ketoglutarate	HILIC	1
+Aminoadipic acid	HILIC	1
+Anserine	HILIC	1
+Anthranilic acid	HILIC	1
+Arginine	HILIC	1
+Asparagine	HILIC	1
+Aspartate	HILIC	1
+Betaine	HILIC	1
+CDP	HILIC	1
+CDP-choline	HILIC	1
+CDP-ethanolamine	HILIC	1
+CMP	HILIC	1
+CTP	HILIC	1
+Carnitine	HILIC	1
+Carnosine	HILIC	1
+Choline	HILIC	1
+Cis-Aconitate	HILIC	1
+Citric acid	HILIC	1
+Citrulline	HILIC	1
+Coenzyme A	HILIC	1
+Creatine	HILIC	1
+Creatine-P	HILIC	1
+Creatinine	HILIC	1
+Cystathionine	HILIC	1
+Cysteine	HILIC	1
+Cystine	HILIC	1
+Cytidine	HILIC	1
+Cytosine	HILIC	1
+Dihydrouracil	HILIC	1
+Dihydroxyacetone-P	HILIC	1
+Erythrose-4-phosphate	HILIC	1
+FAD	HILIC	1
+FADH2	HILIC	1
+FAICAR	HILIC	1
+Folic acid	HILIC	1
+Fructose-1,6-diphosphate	HILIC	1
+Fumarate	HILIC	1
+GDP	HILIC	1
+GMP	HILIC	1
+GTP	HILIC	1
+Gamma-aminobutyric acid	HILIC	1
+Gluconate	HILIC	1
+Gluconate-6P	HILIC	1
+Glucose	HILIC	1
+Glucose-6P	HILIC	1
+Glutamate	HILIC; HILIC	1
+Glutamine	HILIC; HILIC	1
+Glutathione	HILIC	1
+Glyceraldehyde-3P	HILIC	1
+Glycerate	HILIC	1
+Glycerol-2P	HILIC	1
+Glycerol-3P	HILIC	1
+Glycerophosphocholine	HILIC	1
+Glycine	HILIC	1
+Guanine	HILIC	1
+Guanosine	HILIC	1
+Hexose-P	HILIC	1
+Hippuric acid	HILIC	1
+Histamine	HILIC	1
+Histidine	HILIC	1
+Homocysteine	HILIC	1
+Homocystine	HILIC	1
+Hydroxyphenyllactic acid	HILIC	1
+Hypoxanthine	HILIC	1
+IMP	HILIC	1
+Inosine	HILIC	1
+Isocitric acid	HILIC	1
+Isoleucine	HILIC	1
+Itaconic acid	HILIC	1
+Kynurenic acid	HILIC	1
+Kynurenine	HILIC	1
+Lactate	HILIC	1
+Leucine	HILIC	1
+Levodopa	HILIC	1
+Lithocholic acid	HILIC	1
+Lysine	HILIC	1
+Malate	HILIC	1
+Maleic acid	HILIC	1
+Malonic acid	HILIC	1
+Melatonine	HILIC	1
+Mesaconic acid	HILIC	1
+Methionine	HILIC	1
+Methyl-NAM	HILIC	1
+Methylmalonylcarnitine	HILIC	1
+N-Acetylputrescine	HILIC	1
+N-alpha-Acetyl-Lysine	HILIC	1
+NAAD	HILIC	1
+NAADP	HILIC	1
+NAD+	HILIC	1
+NADH	HILIC	1
+NADP+	HILIC	1
+NADPH	HILIC	1
+NMN	HILIC	1
+NMNH	HILIC	1
+NRH	HILIC	1
+NaMN	HILIC	1
+Nicotinamide	HILIC	1
+Nicotinamide riboside	HILIC	1
+Nicotinic acid	HILIC	1
+Nitrotyrosine	HILIC	1
+Normetanephrine	HILIC	1
+Octopamine	HILIC	1
+Ophthalmic acid	HILIC	1
+Ornithine	HILIC	1
+Orotic acid	HILIC	1
+Oxaloacetate	HILIC	1
+Oxiglutathione	HILIC	1
+Pantothenic acid	HILIC	1
+Phenylalanine	HILIC	1
+Phosphoenolpyruvate	HILIC	1
+Phosphorylethanolamine	HILIC	1
+Phosphoserine	HILIC	1
+Pipecolic acid	HILIC	1
+Proline	HILIC	1
+Pyridoxal	HILIC	1
+Pyridoxamine	HILIC	1
+Pyridoxine	HILIC	1
+Pyroglutamic acid	HILIC	1
+Pyruvate	HILIC	1
+Quinolinic acid	HILIC	1
+Ribose	HILIC	1
+Ribose-1,5-diphosphate	HILIC	1
+Ribose-5P	HILIC	1
+Ribulose-5P	HILIC	1
+S-adenosyl homocysteine	HILIC	1
+S-adenosyl methionine	HILIC	1
+Saccharopine	HILIC	1
+Sarcosine	HILIC	1
+Sedoheptulose-7P	HILIC	1
+Serine	HILIC	1
+Serotonine	HILIC	1
+Succinate	HILIC	1
+Succinyl-AMP	HILIC	1
+dTDP	HILIC	1
+dTMP	HILIC	1
+dTTP	HILIC	1
+Taurine	HILIC	1
+Thiamine	HILIC	1
+Thiamine monophosphate	HILIC	1
+Thiamine pyrophosphate	HILIC	1
+Threonine	HILIC	1
+Thymidine	HILIC	1
+Thyrotropin releasing hormone	HILIC	1
+Tryptamine	HILIC	1
+Tryptophan	HILIC	1
+Tyramine	HILIC	1
+Tyrosine	HILIC	1
+UDP	HILIC	1
+UDP-HexNac	HILIC	1
+UDP-hexose	HILIC	1
+UMP	HILIC	1
+UTP	HILIC	1
+Uracil	HILIC	1
+Uric acid	HILIC	1
+Uridine	HILIC	1
+Valine	HILIC	1
+XMP	HILIC	1
+Xanthine	HILIC	1
+Xanthosine	HILIC	1
+Xylulose-5P	HILIC	1
+beta-Alanine	HILIC	1
+dAMP	HILIC	1
+dCMP	HILIC	1
+dUMP	HILIC	1
+Thymine	HILIC	1

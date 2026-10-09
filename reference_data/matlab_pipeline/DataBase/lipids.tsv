@@ -1,0 +1,229 @@
+class	class_name	R_group	composition			priority_NP	priority_RP	combined	measurement	chem
+TG	triacylglycerol	FA					10		RP_pos_NH3; RP_pos_Na; RP_pos_K	C6H5O6R3
+				*					RP_pos_NH3; RP_pos_Na; RP_pos_K	C6H5O6R3
+				_OH			3		RP_pos_NH3	C6H5O7R3
+				_2OH			3		RP_pos_NH3	C6H5O8R3
+	alkyl-diacylglycerol				O-		10		RP_pos_NH3; RP_pos_Na; RP_pos_K	C6H7O5R3
+			BC-				3.1		RP_pos_NH3; RP_pos_Na; RP_pos_K	C6H5O6R3
+			diBC-				3.1		RP_pos_NH3; RP_pos_Na; RP_pos_K	C6H5O6R3
+DG	diacylglycerol	FA					10		RP_pos_NH3; RP_pos_Na; RP_pos_K	C5H6O5R2
+				_OH			3		RP_pos_NH3; RP_pos_Na; RP_pos_K	C5H6O6R2
+				_2OH			3		RP_pos_NH3; RP_pos_Na; RP_pos_K	C5H6O7R2
+	alkyl-acylglycerol				O-		10	DG_O	RP_pos_NH3; RP_pos_Na; RP_pos_K	C5H8O4R2
+	alkenyl-acylglycerol				P-		10	DG_O	RP_pos_NH3; RP_pos_Na; RP_pos_K	C5H6O4R2
+			BC-				3.1		RP_pos_NH3; RP_pos_Na; RP_pos_K	C5H6O5R2
+MG	monoacylglycerol	FA					5		RP_pos_NH3; RP_pos_Na	C4H7O4R
+				_OH			3		RP_pos_NH3; RP_pos_Na	C4H7O5R
+				_2OH			3		RP_pos_NH3; RP_pos_Na	C4H7O6R
+	alkylglycerol				O-		5	MG_O	RP_pos_NH3; RP_pos_Na	C4H9O3R
+	alkenylglycerol				P-		5	MG_O	RP_pos_NH3; RP_pos_Na	C4H7O3R
+			BC-				3.1		RP_pos_NH3; RP_pos_Na	C4H7O4R
+CE	cholesteryl ester	FA					10		RP_pos_NH3; RP_pos_Na; RP_pos_K	C28H45O2R
+				_OH			3		RP_pos_NH3; RP_pos_Na; RP_pos_K	C28H45O3R
+				_2OH			3		RP_pos_NH3; RP_pos_Na; RP_pos_K	C28H45O4R
+			BC-				3.1		RP_pos_NH3; RP_pos_Na; RP_pos_K	C28H45O2R
+Cholesterol	cholesterol					5	5		RP_pos_NH3; RP_pos_Na; RP_pos_K	C27H46O
+PC	phosphatidylcholine	FA				10	10		NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl; NP_neg_CH2O2; RP_neg_CH2O2	C10H18NO8PR2
+				_OH		3	3		NP_pos_0; RP_pos_0	C10H18NO9PR2
+				_2OH		3	3		NP_pos_0; RP_pos_0	C10H18NO10PR2
+				_3OH		3	3		NP_pos_0; RP_pos_0	C10H18NO11PR2
+				*					NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl; NP_neg_CH2O2; RP_neg_CH2O2	C10H18NO8PR2
+					O+P-	10	-1		NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl; NP_neg_CH2O2; RP_neg_CH2O2	C10H20NO7PR2
+	alkyl-acylphosphatidylcholine				O-	-1	10	PC_O	NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl; NP_neg_CH2O2; RP_neg_CH2O2	C10H20NO7PR2
+	alkenyl-acylphosphatidylcholine				P-	-1	10	PC_O	NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl; NP_neg_CH2O2; RP_neg_CH2O2	C10H18NO7PR2
+			BC-				3.1		NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl; NP_neg_CH2O2; RP_neg_CH2O2	C10H18NO8PR2
+			diBC-				3.1		NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl; NP_neg_CH2O2; RP_neg_CH2O2	C10H18NO8PR2
+LPC	lysophosphatidylcholine	FA				10	-1		NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl; NP_neg_CH2O2; RP_neg_CH2O2	C9H19NO7PR
+	1-acyl-2-lysophosphatidylcholine		1-acyl 			-1	10	LPC	NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl; NP_neg_CH2O2; RP_neg_CH2O2	C9H19NO7PR
+	2-acyl-1-lysophosphatidylcholine		2-acyl 			-1	10	LPC	NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl; NP_neg_CH2O2; RP_neg_CH2O2	C9H19NO7PR
+				_OH		3	3		NP_pos_0; RP_pos_0	C9H19NO8PR
+				_2OH		3	3		NP_pos_0; RP_pos_0	C9H19NO9PR
+				_3OH		3	3		NP_pos_0; RP_pos_0	C9H19NO10PR
+					O+P-	10	-1		NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl; NP_neg_CH2O2; RP_neg_CH2O2	C9H21NO6PR
+	alkyl-lysophosphatidylcholine				O-	-1	10	LPC_O	NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl; NP_neg_CH2O2; RP_neg_CH2O2	C9H21NO6PR
+	alkenyl-lysophosphatidylcholine				P-	-1	10	LPC_O	NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl; NP_neg_CH2O2; RP_neg_CH2O2	C9H19NO6PR
+			BC-				3.1		NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl; NP_neg_CH2O2; RP_neg_CH2O2	C9H19NO7PR
+PE	phosphatidylethanolamine	FA				10	10		NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C7H12NO8PR2
+				_OH		3	3		NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C7H12NO9PR2
+				_2OH		3	3		NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C7H12NO10PR2
+					O+P-	10	-1		NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C7H14NO7PR2
+	alkenyl-acylphosphatidylethanolamine				P-	-1	10	PE_O	NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C7H12NO7PR2
+	alkyl-acylphosphatidylethanolamine				O-	-1	10	PE_O	NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C7H14NO7PR2
+			BC-				3.1		NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C7H12NO8PR2
+LPE	lysophosphatidylethanolamine	FA				10	-1		NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C6H13NO7PR
+	1-acyl-2-lysophosphatidylethanolamine		1-acyl 			-1	10	LPE	NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C6H13NO7PR
+	2-acyl-1-lysophosphatidylethanolamine		2-acyl 			-1	10	LPE	NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C6H13NO7PR
+				_OH		3	3		NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C6H13NO8PR
+				_2OH		3	3		NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C6H13NO9PR
+					O+P-	10	-1		NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C6H15NO6PR
+	alkenyl-lysophosphatidylethanolamine				P-	-1	10	LPE_O	NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C6H13NO6PR
+	alkyl-lysophosphatidylethanolamine				O-	-1	10	LPE_O	NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C6H15NO6PR
+			BC-				3.1		NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C6H13NO7PR
+PI	phosphatidylinositol	FA				10	7		NP_neg_0; RP_neg_0; NP_pos_NH3; RP_pos_NH3; NP_pos_0	C11H17O13PR2
+				_OH		3	3		NP_neg_0; RP_neg_0	C11H17O14PR2
+				_2OH		3	3		NP_neg_0; RP_neg_0	C11H17O15PR2
+			BC-				3.1		NP_neg_0; RP_neg_0; NP_pos_NH3; RP_pos_NH3; NP_pos_0	C11H17O13PR2
+LPI	lysophosphatidylinositol	FA				10	7		NP_neg_0; RP_neg_0; NP_pos_0	C10H18O12PR
+				_OH		3	3		NP_neg_0; RP_neg_0	C10H18O13PR
+				_2OH		3	3		NP_neg_0; RP_neg_0	C10H18O14PR
+PS	phosphatidylserine	FA				10	10		NP_pos_0; NP_neg_0; RP_neg_0; RP_pos_0	C8H12NO10PR2
+				_OH		3	3		NP_neg_0; NP_pos_0; RP_pos_0; RP_neg_0	C8H12NO11PR2
+				_2OH		3	3		NP_neg_0; NP_pos_0; RP_pos_0; RP_neg_0	C8H12NO12PR2
+LPS	lysophosphatidylserine	FA				10	10		NP_pos_0; NP_neg_0; RP_neg_0; RP_pos_0	C7H13NO9PR
+				_OH					NP_neg_0; NP_pos_0; RP_pos_0; RP_neg_0	C7H13NO10PR
+				_2OH					NP_neg_0; NP_pos_0; RP_pos_0; RP_neg_0	C7H13NO11PR
+LPA	lysophosphatidic acid	FA				10			NP_neg_0; NP_neg_CH2O2	C4H8O7PR
+				_OH		3	3		NP_neg_0	C4H8O8PR
+				_2OH		3	3		NP_neg_0	C4H8O9PR
+	alkyl/alkenyl-lysophosphatidic acid				O+P-	5			NP_neg_0	C4H10O6PR
+PA	phosphatidic acid	FA				10			NP_neg_0; NP_neg_HCl; NP_neg_CH2O2	C5H7O8PR2
+				_OH		3	3		NP_neg_0	C5H7O9PR2
+				_2OH		3	3		NP_neg_0	C5H7O10PR2
+	alkyl/alkenyl-acylphosphatidic acid				O+P-	5			NP_neg_0; NP_neg_HCl	C5H9O7PR2
+BMP	bis(monoacylglycero)phosphate	FA				10	5		NP_neg_0; NP_pos_NH3; RP_neg_0	C8H13O10PR2
+				_OH		3	3		NP_neg_0; NP_pos_NH3; RP_neg_0	C8H13O11PR2
+				_2OH		3	3		NP_neg_0; NP_pos_NH3; RP_neg_0	C8H13O12PR2
+			BC-				3.1		NP_neg_0; NP_pos_NH3; RP_neg_0	C8H13O10PR2
+			diBC-				3.1		NP_neg_0; NP_pos_NH3; RP_neg_0	C8H13O10PR2
+PG	phosphatidylglycerol	FA				10	5		NP_neg_0; RP_neg_0; NP_pos_NH3	C8H13O10PR2
+				_OH		3	3		NP_neg_0; RP_neg_0; NP_pos_NH3	C8H13O11PR2
+				_2OH		3	3		NP_neg_0; RP_neg_0; NP_pos_NH3	C8H13O12PR2
+			BC-				3.1		NP_neg_0; RP_neg_0; NP_pos_NH3	C8H13O10PR2
+LPG	lysophosphatidylglycerol	FA				10	5		NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C7H14O9PR
+				_OH		3	3		NP_neg_0; RP_neg_0	C7H14O10PR
+				_2OH		3	3		NP_neg_0; RP_neg_0	C7H14O11PR
+			BC-				3.1		NP_neg_0; RP_neg_0; RP_pos_0; NP_pos_0	C7H14O9PR
+PGP	phosphatidylglycerophosphate	FA								C8H14O13P2R2
+SLBPA	semilysobisphosphatidic acid	FA				10	10		NP_neg_0; RP_neg_0; NP_pos_NH3; RP_pos_NH3	C9H12O11PR3
+				_OH		3	3		NP_neg_0; RP_neg_0; NP_pos_NH3; RP_pos_NH3	C9H12O12PR3
+				_2OH		3	3		NP_neg_0; RP_neg_0; NP_pos_NH3; RP_pos_NH3	C9H12O13PR3
+			BC-				3.1		NP_neg_0; RP_neg_0; NP_pos_NH3; RP_pos_NH3	C9H12O11PR3
+AC	acylcarnitine	FA				10	7		NP_pos_0; RP_pos_0	C8H14NO4R
+				_OH		10	7		NP_pos_0; RP_pos_0	C8H14NO5R
+				_2OH		3	3		NP_pos_0; RP_pos_0	C8H14NO6R
+				*					NP_pos_0; RP_pos_0	C8H14NO4R
+			BC-				3.1		NP_pos_0; RP_pos_0	C8H14NO4R
+FA	fatty acid	FA				7	10		NP_neg_0; RP_neg_0	CHO2R
+				_OH		7	10		NP_neg_0; RP_neg_0	CHO3R
+				_2OH		3	3		NP_neg_0; RP_neg_0	CHO4R
+				_3OH		3	3		NP_neg_0; RP_neg_0	CHO5R
+				*					NP_neg_0; RP_neg_0	CHO2R
+			BC-				3.1		NP_neg_0; RP_neg_0	CHO2R
+CL	cardiolipin	FA				10	10		NP_neg_0; NP_neg2_0; NP_pos_NH3; RP_pos_NH3; RP_neg_0; RP_neg2_0; RP_neg_Na	C13H18O17P2R4
+				_OH		3	3		NP_neg_0; NP_neg2_0; NP_pos_NH3; RP_pos_NH3; RP_neg_0; RP_neg2_0; RP_neg_Na	C13H18O18P2R4
+				_2OH		3	3		NP_neg_0; NP_neg2_0; NP_pos_NH3; RP_pos_NH3; RP_neg_0; RP_neg2_0; RP_neg_Na	C13H18O19P2R4
+	monolysocardiolipin		ML			10	10		NP_neg_0; NP_neg2_0; NP_pos_NH3; RP_pos_NH3; RP_neg_0; RP_neg2_0; RP_neg_Na	C12H19O16P2R3
+	dilysocardiolipin		DL			10	10		NP_neg_0; NP_neg2_0; NP_pos_NH3; RP_pos_NH3; RP_neg_0; RP_neg2_0; RP_neg_Na	C11H20O15P2R2
+SM	sphingomyelin	FA			d	10	10		NP_pos_0; RP_pos_0; NP_pos_Na; RP_pos_Na; NP_neg_HCl; RP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C7H15N2O6PR2
+					t	10	10		NP_pos_0; RP_pos_0; NP_pos_Na; RP_pos_Na; NP_neg_HCl; RP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C7H15N2O7PR2
+				_OH	d	5	5		NP_pos_0; RP_pos_0; NP_pos_Na; RP_pos_Na; NP_neg_HCl; RP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C7H15N2O7PR2
+				_2OH	d	5	5		NP_pos_0; RP_pos_0; NP_pos_Na; RP_pos_Na; NP_neg_HCl; RP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C7H15N2O8PR2
+			3-O-acyl 		d	5	5		NP_pos_0; RP_pos_0; NP_pos_Na; RP_pos_Na; NP_neg_HCl; RP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C8H14N2O7PR3
+Lyso SM	lysosphingomyelin	FA			d	5	5		NP_pos_0; RP_pos_0; NP_pos_Na; RP_pos_Na; NP_neg_HCl; RP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C6H16N2O5PR
+Cer	ceramide	FA			d	7	10		RP_pos_0; RP_pos_0-H2O; RP_pos_Na; RP_neg_HCl; NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C2H3NO3R2
+	phytoceramide				t	5	5		RP_pos_0; RP_pos_0-H2O; RP_pos_Na; RP_neg_HCl; NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C2H3NO4R2
+					m				RP_pos_0; RP_pos_0-H2O; RP_pos_Na; RP_neg_HCl; NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C2H3NO2R2
+					q				RP_pos_0; RP_pos_0-H2O; RP_pos_Na; RP_neg_HCl; NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C2H3NO5R2
+C1P	ceramide 1-phosphate	FA			d	10	5		NP_neg_0; NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; NP_neg_CH2O2	C2H4NO6PR2
+					t	5	5		NP_neg_0; NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; NP_neg_CH2O2	C2H4NO7PR2
+HexCer	hexosylceramide	FA			d	10	10		RP_pos_0; RP_pos_0-H2O; RP_pos_Na;  NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C8H13NO8R2
+				*	d	5	-1		RP_pos_0; RP_pos_0-H2O; RP_pos_Na;  NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C8H13NO8R2
+					t	10	10		RP_pos_0; RP_pos_0-H2O; RP_pos_Na;  NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C8H13NO9R2
+Lyso HexCer	lyso hexosylceramide	FA			d	5	5		RP_pos_0; RP_pos_0-H2O; RP_pos_Na;  NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C7H14NO7R
+Hex2Cer	dihexosylceramide	FA			d	10	10		RP_pos_0; RP_pos_0-H2O; RP_pos_Na;  NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C14H23NO13R2
+					t	10	10		RP_pos_0; RP_pos_0-H2O; RP_pos_Na;  NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C14H23NO14R2
+Lyso Hex2Cer	lyso dihexosylceramide	FA			d	5	5		RP_pos_0; RP_pos_0-H2O; RP_pos_Na;  NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C13H24NO12R
+Hex3Cer	trihexosylceramide	FA			d	10	10		RP_pos_0; RP_pos_0-H2O; RP_pos_Na;  NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C20H33NO18R2
+					t	10	10		RP_pos_0; RP_pos_0-H2O; RP_pos_Na;  NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C20H33NO19R2
+Lyso Hex3Cer	lyso trihexosylceramide	FA			d	5	5		RP_pos_0; RP_pos_0-H2O; RP_pos_Na;  NP_pos_0; NP_pos_0-H2O; NP_pos_Na; NP_neg_HCl; RP_neg_CH2O2; NP_neg_CH2O2	C19H34NO17R
+SPH	sphingosine	FA			d	10	10		RP_pos_0; RP_pos_0-H2O; RP_pos_Na; NP_pos_0; NP_pos_0-H2O	CH4NO2R
+	phytosphingosine				t	5	5		RP_pos_0; RP_pos_0-H2O; RP_pos_Na; NP_pos_0; NP_pos_0-H2O	CH4NO3R
+					m	5	5		RP_pos_0; RP_pos_0-H2O; RP_pos_Na; NP_pos_0; NP_pos_0-H2O	CH4NOR
+S1P	sphingosine 1-phosphate	FA			d	10	10		NP_neg_0; RP_neg_0; NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl	CH5NO5PR
+					t	5	5		NP_neg_0; RP_neg_0; NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl	CH5NO6PR
+SM4	sulfohexosyl ceramide	FA			d	10	10		RP_neg_0; NP_neg_0; RP_pos_0; NP_pos_0	C8H13NO11SR2
+					t	10	10		RP_neg_0; NP_neg_0; RP_pos_0; NP_pos_0	C8H13NO12SR2
+GM1	GM1; monosialotetrahexosylganglioside	FA			d	10	10		NP_neg_0; RP_neg_0; NP_pos_0; RP_pos_0	C39H63N3O31R2
+					t	7	7		NP_neg_0; RP_neg_0; NP_pos_0; RP_pos_0	C39H63N3O32R2
+GM2	GM2; monosialotrihexosylganglioside	FA			d	10	10		NP_neg_0; RP_neg_0; NP_pos_0; RP_pos_0	C33H53N3O26R2
+					t	7	7		NP_neg_0; RP_neg_0; NP_pos_0; RP_pos_0	C33H53N3O27R2
+GM3	GM3; monosialdihexosylganglioside	FA			d	10	10		NP_neg_0; RP_neg_0; NP_pos_0; RP_pos_0	C25H40N2O21R2
+					t	7	7		NP_neg_0; RP_neg_0; NP_pos_0; RP_pos_0	C25H40N2O22R2
+GM4	GM4	FA			d	5	5		NP_neg_0; RP_neg_0; NP_pos_0; RP_pos_0	C19H30N2O16R2
+					t	5	5		NP_neg_0; RP_neg_0; NP_pos_0; RP_pos_0	C19H30N2O17R2
+GD1	GD1	FA			d	7	7		RP_neg2_0; NP_neg2_0	C50H80N4O39R2
+					t	7	7		RP_neg2_0; NP_neg2_0	C50H80N4O40R2
+GD2	GD2	FA			d	7	7		RP_neg2_0; NP_neg2_0	C44H70N4O34R2
+					t	7	7		RP_neg2_0; NP_neg2_0	C44H70N4O35R2
+GD3	GD3	FA			d	7	7		RP_neg2_0; NP_neg2_0; NP_neg_0	C36H57N3O29R2
+					t	7	7		RP_neg2_0; NP_neg2_0; NP_neg_0	C36H57N3O30R2
+GA1	GA1	FA			d	7	7		RP_pos_0; NP_pos_0	C28H46N2O23R2
+					t	7	7		RP_pos_0; NP_pos_0	C28H46N2O24R2
+GA2	GA2	FA			d	5	7		RP_pos_0; NP_pos_0	C22H36N2O18R2
+					t	5	7		RP_pos_0; NP_pos_0	C22H36N2O19R2
+GT1	GT1	FA			d	5	5		RP_neg2_0; NP_neg2_0	C61H97N5O47R2
+					t	5	5		RP_neg2_0; NP_neg2_0	C61H97N5O48R2
+GQ1	GQ1	FA			d	5	5		RP_neg4_0; NP_neg4_0	C72H114N6O55R2
+					t	5	5		RP_neg4_0; NP_neg4_0	C72H114N6O56R2
+Gang		FA								C25H40N2O21R2
+Glob		FA								C8H10NO9R2
+Dolichol	dolichol	isoprene				5	5		RP_pos_NH3; RP_pos_Na; RP_pos_K	H4OR
+Dehydrodolichol		isoprene				5	5		RP_pos_NH3; RP_pos_Na; RP_pos_K	H2OR
+Dolichoic acid		isoprene				5	5		RP_pos_NH3; RP_pos_Na; RP_pos_K	H2O2R
+Dehydrodolichoic acid		isoprene				5	5		RP_pos_NH3; RP_pos_Na; RP_pos_K	O2R
+Polyprenal		isoprene				5	5		RP_pos_NH3; RP_pos_Na; RP_pos_K	OR
+Dolichol-P	dolichol-monophosphate	isoprene								H5O4PR
+Dolichol-2P	dolichol-diphosphate	isoprene								H6O8P2R
+APCS	N-acyl-O-phosphocholineserine	FA				5	5		NP_pos_0; RP_pos_0; NP_neg_HCl; RP_neg_HCl	C9H18O7N2PR
+FAHFA	fatty acid ester of hydroxy fatty acid	FA							RP_pos_NH3	C2O4R2
+BPA		FA								C10H11O12PR4
+CDP-DG	cytidine diphospho diacylglycerol	FA							NP_neg_0; RP_neg_0	C14H19N3O15P2R2
+CaE		FA							NP_pos_NH3	C29H47O2R
+MGDG	monoglycosyl diacylglycerol	FA							NP_pos_NH3; NP_pos_Na; NP_neg_HCl; RP_pos_NH3; RP_pos_Na; RP_neg_HCl	C11H16O10R2
+DGDG	diglycosyl diacylglycerol	FA							NP_pos_NH3; NP_pos_Na; NP_neg_HCl; RP_pos_NH3; RP_pos_Na; RP_neg_HCl	C17H26O15R2
+FOH	fatty alcohol	FA							NP_pos_NH3; NP_pos_Na	CH3OR
+LUB		FA								C9H13O3R3
+LlyPG	lyso lysyl phosphatidylglycerol	FA								C13H26N2O10PR
+lyPG	lysyl phosphatidylglycerol	FA								C14H25N2O11PR2
+lyCL	lysyl cardiolipin	FA								C19H30O18N2P2R4
+retinyl ester		FA								C21H29O2R
+MLNAPS		FA							NP_pos_0; NP_pos2_0	C8H12NO10PR2
+NAPS		FA							NP_pos_0; NP_pos2_0	C10H12NO11PR4
+PE-Cer		FA			d					C4H9N2O6PR2
+					t					C4H9N2O7PR2
+PI-Cer		FA			d					C8H14NO11PR2
+					t					C8H14NO12PR2
+PIP		FA								C11H17O16P2R2
+WE	wax ester	FA							NP_pos_NH3; NP_pos_Na; RP_pos_NH3; RP_pos_Na; RP_pos_K; RP_pos_0	C2H2O2R2
+diBMP	bis(monoacylglycero)phosphate dimer	FA							NP_neg_0; NP_pos_0	C16H26O20P2R4
+diLPC	lysophosphatidylcholine dimer	FA							NP_pos_0; NP_neg_HCl	C18H38N2O14P2R2
+					O-				NP_pos_0; NP_neg_HCl	C18H40N2O13P2R2
+diPC	phosphatidylcholine dimer	FA							NP_pos_0; NP_neg_HCl	C20H36N2O16P2R4
+					O-				NP_pos_0; NP_neg_HCl	C20H36N2O15P2R4
+diPE	phosphatidylethanolamine dimer	FA							NP_neg_0; NP_pos_0	C14H24N2O16P2R4
+					O-				NP_neg_0; NP_pos_0	C14H24N2O14P2R4
+diSM	sphingomyelin dimer	FA			d				NP_pos_0; NP_neg_HCl	C14H30N4O12P2R4
+					t				NP_pos_0; NP_neg_HCl	C14H30N4O14P2R4
+diCE		FA								C56H90O4R2
+diFA		FA								C2H2O4R2
+diLPE		FA								C12H26N2O14P2R2
+diLPE		FA			O-					C12H26N2O12P2R2
+diLPG		FA								C14H18O18P2R2
+diLPI		FA								C20H36O24P2R2
+diLPS		FA								C14H26N2O18P2R2
+diPA		FA								C10H14O16P2R4
+diPG		FA								C16H26O20P2R4
+diPI		FA								C22H34O26P2R4
+diPS		FA								C16H24N2O20P2R4
+dilyPG		FA								C28H50N4O22P2R4
+triLPE		FA								C18H39N3O21P3R3
+X1	TG-like	FA							RP_pos_NH3	C7H5O6R3
+X2	ACPS-like	FA								C9H16O9N2PR
+X3	SMt-like	FA								C7H15N2O8PR2
+X4										
+X5										
+X6										
+X7										
+X8										
+X9										
+X10										

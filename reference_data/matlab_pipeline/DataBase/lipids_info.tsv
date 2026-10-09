@@ -1,0 +1,185 @@
+name	exported_measurements	confidence_score	common_name	synonyms	category	main_class	sub_class	remarks
+TG	RP	1	Triacylglycerols	TAG	[GL]	Triradylglycerols [GL03]	Triacylglycerols [GL0301]	
+TG[O]	RP	1	Alkyldiacylglycerol		[GL]	Triradylglycerols [GL03]	Alkyldiacylglycerols [GL0302]	
+TG-OH	RP	4	Hydroxy ~					
+TG-2OH	RP	4	Dihydroxy ~					
+BC-TG	RP	3	Branched chain ~					
+diBC-TG	RP	3	Di branched chain ~					
+DG	RP	1	Diacylglycerol	DAG	[GL]	Diradylglycerols [GL02]	Diacylglycerols [GL0201]	
+DG[O]	RP	2	Alkylacylglycerol		[GL]	Diradylglycerols [GL02]	"1-alkyl,2-acylglycerols [GL0202]"	
+DG[P]	RP	2	Alkenylacylglycerol		[GL]	Diradylglycerols [GL02]	1Z-alkenylacylglycerols [GL0204]	
+DG-OH	RP	4	Hydroxy ~					
+DG-2OH	RP	4	Dihydroxy ~					
+BC-DG	RP	3	Branched chain ~					
+MG	RP	2	Monoacylglycerol		[GL]	Monoradylglycerols [GL01]	Monoacylglycerols [GL0101]	
+MG[O]	RP	2	Alkylglycerol		[GL]	Monoradylglycerols [GL01]	Monoalkylglycerols [GL0102]	
+MG[P]	RP	2	Alkenylglycerol		[GL]	Monoradylglycerols [GL01]	Mono-(1Z-alkenyl)-glycerols [GL0103]	
+MG-OH	RP	4	Hydroxy ~					
+MG-2OH	RP	4	Dihydroxy ~					
+BC-MG	RP	3	Branched chain ~					
+CE	RP	1	Cholesteryl ester		[ST]	Sterols [ST01]	Steryl esters [ST0102]	
+CE-OH	RP	4	Hydroxy ~					
+CE-2OH	RP	4	Dihydroxy ~					
+BC-CE	RP	3	Branched chain ~					
+Cholesterol	RP; NP	2	Cholesterol		[ST]	Sterols [ST01]	Cholesterol and derivatives [ST0101] 	
+HexChol	RP; NP	4	Hexosylcholesterol		[ST]	Sterols [ST01]	Cholesterol and derivatives [ST0101] 	
+PC	NP; RP	1	Phosphatidylcholine		[GP]	Glycerophosphocholines [GP01]	Diacylglycerophosphocholines [GP0101]	
+PC[O+P]	NP	1	Alkyl/alkenylphosphatidylcholine		[GP]	Glycerophosphocholines [GP01]	"Monoalkylglycerophosphocholines [GP0106], 1Z-alkenylglycerophosphocholines [GP0107]"	
+PC[O]	RP	2	Alkylphosphatidylcholine		[GP]	Glycerophosphocholines [GP01]	Monoalkylglycerophosphocholines [GP0106]	
+PC[P]	RP	2	Alkenylphosphatidylcholine		[GP]	Glycerophosphocholines [GP01]	1Z-alkenylglycerophosphocholines [GP0107]	kan alleen na zuurbehandeling onderscheiden worden van PC(O-x:1)
+PC-OH	NP; RP	4	Hydroxy ~					
+PC-2OH	NP; RP	4	Dihydroxy ~					
+BC-PC	RP	3	Branched chain ~					
+diBC-PC	RP	3	Di branched chain ~					
+LPC	NP	1	Lysophosphatidylcholine	LysoPC	[GP]	Glycerophosphocholines [GP01]	Monoacylglycerophosphocholines [GP0105]	
+1-acyl LPC	RP	1	2-Lysophosphatidylcholine	LysoPC	[GP]	Glycerophosphocholines [GP01]	Monoacylglycerophosphocholines [GP0105]	
+2-acyl LPC	RP	1	1-Lysophosphatidylcholine	LysoPC	[GP]	Glycerophosphocholines [GP01]	Monoacylglycerophosphocholines [GP0105]	
+LPC[O+P]	NP	2	Alkyl/alkenyllysophosphatidylcholine	LysoPC(O+P)	[GP]	Glycerophosphocholines [GP01]	"Monoalkylglycerophosphocholines [GP0106], 1Z-alkenylglycerophosphocholines [GP0107]"	
+LPC[O]	RP	1	Alkyllysophosphatidylcholine	LysoPC(O)	[GP]	Glycerophosphocholines [GP01]	Monoalkylglycerophosphocholines [GP0106]	
+LPC[P]	RP	1	Alkenyllysophosphatidylcholine	LysoPC(P)	[GP]	Glycerophosphocholines [GP01]	1Z-alkenylglycerophosphocholines [GP0107]	
+LPC-OH	NP; RP	4	Hydroxy ~					
+LPC-2OH	NP; RP	4	Dihydroxy ~					
+BC-LPC	RP	3	Branched chain ~					
+PE	NP; RP; NP; RP	1	Phosphatidylethanolamine		[GP]	Glycerophosphoethanolamines [GP02]	Monoacylglycerophosphoethanolamines [GP0205]	
+PE[O+P]	NP	2	Alkyl/alkenylphosphatidylethanolamine		[GP]	Glycerophosphoethanolamines [GP02]	"1Z-alkenylglycerophosphoethanolamines [GP0207], Monoalkylglycerophosphoethanolamines [GP0206]"	
+PE[P]	RP	1	Alkenylphosphatidylethanolamine		[GP]	Glycerophosphoethanolamines [GP02]	1Z-alkenylglycerophosphoethanolamines [GP0207]	
+PE[O]	RP	1	Alkylphosphatidylethanolamine		[GP]	Glycerophosphoethanolamines [GP02]	Monoalkylglycerophosphoethanolamines [GP0206]	
+PE-OH	NP; RP	4	Hydroxy ~					
+PE-2OH	NP; RP	4	Dihydroxy ~					
+BC-PE	RP	3	Branched chain ~					
+LPE	NP	1	Lysophosphatidylethanolamine	LysoPE	[GP]	Glycerophosphoethanolamines [GP02]	Monoacylglycerophosphoethanolamines [GP0205]	
+1-acyl LPE	RP	1	2-Lysophosphatidylethanolamine	LysoPE	[GP]	Glycerophosphoethanolamines [GP02]	Monoacylglycerophosphoethanolamines [GP0205]	
+2-acyl LPE	RP	1	1-Lysophosphatidylethanolamine	LysoPE	[GP]	Glycerophosphoethanolamines [GP02]	Monoacylglycerophosphoethanolamines [GP0205]	
+LPE[O+P]	NP	2	Alkyl/alkenyllysophosphatidylethanolamine	LysoPE(O+P)	[GP]	Glycerophosphoethanolamines [GP02]	"Monoalkylglycerophosphoethanolamines [GP0206], 1Z-alkenylglycerophosphoethanolamines [GP0207]"	
+LPE[P]	RP	1	Alkenyllysophosphatidylethanolamine	LysoPE(P)	[GP]	Glycerophosphoethanolamines [GP02]	1Z-alkenylglycerophosphoethanolamines [GP0207]	
+LPE[O]	RP	1	Alkyllysophosphatidylethanolamine	LysoPE(O)	[GP]	Glycerophosphoethanolamines [GP02]	Monoalkylglycerophosphoethanolamines [GP0206]	
+LPE-OH	NP; RP	4	Hydroxy ~					
+LPE-2OH	NP; RP	4	Dihydroxy ~					
+BC-LPE	RP	3	Branched chain ~					
+PI	NP; RP	1	Phosphatidylinositols		[GP]	Glycerophosphoinositols [GP06]	Diacylglycerophosphoinositols [GP0601]	
+PI-OH	NP; RP	4	Hydroxy ~					
+PI-2OH	NP; RP	4	Dihydroxy ~					
+BC-PI	RP	3	Branched chain ~					
+LPI	NP; RP	1	Lysophosphatidylinositol	LysoPI	[GP]	Glycerophosphoinositols [GP06]	Monoacylglycerophosphoinositols [GP0605]	
+LPI-OH	NP; RP	4	Hydroxy ~					
+LPI-2OH	NP; RP	4	Dihydroxy ~					
+PS	RP; NP	1	Phosphatidylserine		[GP]	Glycerophosphoserines [GP03]	Diacylglycerophosphoserines [GP0301]	
+PS-OH	NP; RP	4	Hydroxy ~					
+PS-2OH	NP; RP	4	Dihydroxy ~					
+LPS	RP; NP	1	Lysophosphatidylserine	LysoPS	[GP]	Glycerophosphoserines [GP03]	Monoacylglycerophosphoserines [GP0305]	
+LPS-OH	NP; RP	4	Hydroxy ~					
+LPS-2OH	NP; RP	4	Dihydroxy ~					
+LPA	NP	1	Lysophosphatic acid		[GP]	Glycerophosphates [GP10]	Monoacylglycerophosphates [GP1005]	
+LPA[O+P]	NP	2	Alkyl/alkenyllysophosphatic acid		[GP]	Glycerophosphates [GP10]	"Monoalkylglycerophosphates [GP1006], 1Z-alkenylglycerophosphates [GP1007]"	
+LPA-OH	NP	4	Hydroxy ~					
+LPA-2OH	NP	4	Dihydroxy ~					
+PA	NP	1	Phosphatidic acid		[GP]	Glycerophosphates [GP10]	Diacylglycerophosphates [GP1001]	
+PA[O+P]	NP	2	Alkyl/alkenylphosphatic acid		[GP]	Glycerophosphates [GP10]	"1-alkyl,2-acylglycerophosphates [GP1002], 1-(1Z-alkenyl),2-acylglycerophosphates [GP1003]"	
+PA-OH	NP	4	Hydroxy ~					
+PA-2OH	NP	4	Dihydroxy ~					
+BMP	NP; RP	1	Lysobisphosphatidic acid	LBPA; bismonoacylglycerophosphate	[GP]	Glycerophosphoglycerols [GP04]	Monoacylglycerophosphomonoradylglycerols [GP0410]	
+BMP-OH	NP; RP	4	Hydroxy ~					
+BMP-2OH	NP; RP	4	Dihydroxy ~					
+BC-BMP	RP	3	Branched chain ~					
+diBC-BMP	RP	3	Di branched chain ~					
+PG	NP; RP	1	Phosphatidylglycerols		[GP]	Glycerophosphoglycerols [GP04]	Diacylglycerophosphoglycerols [GP0401]	
+PG-OH	NP; RP	4	Hydroxy ~					
+PG-2OH	NP; RP	4	Dihydroxy ~					
+BC-PG	RP	3	Branched chain ~					
+LPG	NP; RP	1	Lysophosphatidylglycerol	LysoPG	[GP]	Glycerophosphoglycerols [GP04]	Monoacylglycerophosphoglycerols [GP0405]	
+LPG-OH	NP; RP	4	Hydroxy ~					
+LPG-2OH	NP; RP	4	Dihydroxy ~					
+BC-LPG	RP	3	Branched chain ~					
+PGP	NP; RP	3	Phosphatidylglycerol-phosphate					
+SLBPA	NP; RP	3	Semi-lysobisphosphatidic acid		[GP]	Glycerophosphoglycerols [GP04]	Diacylglycerophosphomonoradylglycerols [GP0409]	
+SLBPA-OH	NP; RP	4	Hydroxy ~					
+SLBPA-2OH	NP; RP	4	Dihydroxy ~					
+BC-SLBPA	RP	3	Branched chain ~					
+AC	NP; RP; HILIC	1	Acylcarnitine		[FA]	Fatty esters [FA07]	Fatty acyl carnitines [FA0707]	
+AC-OH	NP; RP; HILIC	1	Hydroxy ~					
+AC-2OH	NP; RP	3	Dihydroxy ~					
+AC-oxo	RP	3	2-keto acylcarnitine					
+DC-AC	NP; RP; HILIC	2	Dicarboxylic acylcarnitine					
+AC'	RP	3	2-enoyl acylcarnitine					
+FA	RP; NP; HILIC	2	Fatty acid		[FA]	Fatty Acids and Conjugates [FA01]	Other Fatty Acyls [FA00]	
+FA-OH	RP; NP	3	Hydroxy ~		[FA]	Fatty Acids and Conjugates [FA01]	Hydroxy fatty acids [FA0105]	
+FA-2OH	RP; NP	4	Dihydroxy ~					
+BC-FA	RP	3	Branched chain ~					
+CL	RP; NP	1	Cardiolipin		[GP]	Glycerophosphoglycerophosphoglycerols [GP12]	Diacylglycerophosphoglycerophosphodiradylglycerols [GP1201] 	
+CL-OH	NP; RP	4	Hydroxy ~					
+CL-2OH	NP; RP	4	Dihydroxy ~					
+MLCL	RP; NP	1	Monolysocardiolipin		[GP]	Glycerophosphoglycerophosphoglycerols [GP12]	Diacylglycerophosphoglycerophosphomonoradylglycerols [GP1202]	
+DLCL	RP; NP	1	Dilysocardiolipin		[GP]	Glycerophosphoglycerophosphoglycerols [GP12]	Monoacylglycerophosphoglycerophosphomonoradylglycerols [GP1207]	
+SM[d]	NP; RP	1	Sphingomyelin/Ceramide phosphocholines		[SP]	Phosphosphingolipids [SP03]	Ceramide phosphocholines (sphingomyelins) [SP0301]	
+SM[t]	NP; RP	2	Hydroxy ~		[SP]	Phosphosphingolipids [SP03]	Ceramide phosphocholines (sphingomyelins) [SP0301]	
+SM-OH[d]	NP; RP	4	Hydroxy ~					
+SM-2OH[d]	NP; RP	4	Dihydroxy ~					
+3-O-acyl SM[d]	NP; RP	2	3-O-acylsphingomyelin					
+Lyso SM[d]	NP; RP	2	Lysosphingomyelin		[SP]	Phosphosphingolipids [SP03]	Ceramide 1-phosphates [SP0205]	
+Cer[d]	RP; NP	1	Ceramide		[SP]	Ceramides [SP02]	N-acylsphingosines (ceramides) [SP0201]; N-acylsphinganines (dihydroceramides) [SP0202]	
+Cer[t]	RP; NP	2	Hydroxy ~		[SP]	Ceramides [SP02]	N-acyl-4-hydroxysphinganines (phytoceramides) [SP0203]	
+Cer[q]	RP; NP	3	Dihydroxy ~		[SP]	Ceramides [SP02]		
+Cer[m]	RP; NP	3	Deoxy ~		[SP]	Ceramides [SP02]		"misschien alleen Cer vermelden en m,d,t en q zijn aantal OH groepen"
+C1P[d]	NP; RP	1	Ceramide-1-phosphate	Cer1P	[SP]	Ceramides [SP02]	Ceramide 1-phosphates [SP0205]	
+C1P[t]	NP; RP	4	Ceramide-1-phosphate		[SP]	Ceramides [SP02]	Ceramide 1-phosphates [SP0205]	
+HexCer[d]	RP; NP	1	Hexosylceramide	GlcCer; GalCer	[SP]	Neutral glycosphingolipids [SP05]	Simple Glc series [SP0501]	
+HexCer[t]	RP; NP	2	Hydroxy ~		[SP]	Neutral glycosphingolipids [SP05]		
+Lyso HexCer[d]	RP; NP	2	Lysohexosylceramide					
+Hex2Cer[d]	RP; NP	1	Dihexosylceramide	Glc2Cer; Gal2Cer; LacCer	[SP]	Neutral glycosphingolipids [SP05]	Simple Glc series [SP0501]	
+Hex2Cer[t]	RP; NP	2	Hydroxy ~		[SP]	Neutral glycosphingolipids [SP05]		
+Lyso Hex2Cer[d]	RP; NP	2	Lysodihexosylceramide					
+Hex3Cer[d]	RP; NP	1	Trihexosylceramide	Gb3	[SP]	Neutral glycosphingolipids [SP05]	(Globo series [SP0502]	
+Hex3Cer[t]	RP; NP	2	Hydroxy ~		[SP]	Neutral glycosphingolipids [SP05]		
+Lyso Hex3Cer[d]	RP; NP	2	Lysotrihexosylceramide					
+SPH[d]	NP; RP	2	"Sphingosine, Sphinganine"		[SP]	Sphingoid bases [SP01]	"Sphing-4-enines (Sphingosines) [SP0101],  Sphinganines [SP0102]"	
+SPH[t]	NP; RP	3	Hydroxy ~					
+SPH[m]	NP; RP	3	Deoxy ~					
+S1P[d]	NP; RP	2	Sphingosine/Sphinganine 1-phosphate		[SP]	Sphingoid bases [SP01]	Sphingoid base 1-phosphates [SP0105]	
+S1P[t]	NP; RP	3	Hydroxy ~					
+SM4[d]	NP; RP	1	Sulfatide		[SP]	Acidic glycosphingolipids [SP06]	Sulfoglycosphingolipids (sulfatides) [SP0602]	
+SM4[t]	NP; RP	2	Hydroxy ~		[SP]	Acidic glycosphingolipids [SP06]	Sulfoglycosphingolipids (sulfatides) [SP0602]	
+GM1[d]	NP; RP	1	GM1; monosialotetrahexosylganglioside		[SP]	Acidic glycosphingolipids [SP06]	Gangliosides [SP0601]	
+GM1[t]	NP; RP	2	Hydroxy ~					
+GM2[d]	NP; RP	1	GM2; monosialotrihexosylganglioside		[SP]	Acidic glycosphingolipids [SP06]	Gangliosides [SP0601]	
+GM2[t]	NP; RP	2	Hydroxy ~					
+GM3[d]	NP; RP	1	GM3; monosialdihexosylganglioside		[SP]	Acidic glycosphingolipids [SP06]	Gangliosides [SP0601]	
+GM3[t]	NP; RP	2	Hydroxy ~					
+GM4[d]	NP; RP	4	GM4		[SP]	Acidic glycosphingolipids [SP06]	Gangliosides [SP0601]	
+GM4[t]	NP; RP	4	Hydroxy ~					
+GD1[d]	NP; RP	2	GD1		[SP]	Acidic glycosphingolipids [SP06]	Gangliosides [SP0601]	
+GD1[t]	NP; RP	2	Hydroxy ~					
+GD2[d]	NP; RP	2	GD2		[SP]	Acidic glycosphingolipids [SP06]	Gangliosides [SP0601]	
+GD2[t]	NP; RP	2	Hydroxy ~					
+GD3[d]	NP; RP	2	GD3		[SP]	Acidic glycosphingolipids [SP06]	Gangliosides [SP0601]	
+GD3[t]	NP; RP	2	Hydroxy ~					
+GA1[d]	NP; RP	2	GA1	asialo-GM1	[SP]	Neutral glycosphingolipids [SP05] 	GalNAcbeta1-4Galbeta1-4Glc- (Ganglio series) [SP0503] 	
+GA1[t]	NP; RP	2	Hydroxy ~					
+GA2[d]	NP; RP	2	GA2	asialo-GM2	[SP]	Neutral glycosphingolipids [SP05] 	GalNAcbeta1-4Galbeta1-4Glc- (Ganglio series) [SP0503] 	
+GA2[t]	NP; RP	2	Hydroxy ~					
+GT1[d]	NP; RP	2	GT1		[SP]	Acidic glycosphingolipids [SP06]	Gangliosides [SP0601]	
+GT1[t]	NP; RP	4	Hydroxy ~					
+GQ1[d]	NP; RP	2	GQ1		[SP]	Acidic glycosphingolipids [SP06]	Gangliosides [SP0601]	
+GQ1[t]	NP; RP	4	Hydroxy ~					
+Dolichol	RP	2	Dolichols	Dol	[PR]	Polyprenols [PR03]	Dolichols [PR0307]	
+Dehydrodolichol	RP	2	Dehydrodolichol	Polyprenol	[PR]	Polyprenols [PR03]		
+Dolichoic acid	RP	4	Dolichoic acid		[PR]	Polyprenols [PR03]		
+Dehydrodolichoic acid	RP	4	Dehydrodolichoic acid		[PR]	Polyprenols [PR03]		
+Dolichol-P	RP	4	Dolichol monophosphate	Dol-P	[PR]	Polyprenols [PR03]	Dolichol monophosphates [PR0308]	
+Dolichol-2P	RP	4	Dolichol diphosphate	Dol-2P	[PR]	Polyprenols [PR03]	Dolichol diphosphates [PR0309]	
+Polyprenal	RP	2	Polyprenal		[PR]			
+APCS	NP; RP	4	N-acyl-O-phosphocholineserine					
+FAHFA	RP	4	Fatty acid esters of hydroxy fatty acids		[FA]	Fatty Acids and Conjugates [FA01]	Other Fatty Acyls [FA00]	BAT
+CDP-DG	NP; RP	4	CDP-diacyl glycerol		[GP]	CDP-Glycerols [GP13]	CDP-diacylglycerols [GP1301]	
+MGDG	NP; RP	4	Monoglycosyldiacylglycerol		[GL]	Glycosyldiradylglycerols [GL05]	Glycosyldiacylglycerols [GL0501]	
+DGDG	NP; RP	4	Digalactosyldiacylglycerol		[GL]	Glycosyldiradylglycerols [GL05]	Glycosyldiacylglycerols [GL0501]	
+FOH	RP	4	Fatty alcohol					
+LlyPG	NP; RP	4	Lyso lysylphosphatidylglycerol					
+lyPG	NP; RP	4	Lysylphosphatidylglycerol		[GP]			bacteria
+lyCL	NP; RP	4	Lysyl cardiolipin					
+NAPS	NP; RP	4	N-Acyl phosphatidylserine		[GP]			
+PE-Cer[d]	NP; RP	4	Ceramide phosphoethanolamines		[SP]	Phosphosphingolipids [SP03]	Ceramide phosphoethanolamines [SP0302]	drosophila
+PE-Cer[t]	NP; RP	4	Hydroxy ~					
+PI-Cer[d]	NP; RP	4	Ceramide phosphoinositols	"IPC, Ins-1-P-Cer"	[SP]	Phosphosphingolipids [SP03]	Ceramide phosphoinositols [SP0303]	yeast
+PI-Cer[t]	NP; RP	4	Hydroxy ~					
+PIP	NP; RP	4	Phosphatidylinositol phosphate		[GP]	Glycerophosphoinositol monophosphates [GP07] 	Diacylglycerophosphoinositol monophosphates [GP0701] 	
+CoQ	RP	3	Ubiquinone		[PR]	Quinones and hydroquinones [PR02]	Ubiquinones [PR0201]	

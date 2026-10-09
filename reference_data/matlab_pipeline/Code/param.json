@@ -1,0 +1,132 @@
+{
+	"general" : 
+		{
+			"mz_ppm" : [6,3],
+			"log10_int_range" : [3,11],
+			"RT_stage3" : 60,
+			"default_IS": "PE"
+		},
+	"export" : 
+		{
+			"include_tabs" : ["content","internal_standards","compound_classes","primary_norm","primary_totals_norm","secondary_norm","primary_raw","primary_totals_raw","secondary_raw"],
+			"excel_macro" : "format_MS_data_content.vbs",
+			"exclude_blancos" : true,
+			"tab" : 
+				{
+					"content" : 
+						{
+							"name" : "Content"
+						},
+					"internal_standards" : 
+						{
+							"name" : "Internal standards",
+							"description" : "List with added internal standards, their concentration, internal name, and the species (classes) that were normalized to each standard. The species without internal standard are normalized to the default internal standard, which corresponds to the first one in the list."
+						},
+					"compound_classes" : 
+						{
+							"name" : "Classes",
+							"description" : "List with identifiers of the annotated compound classes and their common name and category.",
+							"include_columns" : ["class","common_name","synonyms","category","main_class","sub_class"],
+							"filter_data" : ["annotated","primary","unlabelled","M+0"],
+							"class_sum" : true,
+							"exclude_IS" : true
+						},
+					"primary_norm" : 
+						{
+							"name" : "Primary list (normalized)",
+							"description" : "List with individual metabolite quantities per sample and normalized to the corresponding internal standard - if available - and otherwise to the default internal standard. Since mass spectrometric analysis typically yields multiple peaks for a single metabolite (in terms of column, ion mode, charge and adduct), the primary list only contains the quantities based on the most stable/reliable feature for that specific compound. If you need more details about the primary list metabolites (m/z, RT, column, ion mode/adduct) these can be found in the Primary list (raw) tab, see below.",
+							"include_columns" : ["name","label","class","chem formula","data_norm"],
+							"filter_data" : ["annotated","primary","all","M+0"],
+							"class_sum" : false,
+							"exclude_IS" : true
+						},
+					"secondary_norm" : 
+						{
+							"name" : "Equivalents (normalized)",
+							"description" : "List with individual metabolite quantities per sample and normalized using the corresponding internal standard - if available - and otherwise the default internal standard. This list with equivalent features contains the metabolite quantities that are based on all alternative features (in terms of column, ion mode, charge and adduct) for a specific species and that were not included in the primary list.",
+							"include_columns" : ["name","adduct","label","class","column","IS","data_norm"],
+							"filter_data" : ["annotated","secondary","all","M+0"],
+							"class_sum" : false,
+							"exclude_IS" : true
+						},
+					"primary_totals_norm" : 
+						{
+							"name" : "Class totals (normalized)",
+							"description" : "List with primary metabolite quantities per sample summed over each class and normalized to the corresponding internal standard - if available - and otherwise to the default internal standard. The adduct/ion mode and the column that was used (NP=normal phase, RP=reversed phase) are also listed. Importantly, the summed class totals are relative concentrations and cannot be compared between classes. The Class totals tab also contains the confidence score that is assigned during the annotation process to each compound class. The confidence score is a value ranging from 1 to 4 and represents the level of quality and the certainty of the identity of the annotated peak: \n1) High quality. Peak identity known with high certainty due to the presence of a class-specific internal standard and/or fragmentation data in the current study, or confirmed in several previous studies. High peak integration quality and secondary quality measures (expected adduct/charge ratios and isotope ratios), and little to no chromatographic overlap with other species. \n2) Intermediate quality: Peak identity known with reasonable to high certainty but suboptimal integration quality due to partial overlap with other species or large variance in expected adduct/charge and isotope ratios. \n3) Low quality. Either the peak identity is not confirmed by means of fragmentation or internal standards but based on indirect evidence such as predicted retention time or expected adduct/charge ratios, or the data quality is low due to e.g. severe overlap with other species. \n4) Speculative. Peak identity purely hypothetical and only based on m/z value.",
+							"include_columns" : ["class","adduct","label","column","IS","confidence_score","class_size","data_norm"],
+							"filter_data" : ["annotated","primary","all","M+0"],
+							"class_sum" : true,
+							"exclude_IS" : true
+						},
+					"primary_raw" : 
+						{
+							"name" : "Primary list (raw)",
+							"description" : "Primary list with raw intensities of the individual metabolites, normalized by protein quantity or some other measure of sample quantity. The lists with raw data also contain detailed information about each annotated feature, such as the adduct, m/z value, retention time (RT) in seconds, and the associated internal standard. Abbreviations: NP; normal phase, RP; reversed phase.",
+							"include_columns" : ["name","adduct","label","m/z","RT","class","column","IS","data_raw"],
+							"filter_data" : ["annotated","primary","all","M+0"],
+							"class_sum" : false,
+							"exclude_IS" : false
+						},
+					"secondary_raw" : 
+						{
+							"name" : "Equivalents (raw)",
+							"description" : "List with raw intensities of the equivalent features, normalized by protein quantity or some othe measure of sample quantity.",
+							"include_columns" : ["name","adduct","label","m/z","RT","class","column","IS","data_raw"],
+							"filter_data" : ["annotated","secondary","all","M+0"],
+							"class_sum" : false,
+							"exclude_IS" : false
+						},
+					"primary_totals_raw" : 
+						{
+							"name" : "Class totals (raw)",
+							"description" : "Primary list with the summed raw intensities of each metabolite class, normalized by protein quantity or some other measure of sample quantity.",
+							"include_columns" : ["class","adduct","label","column","IS","data_raw"],
+							"filter_data" : ["annotated","primary","all","M+0"],
+							"class_sum" : true,
+							"exclude_IS" : true
+						}
+				}
+		},
+	"NP" : 
+		{
+			"dRT_database" : Inf,
+			"R_group_FA" : 
+				{
+					"preprocessing_function" : "@(C,db,range,nR,sphingolipid)[ones(size(C,1),1),((C./nR)/range(1,2)+0),((C./nR)/range(1,2)+0.01).^-0.5,((db./nR)/range(2,2)).^0.9,double((db==0)&(sphingolipid==1)),((C.*db)./nR)/range(1,2)/range(2,2)]",
+					"preprocessing_penalization" : [0,-0.01,0.01,0.01,1,-0.01]
+				},
+			"R_group_FAfull" : 
+				{
+					"preprocessing_function" : "@(C,db,range,nR,sphingolipid)[ones(size(C,1),1),((C./nR)/range(1,2)+0),((C./nR)/range(1,2)+0.01).^-0.5,((db./nR)/range(2,2)).^0.9,double((db==0)&(sphingolipid==1)),((C.*db)./nR)/range(1,2)/range(2,2)]",
+					"preprocessing_penalization" : [0,-0.01,0.01,0.01,1,-0.01]
+				},
+			"R_group_isoprene" : 
+				{
+					"preprocessing_function" : "@(C,db,range,nR)[ones(size(C,1),1),((C./nR)/range(1,2)-0.5).^1,((C./nR)/range(1,2)-0.0).^0.5]",
+					"preprocessing_penalization" : [0,-0.01,0.01]
+				}
+		},
+	"RP" : 
+		{
+			"dRT_database" : Inf,
+			"R_group_FA" : 
+				{
+					"preprocessing_function" : "@(C,db,range,nR,sphingolipid)[ones(size(C,1),1),((C./nR)/range(1,2)+0),((C./nR)/range(1,2)+0.01).^-0.5,((C./nR)/range(1,2)).^2,((db./nR)/range(2,2)).^0.9,(((db./nR)/range(2,2)).^2),double((db==0)&(sphingolipid==1)),(((C./nR)/range(1,2)).^0.8).*(((db./nR)/range(2,2)).^0.8)]",
+					"preprocessing_penalization" : [0,-0.01,0.01,-0.01,0.01,-0.01,20,-0.001]
+				},
+			"R_group_FAfull" : 
+				{
+					"preprocessing_function" : "@(C,db,range,nR,sphingolipid)[ones(size(C,1),1),((C./nR)/range(1,2)+0),((C./nR)/range(1,2)+0.01).^-0.5,((C./nR)/range(1,2)).^2,((db./nR)/range(2,2)).^0.9,(((db./nR)/range(2,2)).^2),double((db==0)&(sphingolipid==1)),(((C./nR)/range(1,2)).^0.8).*(((db./nR)/range(2,2)).^0.8)]",
+					"preprocessing_penalization" : [0,-0.01,0.01,-0.01,0.01,-0.01,20,-0.001]
+				},
+			"R_group_isoprene" : 
+				{
+					"preprocessing_function" : "@(C,db,range,nR)[ones(size(C,1),1),((C./nR)/range(1,2)-0.5).^1,((C./nR)/range(1,2)-0.0).^0.5]",
+					"preprocessing_penalization" : [0,-0.01,0.01]
+				}
+		},
+	"HILIC" : 
+		{
+			"dRT_database" : Inf
+		}
+}

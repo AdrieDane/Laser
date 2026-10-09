@@ -1,0 +1,8 @@
+# Scientific assets are byte-level regression contracts. Never let a platform
+# checkout rewrite their line endings before checksum verification.
+app/matlab_annotation/vendor/*.py -text
+app/mzmine_methods/** -text
+app/rules/lipid_msms_rules.json -text
+example_data/** -text
+reference_data/** -text
+methods/4d_lipidomics/dataanalysis/*.m/** binary

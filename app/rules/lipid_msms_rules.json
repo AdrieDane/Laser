@@ -1,0 +1,234 @@
+{
+  "schema_version": 4,
+  "strict_filter_default": true,
+  "default_tolerance_da": 0.1,
+  "default_fatty_acyl_min_relative_intensity_percent": 1.0,
+  "rules": [
+    {
+      "id": "POS_PHOSPHOCHOLINE_HEADGROUP_184",
+      "lipid_classes": ["LPC", "PC", "SM", "PC-O", "PC-P", "LPC-O", "LPC-P"],
+      "polarity": "pos",
+      "description": "Positive-mode phosphocholine lipids require the phosphocholine headgroup product ion.",
+      "evidence": {"type": "product_ion", "name": "phosphocholine headgroup", "target_mz": 184.0733}
+    },
+    {
+      "id": "POS_CE_CHOLESTENYL_CATION_369",
+      "lipid_classes": ["CE"],
+      "polarity": "pos",
+      "description": "Positive-mode cholesteryl esters require the diagnostic cholestenyl/cholestadienyl product ion.",
+      "evidence": {"type": "product_ion", "name": "cholestenyl cation", "target_mz": 369.3516}
+    },
+    {
+      "id": "POS_PS_NEUTRAL_LOSS_185",
+      "lipid_classes": ["PS"],
+      "polarity": "pos",
+      "description": "Positive-mode phosphatidylserines require the phosphoserine neutral loss.",
+      "evidence": {"type": "neutral_loss", "name": "phosphoserine neutral loss", "target_mz": 185.0089}
+    },
+    {
+      "id": "POS_HEXCER_NEUTRAL_LOSS_162",
+      "lipid_classes": ["HexCer"],
+      "polarity": "pos",
+      "description": "Positive-mode hexosylceramides require loss of a hexose residue.",
+      "evidence": {"type": "neutral_loss", "name": "hexose neutral loss", "target_mz": 162.0528}
+    },
+    {
+      "id": "POS_AC_FRAGMENT_85",
+      "lipid_classes": ["AC"],
+      "polarity": "pos",
+      "description": "Positive-mode acylcarnitines require the diagnostic acylcarnitine product ion.",
+      "evidence": {"type": "product_ion", "name": "acylcarnitine fragment", "target_mz": 85.0284}
+    },
+    {
+      "id": "POS_PE_NEUTRAL_LOSS_141",
+      "lipid_classes": ["PE", "LPE", "PE-O", "PE-P", "LPE-O", "LPE-P"],
+      "polarity": "pos",
+      "description": "Positive-mode phosphoethanolamine lipids require loss of phosphoethanolamine.",
+      "evidence": {"type": "neutral_loss", "name": "phosphoethanolamine neutral loss", "target_mz": 141.0191}
+    },
+    {
+      "id": "POS_TG_DG_FATTY_ACYL_LOSS",
+      "lipid_classes": ["TG", "DG"],
+      "polarity": "pos",
+      "adducts": ["[M+NH4]+"],
+      "description": "Ammoniated TG and DG require at least one composition-compatible loss of RCOOH plus ammonia.",
+      "evidence": {"type": "fatty_acyl", "name": "fatty acid plus ammonia neutral loss"}
+    },
+    {
+      "id": "NEG_PI_INOSITOL_PHOSPHATE_241",
+      "lipid_classes": ["PI"],
+      "polarity": "neg",
+      "adducts": ["[M-H]-"],
+      "description": "Negative-mode PI requires the inositol phosphate product ion.",
+      "evidence": {"type": "product_ion", "name": "inositol phosphate", "target_mz": 241.0119}
+    },
+    {
+      "id": "NEG_SULFATIDE_HSO4_96",
+      "lipid_classes": ["Sulfatide", "ST", "SHexCer", "SM4"],
+      "polarity": "neg",
+      "adducts": ["[M-H]-"],
+      "description": "Negative-mode sulfatides require the bisulfate product ion.",
+      "evidence": {"type": "product_ion", "name": "bisulfate", "target_mz": 96.9601}
+    },
+    {
+      "id": "NEG_PG_BACKBONE_152",
+      "lipid_classes": ["PG"],
+      "polarity": "neg",
+      "adducts": ["[M-H]-"],
+      "description": "Negative-mode PG requires the glycerophosphoglycerol/backbone product ion.",
+      "evidence": {"type": "product_ion", "name": "glycerophosphoglycerol backbone", "target_mz": 152.9958}
+    },
+    {
+      "id": "NEG_PC_SM_FORMATE_DEMETHYL_LOSS_60",
+      "lipid_classes": ["PC", "LPC", "PC-O", "PC-P", "LPC-O", "LPC-P", "SM"],
+      "polarity": "neg",
+      "adducts": ["[M+HCOO]-"],
+      "description": "Negative-mode formate-adducted PC and SM require methyl-formate loss to the demethylated anion.",
+      "evidence": {"type": "neutral_loss", "name": "methyl formate neutral loss", "target_mz": 60.0211}
+    },
+    {
+      "id": "NEG_HEXCER_HEXOSE_LOSS_162",
+      "lipid_classes": ["HexCer", "Hex2Cer", "Hex3Cer"],
+      "polarity": "neg",
+      "adducts": ["[M-H]-", "[M+HCOO]-"],
+      "description": "Negative-mode hexosylceramides require a hexose neutral loss.",
+      "evidence": {"type": "neutral_loss", "name": "hexose neutral loss", "target_mz": 162.0528}
+    }
+  ],
+  "fatty_acyl_rules": [
+    {
+      "id": "POS_TG_AMMONIUM_FA_LOSS",
+      "lipid_classes": ["TG"],
+      "polarity": "pos",
+      "adducts": ["[M+NH4]+"],
+      "family": "glycerolipid",
+      "chain_count": 3,
+      "evidence_type": "fatty_acid_plus_ammonia_loss",
+      "carbon_min": 4,
+      "carbon_max": 40,
+      "double_bond_max": 12,
+      "additional_oxygens": [0]
+    },
+    {
+      "id": "POS_DG_AMMONIUM_FA_LOSS",
+      "lipid_classes": ["DG"],
+      "polarity": "pos",
+      "adducts": ["[M+NH4]+"],
+      "family": "glycerolipid",
+      "chain_count": 2,
+      "evidence_type": "fatty_acid_plus_ammonia_loss",
+      "carbon_min": 4,
+      "carbon_max": 40,
+      "double_bond_max": 12,
+      "additional_oxygens": [0]
+    },
+    {
+      "id": "POS_GLYCEROPHOSPHOLIPID_FA_OR_KETENE_LOSS",
+      "lipid_classes": ["PA", "PC", "PE", "PG", "PI", "PS", "BMP", "CDP-DG", "PC-O", "PC-P", "PE-O", "PE-P", "SLBPA"],
+      "polarity": "pos",
+      "adducts": ["[M+H]+"],
+      "family": "glycerophospholipid",
+      "chain_count": 2,
+      "evidence_type": "fatty_acid_or_ketene_loss",
+      "carbon_min": 4,
+      "carbon_max": 40,
+      "double_bond_max": 12,
+      "additional_oxygens": [0]
+    },
+    {
+      "id": "POS_LYSOPHOSPHOLIPID_FA_OR_KETENE_LOSS",
+      "lipid_classes": ["LPC", "LPE", "LPG", "LPI", "LPS"],
+      "excluded_lipid_classes": ["LPC-O", "LPC-P", "LPE-O", "LPE-P"],
+      "polarity": "pos",
+      "adducts": ["[M+H]+"],
+      "family": "glycerophospholipid",
+      "chain_count": 1,
+      "evidence_type": "fatty_acid_or_ketene_loss",
+      "carbon_min": 4,
+      "carbon_max": 40,
+      "double_bond_max": 12,
+      "additional_oxygens": [0]
+    },
+    {
+      "id": "NEG_GLYCEROPHOSPHOLIPID_FA_ANIONS",
+      "lipid_classes": ["PA", "PC", "PE", "PG", "PI", "PS", "BMP", "CDP-DG", "PC-O", "PC-P", "PE-O", "PE-P", "SLBPA"],
+      "polarity": "neg",
+      "adducts": ["[M-H]-", "[M+HCOO]-"],
+      "family": "glycerophospholipid",
+      "chain_count": 2,
+      "evidence_type": "fatty_acid_anion",
+      "carbon_min": 4,
+      "carbon_max": 40,
+      "double_bond_max": 12,
+      "additional_oxygens": [0]
+    },
+    {
+      "id": "NEG_LYSOPHOSPHOLIPID_FA_ANIONS",
+      "lipid_classes": ["LPC", "LPE", "LPG", "LPI", "LPS"],
+      "excluded_lipid_classes": ["LPC-O", "LPC-P", "LPE-O", "LPE-P"],
+      "polarity": "neg",
+      "adducts": ["[M-H]-", "[M+HCOO]-"],
+      "family": "glycerophospholipid",
+      "chain_count": 1,
+      "evidence_type": "fatty_acid_anion",
+      "carbon_min": 4,
+      "carbon_max": 40,
+      "double_bond_max": 12,
+      "additional_oxygens": [0]
+    },
+    {
+      "id": "NEG_DLCL_FA_ANIONS",
+      "lipid_classes": ["DLCL"],
+      "polarity": "neg",
+      "adducts": ["[M-H]-"],
+      "family": "glycerophospholipid",
+      "chain_count": 2,
+      "evidence_type": "fatty_acid_anion",
+      "carbon_min": 4,
+      "carbon_max": 40,
+      "double_bond_max": 12,
+      "additional_oxygens": [0]
+    },
+    {
+      "id": "NEG_MLCL_FA_ANIONS",
+      "lipid_classes": ["MLCL"],
+      "polarity": "neg",
+      "adducts": ["[M-H]-"],
+      "family": "glycerophospholipid",
+      "chain_count": 3,
+      "evidence_type": "fatty_acid_anion",
+      "carbon_min": 4,
+      "carbon_max": 40,
+      "double_bond_max": 12,
+      "additional_oxygens": [0]
+    },
+    {
+      "id": "NEG_CL_FA_ANIONS",
+      "lipid_classes": ["CL", "CL-OH", "CL-2OH"],
+      "polarity": "neg",
+      "adducts": ["[M-H]-"],
+      "family": "glycerophospholipid",
+      "chain_count": 4,
+      "evidence_type": "fatty_acid_anion",
+      "carbon_min": 4,
+      "carbon_max": 40,
+      "double_bond_max": 12,
+      "additional_oxygens": [0, 1]
+    },
+    {
+      "id": "NEG_SPHINGOLIPID_N_ACYL_ANIONS",
+      "lipid_classes": ["Cer", "HexCer", "Hex2Cer", "Hex3Cer", "SM", "SM4", "Sulfatide", "ST", "SHexCer"],
+      "polarity": "neg",
+      "adducts": ["[M-H]-", "[M+HCOO]-"],
+      "family": "sphingolipid",
+      "chain_count": 2,
+      "evidence_type": "fatty_acid_anion",
+      "carbon_min": 10,
+      "carbon_max": 36,
+      "double_bond_max": 8,
+      "remainder_carbon_min": 12,
+      "remainder_carbon_max": 24,
+      "additional_oxygens": [0, 1]
+    }
+  ]
+}

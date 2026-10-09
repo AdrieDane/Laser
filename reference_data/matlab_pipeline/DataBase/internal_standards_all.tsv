@@ -1,0 +1,227 @@
+name	trait	mass	RT_NP	RT_RP	RT_HILIC	name_old
+PE(14:0)2	PE(28:0)	635.452606	7.2	11.0747		PE
+LPE(14:0)	1-acyl LPE(14:0)	425.254241		5.897		LPE
+LPE(14:0)	LPE(14:0)	425.254241	9.0374			LPE
+PS(14:0)2	PS(28:0)	679.442436	9.0913	10.3115		PS
+PA(14:0)2	PA(28:0)	592.410407	7.87	10.4962		PA
+PG(14:0)2	PG(28:0)	666.447187	8.2	9.9707		PG
+LPG(14:0)	LPG(14:0)	456.248822	9.3246	5.2201		LPG
+BMP(14:0)2	BMP(28:0)	666.447187	7.7	9.9707		BMP
+CL(14:0)4	CL(56:0)	1240.847029	8.1	13.9865		CL1
+PI(8:0)2	PI(16:0)	586.275432	9.4865	4.5865		PI
+ST(17:0)	SM4(d35:1)	793.537385	8.1	12		SM4d
+ST(12:0)	SM4(d30:1)	723.459135	8.1989	9.57		SM4d
+SPH(d17:1)	SPH(d17:1)	285.266779	8.705	5.1312		SPH
+SPH(d17:0)	SPH(d17:0)	287.282429	8.4972	5.5961		SPH
+C17 Sphingosine	SPH(d17:1)	285.266779	8.705	5.1312		SPH
+C17 Sphinganine	SPH(d17:0)	287.282429	8.4972	5.5961		SPH
+S1P(d17:1)	S1P(d17:1)	365.233111	9.11	5.3498		S1P
+S1P(d17:0)	S1P(d17:0)	367.248761	9.1806	5.7123		S1P
+C17 Sphingosine-1 Phosphate	S1P(d17:1)	365.233111	9.11	5.3498		S1P
+C17 Sphinganine-1-Phosphate	S1P(d17:0)	367.248761	9.1806	5.7123		S1P
+LacCer(d18:1/12:0)	Hex2Cer(d30:1)	805.555144	8.363	9.8059		Hex2Cerd
+C12 Lactosyl(ß) Ceramide	Hex2Cer(d30:1)	805.555144	8.363	9.8059		Hex2Cerd
+GlcCer(d18:1/12:0)	HexCer(d30:1)	643.502319	5.8466	10.0693		HexCerd
+C12 Glucosyl(ß) Ceramide	HexCer(d30:1)	643.502319	5.8466	10.0693		HexCerd
+C1P(d18:1/12:0)	C1P(d30:1)	561.415826	8.5	9.9639		C1Pd
+C12 Ceramide-1-Phosphate	C1P(d30:1)	561.415826	8.5	9.9639		C1Pd
+Cer(d18:1/12:0)	Cer(d30:1)	481.449494	2.4213	10.9416		Cerd
+Cer(d18:1/25:0)	Cer(d43:1)	663.652944	2.2215	14.211		Cerd
+C12 Ceramide	Cer(d30:1)	481.449494	2.4213	10.9416		Cerd
+C25 Ceramide	Cer(d43:1)	663.652944	2.2215	14.211		Cerd
+LPA(14:0)	LPA(14:0)	382.212042	9	5.4394		LPA
+PC(14:0)2	PC(28:0)	677.499556	9.0342	10.7169		PC
+LPC(14:0)	1-acyl LPC(14:0)	467.301191		5.5962		LPC
+LPC(14:0)	LPC(14:0)	467.301191	9.9			LPC
+DAG(14:0)2	DG(28:0)	512.444075		12.1966		DG
+TAG(14:0)3	TG(42:0)	722.64244		15.247		TG
+CE(14:0)	CE(14:0)	596.55323		16.2237		CE
+SM(12:0)	SM(d30:1)	646.504975	9.38	10.4		SMd
+C12 Sphingomyelin	SM(d30:1)	646.504975	9.38	10.4		SMd
+d4-LPC(26:0)	1-acyl LPC(26:0)	639.514099	9.7439	10.48037935		LPCD4
+d4-AC(26:0)	AC(26:0)	543.516467	9.0567	10.97492007		ACD4
+CE(16:0)-D7	CE(16:0)	631.628469		16.23190441		CED7
+15:0-18:1(D7) PC	PC(33:1)	752.606095	8.629	11.79		PCD7
+15:0-18:1(D7) PE	PE(33:1)	710.559145	6.98	11.9		PED7
+15:0-18:1(D7) PS	PS(33:1)	754.548975	8.58	11.65		PSD7
+15:0-18:1(D7) PG	PG(33:1)	741.553726	7.96	11.29		PGD7
+15:0-18:1(D7) PI	PI(33:1)	829.569771	8.6	11.12		PID7
+15:0-18:1(D7) PA	PA(33:1)	667.516946	7.5	12.4		PAD7
+18:1(D7) Lyso PC	1-acyl LPC(18:1)	528.39208		7.17		LPCD7
+18:1(D7) Lyso PC	LPC(18:1)	528.39208	9.7			LPCD7
+18:1(D7) Lyso PE	1-acyl LPE(18:1)	486.34513		7.28		LPED7
+18:1(D7) Lyso PE	LPE(18:1)	486.34513	8.5			LPED7
+18:1(D7) Chol Ester	CE(18:1)	657.644119		16.21		CED7b
+18:1(D7) MAG	MG(18:1)	363.336599		8.46		MGD7
+15:0-18:1(D7) DAG	DG(33:1)	587.550614		13.11		DGD7
+15:0-18:1(D7)-15:0 TAG	TG(48:1)	811.764629		15.54		TGD7
+d18:1-18:1(D9) SM	SM(d36:2)	737.639718	9.2	11.43		SMD9
+Cholesterol (D7)	Steroid-OH(27:1)	393.3988034		11.63		CholD7
+Cholesterol (D7)	Cholesterol	393.3988034		11.63		CholD7
+SPH(d18:0)	SPH(d18:0)	301.298079	8.27	6.06		
+SPH(d18:1)	SPH(d18:1)	299.282429	8.2	5.74		
+SPH(d18:2)	SPH(d18:2)	297.266779	8.18	5.09		
+SPH(d20:1)	SPH(d20:1)	327.313729	8.01	6.88		
+SPH(t18:0)	SPH(t18:0)	317.292994	8.54	5.58		
+SPH(d18:0)-D7	SPH(d18:0)	308.342018	8.25	6.02		
+SPH(d18:1)-D7	SPH(d18:1)	306.326368	8.23	5.71		
+SPH(m18:0)	SPH(m18:0)	285.303164	7.92	6.38		
+SPH(m18:1)	SPH(m18:1)	283.287514	7.9	6.1		
+SPH(m17:0)	SPH(m17:0)	271.287514	8.1	6.22		
+SPH(m17:1)	SPH(m17:1)	269.271864	8.11	5.97		
+SPH(m18:0)-D3	SPH(m18:0)	288.321995	7.94	6.38		
+SPH(m17:0)-D5	SPH(m17:0)	276.318899	8.11	6.21		
+N-24:0(2S-OH)Ceramide	Cer(t42:1)	665.632209	2.34	13.55		
+N-12:0(2S-OH)Ceramide	Cer(t30:1)	497.444409	2.44	10.27		
+N-16:0(2S-OH)Ceramide	Cer(t34:1)	553.507009	2.44	11.57		
+LysoSM(d18:1)	Lyso SM(d18:1)	464.33791	14	4.94		
+LysoSM-D7(d18:1)	Lyso SM(d18:1)	471.381849	14	4.94		
+LysoGlcCer(d18:1)	Lyso HexCer(d18:1)	461.335254	9.01	5.17		
+LysoGlcCer-D5(d18:1)	Lyso HexCer(d18:1)	466.366639	9.01	5.17		
+LysoGb3(d18:1)	Lyso Hex3Cer(d18:1)	785.440904	9.86	4.76		
+Gly-LysoGb3(d18:1)	Lyso Hex3Cer(d18:1)	842.462368	9.86	4.76		
+LysoGM1(d18:1)	Lyso GM1(d18:1)	1279.615697	12.27	4.75		
+LysoSulfatide(d18:1)	Lyso SM4(d18:1)	541.29207	8.35	5.49		
+LysoLacCer(d18:1)	Lyso Hex2Cer(d18:1)	623.388079	9.52	4.95		
+Cholesterolsulfaat	Steroid-OH-S(27:1)	466.311681	7.68	8.67		
+Cholesterolsulfaat-D7	Steroid-OH-S(27:1)	473.35562	7.68	8.67		
+Cholesterolglucoside	Steroid-OH-Hex(27:1)	548.40769	4.5	9.56		
+Stigmasterolglucoside	Steroid-OH-Hex(29:2)	574.42334	4.5	9.93		
+Sulfatide(d18:1/19:0)	SM4(d37:1)	821.568685	7.99	11.26		
+Gb3(d18:1/17:0)	Hex3Cer(d35:1)	1037.686219	8.41	11.08		
+2H3-Propionylcarnitine	AC(3:0)	220.1502384			10.29	IS_C3
+3H3-Hexanoylcarnitine	AC(6:0)	262.1971886			10.43	IS_C6
+2H3-Octanoylcarnitine	AC(8:0)	290.2284887			7.58	IS_C8
+2H3-Decanoylcarnitine	AC(10:0)	318.2597889			6.45	IS_C10
+2H3-Palmitoylcarnitine	AC(16:0)	402.3536893			4.88	IS_C16
+d3-C3-carnitine	AC(3:0)	220.1502384			10.29	IS_C3
+d3-C6-carnitine	AC(6:0)	262.1971886			10.43	IS_C6
+d3-C8-carnitine	AC(8:0)	290.2284887			7.58	IS_C8
+d3-C10-carnitine	AC(10:0)	318.2597889			6.45	IS_C10
+d3-C16-carnitine	AC(16:0)	402.3536893			4.88	IS_C16
+Alanine-D4	Alanine	93.0728			9.95	
+AMP-15N	AMP	352.0483			9.79	
+Arginine-D7	Arginine	181.1556			22.57	
+Aspartate-D3	Aspartate	136.0563			10.55	
+ATP-15N	ATP	511.9809			11.2	
+Carnitine-D3	Carnitine	164.124			9.8	
+Citric acid-D4	Citric acid	196.0521			11.5	
+Citrulline-13C1	Citrulline	176.099			10.75	
+Fructose-1,6-diphosphate_U13C	Fructose-1,6-diphosphate	346.0162			11.63	
+Glucose 13C6	Glucose	186.0835			8.59	
+Glucose-6P_U13C	Glucose-6P	266.0498			11.07	
+Glutamate-D3	Glutamate	150.072			10.48	
+Glutamine-D5	Glutamine	151.1005			10.38	
+Glutathione-D5	Glutathione	312.1152			10.32	
+Glycine_U13C	Glycine	77.0387			10	
+GMP-15N	GMP	368.0432			10.74	
+GTP-15N	GTP	527.9758			11.92	
+Isoleucine-U13C	Isoleucine	137.1148			7.25	
+Lactic acid-D3	Lactate	93.0505			6.79	
+Leucine-D3	Leucine	134.1135			6.91	
+Lysine-D4	Lysine	150.1306			21.08	
+Methionine-D3	Methionine	152.0699			7.58	
+Ornithine-D6	Ornithine	138.1275			22.03	
+Phenylalanine-D5	Phenylalanine	170.1104			6.6	
+Proline-D7	Proline	122.1073			8.56	
+Pyruvate-13C3	Pyruvate	91.0261			4.22	
+Serine-D3	Serine	108.0614			10.83	
+Succinic acid-D4	Succinate	122.0517			9.3	
+Succinic acid-D6	Succinate	124.0643			9.3	
+Thymine-D4	Thymine	130.068			2	
+Tryptophan-D5	Tryptophan	209.1213			6.935	
+Tyrosine-D4	Tyrosine	185.099			8.65	
+Valine-D8	Valine	125.1292			8.2	
+14:0-13:0-14:0 TG-d5	TG(41:0)	713.6582				
+14:0-15:1-14:0 TG-d5	TG(43:1)	739.6738				
+14:0-17:1-14:0 TG-d5	TG(45:1)	767.7051				
+16:0-15:1-16:0 TG-d5	TG(47:1)	795.7364				
+16:0-17:1-16:0 TG-d5	TG(49:1)	823.7677				
+16:0-19:2-16:0 TG-d5	TG(51:2)	849.7834				
+18:1-17:1-18:1 TG-d5	TG(53:3)	875.799				
+18:1-19:2-18:1 TG-d5	TG(55:4)	901.8147				
+18:1-21:2-18:1 TG-d5	TG(57:4)	929.846				
+14:1 cholesteryl-d7 ester	CE(14:1)	601.5815				
+16:1 cholesteryl-d7 ester	CE(16:1)	629.6128				
+18:1 cholesteryl-d7 ester	CE(18:1)	657.6441				
+20:3 cholesteryl-d7 ester	CE(20:3)	681.6441				
+22:4 cholesteryl-d7 ester	CE(22:4)	707.6598				
+C16:1 Ceramide-d7 (d18:1-d7/16:1)	Cer(d34:2)	542.5404				
+C18:1 Ceramide-d7 (d18:1-d7/18:1)	Cer(d36:2)	570.5717				
+C20:1 Ceramide-d7 (d18:1-d7/20:1)	Cer(d38:2)	598.603				
+C22:1 Ceramide-d7 (d18:1-d7/22:1)	Cer(d40:2)	626.6343				
+C24:1 Ceramide-d7 (d18:1-d7/24:1)	Cer(d42:2)	654.6656				
+16:1 SM (d18:1/16:1)-d9	SM(d34:2)	709.6084				
+18:1 SM (d18:1/18:1)-d9	SM(d36:2)	737.6397				
+20:1 SM (d18:1/20:1)-d9	SM(d38:2)	765.671				
+22:1 SM (d18:1/22:1)-d9	SM(d40:2)	793.7023				
+24:1 SM (d18:1/24:1)-d9	SM(d42:2)	821.7336				
+17:0-14:1 PC-d5	PC(31:1)	722.5622				
+17:0-16:1 PC-d5	PC(33:1)	750.5935				
+17:0-18:1 PC-d5	PC(35:1)	778.6248				
+17:0-20:3 PC-d5	PC(37:3)	802.6248				
+17:0-22:4 PC-d5	PC(39:4)	828.6405				
+17:0-14:1 PE-d5	PE(31:1)	680.5153				
+17:0-16:1 PE-d5	PE(33:1)	708.5466				
+17:0-18:1 PE-d5	PE(35:1)	736.5779				
+17:0-20:3 PE-d5	PE(37:3)	760.5779				
+17:0-22:4 PE-d5	PE(39:4)	786.5935				
+17:0-14:1 PG-d5	PG(31:1)	711.5098573				
+17:0-16:1 PG-d5	PG(33:1)	739.5411573				
+17:0-18:1 PG-d5	PG(35:1)	767.5724573				
+17:0-20:3 PG-d5	PG(37:3)	791.5724573				
+17:0-22:4 PG-d5	PG(39:4)	817.5881573				
+17:0-14:1 PS-d5	PS(31:1)	724.5051573				
+17:0-16:1 PS-d5	PS(33:1)	752.5364573				
+17:0-18:1 PS-d5	PS(35:1)	780.5677573				
+17:0-20:3 PS-d5	PS(37:3)	804.5677573				
+17:0-22:4 PS-d5	PS(39:4)	830.5833573				
+17:0-14:1 DG-d5	DG(31:1)	557.5068				
+17:0-16:1 DG-d5	DG(33:1)	585.5381				
+17:0-18:1 DG-d5	DG(35:1)	613.5694				
+17:0-20:3 DG-d5	DG(37:3)	637.5694				
+17:0-22:4 DG-d5	DG(39:4)	663.585				
+17:0-14:1 PI-d5	PI(31:1)	799.525917				
+17:0-16:1 PI-d5	PI(33:1)	827.557217				
+17:0-18:1 PI-d5	PI(35:1)	855.588517				
+17:0-20:3 PI-d5	PI(37:3)	879.588517				
+17:0-22:4 PI-d5	PI(39:4)	905.604167				
+15:0 Lyso PI-d5	LPI(15:0)	563.311902				
+17:0 Lyso PI-d5	LPI(17:0)	591.343202				
+19:0 Lyso PI-d5	LPI(19:0)	619.374502				
+15:0 Lyso PS-d5	LPS(15:0)	488.2910573				
+17:0 Lyso PS-d5	LPS(17:0)	516.3223573				
+19:0 Lyso PS-d5	LPS(19:0)	544.3536573				
+15:0 Lyso PG-d5	LPG(15:0)	475.2958573				
+17:0 Lyso PG-d5	LPG(17:0)	503.3271573				
+19:0 Lyso PG-d5	LPG(19:0)	531.3584573				
+15:0 Lyso PC-d5	LPC(15:0)	486.3482				
+17:0 Lyso PC-d5	LPC(17:0)	514.3795				
+19:0 Lyso PC-d5	LPC(19:0)	542.4108				
+15:0 Lyso PE-d5	LPE(15:0)	444.3013				
+17:0 Lyso PE-d5	LPE(17:0)	472.3326				
+19:0 Lyso PE-d5	LPE(19:0)	500.3639				
+15:0 Lyso PC-d5	1-acyl LPC(15:0)	486.3482				
+17:0 Lyso PC-d5	1-acyl LPC(17:0)	514.3795				
+19:0 Lyso PC-d5	1-acyl LPC(19:0)	542.4108				
+15:0 Lyso PE-d5	1-acyl LPE(15:0)	444.3013				
+17:0 Lyso PE-d5	1-acyl LPE(17:0)	472.3326				
+19:0 Lyso PE-d5	1-acyl LPE(19:0)	500.3639				
+Alanine-13C3	Alanine	93.0548			9.25	
+Arginine-13C6	Arginine	180.1318			19	
+Aspartate-13C4	Aspartate	137.0509			10.55	
+Cystine-13C6-15N2	Cystine	248.038			11.7	
+Glutamate-13C5	Glutamate	152.0699			9.78	
+Glycine-13C2-15N	Glycine	78.0358			10	
+Histidine-13C6	Histidine	161.0896			10.92	
+Isoleucine-13C6-15N	Isoleucine	138.1118			7.25	
+Leucine-13C6-15N	Leucine	138.1118			6.91	
+Lysine-13C6	Lysine	152.1257			20	
+Methionine-13C5-15N	Methionine	155.0649			7.55	
+Ornithine-13C5	Ornithine	137.1067			18.25	
+Phenylalanine-13C6	Phenylalanine	171.0991			6.58	
+Proline-13C5	Proline	120.0801			8.51	
+Serine-13C3-15N	Serine	109.0497			10.13	
+Threonine-13C4	Threonine	123.0717			9.97	
+Tyrosine-13C6	Tyrosine	187.094			8.63	
+Valine-13C5	Valine	122.0957			8.14	
