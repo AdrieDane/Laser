@@ -150,6 +150,8 @@ class AutomaticAnchorSettings:
     use_post_regression_completion: bool = True
     post_regression_confidence_threshold: float = 0.50
     post_regression_ambiguity_margin: float = 0.10
+    use_fitted_grid_completion: bool = True
+    fitted_grid_feature_ambiguity_margin: float = 0.10
     excluded_anchor_species: tuple[str, ...] = (
         "1-acylLPC(20:5)",
         "1-acylLPC(22:1)",

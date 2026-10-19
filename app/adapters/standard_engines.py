@@ -161,6 +161,13 @@ def build_automatic_anchor_settings(
             "post_regression_ambiguity_margin",
             defaults.post_regression_ambiguity_margin,
         )),
+        use_fitted_grid_completion=bool(values.get(
+            "use_fitted_grid_completion", defaults.use_fitted_grid_completion,
+        )),
+        fitted_grid_feature_ambiguity_margin=_float_setting(values.get(
+            "fitted_grid_feature_ambiguity_margin",
+            defaults.fitted_grid_feature_ambiguity_margin,
+        )),
     )
 
 

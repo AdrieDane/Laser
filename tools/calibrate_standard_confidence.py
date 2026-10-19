@@ -29,6 +29,7 @@ from matlab_annotation.confidence import (
     PostRegressionCompletionSettings, _candidate_features, _preserve_count,
     _score_features, _select_confident,
 )
+from matlab_annotation.fitted_grid_completion import filter_uncertain_new_features
 
 
 BASE_NUMERIC = [
@@ -53,6 +54,9 @@ def load_training(root: Path) -> pd.DataFrame:
             truth["stream"].astype(str), truth["identity_key"].astype(str),
             truth["xcms_feature_id"].astype(int).astype(str), strict=True,
         ))
+        truth_identities = set(zip(
+            truth["stream"].astype(str), truth["identity_key"].astype(str), strict=True,
+        ))
         allowed = [
             str(adduct) in matlab_annotation_adducts(str(stream).split("_")[0])
             for stream, adduct in zip(
@@ -73,6 +77,12 @@ def load_training(root: Path) -> pd.DataFrame:
             for stream, identity, feature in zip(
                 candidates["laser_stream"], candidates["identity_key"],
                 candidates["laser_feature_id"], strict=True,
+            )
+        ]
+        candidates["identity_confirmed_in_reference"] = [
+            (str(stream), str(identity)) in truth_identities
+            for stream, identity in zip(
+                candidates["laser_stream"], candidates["identity_key"], strict=True,
             )
         ]
         candidates = candidates.rename(columns={
@@ -105,7 +115,9 @@ def features_for(data: pd.DataFrame, priors: dict) -> pd.DataFrame:
     return features
 
 
-def fit_payload(data: pd.DataFrame, *, baseline: bool = False) -> dict:
+def fit_payload(
+    data: pd.DataFrame, *, baseline: bool = False, fitted_grid: bool = False,
+) -> dict:
     correct = data.loc[data["correct"], ["class", "carbon", "db"]].rename(
         columns={"class": "lipid_class"}
     )
@@ -113,6 +125,8 @@ def fit_payload(data: pd.DataFrame, *, baseline: bool = False) -> dict:
     features = features_for(data, priors)
     numeric = BASE_NUMERIC if baseline else NUMERIC
     categorical = BASE_CATEGORICAL if baseline else CATEGORICAL
+    if fitted_grid:
+        categorical = categorical + ["class_carbon", "class_db"]
     preprocessing = ColumnTransformer([
         ("numeric", make_pipeline(
             SimpleImputer(strategy="median"), StandardScaler(),
@@ -138,7 +152,10 @@ def fit_payload(data: pd.DataFrame, *, baseline: bool = False) -> dict:
         ))
         offset += len(values)
     payload = {
-        "format": f"laser-post-regression-confidence-v{1 if baseline else 2}",
+        "format": (
+            "laser-fitted-grid-confidence-v1" if fitted_grid else
+            f"laser-post-regression-confidence-v{1 if baseline else 2}"
+        ),
         "decision_threshold": 0.5,
         "candidate_limits": {
             "ppm": 3.0, "rt_seconds": 10.0,
@@ -173,9 +190,12 @@ def fit_payload(data: pd.DataFrame, *, baseline: bool = False) -> dict:
     return payload
 
 
-def evaluate_fold(training: pd.DataFrame, validation: pd.DataFrame) -> list[dict]:
+def evaluate_fold(
+    training: pd.DataFrame, validation: pd.DataFrame, *, fitted_grid: bool = False,
+) -> list[dict]:
     baseline = fit_payload(training, baseline=True)
-    model = fit_payload(training)
+    model = fit_payload(training, fitted_grid=fitted_grid)
+    reference_v2 = fit_payload(training) if fitted_grid else None
     features = features_for(validation, model["composition_priors"])
     settings = PostRegressionCompletionSettings()
     scores = _score_features(features, model)
@@ -186,10 +206,24 @@ def evaluate_fold(training: pd.DataFrame, validation: pd.DataFrame) -> list[dict
         original, _passing, _ambiguous = _select_confident(
             group, group_features, baseline_scores.loc[group.index], settings,
         )
+        if reference_v2:
+            reference_scores = _score_features(group_features, reference_v2)
+            reference_calls, _passing, _ambiguous = _select_confident(
+                group, group_features, reference_scores, settings,
+            )
+            original, _retained = _preserve_count(
+                reference_calls, original,
+                group.assign(post_regression_confidence=reference_scores),
+                group_features,
+            )
         selected, _passing, _ambiguous = _select_confident(
             group, group_features, scores.loc[group.index], settings,
         )
         group = group.assign(post_regression_confidence=scores.loc[group.index])
+        if fitted_grid:
+            selected = filter_uncertain_new_features(
+                selected, group, group_features, original, margin=0.10,
+            )
         selected, retained = _preserve_count(
             selected, original, group, group_features,
         )
@@ -199,6 +233,12 @@ def evaluate_fold(training: pd.DataFrame, validation: pd.DataFrame) -> list[dict
             "baseline_exact": int(original["correct"].sum()),
             "updated_accepted": len(selected),
             "updated_exact": int(selected["correct"].sum()),
+            "baseline_wrong_feature": int((
+                ~original["correct"] & original["identity_confirmed_in_reference"]
+            ).sum()),
+            "updated_wrong_feature": int((
+                ~selected["correct"] & selected["identity_confirmed_in_reference"]
+            ).sum()),
             "baseline_calls_retained": retained,
         })
     return rows
@@ -211,23 +251,29 @@ def main() -> None:
                         help="Deployed v1 model, or v2 model containing its frozen v1 reference")
     parser.add_argument("--output-model", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
+    parser.add_argument("--fitted-grid", action="store_true",
+                        help="Fit the count-preserving fitted-grid refinement model")
     args = parser.parse_args()
     data = load_training(args.benchmark_root)
     rows = []
     for dataset in sorted(data["dataset"].unique()):
         validation = data[data["dataset"].eq(dataset)]
         training = data[~data["dataset"].eq(dataset)]
-        rows.extend(evaluate_fold(training, validation))
+        rows.extend(evaluate_fold(training, validation, fitted_grid=args.fitted_grid))
     report = pd.DataFrame(rows)
     args.report.parent.mkdir(parents=True, exist_ok=True)
     report.to_csv(args.report, index=False)
-    payload = fit_payload(data)
+    payload = fit_payload(data, fitted_grid=args.fitted_grid)
     reference = json.loads(args.reference_model.read_text(encoding="utf-8"))
     reference = reference.get("count_reference_model", reference)
     if reference["format"] != "laser-post-regression-confidence-v1":
         raise ValueError("--reference-model must be the frozen deployed v1 model")
-    payload["count_reference_model"] = reference
-    payload["selection_policy"] = "preserve_reference_count_per_stream"
+    if args.fitted_grid:
+        payload["selection_policy"] = "preserve_v2_count_per_stream_after_grid_completion"
+        payload["feature_ambiguity_margin"] = 0.10
+    else:
+        payload["count_reference_model"] = reference
+        payload["selection_policy"] = "preserve_reference_count_per_stream"
     payload["validation"] = {
         "method": "leave-one-dataset-out; model and composition priors refitted per fold",
         "scope": "stored strict candidate pools; not full-pipeline reruns",
@@ -235,6 +281,8 @@ def main() -> None:
         "baseline_exact": int(report["baseline_exact"].sum()),
         "updated_accepted": int(report["updated_accepted"].sum()),
         "updated_exact": int(report["updated_exact"].sum()),
+        "baseline_wrong_feature": int(report["baseline_wrong_feature"].sum()),
+        "updated_wrong_feature": int(report["updated_wrong_feature"].sum()),
     }
     args.output_model.parent.mkdir(parents=True, exist_ok=True)
     args.output_model.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")

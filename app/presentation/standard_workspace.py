@@ -168,6 +168,7 @@ def _rt_grid(context: StandardWorkspaceContext) -> None:
         ("matlab_internal_standard_audit", "Internal-standard recovery"),
         ("matlab_grid_coherence_audit", "Grid coherence"),
         ("matlab_post_regression_audit", "Post-regression confidence completion"),
+        ("matlab_fitted_grid_audit", "Fitted-grid completion and feature selection"),
         ("grid_coherence_audit", "Grid-coherence audit"),
         ("matlab_positional_isomer_audit", "RP positional-isomer resolution"),
         ("matlab_positional_refit_audit", "Experimental positional RT refit"),

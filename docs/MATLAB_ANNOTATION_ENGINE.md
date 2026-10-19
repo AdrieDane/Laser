@@ -169,6 +169,75 @@ streams. Cells was an exploratory additional evaluation; fish was evaluated
 after the v2 model and selection policy had been fixed. Neither dataset was
 added to model fitting or composition-prior estimation.
 
+### Independently supported fitted-grid completion
+
+After v2 selection, `fitted_grid_completion.py` checks the fitted reference
+surfaces for feature–target pairs omitted by the staged candidate mapper. It
+uses the existing carbon/double-bond ranges, allowed phase/adducts, strict
+`<3 ppm` and 10-second limits; it does not extrapolate missing RT models or
+generate new positional LPC/LPE assignments. Each new pair needs at least two
+distinct, nearby carbon/double-bond nodes from the **pre-existing** accepted
+selection, with grid coherence at least `0.45`. Proposed pairs cannot support
+one another. Original XCMS feature IDs and protected internal standards are
+preserved.
+
+The separate model `reference_data/standard_fitted_grid_confidence.json` adds
+class-specific carbon and double-bond effects to the continuous v2 evidence.
+It was fitted on the same four original cohorts, not on the additional cells,
+fish, ALD brain or heart datasets. A newly introduced identity also needs a
+confidence margin of `0.10` over its competing XCMS feature; competing lipid
+identities retain the existing `0.10` margin. Selection preserves the preceding
+v2 count separately in each stream. Baseline fallback calls remain explicitly
+labelled `baseline_count_retained`, rather than being represented as newly
+confident calls. This count constraint preserves assignment volume, not the
+number of distinct lipid species.
+
+The `matlab_fitted_grid_audit` table records proposed, independently supported,
+selected and retained counts. An unavailable model or baseline pair leaves
+the preceding selection unchanged and records the reason. Disable this stage
+with `use_fitted_grid_completion=False`; disabling post-regression completion
+also disables it.
+
+The model fit and leave-one-dataset-out scoring can be reproduced with the
+calibration command above plus `--fitted-grid`, using a separate output model
+and report. Every fold re-fits its composition priors and coefficients without
+the validation cohort. This candidate-stage cross-validation does not include
+regenerating omitted fitted pairs; the integrated comparisons below do.
+
+Eight datasets were compared against curated identities **and the same original
+XCMS feature**. Workbook rows were mapped to features using mass/RT and
+protein-corrected sample profiles with correlation at least `0.995`; unmapped
+rows were excluded. Counts are unchanged in all 32 streams:
+
+| Dataset | Excluded from model fitting | Calls, unchanged | Exact matches, v2 → refined | Same identity, different feature, v2 → refined |
+| --- | --- | ---: | ---: | ---: |
+| 26P0025 ALD brain | Yes | 2,833 | 2,482 → 2,578 | 48 → 32 |
+| Rat brain | No | 3,185 | 2,810 → 2,926 | 58 → 33 |
+| Cells | Yes | 2,774 | 2,382 → 2,440 | 37 → 32 |
+| Fish larvae | Yes | 2,164 | 1,643 → 1,753 | 205 → 152 |
+| Rat plasma | No | 1,776 | 1,551 → 1,576 | 20 → 18 |
+| Rat spinal cord | No | 2,919 | 2,480 → 2,573 | 35 → 22 |
+| Pex5 mouse | No | 2,056 | 1,826 → 1,862 | 18 → 18 |
+| Heart | Yes | 2,741 | 2,310 → 2,349 | 56 → 53 |
+
+The final stage was replayed on cached full v2 runs for all eight datasets.
+Complete updated-pipeline reruns on ALD brain and heart produced identical
+assignment sets to those replays. Heart was evaluated after the rules were
+fixed; the other additional datasets informed development, so exclusion from
+fitting alone should not be interpreted as a fully untouched test set. These
+results are curated agreement, not analytical accuracy or false-discovery
+estimates. The aggregate results are stored in
+[`validation/fitted_grid_completion.csv`](validation/fitted_grid_completion.csv).
+
+For ALD brain, missing exact curated assignments fell from 1,252 to 1,156;
+unconfirmed extra identities fell from 303 to 223. Remaining missing
+assignments include 432 eligible but unselected pairs, 255 outside the strict
+RT window, 214 absent from the fitted candidate set, 139 failing grid coherence,
+108 outside the mass window, four lacking a fitted RT model, three with another
+feature selected, and one blocked by positional resolution. Broader windows or
+carbon ranges were not enabled merely to reproduce the curated workbook.
+Missing curated support does not by itself establish that an extra is wrong.
+
 Only the RP ion channels used in the curated MATLAB exports are promoted:
 `[M+H]+`, `[M+NH4]+`, `[M-H]-`, and `[M-2H](2-)`.
 

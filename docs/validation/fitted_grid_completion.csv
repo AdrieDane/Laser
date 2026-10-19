@@ -1,0 +1,9 @@
+dataset,excluded_from_model_fitting,annotations_before,annotations_after,exact_before,exact_after,wrong_feature_before,wrong_feature_after,extra_unconfirmed_before,extra_unconfirmed_after,missing_curated_before,missing_curated_after
+26P0025_ALD_brain,True,2833,2833,2482,2578,48,32,303,223,1252,1156
+rat_brain,False,3185,3185,2810,2926,58,33,317,226,766,650
+cells,True,2774,2774,2382,2440,37,32,355,302,1074,1016
+fish_larvae,True,2164,2164,1643,1753,205,152,316,259,2552,2442
+rat_plasma,False,1776,1776,1551,1576,20,18,205,182,451,426
+rat_spinal_cord,False,2919,2919,2480,2573,35,22,404,324,738,645
+pex5_mouse,False,2056,2056,1826,1862,18,18,212,176,436,400
+heart,True,2741,2741,2310,2349,56,53,375,339,867,828

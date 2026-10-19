@@ -54,6 +54,23 @@ def _render_isomer_audits(result: dict) -> None:
 
 
 def _render_grid_and_standards(result: dict) -> None:
+    fitted = result.get("matlab_fitted_grid_audit", pd.DataFrame())
+    if isinstance(fitted, pd.DataFrame) and not fitted.empty:
+        completed = pd.to_numeric(
+            fitted.get("selected_completed_pairs", pd.Series(dtype=float)),
+            errors="coerce",
+        ).fillna(0).sum()
+        with st.expander("Fitted-grid recovery and feature selection", expanded=False):
+            st.caption(
+                f"{int(completed)} omitted feature/target pairs were recovered "
+                "within the existing mass and RT limits. Each recovered pair "
+                "requires support from at least two previously accepted grid "
+                "nodes. Competing features are checked separately, and the "
+                "baseline annotation count is preserved in each stream."
+            )
+            st.dataframe(fitted, hide_index=True, width="stretch")
+            _download("Download fitted-grid recovery audit CSV", fitted,
+                      "LASER_matlab_fitted_grid_audit.csv")
     completion = result.get("matlab_post_regression_audit", pd.DataFrame())
     if isinstance(completion, pd.DataFrame) and not completion.empty:
         promoted = int(pd.to_numeric(

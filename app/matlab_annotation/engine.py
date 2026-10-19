@@ -60,6 +60,9 @@ from .confidence import (
     PostRegressionCompletionSettings,
     complete_post_regression_annotations,
 )
+from .fitted_grid_completion import (
+    FittedGridCompletionSettings, refine_fitted_grid_annotations,
+)
 from .decode import CodeDecoder
 from .isomer_resolver import (
     PositionalIsomerSettings,
@@ -1961,6 +1964,7 @@ def _assemble_automatic_phase_result(
     streams = _split_xcms_streams(combined, bundle)
     restored_anchors = []
     completion_audits = []
+    fitted_grid_audits = []
     for stream_name, stream in streams.items():
         stream["criteria"]["rt_model_source"] = f"matlab_{phase.lower()}_rtdb"
         stream["criteria"]["use_grid_coherence"] = bool(
@@ -2000,6 +2004,21 @@ def _assemble_automatic_phase_result(
             ),
         )
         completion_audits.append(completion_audit)
+        (
+            stream["annotations"], stream["all_pairs"], fitted_grid_audit,
+        ) = refine_fitted_grid_annotations(
+            stream["annotations"], stream["all_pairs"],
+            stream["reference"], stream["features"], stream=stream_name,
+            settings=FittedGridCompletionSettings(
+                enabled=(settings.use_post_regression_completion
+                         and settings.use_fitted_grid_completion),
+                confidence_threshold=settings.post_regression_confidence_threshold,
+                ambiguity_margin=settings.post_regression_ambiguity_margin,
+                feature_ambiguity_margin=settings.fitted_grid_feature_ambiguity_margin,
+                grid_threshold=settings.grid_coherence_threshold,
+            ),
+        )
+        fitted_grid_audits.append(fitted_grid_audit)
     result = assemble_result(
         streams,
         outcomes,
@@ -2024,6 +2043,9 @@ def _assemble_automatic_phase_result(
     result["matlab_grid_coherence_audit"] = grid_audit
     result["matlab_post_regression_audit"] = pd.concat(
         completion_audits, ignore_index=True, sort=False
+    )
+    result["matlab_fitted_grid_audit"] = pd.concat(
+        fitted_grid_audits, ignore_index=True, sort=False,
     )
     result["matlab_positional_isomer_audit"] = positional_audit
     result["matlab_positional_refit_audit"] = refit_audit
@@ -2158,6 +2180,7 @@ def _merge_matlab_phase_results(
         "matlab_internal_standard_audit",
         "matlab_grid_coherence_audit",
         "matlab_post_regression_audit",
+        "matlab_fitted_grid_audit",
         "matlab_positional_isomer_audit",
         "matlab_positional_refit_audit",
         "matlab_mass_calibration_audit",

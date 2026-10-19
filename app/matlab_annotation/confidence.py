@@ -39,6 +39,7 @@ def _load_model(path: str | Path) -> dict:
     if payload.get("format") not in {
         "laser-post-regression-confidence-v1",
         "laser-post-regression-confidence-v2",
+        "laser-fitted-grid-confidence-v1",
     }:
         raise ValueError(f"Unsupported post-regression confidence model: {source}")
     return payload
@@ -99,6 +100,12 @@ def _candidate_features(
     )
     features["identity_key"] = identity_key
     features["stream_class"] = features["stream"] + "|" + features["lipid_class"]
+    for column in ("carbon", "db"):
+        values = pd.to_numeric(
+            candidates.get(column, pd.Series(np.nan, index=candidates.index)),
+            errors="coerce",
+        ).astype("Int64").astype(str)
+        features[f"class_{column}"] = features["lipid_class"] + "|" + values
     if model and "composition_priors" in model:
         composition = pd.DataFrame({
             "lipid_class": features["lipid_class"],
@@ -221,6 +228,34 @@ def _protected_rows(annotations: pd.DataFrame) -> pd.DataFrame:
     return annotations.loc[protected].copy()
 
 
+def _strict_candidate_mask(
+    candidates: pd.DataFrame, stream: str, limits: Mapping,
+) -> pd.Series:
+    phase = str(stream).split("_", 1)[0].upper()
+    isotopologue = candidates.get(
+        "isotopologue", pd.Series("", index=candidates.index)
+    ).fillna("").astype(str)
+    eligible = (
+        isotopologue.eq("")
+        & pd.to_numeric(candidates["ppm_error"], errors="coerce").abs().lt(
+            float(limits["ppm"])
+        )
+        & (pd.to_numeric(candidates["rt_error"], errors="coerce").abs() * 60.0).le(
+            float(limits["rt_seconds"])
+        )
+        & candidates["adduct"].astype(str).isin(matlab_annotation_adducts(phase))
+    )
+    if bool(limits.get("require_grid_coherence_pass", True)):
+        eligible &= candidates.get(
+            "grid_coherence_pass", pd.Series(True, index=candidates.index)
+        ).fillna(True).astype(bool)
+    positional = candidates["class"].astype(str).isin(_POSITIONAL_CLASSES)
+    selected = candidates.get(
+        "positional_isomer_selected", pd.Series(False, index=candidates.index)
+    ).fillna(False).astype(bool)
+    return eligible & (~positional | selected)
+
+
 def complete_post_regression_annotations(
     annotations: pd.DataFrame,
     all_pairs: pd.DataFrame,
@@ -260,30 +295,7 @@ def complete_post_regression_annotations(
         }])
 
     phase = str(stream).split("_", 1)[0].upper()
-    limits = model["candidate_limits"]
-    isotopologue = candidates.get(
-        "isotopologue", pd.Series("", index=candidates.index)
-    ).fillna("").astype(str)
-    coherence_pass = candidates.get(
-        "grid_coherence_pass", pd.Series(True, index=candidates.index)
-    ).fillna(True).astype(bool)
-    eligible = (
-        isotopologue.eq("")
-        & pd.to_numeric(candidates["ppm_error"], errors="coerce").abs().lt(
-            float(limits["ppm"])
-        )
-        & (
-            pd.to_numeric(candidates["rt_error"], errors="coerce").abs() * 60.0
-        ).le(float(limits["rt_seconds"]))
-        & candidates["adduct"].astype(str).isin(matlab_annotation_adducts(phase))
-    )
-    if bool(limits.get("require_grid_coherence_pass", True)):
-        eligible &= coherence_pass
-    positional = candidates["class"].astype(str).isin(_POSITIONAL_CLASSES)
-    positional_selected = candidates.get(
-        "positional_isomer_selected", pd.Series(False, index=candidates.index)
-    ).fillna(False).astype(bool)
-    eligible &= ~positional | positional_selected
+    eligible = _strict_candidate_mask(candidates, stream, model["candidate_limits"])
 
     pool = candidates.loc[eligible].copy()
     if pool.empty:
