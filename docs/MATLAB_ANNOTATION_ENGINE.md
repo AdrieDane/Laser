@@ -238,6 +238,93 @@ feature selected, and one blocked by positional resolution. Broader windows or
 carbon ranges were not enabled merely to reproduce the curated workbook.
 Missing curated support does not by itself establish that an extra is wrong.
 
+### RP isomer-aware anchor refinement
+
+The final RP-only pass in `rp_isomer_anchors.py` resolves abundant isomer
+pairs before predicting weaker members of their series. It supplements, rather
+than globally refits, the staged mapper. The input reference grid holds the
+calibrated **RTDB prior**; it is not the final staged-regression prediction.
+This distinction matters when the staged O/P or positional curve has drifted.
+
+The method uses the validated primary channels: `[M+H]+` for PC-O/PC-P and
+1-/2-acyl LPC, and `[M-H]-` for PE-O/PE-P and 1-/2-acyl LPE. Other channels
+retain ordinary engine eligibility but do not receive this additional
+isomer-based promotion. NP is an exact no-op, retaining its combined identities
+and separate RT methodology.
+
+1. Generate monoisotopic feature/target matches inside the existing strict
+   `<3 ppm` mass limit and the 30-second anchor-search window.
+2. Jointly assign distinct peaks to the two forms, requiring a minimum
+   three-second separation, agreement with the reference gap within eight
+   seconds, and an assignment-score margin of `0.15`. LPC/LPE require 2-acyl
+   before 1-acyl. O/P ordering comes from the method-specific RTDB, not a
+   universal literature ordering. O-C:D is compared with P-C:(D-1), and the
+   theoretical masses must actually agree.
+3. Rank pairs by the weaker member's intensity, retain at most 20 pairs per
+   family/adduct, and reject inconsistent residuals using a median/MAD rule.
+   Neither member is assumed to be the more abundant isomer.
+4. Predict each target using at least four **other** nearby pair compositions
+   in the same family/adduct. The target's own composition cannot support its
+   prediction. Support must span at least four carbons or two double bonds,
+   and satisfy `|delta carbon| + 2 |delta DB| <= 8`.
+5. Apply separate local median RT residual corrections to the two subclasses,
+   each bounded by the 30-second anchor envelope. Reject crossing corrected
+   curves. Rejoin and resolve features inside the unchanged strict 10-second
+   final RT window, check grid coherence and feature/identity competition.
+   Missing partners are not manufactured; a new singleton 2-acyl cannot survive
+   without its 1-acyl counterpart.
+6. Reserve declared standards and their feature IDs, then reselect at the
+   preceding annotation count per stream. Standards cannot seed endogenous
+   isomer pairs. Baseline calls can fill remaining positions; failures leave
+   the preceding selection unchanged with an audited reason.
+
+`rp_isomer_evidence_score` is a deterministic **ranking utility**, not an
+analytical probability: `0.95 - 0.10 |ppm|/3 - 0.10 |RT seconds|/10
+- 0.10 (1 - coherence)`. Unassessed coherence uses zero in this utility. The
+underlying `post_regression_confidence` remains the cohort-model score and is
+not replaced by this utility; a physically supported new call can therefore
+have a cohort-model score below `0.50`. A selected physical call is labelled
+`rp_isomer_anchor_supported`. Raw anchor pairs, per-target prior/corrected RTs,
+independent support counts and final selection totals are downloadable as
+`matlab_rp_isomer_anchors`, `matlab_rp_isomer_rt_models`, and
+`matlab_rp_isomer_anchor_audit` respectively. Disable the pass with
+`use_rp_isomer_anchor_refinement=False`; it is also disabled when
+post-regression completion is disabled.
+
+Comparison with commit `a8eca37`, using the same curated profile-matched
+identity/adduct/original-feature definition as above:
+
+| Dataset | Calls, unchanged | Exact matches before/after | Different-feature calls before/after | Unconfirmed extras before/after |
+| --- | ---: | ---: | ---: | ---: |
+| ALD brain | 2,833 | 2,578 / 2,616 | 32 / 26 | 223 / 191 |
+| Rat brain | 3,185 | 2,926 / 2,975 | 33 / 21 | 226 / 189 |
+| Cells | 2,774 | 2,440 / 2,462 | 32 / 31 | 302 / 281 |
+| Rat plasma | 1,776 | 1,576 / 1,602 | 18 / 17 | 182 / 157 |
+| Rat spinal cord | 2,919 | 2,573 / 2,605 | 22 / 17 | 324 / 297 |
+| Pex5 mouse | 2,056 | 1,862 / 1,884 | 18 / 15 | 176 / 157 |
+| Fish larvae | 2,164 | 1,753 / 1,761 | 152 / 139 | 259 / 264 |
+| Heart | 2,741 | 2,349 / 2,390 | 53 / 51 | 339 / 300 |
+
+This comparison replays the final pass on eight cached complete baseline runs.
+Complete updated-pipeline reruns on ALD brain and heart produced exactly the
+same assignment sets as the replays. NP tables are unchanged, and assignment
+counts are checked unchanged separately in all 32 streams.
+Heart was checked after the assignment rules were fixed. The other seven
+informed development; exclusion from the earlier confidence-model fitting
+does not make them untouched tests. Aggregate results are in
+[`validation/rp_isomer_anchors.csv`](validation/rp_isomer_anchors.csv).
+
+The gains are largest for positional lysolipids and PE ethers, not uniformly
+for every class or stream. For ALD brain, exact LPC positional matches increase
+from 11 to 52 of 85 curated assignments, LPE from 20 to 44 of 59, PE-P from 6
+to 44 of 71, and PE-O from 19 to 29 of 53. At a fixed total count, those gains
+can displace other previously correct calls: the overall improvement is a
+**net** 38 exact matches, not the sum of class-specific gains. Fish has five
+more unconfirmed extras despite improving exact matches and reducing
+different-feature assignments. Ordinary RP-positive PE is not addressed by
+this pass. These are curated-agreement results, not structural confirmation
+or an analytical false-discovery estimate.
+
 Only the RP ion channels used in the curated MATLAB exports are promoted:
 `[M+H]+`, `[M+NH4]+`, `[M-H]-`, and `[M-2H](2-)`.
 

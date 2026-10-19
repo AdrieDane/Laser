@@ -249,6 +249,7 @@ def _run_matlab_form(
             "post_regression_ambiguity_margin": 0.10,
             "use_fitted_grid_completion": True,
             "fitted_grid_feature_ambiguity_margin": 0.10,
+            "use_rp_isomer_anchor_refinement": True,
             "composition_ranges": state.composition_ranges.to_dict(),
         },
         "output": {"directory": "results/standard_matlab", "overwrite": False},

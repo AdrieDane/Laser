@@ -168,6 +168,9 @@ def build_automatic_anchor_settings(
             "fitted_grid_feature_ambiguity_margin",
             defaults.fitted_grid_feature_ambiguity_margin,
         )),
+        use_rp_isomer_anchor_refinement=bool(values.get(
+            "use_rp_isomer_anchor_refinement", defaults.use_rp_isomer_anchor_refinement,
+        )),
     )
 
 

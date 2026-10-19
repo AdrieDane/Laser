@@ -668,6 +668,7 @@ def _calibration_tables(result: dict) -> str:
         ("matlab_automatic_anchors", "Accepted automatic anchors"),
         ("matlab_internal_standard_audit", "Internal-standard recovery"),
         ("matlab_grid_coherence_audit", "MATLAB grid coherence"),
+        ("matlab_rp_isomer_anchor_audit", "RP isomer-aware anchor refinement"),
         ("matlab_positional_isomer_audit", "RP positional-isomer resolution"),
         ("matlab_positional_refit_audit", "Experimental positional RT refit"),
     ):

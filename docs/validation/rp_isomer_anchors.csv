@@ -1,0 +1,9 @@
+dataset,annotations_before,annotations_after,exact_before,exact_after,wrong_feature_before,wrong_feature_after,extra_unconfirmed_before,extra_unconfirmed_after,missing_curated_before,missing_curated_after
+ALD_brain,2833,2833,2578,2616,32,26,223,191,1156,1118
+rat_brain,3185,3185,2926,2975,33,21,226,189,650,601
+cells,2774,2774,2440,2462,32,31,302,281,1016,994
+rat_plasma,1776,1776,1576,1602,18,17,182,157,426,400
+rat_spinal_cord,2919,2919,2573,2605,22,17,324,297,645,613
+Pex5_mouse,2056,2056,1862,1884,18,15,176,157,400,378
+fish_larvae,2164,2164,1753,1761,152,139,259,264,2442,2434
+heart,2741,2741,2349,2390,53,51,339,300,828,787

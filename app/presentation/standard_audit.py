@@ -14,6 +14,27 @@ def _download(label: str, table: pd.DataFrame, filename: str) -> None:
 
 
 def _render_isomer_audits(result: dict) -> None:
+    anchor_audit = result.get("matlab_rp_isomer_anchor_audit", pd.DataFrame())
+    if isinstance(anchor_audit, pd.DataFrame) and not anchor_audit.empty:
+        with st.expander("RP isomer-aware anchor refinement", expanded=False):
+            st.caption(
+                "The final RP pass resolves abundant O/P and 1-/2-acyl pairs, "
+                "then predicts each composition from at least four other nearby "
+                "anchor pairs. It keeps the 3 ppm / 10-second final limits and "
+                "the preceding annotation count. NP is unchanged. The isomer "
+                "selection score is a ranking rule, not a calibrated probability; "
+                "the original cohort-model confidence remains separate."
+            )
+            st.dataframe(anchor_audit, hide_index=True, width="stretch")
+            _download("Download RP isomer-anchor summary", anchor_audit,
+                      "LASER_RP_isomer_anchor_audit.csv")
+            for key, label, filename in (
+                ("matlab_rp_isomer_anchors", "Download ordered RP anchor pairs", "LASER_RP_isomer_anchors.csv"),
+                ("matlab_rp_isomer_rt_models", "Download independent RP RT corrections", "LASER_RP_isomer_RT_corrections.csv"),
+            ):
+                table = result.get(key, pd.DataFrame())
+                if isinstance(table, pd.DataFrame) and not table.empty:
+                    _download(label, table, filename)
     isomers = result.get("matlab_positional_isomer_audit", pd.DataFrame())
     if isinstance(isomers, pd.DataFrame) and not isomers.empty:
         paired = int(isomers["status"].eq("paired_rt_order_supported").sum())

@@ -68,6 +68,7 @@ from .isomer_resolver import (
     PositionalIsomerSettings,
     resolve_positional_lyso_isomers,
 )
+from .rp_isomer_anchors import RPIsomerAnchorSettings, refine_rp_isomer_annotations
 from .vendor.annotation_engine import AnnotationEngine
 from .vendor.engine import resolve_annotation_siblings
 from .vendor.legacy_loader import LegacyProjectError, load_legacy_project
@@ -1965,6 +1966,7 @@ def _assemble_automatic_phase_result(
     restored_anchors = []
     completion_audits = []
     fitted_grid_audits = []
+    rp_isomer_audits, rp_isomer_anchors, rp_isomer_models = [], [], []
     for stream_name, stream in streams.items():
         stream["criteria"]["rt_model_source"] = f"matlab_{phase.lower()}_rtdb"
         stream["criteria"]["use_grid_coherence"] = bool(
@@ -2019,6 +2021,27 @@ def _assemble_automatic_phase_result(
             ),
         )
         fitted_grid_audits.append(fitted_grid_audit)
+        (
+            stream["annotations"], stream["all_pairs"], rp_audit,
+            rp_anchors, rp_models,
+        ) = refine_rp_isomer_annotations(
+            stream["annotations"], stream["all_pairs"], stream["reference"],
+            stream["features"], stream=stream_name,
+            settings=RPIsomerAnchorSettings(
+                enabled=(settings.use_post_regression_completion
+                         and settings.use_rp_isomer_anchor_refinement),
+                anchor_rt_seconds=min(30.0, settings.rt_tolerance_seconds),
+                final_rt_seconds=min(10.0, settings.positional_isomer_rt_tolerance_seconds),
+                grid_threshold=settings.grid_coherence_threshold,
+                selection_margin=settings.post_regression_ambiguity_margin,
+            ),
+        )
+        stream["rp_isomer_anchor_audit"] = rp_audit
+        stream["rp_isomer_anchors"] = rp_anchors
+        stream["rp_isomer_rt_models"] = rp_models
+        rp_isomer_audits.append(rp_audit)
+        rp_isomer_anchors.append(rp_anchors)
+        rp_isomer_models.append(rp_models)
     result = assemble_result(
         streams,
         outcomes,
@@ -2047,6 +2070,9 @@ def _assemble_automatic_phase_result(
     result["matlab_fitted_grid_audit"] = pd.concat(
         fitted_grid_audits, ignore_index=True, sort=False,
     )
+    result["matlab_rp_isomer_anchor_audit"] = pd.concat(rp_isomer_audits, ignore_index=True)
+    result["matlab_rp_isomer_anchors"] = pd.concat(rp_isomer_anchors, ignore_index=True)
+    result["matlab_rp_isomer_rt_models"] = pd.concat(rp_isomer_models, ignore_index=True)
     result["matlab_positional_isomer_audit"] = positional_audit
     result["matlab_positional_refit_audit"] = refit_audit
     result["matlab_xcms_only"] = True
@@ -2181,6 +2207,9 @@ def _merge_matlab_phase_results(
         "matlab_grid_coherence_audit",
         "matlab_post_regression_audit",
         "matlab_fitted_grid_audit",
+        "matlab_rp_isomer_anchor_audit",
+        "matlab_rp_isomer_anchors",
+        "matlab_rp_isomer_rt_models",
         "matlab_positional_isomer_audit",
         "matlab_positional_refit_audit",
         "matlab_mass_calibration_audit",

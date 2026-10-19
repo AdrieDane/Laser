@@ -49,7 +49,7 @@ from presentation.standard_untargeted import (
 
 LASER_ENGINE = "LASER reference matcher"
 MATLAB_ENGINE = "Automatic MATLAB engine (XCMS)"
-MATLAB_ENGINE_CACHE_VERSION = 20
+MATLAB_ENGINE_CACHE_VERSION = 21
 DEFAULT_MATLAB_XCMS_PROJECT = os.environ.get(
     "LASER_STANDARD_PROJECT",
     "",
