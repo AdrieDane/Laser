@@ -14,6 +14,7 @@ import pandas as pd
 from resource_paths import REFERENCE_DATA_DIRECTORY
 
 from .automatic import matlab_annotation_adducts
+from .composition_plausibility import composition_features
 
 
 DEFAULT_CONFIDENCE_MODEL_PATH = (
@@ -35,7 +36,10 @@ class PostRegressionCompletionSettings:
 def _load_model(path: str | Path) -> dict:
     source = Path(path).expanduser().resolve()
     payload = json.loads(source.read_text(encoding="utf-8"))
-    if payload.get("format") != "laser-post-regression-confidence-v1":
+    if payload.get("format") not in {
+        "laser-post-regression-confidence-v1",
+        "laser-post-regression-confidence-v2",
+    }:
         raise ValueError(f"Unsupported post-regression confidence model: {source}")
     return payload
 
@@ -55,7 +59,9 @@ def _zscore_by_group(
     return (values - median) / (standard_deviation + 1e-9)
 
 
-def _candidate_features(candidates: pd.DataFrame, stream: str) -> pd.DataFrame:
+def _candidate_features(
+    candidates: pd.DataFrame, stream: str, model: Mapping | None = None,
+) -> pd.DataFrame:
     features = pd.DataFrame(index=candidates.index)
     features["stream"] = str(stream)
     features["lipid_class"] = candidates["class"].fillna("").astype(str)
@@ -92,14 +98,89 @@ def _candidate_features(candidates: pd.DataFrame, stream: str) -> pd.DataFrame:
         "size"
     )
     features["identity_key"] = identity_key
+    features["stream_class"] = features["stream"] + "|" + features["lipid_class"]
+    if model and "composition_priors" in model:
+        composition = pd.DataFrame({
+            "lipid_class": features["lipid_class"],
+            "carbon": candidates.get("carbon", pd.Series(np.nan, index=candidates.index)),
+            "db": candidates.get("db", pd.Series(np.nan, index=candidates.index)),
+        })
+        for column, values in composition_features(
+            composition, model["composition_priors"]
+        ).items():
+            features[column] = values
     return features
+
+
+def _select_confident(
+    pool: pd.DataFrame, features: pd.DataFrame, scores: pd.Series,
+    settings: PostRegressionCompletionSettings,
+) -> tuple[pd.DataFrame, int, int]:
+    ranked = pool.assign(post_regression_confidence=scores).sort_values(
+        ["feat_feature_id", "post_regression_confidence", "feat_intensity"],
+        ascending=[True, False, False], kind="stable",
+    )
+    rank = ranked.groupby("feat_feature_id").cumcount()
+    next_score = ranked.groupby("feat_feature_id")[
+        "post_regression_confidence"
+    ].shift(-1)
+    confident = ranked["post_regression_confidence"].ge(settings.confidence_threshold)
+    unambiguous = next_score.isna() | (
+        ranked["post_regression_confidence"] - next_score
+    ).ge(settings.ambiguity_margin)
+    selected = ranked[confident & rank.eq(0) & unambiguous].copy()
+    selected["_identity_key"] = features.loc[selected.index, "identity_key"]
+    selected = selected.sort_values(
+        ["_identity_key", "post_regression_confidence", "feat_intensity"],
+        ascending=[True, False, False], kind="stable",
+    ).drop_duplicates("_identity_key", keep="first")
+    selected = selected.drop(columns="_identity_key")
+    return selected, int(confident.sum()), int((confident & ~unambiguous).sum())
+
+
+def _preserve_count(
+    selected: pd.DataFrame, baseline: pd.DataFrame,
+    pool: pd.DataFrame, features: pd.DataFrame,
+) -> tuple[pd.DataFrame, int]:
+    """Reselect at the baseline count; never force a new subthreshold call."""
+    target = len(baseline)
+    selected = selected.sort_values(
+        ["post_regression_confidence", "feat_intensity"],
+        ascending=[False, False], kind="stable",
+    ).head(target).copy()
+    selected["post_regression_count_retained"] = False
+    used_features = set(selected["feat_feature_id"].astype(str))
+    used_identities = set(features.loc[selected.index, "identity_key"])
+    fallback = pool.loc[baseline.index].sort_values(
+        ["post_regression_confidence", "feat_intensity"],
+        ascending=[False, False], kind="stable",
+    )
+    retained_indices = []
+    for index, row in fallback.iterrows():
+        if len(selected) + len(retained_indices) >= target:
+            break
+        feature = str(row["feat_feature_id"])
+        identity = features.loc[index, "identity_key"]
+        if feature in used_features or identity in used_identities:
+            continue
+        retained_indices.append(index)
+        used_features.add(feature)
+        used_identities.add(identity)
+    if len(selected) + len(retained_indices) < target:
+        # Conflicting assignments must not be duplicated to satisfy the count.
+        restored = pool.loc[baseline.index].copy()
+        restored["post_regression_count_retained"] = True
+        return restored, len(restored)
+    retained = pool.loc[retained_indices].copy()
+    retained["post_regression_count_retained"] = True
+    return pd.concat([selected, retained]), len(retained)
 
 
 def _score_features(features: pd.DataFrame, model: Mapping) -> pd.Series:
     linear = np.full(len(features), float(model["intercept"]), dtype=float)
     for column, settings in model["numeric"].items():
         values = pd.to_numeric(features[column], errors="coerce").fillna(
-            float(settings["mean"])
+            float(settings.get("impute", settings["mean"]))
         )
         linear += (
             (values.to_numpy(float) - float(settings["mean"]))
@@ -118,6 +199,8 @@ def _score_features(features: pd.DataFrame, model: Mapping) -> pd.Series:
 
 
 def _row_keys(frame: pd.DataFrame) -> pd.Series:
+    if frame.empty:
+        return pd.Series("", index=frame.index, dtype=object)
     columns = [
         column for column in (
             "feat_feature_id", "name", "adduct", "matlab_code",
@@ -126,6 +209,16 @@ def _row_keys(frame: pd.DataFrame) -> pd.Series:
     if not columns:
         return pd.Series("", index=frame.index, dtype=object)
     return frame[columns].fillna("").astype(str).agg("\x1f".join, axis=1)
+
+
+def _protected_rows(annotations: pd.DataFrame) -> pd.DataFrame:
+    protected = annotations.get(
+        "is_is", pd.Series(False, index=annotations.index)
+    ).fillna(False).astype(bool)
+    protected |= annotations.get(
+        "internal_standard_name", pd.Series("", index=annotations.index)
+    ).fillna("").astype(str).ne("")
+    return annotations.loc[protected].copy()
 
 
 def complete_post_regression_annotations(
@@ -198,35 +291,42 @@ def complete_post_regression_annotations(
             **base_audit, "status": "no_eligible_candidates",
             "eligible_candidates": 0, "promoted_annotations": 0,
         }])
-    features = _candidate_features(pool, stream)
+    features = _candidate_features(pool, stream, model)
     pool["post_regression_confidence"] = _score_features(features, model)
     pool["post_regression_model"] = str(model["format"])
     pool["post_regression_eligible"] = True
 
-    pool = pool.sort_values(
-        ["feat_feature_id", "post_regression_confidence", "feat_intensity"],
-        ascending=[True, False, False], kind="stable",
+    selected_rows, confidence_passing, ambiguous_count = _select_confident(
+        pool, features, pool["post_regression_confidence"], settings,
     )
-    pool["_feature_rank"] = pool.groupby("feat_feature_id").cumcount()
-    pool["_next_confidence"] = pool.groupby("feat_feature_id")[
-        "post_regression_confidence"
-    ].shift(-1)
-    confident = pool["post_regression_confidence"].ge(
-        float(settings.confidence_threshold)
-    )
-    unambiguous = pool["_next_confidence"].isna() | (
-        pool["post_regression_confidence"] - pool["_next_confidence"]
-    ).ge(float(settings.ambiguity_margin))
-    selected_rows = pool[
-        confident & pool["_feature_rank"].eq(0) & unambiguous
-    ].copy()
-    selected_rows["_identity_key"] = features.loc[
-        selected_rows.index, "identity_key"
-    ]
-    selected_rows = selected_rows.sort_values(
-        ["_identity_key", "post_regression_confidence", "feat_intensity"],
-        ascending=[True, False, False], kind="stable",
-    ).drop_duplicates("_identity_key", keep="first")
+    reference_model = model.get("count_reference_model")
+    protected = _protected_rows(accepted)
+    count_target = len(selected_rows)
+    count_retained = 0
+    if reference_model:
+        baseline_scores = _score_features(features, reference_model)
+        baseline, _passing, _ambiguous = _select_confident(
+            pool, features, baseline_scores, settings,
+        )
+        # Reserve declared standards before reselection. Counting them twice
+        # when the new model ranks one lower would otherwise inflate totals.
+        protected_keys = set(_row_keys(protected))
+        baseline = baseline[~_row_keys(baseline).isin(protected_keys)]
+        selected_rows = selected_rows[
+            ~_row_keys(selected_rows).isin(protected_keys)
+        ]
+        if not protected.empty:
+            selected_rows = selected_rows[
+                ~selected_rows["feat_feature_id"].astype(str).isin(
+                    protected["feat_feature_id"].astype(str)
+                )
+            ]
+        count_target = len(baseline) + len(protected)
+        selected_rows, count_retained = _preserve_count(
+            selected_rows, baseline, pool, features,
+        )
+    else:
+        selected_rows["post_regression_count_retained"] = False
 
     existing_keys = set(_row_keys(accepted))
     selected_keys = _row_keys(selected_rows)
@@ -238,31 +338,23 @@ def complete_post_regression_annotations(
         "matlab_mapper_confidence_supported",
         "curated_cohort_supported",
     )
+    selected_rows.loc[
+        selected_rows["post_regression_count_retained"], "auto_annotation_status"
+    ] = "baseline_count_retained"
     selected_rows["status"] = selected_rows["auto_annotation_status"]
     selected_rows["rt_evidence_mode"] = "matlab_rtdb_spline_post_regression"
     selected_rows["standard_stream"] = str(stream)
     selected_rows["chromatography"] = phase
-    selected_rows = selected_rows.drop(
-        columns=["_feature_rank", "_next_confidence", "_identity_key"],
-        errors="ignore",
-    )
 
     # Declared spikes retain their protected identity even if their cohort
     # abundance falls outside the endogenous calibration model.
-    protected = accepted.iloc[0:0].copy()
-    if not accepted.empty:
-        protected_mask = accepted.get(
-            "is_is", pd.Series(False, index=accepted.index)
-        ).fillna(False).astype(bool)
-        protected_mask |= accepted.get(
-            "internal_standard_name", pd.Series("", index=accepted.index)
-        ).fillna("").astype(str).ne("")
-        protected = accepted.loc[protected_mask].copy()
+    if not protected.empty:
         protected = protected[
             ~_row_keys(protected).isin(set(_row_keys(selected_rows)))
         ]
         protected["post_regression_confidence"] = np.nan
         protected["post_regression_model"] = "protected_internal_standard"
+        protected["post_regression_count_retained"] = False
     accepted = pd.concat(
         [selected_rows, protected], ignore_index=True, sort=False
     )
@@ -279,6 +371,7 @@ def complete_post_regression_annotations(
     candidates["post_regression_confidence"] = np.nan
     candidates["post_regression_model"] = ""
     candidates["post_regression_eligible"] = False
+    candidates["post_regression_count_retained"] = False
     candidates.loc[pool.index, "post_regression_confidence"] = pool[
         "post_regression_confidence"
     ]
@@ -293,16 +386,23 @@ def complete_post_regression_annotations(
     selected = candidate_keys.isin(selected_status)
     candidates["automatic_accepted"] = selected
     candidates["automatic_candidate"] = selected
-    candidates.loc[selected, "auto_annotation_status"] = candidate_keys[
-        selected
-    ].map(selected_status)
+    candidates["auto_annotation_status"] = candidate_keys.map(
+        selected_status
+    ).fillna("review_only_blue_candidate")
+    candidates.loc[
+        candidate_keys.isin(set(_row_keys(accepted[
+            accepted["post_regression_count_retained"].fillna(False).astype(bool)
+        ]))), "post_regression_count_retained"
+    ] = True
 
     audit = pd.DataFrame([{
         **base_audit,
         "status": "completed",
         "eligible_candidates": int(len(pool)),
-        "confidence_passing": int(confident.sum()),
-        "ambiguous_features_withheld": int((confident & ~unambiguous).sum()),
+        "confidence_passing": confidence_passing,
+        "ambiguous_features_withheld": ambiguous_count,
+        "baseline_count_target": count_target,
+        "baseline_calls_retained": count_retained,
         "mapper_confidence_supported": int(mapper_supported.sum()),
         "mapper_annotations_withheld": int(
             max(len(annotations) - mapper_supported.sum() - len(protected), 0)

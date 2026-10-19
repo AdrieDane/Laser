@@ -66,8 +66,10 @@ def _render_grid_and_standards(result: dict) -> None:
             st.caption(
                 f"{promoted} fitted-grid candidates were promoted after curated-"
                 f"cohort confidence calibration; {final} final annotations remain. "
-                "The step retains the strict mass, RT, adduct, ambiguity and grid-"
-                "coherence safeguards."
+                "Class-specific carbon/double-bond plausibility helps rank calls "
+                "within the existing strict candidate limits. The baseline count "
+                "is preserved per stream; any baseline calls retained to fill "
+                "that count are listed in the audit."
             )
             st.dataframe(completion, hide_index=True, width="stretch")
             _download(

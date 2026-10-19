@@ -100,9 +100,10 @@ After the staged mapper fits its final RT surfaces, a calibrated completion
 step evaluates the retained monoisotopic proposals inside the strict `<3 ppm`
 and 10-second envelope. It requires an allowed phase/adduct, passing grid
 coherence, one unambiguous best identity per feature, and a confidence of at
-least `0.50`. Confidence combines mass and RT residuals, local grid coherence,
-relative signal strength, feature/identity competition, stream, class and
-adduct. The fixed coefficients in
+least `0.50` for new calls. Confidence combines mass and RT residuals, local
+grid coherence, relative signal strength, feature/identity competition, adduct,
+and a separate class effect for each RP/NP/polarity stream. It also scores total
+carbon and double-bond composition jointly within each lipid class. The fixed coefficients in
 `reference_data/standard_post_regression_confidence.json` were fitted against
 15,804 candidates from four independently curated example cohorts and do not
 read `MS_data.xlsx` during annotation. RP positional LPC/LPE proposals must
@@ -110,6 +111,63 @@ still have been selected by the dedicated positional-isomer resolver, and
 declared internal standards retain their protected identity. Decisions are
 recorded in `matlab_post_regression_audit.csv` and each evaluated candidate
 carries `post_regression_confidence`.
+
+The v2 model adds smooth composition evidence to the existing configurable hard
+carbon/double-bond limits. Its class-specific ellipses are fitted on curated
+training compositions, with variance floors of four carbon units squared and
+one double bond squared. Outlying combinations receive a graded penalty;
+odd-chain lipids and compositions absent from training remain eligible. Classes
+with fewer than 12 curated observations receive no learned distance penalty.
+These are empirical cohort priors, not universal chemical validity rules.
+
+To improve assignments without reducing or inflating annotation totals, v2
+reselects at the frozen v1 model's count **per stream**. It reserves declared
+internal standards first, takes the best qualifying v2 calls up to that count,
+and fills any remaining places with supported v1 calls. Such retained rows are
+explicitly marked `baseline_count_retained`, even when their v2 score is below
+`0.50`; a new subthreshold candidate is never forced into the output. If feature
+or identity conflicts prevent filling the count, the baseline selection is
+retained. The audit records the baseline count and retained-call count, and all
+demoted proposals are marked as review candidates.
+
+Calibration can be reproduced from the curated benchmark exports:
+
+```bash
+python -m pip install -e '.[calibration]'
+PYTHONPATH=app python tools/calibrate_standard_confidence.py \
+  --benchmark-root /path/to/LASER_standard_benchmark \
+  --reference-model reference_data/standard_post_regression_confidence.json \
+  --output-model /path/to/recalibrated_confidence.json \
+  --report /path/to/cross_validation.csv
+```
+
+The bundled model's leave-one-dataset-out evaluation re-fits both the
+coefficients and soft composition priors for every fold. On the four stored
+strict candidate pools it increases exact curated agreement from 7,979 to
+8,418 of 9,557 calls (83.49% to 88.08%), with the same call count in every
+stream. These are candidate-stage comparisons, not four complete engine
+reruns. The upstream hard ranges and candidate pools were already fixed using
+the original example projects. A missing curated match is **unconfirmed**, not
+proof of an incorrect biological annotation, and this agreement rate is not an
+analytical false-discovery estimate. Evaluation on additional datasets excluded
+from training is reported separately.
+
+The aggregate per-stream fold results are saved in
+[`validation/standard_confidence_v2_cross_validation.csv`](validation/standard_confidence_v2_cross_validation.csv).
+Additional full updated-pipeline runs were evaluated against workbook-to-XCMS
+crosswalks requiring corrected profile correlation of at least `0.995`:
+
+| Dataset excluded from model fitting | Calls, before and after | Exact curated matches, v1 → v2 | Agreement, v1 → v2 |
+| --- | ---: | ---: | ---: |
+| 26P0015_Cells | 2,774 | 2,249 → 2,382 | 81.07% → 85.87% |
+| 25P0031_FishLarvae | 2,164 | 1,491 → 1,643 | 68.90% → 75.92% |
+
+For these two runs, the frozen v1 scorer was replayed on the identical fitted
+candidates; its cells assignments were also checked against a separate full
+v1 pipeline run and were identical. Counts remain equal separately in all four
+streams. Cells was an exploratory additional evaluation; fish was evaluated
+after the v2 model and selection policy had been fixed. Neither dataset was
+added to model fitting or composition-prior estimation.
 
 Only the RP ion channels used in the curated MATLAB exports are promoted:
 `[M+H]+`, `[M+NH4]+`, `[M-H]-`, and `[M-2H](2-)`.

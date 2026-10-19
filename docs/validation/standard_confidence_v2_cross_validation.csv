@@ -1,0 +1,17 @@
+dataset,stream,baseline_accepted,baseline_exact,updated_accepted,updated_exact,baseline_calls_retained
+26P0026_ALD_rat_Plasma,NP_Neg,198,162,198,163,24
+26P0026_ALD_rat_Plasma,NP_Pos,408,368,408,367,12
+26P0026_ALD_rat_Plasma,RP_Neg,134,106,134,110,0
+26P0026_ALD_rat_Plasma,RP_Pos,948,863,948,880,21
+26P0026_ALD_rat_Spinalcord,NP_Neg,520,414,520,435,11
+26P0026_ALD_rat_Spinalcord,NP_Pos,623,530,623,561,0
+26P0026_ALD_rat_Spinalcord,RP_Neg,436,313,436,359,0
+26P0026_ALD_rat_Spinalcord,RP_Pos,1221,1011,1221,1051,18
+26P0026_ALD_rat_brain,NP_Neg,451,383,451,416,0
+26P0026_ALD_rat_brain,NP_Pos,735,587,735,654,0
+26P0026_ALD_rat_brain,RP_Neg,507,343,507,388,27
+26P0026_ALD_rat_brain,RP_Pos,1430,1250,1430,1295,14
+26P0038_MLC_Pex5_mouse,NP_Neg,350,311,350,329,0
+26P0038_MLC_Pex5_mouse,NP_Pos,335,282,335,308,0
+26P0038_MLC_Pex5_mouse,RP_Neg,398,283,398,298,50
+26P0038_MLC_Pex5_mouse,RP_Pos,863,773,863,804,0
