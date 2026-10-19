@@ -54,6 +54,27 @@ def _render_isomer_audits(result: dict) -> None:
 
 
 def _render_grid_and_standards(result: dict) -> None:
+    completion = result.get("matlab_post_regression_audit", pd.DataFrame())
+    if isinstance(completion, pd.DataFrame) and not completion.empty:
+        promoted = int(pd.to_numeric(
+            completion.get("promoted_annotations"), errors="coerce"
+        ).fillna(0).sum())
+        final = int(pd.to_numeric(
+            completion.get("final_annotations"), errors="coerce"
+        ).fillna(0).sum())
+        with st.expander("Post-regression confidence completion", expanded=False):
+            st.caption(
+                f"{promoted} fitted-grid candidates were promoted after curated-"
+                f"cohort confidence calibration; {final} final annotations remain. "
+                "The step retains the strict mass, RT, adduct, ambiguity and grid-"
+                "coherence safeguards."
+            )
+            st.dataframe(completion, hide_index=True, width="stretch")
+            _download(
+                "Download post-regression audit CSV",
+                completion,
+                "LASER_matlab_post_regression_audit.csv",
+            )
     mass = result.get("matlab_mass_calibration_audit", pd.DataFrame())
     if isinstance(mass, pd.DataFrame) and not mass.empty:
         applied = int(mass["status"].eq("applied").sum())

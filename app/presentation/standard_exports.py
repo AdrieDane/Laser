@@ -28,13 +28,13 @@ def _render_input_copies(result: dict, append_annotations: Callable) -> None:
     if not sources:
         return
     with st.expander("Annotated copies of the input peak-group lists", expanded=False):
-        st.caption("Original rows, columns, ordering and numeric text are retained. Only LASER_annotation and LASER_adduct are appended. Multiple accepted identities for one feature are semicolon-separated.")
+        st.caption("Original rows, columns, ordering and numeric text are retained. Only laser_annotation and adduct are inserted as columns 2 and 3. Multiple accepted identities for one feature are semicolon-separated.")
         columns = st.columns(min(len(sources), 4))
         for index, (stream, source) in enumerate(sources.items()):
             columns[index % len(columns)].download_button(
                 f"Download {stream}",
                 append_annotations(source, result.get("automatic_annotations", pd.DataFrame()), stream=stream),
-                file_name=f"peakgrouplist_{stream}_LASER_annotated.txt",
+                file_name=f"peakgrouplist_{stream}.txt",
                 mime="text/tab-separated-values", width="stretch",
             )
 

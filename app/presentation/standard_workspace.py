@@ -167,6 +167,7 @@ def _rt_grid(context: StandardWorkspaceContext) -> None:
         ("matlab_automatic_anchors", "Accepted automatic anchors"),
         ("matlab_internal_standard_audit", "Internal-standard recovery"),
         ("matlab_grid_coherence_audit", "Grid coherence"),
+        ("matlab_post_regression_audit", "Post-regression confidence completion"),
         ("grid_coherence_audit", "Grid-coherence audit"),
         ("matlab_positional_isomer_audit", "RP positional-isomer resolution"),
         ("matlab_positional_refit_audit", "Experimental positional RT refit"),

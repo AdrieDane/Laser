@@ -149,6 +149,18 @@ def build_automatic_anchor_settings(
             "grid_coherence_threshold",
             SCIENTIFIC_DEFAULTS.grid_coherence_threshold,
         )),
+        use_post_regression_completion=bool(values.get(
+            "use_post_regression_completion",
+            defaults.use_post_regression_completion,
+        )),
+        post_regression_confidence_threshold=_float_setting(values.get(
+            "post_regression_confidence_threshold",
+            defaults.post_regression_confidence_threshold,
+        )),
+        post_regression_ambiguity_margin=_float_setting(values.get(
+            "post_regression_ambiguity_margin",
+            defaults.post_regression_ambiguity_margin,
+        )),
     )
 
 

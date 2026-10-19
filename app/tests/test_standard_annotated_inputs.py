@@ -13,7 +13,7 @@ from annotator.standard_annotated_inputs import (
 
 
 class StandardAnnotatedInputTests(unittest.TestCase):
-    def test_appends_annotations_without_changing_original_rows_or_order(self):
+    def test_inserts_annotations_without_changing_original_fields_or_order(self):
         source = (
             b"name\tmzmed\trtmed\tsample_A\r\n"
             b"feature-2\t734.500200000\t7.0200\t00100\r\n"
@@ -35,19 +35,19 @@ class StandardAnnotatedInputTests(unittest.TestCase):
         lines = rendered.splitlines()
         self.assertEqual(
             lines[0],
-            "name\tmzmed\trtmed\tsample_A\tLASER_annotation\tLASER_adduct",
+            "name\tlaser_annotation\tadduct\tmzmed\trtmed\tsample_A",
         )
         self.assertEqual(
             lines[1],
-            "feature-2\t734.500200000\t7.0200\t00100\tPC(32:0)\t[M+H]+",
+            "feature-2\tPC(32:0)\t[M+H]+\t734.500200000\t7.0200\t00100",
         )
         self.assertEqual(
             lines[2],
-            "feature-1\t760.5\t7.2\t2.0e+06\t"
-            "PC(34:1); PC(34:1)\t[M+H]+; [M+Na]+",
+            "feature-1\tPC(34:1); PC(34:1)\t[M+H]+; [M+Na]+\t"
+            "760.5\t7.2\t2.0e+06",
         )
         self.assertEqual(
-            lines[3], "feature-3\t786.6003\t7.410\t\t\t"
+            lines[3], "feature-3\t\t\t786.6003\t7.410\t"
         )
 
     def test_writes_one_named_copy_per_input_stream(self):
@@ -66,9 +66,13 @@ class StandardAnnotatedInputTests(unittest.TestCase):
 
             self.assertEqual(
                 paths["NP_Neg"].name,
-                "peakgrouplist_NP_Neg_LASER_annotated.txt",
+                "peakgrouplist_NP_Neg.txt",
             )
-            self.assertIn("PE(34:1)\t[M-H]-", paths["NP_Neg"].read_text())
+            self.assertEqual(
+                paths["NP_Neg"].read_text(),
+                "name\tlaser_annotation\tadduct\tmzmed\trtmed\n"
+                "1\tPE(34:1)\t[M-H]-\t500\t5\n",
+            )
 
 
 if __name__ == "__main__":

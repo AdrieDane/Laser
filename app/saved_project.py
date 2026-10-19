@@ -301,7 +301,7 @@ def save_standard_project(
     if annotated_inputs:
         input_dir = root / "annotated_input_files"
         for stream, content in annotated_inputs.items():
-            path = input_dir / f"peakgrouplist_{stream}_LASER_annotated.txt"
+            path = input_dir / f"peakgrouplist_{stream}.txt"
             paths[f"annotated_input_{stream}"] = atomic_write_bytes(path, content)
     if html_report is not None:
         paths["standard_lipidomics_report"] = atomic_write_bytes(

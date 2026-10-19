@@ -7,9 +7,11 @@ import argparse
 from pathlib import Path
 
 from application.standard_workflow import StandardAnnotationRequest
+from annotator.standard_annotated_inputs import write_standard_annotated_inputs
 from composition import standard_annotation_service
 from output_io import atomic_write_csv
 from resource_paths import REFERENCE_DATA_DIRECTORY
+from standard_lipidomics.workflow import discover_standard_streams
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -63,7 +65,16 @@ def main() -> int:
     output.mkdir(parents=True, exist_ok=True)
     for name, table in result.tables.items():
         atomic_write_csv(table, output / f"{name}.csv", index=False)
+    annotated_inputs = write_standard_annotated_inputs(
+        discover_standard_streams(args.project),
+        result.tables["automatic_annotations"],
+        output / "annotated_input_files",
+    )
     print(f"Wrote {len(result.tables)} result tables to {output}")
+    print(
+        f"Wrote {len(annotated_inputs)} annotated peak-group lists to "
+        f"{output / 'annotated_input_files'}"
+    )
     return 0
 
 

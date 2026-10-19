@@ -56,6 +56,10 @@ from standard_lipidomics.mass_calibration import (
 from annotator.grid_coherence import score_grid_coherence
 
 from .composition_filter import filter_compound_set_targets
+from .confidence import (
+    PostRegressionCompletionSettings,
+    complete_post_regression_annotations,
+)
 from .decode import CodeDecoder
 from .isomer_resolver import (
     PositionalIsomerSettings,
@@ -1956,6 +1960,7 @@ def _assemble_automatic_phase_result(
 ) -> dict:
     streams = _split_xcms_streams(combined, bundle)
     restored_anchors = []
+    completion_audits = []
     for stream_name, stream in streams.items():
         stream["criteria"]["rt_model_source"] = f"matlab_{phase.lower()}_rtdb"
         stream["criteria"]["use_grid_coherence"] = bool(
@@ -1978,6 +1983,23 @@ def _assemble_automatic_phase_result(
         )
         if not seed_stream_anchors.empty:
             restored_anchors.append(seed_stream_anchors)
+        (
+            stream["annotations"],
+            stream["all_pairs"],
+            completion_audit,
+        ) = complete_post_regression_annotations(
+            stream["annotations"],
+            stream["all_pairs"],
+            stream=stream_name,
+            settings=PostRegressionCompletionSettings(
+                enabled=settings.use_post_regression_completion,
+                confidence_threshold=(
+                    settings.post_regression_confidence_threshold
+                ),
+                ambiguity_margin=settings.post_regression_ambiguity_margin,
+            ),
+        )
+        completion_audits.append(completion_audit)
     result = assemble_result(
         streams,
         outcomes,
@@ -2000,6 +2022,9 @@ def _assemble_automatic_phase_result(
         phase=phase,
     )
     result["matlab_grid_coherence_audit"] = grid_audit
+    result["matlab_post_regression_audit"] = pd.concat(
+        completion_audits, ignore_index=True, sort=False
+    )
     result["matlab_positional_isomer_audit"] = positional_audit
     result["matlab_positional_refit_audit"] = refit_audit
     result["matlab_xcms_only"] = True
@@ -2132,6 +2157,7 @@ def _merge_matlab_phase_results(
         "matlab_automatic_anchors",
         "matlab_internal_standard_audit",
         "matlab_grid_coherence_audit",
+        "matlab_post_regression_audit",
         "matlab_positional_isomer_audit",
         "matlab_positional_refit_audit",
         "matlab_mass_calibration_audit",

@@ -381,10 +381,11 @@ results.
 
 The workflow also creates `annotated_input_files/`, containing one copy of
 each discovered `peakgrouplist_<phase>_<polarity>.txt`. Each output preserves
-the original columns, row ordering and field text exactly, then appends:
+the original columns, row ordering and field text exactly, then inserts these
+as columns 2 and 3:
 
-- `LASER_annotation`
-- `LASER_adduct`
+- `laser_annotation`
+- `adduct`
 
 Unannotated feature rows receive two empty appended fields. If one XCMS feature
 has more than one accepted identity/adduct pair, position-matched values are

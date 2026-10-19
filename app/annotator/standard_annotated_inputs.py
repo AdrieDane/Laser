@@ -1,4 +1,4 @@
-"""Append final LASER identities to conventional XCMS input text files."""
+"""Insert final LASER identities into conventional XCMS input text files."""
 
 from __future__ import annotations
 
@@ -10,8 +10,8 @@ import pandas as pd
 from output_io import atomic_write_bytes
 
 
-ANNOTATION_COLUMN = "LASER_annotation"
-ADDUCT_COLUMN = "LASER_adduct"
+ANNOTATION_COLUMN = "laser_annotation"
+ADDUCT_COLUMN = "adduct"
 
 
 def _source_bytes(source: str | Path | bytes | BinaryIO) -> bytes:
@@ -72,12 +72,12 @@ def append_standard_annotations(
     *,
     stream: str,
 ) -> bytes:
-    """Return the input text with two columns appended and no row reordering.
+    """Return the input text with two columns inserted after the first column.
 
-    The original text before the two appended fields is copied verbatim. This
-    avoids round-trip changes to numeric formatting, column order, or row order.
-    The input is expected to be the tab-delimited XCMS peak-group format used by
-    standard lipidomics.
+    Every original field is copied verbatim. This avoids round-trip changes to
+    numeric formatting, original column order, or row order. The input is
+    expected to be the tab-delimited XCMS peak-group format used by standard
+    lipidomics.
     """
     raw = _source_bytes(source)
     lines = raw.splitlines(keepends=True)
@@ -106,9 +106,16 @@ def append_standard_annotations(
             f"Could not find the XCMS feature ID column in {stream}."
         )
     lookup = _annotation_lookup(annotations, stream)
+    def insert_columns(content: bytes, identity: str, adduct: str) -> bytes:
+        first, separator, remainder = content.partition(b"\t")
+        inserted = (
+            first + b"\t" + identity.encode("utf-8") + b"\t"
+            + adduct.encode("utf-8")
+        )
+        return inserted + (separator + remainder if separator else b"")
+
     output = [
-        header + f"\t{ANNOTATION_COLUMN}\t{ADDUCT_COLUMN}".encode("utf-8")
-        + header_ending
+        insert_columns(header, ANNOTATION_COLUMN, ADDUCT_COLUMN) + header_ending
     ]
     for line in lines[1:]:
         content, ending = content_and_ending(line)
@@ -118,10 +125,7 @@ def append_standard_annotations(
             if id_index < len(fields) else ""
         )
         identity, adduct = lookup.get(str(feature_id), ("", ""))
-        output.append(
-            content + b"\t" + identity.encode("utf-8") + b"\t"
-            + adduct.encode("utf-8") + ending
-        )
+        output.append(insert_columns(content, identity, adduct) + ending)
     return b"".join(output)
 
 
@@ -138,8 +142,7 @@ def write_standard_annotated_inputs(
             Path(source).name if isinstance(source, (str, Path))
             else f"peakgrouplist_{stream}.txt"
         )
-        stem = Path(source_name).stem
-        path = destination / f"{stem}_LASER_annotated.txt"
+        path = destination / source_name
         atomic_write_bytes(
             path,
             append_standard_annotations(source, annotations, stream=stream)

@@ -96,6 +96,21 @@ The adapter performs the following steps:
 11. splits the result back into the selected phase's POS/NEG streams, retaining
     the original XCMS feature IDs and sample intensity columns.
 
+After the staged mapper fits its final RT surfaces, a calibrated completion
+step evaluates the retained monoisotopic proposals inside the strict `<3 ppm`
+and 10-second envelope. It requires an allowed phase/adduct, passing grid
+coherence, one unambiguous best identity per feature, and a confidence of at
+least `0.50`. Confidence combines mass and RT residuals, local grid coherence,
+relative signal strength, feature/identity competition, stream, class and
+adduct. The fixed coefficients in
+`reference_data/standard_post_regression_confidence.json` were fitted against
+15,804 candidates from four independently curated example cohorts and do not
+read `MS_data.xlsx` during annotation. RP positional LPC/LPE proposals must
+still have been selected by the dedicated positional-isomer resolver, and
+declared internal standards retain their protected identity. Decisions are
+recorded in `matlab_post_regression_audit.csv` and each evaluated candidate
+carries `post_regression_confidence`.
+
 Only the RP ion channels used in the curated MATLAB exports are promoted:
 `[M+H]+`, `[M+NH4]+`, `[M-H]-`, and `[M-2H](2-)`.
 
