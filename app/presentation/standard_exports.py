@@ -34,7 +34,7 @@ def _render_input_copies(result: dict, append_annotations: Callable) -> None:
             columns[index % len(columns)].download_button(
                 f"Download {stream}",
                 append_annotations(source, result.get("automatic_annotations", pd.DataFrame()), stream=stream),
-                file_name=f"peakgrouplist_{stream}.txt",
+                file_name=f"peakgrouplist_{stream}_annotated.txt",
                 mime="text/tab-separated-values", width="stretch",
             )
 

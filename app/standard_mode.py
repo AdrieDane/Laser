@@ -49,7 +49,7 @@ from presentation.standard_untargeted import (
 
 LASER_ENGINE = "LASER reference matcher"
 MATLAB_ENGINE = "Automatic MATLAB engine (XCMS)"
-MATLAB_ENGINE_CACHE_VERSION = 21
+MATLAB_ENGINE_CACHE_VERSION = 25
 DEFAULT_MATLAB_XCMS_PROJECT = os.environ.get(
     "LASER_STANDARD_PROJECT",
     "",
@@ -130,6 +130,8 @@ def _run_matlab_cached(
     grid_coherence_threshold: float,
     composition_ranges: CompositionRangeSettings,
     _progress,
+    use_pe_rebuild: bool = True,
+    pe_rebuild_score_threshold: float = 0.10,
 ) -> dict:
     return standard_annotation_service.run(
         StandardAnnotationRequest(
@@ -148,6 +150,8 @@ def _run_matlab_cached(
                 "use_grid_coherence": use_grid_coherence,
                 "grid_coherence_threshold": grid_coherence_threshold,
                 "composition_ranges": composition_ranges.to_dict(),
+                "use_pe_rebuild": use_pe_rebuild,
+                "pe_rebuild_score_threshold": pe_rebuild_score_threshold,
             },
             progress=_progress,
         )

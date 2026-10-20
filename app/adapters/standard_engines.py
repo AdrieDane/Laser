@@ -171,6 +171,22 @@ def build_automatic_anchor_settings(
         use_rp_isomer_anchor_refinement=bool(values.get(
             "use_rp_isomer_anchor_refinement", defaults.use_rp_isomer_anchor_refinement,
         )),
+        use_pe_completion=bool(values.get(
+            "use_pe_completion", defaults.use_pe_completion,
+        )),
+        pe_completion_confidence_threshold=_float_setting(values.get(
+            "pe_completion_confidence_threshold", defaults.pe_completion_confidence_threshold,
+        )),
+        use_pe_rebuild=bool(values.get("use_pe_rebuild", defaults.use_pe_rebuild)),
+        pe_rebuild_score_threshold=_float_setting(values.get(
+            "pe_rebuild_score_threshold", defaults.pe_rebuild_score_threshold,
+        )),
+        pe_rebuild_feature_margin=_float_setting(values.get(
+            "pe_rebuild_feature_margin", defaults.pe_rebuild_feature_margin,
+        )),
+        pe_rebuild_search_seconds=_float_setting(values.get(
+            "pe_rebuild_search_seconds", defaults.pe_rebuild_search_seconds,
+        )),
     )
 
 

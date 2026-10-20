@@ -77,6 +77,10 @@ include = [
   "reference_data/standard_lipid_composition_ranges.tsv",
   "reference_data/standard_post_regression_confidence.json",
   "reference_data/standard_fitted_grid_confidence.json",
+  "reference_data/standard_pe_confidence.json",
+  "reference_data/standard_pe_rebuild.json",
+  "reference_data/standard_pe_rebuild_rp_negative.json",
+  "reference_data/standard_pe_rebuild_np_positive.json",
 ]
 "reference_data/matlab_pipeline/Code" = ["reference_data/matlab_pipeline/Code/param.json"]
 "reference_data/matlab_pipeline/DataBase" = ["reference_data/matlab_pipeline/DataBase/*.tsv"]

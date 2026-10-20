@@ -153,6 +153,12 @@ class AutomaticAnchorSettings:
     use_fitted_grid_completion: bool = True
     fitted_grid_feature_ambiguity_margin: float = 0.10
     use_rp_isomer_anchor_refinement: bool = True
+    use_pe_completion: bool = True
+    pe_completion_confidence_threshold: float = 0.90
+    use_pe_rebuild: bool = True
+    pe_rebuild_score_threshold: float = 0.10
+    pe_rebuild_feature_margin: float = 0.03
+    pe_rebuild_search_seconds: float = 40.0
     excluded_anchor_species: tuple[str, ...] = (
         "1-acylLPC(20:5)",
         "1-acylLPC(22:1)",

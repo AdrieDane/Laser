@@ -1,0 +1,101 @@
+{
+  "format": "laser-pe-confidence-v1",
+  "decision_threshold": 0.9,
+  "intercept": 1.7556213071286402,
+  "numeric": {
+    "local_rt_error": {
+      "mean": 2.27541315748325,
+      "scale": 1.4381188836503485,
+      "impute": 2.208589659607618,
+      "coefficient": 0.180193567242553
+    },
+    "local_mass_error": {
+      "mean": 0.3615371726133482,
+      "scale": 0.2721413723170557,
+      "impute": 0.3047761661010405,
+      "coefficient": -0.18613078798118887
+    },
+    "original_rt_error": {
+      "mean": 2.4581188039992785,
+      "scale": 1.6262789780608238,
+      "impute": 2.020809038943108,
+      "coefficient": -0.04720629217655988
+    },
+    "coherence": {
+      "mean": 0.6851738131814767,
+      "scale": 0.14346686939905054,
+      "impute": 0.6670593393285856,
+      "coefficient": 0.2778717528304394
+    },
+    "intensity_z": {
+      "mean": 0.01283995826146763,
+      "scale": 0.945008032654763,
+      "impute": 0.07767318189912184,
+      "coefficient": 0.11686048823676763
+    },
+    "cross_polarity_supported": {
+      "mean": 0.7314814814814815,
+      "scale": 0.44318881273238225,
+      "impute": 1.0,
+      "coefficient": 0.7597653249682589
+    },
+    "cross_polarity_error": {
+      "mean": 1.0198888888888888,
+      "scale": 1.7152067988013433,
+      "impute": 0.49649999999996197,
+      "coefficient": -0.05126734725298126
+    },
+    "composition_distance": {
+      "mean": 1.1682319496061262,
+      "scale": 0.6342138552509115,
+      "impute": 1.054605794805731,
+      "coefficient": -0.3446376247502975
+    },
+    "odd_carbon": {
+      "mean": 0.3333333333333333,
+      "scale": 0.47140452079103173,
+      "impute": 0.0,
+      "coefficient": -0.6468576267106886
+    },
+    "unsaturation_fraction": {
+      "mean": 0.07293318916851238,
+      "scale": 0.058556971889027074,
+      "impute": 0.05555555555555555,
+      "coefficient": 0.486946078807027
+    }
+  },
+  "categorical": {},
+  "composition_priors": {
+    "PE": {
+      "center": [
+        38.0,
+        2.0
+      ],
+      "inverse_covariance": [
+        [
+          0.07161842875116634,
+          -0.028349707033143254
+        ],
+        [
+          -0.028349707033143254,
+          0.1598977163647354
+        ]
+      ],
+      "observations": 85
+    }
+  },
+  "provenance": {
+    "training_datasets": [
+      "26P0026_ALD_rat_Plasma",
+      "26P0026_ALD_rat_Spinalcord",
+      "26P0026_ALD_rat_brain",
+      "26P0038_MLC_Pex5_mouse"
+    ],
+    "training_candidates": 108,
+    "same_feature_positive": 85,
+    "target": "same curated species, adduct, stream and original XCMS feature",
+    "unknown_identities": "unconfirmed negatives, not proven false assignments",
+    "inputs": "local PE mass/RT residuals, coherence, abundance, independently aligned negative mode and broad training-only composition evidence",
+    "excludes": "old globally fitted class confidence; curated workbook access at annotation runtime"
+  }
+}

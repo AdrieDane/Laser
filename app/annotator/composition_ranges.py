@@ -1,7 +1,9 @@
 """Shared configurable carbon/double-bond limits for LASER annotation.
 
-The bundled defaults are the inclusive extrema observed in the accepted
-``MS_data.xlsx`` primary/equivalent tables of the four example projects.  A
+The initial defaults were the inclusive extrema observed in the accepted
+``MS_data.xlsx`` tables of four example projects. Ordinary PE now permits
+28--50 carbons after broader example-data validation; other defaults retain
+their original bounds. A
 major-group range and a class range are both applied by default; their
 intersection is the effective range.  Users may disable all limits, disable
 the major-group layer, opt one class out of its group, or disable filtering for

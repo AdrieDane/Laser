@@ -93,6 +93,10 @@ class. The defaults are the inclusive total-carbon and total-double-bond
 extrema observed in the four example `MS_data.xlsx` datasets, combining their
 raw Primary and Equivalents sheets and excluding internal standards. They are
 stored in `reference_data/standard_lipid_composition_ranges.tsv`.
+Ordinary PE is the updated exception: its default carbon range is 28--50
+after checking the broader example collection. Other class defaults retain
+their original bounds. These are adjustable method limits, not universal
+biological cut-offs.
 
 By default both the group range and class range must pass. Turn off **Apply
 major lipid-group limits** to keep only class-specific limits. Clear **Use
@@ -381,6 +385,8 @@ results.
 
 The workflow also creates `annotated_input_files/`, containing one copy of
 each discovered `peakgrouplist_<phase>_<polarity>.txt`. Each output preserves
+the input filename with `_annotated` inserted before `.txt` (in both the GUI
+and CLI), so it is distinguishable from the original. It preserves
 the original columns, row ordering and field text exactly, then inserts these
 as columns 2 and 3:
 

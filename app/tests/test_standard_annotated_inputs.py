@@ -66,13 +66,27 @@ class StandardAnnotatedInputTests(unittest.TestCase):
 
             self.assertEqual(
                 paths["NP_Neg"].name,
-                "peakgrouplist_NP_Neg.txt",
+                "peakgrouplist_NP_Neg_annotated.txt",
             )
             self.assertEqual(
                 paths["NP_Neg"].read_text(),
                 "name\tlaser_annotation\tadduct\tmzmed\trtmed\n"
                 "1\tPE(34:1)\t[M-H]-\t500\t5\n",
             )
+            self.assertEqual(original.read_bytes(), source)
+
+    def test_output_in_input_directory_does_not_overwrite_original(self):
+        source = b"name\tmzmed\trtmed\n1\t500\t5\n"
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            original = root / "peakgrouplist_RP_Pos.txt"
+            original.write_bytes(source)
+            paths = write_standard_annotated_inputs(
+                {"RP_Pos": original}, pd.DataFrame(), root,
+            )
+            self.assertNotEqual(paths["RP_Pos"], original)
+            self.assertEqual(paths["RP_Pos"].name, "peakgrouplist_RP_Pos_annotated.txt")
+            self.assertEqual(original.read_bytes(), source)
 
 
 if __name__ == "__main__":

@@ -115,13 +115,16 @@ def _render_criteria(
         help=(
             f"The run opened at ±{run_ppm_tolerance:g} ppm. Tightening hides "
             "weaker matches; widening may reveal light-blue review candidates."
+            " Accepted PE from the expanded method uses its independently corrected "
+            "mass error; the raw error remains in the details."
         ),
     )
     rt = st.slider(
         "RT tolerance (min)", 0.01, rt_maximum, step=0.01,
         key="standard_viewer_rt_tol", disabled=not uses_rt_grid,
         help=(
-            "Deviation from the anchored grid. This is a view-only window."
+            "Deviation from the anchored grid (the independent local RT model for "
+            "accepted PE from the expanded method). This is a view-only window."
             if uses_rt_grid else
             "This stream was annotated on mass alone, so no RT window applies."
         ),

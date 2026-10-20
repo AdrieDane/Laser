@@ -142,7 +142,9 @@ def write_standard_annotated_inputs(
             Path(source).name if isinstance(source, (str, Path))
             else f"peakgrouplist_{stream}.txt"
         )
-        path = destination / source_name
+        named = Path(source_name)
+        stem = named.stem if named.stem.endswith("_annotated") else named.stem + "_annotated"
+        path = destination / f"{stem}{named.suffix}"
         atomic_write_bytes(
             path,
             append_standard_annotations(source, annotations, stream=stream)

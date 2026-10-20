@@ -47,6 +47,8 @@ class MatlabFormState:
     grid_coherence_threshold: float
     composition_ranges: Any
     submitted: bool
+    use_pe_rebuild: bool = True
+    pe_rebuild_score_threshold: float = 0.10
 
 
 @dataclass(frozen=True)
@@ -142,6 +144,20 @@ def _matlab_form(
                 value=SCIENTIFIC_DEFAULTS.grid_coherence_threshold, step=0.05,
                 key="standard_matlab_grid_coherence_threshold",
                 help="Scores below this value are excluded while the filter is enabled.")
+            pe_rebuild = st.checkbox(
+                "Expanded PE peak selection", value=True,
+                help=("Reconsider raw PE peaks using local retention patterns, independently "
+                      "corrected mass error and evidence from the opposite ion mode. Applies to "
+                      "RP positive/negative and NP positive, with a separate model for each. Uncheck to use the "
+                      "earlier conservative PE method. Existing annotations are preserved."),
+            )
+            pe_score = st.number_input(
+                "PE minimum evidence score", min_value=0.0, max_value=1.0,
+                value=0.10, step=0.05,
+                help=("0.10 prioritizes coverage. Higher values withhold more PE annotations. "
+                      "Applies only while expanded PE peak selection is enabled. "
+                      "This curator-agreement score is not an identity probability or false-discovery rate."),
+            )
         with st.expander("Carbon and double-bond annotation limits", expanded=False):
             composition_ranges = render_composition_ranges("standard_matlab")
         submitted = st.form_submit_button(
@@ -154,6 +170,7 @@ def _matlab_form(
         minimum_anchors=int(minimum), use_grid_coherence=bool(use_coherence),
         grid_coherence_threshold=float(coherence),
         composition_ranges=composition_ranges, submitted=submitted,
+        use_pe_rebuild=bool(pe_rebuild), pe_rebuild_score_threshold=float(pe_score),
     )
 
 
@@ -214,6 +231,8 @@ def _run_matlab_form(
             state.minimum_anchors, state.use_grid_coherence,
             state.grid_coherence_threshold, state.composition_ranges,
             report,
+            use_pe_rebuild=state.use_pe_rebuild,
+            pe_rebuild_score_threshold=state.pe_rebuild_score_threshold,
         )
     except MatlabAnnotationError as error:
         bar.empty()
@@ -250,6 +269,12 @@ def _run_matlab_form(
             "use_fitted_grid_completion": True,
             "fitted_grid_feature_ambiguity_margin": 0.10,
             "use_rp_isomer_anchor_refinement": True,
+            "use_pe_completion": True,
+            "pe_completion_confidence_threshold": 0.90,
+            "use_pe_rebuild": state.use_pe_rebuild,
+            "pe_rebuild_score_threshold": state.pe_rebuild_score_threshold,
+            "pe_rebuild_feature_margin": 0.03,
+            "pe_rebuild_search_seconds": 40.0,
             "composition_ranges": state.composition_ranges.to_dict(),
         },
         "output": {"directory": "results/standard_matlab", "overwrite": False},

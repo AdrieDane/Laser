@@ -332,6 +332,241 @@ NP instead follows the NP catalogue channels: `[M+H]+`, `[M+H-H2O]+`,
 `[M+NH4]+`, `[M+Na]+`, `[M-H]-`, `[M-2H](2-)`, `[M-4H](4-)`, `[M+Cl]-`, and
 `[M+CHO2]-`.
 
+## Earlier conservative RP-positive PE completion
+
+This subsection records the earlier conservative checkpoint, retained as a
+diagnostic fallback. Its metrics and limited NP control describe that earlier
+checkpoint; current full four-stream results are reported separately below.
+
+The final `pe_completion` pass addresses ordinary diacyl PE separately from the
+preceding isomer pass. It adds supported `[M+H]+` PE on unused RP-positive
+features; it never removes an existing annotation, changes another class, or
+modifies NP/RP-negative assignments. The preceding passes still preserve their
+counts, but this PE-only pass can make a small evidence-supported increase.
+Keeping an exact global call count would otherwise exclude good PE simply
+because other classes already filled that count.
+
+Candidates must already satisfy the original `<3 ppm`, `<=10 s` fitted RT,
+monoisotopic, adduct and grid-coherence gates. Declared internal standards and
+their features are excluded. Up to 20 abundant, clearly preferred PE peaks
+inside `1.5 ppm / 5 s` establish local mass/RT residuals. Each target requires
+at least four **other** compositions within `|delta carbon| + 2|delta DB| <= 8`,
+covering at least four carbons or two double bonds. It must fit that local
+pattern within `1 ppm / 5 s`; the original mass/RT gates remain mandatory.
+Ambiguous split peaks and strict competing non-PE identities are withheld.
+An already annotated PE identity is not duplicated at another peak.
+
+When accepted RP-negative PE is available, positive anchors estimate a local
+run-to-run RT offset. Both local positive predictions and cross-polarity
+alignment exclude the target composition itself. Negative-mode support is an
+additional model feature, not a mandatory identity whitelist or an assumption
+that two runs have identical retention times. Positive anchors can establish
+support without a negative-mode observation. Newly proposed calls cannot
+propagate to support one another within the same pass.
+
+The PE-specific evidence model in `standard_pe_confidence.json` uses local
+mass/RT residuals, coherence, abundance, independently aligned negative-mode
+evidence and broad carbon/DB plausibility. It does not reuse the old global
+class-confidence score and imposes no hard odd-carbon whitelist. Scores are
+classifier outputs, not structural confirmation or measured false-discovery
+probabilities. The default score threshold is `0.90`.
+The dedicated `pe_completion_score` decides PE additions; the old
+`post_regression_confidence` is retained separately, not overwritten to make
+the old model appear more confident.
+
+Only the four original fitting cohorts (rat brain, plasma, spinal cord and
+Pex5 mouse) fit this model. There are 108 locally supported training candidates,
+85 on the same curated feature. Score-level leave-one-cohort-out checks selected 44
+candidates, of which 40 matched the manual peak. Unlisted identities were
+treated as unconfirmed negatives for model fitting, not as proven false lipids.
+The data are small and related; this is not an analytical accuracy estimate.
+
+The frozen rule was then evaluated on all 15 example folders (14 unique
+datasets; duplicate fish is excluded from pooled results). Same-feature PE
+matches increased from **6 to 205 out of 1,057 mapped curated PE peaks**.
+The pass added 224 annotations: 199 on the same manual peak, nine on a
+different peak for a curated identity, and 16 identities absent from the full
+curated list. Existing calls were retained. Total annotations rose by 0.60%.
+Results are in [`validation/pe_completion.csv`](validation/pe_completion.csv).
+Most curated RP-positive PE remains missing; this conservative pass is a first
+improvement, not a complete PE resolution. EDT brain and lengthening spinal
+cord have weaker agreement among additions and warrant particular review.
+
+Full updated RP runs from the original inputs were completed for all 15
+folders. Every run reproduced the final-stage PE choices exactly and preserved
+all pre-existing RP-positive and RP-negative assignments. NP was not rerun
+for every folder: NP uses an unchanged baseline, exact no-op unit tests and a
+separate full ALD-brain NP control that matched its baseline. The new PE calls
+were also checked for accepted status in the actual candidate/grid-browser
+tables, not merely their presence in an offline benchmark. The test suite
+passes 256 tests and 82 subtests; saved-project round trips and the packaged
+module/model were checked. Original inputs and previous TXT exports remain
+unchanged.
+
+The app exposes `matlab_pe_completion_audit`, `matlab_pe_anchors` and
+`matlab_pe_candidate_decisions`, persists them in saved projects and offers
+CSV downloads. The candidate `pe_decision` describes local-pattern checks;
+the final selection additionally requires the PE score and feature-competition
+checks. The incoming candidate flags in this diagnostic table are not final
+acceptance flags; the updated stream `all_pairs` and `annotations` are final.
+`use_pe_completion=false` disables PE completion at the configured composition
+limits, and disabling
+post-regression completion also disables this pass. The independent PE score
+can be controlled with `pe_completion_confidence_threshold`. Cache version 22
+ensures older cached runs are not mistaken for results of this change.
+
+`tools/calibrate_pe_completion.py` reproduces the model and leave-one-cohort-out
+checks from exported PE candidate diagnostics and curated crosswalks. Supply
+only development cohorts to `--datasets`; do not fit on evaluation cohorts.
+All curated comparisons occur after annotation. No curated workbook is read
+by the PE runtime pass.
+
+## Expanded PE peak selection (default)
+
+`pe_rebuild` replaces the earlier PE completion method by default. Separate
+models support RP-positive, RP-negative and NP-positive PE. NP-negative
+retains its preceding method. Each model searches its original feature list
+again, so a candidate need not survive
+the old fitted-grid or 10-second RT filter. It does not reuse curated peaks
+as runtime anchors or read curated workbooks during annotation.
+
+The new pass uses:
+
+- A bounded 40-second RT discovery window. Sparse reference-grid RTs are
+  interpolated/extrapolated locally from the existing method reference.
+- A strict **less than 3 ppm corrected** mass window. Its residual offset is
+  the median error of at least 20 independently accepted non-PE features
+  within the old 3 ppm / 5-second envelope. With insufficient support the
+  correction is zero. Raw mass and original RT errors remain in the result;
+  they are never overwritten to make a candidate appear closer.
+- A local RT residual plane varying with carbon count and double bonds.
+  Up to 30 abundant candidate compositions establish support. Every target's
+  prediction excludes its own composition and requires at least five others.
+- Raw opposite-mode peaks at the corresponding PE `[M-H]-` / `[M+H]+` mass,
+  within 2/5/10/20-second cross-mode neighbourhoods, plus accepted
+  opposite-mode PE when available. Presence in its annotation list is not
+  mandatory. These windows
+  are evidence features, not an assertion that both runs have identical RT.
+- Abundance, corrected mass error, local/reference RT errors and broad
+  composition evidence in a small, portable boosted-tree agreement model.
+  No dataset name, feature identifier, curated label, or species one-hot
+  input enters the model. Odd carbon is evidence, not an automatic exclusion.
+
+The curator guide `annotatie_gateways.pptx` (slides 12, 15, 17, 20, 35)
+motivated comparing abundant peaks, local mass/RT patterns, edge flexibility
+and stronger negative-mode PE evidence. Its workflow instructions are not
+executed by LASER. Its conditional biology notes are not hard-coded as
+universal cut-offs. Missing grid nodes are not automatically filled.
+
+One peak is chosen per new PE composition, with a minimum score advantage
+over the second choice. Existing accepted annotations, their features and
+declared internal standards are protected. Old non-PE *review candidates*
+are not an unconditional veto: PE-specific evidence can resolve a candidate
+that failed the earlier global decision. No existing annotation is replaced.
+The models cover ordinary `[M+H]+` PE in RP-positive and NP-positive mode and
+`[M-H]-` PE in RP-negative mode. Ether/plasmalogen PE and other classes are
+not processed by this pass. Counterpart annotations are snapshotted before
+completion: additions in one stream cannot reinforce themselves through
+the other. RP/NP references, RT predictions, evidence and models remain
+separate. The `pe_negative_*` feature names are retained for compatibility;
+in the RP-negative model they describe the **positive** counterpart.
+
+Carbon/DB limits apply to regenerated targets as well as the earlier engine.
+The default ordinary PE carbon range is now 28--50, with 0--13 double bonds.
+This shared range update can also change PE candidates in NP and RP-negative
+mode; fresh validation must therefore check all four streams. Other class ranges are
+unchanged.
+
+Public settings and matching setup controls:
+
+| Setting | Default | Meaning |
+| --- | --- | --- |
+| `use_pe_rebuild` | `true` | Use expanded PE selection; false restores the earlier PE method |
+| `pe_rebuild_score_threshold` | `0.10` | Coverage-oriented evidence threshold, **not** a 10% probability/FDR |
+| `pe_rebuild_feature_margin` | `0.03` | Required score advantage over another peak for the same composition |
+| `pe_rebuild_search_seconds` | `40` | Discovery half-window, limited to 60 seconds |
+| `use_pe_completion` | `true` | Master enable switch for either PE method |
+
+The generic post-regression master switch also disables both PE methods.
+The earlier `pe_completion_confidence_threshold=0.90` applies only when
+`use_pe_rebuild=false`; it is not the threshold for the new model. Cache
+version 25 invalidates older app results. Missing or wrong-stream model files fail closed.
+The runtime uses NumPy/Pandas; sklearn remains calibration-only.
+
+A separate final safeguard handles explicitly declared PE internal standards,
+not endogenous PE. It restores a standard only when exactly one monoisotopic
+feature meets the original raw `<3 ppm` and `<=10 s` limits with the declared
+primary adduct. Existing identities and occupied features are not replaced.
+Ambiguous standards remain for review. The endogenous class-coherence filter
+does not reject these independently supported spikes; its original score and
+flags remain available in the audit. This final step cannot feed back into
+earlier fitting and is disabled by either PE/post-regression master switch.
+
+The existing `matlab_pe_completion_audit`, `matlab_pe_anchors` and
+`matlab_pe_candidate_decisions` tables carry the new method's evidence.
+Unlike the earlier diagnostics, the new `pe_final_selected` and
+`pe_decision=accepted` fields explicitly indicate final selection, including
+score, peak-choice margin and occupied-feature checks. Final accepted rows
+also have `automatic_accepted=true`, `automatic_candidate=true` and
+`rank_for_feature=1`, so they are full annotations in the review grid and
+exports. Scores are agreement with manual choices, not structural proof.
+The review grid prioritizes the run's accepted feature over a closer-to-old-
+reference alternative (manual feature overrides still take precedence).
+Accepted PE is displayed using its local RT prediction and independently
+corrected mass error, while preserving the raw errors in the stored results.
+
+`tools/calibrate_pe_rebuild.py` fits the portable JSON model from independently
+generated `raw_candidates.pkl` tables and curated feature crosswalks supplied
+on the command line. Four original development cohorts are used for the
+three shipped models. `--stream` selects the stream when recalibrating.
+Other example cohorts and leave-one-dataset-out checks assess
+agreement, but the collection has informed development and is not a new,
+prospectively untouched validation set. The fish duplicate is excluded from
+pooled metrics and grouped calibration.
+
+The packaged models are `standard_pe_rebuild.json` (RP-positive),
+`standard_pe_rebuild_rp_negative.json` and
+`standard_pe_rebuild_np_positive.json`. Each stream's model is fitted
+separately on the same four development cohorts. A stream cannot use another
+stream's model. Leave-one-dataset-out checks hold out the PE scorer and final
+PE selector; preceding cached engine models are not refitted inside those
+folds. Treat these checks as development estimates, not fully independent
+end-to-end validation.
+
+### Four-stream PE checkpoint, 20 October 2026
+
+All 15 example folders received full RP/NP core runs. Pooled figures exclude
+the duplicate fish folder (14 unique datasets). The denominator includes
+every manual ordinary PE entry, including unresolved original-peak mappings
+counted as misses. A match requires the same name, adduct, stream and
+original feature, not just the same lipid name.
+
+| Stream | Same manually chosen peak | All manual PE entries | Agreement |
+| --- | ---: | ---: | ---: |
+| RP-positive | 980 | 1,071 | 91.5% |
+| RP-negative | 1,213 | 1,267 | 95.7% |
+| NP-positive | 919 | 945 | 97.2% |
+| NP-negative | 910 | 1,000 | 91.0% |
+
+The target is met for each pooled stream, **not every individual dataset**.
+There remain 36/31/6/8 wrong-peak choices and 184/144/126/28 PE names absent
+from the corresponding stream's manual list, respectively in table order.
+Unlisted identities remain unconfirmed, not proven false annotations.
+The next priority is reviewing these additions and the weaker individual
+datasets without losing coverage. All examples informed development; this
+is agreement with this collection, not an external accuracy estimate.
+
+The late, independent declared-standard safeguard was replayed on all 15
+completed core outputs. An additional fresh final-version plasma RP/NP run
+verified exactly the same annotations in all four streams. It cannot affect
+earlier models. The final checkpoint passes 299 tests and 83 subtests.
+The wheel's runtime modules and all PE model bytes match source.
+
+See [`validation/pe_multistream_summary.csv`](validation/pe_multistream_summary.csv),
+[`validation/pe_multistream_by_dataset.csv`](validation/pe_multistream_by_dataset.csv)
+and [`PE_HANDOFF.txt`](PE_HANDOFF.txt) for the continuation state and local
+diagnostic report locations. Existing TXT exports were not regenerated.
+
 ## Phase separation and NP identity rules
 
 NP is not an RP grid with a different tolerance. The reconstructed project

@@ -69,6 +69,9 @@ from .isomer_resolver import (
     resolve_positional_lyso_isomers,
 )
 from .rp_isomer_anchors import RPIsomerAnchorSettings, refine_rp_isomer_annotations
+from .pe_completion import PECompletionSettings, complete_rp_positive_pe
+from .pe_rebuild import PERebuildSettings, complete_pe_stream, pe_model_path_for_stream
+from .pe_standards import complete_pe_internal_standards
 from .vendor.annotation_engine import AnnotationEngine
 from .vendor.engine import resolve_annotation_siblings
 from .vendor.legacy_loader import LegacyProjectError, load_legacy_project
@@ -2042,6 +2045,65 @@ def _assemble_automatic_phase_result(
         rp_isomer_audits.append(rp_audit)
         rp_isomer_anchors.append(rp_anchors)
         rp_isomer_models.append(rp_models)
+    pe_audit, pe_anchors, pe_decisions = pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
+    pe_rt = min(10.0, settings.rt_tolerance_seconds)
+    pe_ppm = min(3.0, settings.ppm_tolerance)
+    pe_enabled = settings.use_post_regression_completion and settings.use_pe_completion
+    if settings.use_pe_rebuild:
+        # Snapshot preceding annotations: newly completed targets do not become
+        # self-reinforcing evidence for another stream in the same pass.
+        preceding = {s: p["annotations"].copy() for s, p in streams.items()}
+        audit_parts, anchor_parts, decision_parts = [], [], []
+        for name, peer in (("RP_Neg", "RP_Pos"), ("RP_Pos", "RP_Neg"), ("NP_Pos", "NP_Neg")):
+            if name not in streams:
+                continue
+            target = streams[name]
+            (
+                target["annotations"], target["all_pairs"], local_audit,
+                local_anchors, local_decisions,
+            ) = complete_pe_stream(
+                target["annotations"], target["all_pairs"], target["reference"],
+                target["features"], preceding.get(peer, pd.DataFrame()),
+                streams.get(peer, {}).get("features", pd.DataFrame()), stream=name,
+                settings=PERebuildSettings(
+                    enabled=pe_enabled,
+                    score_threshold=settings.pe_rebuild_score_threshold,
+                    feature_margin=settings.pe_rebuild_feature_margin,
+                    search_seconds=settings.pe_rebuild_search_seconds,
+                    ppm_tolerance=pe_ppm, model_path=pe_model_path_for_stream(name),
+                ),
+                ranges=composition_ranges,
+            )
+            local_anchors["stream"] = name
+            local_decisions["stream"] = name
+            target["pe_completion_audit"] = local_audit
+            target["pe_anchors"] = local_anchors
+            target["pe_candidate_decisions"] = local_decisions
+            audit_parts.append(local_audit)
+            anchor_parts.append(local_anchors)
+            decision_parts.append(local_decisions)
+        pe_audit = pd.concat(audit_parts, ignore_index=True, sort=False) if audit_parts else pd.DataFrame()
+        pe_anchors = pd.concat(anchor_parts, ignore_index=True, sort=False) if anchor_parts else pd.DataFrame()
+        pe_decisions = pd.concat(decision_parts, ignore_index=True, sort=False) if decision_parts else pd.DataFrame()
+    elif "RP_Pos" in streams:
+        positive = streams["RP_Pos"]
+        (
+            positive["annotations"], positive["all_pairs"], pe_audit,
+            pe_anchors, pe_decisions,
+        ) = complete_rp_positive_pe(
+            positive["annotations"], positive["all_pairs"],
+            streams.get("RP_Neg", {}).get("annotations", pd.DataFrame()),
+            settings=PECompletionSettings(
+                enabled=pe_enabled,
+                confidence_threshold=settings.pe_completion_confidence_threshold,
+                ppm_tolerance=pe_ppm, rt_tolerance_seconds=pe_rt,
+                anchor_ppm=min(1.5, pe_ppm), anchor_rt_seconds=min(5.0, pe_rt),
+                local_ppm=min(1.0, pe_ppm), local_rt_seconds=min(5.0, pe_rt),
+            ),
+        )
+        positive["pe_completion_audit"] = pe_audit
+        positive["pe_anchors"] = pe_anchors
+        positive["pe_candidate_decisions"] = pe_decisions
     result = assemble_result(
         streams,
         outcomes,
@@ -2073,6 +2135,9 @@ def _assemble_automatic_phase_result(
     result["matlab_rp_isomer_anchor_audit"] = pd.concat(rp_isomer_audits, ignore_index=True)
     result["matlab_rp_isomer_anchors"] = pd.concat(rp_isomer_anchors, ignore_index=True)
     result["matlab_rp_isomer_rt_models"] = pd.concat(rp_isomer_models, ignore_index=True)
+    result["matlab_pe_completion_audit"] = pe_audit
+    result["matlab_pe_anchors"] = pe_anchors
+    result["matlab_pe_candidate_decisions"] = pe_decisions
     result["matlab_positional_isomer_audit"] = positional_audit
     result["matlab_positional_refit_audit"] = refit_audit
     result["matlab_xcms_only"] = True
@@ -2210,6 +2275,9 @@ def _merge_matlab_phase_results(
         "matlab_rp_isomer_anchor_audit",
         "matlab_rp_isomer_anchors",
         "matlab_rp_isomer_rt_models",
+        "matlab_pe_completion_audit",
+        "matlab_pe_anchors",
+        "matlab_pe_candidate_decisions",
         "matlab_positional_isomer_audit",
         "matlab_positional_refit_audit",
         "matlab_mass_calibration_audit",
@@ -2320,5 +2388,11 @@ def run_matlab_annotation(
         result["matlab_skipped_phases"] = tuple(
             phase for phase in requested if phase not in available
         )
-        return result
-    return _merge_matlab_phase_results(results, requested_phases=requested)
+    else:
+        result = _merge_matlab_phase_results(results, requested_phases=requested)
+    return complete_pe_internal_standards(
+        result,
+        enabled=anchor_settings.use_post_regression_completion and anchor_settings.use_pe_completion,
+        ppm_tolerance=min(3.0, anchor_settings.ppm_tolerance),
+        rt_seconds=min(10.0, anchor_settings.rt_tolerance_seconds),
+    )

@@ -14,11 +14,46 @@ def _download(label: str, table: pd.DataFrame, filename: str) -> None:
 
 
 def _render_isomer_audits(result: dict) -> None:
+    pe = result.get("matlab_pe_completion_audit", pd.DataFrame())
+    if isinstance(pe, pd.DataFrame) and not pe.empty:
+        with st.expander("Additional PE annotations", expanded=False):
+            rebuilt = pe.get("method", pd.Series(dtype=str)).eq("pe_raw_evidence_rebuild").any()
+            st.caption((
+                "Reconsiders raw PE peaks using a 40-second discovery window, "
+                "independently corrected mass error within 3 ppm, local retention "
+                "patterns from at least five other PE compositions and raw opposite-mode evidence. "
+                "Each supported measurement stream uses its own model. "
+                "Discovery does not require passing the old 10-second fitted-grid filter. "
+                "Existing annotations and declared standards are preserved. "
+                "A separate final check restores only unique, explicitly declared PE standards "
+                "inside the original mass/RT limits when the endogenous grid excluded them. "
+                "Final choices and withheld alternatives are in the peak-check table. "
+                "The evidence score measures agreement with curator choices, not structural "
+                "confirmation or a measured false-discovery probability."
+            ) if rebuilt else (
+                "Adds PE on unused peaks without removing existing annotations. "
+                "Each new call must fit the original 3 ppm / 10-second limits "
+                "and the local pattern of at least four other strong PE peaks. "
+                "Aligned negative-mode PE provides additional evidence when available. "
+                "The PE-specific score decides these additions; the older general "
+                "score is kept separately for review. "
+                "PE evidence scores are model scores, not structural confirmation "
+                "or a measured false-discovery probability. NP and RP-negative are unchanged."
+            ))
+            st.dataframe(pe, hide_index=True, width="stretch")
+            for key, label, filename in (
+                ("matlab_pe_completion_audit", "Download PE summary", "LASER_PE_summary.csv"),
+                ("matlab_pe_anchors", "Download PE anchor peaks", "LASER_PE_anchors.csv"),
+                ("matlab_pe_candidate_decisions", "Download PE peak checks", "LASER_PE_peak_checks.csv"),
+            ):
+                table = result.get(key, pd.DataFrame())
+                if isinstance(table, pd.DataFrame) and not table.empty:
+                    _download(label, table, filename)
     anchor_audit = result.get("matlab_rp_isomer_anchor_audit", pd.DataFrame())
     if isinstance(anchor_audit, pd.DataFrame) and not anchor_audit.empty:
         with st.expander("RP isomer-aware anchor refinement", expanded=False):
             st.caption(
-                "The final RP pass resolves abundant O/P and 1-/2-acyl pairs, "
+                "The RP isomer pass resolves abundant O/P and 1-/2-acyl pairs, "
                 "then predicts each composition from at least four other nearby "
                 "anchor pairs. It keeps the 3 ppm / 10-second final limits and "
                 "the preceding annotation count. NP is unchanged. The isomer "
@@ -103,7 +138,7 @@ def _render_grid_and_standards(result: dict) -> None:
         with st.expander("Post-regression confidence completion", expanded=False):
             st.caption(
                 f"{promoted} fitted-grid candidates were promoted after curated-"
-                f"cohort confidence calibration; {final} final annotations remain. "
+                f"cohort confidence calibration; {final} annotations leave this stage. "
                 "Class-specific carbon/double-bond plausibility helps rank calls "
                 "within the existing strict candidate limits. The baseline count "
                 "is preserved per stream; any baseline calls retained to fill "

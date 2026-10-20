@@ -26,7 +26,7 @@ from matlab_annotation.vendor.target_model import CompoundSetTargetTable
 
 
 class CompositionRangeSettingsTests(unittest.TestCase):
-    def test_bundled_defaults_are_the_combined_example_data_extrema(self):
+    def test_bundled_defaults_and_validated_pe_extension(self):
         rules = DEFAULT_COMPOSITION_RANGE_SETTINGS.class_lookup()
         self.assertEqual(len(rules), 66)
         groups = DEFAULT_COMPOSITION_RANGE_SETTINGS.group_lookup()
@@ -49,6 +49,7 @@ class CompositionRangeSettingsTests(unittest.TestCase):
             "1-acyl LPC": (14, 32, 0, 7),
             "LPC[O+P]": (14, 26, 0, 2),
             "PC": (26, 66, 0, 13),
+            "PE": (28, 50, 0, 13),
             "PC[O]": (26, 50, 0, 8),
             "Cer[d]": (32, 46, 0, 4),
             "TG": (36, 80, 0, 18),

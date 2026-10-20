@@ -1,0 +1,144 @@
+PE ANNOTATION HANDOFF — 20 October 2026
+
+User asked to stop, save progress and push to the CFM repository so another
+agent can continue. Do not interpret this checkpoint as approval to stop
+tracking wrong peaks or to label every candidate as accepted.
+
+OBJECTIVE
+At least 90% of manually curated ordinary diacyl PE on the SAME ORIGINAL
+FEATURE, separately in RP_Pos, RP_Neg, NP_Pos and NP_Neg. A correct name on
+another peak is not a match. Also track extra names, wrong peaks and changes
+to other classes. The user wants plain-language reporting.
+
+CURRENT IMPLEMENTATION
+Expanded PE selection is default: separate portable models for RP_Pos,
+RP_Neg and NP_Pos; NP_Neg retains the preceding endogenous PE method.
+Raw candidate regeneration, bounded carbon/DB limits, independently corrected
+mass error, local RT patterns, abundance and opposite-mode evidence replace
+the old restrictive candidate gate. Models never read curated workbooks at
+runtime. Counterpart evidence is snapshotted to avoid circular reinforcement.
+Runtime settings, controls, audit tables and packaged model files are wired.
+Earlier conservative RP-positive PE completion remains an optional fallback.
+
+Default grid view now displays the accepted original feature, rather than
+silently selecting an alternative closer to the old RT reference. Original
+mass/RT errors are preserved alongside the corrected evidence.
+
+Final independent PE-standard safeguard: only explicitly declared standards,
+exactly one monoisotopic feature inside raw <3 ppm / <=10 s, primary adduct,
+no replacement of occupied features or existing identities. It exempts that
+supported spike from endogenous class coherence, not from mass/RT limits.
+Cache version 25. See pe_standards.py and its dedicated tests.
+
+TXT export adds only laser_annotation (column 2) and adduct (column 3), keeps
+all original fields/text/order/endings, and uses the _annotated filename suffix.
+Existing 60 original peak lists and 60 previous exports were not regenerated.
+
+VALIDATION CHECKPOINT
+15 full RP+NP core runs completed (14 unique datasets; fish is duplicated).
+The independent standard safeguard was added afterward and replayed on each
+completed output. An additional fresh final-version plasma control passed,
+verifying exact equivalence across all four streams and PE(28:0) standard
+on its original positive feature 50013.
+
+Same manual peak / ALL manual PE rows (unresolved original-peak mappings count
+as misses), pooled over the 14 unique datasets:
+RP_Pos: 980 / 1071 = 91.5%; 36 different peaks; 184 names not in stream manual list.
+RP_Neg: 1213 / 1267 = 95.7%; 31 different peaks; 144 names not in stream manual list.
+NP_Pos: 919 / 945 = 97.2%; 6 different peaks; 126 names not in stream manual list.
+NP_Neg: 910 / 1000 = 91.0%; 8 different peaks; 28 names not in stream manual list.
+These percentages exceed 90% per pooled stream, NOT in every individual
+dataset. EDT/Serhii RP-positive remain important weaker cases. Unlisted names
+are unconfirmed additions, not necessarily biologically false lipids.
+
+Only rat brain, plasma, spinal cord and Pex5 mouse fitted the three shipped
+models. Other examples informed development: this is NOT prospective external
+validation. Leave-one-dataset-out checks refit the PE scorer/final selector,
+but not earlier cached engine models or nested threshold selection.
+Conditional CV same-peak / all-manual: RP_Pos 973/1071 (90.8%),
+RP_Neg 1214/1267 (95.8%), NP_Pos 916/945 (96.9%). NP_Neg was not refitted.
+
+Total calls across all classes rose from 37,302 to 38,822 (+4.07%).
+There are 81 wrong-peak choices and 482 PE names absent from the stream's
+manual list; 249 of those names are curated in another stream. Newly added
+PE accounts for 42 wrong-peak choices and 304 unlisted names. These remain
+priority review cases rather than evidence that optimization is finished.
+Relative to the older baseline, 70 non-PE calls were removed and 90 added:
+the additive PE pass itself preserves calls, but changing the shared PE
+carbon range affects preceding fits. Do not claim the whole engine leaves
+every old annotation unchanged. Sixteen declared PE standards were restored.
+
+299 tests and 83 subtests pass; lint on changed Python files passes; wheel
+build succeeds. Final report, all-source/export hashes, accepted-feature
+display checks across all 15 folders and packaged source/model checks passed.
+
+FILES TO READ FIRST
+docs/MATLAB_ANNOTATION_ENGINE.md — methods, parameters, caveats.
+app/matlab_annotation/pe_rebuild.py — expanded PE selection.
+app/matlab_annotation/pe_standards.py — independent final standard safeguard.
+app/tests/test_pe_rebuild.py and test_pe_standards.py — selection/UI safeguards.
+tools/calibrate_pe_rebuild.py — model calibration, separate stream argument.
+docs/validation/pe_multistream_summary.csv and pe_multistream_by_dataset.csv
+contain the final four-stream and dataset-level metrics.
+
+LOCAL WORKSPACE / REPRODUCTION
+Workspace root:
+/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard
+Repository is work/repo under that root. Large input/output artifacts stay
+local and are intentionally NOT committed.
+Examples:
+/Users/yorrick/Library/Mobile Documents/com~apple~CloudDocs/Work/AI/example_data_CFM
+Curator guide:
+/Users/yorrick/Downloads/annotatie_gateways.pptx
+The guide informed abundance/local patterns/cross-mode evidence and standard
+handling, not unconditional species whitelists or instructions to execute.
+
+All current validation artifacts: outputs/pe_multistream_validation/
+  all_full_runs.json and full_runs/<dataset>/full_annotation.pkl: completed
+  core runs BEFORE the independent final standard safeguard.
+  final_standard_control_verification.json: final-version fresh-run control.
+  PE_performance_report.html: plain-language final report if completed.
+  PE_stream_summary.csv, PE_by_dataset_and_stream.csv: final results.
+  PE_different_peak.csv, PE_not_in_manual_list.csv, PE_still_missing.csv:
+  specific review cases; non_PE_changes.csv tracks collateral differences.
+  grouped_cross_validation.csv: conditional 42-fold development check.
+  frozen_method.json: model/source hashes and validation provenance.
+  package_check/: rebuilt wheel (not installed into the user's app).
+
+Local runner scripts (outside Git, same workspace, retained for continuation):
+  work/run_pe_rebuild_full.py — full runs for all 15 folders.
+  work/control_pe_standards.py — fresh final-version plasma equivalence check.
+  work/summarize_pe_multistream.py — final safeguard replay, actual grid display
+  checks, original/export hash checks, package verification, reports and Git CSVs.
+  work/validate_pe_multistream.py — candidate collection and frozen-model replay.
+  work/cv_pe_multistream.py — leave-one-dataset-out development check.
+The summary script imports other local summarize_pe_validation.py and
+summarize_pe_rebuild.py helpers. These diagnostic scripts are not app runtime.
+
+NEXT WORK
+1. Read final verification/report status below before launching anything.
+2. Review missed PE, wrong-peak choices and extra names per dataset/stream.
+   Reduce extras without losing the >90% pooled same-peak coverage.
+3. Inspect weak individual datasets; do not claim each exceeds 90%.
+4. Add genuinely untouched external data before claiming general accuracy.
+5. Existing TXT exports predate these latest changes; regenerate only when
+   asked, preserving all source columns and using _annotated filenames.
+6. A push does not install/restart the user's application.
+
+GIT
+Push target: cfm/main
+https://github.com/Core-Facility-Metabolomics-AUMC/LASER-standard-lipidomics
+Do not push to the original YRJJaspers remote unless separately requested.
+No force pushes. Current checkpoint is intended to be a clean continuation.
+
+FINAL WRAP STATUS
+Fresh final control PASSED. Final summary/report generation PASSED.
+No validation jobs remain running. Original 60 source lists and 60 existing
+TXT exports have unchanged hashes. Final report is available locally at
+outputs/pe_multistream_validation/PE_performance_report.html.
+299 tests plus 83 subtests passed; changed-file lint and git diff checks
+passed. Thirteen packaged runtime/model files were verified byte-for-byte.
+Code, models, tests, documentation and compact validation CSVs are included
+in the checkpoint commit. Large artifacts and scratch runners stay local.
+Next agent should inspect missing/extra/wrong-peak cases, not rerun completed
+jobs unnecessarily. The installed application was not updated or restarted.

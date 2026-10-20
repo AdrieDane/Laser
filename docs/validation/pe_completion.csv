@@ -1,0 +1,16 @@
+dataset,duplicate,manual_pe_peaks,matching_peaks_before,matching_peaks_after,added_pe_annotations,added_on_manual_peak,added_on_different_peak,added_not_in_curated_list,total_annotations_before,total_annotations_after
+ALD_brain,false,72,0,4,5,4,1,0,2833,2838
+rat_brain,false,75,1,17,17,16,1,0,3185,3202
+cells,false,84,0,25,27,25,1,1,2774,2801
+rat_plasma,false,20,1,8,7,7,0,0,1776,1783
+rat_spinal_cord,false,65,0,11,11,11,0,0,2919,2930
+Pex5_mouse,false,69,0,15,15,15,0,0,2056,2071
+fish_larvae,false,100,0,6,6,6,0,0,2164,2170
+heart,false,90,1,22,22,21,1,0,2741,2763
+kidney,false,71,0,18,18,18,0,0,2626,2644
+worms,false,135,1,24,24,23,1,0,2636,2660
+fish_larvae_duplicate,true,100,0,6,6,6,0,0,2164,2170
+Serhii_brain,false,71,0,9,10,9,1,0,2353,2363
+EDT_brain,false,71,1,13,22,12,2,8,2999,3021
+lengthening_spinal_cord,false,59,1,10,17,9,1,7,3188,3205
+V2,false,75,0,23,23,23,0,0,2828,2851

@@ -29,12 +29,16 @@ def _class_grid_rt(reference: pd.DataFrame) -> pd.DataFrame:
 
 def select_plotted_species(candidates: pd.DataFrame) -> pd.DataFrame:
     """Select one displayed feature per lipid identity."""
+    accepted = candidates.get(
+        "automatic_candidate", pd.Series(False, index=candidates.index)
+    ).fillna(False).astype(bool)
     plotted = (
-        candidates.sort_values([
-            "manual_primary", "automatic_anchor_primary",
+        candidates.assign(_run_primary=np.where(accepted, 0, 1)).sort_values([
+            "manual_primary", "_run_primary", "automatic_anchor_primary",
             "absresid", "absppm",
         ])
         .drop_duplicates(subset=["name"], keep="first")
+        .drop(columns="_run_primary")
         .copy()
     )
     plotted["node_rt"] = plotted["rt_pred"]
@@ -55,7 +59,16 @@ def review_criteria_mask(
     rt_residual_column: str = "grid_resid",
 ) -> pd.Series:
     """Return the shared run/live-view inclusion mask."""
-    keep = candidates["ppm_error"].abs() <= float(ppm_tolerance)
+    mass_error = candidates["ppm_error"].copy()
+    corrected = pd.to_numeric(
+        candidates.get("pe_corrected_mass_error_ppm", pd.Series(np.nan, index=candidates.index)),
+        errors="coerce",
+    )
+    rebuilt = _rebuilt_pe_display_mask(candidates) & corrected.notna()
+    # This is the actual PE acceptance mass model, not a silent widening of
+    # the raw window. Original ppm_error remains available in the details.
+    mass_error.loc[rebuilt] = corrected.loc[rebuilt]
+    keep = mass_error.abs() <= float(ppm_tolerance)
     if use_rt:
         keep &= candidates[rt_residual_column].abs() <= float(rt_tolerance)
     if use_grid_coherence:
@@ -70,8 +83,20 @@ def review_criteria_mask(
             ),
             errors="coerce",
         )
-        keep &= ~assessed | score.ge(float(grid_coherence_threshold))
+        declared_pe = candidates.get(
+            "auto_annotation_status", pd.Series("", index=candidates.index)
+        ).eq("pe_declared_standard_supported")
+        declared_pe &= candidates.get(
+            "automatic_candidate", pd.Series(False, index=candidates.index)
+        ).fillna(False).astype(bool)
+        keep &= ~assessed | score.ge(float(grid_coherence_threshold)) | declared_pe
     return keep.fillna(False)
+
+
+def _rebuilt_pe_display_mask(candidates: pd.DataFrame) -> pd.Series:
+    status = candidates.get("auto_annotation_status", pd.Series("", index=candidates.index))
+    accepted = candidates.get("automatic_candidate", pd.Series(False, index=candidates.index))
+    return status.eq("pe_raw_evidence_supported") & accepted.fillna(False).astype(bool)
 
 
 def apply_review_criteria(
@@ -176,6 +201,14 @@ def _apply_anchor_model(cand: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
     cand.loc[positional, "rt_pred"] = positional_expected.loc[positional]
     cand.loc[positional, "grid_resid"] = positional_error_seconds.loc[positional] / 60.0
     cand.loc[positional, "run_grid_resid"] = positional_error_seconds.loc[positional] / 60.0
+    pe_error = pd.to_numeric(
+        cand.get("pe_local_rt_error_seconds", pd.Series(np.nan, index=cand.index)),
+        errors="coerce",
+    )
+    pe = _rebuilt_pe_display_mask(cand) & pe_error.notna()
+    cand.loc[pe, "rt_pred"] = cand.loc[pe, "feat_rt"] - pe_error.loc[pe] / 60.0
+    cand.loc[pe, "grid_resid"] = pe_error.loc[pe] / 60.0
+    cand.loc[pe, "run_grid_resid"] = pe_error.loc[pe] / 60.0
     cand["absresid"] = cand["grid_resid"].abs()
     cand["rt_error"] = cand["grid_resid"]
     return cand, correction
@@ -234,6 +267,9 @@ def build_class_grid_state(
         cand["run_candidate"] = review_criteria_mask(
             cand, rt_residual_column="run_grid_resid", **run_criteria
         )
+        cand["run_candidate"] |= cand.get(
+            "automatic_candidate", pd.Series(False, index=cand.index)
+        ).fillna(False).astype(bool)
     all_candidates = cand.copy()
     if review is not None:
         cand = apply_review_criteria(cand, **review)
