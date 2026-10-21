@@ -1,0 +1,5 @@
+stream,manual_rows,mapped_manual_rows,unresolved_manual_rows,duplicate_mapped_manual_rows,unique_mapped_manual_annotations,manual_same_peak,manual_same_peak_rows,manual_same_lipid_different_peak,manual_peak_other_lipid,manual_mapped_not_matched,conflicting_manual_rows,mapped_manual_pairs_observed_in_candidate_tables,mapped_manual_pairs_absent_from_available_candidate_tables,mapped_manual_pairs_without_diagnostics,laser_rows,unique_laser_annotations,duplicate_laser_rows,laser_same_manual_peak,laser_same_manual_lipid_different_peak,laser_manual_identity_peak_unresolved,laser_not_in_manual_list,percent_mapped_manual_same_peak,percent_all_manual_rows_same_peak
+NP_Neg,6970,6849,121,0,6849,5435,5435,35,0,1414,0,6422,427,0,6280,6280,0,5435,35,93,717,79.35465031391443,77.97704447632712
+NP_Pos,9379,9244,135,0,9244,7537,7537,93,4,1707,0,9010,234,0,9018,9018,0,7537,93,89,1299,81.53396797922977,80.36037957138288
+RP_Neg,7810,7734,76,0,7734,5481,5481,169,42,2253,0,7430,304,0,6292,6292,0,5481,169,43,599,70.8688906128782,70.17925736235595
+RP_Pos,22096,21885,211,0,21885,15831,15831,240,48,6054,0,20754,1131,0,17232,17232,0,15831,240,128,1033,72.33721727210418,71.64645184648805

@@ -172,3 +172,19 @@ and `adduct` as column 3, preserve all other content and order, and use the
 4. Evaluate PE/PC calibration and joint selection against the frozen baseline.
 5. Expand only improvements that pass the class, stream and dataset checks.
 6. Validate on untouched data before describing general annotation accuracy.
+
+## First implementation checkpoint
+
+The evaluation-only comparison tool is implemented and tested. See
+[usage and interpretation](ANNOTATION_VALIDATION.md) and the
+[21 October findings](validation/annotation_comparison_20261021.md).
+It observes saved candidates and final choices; recording the complete
+pipeline event history remains part of the next instrumentation work.
+
+The first comparison covered all 15 folders and excluded the duplicate fish
+folder from pooled results. Of 11,428 reliably mapped manual entries not on
+the same peak in LASER, 9,332 already appear in the saved candidate tables.
+All 216 remaining mapped ordinary PE disagreements are represented there.
+The next experiment should therefore improve independent evidence, selection
+and recorded rejection checks before widening PE discovery windows. Candidate
+presence alone does not establish that a peak should be accepted.
