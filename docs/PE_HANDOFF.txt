@@ -1,5 +1,13 @@
 LATEST FOLLOW-UP — 21 October 2026
 
+MANDATORY USER REPORTING POLICY (established after this experiment):
+Read repository-root AGENTS.md. Every annotation-changing experiment must
+report every dataset and all four modes, including unchanged rows, with
+before/after correct-original-peak counts and extra counts. Include all-class
+results and the target-class results; do not report only pooled gains. Full
+current all-class and PE tables are in docs/validation/experiment_02270eb_all_datasets.md.
+That is the existing a06782f->02270eb comparison, not another experiment.
+
 The RP-positive four-stream consensus extension is implemented and tested.
 It remains inside the existing OFF-by-default Experimental PE peak correction
 option; cache version27. New module: app/matlab_annotation/pe_consensus.py.

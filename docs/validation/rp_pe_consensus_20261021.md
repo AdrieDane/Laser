@@ -1,5 +1,8 @@
 # RP positive PE consensus results
 
+The [complete before and after tables for every dataset and mode](experiment_02270eb_all_datasets.md)
+show both all-class and PE-only results, including unchanged modes and extras.
+
 21 October 2026. The new strict consensus rule adds three RP-positive PE
 annotations on the same original peak as manual curation, with no additional
 unlisted identities, wrong-peak choices or removals. This is a small improvement,

@@ -1,5 +1,9 @@
 # Annotation improvement plan
 
+Mandatory reporting policy: follow [AGENTS.md](../AGENTS.md). After each
+annotation-changing experiment, give the full per-dataset and per-mode before
+and after table, including total extra annotations, not only pooled gains.
+
 Agreed 21 October 2026. Improve agreement with manual curation by choosing
 both the correct lipid annotation and the same original XCMS feature. Build a
 shared annotation and peak-selection engine, starting with PE and then the
