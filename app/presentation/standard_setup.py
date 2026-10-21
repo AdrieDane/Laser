@@ -49,6 +49,7 @@ class MatlabFormState:
     submitted: bool
     use_pe_rebuild: bool = True
     pe_rebuild_score_threshold: float = 0.10
+    use_experimental_pe_selector: bool = False
 
 
 @dataclass(frozen=True)
@@ -158,6 +159,13 @@ def _matlab_form(
                       "Applies only while expanded PE peak selection is enabled. "
                       "This curator-agreement score is not an identity probability or false-discovery rate."),
             )
+            experimental_pe = st.checkbox(
+                "Experimental PE peak correction", value=False,
+                help=("Optional development selector for RP positive/negative and NP negative. "
+                      "Can replace an earlier automatic PE peak and add independently supported NP-negative PE. "
+                      "Protects standards and manual confirmations. Records every change. "
+                      "The current default method remains unchanged while this is unchecked."),
+            )
         with st.expander("Carbon and double-bond annotation limits", expanded=False):
             composition_ranges = render_composition_ranges("standard_matlab")
         submitted = st.form_submit_button(
@@ -171,6 +179,7 @@ def _matlab_form(
         grid_coherence_threshold=float(coherence),
         composition_ranges=composition_ranges, submitted=submitted,
         use_pe_rebuild=bool(pe_rebuild), pe_rebuild_score_threshold=float(pe_score),
+        use_experimental_pe_selector=bool(experimental_pe),
     )
 
 
@@ -233,6 +242,7 @@ def _run_matlab_form(
             report,
             use_pe_rebuild=state.use_pe_rebuild,
             pe_rebuild_score_threshold=state.pe_rebuild_score_threshold,
+            use_experimental_pe_selector=state.use_experimental_pe_selector,
         )
     except MatlabAnnotationError as error:
         bar.empty()
@@ -275,6 +285,7 @@ def _run_matlab_form(
             "pe_rebuild_score_threshold": state.pe_rebuild_score_threshold,
             "pe_rebuild_feature_margin": 0.03,
             "pe_rebuild_search_seconds": 40.0,
+            "use_experimental_pe_selector": state.use_experimental_pe_selector,
             "composition_ranges": state.composition_ranges.to_dict(),
         },
         "output": {"directory": "results/standard_matlab", "overwrite": False},

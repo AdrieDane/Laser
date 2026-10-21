@@ -72,6 +72,7 @@ from .rp_isomer_anchors import RPIsomerAnchorSettings, refine_rp_isomer_annotati
 from .pe_completion import PECompletionSettings, complete_rp_positive_pe
 from .pe_rebuild import PERebuildSettings, complete_pe_stream, pe_model_path_for_stream
 from .pe_standards import complete_pe_internal_standards
+from .experimental_pe import ExperimentalPESelectionSettings, apply_experimental_pe_selector
 from .vendor.annotation_engine import AnnotationEngine
 from .vendor.engine import resolve_annotation_siblings
 from .vendor.legacy_loader import LegacyProjectError, load_legacy_project
@@ -2390,9 +2391,21 @@ def run_matlab_annotation(
         )
     else:
         result = _merge_matlab_phase_results(results, requested_phases=requested)
-    return complete_pe_internal_standards(
+    result = complete_pe_internal_standards(
         result,
         enabled=anchor_settings.use_post_regression_completion and anchor_settings.use_pe_completion,
         ppm_tolerance=min(3.0, anchor_settings.ppm_tolerance),
         rt_seconds=min(10.0, anchor_settings.rt_tolerance_seconds),
+    )
+    return apply_experimental_pe_selector(
+        result,
+        settings=ExperimentalPESelectionSettings(
+            enabled=(anchor_settings.use_post_regression_completion
+                     and anchor_settings.use_pe_completion
+                     and anchor_settings.use_experimental_pe_selector),
+            ppm_tolerance=min(3.0, anchor_settings.ppm_tolerance),
+            rt_seconds=min(10.0, anchor_settings.rt_tolerance_seconds),
+            search_seconds=anchor_settings.pe_rebuild_search_seconds,
+        ),
+        ranges=composition_ranges,
     )

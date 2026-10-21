@@ -1,4 +1,80 @@
-PE ANNOTATION HANDOFF — 20 October 2026
+LATEST CHECKPOINT — 21 October 2026
+
+This section supersedes the status of the historical 20 October handoff below.
+The user approved implementing the next evidence/selection experiment and
+previously authorized pushing completed work to cfm/main.
+
+NEW OPTIONAL METHOD
+Experimental PE peak correction is OFF by default. GUI checkbox, workflow
+setting use_experimental_pe_selector=True and CLI --experimental-pe are wired.
+It runs after all default models and the final standard safeguard. Cache26.
+New modules: app/annotator/peak_evidence.py and
+app/matlab_annotation/experimental_pe.py. Training tool:
+tools/calibrate_experimental_pe.py. Three portable experimental_pe_selector_*.json
+models are packaged. Read docs/EXPERIMENTAL_PE_SELECTION.md for exact gates,
+manual-lock contract, unknown evidence and limitations. No curated labels are
+read at runtime. NP-positive, non-PE choices and standards remain protected.
+
+FINAL RESULTS WITH THE OPTION ENABLED
+All 15 retained full outputs tested with the production final selector; 14
+unique datasets pooled, excluding the duplicate fish folder. Same lipid,
+adduct, stream and ORIGINAL FEATURE / ALL manual ordinary-PE entries:
+RP_Pos 980 -> 981 /1071 (91.6%)
+RP_Neg 1213 -> 1215 /1267 (95.9%)
+NP_Pos 919 -> 919 /945 (97.2%)
+NP_Neg 910 -> 971 /1000 (97.1%)
+All14 NP-negative cohorts now exceed90%; no individual cohort/stream PE loss.
+Four RP-positive cohorts remain below90%: EDT77.5%, Serhii80.6%, Fish88.1%,
+Lengthening spinal88.7%. This remains the next PE priority.
+65 NP-negative additions:61 on the manual peak,4 unlisted identities for
+review (Kidney PE43:4, Heart PE31:5, Lengthening PE45:5, ALDbrain PE44:4).
+Three automatic peak replacements all improve agreement. No existing identity
+is removed. Total calls38822 ->38887 (+0.17%). Non-PE and standards unchanged.
+All-class same-peak34348/45712 mapped manual entries=75.1%; still a large gap.
+
+VALIDATION AND PROVENANCE
+Detailed all15 final-stage replays: outputs/experimental_pe_selector_20261021/
+production_replay_final/. Manual comparison occurs after runtime selection;
+accepted original-feature grid display, protection and no-regression checks pass.
+This is NOT15 new full raw runs. Fresh complete RP/NP controls for heart,
+EDTbrain and ratbrain with the option enabled, and plasma with it off, pass.
+Their final four-stream choices also match the final replay/baseline exports.
+Fresh controls live in fresh_controls/{experimental_,default_}/<dataset>/.
+Four-fold selector-only development checks: RPP226->226,RPN280->281,NPneg187->195;
+no increase in unlisted identities. Earlier models not refitted, no nested
+threshold selection, all examples informed development. A pooled RPP tie hid
+a Worms regression in the first experiment; requiring BOTH mass and RT gain
+removed it. This tuning is not an untouched external test.
+Only four cohorts fit the new model weights: ratbrain/plasma/spinal/Pex5mouse.
+
+392 tests and83 subtests pass; changed-file lint and git diff checks pass.
+Built wheel in package_check/ matches156 corresponding source/data files byte
+for byte. Shipped models and installed runtime need no scikit-learn.
+The user's app has NOT been installed, restarted or otherwise updated.
+No TXT exports regenerated. All60 previous exports retain their hashes.
+48 currently available originals retain their hashes. Fish, duplicateFish and
+Serhii folders are absent from the supplied input root now (12 source files);
+their tests use retained original-feature tables and old complete outputs.
+
+COMMITTED OVERVIEW
+docs/validation/experimental_pe_20261021.md and experimental_pe_*_20261021.csv.
+docs/ANNOTATION_IMPROVEMENT_PLAN.md records the checkpoint and unfinished work.
+Do not misread the older handoff below as current experimental-option status.
+
+LOCAL REPRODUCTION
+work/explore_experimental_pe_selector.py: development candidate/evidence caches.
+work/populate_pe_protection.py: standard/manual protection cache extraction.
+work/validate_experimental_pe_selector.py: final production-selector replay,
+actual feature display and no-regression checks, all15 outputs and CSVs.
+work/control_experimental_pe.py: fresh full annotation/control comparisons.
+These scratch runners and large outputs remain local, not app runtime.
+Training is reproducible through the committed calibration tool, with required
+--trust-local-pickles for trusted candidate caches only. Preserve old artifacts.
+Next: review RPP weak cohorts and four unlisted calls, then develop stronger
+RT/quality evidence or joint conflict resolution. Obtain untouched data before
+claiming general accuracy. Do not indiscriminately loosen acceptance gates.
+
+HISTORICAL HANDOFF — 20 October 2026
 
 User asked to stop, save progress and push to the CFM repository so another
 agent can continue. Do not interpret this checkpoint as approval to stop

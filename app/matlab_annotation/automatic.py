@@ -159,6 +159,7 @@ class AutomaticAnchorSettings:
     pe_rebuild_score_threshold: float = 0.10
     pe_rebuild_feature_margin: float = 0.03
     pe_rebuild_search_seconds: float = 40.0
+    use_experimental_pe_selector: bool = False
     excluded_anchor_species: tuple[str, ...] = (
         "1-acylLPC(20:5)",
         "1-acylLPC(22:1)",

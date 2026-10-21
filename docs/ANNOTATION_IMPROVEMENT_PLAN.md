@@ -188,3 +188,31 @@ All 216 remaining mapped ordinary PE disagreements are represented there.
 The next experiment should therefore improve independent evidence, selection
 and recorded rejection checks before widening PE discovery windows. Candidate
 presence alone does not establish that a peak should be accepted.
+
+## Experimental PE checkpoint
+
+The optional independent peak-evidence and PE correction experiment is
+implemented, including sample-role handling, possible isotope/adduct evidence,
+pairwise peak ranking, protected choices and recorded final decisions. It
+stays off by default. See [method and use](EXPERIMENTAL_PE_SELECTION.md) and
+[21 October results](validation/experimental_pe_20261021.md).
+
+All 15 saved full outputs were tested through the final production selector,
+with the duplicate excluded from pooled totals. NP-negative same-manual-peak
+PE agreement improves from 910/1,000 to 971/1,000; all 14 unique datasets exceed
+90% in that stream. RP positive gains one correct peak and RP negative gains
+two. No individual dataset/stream loses correct PE matches; NP positive,
+non-PE choices and standards remain unchanged. There are four additional
+unlisted NP-negative identities to review. Total calls rise by 0.17%.
+
+Fresh full-workflow checks passed for heart, EDT brain and rat brain with the
+experiment enabled, and plasma with it disabled. Four-fold selector-only
+checks were also run on the development cohorts. They do not refit preceding
+models or provide untouched external validation. The RP-positive guard was
+tightened after an observed dataset regression, so these examples informed
+rule development as well as evaluation.
+
+The next priority is the remaining four weak RP-positive cohorts, followed by
+PC. The general joint resolver, actual EIC evidence, broader ion/charge
+grouping, complete earlier-stage decision history and fully refitted nested
+validation remain unfinished. This checkpoint is not completion of the plan.

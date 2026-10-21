@@ -1,0 +1,5 @@
+stream,same_manual_peak_before,same_manual_peak_now,all_manual_PE_entries,percent_all_manual_before,percent_all_manual_now,identities_absent_from_manual_list_before,identities_absent_from_manual_list_now
+NP_Neg,910,971,1000,91.0000,97.1000,28,32
+NP_Pos,919,919,945,97.2487,97.2487,126,126
+RP_Neg,1213,1215,1267,95.7380,95.8958,144,144
+RP_Pos,980,981,1071,91.5033,91.5966,184,184

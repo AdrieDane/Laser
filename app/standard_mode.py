@@ -49,7 +49,7 @@ from presentation.standard_untargeted import (
 
 LASER_ENGINE = "LASER reference matcher"
 MATLAB_ENGINE = "Automatic MATLAB engine (XCMS)"
-MATLAB_ENGINE_CACHE_VERSION = 25
+MATLAB_ENGINE_CACHE_VERSION = 26
 DEFAULT_MATLAB_XCMS_PROJECT = os.environ.get(
     "LASER_STANDARD_PROJECT",
     "",
@@ -132,6 +132,7 @@ def _run_matlab_cached(
     _progress,
     use_pe_rebuild: bool = True,
     pe_rebuild_score_threshold: float = 0.10,
+    use_experimental_pe_selector: bool = False,
 ) -> dict:
     return standard_annotation_service.run(
         StandardAnnotationRequest(
@@ -152,6 +153,7 @@ def _run_matlab_cached(
                 "composition_ranges": composition_ranges.to_dict(),
                 "use_pe_rebuild": use_pe_rebuild,
                 "pe_rebuild_score_threshold": pe_rebuild_score_threshold,
+                "use_experimental_pe_selector": use_experimental_pe_selector,
             },
             progress=_progress,
         )

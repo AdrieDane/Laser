@@ -81,6 +81,9 @@ include = [
   "reference_data/standard_pe_rebuild.json",
   "reference_data/standard_pe_rebuild_rp_negative.json",
   "reference_data/standard_pe_rebuild_np_positive.json",
+  "reference_data/experimental_pe_selector_rp_pos.json",
+  "reference_data/experimental_pe_selector_rp_neg.json",
+  "reference_data/experimental_pe_selector_np_neg.json",
 ]
 "reference_data/matlab_pipeline/Code" = ["reference_data/matlab_pipeline/Code/param.json"]
 "reference_data/matlab_pipeline/DataBase" = ["reference_data/matlab_pipeline/DataBase/*.tsv"]

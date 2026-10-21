@@ -38,11 +38,19 @@ def _parser() -> argparse.ArgumentParser:
         default="both",
         help="Chromatography phase for the MATLAB-equivalent engine",
     )
+    parser.add_argument(
+        "--experimental-pe",
+        action="store_true",
+        help="Enable optional MATLAB-engine PE peak correction (off by default)",
+    )
     return parser
 
 
 def main() -> int:
-    args = _parser().parse_args()
+    parser = _parser()
+    args = parser.parse_args()
+    if args.experimental_pe and args.engine != "matlab":
+        parser.error("--experimental-pe is available only with --engine matlab")
     references = Path(REFERENCE_DATA_DIRECTORY)
     phases = ("RP", "NP") if args.phase == "both" else (args.phase,)
     request = StandardAnnotationRequest(
@@ -58,6 +66,7 @@ def main() -> int:
             "align_rp_rt": False,
             "adapt_class_rt": True,
             "use_grid_coherence": True,
+            "use_experimental_pe_selector": args.experimental_pe,
         },
     )
     result = standard_annotation_service.run(request)

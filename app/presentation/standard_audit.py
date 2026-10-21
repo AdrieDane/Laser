@@ -244,3 +244,24 @@ def render_matlab_audit(result: dict) -> None:
     _render_isomer_audits(result)
     _render_grid_and_standards(result)
     _render_anchor_and_definition_audits(result)
+    experimental = result.get("matlab_experimental_pe_audit", pd.DataFrame())
+    if isinstance(experimental, pd.DataFrame) and not experimental.empty:
+        with st.expander("Experimental PE peak correction", expanded=False):
+            st.caption(
+                "This optional final step follows the earlier completion stages. "
+                "It may replace an automatic PE peak when independent mass/RT guards "
+                "and a pair-preference model agree, or add supported NP-negative PE. "
+                "Standards, manual confirmations, other classes and NP-positive remain protected. "
+                "Preference scores are not identity probabilities. Historical grid scores remain unchanged."
+            )
+            st.dataframe(experimental, hide_index=True, width="stretch")
+            for key, label in (
+                ("matlab_experimental_pe_audit", "Experimental PE summary"),
+                ("matlab_experimental_pe_changes", "Experimental PE additions and replacements"),
+                ("matlab_experimental_pe_decisions", "Experimental PE candidate checks"),
+            ):
+                table = result.get(key, pd.DataFrame())
+                if isinstance(table, pd.DataFrame) and not table.empty:
+                    if key.endswith("changes"):
+                        st.dataframe(table, hide_index=True, width="stretch")
+                    _download("Download " + label, table, f"LASER_{key}.csv")

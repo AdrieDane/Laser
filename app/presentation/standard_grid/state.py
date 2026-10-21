@@ -89,14 +89,25 @@ def review_criteria_mask(
         declared_pe &= candidates.get(
             "automatic_candidate", pd.Series(False, index=candidates.index)
         ).fillna(False).astype(bool)
-        keep &= ~assessed | score.ge(float(grid_coherence_threshold)) | declared_pe
+        experimental_pe = _experimental_pe_display_mask(candidates)
+        keep &= ~assessed | score.ge(float(grid_coherence_threshold)) | declared_pe | experimental_pe
     return keep.fillna(False)
 
 
 def _rebuilt_pe_display_mask(candidates: pd.DataFrame) -> pd.Series:
     status = candidates.get("auto_annotation_status", pd.Series("", index=candidates.index))
     accepted = candidates.get("automatic_candidate", pd.Series(False, index=candidates.index))
-    return status.eq("pe_raw_evidence_supported") & accepted.fillna(False).astype(bool)
+    return (status.eq("pe_raw_evidence_supported") & accepted.fillna(False).astype(bool)) | _experimental_pe_display_mask(candidates)
+
+
+def _experimental_pe_display_mask(candidates: pd.DataFrame) -> pd.Series:
+    status = candidates.get("auto_annotation_status", pd.Series("", index=candidates.index))
+    accepted = candidates.get("automatic_candidate", pd.Series(False, index=candidates.index))
+    supported = candidates.get("pe_experimental_evidence_pass", pd.Series(False, index=candidates.index))
+    truthy = {"true", "1", "1.0"}
+    return (status.eq("pe_experimental_supported")
+            & accepted.fillna(False).astype(str).str.casefold().isin(truthy)
+            & supported.fillna(False).astype(str).str.casefold().isin(truthy))
 
 
 def apply_review_criteria(

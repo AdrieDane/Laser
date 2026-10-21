@@ -49,6 +49,14 @@ def _int_setting(value: object) -> int:
         ) from exc
 
 
+def _bool_setting(value: object) -> bool:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str) and value.casefold() in {"true", "false"}:
+        return value.casefold() == "true"
+    raise WorkflowConfigurationError(f"Expected an explicit boolean workflow setting, got {value!r}.")
+
+
 def _int_pair_setting(
     value: object,
     *,
@@ -178,6 +186,9 @@ def build_automatic_anchor_settings(
             "pe_completion_confidence_threshold", defaults.pe_completion_confidence_threshold,
         )),
         use_pe_rebuild=bool(values.get("use_pe_rebuild", defaults.use_pe_rebuild)),
+        use_experimental_pe_selector=_bool_setting(values.get(
+            "use_experimental_pe_selector", defaults.use_experimental_pe_selector,
+        )),
         pe_rebuild_score_threshold=_float_setting(values.get(
             "pe_rebuild_score_threshold", defaults.pe_rebuild_score_threshold,
         )),
