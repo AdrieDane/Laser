@@ -250,8 +250,7 @@ def render_matlab_audit(result: dict) -> None:
             st.caption(
                 "This optional final step follows the earlier completion stages. "
                 "It may replace an automatic PE peak when independent mass/RT guards "
-                "and a pair-preference model agree, add supported NP-negative PE, "
-                "or add RP-positive PE corroborated by the other three streams and strong isotope evidence. "
+                "and a pair-preference model agree, or add supported NP-negative PE. "
                 "Standards, manual confirmations, other classes and NP-positive remain protected. "
                 "Preference scores are not identity probabilities. Historical grid scores remain unchanged."
             )

@@ -45,4 +45,4 @@ results do not require rerunning annotation. Reuse an explicitly identified,
 verified comparison when reporting the same completed experiment again.
 
 Latest full example table:
-[RP-positive consensus comparison](docs/validation/experiment_02270eb_all_datasets.md).
+[User-requested rollback](docs/validation/experiment_rollback_20261021.md).

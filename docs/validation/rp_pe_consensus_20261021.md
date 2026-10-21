@@ -1,5 +1,9 @@
 # RP positive PE consensus results
 
+Status: rejected by the user. All three approaches in this round are rejected;
+the deployed consensus extension was removed. This report is historical.
+See the [verified rollback](experiment_rollback_20261021.md).
+
 The [complete before and after tables for every dataset and mode](experiment_02270eb_all_datasets.md)
 show both all-class and PE-only results, including unchanged modes and extras.
 

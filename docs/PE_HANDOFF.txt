@@ -1,4 +1,23 @@
-LATEST FOLLOW-UP — 21 October 2026
+LATEST USER DECISION — 21 October 2026
+
+Reject ALL THREE approaches from the last RP-positive round. The broad
+admission and richer ranker were never deployed. The four-stream consensus
+extension has now been removed from runtime; its source/test files are removed
+but recoverable in Git. Do not reactivate it. Earlier optional PE selection
+from a06782f, including NP-negative gains, remains. Cache version28.
+All15 rollback replays exactly reproduce a06782f selected feature IDs;392
+tests and83 subtests pass. Exactly3 correct RP-positive calls are removed as
+explicitly requested, no other selected feature changes. All-class correct
+34351->34348, extras3652 unchanged; PE correct4089->4086, extras486 unchanged.
+Full user-facing all-dataset/all-mode rollback tables were delivered before
+starting the calibration experiment. They are saved at
+docs/validation/experiment_rollback_20261021.md and the accompanying CSV.
+Local reproduction: work/verify_rejected_rp_rules.py; outputs are under
+outputs/local_pe_calibration_20261021/rollback/. Original input and old exports
+are not rewritten. The next experiment must test independent local mass/RT
+calibration; report every dataset/mode, extras and any regressions per AGENTS.
+
+HISTORICAL FOLLOW-UP — 21 October 2026
 
 MANDATORY USER REPORTING POLICY (established after this experiment):
 Read repository-root AGENTS.md. Every annotation-changing experiment must

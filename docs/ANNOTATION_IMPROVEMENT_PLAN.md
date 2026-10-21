@@ -1,5 +1,11 @@
 # Annotation improvement plan
 
+Current decision: the user rejected all three approaches from the last
+RP-positive round. The consensus extension was removed; the other two were
+never deployed. The earlier NP-negative improvement is retained. See the
+[rollback](validation/experiment_rollback_20261021.md). The next experiment
+is local mass/RT calibration, not another RP-positive admission rule.
+
 Mandatory reporting policy: follow [AGENTS.md](../AGENTS.md). After each
 annotation-changing experiment, give the full per-dataset and per-mode before
 and after table, including total extra annotations, not only pooled gains.

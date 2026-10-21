@@ -18,7 +18,6 @@ from matlab_annotation.experimental_pe import (
     refine_experimental_pe_stream,
     select_experimental_pe,
 )
-from matlab_annotation.pe_consensus import add_rp_consensus_evidence
 
 
 def model():
@@ -284,95 +283,9 @@ def test_new_NP_negative_calls_have_stricter_gates(field, value):
     assert run(p, ann=baseline(p).iloc[:0], pairs=p, stream="NP_Neg")[0].empty
 
 
-def test_new_RP_identities_require_cross_phase_corroboration():
+def test_no_unrequested_new_RP_identities():
     p = pool().iloc[[1]].reset_index(drop=True)
     assert run(p, ann=baseline(p).iloc[:0], pairs=p)[0].empty
-
-
-def consensus_pool():
-    p = pool()
-    p["q_biological_samples"] = 4
-    p["isotope_upper_feature_id"] = "isotope-001"
-    sources = {
-        stream: pd.DataFrame(
-            [
-                dict(
-                    name="PE(36:2)",
-                    **{"class": "PE"},
-                    adduct=adduct,
-                    feat_feature_id=f"{stream}-001",
-                )
-            ]
-        )
-        for stream, adduct in [("NP_Pos", "[M+H]+"), ("NP_Neg", "[M-H]-")]
-    }
-    return add_rp_consensus_evidence(p, sources)
-
-
-def test_RP_positive_consensus_admits_only_the_preferred_supported_peak():
-    p = consensus_pool()
-    after, pairs, detail, changes, audit = run(p, ann=baseline(p).iloc[:0], pairs=p)
-    assert after.feat_feature_id.tolist() == ["new"]
-    assert audit["added_PE"] == 1 and audit["replaced_PE"] == 0
-    assert after.automatic_accepted.all() and after.pe_experimental_evidence_pass.all()
-    assert changes.NP_positive_feature_id.tolist() == ["NP_Pos-001"]
-    assert changes.NP_negative_feature_id.tolist() == ["NP_Neg-001"]
-    assert changes.admission_rule.tolist() == ["RP_positive_four_stream_consensus"]
-    assert detail.pe_rp_consensus_pass.loc[detail.feat_feature_id.eq("new")].all()
-    assert pairs.loc[pairs.feat_feature_id.eq("new"), "automatic_accepted"].all()
-
-
-@pytest.mark.parametrize(
-    "field,value",
-    [
-        ("pe_corrected_mass_error_ppm", 2.5),
-        ("pe_local_rt_error_seconds", 5.01),
-        ("q_detection_fraction", 0.79),
-        ("q_biological_samples", 3),
-        ("q_biological_samples", 6),
-        ("q_log_sample_blank_ratio", np.nan),
-        ("q_log_sample_blank_ratio", np.inf),
-        ("q_log_sample_blank_ratio", np.log(2)),
-        ("q_isotope_upper_correlation", 0.89),
-        ("q_isotope_upper_correlation", np.inf),
-        ("q_isotope_upper_log_ratio", 0.0),
-        ("isotope_upper_feature_id", ""),
-        ("pe_negative_rt", 11.0),
-        ("pe_negative_rt", np.nan),
-        ("pe_rp_np_positive_confirmed", False),
-        ("pe_rp_np_negative_confirmed", "False"),
-        ("pe_rp_np_positive_feature_id", ""),
-        ("pe_rp_np_negative_feature_id", ""),
-    ],
-)
-def test_RP_positive_consensus_missing_or_failed_evidence_withholds_addition(
-    field, value
-):
-    p = consensus_pool()
-    p[field] = value
-    assert run(p, ann=baseline(p).iloc[:0], pairs=p)[0].empty
-
-
-def test_RP_positive_admission_does_not_fall_back_to_a_less_preferred_peak():
-    p = consensus_pool()
-    # The preferred peak fails admission, but the runner-up has good evidence.
-    p.loc[1, "q_isotope_upper_correlation"] = 0.2
-    p.loc[0, "q_isotope_upper_correlation"] = 0.99
-    after, _, _, changes, _ = run(p, ann=baseline(p).iloc[:0], pairs=p)
-    assert after.empty and changes.empty
-
-
-@pytest.mark.parametrize(
-    "settings",
-    [
-        ExperimentalPESelectionSettings(enabled=True, ppm_tolerance=0.1),
-        ExperimentalPESelectionSettings(enabled=True, rt_seconds=0.5),
-        ExperimentalPESelectionSettings(enabled=True, minimum_rank_score=0.9999),
-    ],
-)
-def test_RP_consensus_cannot_bypass_stricter_user_limits(settings):
-    p = consensus_pool()
-    assert run(p, ann=baseline(p).iloc[:0], pairs=p, settings=settings)[0].empty
 
 
 def test_disabled_and_NP_positive_are_exact_no_ops():
@@ -557,17 +470,12 @@ def test_grid_displays_actual_experimental_choice_without_falsifying_old_coheren
     assert view["plot_df"].ppm_error.iloc[0] == 4.0
 
 
-@pytest.mark.parametrize("consensus", [False, True])
-def test_experimental_audits_and_final_flags_survive_saved_project(tmp_path, consensus):
+def test_experimental_audits_and_final_flags_survive_saved_project(tmp_path):
     from completed_project import load_completed_project
     from saved_project import load_project_table, save_standard_project
 
-    p = consensus_pool() if consensus else pool()
-    after, pairs, decisions, changes, audit = run(
-        p,
-        ann=baseline(p).iloc[:0] if consensus else baseline(p),
-        pairs=p,
-    )
+    p = pool()
+    after, pairs, decisions, changes, audit = run(p)
     result = dict(
         engine="matlab",
         automatic_annotations=after,
@@ -587,13 +495,6 @@ def test_experimental_audits_and_final_flags_survive_saved_project(tmp_path, con
     assert load_project_table(
         saved, "matlab_experimental_pe_changes"
     ).new_feature_id.tolist() == ["new"]
-    if consensus:
-        assert load_project_table(
-            saved, "matlab_experimental_pe_changes"
-        ).NP_negative_feature_id.tolist() == ["NP_Neg-001"]
-        assert load_project_table(
-            saved, "automatic_annotations"
-        ).pe_rp_consensus_pass.all()
 
 
 @pytest.mark.parametrize(

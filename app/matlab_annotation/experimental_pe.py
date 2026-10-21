@@ -2,9 +2,8 @@
 
 Never reads manual annotations. Only automatic ordinary PE can be replaced;
 manual confirmations, standards and other lipid classes are reserved. NP-positive
-is intentionally unchanged. Additions require independent admission evidence,
-not merely a high ranking score; RP-positive also needs all three other streams.
-Disabled by default.
+is intentionally unchanged. NP-negative additions require independent admission
+evidence, not merely a high ranking score. Disabled by default.
 """
 
 from __future__ import annotations
@@ -31,7 +30,6 @@ from .pe_rebuild import (
     score_pe_rebuild,
 )
 from .result_assembly import assemble_result
-from .pe_consensus import add_rp_consensus_evidence, rp_consensus_checks
 
 
 PEERS = {"RP_Pos": "RP_Neg", "RP_Neg": "RP_Pos", "NP_Neg": "NP_Pos"}
@@ -306,15 +304,6 @@ def select_experimental_pe(
         and (str(f) not in occupied or occupied[str(f)] == str(n))
         for f, n in zip(ranked.feat_feature_id, ranked["name"])
     ]
-    if stream == "RP_Pos":
-        consensus = rp_consensus_checks(
-            ranked,
-            ppm_tolerance=settings.ppm_tolerance,
-            rt_seconds=settings.rt_seconds,
-            minimum_rank_score=settings.minimum_rank_score,
-        )
-        ranked = pd.concat([ranked, consensus], axis=1)
-        ranked["pe_rp_consensus_pass"] = consensus.all(axis=1)
     ranked["pe_experimental_decision"] = "not_selected"
     ranked["pe_experimental_final_selected"] = False
     chosen_indices, changes = [], []
@@ -392,35 +381,6 @@ def select_experimental_pe(
                                         opposite_mode_support=counterpart,
                                     )
                                 )
-            elif stream == "RP_Pos":
-                reason = "withheld_RP_positive_consensus_admission"
-                # Do not search for an alternative passing admission after the
-                # preferred peak failed: that can promote the wrong quantifier.
-                if best.pe_rp_consensus_pass and not isotope_child:
-                    reason = "add_consensus_supported_RP_positive_PE"
-                    chosen_indices.append(best.name)
-                    changes.append(
-                        dict(
-                            stream=stream,
-                            name=name,
-                            adduct=best.adduct,
-                            old_feature_id="",
-                            new_feature_id=str(best.feat_feature_id),
-                            change="addition",
-                            pair_preference_score=np.nan,
-                            mass_gain_ppm=np.nan,
-                            local_rt_gain_seconds=np.nan,
-                            isotope_support=isotope,
-                            opposite_mode_support=counterpart,
-                            NP_positive_feature_id=best.get(
-                                "pe_rp_np_positive_feature_id", ""
-                            ),
-                            NP_negative_feature_id=best.get(
-                                "pe_rp_np_negative_feature_id", ""
-                            ),
-                            admission_rule="RP_positive_four_stream_consensus",
-                        )
-                    )
             elif stream != "NP_Neg":
                 reason = "additions_outside_NP_negative_disabled"
             else:
@@ -512,9 +472,6 @@ def select_experimental_pe(
             "local_rt_gain_seconds",
             "isotope_support",
             "opposite_mode_support",
-            "NP_positive_feature_id",
-            "NP_negative_feature_id",
-            "admission_rule",
         ],
     )
     audit = dict(
@@ -529,8 +486,7 @@ def select_experimental_pe(
         minimum_pair_score=settings.minimum_pair_score,
         minimum_rank_score=settings.minimum_rank_score,
         mass_rule="strict corrected error below configured tolerance, <=3 ppm",
-        RT_rule="target-excluded local prediction, <=10 seconds; new identities <=5 seconds",
-        RP_positive_admission="mass<2.5ppm; localRT<=5s; rank>=0.8; isotope correlation>=0.9; biological detection>=80%; measured blank contrast>=3; accepted RP-negative within5s and both frozen NP primary identities",
+        RT_rule="target-excluded local prediction, <=10 seconds; NP additions <=5 seconds",
     )
     return selected, updated_pairs, ranked, changes_frame, audit
 
@@ -546,7 +502,6 @@ def refine_experimental_pe_stream(
     stream: str,
     settings: ExperimentalPESelectionSettings,
     ranges: CompositionRangeSettings = DEFAULT_COMPOSITION_RANGE_SETTINGS,
-    confirmation_annotations: dict[str, pd.DataFrame] | None = None,
 ) -> tuple:
     _validate(settings)
     audit = dict(
@@ -581,8 +536,6 @@ def refine_experimental_pe_stream(
         if pool.empty:
             audit.update(status="no_bounded_PE_candidates", **context)
             return (*unchanged, pd.DataFrame([audit]))
-        if stream == "RP_Pos":
-            pool = add_rp_consensus_evidence(pool, confirmation_annotations or {})
         selected, pairs, decisions, changes, audit = select_experimental_pe(
             annotations,
             all_pairs,
@@ -640,7 +593,6 @@ def apply_experimental_pe_selector(
                 stream=stream,
                 settings=settings,
                 ranges=ranges,
-                confirmation_annotations=preceding,
             )
         )
         detail = detail.assign(stream=stream)

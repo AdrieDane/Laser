@@ -1,5 +1,8 @@
 # All dataset and mode results for the RP positive consensus experiment
 
+Historical experiment, subsequently rejected by the user. The consensus
+extension is no longer active. See the [rollback table](experiment_rollback_20261021.md).
+
 21 October 2026. Before is `a06782f`; after is `02270eb`. The experimental PE
 option is enabled in both. This is the last completed annotation-changing
 experiment, not a comparison against the option-off default. No new annotation
