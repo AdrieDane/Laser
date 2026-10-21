@@ -1,0 +1,188 @@
+{
+  "checkpoint": "RP positive consensus follow-up",
+  "baseline_code_commit": "a06782f49b0e5529ed337065821127491cb4810c",
+  "baseline_experimental_option_enabled": true,
+  "experimental_option_default_enabled": false,
+  "new_model_weights": false,
+  "validation": {
+    "folders": 15,
+    "unique_datasets": 14,
+    "all_streams_tested": true,
+    "non_PE_unchanged": true,
+    "standards_unchanged": true,
+    "NP_positive_unchanged": true,
+    "no_individual_dataset_stream_PE_regression": true,
+    "models_frozen_before_evaluation": {
+      "RP_Pos": "2e60a58f71d2d95cd58a47892fafca7e8710aef93a69bd9126fefde093476fec",
+      "RP_Neg": "cb60e00d0cf83e4f074b1741159b2049d47f6146cd0fc8c7de28ad89e54876df",
+      "NP_Neg": "97866072f7b700c40e0070039d089a51f7d57bb6fe383a87d58ecc4cc1f50f78"
+    },
+    "runtime_sources_frozen_before_evaluation": {
+      "app/matlab_annotation/experimental_pe.py": "61346cefdda85dd768159d953cc6970d66d88b682bebd55dd2df632fc308b0e5",
+      "app/matlab_annotation/pe_consensus.py": "913f2c71e8ac4a78c2766de4a522f36fd833f8ff26e8ddd6e90f05ec78177cca",
+      "app/annotator/peak_evidence.py": "b7e0ddbc673c906625ba2ff500f45bdfe5f189e1d1ecbdd51a1c20068aa96577",
+      "app/presentation/standard_grid/state.py": "52c0a15c127bd03eea8a772eb0cc23015b0d4b7973982073e3cfa1fd584d0340"
+    },
+    "new_selections_displayed_on_actual_features": true,
+    "all_examples_informed_rule_development": true,
+    "baseline": "a06782f optional experiment enabled",
+    "validation": "final-selector replay on completed core outputs; not full raw reruns or prospective external validation"
+  },
+  "development_data_not_external_validation": true,
+  "software_tests": 426,
+  "software_subtests": 83,
+  "packaged_matching_source_data_files": 157,
+  "wheel_sha256": "ac61f4f958326d4bd208799f4d2eed5e49240f49daa520c1121918e05bcf1acd",
+  "fresh_controls": [
+    {
+      "dataset": "25P0075_V2",
+      "tag": "experimental_",
+      "full_RP_NP_run": true,
+      "all_four_streams_match_final_replay": true,
+      "runtime_sources_fingerprinted": false,
+      "seconds": 282.3853158749989
+    },
+    {
+      "dataset": "26P0015_Cells",
+      "tag": "experimental_",
+      "full_RP_NP_run": true,
+      "all_four_streams_match_final_replay": true,
+      "runtime_sources_fingerprinted": false,
+      "seconds": 292.2950176669983
+    },
+    {
+      "dataset": "26P0015_Cells",
+      "tag": "final_experimental_",
+      "full_RP_NP_run": true,
+      "all_four_streams_match_final_replay": true,
+      "runtime_sources_fingerprinted": true,
+      "seconds": 277.2650342910056
+    }
+  ],
+  "source_files_currently_verified_unchanged": 48,
+  "source_files_missing_at_recorded_paths": 12,
+  "previous_TXT_exports_verified_unchanged": 60,
+  "TXT_exports_regenerated": false,
+  "dataset_artifacts": [
+    {
+      "dataset": "24P0015_PM_Kidney_Summer",
+      "excluded_from_pooled": false,
+      "core_result_sha256": "17458543f8bcff665c43da79472f7299bccadc9b7ffda150d62e6a4be550d8dd",
+      "preceding_annotations_sha256": "da564b8c46cda76f92b61ba983e1de9dde79ed6b67e3349b7abc847918286a38",
+      "manual_crosswalk_sha256": "6c6a21a23474b5250e47ac2eb01efa07f59e44c7021ae1205110a4b3f14c7dc5",
+      "new_annotations_sha256": "9e600772c9142f33bdd927790684ba3fc58b9e9b96f6e0e54cfbc70e2af0ac1d"
+    },
+    {
+      "dataset": "25P0003_HEART",
+      "excluded_from_pooled": false,
+      "core_result_sha256": "688c8a98a03e68bc9cb540cb135352aaf04dc2a6906e5f6844d947ba45f0e9c2",
+      "preceding_annotations_sha256": "2f3fcb8677be3bbea38fd7ffe98b1d92bdf19ff4e5533db6bc9fa32b63ceb91e",
+      "manual_crosswalk_sha256": "b01c48eaa034098c8e9850dfc6edbb9f4449be07d905289dfa839940884d4d4c",
+      "new_annotations_sha256": "db9225872b151df1a7efe51e9ce4f313e3715b9c78b6352b017ae9ec681be9c7"
+    },
+    {
+      "dataset": "25P0008_Worms",
+      "excluded_from_pooled": false,
+      "core_result_sha256": "9a5a883fd26afdb3b77fea40f15025aa636bcd3a7b881e1543c16ff3c76252d7",
+      "preceding_annotations_sha256": "c518ef974b5c97c217a87fdb698bbc056b01bc6d452258ec147b9d890ce574f0",
+      "manual_crosswalk_sha256": "26daa0a6266668f7ae8da34d8206c22a4a5607e8f5f957587b3f2d5aa871b25b",
+      "new_annotations_sha256": "c946ecf683be1e09abcb7a2c94e0da56fc55f92d46704267835b913295064c50"
+    },
+    {
+      "dataset": "25P0031_FishLarvae",
+      "excluded_from_pooled": false,
+      "core_result_sha256": "1ad2ac444d4d110b97edd3000cb4ca6af1bcfbe82ac861efa3ff608adbfbcfba",
+      "preceding_annotations_sha256": "0dd39dc4cc49fcb9900e282a5dd3d10c4601e5a618a26aa7348b0646204aa9ac",
+      "manual_crosswalk_sha256": "8fda4f1aa05b7342f125d640e5f5bac016ec157de899ff3c61d177ab21a6b0d6",
+      "new_annotations_sha256": "611b59200567bc509d70133508f47a94ddeb28a944509c93aeff2dbac945d819"
+    },
+    {
+      "dataset": "25P0031_FishLarvae_duplicate",
+      "excluded_from_pooled": true,
+      "core_result_sha256": "a78be0e73e509d41d31d236a7e54c0bd7f9673e3d6b6c4b978f1a6bde7587232",
+      "preceding_annotations_sha256": "0dd39dc4cc49fcb9900e282a5dd3d10c4601e5a618a26aa7348b0646204aa9ac",
+      "manual_crosswalk_sha256": "8fda4f1aa05b7342f125d640e5f5bac016ec157de899ff3c61d177ab21a6b0d6",
+      "new_annotations_sha256": "611b59200567bc509d70133508f47a94ddeb28a944509c93aeff2dbac945d819"
+    },
+    {
+      "dataset": "25P0040_Serhii_Brain",
+      "excluded_from_pooled": false,
+      "core_result_sha256": "da3534a8af6250e70f02b3f37f432ce4f0dadaed04ad65267b444b906332ac66",
+      "preceding_annotations_sha256": "d27fe22cb05708b3d73fc8b98db36891c00a3fb666c1d32a1f88b444a8110320",
+      "manual_crosswalk_sha256": "0bb88ae6ab62e6eadd10e27b5d8ca9f8a61df5194ab7ae6e191c3020021f1fed",
+      "new_annotations_sha256": "28219883686262426f17b0d8c9520e1ba9d379cf6132a0e8a0fca89b27324f07"
+    },
+    {
+      "dataset": "25P0069_edt_Brain",
+      "excluded_from_pooled": false,
+      "core_result_sha256": "9f85b7a984e16bb8d6de45ac945b16467d13bf778f383077bbf65945f9509e4d",
+      "preceding_annotations_sha256": "d37ffd4bf3d1e9ee47d68c8458d512488aa18eef6c176886fa1add41d2d8969a",
+      "manual_crosswalk_sha256": "d7f26a220d815b9696db9f19e8635d3dc58231ead24ea8150007878b9e808992",
+      "new_annotations_sha256": "3b62a57aeb9ca54b19846a4e5878e63e17e322ed4c56df29b0127a0e629b4521"
+    },
+    {
+      "dataset": "25P0069_lipid_lengthening_Spinal_Cord",
+      "excluded_from_pooled": false,
+      "core_result_sha256": "ebbe1a29135d703e1a1ff43b6dd717ec76a077082573c72adc28528a6d6576a0",
+      "preceding_annotations_sha256": "5c6de4948061b17b4dd2cb9f1809ac68fa4a4195ddb1c501d133acfe31668d2b",
+      "manual_crosswalk_sha256": "680ae9389dae9c8a6cb5c351aca66829e2c57159a92edf278c1fa0677f0881f0",
+      "new_annotations_sha256": "7bc35cbab5fd6de83d8b8837212aff42c9b48c023e40c2de7d10af9f0999902e"
+    },
+    {
+      "dataset": "25P0075_V2",
+      "excluded_from_pooled": false,
+      "core_result_sha256": "fa8895a1628ad16f7e509c05d6d68590e4bd3468cbbd1f9464f79aba4e8676dd",
+      "preceding_annotations_sha256": "af176d256db762009b58d55a7144d31d17b327b8956e8ff20ecaff0e59bed56e",
+      "manual_crosswalk_sha256": "36fe61f154a534d39f81f6e0e31ae2d4be24346e9c582507ce61201d4b10d69a",
+      "new_annotations_sha256": "e73034667550f829db161cf954013436baeda5f93f1236f7634cf5b619dde920"
+    },
+    {
+      "dataset": "26P0015_Cells",
+      "excluded_from_pooled": false,
+      "core_result_sha256": "7dd3f441565d605ed543f3eedfdd6a275c42cfaf6ab565f80eea6fab987cc955",
+      "preceding_annotations_sha256": "d4f48c3d29d343ec91baee98f0aaade81c8621170cd32659eb1f62f659848984",
+      "manual_crosswalk_sha256": "185e7a18c0aa9dace64812431b4d1fc9f7d3f0f893e4e626d8d4deebda1d1051",
+      "new_annotations_sha256": "715a851c85bfe1cf639737412a9c4d603b4fba9740396ab1434de4911a8f4e5c"
+    },
+    {
+      "dataset": "26P0025_ALD_brain_Brain",
+      "excluded_from_pooled": false,
+      "core_result_sha256": "c40f10d7eed3656923f9a5e487ff90f122fd2bfe644855b123476ff4b51b96be",
+      "preceding_annotations_sha256": "62c4dc5345725e283447fd124527113b35b42b0c18ae4424db3b7d11edcfeb32",
+      "manual_crosswalk_sha256": "ad69f50bba069245d882cdbb9834533a7fcd08bbe75e50c17f5fa37f2ffb4d9e",
+      "new_annotations_sha256": "a8e54ee6de1c2abbda54e5ac87e51646ddc8a4573536f72d338d2d6275630fd4"
+    },
+    {
+      "dataset": "26P0026_ALD_rat_Plasma",
+      "excluded_from_pooled": false,
+      "core_result_sha256": "cb047dbd3451177ad91340c25ab9412fc0b147ba61c773b0803e8d9426dcb017",
+      "preceding_annotations_sha256": "b664a72dc57248fcd8d14508f17222a3afdd9401e2f386c8c881d7ceb115661f",
+      "manual_crosswalk_sha256": "e86dea4c933a231fc65e2e1295ad82ce4ff1707f68bbd283be94608517f0db91",
+      "new_annotations_sha256": "b664a72dc57248fcd8d14508f17222a3afdd9401e2f386c8c881d7ceb115661f"
+    },
+    {
+      "dataset": "26P0026_ALD_rat_Spinalcord",
+      "excluded_from_pooled": false,
+      "core_result_sha256": "777279830a8d7215da00984cf685510e9ff8928d286ed284655a90acedef46e9",
+      "preceding_annotations_sha256": "6bf42dcb1ffb659dee3485699a0cd812055b795612031669fc007f4f7263175a",
+      "manual_crosswalk_sha256": "6af79b4ba6bc782839fbc9073137f3fb29e740b0c915a69aa8cb70819f47428c",
+      "new_annotations_sha256": "11020ff329fa8a1ec36c352f67d8701f6f17616770ecc74521af81f4d4159a1a"
+    },
+    {
+      "dataset": "26P0026_ALD_rat_brain",
+      "excluded_from_pooled": false,
+      "core_result_sha256": "8010586e9d275d802a3a7939d361d71187e46fabe52a5c8230b96e034fc62a11",
+      "preceding_annotations_sha256": "3fe71aa35f92290476133cd1820d908e2c40f1962c771242dd2ca7919355afef",
+      "manual_crosswalk_sha256": "cb087aa4a8e4b592609817863f17419f60875623a8850071c63da3f1d782f8ed",
+      "new_annotations_sha256": "de9175c144aa4199723f29b3e5bcd621603e3ae539b7e8bcf40edc3c6acd7b84"
+    },
+    {
+      "dataset": "26P0038_MLC_Pex5_mouse",
+      "excluded_from_pooled": false,
+      "core_result_sha256": "61588e6c603218ac5c2fe8774ca243f90d54b06bb3cf6d4acb6c8e760e34134e",
+      "preceding_annotations_sha256": "6d1eb35e99eedfde50f9409736b912fd5dfadb7f8cca6bb64159bc267a7e91a0",
+      "manual_crosswalk_sha256": "cb9b396bc45c81340b451764ec27efafc54d34e99e7eea02ba2e92cafb4de044",
+      "new_annotations_sha256": "6d1eb35e99eedfde50f9409736b912fd5dfadb7f8cca6bb64159bc267a7e91a0"
+    }
+  ]
+}

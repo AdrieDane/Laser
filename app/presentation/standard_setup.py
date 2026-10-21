@@ -162,7 +162,8 @@ def _matlab_form(
             experimental_pe = st.checkbox(
                 "Experimental PE peak correction", value=False,
                 help=("Optional development selector for RP positive/negative and NP negative. "
-                      "Can replace an earlier automatic PE peak and add independently supported NP-negative PE. "
+                      "Can replace an earlier automatic PE peak, add supported NP-negative PE, "
+                      "and add RP-positive PE with strong isotope evidence and confirmation in the other three streams. "
                       "Protects standards and manual confirmations. Records every change. "
                       "The current default method remains unchanged while this is unchecked."),
             )

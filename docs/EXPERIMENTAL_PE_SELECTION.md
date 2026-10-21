@@ -2,10 +2,11 @@
 
 The optional PE correction compares competing original peaks using mass,
 local retention time, sample consistency and possible related-ion evidence.
-It improves NP-negative coverage on the development examples without changing
-other lipid classes. It is **off by default**; the existing annotation workflow
-remains available unchanged. See the [measured results](validation/experimental_pe_20261021.md)
-before enabling it.
+It improves NP-negative coverage and can add strictly corroborated RP-positive
+PE without changing other lipid classes. It is **off by default**; the existing
+annotation workflow remains available unchanged. See the
+[initial results](validation/experimental_pe_20261021.md) and
+[RP-positive follow-up](validation/rp_pe_consensus_20261021.md) before enabling it.
 
 This concerns ordinary diacyl PE, not PE-O, PE-P or positional isomers. An
 accepted annotation is a software selection, not proof of molecular structure.
@@ -70,7 +71,7 @@ a mass improvement of at least 0.3 ppm and an RT improvement of at least two
 seconds. RP negative and NP negative require either improvement. Strong
 evidence that the proposed peak is an isotope child blocks the change.
 
-Only NP negative can gain new identities. These additionally require mass
+NP-negative new identities additionally require mass
 error below 2.5 ppm, local RT error at most five seconds, detection in at least
 half the usable samples, and either a plausible upper carbon-isotope envelope
 or an already accepted NP-positive peak for the same PE within ten seconds.
@@ -78,6 +79,32 @@ When biological and blank roles are available, the ratio of their
 one-plus-medians must be at least three. Missing blank information is recorded
 as unknown, not a demonstrated blank pass. A model rank alone cannot admit
 a new identity. Stricter user mass/RT tolerances remain binding.
+
+RP-positive new identities use a separate, more restrictive consensus rule.
+They require corrected mass error below 2.5 ppm, local RT error at most five
+seconds, rank at least 0.80, an upper carbon-isotope correlation at least 0.90
+with envelope error at most 0.50 log units, and at least four biological sample
+columns. Positive supplied intensities must cover at least 80% of those
+biological columns; missing values cannot improve that fraction. Measured
+biological-to-blank contrast must be at least three using one-plus-medians.
+These intensity measurements may include XCMS-filled values; the rule does
+not establish chromatographic peak detection in every sample.
+
+The same PE must already be selected as a unique ordinary primary ion in both
+NP-positive and NP-negative streams, with an accepted RP-negative counterpart
+within five seconds. Both NP original feature IDs are recorded. Confirmations
+come from the snapshot before this experimental pass: new NP-negative calls
+cannot support a new RP-positive call in the same pass. NP confirms identity
+presence, not RP retention time, matched specimens or molecular structure.
+Missing streams, unknown roles/blanks, standards, isotopologues and ambiguous
+NP primary choices cannot establish this consensus.
+
+Admission is checked on the peak preferred by the existing ranking model among
+candidates passing the general independent gates. If it fails the stricter
+admission checks, the selector does not search for another peak that happens
+to pass. Lower-ranked isotope-supported alternatives can be wrong manual
+quantification peaks. Existing automatic PE replacements keep their previous
+guards; the three model files and their fitted weights are unchanged.
 
 Opposite-stream annotations are snapshotted before selection to avoid circular
 additions. This is same-identity RT corroboration, not validated specimen

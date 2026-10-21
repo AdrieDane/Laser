@@ -216,3 +216,13 @@ The next priority is the remaining four weak RP-positive cohorts, followed by
 PC. The general joint resolver, actual EIC evidence, broader ion/charge
 grouping, complete earlier-stage decision history and fully refitted nested
 validation remain unfinished. This checkpoint is not completion of the plan.
+
+The follow-up [RP-positive consensus checkpoint](validation/rp_pe_consensus_20261021.md)
+adds three same-manual-peak choices (981 to 984 of 1,071), with PE extras fixed
+at 486 and different-peak calls fixed at 74 across the 14 unique datasets.
+It requires isotope evidence and frozen corroboration in all other streams;
+the same experimental option remains off by default. Broader admission and
+an expanded training experiment were rejected because they added too many
+unlisted calls or lost correct peaks. Next test independent local mass/RT
+calibration and competing-feature evidence; the four weak RP-positive cohorts
+still have not met the 90% target.

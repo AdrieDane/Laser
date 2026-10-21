@@ -1,4 +1,64 @@
-LATEST CHECKPOINT — 21 October 2026
+LATEST FOLLOW-UP — 21 October 2026
+
+The RP-positive four-stream consensus extension is implemented and tested.
+It remains inside the existing OFF-by-default Experimental PE peak correction
+option; cache version27. New module: app/matlab_annotation/pe_consensus.py.
+No new model weights are shipped. No installation/restart or TXT regeneration.
+
+Compared with a06782f with the experiment ON, three new RP-positive annotations
+match the manual ORIGINAL peak: Serhii PE38:1 feature102087, V2 PE38:5 feature52759,
+Cells PE40:5 feature67159. All preceding calls remain. No increase in extras or
+different-peak calls. RP_Pos981->984/1071=91.9%; RPN1215/1267, NPpos919/945 and
+NPneg971/1000 are unchanged. Non-PE and standards unchanged in every folder.
+
+Always report extras alongside correct matches: PE extras remain486 across14
+unique datasets and four streams (RPP184,RPN144,NPpos126,NPneg32). PE different-
+peak calls remain74. Across all classes extras3652 and different-peak calls534
+are unchanged. These are dataset/stream entries, not distinct molecular species.
+Unlisted identities are not established false positives. All-class correct
+34348->34351/45712 mapped manual entries, still75.1%; calls38887->38890.
+
+New RPP admission requires mass<2.5ppm, localRT<=5s, rank>=0.8, strong upper
+isotope correlation>=0.9 and envelope agreement, known biological/blank roles,
+positive reported intensities in>=80% of biological columns, an accepted
+RPnegative within5s, and frozen pre-experiment primary identities in BOTH NP
+streams. Standard/ambiguous/isotopic NP choices cannot corroborate it. NP
+presence does not establish matched specimens, RP RT or molecular structure.
+Admission is checked on the preferred eligible peak; no alternate-peak fallback.
+Every gate and both NP original feature IDs are recorded. Read the method guide.
+
+All15 retained core outputs replayed through the final source,14 unique datasets
+pooled. Every preceding annotation preserved and every new choice displayed on
+its actual accepted original feature. Fresh complete RP/NP V2 and Cells controls
+match the replay; an additional final-source-fingerprinted Cells full run passes.
+426 tests and83 subtests pass; lint/whitespace pass; wheel matches157 source/data
+files. All48 currently available originals and60 previous TXT exports retain
+their hashes. Fish, duplicateFish and Serhii source folders still absent (12lists).
+No validation jobs remain running at the completed checkpoint.
+
+Read docs/validation/rp_pe_consensus_20261021.md, its three CSVs and provenance
+JSON. Large artifacts: outputs/rp_pe_consensus_20261021/production_replay_final/,
+fresh_controls/ and package_check/. Local runners:
+work/validate_rp_pe_consensus.py and work/control_rp_pe_consensus.py.
+
+REJECTED EXPLORATIONS (not runtime):
+work/probe_rp_positive_admission.py: broad admission43 calls,7 correct manual
+peaks,35 unlisted and1 different peak. Rejected. Four-stream corroboration
+alone was insufficient without the additional strict evidence.
+work/probe_pe_peak_preference_v2.py: extra grouping/detection/signed-error
+features and14-cohort conditional LOCO training. Original strict replacement
+guard yielded no changes; a less restrictive0.90 rule gained3 correct peaks
+but lost1. Rejected; do not deploy those predictions or labels. They remain in
+outputs/rp_pe_next_20261021/. No earlier models were refitted in those folds.
+
+Still weak: EDT RPpos55/71=77.5%, Serhii59/72=81.9%, Fish89/101=88.1%,
+Lengthening55/62=88.7%. Next substantial experiment: independent local mass/RT
+calibration with uncertainty and competing-feature inspection, not looser gates.
+Some manual features lie outside the current corrected mass or local RT bounds.
+All examples informed this rule; obtain untouched data for external validation.
+Push target remains cfm/main; no force push. Historical checkpoints follow.
+
+PRECEDING CHECKPOINT — 21 October 2026
 
 This section supersedes the status of the historical 20 October handoff below.
 The user approved implementing the next evidence/selection experiment and

@@ -1,5 +1,9 @@
 # Experimental PE correction results
 
+Later checkpoint: [strict RP-positive consensus](rp_pe_consensus_20261021.md)
+adds three more correct manual-peak choices without increasing extras. Counts
+below describe the initial experiment, not that follow-up.
+
 21 October 2026. With the optional correction enabled, LASER selects the same
 lipid, adduct and original peak as manual curation for 971 of 1,000 NP-negative
 PE entries, up from 910. Every one of the 14 unique datasets now exceeds 90%

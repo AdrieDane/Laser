@@ -1,0 +1,4 @@
+stream,name,adduct,old_feature_id,new_feature_id,change,pair_preference_score,mass_gain_ppm,local_rt_gain_seconds,isotope_support,opposite_mode_support,NP_positive_feature_id,NP_negative_feature_id,admission_rule,dataset,corrected_mass_error_ppm,local_RT_error_seconds,rank_score,isotope_profile_correlation,isotope_feature_id
+RP_Pos,PE(38:1),[M+H]+,,102087,addition,,,,True,True,39054,35421,RP_positive_four_stream_consensus,25P0040_Serhii_Brain,2.431540,-4.099390,0.877931,0.997798,102179
+RP_Pos,PE(38:5),[M+H]+,,52759,addition,,,,True,True,19776,22313,RP_positive_four_stream_consensus,25P0075_V2,-1.219332,2.215660,0.958919,0.982145,52815
+RP_Pos,PE(40:5),[M+H]+,,67159,addition,,,,True,True,25754,37728,RP_positive_four_stream_consensus,26P0015_Cells,0.762264,-2.216063,0.922191,0.990425,67251
