@@ -3,8 +3,19 @@
 Current decision: the user rejected all three approaches from the last
 RP-positive round. The consensus extension was removed; the other two were
 never deployed. The earlier NP-negative improvement is retained. See the
-[rollback](validation/experiment_rollback_20261021.md). The next experiment
-is local mass/RT calibration, not another RP-positive admission rule.
+[rollback](validation/experiment_rollback_20261021.md). The next experiment,
+local mass/RT calibration, was tested on all 15 saved full outputs and rejected:
+only 1 correct original-peak gain, 5 extras and 2 additional different-peak calls
+across 14 unique datasets. No trial additions remain in the application.
+See the [complete trial tables](validation/local_pe_calibration_20261021.md).
+
+The next priority is competing-peak selection, including the option not to
+annotate, using independent isotope/adduct/profile evidence. For 62 of the
+76 mapped endogenous RP-positive PE misses in the retained baseline, the
+curator's feature is already present in the trial candidate table. This is
+candidate availability, not evidence that those 62 are safely correctable.
+Preserve manual/standard locks, do not revive the three rejected approaches,
+and report the complete all-dataset/all-mode table before any further trial.
 
 Mandatory reporting policy: follow [AGENTS.md](../AGENTS.md). After each
 annotation-changing experiment, give the full per-dataset and per-mode before

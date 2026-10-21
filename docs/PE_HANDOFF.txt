@@ -1,3 +1,51 @@
+LATEST EXPERIMENT — local calibration rejected, 21 October 2026
+
+The three user-rejected RP-positive approaches remain rejected. Active app
+annotation code is the restored 3323003 method (earlier a06782f optional PE
+selector retained). No local-calibration hook, module, UI flag or default change
+remains in app runtime. The failed prototype is isolated in tools/ and excluded
+from packaging. No source input or previous TXT export was rewritten.
+
+Frozen pilot: all15 saved full-core outputs,14 unique datasets pooled, NOT15
+fresh raw-input runs. RP-positive endogenous PE additions only. Correct matches
+require the original manual peak. Trial outcome:1 correct gain,5 unconfirmed
+extras,2 added different-peak choices;0 preceding choices removed. All-class
+correct34348->34349, extras3652->3657, different-peak534->536. PE correct4086->4087,
+extras486->491, different-peak74->76. These AFTER totals are a rejected trial,
+not the retained app. No thresholds were retuned to salvage it.
+
+Full all-class and PE dataset/mode tables and detailed metrics:
+docs/validation/local_pe_calibration_20261021.md and .csv. Local pilot artifacts:
+outputs/local_pe_calibration_20261021/pilot_complete/, including original tested
+source snapshots, frozen method, calibration audit, decisions, additions and
+manual/laser comparisons. Two FIRST-dataset reporting failures are preserved in
+pilot/ and pilot_report_fixed/. Evaluation keys must use root stream, NOT the
+incomplete standard_stream alias; stream-level rows inherit their parent mode.
+
+Research reproduction: tools/evaluate_local_pe_calibration.py --help. Requires
+--trust-local-pickles, a fresh output folder, full-runs/baseline/manual folders.
+--expected-output-dir compares every selected key with the frozen pilot; final
+isolated research-tool replay is under research_tool_replay/.
+No default workflow calls tools/local_pe_calibration.py. Research helpers use
+the unchanged portable PE scorer and default composition limits only.
+
+Final research-tool replay matches ALL15 pilot selected-feature sets and every
+summary metric exactly. Original source snapshots match frozen hashes; all
+scientific functions/helpers are AST-identical after separation.408tests and83
+subtests pass; changed-file lint and whitespace pass. Built wheel matches158
+source/data files and excludes the research tools. Provenance/audit are saved
+next to the full report. App runtime is byte-for-byte unchanged from3323003.
+
+NEXT: address competing-peak selection, not another additive admission gate.
+The retained baseline has76 mapped endogenous RP-positive PE misses:32 wrong
+peaks and44 not selected. The frozen trial candidate pool contains the exact
+manual feature for62 (25 wrong-peak cases and37 unselected). Another4 endogenous
+manual PE features are unresolved and excluded from this diagnostic count.
+See pilot_complete/baseline_PE_disagreements.csv. Better calibration alone did
+not establish the correct peak. Compare independent isotope/adduct/profile
+evidence, retain the no-call alternative, protect standards/manual choices,
+use cohort-held-out checks, and report complete tables per AGENTS.md.
+
 LATEST USER DECISION — 21 October 2026
 
 Reject ALL THREE approaches from the last RP-positive round. The broad

@@ -1,0 +1,96 @@
+{
+  "date": "2026-10-21",
+  "status": "rejected_for_deployment",
+  "active_application_baseline": "3323003",
+  "preceding_three_RP_approaches_remain_rejected": true,
+  "dataset_folders": 15,
+  "unique_datasets_pooled": 14,
+  "duplicate_excluded": "25P0031_FishLarvae_duplicate",
+  "evaluation_type": "saved full-core replays; development examples, not external validation",
+  "fresh_raw_input_runs": 0,
+  "missing_raw_input_folders": [
+    "25P0031_FishLarvae",
+    "25P0031_FishLarvae_duplicate",
+    "25P0040_Serhii_Brain"
+  ],
+  "optional_earlier_PE_selector_enabled_for_both_sides": true,
+  "scope": "RP-positive endogenous PE; earlier selected original features and other classes/streams preserved",
+  "pooled_trial_changes": {
+    "correct_manual_peak": 1,
+    "unconfirmed_extras": 5,
+    "different_manual_peak": 2,
+    "total_annotations": 8,
+    "preceding_choices_removed": 0
+  },
+  "pooled_all_classes": {
+    "correct_before": 34348,
+    "correct_trial": 34349,
+    "extras_before": 3652,
+    "extras_trial": 3657,
+    "different_peak_before": 534,
+    "different_peak_trial": 536,
+    "total_before": 38887,
+    "total_trial": 38895,
+    "mapped_manual_denominator": 45712
+  },
+  "pooled_PE_class": {
+    "correct_before": 4086,
+    "correct_trial": 4087,
+    "extras_before": 486,
+    "extras_trial": 491,
+    "different_peak_before": 74,
+    "different_peak_trial": 76,
+    "total_before": 4689,
+    "total_trial": 4697
+  },
+  "baseline_diagnostic": {
+    "mapped_endogenous_RP_positive_PE_misses": 76,
+    "manual_feature_in_trial_candidate_table": 62,
+    "baseline_different_peak": 32,
+    "baseline_not_selected": 44,
+    "unresolved_endogenous_manual_features": 4
+  },
+  "pilot_protocol": {
+    "source_hashes": {
+      "app/matlab_annotation/local_pe_calibration.py": "3ddcdb3f435ac7d2f76c8c81e6338f401e832c40a18c5edcc804b36bffe0c037",
+      "app/matlab_annotation/pe_rebuild.py": "e2f73ef294f1fcb504e4bb2c0b0afd9fd451e5a2c663a3c404a13eebb46814ac",
+      "reference_data/standard_pe_rebuild.json": "b3163adfd5ce3bfc58c7e967c9b7dc087aea4174d4d410c51817517f3f564dd4"
+    },
+    "scope": "RP-positive ordinary PE only; all other streams/classes unchanged",
+    "baseline": "3323003 rollback, earlier optional PE correction enabled",
+    "mass": "robust mz/RT surface; target PE family excluded; class-held-out improvement required; prediction<=3ppm and shift<=1.5ppm; local support>=10 in3 classes",
+    "RT": "target-composition-excluded local quadratic within convex hull; actual-RT or residual model chosen only using automatic-anchor CV; improve median>=10%, p90 no worse by>0.5s and <=8s",
+    "admission": "unchanged earlier frozen PE scorer>=0.10 and margin>=0.03; corrected mass error+empirical mass uncertainty<3ppm and RT error+empirical RT uncertainty<=10s; no occupied/manual/standard replacement; meaningful supported calibration change required",
+    "manual_annotations_used_to_fit": false,
+    "acceptance": "no original-peak losses; no additional wrong-peak choices; at least4 correct gains per additional unlisted call; seek a substantial gain, not another3-call rule",
+    "experimental_data": true
+  },
+  "research_replay": {
+    "datasets_tested": 15,
+    "unique_datasets": 14,
+    "every_baseline_choice_preserved": true,
+    "other_streams_and_classes_unchanged": true,
+    "all_expected_pilot_choices_match": true,
+    "source_hashes": {
+      "tools/local_pe_calibration.py": "3f5d688e42050926482709e242b49d189242c7fa9b5942c13c51226786f1f5a9",
+      "tools/evaluate_local_pe_calibration.py": "1d41f71a4049ecce8344d4eb97975a24faf70b69e8805d97d57fc55095c4940d",
+      "app/matlab_annotation/pe_rebuild.py": "91af4f264561bf47e8dba9066325c9d1b9cf2a58b6e4cdcb283652b71892d317",
+      "app/matlab_annotation/experimental_pe.py": "aa32bb347790b6685369f9e28f2ff1986ddd7ea241affc9b9dff8e842d1d763e",
+      "app/annotator/peak_evidence.py": "b7e0ddbc673c906625ba2ff500f45bdfe5f189e1d1ecbdd51a1c20068aa96577",
+      "reference_data/standard_pe_rebuild.json": "b3163adfd5ce3bfc58c7e967c9b7dc087aea4174d4d410c51817517f3f564dd4"
+    }
+  },
+  "checked_original_pilot_source_snapshots_match_hashes": true,
+  "checked_every_scientific_function_AST_identical_after_tools_move": true,
+  "checked_replay_benchmark_metrics_identical": true,
+  "checked_app_runtime_unchanged_from_3323003": true,
+  "research_modules_not_packaged_or_called_by_app": true,
+  "tests_passed": 408,
+  "subtests_passed": 83,
+  "lint_passed": true,
+  "whitespace_passed": true,
+  "built_wheel_source_data_files_matched": 158,
+  "original_inputs_or_earlier_TXT_exports_rewritten": false,
+  "local_artifacts": "outputs/local_pe_calibration_20261021/",
+  "complete_table": "local_pe_calibration_20261021.csv"
+}

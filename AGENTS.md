@@ -45,4 +45,5 @@ results do not require rerunning annotation. Reuse an explicitly identified,
 verified comparison when reporting the same completed experiment again.
 
 Latest full example table:
-[User-requested rollback](docs/validation/experiment_rollback_20261021.md).
+[Local calibration pilot, rejected for deployment](docs/validation/local_pe_calibration_20261021.md).
+The app retains the [user-requested rollback](docs/validation/experiment_rollback_20261021.md).
