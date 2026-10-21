@@ -50,6 +50,9 @@ For the input contract and scientific behavior, see
 
 ## Development
 
+The agreed next steps and validation gates are in the
+[annotation improvement plan](docs/ANNOTATION_IMPROVEMENT_PLAN.md).
+
 ```bash
 python -m pip install -e '.[dev]'
 pytest
