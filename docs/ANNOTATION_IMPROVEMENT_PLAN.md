@@ -19,7 +19,11 @@ and report the complete all-dataset/all-mode table before any further trial.
 
 Mandatory reporting policy: follow [AGENTS.md](../AGENTS.md). After each
 annotation-changing experiment, give the full per-dataset and per-mode before
-and after table, including total extra annotations, not only pooled gains.
+and after table. Express correct original-peak matches as a percentage of ALL
+manually curated annotations, with counts/denominator alongside it, and show
+total extra annotation counts separately. Include unresolved manual mappings
+in the primary denominator and report them separately. Do not substitute a
+mapped-only percentage or report only pooled gains.
 
 Agreed 21 October 2026. Improve agreement with manual curation by choosing
 both the correct lipid annotation and the same original XCMS feature. Build a

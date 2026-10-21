@@ -41,9 +41,16 @@ Fish, duplicate Fish and Serhii raw-input folders are absent from the input root
 their retained tables are used. These examples are development data, not untouched
 external validation. Other classes and the other three modes are exact controls.
 
-The all-class percentage denominator is reliably mapped, unique manual entries.
-The PE-class denominator is all manual PE rows, including unresolved rows and
-explicitly marked PE standards, consistent with the preceding numeric benchmark.
+Correct-match percentages now use ALL manual annotations in the same dataset,
+mode and class scope, including unresolved rows and explicitly marked standards.
+The formula is 100 × correct original-peak matches / all manual annotations.
+Counts and denominators accompany percentages; pooled percentages divide summed
+counts rather than averaging dataset percentages. Unresolved mappings remain
+in the denominator and are separately counted, not classified as wrong peaks.
+The previous all-class mapped-only denominator was 45,712; the full manual list
+has 46,255 entries across 14 unique datasets. Mapped-only percentages remain
+clearly labelled secondary diagnostics in the CSV. This is a reporting change
+to the SAME frozen experiment, not a change in annotations or trial acceptance.
 Only endogenous PE can change in this experiment. Unresolved manual mappings
 remain misses, but do not establish a wrong original peak. The CSV also reports
 total calls, unresolved mappings, denominators and manual entries not on the same
@@ -57,9 +64,9 @@ not candidate selection. The scientific module, candidate generator and portable
 model remained fingerprint-frozen across the completed pilot. No thresholds
 were retuned against its results.
 
-**All classes, 14 unique datasets:** correct 34,348→34,349; extras 3,652→3,657; different-peak calls 534→536; total calls 38,887→38,895.
+**All classes, 14 unique datasets:** correct 74.3% (34,348/46,255)→74.3% (34,349/46,255); extras 3,652→3,657; different-peak calls 534→536; total calls 38,887→38,895.
 
-**PE class, 14 unique datasets:** correct 4,086→4,087; extras 486→491; different-peak calls 74→76; total calls 4,689→4,697.
+**PE class, 14 unique datasets:** correct 95.4% (4,086/4,283)→95.4% (4,087/4,283); extras 486→491; different-peak calls 74→76; total calls 4,689→4,697.
 
 The predeclared acceptance criteria require no correct-peak losses, no additional
 wrong-peak choices, and at least 4 correct gains per extra. The pilot fails these
@@ -93,173 +100,173 @@ The local-calibration pilot is not silently retuned against this result.
 
 ### RP positive
 
-| Dataset | Correct before → after | Extras before → after |
+| Dataset | Correct before → trial (% of manual list) | Extras before → trial |
 | --- | ---: | ---: |
-| Kidney summer | 1,165 → 1,165 | 76 → 77 |
-| Heart | 1,329 → 1,329 | 75 → 75 |
-| Worms | 1,144 → 1,145 | 127 → 127 |
-| Fish larvae | 680 → 680 | 31 → 31 |
-| Fish larvae (duplicate) | 680 → 680 | 31 → 31 |
-| Serhii brain | 586 → 586 | 31 → 31 |
-| EDT brain | 1,338 → 1,338 | 105 → 105 |
-| Lengthening spinal cord | 1,267 → 1,267 | 151 → 152 |
-| V2 | 1,294 → 1,294 | 60 → 60 |
-| Cells | 1,204 → 1,204 | 65 → 65 |
-| ALD brain | 1,271 → 1,271 | 88 → 91 |
-| Rat plasma | 959 → 959 | 23 → 23 |
-| Rat spinal cord | 1,194 → 1,194 | 107 → 107 |
-| Rat brain | 1,452 → 1,452 | 66 → 66 |
-| Pex5 mouse | 949 → 949 | 28 → 28 |
-| Total, 14 unique datasets | 15,832 → 15,833 | 1,033 → 1,038 |
+| Kidney summer | 76.8% (1,165/1,516) → 76.8% (1,165/1,516) | 76 → 77 |
+| Heart | 80.8% (1,329/1,645) → 80.8% (1,329/1,645) | 75 → 75 |
+| Worms | 82.9% (1,144/1,380) → 83.0% (1,145/1,380) | 127 → 127 |
+| Fish larvae | 33.5% (680/2,032) → 33.5% (680/2,032) | 31 → 31 |
+| Fish larvae (duplicate) | 33.5% (680/2,032) → 33.5% (680/2,032) | 31 → 31 |
+| Serhii brain | 38.0% (586/1,544) → 38.0% (586/1,544) | 31 → 31 |
+| EDT brain | 73.4% (1,338/1,824) → 73.4% (1,338/1,824) | 105 → 105 |
+| Lengthening spinal cord | 80.5% (1,267/1,574) → 80.5% (1,267/1,574) | 151 → 152 |
+| V2 | 82.5% (1,294/1,568) → 82.5% (1,294/1,568) | 60 → 60 |
+| Cells | 68.8% (1,204/1,749) → 68.8% (1,204/1,749) | 65 → 65 |
+| ALD brain | 71.1% (1,271/1,788) → 71.1% (1,271/1,788) | 88 → 91 |
+| Rat plasma | 78.7% (959/1,219) → 78.7% (959/1,219) | 23 → 23 |
+| Rat spinal cord | 84.6% (1,194/1,412) → 84.6% (1,194/1,412) | 107 → 107 |
+| Rat brain | 85.7% (1,452/1,694) → 85.7% (1,452/1,694) | 66 → 66 |
+| Pex5 mouse | 82.5% (949/1,151) → 82.5% (949/1,151) | 28 → 28 |
+| Total, 14 unique datasets | 71.7% (15,832/22,096) → 71.7% (15,833/22,096) | 1,033 → 1,038 |
 
 ### RP negative
 
-| Dataset | Correct before → after | Extras before → after |
+| Dataset | Correct before → trial (% of manual list) | Extras before → trial |
 | --- | ---: | ---: |
-| Kidney summer | 353 → 353 | 35 → 35 |
-| Heart | 328 → 328 | 30 → 30 |
-| Worms | 400 → 400 | 48 → 48 |
-| Fish larvae | 323 → 323 | 31 → 31 |
-| Fish larvae (duplicate) | 323 → 323 | 31 → 31 |
-| Serhii brain | 514 → 514 | 24 → 24 |
-| EDT brain | 451 → 451 | 50 → 50 |
-| Lengthening spinal cord | 527 → 527 | 38 → 38 |
-| V2 | 262 → 262 | 90 → 90 |
-| Cells | 500 → 500 | 91 → 91 |
-| ALD brain | 441 → 441 | 55 → 55 |
-| Rat plasma | 137 → 137 | 8 → 8 |
-| Rat spinal cord | 422 → 422 | 24 → 24 |
-| Rat brain | 496 → 496 | 16 → 16 |
-| Pex5 mouse | 329 → 329 | 59 → 59 |
-| Total, 14 unique datasets | 5,483 → 5,483 | 599 → 599 |
+| Kidney summer | 74.5% (353/474) → 74.5% (353/474) | 35 → 35 |
+| Heart | 72.4% (328/453) → 72.4% (328/453) | 30 → 30 |
+| Worms | 79.1% (400/506) → 79.1% (400/506) | 48 → 48 |
+| Fish larvae | 45.6% (323/708) → 45.6% (323/708) | 31 → 31 |
+| Fish larvae (duplicate) | 45.6% (323/708) → 45.6% (323/708) | 31 → 31 |
+| Serhii brain | 74.9% (514/686) → 74.9% (514/686) | 24 → 24 |
+| EDT brain | 74.5% (451/605) → 74.5% (451/605) | 50 → 50 |
+| Lengthening spinal cord | 74.0% (527/712) → 74.0% (527/712) | 38 → 38 |
+| V2 | 67.4% (262/389) → 67.4% (262/389) | 90 → 90 |
+| Cells | 74.3% (500/673) → 74.3% (500/673) | 91 → 91 |
+| ALD brain | 69.3% (441/636) → 69.3% (441/636) | 55 → 55 |
+| Rat plasma | 62.8% (137/218) → 62.8% (137/218) | 8 → 8 |
+| Rat spinal cord | 67.7% (422/623) → 67.7% (422/623) | 24 → 24 |
+| Rat brain | 73.0% (496/679) → 73.0% (496/679) | 16 → 16 |
+| Pex5 mouse | 73.4% (329/448) → 73.4% (329/448) | 59 → 59 |
+| Total, 14 unique datasets | 70.2% (5,483/7,810) → 70.2% (5,483/7,810) | 599 → 599 |
 
 ### NP positive
 
-| Dataset | Correct before → after | Extras before → after |
+| Dataset | Correct before → trial (% of manual list) | Extras before → trial |
 | --- | ---: | ---: |
-| Kidney summer | 487 → 487 | 142 → 142 |
-| Heart | 540 → 540 | 135 → 135 |
-| Worms | 474 → 474 | 92 → 92 |
-| Fish larvae | 383 → 383 | 112 → 112 |
-| Fish larvae (duplicate) | 383 → 383 | 112 → 112 |
-| Serhii brain | 509 → 509 | 130 → 130 |
-| EDT brain | 683 → 683 | 121 → 121 |
-| Lengthening spinal cord | 725 → 725 | 142 → 142 |
-| V2 | 677 → 677 | 59 → 59 |
-| Cells | 419 → 419 | 79 → 79 |
-| ALD brain | 613 → 613 | 44 → 44 |
-| Rat plasma | 378 → 378 | 59 → 59 |
-| Rat spinal cord | 627 → 627 | 82 → 82 |
-| Rat brain | 682 → 682 | 72 → 72 |
-| Pex5 mouse | 340 → 340 | 30 → 30 |
-| Total, 14 unique datasets | 7,537 → 7,537 | 1,299 → 1,299 |
+| Kidney summer | 78.4% (487/621) → 78.4% (487/621) | 142 → 142 |
+| Heart | 83.7% (540/645) → 83.7% (540/645) | 135 → 135 |
+| Worms | 86.2% (474/550) → 86.2% (474/550) | 92 → 92 |
+| Fish larvae | 44.6% (383/859) → 44.6% (383/859) | 112 → 112 |
+| Fish larvae (duplicate) | 44.6% (383/859) → 44.6% (383/859) | 112 → 112 |
+| Serhii brain | 80.0% (509/636) → 80.0% (509/636) | 130 → 130 |
+| EDT brain | 84.3% (683/810) → 84.3% (683/810) | 121 → 121 |
+| Lengthening spinal cord | 85.5% (725/848) → 85.5% (725/848) | 142 → 142 |
+| V2 | 85.5% (677/792) → 85.5% (677/792) | 59 → 59 |
+| Cells | 79.2% (419/529) → 79.2% (419/529) | 79 → 79 |
+| ALD brain | 75.2% (613/815) → 75.2% (613/815) | 44 → 44 |
+| Rat plasma | 94.7% (378/399) → 94.7% (378/399) | 59 → 59 |
+| Rat spinal cord | 83.7% (627/749) → 83.7% (627/749) | 82 → 82 |
+| Rat brain | 90.1% (682/757) → 90.1% (682/757) | 72 → 72 |
+| Pex5 mouse | 92.1% (340/369) → 92.1% (340/369) | 30 → 30 |
+| Total, 14 unique datasets | 80.4% (7,537/9,379) → 80.4% (7,537/9,379) | 1,299 → 1,299 |
 
 ### NP negative
 
-| Dataset | Correct before → after | Extras before → after |
+| Dataset | Correct before → trial (% of manual list) | Extras before → trial |
 | --- | ---: | ---: |
-| Kidney summer | 357 → 357 | 61 → 61 |
-| Heart | 303 → 303 | 53 → 53 |
-| Worms | 435 → 435 | 75 → 75 |
-| Fish larvae | 534 → 534 | 102 → 102 |
-| Fish larvae (duplicate) | 534 → 534 | 102 → 102 |
-| Serhii brain | 514 → 514 | 58 → 58 |
-| EDT brain | 317 → 317 | 19 → 19 |
-| Lengthening spinal cord | 381 → 381 | 19 → 19 |
-| V2 | 408 → 408 | 48 → 48 |
-| Cells | 440 → 440 | 53 → 53 |
-| ALD brain | 396 → 396 | 24 → 24 |
-| Rat plasma | 165 → 165 | 71 → 71 |
-| Rat spinal cord | 461 → 461 | 71 → 71 |
-| Rat brain | 443 → 443 | 21 → 21 |
-| Pex5 mouse | 342 → 342 | 46 → 46 |
-| Total, 14 unique datasets | 5,496 → 5,496 | 721 → 721 |
+| Kidney summer | 77.3% (357/462) → 77.3% (357/462) | 61 → 61 |
+| Heart | 63.1% (303/480) → 63.1% (303/480) | 53 → 53 |
+| Worms | 78.7% (435/553) → 78.7% (435/553) | 75 → 75 |
+| Fish larvae | 83.0% (534/643) → 83.0% (534/643) | 102 → 102 |
+| Fish larvae (duplicate) | 83.0% (534/643) → 83.0% (534/643) | 102 → 102 |
+| Serhii brain | 83.7% (514/614) → 83.7% (514/614) | 58 → 58 |
+| EDT brain | 67.6% (317/469) → 67.6% (317/469) | 19 → 19 |
+| Lengthening spinal cord | 66.5% (381/573) → 66.5% (381/573) | 19 → 19 |
+| V2 | 88.7% (408/460) → 88.7% (408/460) | 48 → 48 |
+| Cells | 80.0% (440/550) → 80.0% (440/550) | 53 → 53 |
+| ALD brain | 73.3% (396/540) → 73.3% (396/540) | 24 → 24 |
+| Rat plasma | 90.2% (165/183) → 90.2% (165/183) | 71 → 71 |
+| Rat spinal cord | 88.5% (461/521) → 88.5% (461/521) | 71 → 71 |
+| Rat brain | 82.3% (443/538) → 82.3% (443/538) | 21 → 21 |
+| Pex5 mouse | 89.1% (342/384) → 89.1% (342/384) | 46 → 46 |
+| Total, 14 unique datasets | 78.9% (5,496/6,970) → 78.9% (5,496/6,970) | 721 → 721 |
 
 ## PE class only
 
 ### RP positive
 
-| Dataset | Correct before → after | Extras before → after |
+| Dataset | Correct before → trial (% of manual list) | Extras before → trial |
 | --- | ---: | ---: |
-| Kidney summer | 67 → 67 | 4 → 5 |
-| Heart | 86 → 86 | 9 → 9 |
-| Worms | 131 → 132 | 3 → 3 |
-| Fish larvae | 89 → 89 | 10 → 10 |
-| Fish larvae (duplicate) | 89 → 89 | 10 → 10 |
-| Serhii brain | 58 → 58 | 9 → 9 |
-| EDT brain | 55 → 55 | 22 → 22 |
-| Lengthening spinal cord | 55 → 55 | 33 → 34 |
-| V2 | 71 → 71 | 14 → 14 |
-| Cells | 77 → 77 | 19 → 19 |
-| ALD brain | 66 → 66 | 29 → 32 |
-| Rat plasma | 20 → 20 | 3 → 3 |
-| Rat spinal cord | 63 → 63 | 13 → 13 |
-| Rat brain | 75 → 75 | 15 → 15 |
-| Pex5 mouse | 68 → 68 | 1 → 1 |
-| Total, 14 unique datasets | 981 → 982 | 184 → 189 |
+| Kidney summer | 91.8% (67/73) → 91.8% (67/73) | 4 → 5 |
+| Heart | 94.5% (86/91) → 94.5% (86/91) | 9 → 9 |
+| Worms | 97.0% (131/135) → 97.8% (132/135) | 3 → 3 |
+| Fish larvae | 88.1% (89/101) → 88.1% (89/101) | 10 → 10 |
+| Fish larvae (duplicate) | 88.1% (89/101) → 88.1% (89/101) | 10 → 10 |
+| Serhii brain | 80.6% (58/72) → 80.6% (58/72) | 9 → 9 |
+| EDT brain | 77.5% (55/71) → 77.5% (55/71) | 22 → 22 |
+| Lengthening spinal cord | 88.7% (55/62) → 88.7% (55/62) | 33 → 34 |
+| V2 | 93.4% (71/76) → 93.4% (71/76) | 14 → 14 |
+| Cells | 90.6% (77/85) → 90.6% (77/85) | 19 → 19 |
+| ALD brain | 90.4% (66/73) → 90.4% (66/73) | 29 → 32 |
+| Rat plasma | 100.0% (20/20) → 100.0% (20/20) | 3 → 3 |
+| Rat spinal cord | 95.5% (63/66) → 95.5% (63/66) | 13 → 13 |
+| Rat brain | 98.7% (75/76) → 98.7% (75/76) | 15 → 15 |
+| Pex5 mouse | 97.1% (68/70) → 97.1% (68/70) | 1 → 1 |
+| Total, 14 unique datasets | 91.6% (981/1,071) → 91.7% (982/1,071) | 184 → 189 |
 
 ### RP negative
 
-| Dataset | Correct before → after | Extras before → after |
+| Dataset | Correct before → trial (% of manual list) | Extras before → trial |
 | --- | ---: | ---: |
-| Kidney summer | 80 → 80 | 2 → 2 |
-| Heart | 99 → 99 | 7 → 7 |
-| Worms | 127 → 127 | 5 → 5 |
-| Fish larvae | 109 → 109 | 8 → 8 |
-| Fish larvae (duplicate) | 109 → 109 | 8 → 8 |
-| Serhii brain | 81 → 81 | 7 → 7 |
-| EDT brain | 82 → 82 | 11 → 11 |
-| Lengthening spinal cord | 84 → 84 | 15 → 15 |
-| V2 | 96 → 96 | 18 → 18 |
-| Cells | 90 → 90 | 31 → 31 |
-| ALD brain | 86 → 86 | 20 → 20 |
-| Rat plasma | 23 → 23 | 2 → 2 |
-| Rat spinal cord | 76 → 76 | 12 → 12 |
-| Rat brain | 95 → 95 | 5 → 5 |
-| Pex5 mouse | 87 → 87 | 1 → 1 |
-| Total, 14 unique datasets | 1,215 → 1,215 | 144 → 144 |
+| Kidney summer | 92.0% (80/87) → 92.0% (80/87) | 2 → 2 |
+| Heart | 97.1% (99/102) → 97.1% (99/102) | 7 → 7 |
+| Worms | 90.7% (127/140) → 90.7% (127/140) | 5 → 5 |
+| Fish larvae | 91.6% (109/119) → 91.6% (109/119) | 8 → 8 |
+| Fish larvae (duplicate) | 91.6% (109/119) → 91.6% (109/119) | 8 → 8 |
+| Serhii brain | 97.6% (81/83) → 97.6% (81/83) | 7 → 7 |
+| EDT brain | 93.2% (82/88) → 93.2% (82/88) | 11 → 11 |
+| Lengthening spinal cord | 100.0% (84/84) → 100.0% (84/84) | 15 → 15 |
+| V2 | 98.0% (96/98) → 98.0% (96/98) | 18 → 18 |
+| Cells | 96.8% (90/93) → 96.8% (90/93) | 31 → 31 |
+| ALD brain | 97.7% (86/88) → 97.7% (86/88) | 20 → 20 |
+| Rat plasma | 100.0% (23/23) → 100.0% (23/23) | 2 → 2 |
+| Rat spinal cord | 98.7% (76/77) → 98.7% (76/77) | 12 → 12 |
+| Rat brain | 97.9% (95/97) → 97.9% (95/97) | 5 → 5 |
+| Pex5 mouse | 98.9% (87/88) → 98.9% (87/88) | 1 → 1 |
+| Total, 14 unique datasets | 95.9% (1,215/1,267) → 95.9% (1,215/1,267) | 144 → 144 |
 
 ### NP positive
 
-| Dataset | Correct before → after | Extras before → after |
+| Dataset | Correct before → trial (% of manual list) | Extras before → trial |
 | --- | ---: | ---: |
-| Kidney summer | 75 → 75 | 5 → 5 |
-| Heart | 77 → 77 | 6 → 6 |
-| Worms | 118 → 118 | 16 → 16 |
-| Fish larvae | 75 → 75 | 27 → 27 |
-| Fish larvae (duplicate) | 75 → 75 | 27 → 27 |
-| Serhii brain | 66 → 66 | 2 → 2 |
-| EDT brain | 51 → 51 | 21 → 21 |
-| Lengthening spinal cord | 71 → 71 | 14 → 14 |
-| V2 | 87 → 87 | 4 → 4 |
-| Cells | 64 → 64 | 0 → 0 |
-| ALD brain | 61 → 61 | 4 → 4 |
-| Rat plasma | 19 → 19 | 0 → 0 |
-| Rat spinal cord | 55 → 55 | 12 → 12 |
-| Rat brain | 52 → 52 | 12 → 12 |
-| Pex5 mouse | 48 → 48 | 3 → 3 |
-| Total, 14 unique datasets | 919 → 919 | 126 → 126 |
+| Kidney summer | 97.4% (75/77) → 97.4% (75/77) | 5 → 5 |
+| Heart | 95.1% (77/81) → 95.1% (77/81) | 6 → 6 |
+| Worms | 100.0% (118/118) → 100.0% (118/118) | 16 → 16 |
+| Fish larvae | 91.5% (75/82) → 91.5% (75/82) | 27 → 27 |
+| Fish larvae (duplicate) | 91.5% (75/82) → 91.5% (75/82) | 27 → 27 |
+| Serhii brain | 95.7% (66/69) → 95.7% (66/69) | 2 → 2 |
+| EDT brain | 100.0% (51/51) → 100.0% (51/51) | 21 → 21 |
+| Lengthening spinal cord | 100.0% (71/71) → 100.0% (71/71) | 14 → 14 |
+| V2 | 98.9% (87/88) → 98.9% (87/88) | 4 → 4 |
+| Cells | 97.0% (64/66) → 97.0% (64/66) | 0 → 0 |
+| ALD brain | 95.3% (61/64) → 95.3% (61/64) | 4 → 4 |
+| Rat plasma | 100.0% (19/19) → 100.0% (19/19) | 0 → 0 |
+| Rat spinal cord | 98.2% (55/56) → 98.2% (55/56) | 12 → 12 |
+| Rat brain | 96.3% (52/54) → 96.3% (52/54) | 12 → 12 |
+| Pex5 mouse | 98.0% (48/49) → 98.0% (48/49) | 3 → 3 |
+| Total, 14 unique datasets | 97.2% (919/945) → 97.2% (919/945) | 126 → 126 |
 
 ### NP negative
 
-| Dataset | Correct before → after | Extras before → after |
+| Dataset | Correct before → trial (% of manual list) | Extras before → trial |
 | --- | ---: | ---: |
-| Kidney summer | 76 → 76 | 2 → 2 |
-| Heart | 79 → 79 | 2 → 2 |
-| Worms | 118 → 118 | 6 → 6 |
-| Fish larvae | 83 → 83 | 5 → 5 |
-| Fish larvae (duplicate) | 83 → 83 | 5 → 5 |
-| Serhii brain | 70 → 70 | 1 → 1 |
-| EDT brain | 57 → 57 | 1 → 1 |
-| Lengthening spinal cord | 75 → 75 | 1 → 1 |
-| V2 | 87 → 87 | 0 → 0 |
-| Cells | 69 → 69 | 1 → 1 |
-| ALD brain | 62 → 62 | 3 → 3 |
-| Rat plasma | 19 → 19 | 1 → 1 |
-| Rat spinal cord | 55 → 55 | 6 → 6 |
-| Rat brain | 56 → 56 | 0 → 0 |
-| Pex5 mouse | 65 → 65 | 3 → 3 |
-| Total, 14 unique datasets | 971 → 971 | 32 → 32 |
+| Kidney summer | 96.2% (76/79) → 96.2% (76/79) | 2 → 2 |
+| Heart | 96.3% (79/82) → 96.3% (79/82) | 2 → 2 |
+| Worms | 99.2% (118/119) → 99.2% (118/119) | 6 → 6 |
+| Fish larvae | 91.2% (83/91) → 91.2% (83/91) | 5 → 5 |
+| Fish larvae (duplicate) | 91.2% (83/91) → 91.2% (83/91) | 5 → 5 |
+| Serhii brain | 98.6% (70/71) → 98.6% (70/71) | 1 → 1 |
+| EDT brain | 98.3% (57/58) → 98.3% (57/58) | 1 → 1 |
+| Lengthening spinal cord | 97.4% (75/77) → 97.4% (75/77) | 1 → 1 |
+| V2 | 98.9% (87/88) → 98.9% (87/88) | 0 → 0 |
+| Cells | 98.6% (69/70) → 98.6% (69/70) | 1 → 1 |
+| ALD brain | 96.9% (62/64) → 96.9% (62/64) | 3 → 3 |
+| Rat plasma | 100.0% (19/19) → 100.0% (19/19) | 1 → 1 |
+| Rat spinal cord | 94.8% (55/58) → 94.8% (55/58) | 6 → 6 |
+| Rat brain | 98.2% (56/57) → 98.2% (56/57) | 0 → 0 |
+| Pex5 mouse | 97.0% (65/67) → 97.0% (65/67) | 3 → 3 |
+| Total, 14 unique datasets | 97.1% (971/1,000) → 97.1% (971/1,000) | 32 → 32 |
 
 ## Reproduction and artifacts
 

@@ -1,3 +1,17 @@
+REPORTING CLARIFICATION — 21 October 2026
+
+User wants correct annotations expressed as a percentage of ALL manually
+curated annotations, not just counts or the mapped subset. Formula:100 times
+correct same-original-peak matches divided by all manual annotations in the
+same dataset/mode/class scope. Show one decimal, with counts/denominator too.
+Report unresolved manual mappings separately but retain them in the primary
+denominator. Extras remain separate before/after counts. Pool counts before
+division and exclude the duplicate Fish folder. Read AGENTS.md.
+The latest calibration report/CSV has been reformatted using the same frozen
+results; NO annotation changes or new experiment. Its primary all-class manual
+denominator is46255, not the previous mapped-only45712. Historical reports may
+retain the older mapped-only percentage; do not silently compare denominators.
+
 LATEST EXPERIMENT — local calibration rejected, 21 October 2026
 
 The three user-rejected RP-positive approaches remain rejected. Active app

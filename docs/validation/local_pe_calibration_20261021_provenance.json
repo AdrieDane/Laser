@@ -2,6 +2,16 @@
   "date": "2026-10-21",
   "status": "rejected_for_deployment",
   "active_application_baseline": "3323003",
+  "reporting_clarification": {
+    "date": "2026-10-21",
+    "primary_percentage": "100 * correct same-original-peak matches / ALL manual annotations in the same scope",
+    "all_class_full_manual_denominator": 46255,
+    "previous_all_class_mapped_only_denominator": 45712,
+    "unresolved_manual_mappings_in_primary_denominator": true,
+    "unrounded_mapped_only_percentages_preserved_as_secondary_CSV_fields": true,
+    "annotation_results_changed": false,
+    "new_annotation_experiment": false
+  },
   "preceding_three_RP_approaches_remain_rejected": true,
   "dataset_folders": 15,
   "unique_datasets_pooled": 14,

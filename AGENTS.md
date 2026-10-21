@@ -13,13 +13,25 @@ the complete table with pooled totals or only the rows that improved.
   even when a mode is unchanged. Mark unavailable or untested cells explicitly;
   never fill them with assumed zeroes or imply a test was performed.
 - In the user-facing response, show the complete dataset-by-mode table with
-  correct same-manual-peak counts before and after and extra annotation counts
-  before and after. Separate mode tables are acceptable. State the lipid-class
+  correct same-manual-peak PERCENTAGES before and after, relative to ALL manually
+  curated annotations in that dataset/mode/class scope. Include the exact match
+  counts and manual denominator alongside the percentages, for example
+  90.0% (90/100). Keep extra annotation counts before and after as separate
+  columns. Separate mode tables are acceptable. State the lipid-class
   scope explicitly. Include all-class results; for a class-specific experiment,
   also provide that class's complete table in the response or linked full report.
 - A correct match requires the same lipid, adduct, measurement mode and ORIGINAL
   feature as manual curation. The right lipid on a different feature is not a
   correct match. Report different-peak choices separately.
+- Percentage policy clarified by the user on 21 October 2026: correct/manual
+  percentage = 100 × correct original-peak matches / all manual annotations.
+  Include unresolved manual-feature mappings in the primary denominator and
+  report their count separately; they remain unconfirmed matches, not proven
+  wrong peaks. A mapped-only percentage may be a clearly labelled secondary
+  diagnostic, never substituted for the full-manual-list percentage. Resolve
+  duplicate manual entries explicitly. Pool counts and denominators before
+  division; do not average dataset percentages. Display one decimal place and
+  retain unrounded values and counts, so rounding cannot conceal a small gain.
 - Extras are calls absent from that dataset and mode's manual list, not merely
   the increase in total annotation count. Call these unconfirmed extras, not
   proven false positives. Report totals already present, not just newly added
