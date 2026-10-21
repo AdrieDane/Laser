@@ -64,7 +64,7 @@ def main() -> int:
     output = args.output.expanduser().resolve()
     output.mkdir(parents=True, exist_ok=True)
     for name, table in result.tables.items():
-        atomic_write_csv(table, output / f"{name}.csv", index=False)
+        atomic_write_csv(output / f"{name}.csv", table, index=False)
     annotated_inputs = write_standard_annotated_inputs(
         discover_standard_streams(args.project),
         result.tables["automatic_annotations"],
