@@ -52,6 +52,8 @@ For the input contract and scientific behavior, see
 
 The agreed next steps and validation gates are in the
 [annotation improvement plan](docs/ANNOTATION_IMPROVEMENT_PLAN.md).
+The [manual annotation comparison tool](docs/ANNOTATION_VALIDATION.md) evaluates
+saved results on the original features without changing annotation decisions.
 
 ```bash
 python -m pip install -e '.[dev]'
