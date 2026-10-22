@@ -54,6 +54,8 @@ jobs:
                   job.terminate()
       - uses: actions/upload-artifact@v4
         with:
-          name: LASER-Dataset-Scanner-Windows
-          path: scanner-build/LASER_Dataset_Scanner_Windows.zip
+          name: LASER_Dataset_Scanner_Windows
+          # Publish the unpacked program so the downloaded artifact is directly
+          # extractable, not a ZIP containing another ZIP.
+          path: scanner-build/LASER_Dataset_Scanner_Windows/
           if-no-files-found: error
