@@ -1,0 +1,20 @@
+{
+  "datasets": 33,
+  "dataset_modes": 132,
+  "manual": 92102,
+  "correct_before": 70270,
+  "correct_after": 81579,
+  "percent_before": 76.29584590996939,
+  "percent_after": 88.5746237866713,
+  "extras_before": 9697,
+  "extras_after": 8605,
+  "wrong_peak_before": 1373,
+  "wrong_peak_after": 1550,
+  "extras_no_increase_guard_pass": true,
+  "class_modes_below_90": 89,
+  "production_enabled": false,
+  "experiment": "010-global-boosting-600-rounds",
+  "manual_reference": "v2, identical standard normalization mapping correction at both endpoints; not an annotation gain",
+  "target_achieved": false,
+  "note": "A passing pooled score does not establish >=90% in every curated class/mode. Goal also requires validated production integration, not just this offline experiment."
+}

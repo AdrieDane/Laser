@@ -1,4 +1,78 @@
-LATEST ALL-CLASS CHECKPOINT — 22 October 2026, after009;010 RUNNING
+LATEST ALL-CLASS CHECKPOINT — 22 October 2026, after012;012 TABLE PENDING
+
+010 COMPLETE, REJECTED:81,579/92,102=88.6%;8,605 extras;1,550 wrong peaks.
+vs009:-424 correct,-711 extras,-69 wrong peaks.89/123 class/modes below90.
+011 COMPLETE, REJECTED:82,000/92,102=89.0%;9,316 extras;1,622 wrong peaks.
+vs009:-3 correct,+3 wrong peaks; IDENTICAL extras/annotation counts in EVERY132
+comparison.85/123 class/modes below90. NPpositive exactly90%,but no cherry-picking
+that mode into009. Full132 tables001 THROUGH011 DELIVERED before each next test.
+011 before% typo24P0024 NPpositive was immediately corrected to84.4%(721/854),
+not72.4%. Saved tables/totals always correct.009 remains prior coverage checkpoint.
+
+011 conditional model:180 rounds,31leaves,minleaf25,L2=2,lr.08; equal true-peak /
+combined-alternative weight within identities, project groups balanced. Composition
+occurrence priors removed. Only one-true-peak identities with alternatives train;
+runtime class support>=50 identities/>=6 groups,score.75/margin.15. No new identities,
+occupied/spike peaks protected; conflicting proposals ALL withheld. No improvement.
+Two engineering repairs preserved initial snapshots/protocols/model hashes:
+CSV all-empty text inferred floatNaN needed type-compatible replacement; repeated
+STANDARD labels on DISTINCT peaks must stay protected rather than reject input.
+source_snapshot_initial and source_snapshot_before_protected_standard_fix retain
+both prior sources. Current helper preserves identity MULTISETS, protects all
+standard/manual rows, and still rejects duplicate unprotected identities. Training,
+scores and replacement rules unchanged by repairs. Clean reproduction needs NO
+repair scripts. work/repair_qe_peak_storage.py and repair_qe_peak_standard_contract.py
+record narrow changed paths, unchanged model/output hashes and prior invariants.
+
+012 COMPLETE ALL33, evaluation complete, but FULL132 TABLE NOT YET DELIVERED.
+Immediate next:report_qe_experiment --experiment .../experiment_012; deliver ALL132
+rows plus class/wrong-peak/extra reports BEFORE ANY013 annotation selections.
+012:82,425/92,102=89.493...%;9,910 extras;1,679 wrong peaks;83/123 below90.
+vs009:+422 correct,+594 extras,+60 wrong peaks=1,076 new calls. All009 calls
+preserved; RPunchanged. Initial extras guard FAILS:213 ABOVE baseline9,697.
+Mode counts(correct/manual,extras,wrong):
+  RP_Pos40,277/45,206=89.1%,3,366,912
+  RP_Neg12,011/13,600=88.3%,1,956,423
+  NP_Pos17,614/19,380=90.9%,2,310,230
+  NP_Neg12,523/13,916=89.98994%,2,278,114(TWO matches short of90%,needs12,525)
+012 uses ONLY blind raw_grid_development_v1/predictions/<dataset>.pkl, NEVER root
+diagnostic truth pickles/CSVs. Other-group RT/prevalence, old local support<4,
+unique RAW hit<1.5ppm/<=5s BEFORE occupancy/standard filters, CDB in>=25%/>=3 other
+training groups. All009 identities/features unchanged, all declared-spike masses
+blocked, competing new identities on one feature withheld. No classifier refit.
+Source/target dependencies SHA-frozen, group exclusion checked. No live jobs now;
+last012 evaluator18482 is COMPLETE. Runners work/run_qe_peak_choice_experiment.py
+and run_qe_np_series_experiment.py. App helpers UNUSED by production/defaults.
+
+Next promising hypothesis AFTER012 FULL TABLE:unique mass/RT series finds true
+missing peaks but can create false FULL classes from coeluting isobaric/adduct
+companions. New012 calls include212 NPpositiveBMP[NH4],92PS[H],45HexCer[H].
+Investigate neutral-mass/RT/profile conflicts vs009 and between new calls, and
+OTHER-group class/adduct channel priors. Preserve009 old calls, keep ambiguous
+new signals as companion candidates, not full extra identities. No013 code yet.
+Native adduct additions/signed charges:vendor/composition_initializer.py:_ADDUCTS;
+native PROTON_MASS:vendor/compound_model.py. For POSITIVE observed m/z, inverse
+neutral=abs(z)*(mz-sign(z)*PROTON_MASS)-addition. Use exact catalog conventions,
+not guessed atomic masses. Potential exclusion-only ambiguity window5ppm neutral /
+2s RT, optionally raw profile agreement; do NOT call it proof/FDR. New guards
+need their own frozen experiment/full132 table; no test-specific class whitelist.
+
+Read-only009 wrong-peak opportunity ceiling (NOT new selections):NPneg42 free /
+68 absent correct alternatives;NPpos96 free/73 absent;RPneg261 free/34 occupied/
+120 absent;RPpos547 free/35 occupied/316 absent.011 changed only a few dozen peaks
+and net-3. Future pairwise ranker could remove old-selection/confidence shortcuts
+(q_previously_selected,q_fitted_post_regression_confidence,direct old-choice flags)
+and use relative physical evidence. Hypothesis only, NOT tested/implemented.
+
+Latest verified full suite543 passed,8 skipped,83 subtests; lint clean. Last
+confirmed push55d97e8. This checkpoint adds010/011 reports +conditional/NP helpers
+and runners;012 aggregate report still to build. NO default/entry point/export
+changes; sole33 folders/132 modes/30 groups,92,102 manual INCLUDING28 unresolved,
+same referencev2. Sources unchanged. No90% achievement/external/pristine nested
+validation claim. Goal active, NOT achieved. Old PE selector staysOFF.
+
+OLDER CHECKPOINT BELOW(superseded where describing010/011/012 as unfinished)
+ALL-CLASS CHECKPOINT — 22 October 2026, after009;010 RUNNING
 
 008 COMPLETE, NOT app default:81,456/92,102=88.4%;8,398 extras;1,571 wrong peaks.
 vs007:+979 correct,+936 extras,+154 wrong peaks. RPpositive90.4%, but RPnegative

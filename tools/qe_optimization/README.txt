@@ -153,3 +153,24 @@ the evaluation labels. Runtime sources remain unchanged. Diagnostic per-feature
 CSV/pickles stay OUTSIDE Git; only aggregate validation reports may be committed.
 Current helper has an exact, unit-tested support prefilter absent from the first
 frozen diagnostic source. Verify replay parity before future annotation admission.
+
+010 lost coverage at its fixed cutoffs and was rejected. After its full table,
+011 tests conditional PEAK choice with009 accepted identities held fixed:
+  python tools/qe_optimization/run_qe_peak_choice_experiment.py
+Group-held-out model,identity/cohort-balanced training,no composition occurrence
+features,>=50 identities/>=6 groups per class/mode,score.75/margin.15. Protected
+standard/manual rows and occupied/spike features cannot be borrowed.011 was
+rejected(-3 correct);extras/counts identical in every132 comparisons. Historical
+repair_qe_peak_storage.py / repair_qe_peak_standard_contract.py preserve failed
+engineering snapshots/models/outputs. Do NOT run in a clean reproduction with
+the current fixed helpers; they are provenance tools,not scientific parameters.
+
+After011's full table,012 tests conservative NP series completion,preserving
+EVERY009 call and keeping RPunchanged:
+  python tools/qe_optimization/run_qe_np_series_experiment.py
+ONLY blind raw-grid predictions,not root diagnostic truth. Unique raw hit within
+<1.5ppm/<=5s BEFORE occupancy/standard filters,inadequate old local anchors,
+>=25%/>=3 OTHER-group composition support. Existing identities/features,standards
+and conflicting claims protected. No new classifier/score cutoff. Evaluate ALL33
+and report132 rows,including extras/wrong peaks. Initial extras guard remains
+the original9,697 total. No production entry point/default changed.
