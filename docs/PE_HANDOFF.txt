@@ -1,4 +1,72 @@
-LATEST SCIENTIFIC CHECKPOINT — 22 October 2026, experiment022 COMPLETE
+LATEST SCIENTIFIC CHECKPOINT — 22 October 2026, experiment023 COMPLETE, REJECTED
+
+GoalACTIVE,NOTachieved. No productiondefaults/entrypoints changed. Retain022as
+stronger research reference,notdefault. 023worse than022:82229/92102=89.280363%,
+9493extras,1590wrongfeatures;77/123class/modes<90(sameas022). Vs022:-156correct,
++255extras,+2wrongfeatures. Original9697extrasguard passes,but022guardfails.
+All4modes losecorrect. Correct/manual,extras,wrong022 ->023:
+ RPpos40495/45206 ->40464/45206,3361 ->3421,894 ->903.
+ RPneg12125/13600 ->12088/13600,1972 ->1988,426 ->423.
+ NPpos17373/19380 ->17331/19380,1838 ->1994,169 ->166.
+ NPneg12392/13916 ->12346/13916,2067 ->2090,99 ->98.
+BMPNPpos208/622 ->292/622(+84correct/+84extras),NPneg249/520 ->254/520(+5/+21)
+butlosseselsewhereoutweighgains;doNOTcherry-pickouterheldoutclasswinners.
+Dataset/modes46gain/61lose/25same;curatedclass/modes44gain/45lose/34same.
+
+023SAME021classcutoffalgorithm(grid.05..1,3groups/30manualsupport,MILPclass/mode
+floors,pooledcorrectfloor,9.5%endotrainingextrasbudget),butNOWgenuine022nested
+4-innerfoldOOFscores/ownqueryexcludedfeatures. Same022finalscores/pools/005STD.
+No refit/admission/massRTwindow/compositionchange.5exact022trainingreference
+checksPASS;15MILPstagesoptimal;TRAININGcorrectgains3/8/2/4/0didNOTgeneralize.
+Terminal46774EXIT0 full33runs/evals/reports. 266source+443inputSHAchecks,
+33scoreSeriesEXACT022,132uniformcompetitionparity,33STDoutputsetsidentical,
+5group-scope/tablehash/optimalbudgetchecksPASS. Receiptterminal4333EXIT0.
+637tests passed,8skipped,83subtests;ruffclean. All165originalsourcefilesunchanged,
+referencev2sameall92102manualincl28unresolved. Cachedreplay,notnewproduction
+runs,externalvalidation,pristinewholepipelinevalidationoranalyticalFDR.
+
+NEW READ-ONLY acceptance_gate_diagnostic_v2 COMPLETE,264selectorparitychecks.
+Endo90646manual:80628 ->81010correct,1373gained/991lost(net+382,EXACT009/022).
+991lost gates:906belowcutoff,63sameidentityprefersanotherfeature,12ambiguous,
+10anotherlabelrankshigher. BMPNPpos154lostALLbelowcutoff(32gained;net-122);
+NPneg71belowcutoff+1ambiguous(31gained;net-41). RemainingBMPgaps:NPpos406below
+cutoff/7absent;NPneg215belowcutoff/16ambiguous/39absent. Not wrongpeakdominant.
+SourceASTguardsconfirmselectorunchanged;initialEMPTYv1guardfailurewasunrelated
+moduleformatting,notnumericalchange. Newunusedselection_diagnostics.py+3tests.
+Privatepermanualrows+FIDs/scores/receiptsoutsideGit;aggregateCSVsonlycommitted.
+
+BMPmanualPOLARITYpattern:30datasetswithendogenousBMP,16NPpos/14NPneg,NONEboth;
+3noBMPmanual. A nonblockinguserquestionasksifintentionalpreferredpolarityor
+shouldbothbeannotatedwhensupported. No replyyet;NOTglobalblocker. DoNOTuseown
+manualclasspresenceasruntimegateorremoveunsupportedcallsfromevaluation.
+
+NEWSTANDARDCONTEXTAVAILABILITY(notaccuracy):baselineBMPstandardfeaturesNPpos15,
+NPneg16 ->completed022NPpos31/NPneg32;32of66dataset/NPmodecasesnewlysupported.
+All63positiveqtynM. MissingZoembaboth/EHTs_MAVANPpos. Cardiomyooriginalbaseline
+BMPSTDnoneinboth;005completionfindsBOTH. Original004run_contextfeaturesusedonly
+baselineautomaticSTD,soquantitativeevidencefromlatercompletespikeswasmissing.
+CountingCSV+proceduredocscommitted;availabilityNOTproofcorrectness/gains.
+
+NEXTBESTHYPOTHESIS(after023tableDELIVERED):newDECLAREDstandard-anchored RT/intensity
+features,notmorecutoffs. NeedfitstandardRT/library/transfer/reportmetadata on
+ALL25maskscopes(ownquery+outer+innerexcluded),thenaddfeatures toexisting363tables
+WITHOUTchangingoldcolumns/pools. Neverreuseouter-only005modelsforINNERtraining:
+thoseincludequery/calibrationcuration. IndependentSTDdetectionfrombaseline/
+declaredcatalog/rawfeatures,notproposedendoselections(circularity);excludeown
+featureasanchor,preserveisotopemasses/positionalethers,missingunknown. Direct
+candidateRT-minus-standardRT/stdCDB/logresponse/ppmcontextcouldsupplynewsignal;
+evaluatefullynestedfixed180HGB/newOOFcutoffs,all33/allclasses/full132report.
+Class-balancedtraining/matrixfingerprintsareothertestablehypotheses,notresults.
+Discoveryseparatelyneeded32class/modesceiling<90;475masspotentialNOT475calls.
+
+Full001-022tablesDELIVERED (verifiedpreviousfinalall132rows). 023full132table
+generated/preparedforuserdeliveryatthischeckpoint;VERIFYactualdeliveryBEFORE024.
+docs/validation/qe_20261022_023 top-levelbaselinecomparison;versus_022actualdelta,
+everyclass/mode,complete132BMPcompanion. decision/protocol/integrityreceipts.
+Newtoolrun_qe_nested_class_operating_experiment.py;newread-onlygateauditrunnable.
+No live numerical jobs atcheckpoint;inspectprocesses/artifactsbeforeresuming.
+
+PREVIOUS SCIENTIFIC CHECKPOINT — 22 October 2026, experiment022 COMPLETE
 
 No productiondefaults/entrypoints changed; goalACTIVE,NOTachieved. Pooled gain
 but NOT a default upgrade:retainasresearch/nestedtrainingfoundation;BMPregresses.

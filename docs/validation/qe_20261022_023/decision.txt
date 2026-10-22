@@ -1,0 +1,71 @@
+Experiment023 — nested-training class/mode operating cutoffs, REJECTED
+
+All33active datasets,132dataset/modes,33distinct original input sets,30project
+groups,allcuratedclasses. Correct requires same lipid/adduct/mode AND original
+feature. ALL92102manual entries retained,including28unresolved mappings.
+Samev2reference at every endpoint;165original workbook/peak-list hashes checked.
+No source data, production default or entrypoint changed. GoalACTIVE,NOTmet.
+
+Actual experiment delta,022 ->023:
+Correct82385/92102(89.449741%) ->82229/92102(89.280363%): -156.
+Unconfirmed extras9238 ->9493: +255.
+Wrong-feature choices1588 ->1590: +2.
+77/123curatedclass/modes below90 at BOTH endpoints. All4modes lost correct
+matches. Original baseline9697extras guard passes, but worse than022in correct,
+extras AND wrongfeatures, so reject. No cherry-picking class winners.
+Mode(correct/manual,extras,wrongfeatures),022 ->023:
+ RPpositive40495/45206 ->40464/45206;3361 ->3421;894 ->903.
+ RPnegative12125/13600 ->12088/13600;1972 ->1988;426 ->423.
+ NPpositive17373/19380 ->17331/19380;1838 ->1994;169 ->166.
+ NPnegative12392/13916 ->12346/13916;2067 ->2090;99 ->98.
+Dataset/modes:46gain,61lose,25same correct counts.
+Curatedclass/modes:44gain,45lose,34same. Not all gained/lost entries are disjoint
+categories of annotation errors; full reports define the actual denominators.
+
+BMP improved but was not enough:
+ NPpositive208/622(33.440514%) ->292/622(46.945338%);extras174 ->258.
+ NPnegative249/520(47.884615%) ->254/520(48.846154%);extras697 ->718.
+These percentages INCLUDEstandards; the preceding gate diagnostic used only
+endogenous entries and therefore has different BMP denominators. Neither is
+substituted for the all-manual primary performance metric.
+Other gains includeNPpositiveHexCer[t]+62correct/+108extras,HexCer[d]+36/+53;
+losses includeRPpositiveTG-90/TG-O-72,NPpositivePC-62/PC-O+P-54.
+Do not adopt only outer-testedBMP/HexCer winners as a deployment ensemble.
+
+What changed:
+One cutoff per canonical class/mode, SAME021 allocation helper/grid.05..1,
+but learned on022's genuinely nested four-inner-block OOF predictions and
+query-excluded RT/prior/range features, not old008/007self-informed inputs.
+Same022 final scores/candidate universe,005standard logic/models,.05ambiguity
+margin. No model refit, mass/RTwindow or carbon/DBlimit changes. No020additions.
+Training objectives:sumclasscoverage capped90%,thenpooledcorrect,thenfewerwrong
+features/extras. Class/mode floors=min(reference022correct,ceil(.9manual));
+pooledcorrect>=reference022;pooled9.5%endogenous extras/manual budget. Classes
+with<3traininggroups/<30manual frozenreference;unknownclass fallback022modecutoff.
+Globalfeature/identitywinners fixed BEFOREclasscutoffs;no promotion afterwithhold.
+Same knownbaseline/vendorexposure limitation as022, not untouchedexternal/FDR.
+
+All5exact022INNER training reference checks passed. All15MILPstages confirmed
+optimality with safeguards. Training correct gains byouterfold:3,8,2,4,0.
+Those training constraints did NOT generalize to held-out data. No test labels
+entered cutoff fitting; grouped separation alone does not guarantee improvement.
+
+Integrity receipt:266frozen source hashes,443input hashes,33scoreSeries EXACT022,
+132uniform-cutoff competition paritychecks,33unchangedstandard output sets,
+5trainingreference/scope/tablehash/optimality/budgetchecks. All passed.637tests,
+8skipped,83subtests;ruffclean. Sources/inputprofiles/privatecrosswalks/model
+weights remain outsideGit. No endo feature IDs or raw sample values published.
+
+Reporting:
+Top-level full132tables originalbaseline ->023(CUMULATIVE,not023gain).
+versus_022/ has actual022 ->023full132tables andeveryclass/mode; includes a
+separate complete132-row BMP companion,zero-manual modes explicitly marked.
+Full023user-facing table MUSTbe delivered BEFOREany024annotation experiment.
+
+Next:retain022asstronger research reference,notdefault. No more cutoff-only
+sweeps on these scores. Investigate new physical evidence:declared-standard-
+anchored RT/intensity context with fully query/outer/inner-excluded standard
+models,independent spike detection and no feature self-anchors. Availability
+alone is NOT accuracy. Matrix/class-balanced training remain hypotheses,not
+validated changes. Discovery stillneeded forclasses whose currentpool cannot
+reach90;475mass-offset-windowpotential is NOT475newcorrect annotations.

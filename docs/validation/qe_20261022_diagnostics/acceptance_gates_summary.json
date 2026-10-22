@@ -1,0 +1,20 @@
+{
+  "datasets": 33,
+  "manual_endogenous": 90646,
+  "selector_parity_checks": 264,
+  "normalized_duplicate_candidate_pairs": 0,
+  "correct_before": 80628,
+  "correct_after": 81010,
+  "gained_correct": 1373,
+  "lost_correct": 991,
+  "annotation_changes": false,
+  "source_sha256": {
+    "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/work/repo/tools/qe_optimization/diagnose_qe_acceptance_gates.py": "ef3c3e16e5080655ce50977b1780c8a0296b596961e0edc146933d6785b023b6",
+    "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/work/repo/app/matlab_annotation/operating_point.py": "27a5fda9557f538ce34f808500d78dbe232ef5afab6efa1b623894844e97747b",
+    "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/work/repo/app/matlab_annotation/selection_diagnostics.py": "4228d62a0d63043d394564296def99e8ef09be70968625253d384b0906713d4b"
+  },
+  "note": "READ-ONLY recorded009/022 scores and SAME recorded settings. No changed annotations, counterfactual cutoff/margin choices, model fit or promised gains. Gate reasons ordered, not independent causes; score/cutoff inequalities can overlap. Endogenous diagnostic denominator, ALL unresolved mappings retained; normal performance reports also include standards. Private row-level IDs/scores remain outside Git. Prior development exposure precludes untouched external/FDR claims.",
+  "input_file_count": 208,
+  "full_private_receipt_sha256": "22bc4fb2c92762df71b463c0111cbc44a3dd18498e3871bef57c6aabac1cb906",
+  "previous_performance_count_parity_verified": true
+}

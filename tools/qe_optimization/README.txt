@@ -34,6 +34,21 @@ writing comparison_with_<checkpoint-name>/ separately from full_comparison/.
 It verifies the two runs contain exactly the same dataset collection. For022,
 both originalbaseline ->022 and009 ->022 reports are published; the latter is
 the experiment delta, not a cumulative gain misattributed to the new change.
+
+After022's FULL132 table was delivered,023tested class/mode cutoffs again,
+this time on022's genuine nested four-inner-block OOFs (not008/007features):
+  python tools/qe_optimization/diagnose_qe_acceptance_gates.py
+  python tools/qe_optimization/run_qe_nested_class_operating_experiment.py
+Evaluate/report023 as usual with referencev2,plus --before <experiment_022>.
+First command is read-only recorded-score/gate auditing,NOT an annotation
+experiment. All264selectorparitychecks passed. Gate audit outputv2 preserves
+an emptyv1 directory from an overbroad whole-module byte guard; audited selector
+ASTs are identical. Private manual row scores/FIDs must NEVER enter Git/models.
+023reuses all022finalscores/pools/005standards,changes ONLY training-derived class
+cutoffs. Exact022trainingreference and132uniformcompetitionchecks required;
+15MILPstagesoptimal. No evaluated curation input, refit or new candidate window.
+023was REJECTED:-156correct/+255extras/+2wrongfeatures versus022. It is retained
+for provenance only,not as another default. Full132table required BEFORE024.
 Use the SAME5 project blocks, with FOUR inner score folds. Reference masks
 exclude the outer test, inner calibration and own-query project as applicable;
 all learned endogenous features are generated before supervised flags enter.

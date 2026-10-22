@@ -1,0 +1,14 @@
+{
+  "all_passed": true,
+  "source_hash_checks": 266,
+  "input_hash_checks": 443,
+  "identical_022_score_series": 33,
+  "uniform_cutoff_competition_parity_checks": 132,
+  "unchanged_standard_output_sets": 33,
+  "training_reference_scope_table_hash_optimal_budget_checks": 5,
+  "completed_datasets": 33,
+  "original_source_files_verified_by_evaluator": 165,
+  "manual": 92102,
+  "unresolved_manual_rows": 28,
+  "note": "Integrity checks,not untouchedexternal/FDR proof. Scores EXACT022; standards sets checked separately from endogenous acceptance."
+}

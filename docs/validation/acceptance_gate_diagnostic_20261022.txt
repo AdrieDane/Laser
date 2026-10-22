@@ -1,0 +1,73 @@
+Read-only acceptance-gate diagnosis:009 vs022, all33datasets
+
+No new annotations, model fitting, threshold choices or counterfactual settings.
+Existing selection at each run's RECORDED scores/cutoffs/margin was reproduced.
+264selector-parity checks passed (33datasets x4modes x2runs). Three synthetic
+tests cover every gate, stable ties, duplicates, cutoff boundaries and guards.
+Global suite637passed,8skipped,83subtests. No production hook/default changed.
+Only endogenous manual rows in this diagnostic; ALL manual entries/standards
+remain in ordinary annotation-performance tables.28unresolved retained.
+
+For90646 endogenous manual entries:correct80628 ->81010.1373new correct original
+features,991previously correct lost:net+382,exactly matches prior performance.
+Of991 lost matches,906are below the new acceptance cutoff,63prefer another
+feature of the same lipid/adduct,12fail feature-label ambiguity,10rank below
+another label. These PRIMARY gates are ordered, not independent causal effects.
+Candidates can fail more than one condition; do not add overlapping indicators.
+
+BMP specifically:
+ NPpositive:604endogenous manual,313 ->191correct (32gained,154lost).
+  ALL154lost matches have the correct feature available but below cutoff.
+ NPnegative:505endogenous manual,276 ->235correct (31gained,72lost).
+  71lost matches below cutoff;1newly ambiguous. None lost to a different peak.
+Among lostNPpositive matches,48new scores meet the OLD cutoff but not the NEW;
+105scores dropped across the NEW cutoff. NPnegative counts27and48. Those
+conditions can overlap and are NOT a decomposition of isolated causal effects.
+Paired median BMP score change:NPpositive-.042895,NPnegative+.031657.
+These are curator-agreement scores, NOT analytical identity probabilities/FDR.
+
+At022's recorded settings, remaining BMP endogenous gaps:
+ NPpositive:406belowcutoff,7absentfrompool;nonewrongfeature/ambiguity.
+ NPnegative:215belowcutoff,16ambiguous,39absentfrompool.
+Across ALL classes, belowcutoff gaps:RPpositive2345,RPnegative519,
+NPpositive1587,NPnegative653. Discovery still needed for3538mapped entries.
+
+Scope pattern requiring interpretation, NOT hard-coded inference:
+30of33datasets have endogenous BMP curation.16inNPpositive,14inNPnegative;
+NONE in bothNPpolarities. Three have no endogenous BMP entries. This may reflect
+curation/reporting choices, sensitivity, interference or another cause; the
+diagnostic does NOT establish why. A nonblocking user clarification was asked.
+Never feed a dataset's manual class/mode presence into runtime inference or
+remove calls from evaluation because manual curation did not list that mode.
+
+Next-evidence availability check (not an accuracy result):
+Counting classBMP/is_is rows in frozen original baseline annotations versus
+022's completed-standard annotations across33datasets x2NPmodes gives:
+ NPpositive15 ->31 standard features,NPnegative16 ->32.
+32dataset/modes newly have a completedBMPstandard despite no original anchor.
+All63completed rows have positive declared quantities and nM units. Missing:
+Zoemba bothNPmodes,EHTs_MAVA NPpositive. This does NOT independently prove each
+standard correct, safe to use, or capable of improving endogenous annotation.
+Availability CSV contains counts only; no intensities, original feature IDs or
+profiles. The baseline/source files and022outputs are covered by the existing
+experiment/diagnostic hash receipts. Simple counting procedure above, not a fit.
+This suggests investigating DECLARED-standard-anchored RT/intensity evidence,
+not more cutoff tuning. Current original scoring context missed these anchors.
+To use learned standard detection as NEW endo training features, fit standard
+models for all25query/outer/inner exclusion masks. DO NOT reuse outer-only005
+models inside INNER score training: they include query/calibration curation.
+Detect standards independently of the proposed endogenous choices, reject
+ambiguous/spike-feature self-anchors, preserve labelled masses/positional/ether
+class distinctions, leave absent/incommensurate evidence unknown. No widened
+mass/RT candidate windows or manual presence whitelist is justified by counts.
+
+Executed diagnostic:acceptance_gate_diagnostic_v2. The initial emptyv1 folder
+failed an overbroad whole-module byte guard:009's unrelated cutoff fitter had
+formatting changes. Audited SELECTOR ASTs are identical in009/022/current;
+function-level guard and every numerical selector parity check passed in v2.
+Private row-level labels/scores/FIDs and full input hashes remain outsideGit.
+Only aggregates/source/hash receipts under qe_20261022_diagnostics/ published.
+
+The subsequent023class-cutoff experiment was fully evaluated and REJECTED:
+it confirms the available settings trade recall against extras poorly; do not
+repeatedly tune the same scores against the outer test data. See023decision.
