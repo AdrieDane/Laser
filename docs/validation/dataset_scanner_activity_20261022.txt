@@ -39,7 +39,10 @@ complete synthetic dataset, excluding only scan ID and creation timestamp.
 Browser checks: simulated blocked worker shows the path, counters and possible-
 stall warning; Cancel is acknowledged while still blocked, and status becomes
 cancelled when the operation returns. A subsequent actual scan of a synthetic
-four-mode dataset succeeds. These are local synthetic checks, NOT a claim that
+four-mode dataset succeeds, showing 1/1 datasets and 8/8 files checked. Explicit
+approval then copies and hash-verifies exactly 8 files; source bytes are unchanged.
+Stopping the test service shows a separate connection warning in the browser.
+These are local synthetic checks, NOT a claim that
 the user's Windows network share was scanned or that a real SMB stall was fixed.
 Preview evidence is under outputs/dataset_scanner_20261022/activity_ui_final/.
 
@@ -51,7 +54,12 @@ Size: 11,556,897 bytes.
 SHA-256: 98054c9fb0b34e69582d2d435545349a9af62ffc1ff22aa30f301b3ccce07477
 Build output: outputs/dataset_scanner_20261022/progress_final/.
 
-The existing Windows workflow runs the scanner tests, builds the bundle and
-checks its isolated executable and loopback UI when these sources are pushed.
-Its result must be checked before claiming native Windows verification of this
-update. No annotation algorithm, screening threshold or source dataset changed.
+NATIVE WINDOWS CHECKS PASSED
+The Windows workflow passed all 47 scanner tests, built the bundle, launched its
+isolated Windows executable, checked the loopback UI and published the artifact:
+https://github.com/Core-Facility-Metabolomics-AUMC/LASER-standard-lipidomics/actions/runs/39741986281
+Tested source: ab0b27b8cd66f591018817d0392c3ee872e0a722.
+The actual G: share and native folder-picker interaction still require a check
+on the user's Windows PC. No annotation algorithm, screening threshold or source
+dataset changed. Close an old scanner and extract the updated full ZIP into a
+new folder before launching it; refreshing an old process does not update it.
