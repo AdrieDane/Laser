@@ -1,3 +1,124 @@
+ALL-CLASS OPTIMIZATION STARTED — 22 October 2026
+
+Current in-progress checkpoint (not a completed improvement): two unused
+development components are in app/matlab_annotation/retention_atlas.py and
+class_candidates.py. There is NO production engine hook or default change.
+Synthetic component tests:12 pass. Full suite before the mechanically equivalent
+preparation acceleration:459 pass,8 skipped,83 subtests. New-file lint passes.
+
+Experiment001 is a fixed-protocol five-group-fold class RT atlas plus portable
+logistic evidence selection. It retains3ppm/10s windows and existing composition
+limits, protects standards and fits RT models/priors/classifiers only on the
+other cohort groups. Candidate features contain class/adduct/composition and
+measured evidence, NOT dataset names or original feature IDs. Related project
+prefixes share folds (30 cohort groups across33 folders). Parameters and frozen
+sources:outputs/qe_optimization_20261022/experiment_001/protocol.json.
+Runner:work/run_qe_atlas_experiment.py --watch-baseline. It is a finite local
+experiment waiting for baseline outputs, not a scheduled task. Do not launch a
+second runner against the same output directory. Check live processes first.
+
+The initial slow PREPARATION was stopped before any selection-model fits or
+annotation selections. It is preserved under experiment_001_preparation_before_acceleration/.
+The active experiment_001/ uses a new frozen, computationally accelerated source
+snapshot. On one real dataset across all five folds, ALL candidate fields and
+ALL model evidence agree with the original preparation within1e-12. Proof:
+outputs/qe_optimization_20261022/preparation_acceleration_parity.json.
+This did not change windows, models, thresholds or scientific decisions.
+
+Model/RT-only diagnostics in rt_atlas_development/ are NOT annotation-performance
+experiments. Some development choices inspected those diagnostics, so even the
+grouped held-out results must not be called untouched external validation. RT
+libraries are fitted without the evaluated cohort; optional local shifts use
+at least four OTHER distinct automatic-anchor compositions, never the target
+itself or manually curated test RTs. RT diagnostic versions are preserved.
+
+Once all33 baseline and experimental runs complete:
+  work/evaluate_qe_baseline.py <baseline folder>
+  work/evaluate_qe_baseline.py <experiment_001 folder>
+  work/report_qe_experiment.py
+The report refuses incomplete collections and writes full132-row all-class
+before/after tables plus full class tables under experiment_001/full_comparison/.
+DELIVER those tables to the user before another annotation-changing experiment.
+No goal achievement or production improvement has yet been established.
+
+Early baseline diagnostics (not full-collection results) show a large RT-model
+gap AND unselected otherwise-eligible candidates. Strict existing-gate ranking
+alone has only~67–79% possible coverage on the first three datasets. About2.5%
+of parsed endogenous manual compositions fall outside current ranges, with much
+larger class-specific losses for some gangliosides. Do not just loosen all gates.
+If experiment001 exposes remaining failures, possible subsequent directions are
+independent class-lattice RT registration, better original-feature selection,
+group-trained composition limits/matrix priors, and independent mass calibration.
+First inspect all33 dataset/class/mode errors. Resolve evaluation-only ambiguous
+manual-feature mappings independently of LASER choices; never count a mapping
+correction as an annotation-algorithm gain. Do not tune on held-out labels and
+then describe the scores as untouched external validation.
+
+User target is now at least90% correct same-original-feature coverage of the
+manually curated lipid CLASSES in each mode, not PE alone. New strategies,
+composition bounds and matrix-aware options are allowed. Extras trade-off was
+delegated to prudent judgment: initial guardrail is no net increase in total
+extras; disclose any small increase vs a substantial repeatable gain before
+making it default. Preserve all reporting/held-out-validation rules in AGENTS.
+
+Fresh baseline is running on all33 active folders from a frozen source/model
+snapshot of4da94ef (annotation code unchanged; current local doc changes do not
+affect it). Default experimental PE selector is OFF. Raw-only staging excludes
+MS_data.xlsx, MAT files, per-project lipid definitions and curator scripts.
+Task-workspace paths:
+  outputs/qe_optimization_20261022/baseline/run_manifest.json
+  outputs/qe_optimization_20261022/baseline/progress.json
+  outputs/qe_optimization_20261022/baseline/runs/<dataset>/complete.json
+  outputs/qe_optimization_20261022/baseline/source_snapshot/
+Runner:work/run_qe_baseline.py --output <baseline folder> --workers3 --resume
+Evaluator:work/evaluate_qe_baseline.py <baseline folder> [--partial]
+Diagnostics:work/diagnose_qe_baseline.py
+These helpers are outside the repository in the task workspace. Use the current
+Python3.13 installation with NumPy/Pandas/SciPy; no old-project benchmark loader
+is needed. Environment:OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1. Do not start a
+second concurrent baseline runner targeting the same outputs. Check progress
+and live process state before resuming. Local result pickles are trusted outputs
+created here, not downloaded executable data. Partial reports are explicitly
+incomplete and are not full-collection results. No improvement is deployed yet.
+
+Evaluation uses the frozen scanner-audit manual crosswalk, with current source
+workbook and four-peak-list hashes checked before scoring. It normalizes only
+equivalent charge/formate notation; structural and positional labels stay
+distinct. All manual rows, including unresolved original-feature mappings, stay
+in the primary denominator. Benchmarked curation is never staged for annotation.
+
+ACTIVE EXAMPLE COLLECTION — USER DECISION, 22 October 2026
+
+From now on the ONLY active example collection is:
+/Users/yorrick/Library/Mobile Documents/com~apple~CloudDocs/Work/AI/example_data_CFM/QE_example_datasets
+
+The user confirmed these are all the datasets we have. Treat archive/ and all
+older example collections as historical only. Do not add them to current
+optimization/performance totals or ask to recover retired examples.
+
+Current inventory AFTER explicit user removals:33 folders,132 folder/mode
+combinations,33 distinct original four-peak-list sets. All three24P0038_Fibros...
+versions, both25P0058_Heart_V2 versions,26P0002_ZebraFish_PEX_Yorrick,
+25P0081_IPSC and24P0072_IONIS_plasma_serum were removed from the active folder
+and moved to recoverable Trash. Do not reintroduce them without a new user
+request. The other33 folders and their manifest-listed file sizes were verified.
+These removals are user-requested scope exclusions, not proof of whole-dataset
+quality failures. Report all33 remaining folders and all four modes. Related/
+shared acquisitions must stay together in development/test splits. Read AGENTS.md.
+
+Historical PRE-REMOVAL quality audit:all164 mode checks pass scanner thresholds;
+all560 manifest-listed source files verified. This is NOT a LASER annotation
+performance baseline. Some class-specific exceptions and an isotope-labelled
+CE internal-standard reference mismatch require attention; no annotation code
+or source data changed. Audit evidence is in the task workspace at
+outputs/qe_dataset_audit_20261022/quality_overview.txt and supporting CSV/JSON.
+
+Establish a fresh baseline on this active33-folder collection before the next annotation
+experiment. All15-folder/14-unique-dataset scores and source-availability notes
+below are HISTORICAL. Do not reuse those totals as this collection's baseline.
+Prior development exposure remains relevant even when the inputs now appear
+under a new folder; do not call overlapping datasets untouched validation.
+
 NEW DATA COLLECTION UTILITY — 22 October 2026
 
 The user requested a separate Windows-clickable dataset scanner, restricted to

@@ -1,5 +1,56 @@
 # Experiment reporting policy
 
+## Active example collection — user decision, 22 October 2026
+
+The ONLY active example collection for future optimization and performance
+evaluation is:
+`/Users/yorrick/Library/Mobile Documents/com~apple~CloudDocs/Work/AI/example_data_CFM/QE_example_datasets`
+
+The user confirmed that the datasets in this folder are now all we have.
+Do not include the sibling `archive/`, older flat-layout example folders or
+historical saved runs as additional current datasets. Do not report archived
+datasets as missing inputs that need to be recovered for the active benchmark.
+Historical experiments remain historical evidence, not the current baseline.
+
+After the user's explicit removals on 22 October, the active inventory is
+33 folders, 132 folder/mode combinations and 33 distinct original four-peak-list
+sets. Removed from the active collection and moved to recoverable Trash:
+all three `24P0038_Fibros...` versions, both `25P0058_Heart_V2` versions,
+`26P0002_ZebraFish_PEX_Yorrick`, `25P0081_IPSC`, and
+`24P0072_IONIS_plasma_serum`. Do not restore/include them without a new user
+request. These are user-requested exclusions, not proof that all their data
+failed quality checks. The earlier 41-folder/164-check/38-input-set audit is
+historical and predates these removals.
+
+Show every remaining folder in detailed results. Keep related or shared-
+acquisition datasets together in development/test splits. Different peak-list
+hashes alone do not establish independent biological cohorts. If future
+additions share original inputs, resolve the authoritative reference version
+and count each input set only once, never choosing by the best LASER score.
+
+A new annotation-performance baseline must be established on this active
+33-folder collection. Before/after experiments must use the same collection
+and denominators. The quality audit is not an automatic-annotation performance run.
+The old 15-folder/14-unique-dataset scores must not be presented as scores for
+this collection. Prior use of any overlapping datasets still counts as prior
+development exposure; changing the collection folder does not make them
+untouched external validation data. Reinventory if the folder contents change.
+
+## Reporting requirements
+
+Current optimization target (22 October): the user requests at least 90%
+correct same-original-feature coverage of manually curated lipid classes,
+across all four modes, with controlled extras. This is not a PE-only target.
+The user permits new strategies, composition limits and matrix-aware options.
+They delegated the extras trade-off to the agent's judgment: use no net increase
+in total extras as the initial guardrail, and report any small increase versus
+a substantial gain explicitly before adopting it as a new default. Do not
+claim analytical FDR from curator agreement. Do not feed a dataset's curated
+workbook/saved fits or hard-coded dataset/feature identities into annotation.
+Any learned priors, RT atlas or ranking model must be evaluated with grouped
+held-out data, keeping related/shared acquisitions together and explaining
+prior development exposure and rare-class limitations.
+
 User policy established 21 October 2026: after every experiment that changes
 annotation behaviour, report a complete before-and-after table for every
 example dataset and every measurement mode. This applies to changes in code,
@@ -40,9 +91,11 @@ the complete table with pooled totals or only the rows that improved.
   match percentages, different-peak choices, total annotation counts and manual
   entries not on the same peak. Clearly define missing/unresolved categories;
   do not add overlapping categories as though they were disjoint errors.
-- Include each supplied folder in the detailed results. Flag the duplicate fish
-  dataset and exclude it from pooled totals, leaving 14 unique datasets unless
-  the example collection changes. Label the pooled sample count explicitly.
+- Include each folder in the active collection in the detailed results. Flag
+  shared original-input sets and exclude duplicate versions from pooled
+  totals, following the active-collection rules above. Label the pooled input
+  set count and the chosen reference versions explicitly. The historical
+  duplicate-Fish/14-unique-dataset convention is no longer the current scope.
 - Identify the before and after versions, experimental/default settings, tested
   scope and whether results come from full raw-input runs, saved-output replays
   or conditional cross-validation. State training/development-data limitations
@@ -56,6 +109,6 @@ Documentation-only or formatting-only changes that cannot affect annotation
 results do not require rerunning annotation. Reuse an explicitly identified,
 verified comparison when reporting the same completed experiment again.
 
-Latest full example table:
+Latest historical annotation-performance table (not the active collection's baseline):
 [Local calibration pilot, rejected for deployment](docs/validation/local_pe_calibration_20261021.md).
 The app retains the [user-requested rollback](docs/validation/experiment_rollback_20261021.md).

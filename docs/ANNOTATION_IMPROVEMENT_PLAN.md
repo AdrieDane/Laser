@@ -1,5 +1,50 @@
 # Annotation improvement plan
 
+## Current all-class objective — 22 October 2026
+
+The user requests at least 90% agreement with manually curated lipid classes
+on the same ORIGINAL features in each of the four modes, not only PE. New
+features, settings, composition limits and matrix-aware strategies are allowed.
+Use no net increase in total unconfirmed extras as the initial guardrail. The
+user delegated prudent trade-offs; report any small extras increase against a
+substantial, repeatable correct-match gain before making it the default.
+
+1. Establish a fresh default-engine baseline on all 33 active datasets using a
+   frozen code/reference snapshot. Stage raw peak lists, declared standards and
+   sample metadata only. Curation is evaluation/training evidence, not an input
+   to annotation of that same dataset.
+2. Report same-original-feature matches divided by ALL manual entries by class,
+   dataset and mode, along with total extras, different-peak calls, unresolved
+   mappings and candidate/gate diagnostics. Do not average mode percentages.
+3. Address the largest evidenced gaps. Compare class-aware confidence/feature
+   selection, independently calibrated RT-reference models and composition
+   priors rather than merely loosening all mass/RT windows. Fit learned methods
+   on other cohort groups and keep test curation out of all model/threshold fits.
+4. Use explicit matrix options only when justified by enough training data.
+   Retain plausible long-chain lipids in relevant matrices; never hard-code
+   benchmark dataset IDs, feature IDs or manual selections into runtime.
+5. After each changed experiment, deliver the complete before/after tables
+   required by AGENTS.md before the next experiment. Keep rejected methods out
+   of production. Validate source preservation, regression tests, portability
+   and the actual production path before making a successful method default.
+
+## Active collection and retained historical context
+
+Active collection, confirmed by the user on 22 October 2026: only
+`example_data_CFM/QE_example_datasets`. The older archive is historical, not
+additional current data. After the user's explicit removals, the folder contains
+33 folders and 33 distinct original four-peak-list sets (132 mode combinations).
+All three Fibros versions, both Heart_V2 versions, ZebraFish_PEX_Yorrick, IPSC
+and IONIS_plasma_serum were moved to recoverable Trash. Do not reintroduce them
+without a user request. The earlier 41-folder quality audit predates removals.
+Show all remaining folders and all four modes in detailed reports. Keep related/
+shared acquisitions together in development/test splits. See [AGENTS.md](../AGENTS.md).
+
+Before the next experiment, establish a fresh annotation-performance baseline
+on this active collection. Its passing file/mass/RT quality audit is not an
+annotation-accuracy baseline. All 15-folder/14-unique-dataset results below
+describe historical experiments, not performance on the current collection.
+
 Current decision: the user rejected all three approaches from the last
 RP-positive round. The consensus extension was removed; the other two were
 never deployed. The earlier NP-negative improvement is retained. See the
@@ -33,7 +78,7 @@ improve measured performance without an uncontrolled increase in annotations.
 
 ## Starting point
 
-The current four-stream validation contains 15 folders and 14 unique datasets.
+The historical 21 October validation contained 15 folders and 14 unique datasets.
 The duplicate fish folder must not inflate pooled results. Across all classes,
 34,284 of 45,712 reliably mapped manual entries have the same lipid, adduct,
 stream and original feature in LASER: 75.0%. Ordinary PE has better pooled
@@ -76,8 +121,9 @@ stream and class, and pooled unique-dataset summaries. Reconcile totals,
 preserve feature IDs and standards, and fingerprint input artifacts. Keep
 manual labels and benchmark code outside the annotation runtime.
 
-First evaluate the saved full outputs from all 15 folders. No new annotation
-selection rules are needed for this checkpoint. Use the results to prioritize
+First establish the baseline on every folder in the active collection. Old
+15-folder saved-output replays remain historical and cannot substitute for
+this checkpoint. No new annotation selection rules are needed. Use the results to prioritize
 candidate discovery versus peak selection, rather than optimizing a headline
 percentage without understanding the cause.
 
