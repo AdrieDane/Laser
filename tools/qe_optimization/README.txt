@@ -20,6 +20,36 @@ The original local runners remain under workspace/work/. These checked-in
 copies replace only path configuration with explicit environment variables.
 Frozen per-experiment sources/protocols are the authoritative executed versions.
 
+Nested-training preparation (after the complete021 table was delivered):
+  python tools/qe_optimization/verify_qe_unified_preparation.py
+  python tools/qe_optimization/build_qe_nested_references.py
+  python tools/qe_optimization/prepare_qe_nested_candidates.py
+  python tools/qe_optimization/run_qe_nested_training_experiment.py
+Evaluate/report experiment_022 with the same v2 manual reference and all132 rows
+before any023 annotation experiment. The first three commands are engineering
+preparation, NOT annotation accuracy experiments. The last command waits for
+the complete363-table preparation summary before fitting/accepting anything.
+Use the SAME5 project blocks, with FOUR inner score folds. Reference masks
+exclude the outer test, inner calibration and own-query project as applicable;
+all learned endogenous features are generated before supervised flags enter.
+Do not recycle the old self-informed training queries under a new fold name.
+Inherited baseline/vendor exposure and unchanged005 standard handling remain
+limitations; this is not a pristine external whole-pipeline test or an FDR.
+
+CRITICAL resource isolation: these new runners freeze app/, reference_data/
+AND methods/, set explicit process-local reference paths BEFORE app imports,
+verify those resolve INSIDE the frozen snapshot, and record source/input hashes.
+An app-only research snapshot silently fell back to older installed PE ranges
+(30-48 instead of repository28-50). Existing-candidate parity caught this
+BEFORE022 scoring/annotation. The invalid nested_reference_development_v1 and
+partial nested_candidate_preparation_v1/debug_v1 outputs are preserved locally
+for provenance ONLY; NEVER resume/reuse their tables. No source dataset or
+production scientific default was changed. Current runners use new v2 paths.
+The candidate preparer keeps at most3 numerical jobs queued, checks parity
+before completing a dataset, and never supplies legacy cached label flags to
+predictors. These flags exist in old parity caches but are explicitly ignored;
+do not claim that absolutely no file containing labels was ever opened.
+
 Use Python with the project's runtime AND calibration extras installed. The
 recorded experiments used Python 3.13, NumPy 2.4.4, pandas 3.0.2, SciPy 1.17.1,
 scikit-learn 1.8.0. Thread limits avoid BLAS oversubscription.

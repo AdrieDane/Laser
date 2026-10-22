@@ -1,0 +1,74 @@
+Nested-training engineering checkpoint — 22 October 2026
+
+Purpose: make the next curator-agreement experiment more credible, not claim
+an annotation gain from preparation or from better cross-validation alone.
+No production annotation entrypoint, setting or scientific default changed.
+The user target remains >=90% correct SAME original feature/lipid/adduct/mode
+by curated class and measurement mode, with controlled unconfirmed extras.
+The target has NOT been achieved. No annotation experiment022 result yet.
+
+Completed checks:
+- Reusable001-007 candidate/evidence preparation matches all33 datasets under
+  each of the five previous reference models:165 checks, all passed. Candidate
+  identities/coordinates and every numerical predictor checked at1e-12.
+- Full frozen-resource reference rebuild (v2):25 model bundles complete;
+  five single-block exclusion models agree with their old reference models.
+  Pair/triple exclusions are NEW models, not falsely called old-model parity.
+- Full application test suite:634 passed,8 skipped,83 subtests passed.
+  Ruff clean across all new modules, tests and research runners.
+
+What is new:
+Each endogenous training query's own project is excluded from its learned RT,
+composition-prior and carbon/double-bond range models. Outer test projects
+and inner calibration projects are also excluded as appropriate. Thirty
+project groups remain in the SAME five blocks across33 folders, with related
+acquisitions together. Five single + ten pair + ten triple exclusion masks
+require25 reference bundles and363 query/mask predictor tables, not hundreds
+of duplicate model fits. Four inner score folds replace the previous three.
+Models use the same fixed180-round HGB and cohort weights; planned calibration
+uses the009 weakest-mode objective and pooled9.5% endogenous extra/manual
+training budget, not021 class cutoffs. Standards keep matching005 models.
+
+Engineering failure caught and repaired:
+The first research snapshots copied app/ without reference_data/ or methods/.
+The resource resolver then found older installed scientific data, including
+PE carbon30-48 instead of repository28-50. Candidate parity failed before any
+022 score fitting, acceptance or annotation evaluation. No source data or app
+defaults were edited. Preserve v1 reference outputs and two partial candidate
+checkpoints for provenance, but DO NOT use them for performance or resume them.
+All25 references were rebuilt into v2 with complete frozen assets, explicit
+process-local paths and path/hash verification. Preparation v2 must finish all
+363 tables and pass33 exact held-out candidate/order/predictor comparisons
+before022 starts. At most3 numerical preparation jobs are in flight; a failed
+check no longer drains a silent full-collection queue.
+
+Resource-table SHA256 for the valid frozen repository ranges:
+1723a3dd001f456afa07f621a11e3d3288afe8ab3169e94add64a49132053d28
+Invalid installed fallback SHA256 (provenance only):
+a0cdfd3947ff9f1fd404ef76eaa55f28528563fb5e8902f2f260af58bb1f0390
+
+Aggregate165-row parity and25-mask preparation summaries:
+docs/validation/qe_20261022_diagnostics/nested_preparation_parity_*.{csv,json}
+docs/validation/qe_20261022_diagnostics/nested_references_*.{csv,json}
+The reference summaries were replaced with validv2 outputs, not v1 counts.
+Private original-feature queries, sample profiles, raw source files, manual
+crosswalks and fitted models remain OUTSIDE Git. Locally generated trusted
+pickles only. Source/input hashes and frozen sources remain with each run.
+
+Limitations:
+Existing automatic/vendor baseline anchors have prior development exposure.
+These datasets have repeatedly informed algorithm development, so even the
+new nested endogenous fits are NOT untouched external validation, NOT proof
+of analytical identification/FDR, and NOT fresh production raw-input runs.
+Legacy cached parity tables contain unused supervised flags; they are ignored,
+never predictor inputs. Supervised flags are attached to new feature tables
+only for explicitly permitted score-training/calibration groups; final outer
+query scoring never opens that query's manual comparison.
+
+Next required evidence:
+Finish363 predictor tables; fit20 inner +5 final score models; freeze training-
+only operating points; evaluate all33/all4 modes against identical referencev2
+including all28 unresolved manual rows. Report full132-row before/after table,
+extras already present, different-feature choices, and every class/mode before
+any next annotation-changing experiment. Initial extras safeguard remains no
+increase over baseline9697. No deployment based on a pooled average alone.

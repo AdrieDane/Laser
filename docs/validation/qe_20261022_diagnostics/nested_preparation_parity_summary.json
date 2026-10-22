@@ -1,0 +1,17 @@
+{
+  "datasets": 33,
+  "dataset_fold_checks": 165,
+  "all_passed": true,
+  "source_sha256": {
+    "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/work/repo/app/matlab_annotation/candidate_preparation.py": "f45be54594bd6b3093c6275b301bb80083f8e2d782888ed083617f525a023b27",
+    "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/work/repo/app/matlab_annotation/chemical_targets.py": "058bf13e25522bc101e6ac0450817e5fbd0b5b361c0ae6ac34f896da7f3df968",
+    "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/work/repo/app/matlab_annotation/class_candidates.py": "ededfaad7b7b0fd46266321d9d9dff64b3a9afdf3aac03d4504506630f7e03bf",
+    "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/work/repo/app/matlab_annotation/dual_candidates.py": "2e87a674f2382d03549f916da1d2110e674e9af7c998946dab0c9020d24f75ea",
+    "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/work/repo/app/matlab_annotation/retention_atlas.py": "010457999058d0011443689944d52f7c34da3d1fe94a82275d55d1407166b5cb",
+    "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/work/repo/app/matlab_annotation/run_context_evidence.py": "bcf91f06e1c0ef3af750e73b81e48e57c5941140972cb605b0fc649bdd313381",
+    "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/work/repo/app/matlab_annotation/cross_mode_evidence.py": "c375376a1159a5948728ee3b71bbeca0976f1423566b5352f751a968b1493d02",
+    "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/work/repo/app/annotator/peak_evidence.py": "46b85e18e4366d00437379e513feba8ab8a2af5daa4fa7c243cb3eacd074b2ba",
+    "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/work/repo/app/annotator/composition_ranges.py": "126106c4927821c93658285e18a79f8dac4a594c0ac614421319f69c642b5f6a"
+  },
+  "purpose": "Engineering candidate/evidence parity,NOT new annotation accuracy. No label/model fitting or acceptance/default change; original007queries and every predictor match within1e-12."
+}
