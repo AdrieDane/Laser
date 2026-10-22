@@ -1,4 +1,48 @@
-LATEST ALL-CLASS CHECKPOINT — 22 October 2026, after005;006 RUNNING
+LATEST ALL-CLASS CHECKPOINT — 22 October 2026, after007;008 RUNNING
+
+006 COMPLETE, NOT ADOPTED:79,939/92,102=86.8%;7,189 extras;1,443 wrong peaks.
+vs005:-535 correct,-299 extras,+13 wrong peaks. NPnegative improved but other
+modes lost coverage. Do NOT cherry-pick held-out class/dataset winners.
+007 COMPLETE:80,477/92,102=87.4%;7,462 extras;1,417 wrong peaks.
+vs005:+3 correct,-26 extras,-13 wrong peaks. Marginal, not the improvement needed.
+91/123 curated class/mode groups below90.007 mode totals(correct/manual,extras,wrong):
+  RP_Pos39,833/45,206,2,946,819
+  RP_Neg11,498/13,600,1,351,335
+  NP_Pos17,315/19,380,1,787,173
+  NP_Neg11,831/13,916,1,378,90
+FULL132-row comparisons001 THROUGH007 delivered before each next experiment.
+007 returns to004's global HGB configuration +005 standards, with six new
+OTHER-mode evidence fields. Frozen baseline automatic exact-class/C/DB anchors
+require confidence>=.9,absppm<1.5,adduct RT agreement<=3s. Same-phase offsets use
+>=8 OTHER shared compositions. NP/RP RTs never compared; ether/positional classes
+not merged. Profiles compare only>=4 matching VALIDATED biological GROUP labels,
+never guessed individual-sample pairing. No curation runtime input; candidates
+and all physical limits unchanged. All33/132 completed, same v2 manual reference.
+
+LIVE008:work/run_qe_operating_experiment.py (unified session3649 at checkpoint),
+outputs/qe_optimization_20261022/experiment_008/. Inspect before resuming; do NOT
+start duplicate writers. Frozen007 final models/candidates, SAME margin.05 and
+005 standards. Fits three INNER project-group score models within EACH OUTER
+training set; outer evaluated labels never choose cutoffs. Per stream, maximize
+correct original-feature training matches on separate inner-group predictions
+subject to9% unconfirmed endogenous extras/endogenous-manual budget. Fixed grid
+.20 through1.00 step.05; ties fewer extras then higher threshold. The9% budget
+leaves roughly1 point for standard extras but does NOT guarantee a test bound.
+Training references loaded ONLY for outer TRAINING datasets. Inner score fits
+exclude both inner calibration and outer evaluation groups. RT/evidence itself
+is inherited from OUTER-training atlas, not nested inner RT cross-fitting;
+conditional grouped threshold evaluation, NOT pristine end-to-end nested CV.
+No008 scores yet. Report all132 after completion BEFORE another experiment.
+
+NO production hook/default changed;90% goal NOT achieved. Model scores estimate
+curator agreement, not analytical identity probabilities or FDR. Source peak
+lists/workbooks unchanged; raw truth/profiles/local model pickles stay OUT OF Git.
+Latest verified full suite514 passed,8 skipped,83 subtests, INCLUDING the new
+operating-point tests. New-file/tool lint clean.006/007 reports and current tools
+are included in this checkpoint. Sole active collection remains33 folders/30 groups.
+
+OLDER CHECKPOINT BELOW (superseded where describing006/007 as unfinished)
+ALL-CLASS CHECKPOINT — 22 October 2026, after005;006 RUNNING
 
 User permits prudent extras trade-offs; initial guardrail remains no net pooled
 extras increase vs the original baseline.90% by curated class/mode is NOT met.

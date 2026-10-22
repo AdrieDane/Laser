@@ -111,3 +111,22 @@ withholding full calls. Threshold .5/margin .05 remain fixed. Evaluate/report
 every dataset and mode, including regressions; do not adopt based on pooled90%
 if individual modes/classes remain poor. Raw truth, local trained pickles and
 source workbooks are NEVER repository inputs or files to commit.
+
+006 was rejected: lower overall correct original-feature coverage than005.
+After its full report,007 returns to the global004 model architecture and adds
+OTHER-mode evidence, keeping the exact physical candidate universe:
+  python tools/qe_optimization/run_qe_cross_mode_experiment.py
+Evaluate/report experiment_007 as above. Matching validated biological GROUP
+profiles are not individual-sample pairing; missing evidence stays unknown.
+Phase RT offsets use OTHER compositions only; ether/positional classes distinct.
+
+After007's full report,008 tests TRAINING-group-calibrated operating points:
+  python tools/qe_optimization/run_qe_operating_experiment.py
+Three inner project-group score folds within each outer training set choose a
+per-stream cutoff, maximizing correct original-feature training matches within
+a fixed9% endogenous extras/endogenous-manual budget. Standards separate, same005
+logic. Frozen007 final score models, same physical candidates and ambiguity
+margin. No evaluated outer labels choose cutoffs. This is NOT fully nested RT
+cross-validation: outer-training atlas/evidence are inherited inside inner score
+folds. No test-set extra/FDR guarantee. Full132-row table and class reports still
+required before the next experiment, regardless of acceptance/rejection.

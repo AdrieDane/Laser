@@ -1,0 +1,9 @@
+Experiment006 NOT adopted as the next research method or app default.
+Relative to005:535 fewer correct same-original-feature manual matches,
+299 fewer unconfirmed extras,13 more different-feature choices. NPnegative
+improved, but the other three modes lost coverage.96/123 curated class/mode
+groups remain below90%. User target not met. Keep exact outputs/models for
+audit; do not cherry-pick held-out dataset/class winners into another method.
+All132 rows were delivered to the user before starting007.007 returns to the
+global004 classifier architecture plus005 standard handling and tests new
+OTHER-mode evidence, not the rejected006 specialists.
