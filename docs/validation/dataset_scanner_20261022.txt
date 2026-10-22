@@ -1,0 +1,80 @@
+WINDOWS DATASET SCANNER CHECKPOINT — 22 October 2026
+
+Purpose: collect additional curated datasets from Windows year folders 2024,
+2025 and 2026 only. This is a separate collection utility, not an annotation
+experiment. LASER annotation code, settings and previous experimental decisions
+remain unchanged.
+
+Portable program: tools/dataset_scanner/.
+Build: python3 tools/build_dataset_scanner.py --output-dir <fresh folder>
+The builder downloads an official Python 3.13.16 Windows x64 embeddable runtime,
+verifies a pinned SHA-256, and produces LASER_Dataset_Scanner_Windows.zip.
+Extract ALL files, then double-click Start Scanner.cmd. No Python installation,
+MATLAB, Excel or admin rights are required. Runtime licence is included.
+Reference: https://www.python.org/downloads/release/python-31316/
+Offline runtime: https://docs.python.org/3/using/windows.html#the-embeddable-package
+
+Stage 1 reads selected year folders, checks four-mode completeness and quality,
+and saves local reports. It does NOT create a dataset collection destination.
+Exact necessary source-file sizes/hashes are recorded. The UI shows selected
+file count and total bytes in readable units before copying.
+Stage 2 requires an explicit destination and approval. Only selected PASS
+datasets are copied. Free space, source freshness and hashes are checked.
+Every copied file is verified. Existing output datasets are never overwritten.
+Cancellation retains clearly labelled .partial_ folders, not completed datasets.
+
+Default source:
+G:\\divg\\GMZ Tandem ms biochemie\\Lipidomics
+Only direct 2024/2025/2026 year folders, or a selected allowed year itself.
+Statistics, archives, raw data, .git, links/junctions and large generated outputs
+are excluded. No original or previously annotated peak list is edited.
+
+Screening requirements and retained files are fully explained in
+tools/dataset_scanner/README.txt, distributed with the program. Quality is not
+inferred from filenames alone: manual entries are traced to original XCMS
+features using metadata/Protein-adjusted sample profiles. Raw mass accuracy is
+checked without recalibration. RT error is measured against saved MATLAB
+RTp_grouped predictions; these are in-sample fits, NOT independent proof of
+correct curation or external accuracy. Unknown/ambiguous/unsupported evidence
+does not count as a pass. Filters are visible and adjustable before scanning;
+all four modes must pass separately and limits accompany every collection.
+
+READ-ONLY EXAMPLE CHECKS
+12 currently available original projects were inspected, covering 48 modes.
+Five pass all four modes under the default conservative filters: Kidney summer,
+Heart, V2, rat brain and Pex5 mouse. Seven require review, mostly for median
+absolute mass error above 1.5 ppm. These are collection-suitability results,
+NOT LASER annotation-agreement percentages. Defaults were not loosened to
+force examples to pass. Exact mode metrics and reasons are in the companion CSV.
+The five passing collections contain 727,241,287 source bytes in total.
+
+The source folder is a flat example collection, so explicit project-level
+inspection was used for these tests; this does not claim that the Windows
+G: drive or its year-folder discovery was scanned. Year-folder discovery is
+covered separately with synthetic hierarchical fixtures. The initial inventory
+also encountered seven incomplete statistics-export snapshots; those folders
+are excluded from final discovery and are not collected.
+Fish, duplicate Fish and Serhii projects are currently absent and were not
+claimed tested. All relevant example source files retain their hashes.
+Large local evidence: outputs/dataset_scanner_20261022/examples_final/.
+
+END-TO-END AND SAFETY CHECKS
+449 tests and 83 subtests pass, including 41 scanner tests. Coverage includes
+year restriction, four-mode checks, native XLSX/MAT reading, unavailable mass/RT,
+original-feature ambiguity, unknown chemistry, duplicate collections, two-stage
+approval, original-byte preservation, source-change rejection, insufficient
+space, no overwrites, traversal/link protection, interruption/partial copies,
+CSV formula safety and loopback/CSRF restrictions. Changed-source lint,
+JavaScript syntax and whitespace checks pass.
+The full browser UI was also exercised with synthetic data: stage 1 showed
+eight files and their size without creating a destination; only explicit
+approval enabled stage 2, which copied and verified exactly those eight files.
+
+The Windows-native workflow in .github/workflows/dataset-scanner.yml runs scanner
+tests, builds the ZIP, invokes its isolated Windows executable, checks the
+portable loopback UI, and publishes the ZIP as a workflow artifact. Its actual
+run status must be checked after pushing; do not claim a future CI job passed.
+The real G: drive, native folder-picker interaction and company security policies
+still require a check on the user's Windows PC. If the folder picker is blocked,
+paths can be typed. Do not bypass Windows security warnings or organisational
+policy; obtain authorised IT assistance if needed.

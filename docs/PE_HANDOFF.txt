@@ -1,3 +1,21 @@
+NEW DATA COLLECTION UTILITY — 22 October 2026
+
+The user requested a separate Windows-clickable dataset scanner, restricted to
+2024/2025/2026 year folders. It is implemented in tools/dataset_scanner/ with a
+portable no-install ZIP builder and Windows CI workflow. Read its README.txt and
+docs/validation/dataset_scanner_20261022.txt. It does NOT change LASER annotation.
+Stage1 scans/checks all four modes and previews exact files/size without copying;
+stage2 requires an explicit destination and approval, then copies and verifies
+only selected PASS collections. No raw files/EICs/plots/archives are collected.
+The source is never altered. Failed/ambiguous/unsupported evidence is not a pass.
+449 tests and83 subtests pass, including41 scanner tests.12 available example
+projects/48 modes were checked read-only;5 pass all modes with conservative
+default filters. All211 relevant source-file hashes are unchanged. Missing Fish,
+duplicate Fish and Serhii examples were not claimed tested. Real Windows G:
+drive access still needs the user's PC. The CI run status must be verified after
+pushing before claiming native Windows checks passed. The retained annotation
+checkpoint and rejected scientific experiments below remain unchanged.
+
 REPORTING CLARIFICATION — 21 October 2026
 
 User wants correct annotations expressed as a percentage of ALL manually

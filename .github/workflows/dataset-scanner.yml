@@ -1,0 +1,59 @@
+name: Windows dataset scanner
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "tools/dataset_scanner/**"
+      - "tools/build_dataset_scanner.py"
+      - "app/tests/test_dataset_scanner.py"
+      - ".github/workflows/dataset-scanner.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  portable-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install numpy scipy pytest
+      - run: python -m pytest -q app/tests/test_dataset_scanner.py
+      - run: python tools/build_dataset_scanner.py --output-dir scanner-build
+      - name: Verify isolated Windows entrypoint
+        run: .\scanner-build\LASER_Dataset_Scanner_Windows\runtime\python.exe -I .\scanner-build\LASER_Dataset_Scanner_Windows\scanner.py --help
+      - name: Verify portable loopback UI on Windows
+        timeout-minutes: 2
+        shell: python
+        run: |
+          import json, pathlib, subprocess, urllib.request
+          root = pathlib.Path('scanner-build/LASER_Dataset_Scanner_Windows').resolve()
+          job = subprocess.Popen([str(root/'runtime/python.exe'), '-I', str(root/'scanner.py'), '--no-browser'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+          try:
+              url = None
+              for _ in range(6):
+                  line = job.stdout.readline()
+                  if not line:
+                      raise RuntimeError('Portable service stopped before startup')
+                  print(line.strip())
+                  if line.startswith('Open: '):
+                      url = line.removeprefix('Open: ').strip()
+                      break
+              assert url and url.startswith('http://127.0.0.1:')
+              with urllib.request.urlopen(url+'api/status', timeout=10) as response:
+                  assert json.load(response)['status'] == 'idle'
+              request = urllib.request.Request(url+'api/stop', data=b'{}', headers={'Content-Type':'application/json','X-Scanner-Token':url.split('/')[3]})
+              with urllib.request.urlopen(request, timeout=10) as response:
+                  assert json.load(response)['ok']
+              assert job.wait(timeout=10) == 0
+          finally:
+              if job.poll() is None:
+                  job.terminate()
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LASER-Dataset-Scanner-Windows
+          path: scanner-build/LASER_Dataset_Scanner_Windows.zip
+          if-no-files-found: error

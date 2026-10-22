@@ -1,0 +1,13 @@
+{
+  "projects_checked": 12,
+  "bundles_checked": 12,
+  "all_source_file_hashes_unchanged": true,
+  "source_files_verified": 211,
+  "Windows_native_UI_not_tested": true,
+  "missing_historical_projects": [
+    "25P0031_FishLarvae",
+    "25P0031_FishLarvae_duplicate",
+    "25P0040_Serhii_Brain"
+  ],
+  "no_annotation_algorithm_changes": true
+}
