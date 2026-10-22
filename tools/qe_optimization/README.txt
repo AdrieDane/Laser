@@ -174,3 +174,23 @@ ONLY blind raw-grid predictions,not root diagnostic truth. Unique raw hit within
 and conflicting claims protected. No new classifier/score cutoff. Evaluate ALL33
 and report132 rows,including extras/wrong peaks. Initial extras guard remains
 the original9,697 total. No production entry point/default changed.
+
+012 found422 more correct calls than009 but594 more extras and60 more wrong
+peaks. Its9,910 extras fail the original9,697 safeguard; it is NOT adopted.
+After its full132 table,013 tested a fixed neutral-ion ambiguity exclusion:
+  python tools/qe_optimization/run_qe_ion_footprint_experiment.py
+Only NEW012 NP-positive calls; invert native adduct/charge masses, withhold
+different canonical classes within5ppm neutral/2s RT of old009 or one another.
+Exclusion-only, not a wider admission window or proof of chemical error.
+All33 finished; ZERO calls changed. All132 rows delivered. Not adopted.
+
+After013's full table,014 tests pairwise ORIGINAL-feature choice starting009:
+  python tools/qe_optimization/run_qe_pairwise_peak_experiment.py
+Both-order true-vs-wrong feature pairs, identity/project-group balanced.
+Numeric differences/means/observation flags, same identity categories. Old
+selection/confidence shortcuts and occurrence descriptors removed. Symmetric
+pairwise preference must beat EVERY competing peak by>=.75, no forced cycle
+winner. Same>=50 identity/>=6 group support, occupied/spike protection and
+fixed identity multiset as011. Model180 rounds/31leaves/minleaf25/L2=2/lr.08.
+Every132 comparison MUST retain009 counts/extras; correct peaks may regress.
+Evaluate/report with identical referencev2 before any next experiment.

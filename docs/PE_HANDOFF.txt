@@ -1,4 +1,34 @@
-LATEST ALL-CLASS CHECKPOINT — 22 October 2026, after012;012 TABLE PENDING
+LATEST CHECKPOINT — 22 October 2026, after013;014 RUNNING
+
+012 AND013 FULL132 TABLES DELIVERED.012 aggregate reports now saved inGit.
+013 fixed new-NPpositive neutral-ion ambiguity guard changed ZERO calls across
+all33: same012 82,425/92,102=89.49317%,9,910 extras,1,679 wrong peaks,83/123
+class/modes below90. FAILS initial extras safeguard by213; NOT adopted.
+009 remains prior whole-method coverage checkpoint within original extra limit:
+82,003/92,102=89.0%,9,316 extras,1,619 wrong peaks. All app defaults unchanged.
+
+014 RUNNING:work/run_qe_pairwise_peak_experiment.py, session77885 at checkpoint.
+Inspect outputs/qe_optimization_20261022/experiment_014 before restarting.
+Pairwise physical comparison, same009 identities/adducts/modes/counts, same007
+pools. Train resolved one-true-feature identities with alternatives in BOTH
+orders, equal identity/project weights. Remove occurrence descriptors AND old
+selection/confidence/proposal-source shortcuts. Numeric difference/mean/finite
+flags + same identity categories. Symmetrize both predicted directions; proposed
+peak must beat EVERY competitor by>=.75. No forced winner for cycles. Same011
+runtime support>=50 conditional identities/>=6 groups, protection of occupied,
+manual/standard/declared-spike features; no cascades, conflicting claims ALL
+withheld.180 rounds,31leaves,minleaf25,L2=2,lr.08. Source/165pool+009dependency
+SHA-frozen. New pair model excludes evaluated project groups. Conditional grouped
+replay, inherited old RT/models not pristine nested/external validation.
+Complete ALL33, evaluate referencev2, report132 rows before ANY015 selections.
+
+New UNUSED app helpers ion_footprints.py and pairwise_peak_choice.py,12 synthetic
+unit tests. Last verified full suite549 passed before6 pairwise tests were added;
+pairwise tests6pass. Default/entrypoints unchanged. No privatefeatureCSV/pickles
+inGit. Last confirmed pushed39faaa1. Active goal NOT achieved.
+
+OLDER CHECKPOINT BELOW, superseded where it says012/013 reports pending
+ALL-CLASS CHECKPOINT — 22 October 2026, after012
 
 010 COMPLETE, REJECTED:81,579/92,102=88.6%;8,605 extras;1,550 wrong peaks.
 vs009:-424 correct,-711 extras,-69 wrong peaks.89/123 class/modes below90.
