@@ -1,0 +1,23 @@
+{
+  "datasets": 33,
+  "counts": {
+    "manual_rows_sharing_feature_with_other_manual_identity": 0,
+    "manual_endogenous": 90646,
+    "correct_original_feature": 80628,
+    "not_correct_original_feature": 9990,
+    "correct_feature_available_but_not_selected": 6452,
+    "correct_feature_unoccupied": 6161,
+    "correct_feature_absent_from007_pool": 3538,
+    "identity_selected_on_different_feature": 1015,
+    "correct_feature_occupied_by_other_label": 291,
+    "wrong_feature_and_correct_feature_occupied": 69,
+    "unresolved": 28
+  },
+  "source_sha256": "9c287beaffd58dbb48602ab0a15bacaac6d8fc49da8337eed672a4604df1e944",
+  "annotation_changes": false,
+  "note": "READ-ONLY endogenous009 diagnosis. Occupancy is conditional on existing009 selections; counts are NOT achievable gains or an assignment method. Sharing a mapped feature does not establish curator error or chemical truth. Standard occupants retained when measuring competition. Categories overlap: do not add as independent errors. No new predictions or acceptance decisions.",
+  "input_file_count": 99,
+  "full_private_receipt_sha256": "ac7be257188e13a933dbd409c4cabbd1d7c14272e8b1f1639250e85b6dea6c1a",
+  "five_previous_diagnostic_count_checks_passed": true,
+  "legacy_v1_all_count_parity_passed": true
+}

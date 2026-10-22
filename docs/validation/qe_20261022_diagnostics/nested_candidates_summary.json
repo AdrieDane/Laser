@@ -1,0 +1,11 @@
+{
+  "datasets": 33,
+  "dataset_mask_tables": 363,
+  "all_complete": true,
+  "supervised_labels_used_for_predictors": false,
+  "legacy_label_flags_ignored_in_parity_cache": true,
+  "query_exclusion_checks": 363,
+  "single_fold_candidate_and_evidence_parity_checks": 33,
+  "annotation_changes": false,
+  "note": "LABEL-FREE PREDICTOR PREPARATION ONLY, not annotation performance. Each query project excluded from its RT/prior/envelope. No manual comparison or acceptance threshold is used for generation. Legacy007 cached supervised flags are read ONLY in parity caches, ignored and never attached to new predictors. Inherited baseline prior exposure remains."
+}

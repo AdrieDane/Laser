@@ -1,0 +1,5 @@
+stream,manual_rows_sharing_feature_with_other_manual_identity,manual_endogenous,correct_original_feature,not_correct_original_feature,correct_feature_available_but_not_selected,correct_feature_unoccupied,correct_feature_absent_from007_pool,identity_selected_on_different_feature,correct_feature_occupied_by_other_label,wrong_feature_and_correct_feature_occupied,unresolved
+NP_Neg,0,13510,11889,1619,811,811,808,42,0,0,2
+NP_Pos,0,19025,17093,1930,1575,1575,355,96,0,0,2
+RP_Neg,0,13365,11797,1565,925,825,640,295,100,34,3
+RP_Pos,0,44746,39849,4876,3141,2950,1735,582,191,35,21

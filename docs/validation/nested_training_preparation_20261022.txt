@@ -14,6 +14,10 @@ Completed checks:
 - Full frozen-resource reference rebuild (v2):25 model bundles complete;
   five single-block exclusion models agree with their old reference models.
   Pair/triple exclusions are NEW models, not falsely called old-model parity.
+- Predictor preparationv2 COMPLETE:33 datasets,363 query/mask tables,
+  all363 query-exclusion checks and all33 exact held-out candidate/order/
+  predictor comparisons passed. No supervised labels used for predictors;
+  ignored legacy flags remain in old parity caches only.
 - Full application test suite:634 passed,8 skipped,83 subtests passed.
   Ruff clean across all new modules, tests and research runners.
 
@@ -66,7 +70,7 @@ only for explicitly permitted score-training/calibration groups; final outer
 query scoring never opens that query's manual comparison.
 
 Next required evidence:
-Finish363 predictor tables; fit20 inner +5 final score models; freeze training-
+Preparation is COMPLETE. Fit20 inner +5 final score models; freeze training-
 only operating points; evaluate all33/all4 modes against identical referencev2
 including all28 unresolved manual rows. Report full132-row before/after table,
 extras already present, different-feature choices, and every class/mode before

@@ -1,0 +1,44 @@
+Why are available correct features not selected? Read-only diagnostic
+
+All33 active datasets,009 research selections,007 candidate pools,identicalv2
+manual reference. This is NOT a new annotation experiment or an accuracy gain.
+No outputs, labels, cutoffs, models or production defaults were changed.
+This diagnostic excludes internal standards from its manual counts; ordinary
+performance reports continue to include ALL manual entries and standards.
+
+The correct original feature is already available for6452 endogenous manual
+entries that009 does not match correctly. Of these:
+ -6161 (95.5%) correct features are left unoccupied by any accepted009 label;
+ -291 (4.5%) correct features are occupied by a different accepted label.
+Thus direct feature-occupancy competition is NOT the main explanation for this
+available-but-not-selected group. A score/acceptance/identity-ranking diagnosis
+is a higher priority than assuming global feature reassignment solves the gap.
+Being unoccupied does NOT prove a correct feature would pass the existing
+confidence cutoff or ambiguity rules, or that lowering cutoffs is safe.
+These are diagnostic counts, NOT promised or independently attainable gains.
+
+Mode | Available correct features not selected | Left unoccupied | Other label
+RPpositive |3141 |2950 |191
+RPnegative |925 |825 |100
+NPpositive |1575 |1575 |0
+NPnegative |811 |811 |0
+TOTAL |6452 |6161 |291
+
+1015 of these6452 cases have the lipid identity selected on a different feature;
+69 of those also have another label occupying the correct feature. Categories
+overlap; do NOT add them as independent errors. A further3538 mapped manual
+features are absent from007 candidate pools, and28 manual mappings remain
+unresolved. Candidate discovery is still separately necessary.
+
+No mapped ENDOGENOUS manual rows share the same mode/original feature with a
+different manual lipid/adduct identity (zero conflicts). This does NOT prove
+the curator is chemically correct, or address unknown/unmapped rows.
+
+Verification: all33 complete;99 input-file hashes recorded privately. Counts
+match five earlier candidate-ceiling invariants:90646 endogenous manual,
+80628 correct features,6452 available-but-not-selected,3538 absent,28 unresolved.
+The second execution reads only required automatic-output columns and adds an
+explicit zero-conflict column; all original first-execution counts unchanged.
+Frozen executed source, full hash receipts and local trusted pickles remain
+outside Git. Only aggregate tables and hashed receipt summary are published.
+See qe_20261022_diagnostics/feature_occupancy_*.{csv,json}.

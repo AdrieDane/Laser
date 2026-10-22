@@ -23,9 +23,9 @@ imports,pathverificationANDhashreceipt. Regressiontests covermissingassets,
 escapedfallback andfreshinterpreterpaths. Seevalidation/nested_training_
 preparation_20261022.txt. Gitaggregate reference summaries are nowVALIDv2.
 
-At this checkpoint nested_candidate_preparation_v2 RUNNING,not yet363complete.
-Terminal63634,parentPID61962,workers61985/61986/61987 (inspectbeforeanyresume;
-theseIDsarehistoricaloncecomplete). Atmost3jobsinflight,failurestopsqueue.
+Nested_candidate_preparation_v2 COMPLETE33datasets/363tables. Terminal63634
+EXIT0,all363queryexclusionchecks and33heldout candidate/order/predictorparity
+checksPASS. OldPID61962/workers61985-61987haveended;doNOTresumecompleteprep.
 Everydataset has11queryexcludedmodels; ALL33outerheldout candidate/order/
 predictorparitychecks MUSTpass. Legacy007paritycachecontainsunusedlabel flags;
 theyareIGNORED,nevernewpredictorinputs. Do notclaimnofilewithlabelswaseverread.
@@ -34,7 +34,7 @@ New portable runners in tools/qe_optimization,READMEsequence/environment:
  verify_qe_unified_preparation.py (165checksdone)
  build_qe_nested_references.py (25validv2bundlesdone)
  prepare_qe_nested_candidates.py (v2running)
- run_qe_nested_training_experiment.py (implemented,022NOTSTARTEDyet)
+ run_qe_nested_training_experiment.py (022RUNNING,terminal26323)
 Readinessgate363complete;20inner+5finalHGBfits,4innerblocks,009objective9.5%
 trainingbudget,005standardmodels. LabelsattachedONLYpermittedtraining/calib
 groups AFTERfeaturepreparation. Finalouterquery NEVERopensitsmanualcomparison.
@@ -42,7 +42,21 @@ Source/inputhashes,frozenfullassets,localcheckpoints. Privatequery/feature/model
 pickles OUTSIDEGit. ReproductionusesexplicitLASER_OPTIMIZATION_WORKSPACE and
 LASER_QE_DATASETS. Do notstartaconcurrentduplicateagainstsameoutputdirectory.
 
-NEXT:finishv2prep,run022,evaluateall33/all4modes/referencev2,reportfull132table
+Terminal26323 commandchains022fitting,ALL33evaluation/refv2,andfullreport;inspect
+beforeanyresume. No022performanceresultyetatthischeckpoint. Newscorefitinputs
+arefrozenfromcompletedv2predictors; noadditionaladmission/margin/cutoffstrategy.
+
+NEW READ-ONLY feature_occupancy_diagnostic_v2:009endo gaps6452alreadyavailable
+butnotselected;6161(95.5%)correctfeatures UNoccupied,291occupiedbyotherlabel.
+NPnooccupiedcases;RPneg100,RPpos191.1015haveidentityonadifferentfeature,69of
+thesealsooccupiedcorrectfeature(CATEGORIESOVERLAP). No manualENDOGENOUSfeature
+sharingconflicts(0). Allv1counts+5priorcandidateceilingcountinvariantsEXACT.
+99inputhashes/privateexecutedsourceoutsideGit;aggregatecountsONLYinGit.
+NOTnewaccuracyorachievablegains. Score/cutoff/ambiguity/identityranking diagnosis
+looksnextusefulafter022,ratherthanassumingglobalfeatureassignmentisprimary.
+Still3538mappedmanualfeaturesabsentfrom007pool:discoveryseparatelyneeded.
+
+NEXT:finish022,evaluateall33/all4modes/referencev2,reportfull132table
 before023,thencommit/pushcfm/main. No extra budgetrelaxation or default adoption
 on engineering checks. Knownblindbaseline/vendor prior exposure remains; even
 nestedendo training isNOT external/pristinewholepipelinevalidation orFDR.

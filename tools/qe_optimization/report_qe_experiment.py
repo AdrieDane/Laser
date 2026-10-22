@@ -126,6 +126,10 @@ def main():
         + protocol["run_kind"]
         + " Grouped five-fold held-out RT/prior/classifier fits. Not a fresh production run.",
         "Algorithm development inspected example-data RT diagnostics; these results are not untouched external validation.",
+        "Recorded validation scope: "
+        + protocol.get("validation", "See frozen protocol."),
+        "Recorded fitting limitations: "
+        + protocol.get("model_fit_note", "See frozen protocol."),
         "Both endpoints use reference v2: 960 independently verified internal-standard raw-profile mapping corrections; all prior matches and manual denominators preserved. Not counted as algorithm gains.",
         f"Pooled correct: {100 * correct_before / manual:.1f}% ({correct_before}/{manual}) -> {100 * correct_after / manual:.1f}% ({correct_after}/{manual}).",
         f"Total unconfirmed extras: {extras_before} -> {extras_after}. No-increase guard: {guard}.",

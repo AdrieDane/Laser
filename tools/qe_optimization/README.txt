@@ -50,6 +50,16 @@ before completing a dataset, and never supplies legacy cached label flags to
 predictors. These flags exist in old parity caches but are explicitly ignored;
 do not claim that absolutely no file containing labels was ever opened.
 
+Read-only009 feature-occupancy diagnosis, not another accuracy experiment:
+  python tools/qe_optimization/diagnose_qe_feature_occupancy.py --output <new empty directory>
+Counts curator-matched endogenous features already in007 pools but not selected
+by009, distinguishing features left unoccupied from features assigned another
+label. Includes standards as possible occupants, but not in this diagnostic's
+manual denominator. This never produces/revises annotations or promises gains.
+Latest executedv2 explicitly reports zero manual feature-sharing conflicts and
+agrees with every originalv1 count plus five candidate-ceiling invariants.
+Only aggregate counts and hashed provenance may enter Git, not feature IDs.
+
 Use Python with the project's runtime AND calibration extras installed. The
 recorded experiments used Python 3.13, NumPy 2.4.4, pandas 3.0.2, SciPy 1.17.1,
 scikit-learn 1.8.0. Thread limits avoid BLAS oversubscription.
