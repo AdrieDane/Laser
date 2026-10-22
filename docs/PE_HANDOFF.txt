@@ -1,4 +1,75 @@
-LATEST SCIENTIFIC CHECKPOINT — 22 October 2026, experiment023 COMPLETE, REJECTED
+PAUSED AT USER REQUEST — 22 October 2026
+
+User requested a break and a changes/performance report. No experiment024 has
+started. No numerical annotation/training jobs remain running. Do not resume
+optimization until the user asks. Goal is paused, NOT complete. Production app
+defaults remain unchanged. Experiment023's complete132-row table WAS delivered
+before this pause (the older checkpoint below predates that delivery).
+
+Best retained research reference022:82385/92102=89.449741%,9238unconfirmed extras,
+1588different-feature choices. Original baseline:70270/92102=76.295846%,9697extras,
+1373different-feature choices. Gain12115correct,-459extras,+215wrongfeatures.
+77/123curated class/modes still below90; none of4pooled modes reaches90.
+Latest023 rejected:82229correct,9493extras,1590wrongfeatures; no cherry-picking.
+All33datasets/132modes,30project groups,28unresolved mappings included in92102.
+Cached grouped research evaluation, NOT fresh production runs or untouched
+external validation. Existing inherited baseline exposure remains a limitation.
+
+NEW USER CLARIFICATION: annotateBMP in BOTH NP polarities when supported.
+The manual reference hasBMP in only oneNP polarity in each of30datasets
+(16positive/14negative);3have none. Do NOT turn this into a runtime polarity
+gate. Training currently labels manual-absent candidates as negative, so this
+may suppress valid opposite-polarityBMP. This is a hypothesis, not proven gains.
+
+PREPARED, NOT ANNOTATION-PERFORMANCE-TESTED:
+1) app/matlab_annotation/nested_standard_models.py: same25nested exclusion masks
+as022, fitting declared-standard RT/channel/transfer references only from allowed
+projects, with own-query/outer/inner exclusions enforced. No feature-ID predictors.
+2) tools/qe_optimization/build_qe_nested_standard_models.py completed ALL25bundles
+at outputs/qe_optimization_20261022/nested_standard_development_v1 (workspace root,
+outside Git). Five single-fold numerical parity checks against005 and all33
+declared chemical catalogue parity checks PASS. summary.json all_complete=true,
+annotation_changes=false. Frozen source/resource receipts present. Do NOT mutate
+or casually restart this frozen builder with changed sources; use new version.
+3) declared_standard_context.py: independent raw-spike detection with EMPTY
+endogenous proposals;15numeric RT/CDB/intensity/quantity/ppm/context predictors.
+Strict raw mass/RT uniqueness, actual isotope masses, exact class, no self- or
+companion-ion anchoring; missing/ambiguous evidence withheld. Not wired into
+production or scored on33datasets. No accuracy gain can be claimed.
+4) evidence_training.py optional scope guards require standard-context features
+to have matching nested reference exclusions. Old predictors retain old behavior.
+Focused nested-standard/context/training tests rerun at pause; result recorded
+in docs/validation/optimization_pause_20261022.txt. Last full suite before these
+additions:637passed,8skipped,83subtests. Full new suite NOT yet rerun.
+Minor test organization cleanup: early_stopping=True block at end of last
+test_evidence_training.py test belongs to earlier identifier/row-validation test;
+coverage passes but move it back before next development. Do not change frozen
+builder sources merely for cleanup.
+
+RECOMMENDED NEXT ISOLATED EXPERIMENT024 (not implemented/run):
+Keep EXACT022 original363prepared predictor tables/pools and same scoring family,
+005final standards, mode-cutoff training objective and physical gates. In TRAINING
+labels ONLY, if BMP is curated in one NP mode but absent in oppositeNP mode,
+withhold opposite-mode BMP negatives as UNKNOWN, never as positive. Apply only
+within already permitted training groups, preserve every known positive, include
+unresolved manualBMP entries as presence. No blanket all-class absence policy.
+No manual-presence runtime feature/gate, no new pseudo-positive identities,
+unchanged full92102denominator and ALL manual-absent calls still counted extras.
+Fit25models with proper nested calibration; audit withheld negative/unchanged
+positive counts. Compare against022, report all132rows before next experiment.
+May separately label opposite-polarity manual support diagnostically, never
+subtract these calls from extras. This is a response to user clarification,
+not permission to optimize by changing evaluation truth.
+
+Then, only after024complete table: isolated standard-context experiment025 could
+add15new predictors to all363tables using matching-mask new standard models;
+prove every old predictor/pool unchanged, fit/calibrate fully nested again.
+Do NOT reuse outer-only005models for inner training context. Prepared standard
+models/context helpers are available but NOT yet connected to this experiment.
+Private raw profiles/manual feature IDs/fitted weights remain outside Git.
+Push research source and pause notes to CFMmain; never force-push/origin.
+
+PREVIOUS SCIENTIFIC CHECKPOINT — 22 October 2026, experiment023 COMPLETE, REJECTED
 
 GoalACTIVE,NOTachieved. No productiondefaults/entrypoints changed. Retain022as
 stronger research reference,notdefault. 023worse than022:82229/92102=89.280363%,

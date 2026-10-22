@@ -61,6 +61,33 @@ def validate_feature_scope(
         raise ValueError(
             "Supervised labels or original identities entered predictor columns"
         )
+    standard_keys = {
+        "standard_reference_training_groups",
+        "standard_reference_excluded_groups",
+    }
+    has_standard_context = any(
+        str(c).startswith("q_declared_standard_") for c in data["evidence"]
+    )
+    if has_standard_context or standard_keys & set(data):
+        if not standard_keys.issubset(data):
+            raise ValueError(
+                "Explicit nested standard-context reference scope required"
+            )
+        standard_groups = set(data["standard_reference_training_groups"])
+        if (
+            not standard_groups
+            or not standard_groups.issubset(training)
+            or standard_groups & excluded
+        ):
+            raise ValueError(
+                "Standard-context references include excluded scoring groups"
+            )
+        if query in standard_groups or query not in set(
+            data["standard_reference_excluded_groups"]
+        ):
+            raise ValueError(
+                "A query's own project entered its standard-context references"
+            )
 
 
 def evidence_matrix(evidence, model):

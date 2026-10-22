@@ -1,0 +1,49 @@
+Optimization paused at user request, 22 October 2026
+
+No new annotation experiment since023. Best research result remains022; app
+defaults unchanged. Complete per-dataset/mode and class tables already delivered
+and saved in qe_20261022_022/. This is a summary of the SAME verified experiment,
+not another performance run.
+
+Correct requires same lipid, adduct, mode AND original feature as manual curation.
+All33datasets,132dataset/mode combinations,30project groups; all92102manual entries
+including28unresolved feature mappings. Extras mean absent from that mode's manual
+list, not proven incorrect. Different-feature choices reported separately.
+
+Mode             Original correct/manual       Best022 correct/manual   Extras before/after  Different feature before/after
+RPpositive       34411/45206 (76.1%)            40495/45206 (89.6%)       2802 /3361           739 /894
+RPnegative        9543/13600 (70.2%)            12125/13600 (89.2%)       1434 /1972           356 /426
+NPpositive       15948/19380 (82.3%)            17373/19380 (89.6%)       3320 /1838           192 /169
+NPnegative       10368/13916 (74.5%)            12392/13916 (89.0%)       2141 /2067            86 /99
+TOTAL            70270/92102 (76.3%)            82385/92102 (89.4%)       9697 /9238          1373 /1588
+
+Cumulative:+12115same-feature correct matches, -459extras, +215different-feature
+choices. Not the effect of022alone:022vs009 gives+382correct,-78extras,-31wrong.
+77of123curated class/mode combinations still below90. Pooled percentages are not
+proof that individual datasets/classes meet90. RPextras increased versusoriginal;
+the pooled extras reduction must not conceal that trade-off. BMP regressed in022
+versus009 (NPpositive-122correct, NPnegative-41correct).
+
+Latest completed experiment023 changed training-selected class/mode cutoffs, not
+underlying scores. REJECTED:82229/92102 (89.3%),9493extras,1590different features;
+versus022:-156correct,+255extras,+2wrong. Do not deploy or cherry-pick class gains.
+
+Implemented preparations since023, not new annotation accuracy results:
+-25nested declared-standard reference bundles built successfully,5parity checks
+ against005 plus33declared chemical catalogue parity checks passed.
+-Independent standard-anchored RT/intensity/composition/ppm context helper plus
+ scope guards; no own-query/manual-identity predictors, no production hook.
+-Focused13tests passed at pause. Last full suite637passed before additions;
+ new full suite has not been rerun. No024performance run started.
+
+BMP manual curation uses one NP polarity per dataset, but user confirmed BOTH
+NPpolarities should be annotated when supported. Next hypothesis: stop teaching
+the model that uncurated opposite-polarityBMP candidates are confirmed negatives.
+Training-only unknown-label handling must be isolated from new standard context,
+preserve all positives and evaluation denominators, and still count all extras.
+Neither proposed improvement has demonstrated an accuracy gain yet.
+
+Grouped cached-feature research replay, not new production raw-input runs or
+untouched external validation; inherited baseline exposure remains. Frozen
+inputs/results/models preserved locally, aggregate reports and source in Git.
+Full resumption instructions:docs/PE_HANDOFF.txt. No numerical jobs left running.
