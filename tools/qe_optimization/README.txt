@@ -194,3 +194,30 @@ winner. Same>=50 identity/>=6 group support, occupied/spike protection and
 fixed identity multiset as011. Model180 rounds/31leaves/minleaf25/L2=2/lr.08.
 Every132 comparison MUST retain009 counts/extras; correct peaks may regress.
 Evaluate/report with identical referencev2 before any next experiment.
+
+014 finished:104 replacements,62 correct matches gained/30 lost,net+32 vs009.
+Every132 comparison retained009 counts/extras.86 class/modes below90 vs85 in009;
+small pooled improvement does NOT establish class-level success or app adoption.
+After014's full table,015 tested one-pass strong automatic RT-anchor completion:
+  python tools/qe_optimization/run_qe_strong_anchor_experiment.py
+All modes,009 old calls unchanged. Score>=.95/<1.5ppm automatic endogenous
+anchors,>=6 OTHER compositions,robust residual MAD<=2s/p90<=5s,shift<=60s,
+nearby CDB; unique raw1.5ppm/5s hit BEFORE occupancy/spike filters. Other-group
+composition>=25% and class/adduct>=50%,both>=3groups. No self-votes or iterative
+cascades. Evaluate/report all33 with v2.015 was REJECTED:157 additional correct
+matches but410 more extras/28 more wrong peaks vs009.9,726 extras exceeds initial
+baseline safeguard by29; low correct-call yield is the more important concern.
+FULL132 tables through015 delivered; app entrypoints/defaults still unchanged.
+
+Read-only diagnostics, NEVER new annotation-performance claims:
+  python tools/qe_optimization/diagnose_qe_standard_mass_offsets.py
+  python tools/qe_optimization/diagnose_qe_class_mapping_failures.py
+Both require NEW versioned output folders and refuse overwrite. The mass pilot
+freezes standards-only offsets before reading discovery gaps.475007 missing
+manual peaks would fit corrected3ppm AND old atlas10s; this is WINDOW POTENTIAL,
+not475 additional correct calls. Future calibration needs actual declared-spike
+validation,distinct-neutral-standard weighting and preserved original m/z.
+The mapping audit counts failed DEFINITION/PHASE/FOLDER steps,not failed datasets.
+304 such baseline failures; some rare classes also lack an outer-fold RTmodel.
+Zero-match labels stay in the denominator; X4 has blank native chemistry and
+cannot be responsibly guessed. See docs/PE_HANDOFF.txt for next-step hypotheses.

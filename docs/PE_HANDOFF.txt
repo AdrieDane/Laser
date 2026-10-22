@@ -1,4 +1,93 @@
-LATEST CHECKPOINT — 22 October 2026, after013;014 RUNNING
+LATEST CHECKPOINT — 22 October 2026, after015; ALL JOBS COMPLETE
+
+FULL132 TABLES001 THROUGH015 DELIVERED before each next annotation experiment.
+All33 datasets/four modes use identical referencev2,92,102 manual entries,
+including28 unresolved. No source workbook/raw list changed. No production
+entrypoint/default enabled. Goal remains ACTIVE, NOT achieved. No016 code/run.
+
+014 COMPLETE, small gain vs009:82,035/92,102=89.069727%,9,316 extras,1,587 wrong
+peaks. Same009 identity/adduct/mode/IS multisets and counts/extras in EVERY132
+comparison.104 actual peak replacements:62 correct matches gained,30 lost,
+net+32; wrong peaks-32.86/123 class/modes below90 vs00985. Do not hide those
+class regressions or claim default adoption. Whole-method research checkpoint,
+not a cherry-picked mixture; 009 remains simpler class-coverage reference.
+014 mode(correct/manual,extras,wrong):
+  RP_Pos40,295/45,206=89.1%,3,366,894
+  RP_Neg12,022/13,600=88.4%,1,956,412
+  NP_Pos17,443/19,380=90.00516%,1,874,169
+  NP_Neg12,275/13,916=88.2%,2,120,112
+
+015 COMPLETE, REJECTED:82,160/92,102=89.205446%,9,726 extras,1,647 wrong peaks,
+85/123 class/modes below90. vs009:+157 correct,+410 extras,+28 wrong=595 NEW
+calls. All009 calls preserved. Initial extras guard FAILS by29 vs9,697 baseline.
+Rejection is not just that29:2.6 extra identities per additional correct match
+is a poor trade-off. NOT adopted. No cherry-picking datasets/modes into014/009.
+015 mode(correct/manual,extras,wrong):
+  RP_Pos40,376/45,206=89.3%,3,594,928
+  RP_Neg12,012/13,600=88.3%,1,959,423
+  NP_Pos17,496/19,380=90.3%,2,040,183
+  NP_Neg12,276/13,916=88.2%,2,133,113
+One pass, frozen009 automatic score>=.95/<1.5ppm anchors;>=6 OTHER distinct
+compositions,MAD<=2s,p90<=5s,shift<=60s,Cwithinanchors+/-2,DB+/-1; bounded other-
+class warp. Unique raw hit<1.5ppm/<=5s BEFORE occupancy/spike filtering. CDB>=25%
+and class/adduct>=50%,each>=3 OTHER training groups. Repeated adducts cannot
+inflate anchors; no completed call re-anchors next. Frozen source/dependencies,
+group exclusion checked. No classifier refit, no mass recalibration. Research
+helper anchored_series.py UNUSED in app. All33 evaluation complete; reports
+saved in docs/validation/qe_20261022_015. No live jobs now.
+
+NEW READ-ONLY DIAGNOSTICS (NOT annotation gains):
+work/diagnose_qe_standard_mass_offsets.py -> standard_mass_offset_diagnostic_v1
+Standards-only median offsets saved BEFORE reading missing-peak labels. >=6
+distinct standard masses,MAD<=.6ppm,p90<=1.5ppm,offsetabs<=2ppm. No slope/RT fit,
+no curation input to offsets. Candidate WINDOW POTENTIAL among903007 mass gaps:
+  NP_Neg75 inside3ppm,55 also within existing atlas10s
+  NP_Pos56 inside3ppm,53 also RT
+  RP_Neg108 inside3ppm,99 also RT
+  RP_Pos283 inside3ppm,268 also RT
+522 inside mass;475 inside BOTH. NOT475 correct new calls, NOT full new candidate
+selection. Pilot standard anchors are009 automatic calls, not curator-approved;
+any future calibration must validate actual declared-positive-quantity spikes,
+deduplicate neutral chemical standards/adducts and preserve raw source m/z.
+
+work/diagnose_qe_class_mapping_failures.py -> class_mapping_failure_audit_v1
+Baseline audit has304 failed definition/phase/folder steps,including132 failures
+for four isoprenoid classes plus33 Polyprenal and various empty-array/assertion
+failures. These counts are not304 failed datasets. GM2[t] fails10 folders in
+each phase;GA2[d]11RP/9NP. Strong default composition pruning leaves very few
+reference nodes;003 lattice fill requires>=2 nodes PER adduct, so cannot always
+restore a class. Native formula catalogue EXISTS for GM2[t]/GA2[d]; no guessed
+formula is needed. Independent catalogue-based theoretical enumeration plus
+other-group RT is a promising separate fix. Some0-match rare classes occur in
+one project only and haveNO held-out RTmodel. Do not drop them from denominator.
+X4 has2 manual NPnegative entries, one project, blank catalogue chemistry. Asked
+user asynchronously for identity/formula/adduct; no reply yet at checkpoint.
+Continue other classes, don't invent X4 or silently exclude it. CoQ3RPpositive
+has no catalogue entry. Private feature/profile/diagnostic tables stay OUTSIDE
+Git; only3 aggregate diagnostics are checked in, explicitly not performance.
+
+RECOMMENDED NEXT016 (NOT started): mass-context EVIDENCE on EXACT007 pools first,
+not another deterministic add-all unique RT rule. Blind declared-standard
+run/stream mass center should enter candidate scoring as centered signed/absolute
+ppm + support/dispersion, alongside raw ppm, without widening raw admissions in
+this isolated test. Train same global180-round model/grouped weights and fixed
+009 cutoffs to isolate evidence effect; evaluate all132 and extras before any
+expanded calibrated-mass discovery or cutoff retuning. Use BASELINE automatic
+standard anchors with explicit actual-spike validation; NOT005/009 training-row
+standard models from other outer folds (could indirectly include evaluation
+groups). Existing automatic baseline has known historical exposure; disclose.
+If physical mass context helps, separately test calibrated strict-mass discovery
+and TRAINING-only threshold calibration, then rare-class catalogue fallback.
+Alternative RP hypothesis: bounded leave-composition-out local RT residual PLANE
+rather than common shift,with independent leave-one-anchor-out checks; NOT coded.
+
+Last verified full suite561 passed,8 skipped,83 subtests; all app/research Ruff
+clean. Last confirmed pushed4055d5f BEFORE this final014/015 report checkpoint.
+No PRcreated. Push ONLYcfm/main(Core-Facility-Metabolomics-AUMC),not origin.
+Current working tree additions are ours. Do not commit private raw/modelpickles.
+
+OLDER CHECKPOINT BELOW, superseded where it says014/015 unfinished
+CHECKPOINT — 22 October 2026, after013
 
 012 AND013 FULL132 TABLES DELIVERED.012 aggregate reports now saved inGit.
 013 fixed new-NPpositive neutral-ion ambiguity guard changed ZERO calls across

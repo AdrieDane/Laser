@@ -1,0 +1,43 @@
+phase,definition,lipid_class,detail,affected_folders
+NP,C1P(dx:x),C1P[d],IndexError: index 0 is out of bounds for axis 0 with size 0,1
+NP,C1P(tx:x),C1P[t],IndexError: index 0 is out of bounds for axis 0 with size 0,1
+NP,GA2(dx:x),GA2[d],AssertionError: ,9
+NP,GD3(dx:x),GD3[d],IndexError: index 0 is out of bounds for axis 0 with size 0,6
+NP,GD3(tx:x),GD3[t],IndexError: index 0 is out of bounds for axis 0 with size 0,2
+NP,GM1(dx:x),GM1[d],IndexError: index 0 is out of bounds for axis 0 with size 0,1
+NP,GM1(tx:x),GM1[t],IndexError: index 0 is out of bounds for axis 0 with size 0,12
+NP,GM2(tx:x),GM2[t],AssertionError: ,10
+NP,GM3(dx:x),GM3[d],IndexError: index 0 is out of bounds for axis 0 with size 0,2
+NP,GM3(tx:x),GM3[t],IndexError: index 0 is out of bounds for axis 0 with size 0,3
+NP,Hex2Cer(tx:x),Hex2Cer[t],IndexError: index 0 is out of bounds for axis 0 with size 0,2
+NP,Hex3Cer(dx:x),Hex3Cer[d],IndexError: index 0 is out of bounds for axis 0 with size 0,4
+NP,Hex3Cer(tx:x),Hex3Cer[t],IndexError: index 0 is out of bounds for axis 0 with size 0,3
+NP,Lyso Hex3Cer(dx:x),Lyso Hex3Cer[d],IndexError: index 0 is out of bounds for axis 0 with size 0,7
+NP,Lyso SM(dx:x),Lyso SM[d],IndexError: index 0 is out of bounds for axis 0 with size 0,3
+NP,PA(O+P-x:x),PA[O],IndexError: index 0 is out of bounds for axis 0 with size 0,2
+NP,SLBPA(x:x),SLBPA,IndexError: index 0 is out of bounds for axis 0 with size 0,6
+RP,1-acylLPE(x:x),1-acyl LPE,IndexError: index 0 is out of bounds for axis 0 with size 0,1
+RP,Dehydrodolichoic acid(x),Dehydrodolichoic acid,AssertionError: ,33
+RP,Dehydrodolichol(x),Dehydrodolichol,AssertionError: ,33
+RP,Dolichoic acid(x),Dolichoic acid,AssertionError: ,33
+RP,Dolichol(x),Dolichol,AssertionError: ,33
+RP,GA2(dx:x),GA2[d],AssertionError: ,11
+RP,GM1(dx:x),GM1[d],IndexError: index 0 is out of bounds for axis 0 with size 0,2
+RP,GM1(tx:x),GM1[t],IndexError: index 0 is out of bounds for axis 0 with size 0,1
+RP,GM2(dx:x),GM2[d],IndexError: index 0 is out of bounds for axis 0 with size 0,3
+RP,GM2(tx:x),GM2[t],AssertionError: ,10
+RP,GM3(dx:x),GM3[d],IndexError: index 0 is out of bounds for axis 0 with size 0,2
+RP,GM3(tx:x),GM3[t],IndexError: index 0 is out of bounds for axis 0 with size 0,5
+RP,GM4(dx:x),GM4[d],IndexError: index 0 is out of bounds for axis 0 with size 0,1
+RP,GM4(tx:x),GM4[t],IndexError: index 0 is out of bounds for axis 0 with size 0,1
+RP,Hex2Cer(tx:x),Hex2Cer[t],IndexError: index 0 is out of bounds for axis 0 with size 0,5
+RP,Hex3Cer(dx:x),Hex3Cer[d],IndexError: index 0 is out of bounds for axis 0 with size 0,1
+RP,Hex3Cer(tx:x),Hex3Cer[t],IndexError: index 0 is out of bounds for axis 0 with size 0,1
+RP,LPG(x:x),LPG,IndexError: index 0 is out of bounds for axis 0 with size 0,2
+RP,LPS(x:x),LPS,IndexError: index 0 is out of bounds for axis 0 with size 0,2
+RP,Lyso Hex3Cer(dx:x),Lyso Hex3Cer[d],IndexError: index 0 is out of bounds for axis 0 with size 0,3
+RP,MLCL(x:x),MLCL,IndexError: index 0 is out of bounds for axis 0 with size 0,1
+RP,Polyprenal(x),Polyprenal,AssertionError: ,33
+RP,S1P(dx:x),S1P[d],IndexError: index 0 is out of bounds for axis 0 with size 0,9
+RP,SLBPA(x:x),SLBPA,IndexError: index 0 is out of bounds for axis 0 with size 0,3
+RP,SM4(tx:x),SM4[t],IndexError: index 0 is out of bounds for axis 0 with size 0,1

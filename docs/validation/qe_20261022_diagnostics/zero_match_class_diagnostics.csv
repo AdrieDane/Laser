@@ -1,0 +1,18 @@
+stream,lipid_class,manual_entries,correct_same_peak,project_groups,catalogue_entries,nonempty_chemical_formulas,folders_with_any_baseline_reference,phase_mapping_failed_folders,folds_with_class_RT_model,note
+NP_Neg,GD1[d],32,0,3,1,1,33,0,2,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+NP_Neg,GD1[t],5,0,1,1,1,33,0,0,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+NP_Neg,GM2[t],39,0,5,1,1,23,10,4,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+NP_Neg,X3,2,0,1,1,1,0,0,0,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+NP_Neg,X4,2,0,1,1,0,0,0,0,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+NP_Pos,AC-2OH,5,0,1,1,1,0,0,0,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+RP_Neg,BMP,1,0,1,1,1,33,0,0,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+RP_Neg,GD2[t],2,0,1,1,1,33,0,0,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+RP_Neg,GM1[t],1,0,1,1,1,32,1,0,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+RP_Neg,GM2[t],25,0,6,1,1,23,10,5,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+RP_Neg,PG,2,0,1,1,1,33,0,0,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+RP_Pos,Cer[m],4,0,1,1,1,0,0,0,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+RP_Pos,CoQ,3,0,1,0,0,0,0,0,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+RP_Pos,GA2[d],36,0,10,1,1,22,11,5,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+RP_Pos,GA2[t],1,0,1,1,1,33,0,0,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+RP_Pos,X1,3,0,1,1,1,0,0,0,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
+RP_Pos,X2,3,0,1,1,1,0,0,0,Diagnostic only; phase failures may affect both polarities. One missing step is not proof it is the sole cause.
