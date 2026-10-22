@@ -307,7 +307,7 @@ def test_discovery_is_restricted_to_2024_2025_2026_and_excludes_archives(tmp_pat
         (d / "MS_data.xlsx").write_bytes(b"test")
     _, groups, issues = core.discovery(tmp_path)
     assert len(groups) == 3 and not issues
-    assert {str(p.relative_to(tmp_path)).split("/")[0] for p in groups} == set(
+    assert {p.relative_to(tmp_path).parts[0] for p in groups} == set(
         core.YEARS
     )
     with pytest.raises(ValueError, match="Only year folders"):
