@@ -21,7 +21,7 @@ targeted-extraction, or dataset-specific workflows.
 
 ## Run the app
 
-Python 3.10–3.13 is supported.
+Python 3.10–3.14 is supported. Windows with Python 3.14 is tested in CI.
 
 ```bash
 python3 -m venv .venv

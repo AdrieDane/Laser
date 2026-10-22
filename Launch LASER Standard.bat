@@ -6,7 +6,7 @@ if not defined LASER_STANDARD_HOST set "LASER_STANDARD_HOST=0.0.0.0"
 if not defined LASER_STANDARD_PORT set "LASER_STANDARD_PORT=8085"
 
 if not exist ".venv\Scripts\python.exe" (
-    py -3.12 -m venv .venv || py -3 -m venv .venv || goto :error
+    py -3.14 -m venv .venv || py -3.13 -m venv .venv || py -3.12 -m venv .venv || py -3 -m venv .venv || goto :error
     .venv\Scripts\python.exe -m pip install --upgrade pip || goto :error
 )
 
