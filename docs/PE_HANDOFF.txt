@@ -12,8 +12,10 @@ The source is never altered. Failed/ambiguous/unsupported evidence is not a pass
 projects/48 modes were checked read-only;5 pass all modes with conservative
 default filters. All211 relevant source-file hashes are unchanged. Missing Fish,
 duplicate Fish and Serhii examples were not claimed tested. Real Windows G:
-drive access still needs the user's PC. The CI run status must be verified after
-pushing before claiming native Windows checks passed. The retained annotation
+drive access still needs the user's PC. Native Windows CI now passes all41
+scanner tests, building the ZIP, the isolated launcher and portable loopback UI:
+https://github.com/Core-Facility-Metabolomics-AUMC/LASER-standard-lipidomics/actions/runs/39738476524
+The interactive folder picker is not claimed tested. The retained annotation
 checkpoint and rejected scientific experiments below remain unchanged.
 
 REPORTING CLARIFICATION — 21 October 2026

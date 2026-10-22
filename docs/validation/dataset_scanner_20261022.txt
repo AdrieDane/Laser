@@ -70,10 +70,17 @@ The full browser UI was also exercised with synthetic data: stage 1 showed
 eight files and their size without creating a destination; only explicit
 approval enabled stage 2, which copied and verified exactly those eight files.
 
-The Windows-native workflow in .github/workflows/dataset-scanner.yml runs scanner
-tests, builds the ZIP, invokes its isolated Windows executable, checks the
-portable loopback UI, and publishes the ZIP as a workflow artifact. Its actual
-run status must be checked after pushing; do not claim a future CI job passed.
+The Windows-native workflow in .github/workflows/dataset-scanner.yml PASSED:
+all41 scanner tests, building the ZIP, invoking its isolated Windows executable,
+checking the portable loopback UI, and publishing the directly extractable
+program as a workflow artifact. The original test run caught a test-only Unix
+path-separator assumption; it was fixed using Path.parts, with no scanner
+behaviour or quality-result change. The final successful run is:
+https://github.com/Core-Facility-Metabolomics-AUMC/LASER-standard-lipidomics/actions/runs/39738476524
+Download its LASER_Dataset_Scanner_Windows artifact (single ZIP; no nested ZIP).
+Tested source:6ff14ecfce2735a14d756ed027a7f6242dcc2fc4. The ordinary Linux
+repository test workflow also passes at that source. Later documentation-only
+commits do not change the packaged program.
 The real G: drive, native folder-picker interaction and company security policies
 still require a check on the user's Windows PC. If the folder picker is blocked,
 paths can be typed. Do not bypass Windows security warnings or organisational

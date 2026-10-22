@@ -3,7 +3,19 @@
   "bundles_checked": 12,
   "all_source_file_hashes_unchanged": true,
   "source_files_verified": 211,
-  "Windows_native_UI_not_tested": true,
+  "Windows_interactive_folder_picker_not_tested": true,
+  "Windows_network_G_drive_not_scanned": true,
+  "Windows_CI": {
+    "status": "success",
+    "scanner_tests_passed": 41,
+    "isolated_portable_entrypoint_passed": true,
+    "portable_loopback_service_passed": true,
+    "runtime_hash_pin_verified": true,
+    "artifact_published": true,
+    "run_url": "https://github.com/Core-Facility-Metabolomics-AUMC/LASER-standard-lipidomics/actions/runs/39738476524",
+    "artifact_url": "https://github.com/Core-Facility-Metabolomics-AUMC/LASER-standard-lipidomics/actions/runs/39738476524/artifacts/12408176856",
+    "tested_source_commit": "6ff14ecfce2735a14d756ed027a7f6242dcc2fc4"
+  },
   "missing_historical_projects": [
     "25P0031_FishLarvae",
     "25P0031_FishLarvae_duplicate",
