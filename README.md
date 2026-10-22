@@ -55,6 +55,12 @@ a destination and approve. The scanner does not change the original datasets.
 See the [scanner instructions](tools/dataset_scanner/README.txt) for quality
 criteria and limitations.
 
+The updated scanner shows the current folder/file, live counters, elapsed time,
+time since the last progress update and recent activity. Long pauses are flagged
+as possible network waits or stalls; server responsiveness is shown separately.
+Close an older running scanner and extract the new ZIP into a fresh folder to
+use this update. The source datasets and screening thresholds are unchanged.
+
 ## Headless use
 
 ```bash

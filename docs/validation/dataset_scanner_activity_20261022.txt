@@ -1,0 +1,57 @@
+SCANNER LIVE ACTIVITY UPDATE — 22 October 2026
+
+The previous Windows UI updated discovery only once per year, so a long network
+folder traversal could appear stalled. The screenshot alone cannot establish
+whether the user's actual Windows process is advancing. The real G: drive is
+not accessible from this development environment.
+
+The scanner now reports the folder BEFORE attempting directory enumeration,
+and shows folders checked, files seen, project folders found and relevant files
+found. Discovery still restricts years and excludes raw/statistics/generated
+folders and links/junctions. It avoids unnecessary per-file network metadata
+queries for irrelevant files. Unreadable folders remain explicit issues.
+
+Later phases show the current project/mode, workbook or MAT read, original
+feature rows, curated entries checked, selected-file verification, source
+freshness checks, copying and copied-file verification. Byte counters represent
+actual processed bytes, not an invented overall percentage. Dataset totals
+become available only after discovery. Recent activity is bounded to 50 steps.
+
+Elapsed time uses a monotonic clock. The progress-age clock is updated only by
+worker progress, never by browser polling or a cancellation request. The UI
+separately reports local-server responsiveness and whether the worker is alive.
+After 30 seconds without progress, it explains a possible network/file wait;
+after 120 seconds it labels a possible stall, not a confirmed failure. Browser
+polling times out after 5 seconds and does not accumulate overlapping requests.
+Cancel acknowledges immediately; an OS/network read may need to return first.
+Existing safe-copy, approval, source-integrity and partial-folder rules remain.
+
+CHECKS
+455 tests and 83 subtests pass, including 47 scanner tests. Changed-source lint,
+JavaScript syntax and whitespace checks pass. New cases cover discovery events
+before I/O, directory errors, real hashed-byte progress, bounded activity logs,
+no false progress from status polling, cancellation while a worker is blocked,
+and identical screening results with and without event reporting.
+A separate comparison against the previous committed core produces IDENTICAL
+selected files, hashes, four-mode quality metrics and per-entry evidence on a
+complete synthetic dataset, excluding only scan ID and creation timestamp.
+
+Browser checks: simulated blocked worker shows the path, counters and possible-
+stall warning; Cancel is acknowledged while still blocked, and status becomes
+cancelled when the operation returns. A subsequent actual scan of a synthetic
+four-mode dataset succeeds. These are local synthetic checks, NOT a claim that
+the user's Windows network share was scanned or that a real SMB stall was fixed.
+Preview evidence is under outputs/dataset_scanner_20261022/activity_ui_final/.
+
+DOWNLOAD
+downloads/LASER_Dataset_Scanner_Windows.zip was rebuilt from the current source
+with the unchanged pinned official embeddable runtime. Every ZIP manifest hash,
+distributed Python/JS/HTML/CSS source and bundled README was verified locally.
+Size: 11,556,897 bytes.
+SHA-256: 98054c9fb0b34e69582d2d435545349a9af62ffc1ff22aa30f301b3ccce07477
+Build output: outputs/dataset_scanner_20261022/progress_final/.
+
+The existing Windows workflow runs the scanner tests, builds the bundle and
+checks its isolated executable and loopback UI when these sources are pushed.
+Its result must be checked before claiming native Windows verification of this
+update. No annotation algorithm, screening threshold or source dataset changed.

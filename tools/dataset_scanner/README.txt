@@ -31,6 +31,28 @@ drive. Reports are saved locally under:
 %LOCALAPPDATA%\LASER Dataset Scanner\reports
 No dataset collection folder is created in stage 1.
 
+LIVE ACTIVITY AND POSSIBLE STALLS
+The activity panel shows the exact folder/file currently being accessed,
+folders checked, files seen, projects found, elapsed time and time since the
+last real progress update. Expand Recent activity for the latest 50 steps.
+Once discovery finishes, dataset checks show a known count. Reading peak lists,
+matching curated entries, checking file contents and copying show their own
+counts/byte progress. No overall percentage is invented during folder discovery.
+
+After 30 seconds without progress, a warning explains that the current operation
+may be waiting on the network drive or reading a large file. After 2 minutes it
+is labelled a possible stall, not a confirmed failure. A responding local server
+or a running worker is not proof that a blocked network read is advancing.
+If the browser cannot reach the scanner for 5 seconds, that separate connection
+problem is shown. Keep the scanner console window open.
+
+Cancel immediately acknowledges your request, but Windows/network file access
+cannot always be interrupted until the current operation returns. Do not start
+another scan while the old job is still active. No source data is modified.
+To get this activity panel, close the old scanner, extract the updated full ZIP
+into a new folder and launch its Start Scanner.cmd; refreshing an old running
+scanner does not update its program files.
+
 STAGE 2 - YOUR APPROVAL, THEN COPY
 Choose a destination separate from the source tree. Review the selected size
 and file list, tick the approval box, and click Copy approved datasets.

@@ -14,7 +14,9 @@ import os
 from pathlib import Path
 import re
 import shutil
+import stat
 import statistics
+import time
 import uuid
 
 from .readers import Workbook, load_rt_predictions, number, table_records
@@ -82,12 +84,49 @@ def check_cancel(cancel):
         raise InterruptedError("Cancelled by user")
 
 
-def sha256(path, cancel=None):
+class ProgressEvent(str):
+    """Plain text for CLI/old callbacks, with structured activity for the UI."""
+
+    def __new__(cls, message, **details):
+        event = super().__new__(cls, message)
+        event.details = {"file_bytes_done": None, "file_bytes_total": None, **details}
+        return event
+
+
+def report(progress, message, **details):
+    progress(ProgressEvent(message, **details))
+
+
+def sha256(path, cancel=None, progress=lambda message: None):
+    check_cancel(cancel)
+    report(
+        progress, f"Checking file contents: {Path(path).name}", current_path=str(path)
+    )
     value = hashlib.sha256()
+    done, last = 0, 0.0
     with Path(path).open("rb") as source:
+        total = os.fstat(source.fileno()).st_size
         while chunk := source.read(4 * 1024**2):
             check_cancel(cancel)
             value.update(chunk)
+            done += len(chunk)
+            now = time.monotonic()
+            if now - last >= 0.5 or done == total:
+                report(
+                    progress,
+                    f"Checking file contents: {Path(path).name}",
+                    current_path=str(path),
+                    file_bytes_done=done,
+                    file_bytes_total=total,
+                )
+                last = now
+    report(
+        progress,
+        f"File contents checked: {Path(path).name}",
+        current_path=str(path),
+        file_bytes_done=done,
+        file_bytes_total=total,
+    )
     return value.hexdigest()
 
 
@@ -233,6 +272,13 @@ def relevant(path):
 
 
 def discovery(source, cancel=None, progress=lambda message: None):
+    report(
+        progress,
+        "Opening source folder",
+        phase="Finding project folders",
+        current_path=str(source),
+    )
+    check_cancel(cancel)
     source = Path(source).resolve(strict=True)
     if not source.is_dir():
         raise ValueError("Source must be a folder")
@@ -253,23 +299,64 @@ def discovery(source, cancel=None, progress=lambda message: None):
             "Choose Lipidomics with 2024/2025/2026 subfolders, or one of those year folders"
         )
     groups, issues = defaultdict(list), []
+    folders_checked, files_seen, relevant_found = 0, 0, 0
     for year in years:
-        progress(f"Discovering projects in {year.name}")
-
-        def error(exc):
-            issues.append(f"Cannot read {exc.filename}: {exc.strerror}")
-
-        for folder, dirs, files in os.walk(year, followlinks=False, onerror=error):
+        pending = [year]
+        while pending:
             check_cancel(cancel)
-            base = Path(folder)
-            dirs[:] = sorted(
-                d
-                for d in dirs
-                if d.casefold() not in SKIP
-                and not d.startswith("LASER_")
-                and not (base / d).is_symlink()
-                and not getattr((base / d).lstat(), "st_file_attributes", 0) & 0x400
+            base = pending.pop()
+            details = dict(
+                phase="Finding project folders",
+                current_path=str(base),
+                year=year.name,
+                folders_checked=folders_checked,
+                files_seen=files_seen,
+                projects_found=len(groups),
+                relevant_files_found=relevant_found,
             )
+            # Announce BEFORE directory I/O, including an SMB/network wait.
+            report(progress, f"Reading folders in {year.name}", **details)
+            dirs, files = [], []
+            try:
+                with os.scandir(base) as entries:
+                    last = time.monotonic()
+                    for entry in entries:
+                        check_cancel(cancel)
+                        try:
+                            if entry.is_dir(follow_symlinks=False):
+                                if (
+                                    entry.name.casefold() in SKIP
+                                    or entry.name.startswith("LASER_")
+                                ):
+                                    continue
+                                info = entry.stat(follow_symlinks=False)
+                                if (
+                                    not stat.S_ISLNK(info.st_mode)
+                                    and not getattr(info, "st_file_attributes", 0)
+                                    & 0x400
+                                ):
+                                    dirs.append(Path(entry.path))
+                            else:
+                                files_seen += 1
+                                path = Path(entry.path)
+                                # Do not request network metadata for irrelevant files.
+                                if relevant(path) and not entry.is_symlink():
+                                    files.append(path)
+                        except OSError as exc:
+                            issues.append(
+                                f"Cannot inspect {entry.path}: {exc.strerror}"
+                            )
+                        if time.monotonic() - last >= 0.5:
+                            report(
+                                progress,
+                                f"Reading folders in {year.name}",
+                                **{**details, "files_seen": files_seen},
+                            )
+                            last = time.monotonic()
+            except OSError as exc:
+                issues.append(f"Cannot read {base}: {exc.strerror}")
+            folders_checked += 1
+            pending.extend(sorted(dirs, reverse=True))
             ancestors = [
                 p
                 for p in (base, *base.parents)
@@ -280,11 +367,9 @@ def discovery(source, cancel=None, progress=lambda message: None):
             project = ancestors[0] if ancestors else None
             if project:
                 groups.setdefault(project, [])
-            for name in files:
-                path = base / name
-                if path.is_symlink() or not relevant(path):
-                    continue
-                if project is None and name.casefold() == "ms_data.xlsx":
+            for path in files:
+                relevant_found += 1
+                if project is None and path.name.casefold() == "ms_data.xlsx":
                     project = (
                         base.parent.parent
                         if base.name.casefold() == "annotation"
@@ -293,6 +378,17 @@ def discovery(source, cancel=None, progress=lambda message: None):
                     )
                 if project:
                     groups[project].append(path)
+            report(
+                progress,
+                f"Searching {year.name}: {folders_checked:,} folders checked, {len(groups):,} projects found",
+                **{
+                    **details,
+                    "folders_checked": folders_checked,
+                    "files_seen": files_seen,
+                    "projects_found": len(groups),
+                    "relevant_files_found": relevant_found,
+                },
+            )
     return source, groups, issues
 
 
@@ -345,8 +441,17 @@ def correlation(left, right):
     return sum((a - mx) * (b - my) for a, b in zip(x, y)) / math.sqrt(xx * yy)
 
 
-def read_features(path, sample_map, cancel=None, minimum_samples=4):
+def read_features(
+    path, sample_map, cancel=None, minimum_samples=4, progress=lambda message: None
+):
     result, ids = [], set()
+    report(
+        progress,
+        f"Reading original features: {Path(path).name}",
+        phase="Reading original peak list",
+        current_path=str(path),
+        features_read=0,
+    )
     with Path(path).open(encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle, delimiter="\t")
         required = {"name", "mzmed", "rtmed"}
@@ -360,6 +465,13 @@ def read_features(path, sample_map, cancel=None, minimum_samples=4):
         for line, row in enumerate(reader, 2):
             if line % 4096 == 0:
                 check_cancel(cancel)
+                report(
+                    progress,
+                    f"Reading original features: {len(result):,} rows",
+                    phase="Reading original peak list",
+                    current_path=str(path),
+                    features_read=len(result),
+                )
             fid, mz, rt = (
                 str(row.get("name", "")).strip(),
                 number(row.get("mzmed")),
@@ -371,6 +483,14 @@ def read_features(path, sample_map, cancel=None, minimum_samples=4):
                 )
             ids.add(fid)
             result.append((mz, rt * 60, fid, [number(row.get(c)) for c in columns]))
+    check_cancel(cancel)
+    report(
+        progress,
+        f"Sorting {len(result):,} original features",
+        phase="Preparing original features",
+        current_path=str(path),
+        features_read=len(result),
+    )
     result.sort(key=lambda r: (r[0], r[1], r[2]))
     return result, columns
 
@@ -396,9 +516,10 @@ def screen_stream(
     samples,
     limits,
     cancel=None,
+    progress=lambda message: None,
 ):
     features, columns = read_features(
-        peak_path, samples, cancel, limits.min_profile_samples
+        peak_path, samples, cancel, limits.min_profile_samples, progress
     )
     mzs = [r[0] for r in features]
     predicted = defaultdict(list)
@@ -415,6 +536,15 @@ def screen_stream(
     for count, row in enumerate(rows):
         if count % 100 == 0:
             check_cancel(cancel)
+            report(
+                progress,
+                f"Checking {stream}: {count:,} of {len(rows):,} curated annotations",
+                phase="Matching curated annotations",
+                current_path=str(peak_path),
+                stream=stream,
+                annotations_checked=count,
+                annotations_total=len(rows),
+            )
         mz, rt = row["mz"], row["rt_seconds"]
         delta = mz * 3e-6
         candidates = []
@@ -497,6 +627,15 @@ def screen_stream(
         else 0
     )
     median_ppm, median_rt = quantile(mass_errors, 0.5), quantile(rt_errors, 0.5)
+    report(
+        progress,
+        f"Checked {stream}: {n:,} curated annotations",
+        phase="Matching curated annotations",
+        current_path=str(peak_path),
+        stream=stream,
+        annotations_checked=n,
+        annotations_total=n,
+    )
     if n < limits.min_annotations:
         errors.append(f"Only {n} curated entries; require {limits.min_annotations}")
     if classes < limits.min_classes:
@@ -548,13 +687,13 @@ def screen_stream(
     ), proofs
 
 
-def file_record(path, source_root, role, cancel=None):
+def file_record(path, source_root, role, cancel=None, progress=lambda message: None):
     path = Path(path)
     resolved = path.resolve(strict=True)
     if path.is_symlink() or not resolved.is_relative_to(source_root):
         raise ValueError(f"Linked or out-of-source file is not allowed: {path}")
     before = path.stat()
-    digest = sha256(path, cancel)
+    digest = sha256(path, cancel, progress)
     after = path.stat()
     if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
         raise ValueError(f"File changed while scanning: {path}")
@@ -593,6 +732,13 @@ def inspect_dataset(
         proofs=[],
     )
     try:
+        report(
+            progress,
+            f"Locating required files: {project.name}",
+            phase="Checking dataset files",
+            current_path=str(anchor),
+            current_project=project.name,
+        )
         manual = choose(
             files,
             anchor,
@@ -651,11 +797,38 @@ def inspect_dataset(
                         "standards/settings or saved annotation definitions",
                     )
                 )
+        report(
+            progress,
+            f"Reading curated workbook: {project.name}",
+            phase="Reading curated annotations",
+            current_path=str(manual),
+        )
+        check_cancel(cancel)
         rows, formulas = curated_rows(manual)
+        report(
+            progress,
+            f"Reading sample metadata: {project.name}",
+            phase="Reading sample metadata",
+            current_path=str(meta["RP"]),
+        )
+        check_cancel(cancel)
         samples = metadata_maps(meta)
+        report(
+            progress,
+            f"Decoding saved RT predictions: {project.name}",
+            phase="Reading saved RT predictions",
+            current_path=str(mat),
+        )
+        check_cancel(cancel)
         predictions = load_rt_predictions(mat)
         for stream in STREAMS:
-            progress(f"Checking {project.name}: {stream}")
+            report(
+                progress,
+                f"Checking {project.name}: {stream}",
+                phase="Checking measurement mode",
+                stream=stream,
+                current_path=str(peaks[stream]),
+            )
             try:
                 mode, proofs = screen_stream(
                     stream,
@@ -667,6 +840,7 @@ def inspect_dataset(
                     samples[stream],
                     limits,
                     cancel,
+                    progress,
                 )
                 result["modes"].append(mode)
                 result["proofs"].extend(proofs)
@@ -676,9 +850,26 @@ def inspect_dataset(
                 result["modes"].append(
                     dict(stream=stream, status="REVIEW", reasons=[str(exc)])
                 )
-        progress(f"Measuring exact copy size and checking file hashes: {project.name}")
-        for path, role in selected:
-            result["files"].append(file_record(path, source_root, role, cancel))
+        for index, (path, role) in enumerate(selected):
+            report(
+                progress,
+                f"Checking file {index + 1} of {len(selected)}: {project.name}",
+                phase="Measuring and verifying selected files",
+                files_done=index,
+                files_total=len(selected),
+                current_path=str(path),
+            )
+            result["files"].append(
+                file_record(path, source_root, role, cancel, progress)
+            )
+            report(
+                progress,
+                f"File checked {index + 1} of {len(selected)}: {path.name}",
+                phase="Measuring and verifying selected files",
+                files_done=index + 1,
+                files_total=len(selected),
+                current_path=str(path),
+            )
         names = [f["name"].casefold() for f in result["files"]]
         if len(names) != len(set(names)):
             raise ValueError("Selected files have conflicting output filenames")
@@ -713,18 +904,45 @@ def scan(
     source_root, groups, issues = discovery(source, cancel, progress)
     masses = reference_masses(reference_path)
     datasets = []
-    for project, files in sorted(groups.items(), key=lambda item: str(item[0])):
-        anchors = sorted(
-            {p.parent for p in files if p.name.casefold() == "ms_data.xlsx"}
-        ) or [project]
-        for anchor in anchors:
-            check_cancel(cancel)
-            # Different annotation snapshots in a project remain separate;
-            # direct files win, missing/ambiguous roles never choose newest.
-            record = inspect_dataset(
-                project, files, anchor, source_root, masses, limits, cancel, progress
-            )
-            datasets.append(record)
+    jobs = [
+        (project, files, anchor)
+        for project, files in sorted(groups.items(), key=lambda item: str(item[0]))
+        for anchor in (
+            sorted({p.parent for p in files if p.name.casefold() == "ms_data.xlsx"})
+            or [project]
+        )
+    ]
+    for index, (project, files, anchor) in enumerate(jobs):
+        check_cancel(cancel)
+        report(
+            progress,
+            f"Checking dataset {index + 1} of {len(jobs)}: {project.name}",
+            phase="Checking datasets",
+            current_path=str(anchor),
+            current_project=project.name,
+            datasets_done=index,
+            datasets_total=len(jobs),
+        )
+        # Different annotation snapshots in a project remain separate;
+        # direct files win, missing/ambiguous roles never choose newest.
+        record = inspect_dataset(
+            project, files, anchor, source_root, masses, limits, cancel, progress
+        )
+        datasets.append(record)
+        report(
+            progress,
+            f"Dataset checked: {project.name} — {record['status']}",
+            phase="Checking datasets",
+            current_path=str(anchor),
+            datasets_done=index + 1,
+            datasets_total=len(jobs),
+        )
+    report(
+        progress,
+        "Checking for duplicate datasets",
+        phase="Finishing scan",
+        current_path=str(source_root),
+    )
     # Flag identical input collections, even if their folder names differ.
     signatures = {}
     for dataset in datasets:
@@ -750,7 +968,7 @@ def scan(
         source_root=str(source_root),
         allowed_years=list(YEARS),
         limits=asdict(limits),
-        reference_sha256=sha256(reference_path)
+        reference_sha256=sha256(reference_path, cancel, progress)
         if reference_path and Path(reference_path).is_file()
         else None,
         discovery_issues=issues,
@@ -874,6 +1092,7 @@ def copy_approved(
         raise ValueError("Not enough free destination space for the approved selection")
     work = []
     for d in datasets:
+        check_cancel(cancel)
         if not re.fullmatch(r"[0-9a-f]{12}", d["id"]):
             raise ValueError("Unsafe dataset ID in scan plan")
         target_name = (
@@ -883,6 +1102,7 @@ def copy_approved(
         if target.exists():
             raise FileExistsError(f"Will not overwrite existing dataset: {target}")
         for f in d["files"]:
+            check_cancel(cancel)
             relative = safe_relative(f["source_relative"])
             if source.name not in YEARS and relative.parts[0] not in YEARS:
                 raise ValueError(
@@ -903,10 +1123,17 @@ def copy_approved(
                     "Only recognised necessary dataset files may be copied"
                 )
             stat = candidate.stat()
+            report(
+                progress,
+                f"Verifying source before copying: {f['name']}",
+                phase="Verifying approved sources",
+                current_path=str(candidate),
+                current_project=d["project"],
+            )
             if (
                 stat.st_size != f["size"]
                 or stat.st_mtime_ns != f["mtime_ns"]
-                or sha256(candidate, cancel) != f["sha256"]
+                or sha256(candidate, cancel, progress) != f["sha256"]
             ):
                 raise ValueError(
                     f"Source changed since scan; rescan before copying: {relative}"
@@ -916,7 +1143,8 @@ def copy_approved(
     # freshness/integrity checks and the user has explicitly approved copying.
     destination.mkdir(parents=True, exist_ok=True)
     completed = []
-    for d in datasets:
+    files_done = 0
+    for dataset_index, d in enumerate(datasets):
         check_cancel(cancel)
         jobs = [w for w in work if w[0]["id"] == d["id"]]
         target = jobs[0][3]
@@ -925,8 +1153,21 @@ def copy_approved(
         try:
             for _, f, candidate, _ in jobs:
                 check_cancel(cancel)
-                progress(f"Copying {d['project']}: {f['name']}")
+                report(
+                    progress,
+                    f"Copying {d['project']}: {f['name']}",
+                    phase="Copying approved files",
+                    current_path=str(candidate),
+                    current_project=d["project"],
+                    datasets_done=dataset_index,
+                    datasets_total=len(datasets),
+                    files_done=files_done,
+                    files_total=len(work),
+                    file_bytes_done=0,
+                    file_bytes_total=f["size"],
+                )
                 digest = hashlib.sha256()
+                done, last = 0, 0.0
                 with (
                     candidate.open("rb") as src,
                     (staging / f["name"]).open("xb") as dst,
@@ -935,11 +1176,37 @@ def copy_approved(
                         check_cancel(cancel)
                         dst.write(chunk)
                         digest.update(chunk)
+                        done += len(chunk)
+                        now = time.monotonic()
+                        if now - last >= 0.5 or done == f["size"]:
+                            report(
+                                progress,
+                                f"Copying {d['project']}: {f['name']}",
+                                phase="Copying approved files",
+                                current_path=str(candidate),
+                                file_bytes_done=done,
+                                file_bytes_total=f["size"],
+                            )
+                            last = now
+                report(
+                    progress,
+                    f"Verifying copied file: {f['name']}",
+                    phase="Verifying copied files",
+                    current_path=str(staging / f["name"]),
+                )
                 if (
                     digest.hexdigest() != f["sha256"]
-                    or sha256(staging / f["name"], cancel) != f["sha256"]
+                    or sha256(staging / f["name"], cancel, progress) != f["sha256"]
                 ):
                     raise ValueError(f"Copy verification failed: {f['name']}")
+                files_done += 1
+                report(
+                    progress,
+                    f"File copied and verified: {f['name']}",
+                    phase="Copying approved files",
+                    files_done=files_done,
+                    files_total=len(work),
+                )
             (staging / "collection_manifest.json").write_text(
                 json.dumps(
                     dict(
@@ -959,6 +1226,14 @@ def copy_approved(
                 )
             staging.rename(target)
             completed.append(str(target))
+            report(
+                progress,
+                f"Dataset copied and verified: {d['project']}",
+                phase="Copying approved files",
+                datasets_done=len(completed),
+                datasets_total=len(datasets),
+                current_path=str(target),
+            )
         except BaseException:
             # Partial files are deliberately retained, clearly labelled, and
             # never appear as a successfully collected dataset.

@@ -307,9 +307,7 @@ def test_discovery_is_restricted_to_2024_2025_2026_and_excludes_archives(tmp_pat
         (d / "MS_data.xlsx").write_bytes(b"test")
     _, groups, issues = core.discovery(tmp_path)
     assert len(groups) == 3 and not issues
-    assert {p.relative_to(tmp_path).parts[0] for p in groups} == set(
-        core.YEARS
-    )
+    assert {p.relative_to(tmp_path).parts[0] for p in groups} == set(core.YEARS)
     with pytest.raises(ValueError, match="Only year folders"):
         core.discovery(tmp_path / "2023")
 
@@ -565,7 +563,9 @@ def test_cancelling_during_copy_keeps_partial_separate_from_completed_dataset(tm
             ["a" * 12],
             confirm=True,
             cancel=cancel,
-            progress=lambda message: cancel.set(),
+            progress=lambda message: (
+                cancel.set() if message.startswith("Copying ") else None
+            ),
         )
     partials = list(destination.iterdir())
     assert len(partials) == 1 and partials[0].name.startswith(".partial_")
@@ -596,3 +596,132 @@ def test_duplicate_collections_are_flagged_and_not_counted_twice(tmp_path):
     assert sorted(d["status"] for d in plan["datasets"]) == ["DUPLICATE", "PASS"]
     duplicate = next(d for d in plan["datasets"] if d["status"] == "DUPLICATE")
     assert duplicate["duplicate_of"]
+
+
+def test_discovery_shows_current_folder_before_reading_and_live_counts(
+    tmp_path, monkeypatch
+):
+    project = tmp_path / "2024" / "24P0001_Test"
+    (project / "nested").mkdir(parents=True)
+    (project / "MS_data.xlsx").write_bytes(b"test")
+    (project / "nested" / "irrelevant.raw").write_bytes(b"not selected")
+    events = []
+    original = core.os.scandir
+
+    def tracked(path):
+        assert events[-1].details["current_path"] == str(path)
+        return original(path)
+
+    monkeypatch.setattr(core.os, "scandir", tracked)
+    _, groups, issues = core.discovery(tmp_path, progress=events.append)
+    assert not issues and list(groups) == [project]
+    assert events[-1].details["folders_checked"] == 3
+    assert events[-1].details["files_seen"] == 2
+    assert events[-1].details["projects_found"] == 1
+    assert events[-1].details["relevant_files_found"] == 1
+    assert all(isinstance(e, str) for e in events)
+
+
+def test_discovery_reports_unreadable_folder_without_claiming_full_scan(
+    tmp_path, monkeypatch
+):
+    year = tmp_path / "2024"
+    year.mkdir()
+    monkeypatch.setattr(
+        core.os,
+        "scandir",
+        lambda path: (_ for _ in ()).throw(
+            PermissionError(13, "Access denied", str(path))
+        ),
+    )
+    _, groups, issues = core.discovery(tmp_path)
+    assert not groups and len(issues) == 1 and "Cannot read" in issues[0]
+
+
+def test_hash_progress_counts_real_bytes_without_changing_hash(tmp_path):
+    path = tmp_path / "data.bin"
+    content = b"test" * (2 * 1024**2 + 1)
+    path.write_bytes(content)
+    events = []
+    assert (
+        core.sha256(path, progress=events.append) == hashlib.sha256(content).hexdigest()
+    )
+    assert events[-1].details["file_bytes_done"] == len(content)
+    assert events[-1].details["file_bytes_total"] == len(content)
+    assert all(e.details["current_path"] == str(path) for e in events)
+
+
+def test_status_poll_is_not_misrepresented_as_scan_progress(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    from tools.dataset_scanner import server
+
+    clock = [10.0]
+    monkeypatch.setattr(server, "time", SimpleNamespace(monotonic=lambda: clock[0]))
+    session = Session(tmp_path, tmp_path / "reports")
+    session.started = 10.0
+    session.progress(core.ProgressEvent("Reading folder", current_path="G:/slow"))
+    clock[0] = 80.0
+    a = session.snapshot()
+    assert a["progress_age_seconds"] == a["elapsed_seconds"] == 70
+    assert session.snapshot()["progress_age_seconds"] == 70
+    session.request_cancel()
+    assert session.snapshot()["progress_age_seconds"] == 70
+    assert session.snapshot()["cancel_requested"]
+    session.progress(core.ProgressEvent("Read next folder", current_path="G:/next"))
+    assert session.snapshot()["progress_age_seconds"] == 0
+    for i in range(100):
+        session.progress(f"step {i}")
+    assert len(session.snapshot()["recent_activity"]) == 50
+
+
+def test_blocked_worker_still_exposes_status_and_cancellation(tmp_path, monkeypatch):
+    from tools.dataset_scanner import server as module
+
+    entered, release = threading.Event(), threading.Event()
+
+    def slow_scan(source, reference, limits, cancel, progress):
+        progress(
+            core.ProgressEvent(
+                "Reading network folder",
+                phase="Finding project folders",
+                current_path="G:/slow",
+            )
+        )
+        entered.set()
+        assert release.wait(5)
+        core.check_cancel(cancel)
+        raise AssertionError("Test expects cancellation")
+
+    monkeypatch.setattr(module, "scan", slow_scan)
+    session = Session(tmp_path, tmp_path / "reports")
+    session.start(("scan", "G:/slow", {}))
+    try:
+        assert entered.wait(3)
+        snapshot = session.snapshot()
+        assert snapshot["worker_alive"] and snapshot["status"] == "scanning"
+        assert snapshot["activity"]["current_path"] == "G:/slow"
+        session.request_cancel()
+        assert session.snapshot()["cancel_requested"]
+        assert "Waiting" in session.snapshot()["message"]
+        with pytest.raises(ValueError, match="already running"):
+            session.start(("scan", "G:/second", {}))
+    finally:
+        release.set()
+        session.worker.join(timeout=3)
+    assert session.snapshot()["status"] == "cancelled"
+    assert not session.snapshot()["worker_alive"]
+
+
+def test_activity_instrumentation_keeps_screening_results_unchanged(tmp_path):
+    source = tmp_path / "source"
+    make_complete_dataset(source)
+    events = []
+    before = core.scan(source)
+    after = core.scan(source, progress=events.append)
+    for volatile in ("scan_id", "created_utc"):
+        before.pop(volatile)
+        after.pop(volatile)
+    assert after == before
+    assert any(e.details.get("datasets_done") == 1 for e in events)
+    assert any(e.details.get("phase") == "Reading saved RT predictions" for e in events)
+    assert any(e.details.get("annotations_checked") == 60 for e in events)

@@ -11,9 +11,17 @@ from pathlib import Path
 import secrets
 import subprocess
 import threading
+import time
 import webbrowser
 
-from .core import DEFAULT_SOURCE, Limits, copy_approved, scan, write_reports
+from .core import (
+    DEFAULT_SOURCE,
+    Limits,
+    ProgressEvent,
+    copy_approved,
+    scan,
+    write_reports,
+)
 
 
 class Session:
@@ -21,37 +29,96 @@ class Session:
         self.resources, self.reports = Path(resources), Path(reports)
         self.lock = threading.RLock()
         self.cancel = threading.Event()
+        self.worker = None
+        self.started = self.finished = self.last_progress = None
         self.state = dict(
             status="idle",
             message="Choose the source and run stage 1. No dataset files are copied during scanning.",
             plan=None,
             reports="",
             copied=[],
+            activity={},
+            recent_activity=[],
         )
 
     def update(self, **values):
         with self.lock:
             self.state.update(values)
 
-    def start(self, action):
+    def progress(self, message):
+        with self.lock:
+            now = time.monotonic()
+            self.last_progress = now
+            self.state["message"] = str(message)
+            self.state["activity"] = {
+                **self.state["activity"],
+                **getattr(message, "details", {}),
+            }
+            history = self.state["recent_activity"]
+            path = self.state["activity"].get("current_path", "")
+            if not history or (history[-1]["message"], history[-1]["path"]) != (
+                str(message),
+                path,
+            ):
+                history.append(
+                    dict(
+                        elapsed_seconds=round(
+                            now - (self.started if self.started is not None else now), 1
+                        ),
+                        message=str(message),
+                        path=path,
+                    )
+                )
+                del history[:-50]
+
+    def snapshot(self):
+        with self.lock:
+            now = time.monotonic()
+            return {
+                **self.state,
+                "activity": dict(self.state["activity"]),
+                "recent_activity": list(self.state["recent_activity"]),
+                "elapsed_seconds": (self.finished or now) - self.started
+                if self.started is not None
+                else 0,
+                "progress_age_seconds": now - self.last_progress
+                if self.last_progress is not None
+                else 0,
+                "worker_alive": self.worker is not None and self.worker.is_alive(),
+                "cancel_requested": self.cancel.is_set(),
+            }
+
+    def request_cancel(self):
+        self.cancel.set()
         with self.lock:
             if self.state["status"] in ("scanning", "copying"):
+                self.state["message"] = (
+                    "Cancellation requested. Waiting for the current file/folder operation to return; network access cannot always be interrupted immediately."
+                )
+
+    def start(self, action):
+        with self.lock:
+            if self.state["status"] in ("scanning", "copying") or (
+                self.worker is not None and self.worker.is_alive()
+            ):
                 raise ValueError("A job is already running")
             self.cancel.clear()
+            self.started = self.last_progress = time.monotonic()
+            self.finished = None
             self.state.update(
                 status="scanning" if action[0] == "scan" else "copying",
                 message="Starting…",
+                activity={},
+                recent_activity=[],
             )
             if action[0] == "scan":
                 self.state.update(plan=None, reports="", copied=[])
-            thread = threading.Thread(target=self.run, args=(action,), daemon=True)
-            thread.start()
+            self.worker = threading.Thread(target=self.run, args=(action,), daemon=True)
+            self.worker.start()
 
     def run(self, action):
         try:
-
-            def progress(message):
-                self.update(message=message)
+            progress = self.progress
 
             if action[0] == "scan":
                 _, source, settings = action
@@ -62,11 +129,23 @@ class Session:
                     self.cancel,
                     progress,
                 )
+                progress(
+                    ProgressEvent(
+                        "Saving local scan reports",
+                        phase="Saving local reports",
+                        current_path=str(self.reports),
+                    )
+                )
                 self.reports.mkdir(parents=True, exist_ok=True)
                 report = self.reports / (
                     datetime.now().strftime("%Y%m%d_%H%M%S_") + plan["scan_id"][:8]
                 )
                 write_reports(plan, report)
+                progress(
+                    ProgressEvent(
+                        "Scan complete", phase="Scan complete", current_path=str(report)
+                    )
+                )
                 self.update(
                     status="ready",
                     plan=plan,
@@ -86,6 +165,13 @@ class Session:
                     cancel=self.cancel,
                     progress=progress,
                 )
+                progress(
+                    ProgressEvent(
+                        "Copy complete",
+                        phase="Copy complete",
+                        current_path=str(destination),
+                    )
+                )
                 self.update(
                     status="done",
                     copied=completed,
@@ -102,6 +188,9 @@ class Session:
                 status="error",
                 message=f"{type(exc).__name__}: {exc}. Any .partial_ folders are incomplete and have been preserved.",
             )
+        finally:
+            with self.lock:
+                self.finished = time.monotonic()
 
 
 def choose_folder():
@@ -158,13 +247,12 @@ def make_handler(session, token):
                 return self.respond(403, {"error": "Local scanner session only"})
             path = self.path[len(prefix) :]
             if path == "api/status":
-                with session.lock:
-                    payload = {
-                        **session.state,
-                        "default_source": DEFAULT_SOURCE,
-                        "default_limits": asdict(Limits()),
-                    }
-                    return self.respond(200, payload)
+                payload = {
+                    **session.snapshot(),
+                    "default_source": DEFAULT_SOURCE,
+                    "default_limits": asdict(Limits()),
+                }
+                return self.respond(200, payload)
             resources = {
                 "": ("index.html", "text/html; charset=utf-8"),
                 "app.js": ("app.js", "text/javascript; charset=utf-8"),
@@ -206,7 +294,7 @@ def make_handler(session, token):
                         )
                     )
                 elif path == "api/cancel":
-                    session.cancel.set()
+                    session.request_cancel()
                 elif path == "api/stop":
                     session.cancel.set()
                     threading.Thread(target=self.server.shutdown, daemon=True).start()
