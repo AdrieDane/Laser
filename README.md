@@ -35,6 +35,26 @@ Windows, run `Setup (Windows).bat` once and then `Launch LASER Standard.bat`.
 
 Set `LASER_STANDARD_PROJECT` to prefill the XCMS project folder.
 
+## Windows dataset scanner — ready-to-run download
+
+[Download LASER_Dataset_Scanner_Windows.zip](https://github.com/Core-Facility-Metabolomics-AUMC/LASER-standard-lipidomics/raw/refs/heads/main/downloads/LASER_Dataset_Scanner_Windows.zip)
+
+This is the separate dataset-collection scanner, not the annotation app. It
+includes its own Windows x64 Python runtime: **no setup or Python installation
+is needed**. Download the ZIP on the Windows PC, or transfer the complete ZIP
+there using USB or a shared folder.
+
+1. Right-click the downloaded ZIP and choose **Extract All…**.
+2. Open the extracted `LASER_Dataset_Scanner_Windows` folder.
+3. Double-click **Start Scanner.cmd**. Keep the `runtime` folder beside it;
+   do not launch from inside the ZIP or copy only the `.cmd` file.
+
+Stage 1 scans only **2024–2026**, checks all four measurement modes, and shows
+the selected files and total copy size. Stage 2 copies only after you select
+a destination and approve. The scanner does not change the original datasets.
+See the [scanner instructions](tools/dataset_scanner/README.txt) for quality
+criteria and limitations.
+
 ## Headless use
 
 ```bash
