@@ -292,3 +292,32 @@ from this explicitly labelled diagnostic. Exact007 candidate presence is an
 optimistic ROW-WISE ceiling,not necessarily attainable under feature/identity
 competition.32 class/modes remain below90 even at this ceiling: scoring alone
 cannot solve those classes. Do not change annotation denominators or drop them.
+
+After019's full132 table,020 tests additive paired-profile-supported discovery:
+  python tools/qe_optimization/run_qe_paired_discovery_experiment.py
+Native monoisotopic catalogue/SAME003 other-group composition bounds,>=3RTcohorts,
+MAD<=10s,raw<3ppm/<=30s. OTHER BASELINE strongautomatic exactclass/CDB support.
+All physical alternatives compete before occupancy/novelty/profile gates; old007
+queries remain competitors. Actual declared-spike masses exclude WHOLEtarget.
+Frozen label-free evidence before attaching traininglabels; final/inner grouped
+discovery HGB fits. New best identity AND best feature,margin.1,novelto007,
+>=8pairedbiologicalsamples/logcorr>=.8,trainingcutoff. Every009 oldcall immutable.
+New acceptance calibrated with matching008 INNER OOF007 old-policy occupancy,
+NOT published training-dataset009 outputs from different outer models that could
+include evaluated-project labels. Old009 cutoffs/RTfeatures not fullyinnerfitted;
+conditional grouped replay with priorbaselineexposure,not external validation.
+All33 finished:82,007correct,9,320extras,1,619differentfeatures. vs009:+4correct,
++4extras,0wrongfeatures. NOT adopted;50%newcallagreement/tinygain. Full132 table
+delivered. Appdefaults unchanged. Frozen executedlocal runner authoritative.
+
+Read-only proposal-limit audit (NOT annotation performance):
+  python tools/qe_optimization/diagnose_qe_paired_discovery_limits.py
+12,473queries/6,795novelto007;273novelmanualfeatures considered;98passpairgate,
+74alsofree/identityabsent009. These are NOT correct acceptedannotations. Only
+aggregatecounts/sourcehashes committed; privatefeature/sample/modeltables outsideGit.
+
+UNUSED class_operating_point.py prototype+synthetic tests prepares a future021
+class/mode cutoff experiment. No real021 annotations or productionhooks yet.
+MILP cappedclasscoverage objective,pooledbudget,class+mode+totaltraining floors,
+under-supportedreferencefallback,exactglobalwinners(no promotion of losinglabel).
+Read docs/PE_HANDOFF.txt before building groupedOOFtrainingtables/realexperiment.

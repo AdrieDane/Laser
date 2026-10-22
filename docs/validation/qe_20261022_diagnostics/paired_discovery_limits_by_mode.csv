@@ -1,0 +1,5 @@
+stream,candidate_rows,novel_rows,novel_manual_feature_rows,novel_manual_rows_with_pair_gate,novel_manual_rows_pair_gate_unoccupied_absent_identity
+NP_Neg,1927,1081,56,17,14
+NP_Pos,3801,2079,57,15,11
+RP_Neg,1591,826,24,14,8
+RP_Pos,5154,2809,136,52,41

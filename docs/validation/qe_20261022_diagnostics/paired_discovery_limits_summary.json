@@ -1,0 +1,180 @@
+{
+  "purpose": "READ-ONLY physical proposal/eligibility diagnosis. Counts of manual features considered are NOT correct accepted annotations or promised achievable gains. Score and BOTH identity/feature competition apply after these gates.",
+  "datasets": 33,
+  "dataset_modes": 132,
+  "counts": {
+    "candidate_rows": 12473,
+    "novel_rows": 6795,
+    "novel_manual_feature_rows": 273,
+    "novel_manual_rows_with_pair_gate": 98,
+    "novel_manual_rows_pair_gate_unoccupied_absent_identity": 74
+  },
+  "source_sha256": "4c31bc2789637427e39988791bc9db986b36b498a782bbc9f03c9b6befcf52f7",
+  "input_receipts": [
+    {
+      "dataset": "21P0116_Zoemba__fff844b15f6b",
+      "prepared_sha256": "2d96a21f8f64b45f4c578e227f034b21e225faeee969a4eef4ada9b7d3cbdb21",
+      "old_calls_sha256": "1c926b82c9e6dad1386dce4e39fce219ddd026caa24026bc3e28ee69c8b2327c"
+    },
+    {
+      "dataset": "24P0010_Sperm_cells__cdbcff21ab9b",
+      "prepared_sha256": "af9011bd1ead7a252895f259379bd91077648108419f2b9ffe5c37bffff31c93",
+      "old_calls_sha256": "40e5ba251d8721c4f105c895ce0373de2e5f3ba86be5c878039bbb02a0e283b3"
+    },
+    {
+      "dataset": "24P0023_HCM_T2D__a77e2e80c25e",
+      "prepared_sha256": "d7c9b4b8733a273520e136df6581ef356f7fd00d16a19b0c06ecfabf3c92c467",
+      "old_calls_sha256": "b04bb130e1fc17fca5c78d3e177ffd273b674d752133341ba0efd17430fc49b0"
+    },
+    {
+      "dataset": "24P0024_ALD_Scenic_HMC3__689f34b4c3b2",
+      "prepared_sha256": "263691232be35f38b6fc2771d5b18e0e56375b3a60e80f99bb51d21a5640841f",
+      "old_calls_sha256": "da6a02391c6d621cd222bcf8745409e76c208038af5ccb73e6b3960906388483"
+    },
+    {
+      "dataset": "24P0026_Heart_tissue_slices_ALI__2a2940653c8b",
+      "prepared_sha256": "1d82171b42ab07b530bc74a12a04fac757b20d76f73da938caad8a50d6d80a56",
+      "old_calls_sha256": "7ea22e94c2b0d442282630d84ce65b74f57ae25d359b70f49cc1de12bd0d94e2"
+    },
+    {
+      "dataset": "24P0027_SCENIC_Retina__11eefafa8b6d",
+      "prepared_sha256": "02a4e87432a5a0b56877e51d1a2a0fbc63ac65caf4b45592a8652278a30c3266",
+      "old_calls_sha256": "7ecb489fc5dd7363e791f380624f769f4c39ab3c966f3b6c017cd182aa1dd086"
+    },
+    {
+      "dataset": "24P0037_Manidipine_sulfatide__8a8b747e903d",
+      "prepared_sha256": "c4991c888d41b31616bbbc5bcbec95ca166524f4b001b5a23ae867cfdf1d91d5",
+      "old_calls_sha256": "fc0c6163df2d8c4a3df8adab980a4577a33e4dc1c839437e8b034ed28947361e"
+    },
+    {
+      "dataset": "24P0041_Cardiomyopathy__c49fa55d16a4",
+      "prepared_sha256": "fae8685d11a804669b6a5bdc653d47b464741d23670636a2aca26f5a6088785d",
+      "old_calls_sha256": "42cdeccdd4203db4aca747f504f8106a0b6280468f38dee244107e630cc0c09b"
+    },
+    {
+      "dataset": "24P0044_Zebrafish3month_QE3__087e9205555d",
+      "prepared_sha256": "d11b468e92e34a956211073c7eee2edcabb10eeff07c5ed9e47cbfca4be3fe47",
+      "old_calls_sha256": "c67eef7f8dc211a739239328d9675c61ecfa306c421886cff3f2323c8d9ebae8"
+    },
+    {
+      "dataset": "24P0044_Zebrafish3months__7b3ec9a95f03",
+      "prepared_sha256": "21d8ffcf7fe89fb8362f00407f02fe6ace53a817fdec70653fe88af4277faa9e",
+      "old_calls_sha256": "21cf10e5417b5e470fda4a747205609b7d4b2f558db0aff16c83981a438b4751"
+    },
+    {
+      "dataset": "24P0064_SIMONE_heart__f0ecb2aa1df3",
+      "prepared_sha256": "ecfc6a63e387bb1e0a13c775ac8cb17d8cb1a37fc5bfb68b5700713f3c06a669",
+      "old_calls_sha256": "b78da924b3acc2963fecd2ddde55967d578917ff05e934bda59b9fad476fe337"
+    },
+    {
+      "dataset": "24P0069_Zebrafish_Florit__1ed23b56b087",
+      "prepared_sha256": "af238a1478205f5146f81a4b147c065dab80ed9457ba306ab52efab0ee3ff385",
+      "old_calls_sha256": "4dac7ccf8e3a4a83fc4ea2695922502ad6247e943b33ac23f3ad26179991dc4d"
+    },
+    {
+      "dataset": "24P0089_Fruitflies_UK__902b8cc95359",
+      "prepared_sha256": "a8420c660989ed026bf58e1e5be60120f9370a0d1c4dcc4ab1df3b6cc50bcbcc",
+      "old_calls_sha256": "e1ee2e18e77d724da54c4b2f80106b1eff6baf83d331940062ed9f3504aada7a"
+    },
+    {
+      "dataset": "24P0098_SIMONE__04b325ef57c6",
+      "prepared_sha256": "81541085a2c4739c08e130ad67160f2d4cb87aea60ecc5e6a85e8b5f73b094cb",
+      "old_calls_sha256": "2035a40c8ae16ed6dbbf95263a816007ab2eabd9014cbf4a11c1ee30b4640c68"
+    },
+    {
+      "dataset": "24P0101_LysoIP__41b7ced29d7a",
+      "prepared_sha256": "12be5df486d26272e492a67bdfe45a5cacfcd8922808f5ee54d5199f51d79b70",
+      "old_calls_sha256": "b7427a535223d49f9e9cf02af137b17db116e3a8b1cf55ba7f5ccf24adc3910e"
+    },
+    {
+      "dataset": "24P0107_KHK_Inhibitor_Muscle__71475f572034",
+      "prepared_sha256": "f1fdfc738b1eacd29c1a7299f4842fb241122ee85721fb54748ded143994d939",
+      "old_calls_sha256": "f4fc84095940205710c2dba4a34d10139c06d0f03b24c2a95e52dea0471b280c"
+    },
+    {
+      "dataset": "24P0110_Zebrafish__6f661810a5c7",
+      "prepared_sha256": "4a9649d377f791f7b1b648f5822105a859a5076da8b8dbc313a21be7f93edcd7",
+      "old_calls_sha256": "e3e98a7141ce51f98b6fa4721ec377d9fbfe9cf2cf3e084a3794c6f8d4e30cd3"
+    },
+    {
+      "dataset": "24P0118_ALI__0f22e224ae70",
+      "prepared_sha256": "179cad924d1a4e7109c8ad27ec23b8c8405dd7cef841f846fd078624d2197bd3",
+      "old_calls_sha256": "f905850720d0d54a91efb3a6889286f5d5568b13e98b1970cff875df40517c5f"
+    },
+    {
+      "dataset": "24P0119_NAD_Liver__91da2f8db0d9",
+      "prepared_sha256": "d078f8ffc0e1878f3e68a9835e9adb9af2708e7f017fd49f8d7324d5ff565a05",
+      "old_calls_sha256": "21b317c4fab68b4e2cda2da64a22686111e7d350db48a5ec0c662d5683e2be08"
+    },
+    {
+      "dataset": "24P0119_NAD_Muscle__1e49eb13550c",
+      "prepared_sha256": "d1af18469ed5f5fafaeb7cc23dc1fd49ab3b6a25663b8b490dcf211e7360bbc9",
+      "old_calls_sha256": "4c51b37e09215a6a1800c43ffdd96577e23be42194856a21cd639c4b42d09826"
+    },
+    {
+      "dataset": "24P1000_Project__364bfe73db43",
+      "prepared_sha256": "524a709c9cb3a8d305d6a222a40ee989cf58755ae5c64ca9043f3e0d3e8d81d3",
+      "old_calls_sha256": "97050fbbd781969abac52d74e99cbcd62d63a40922d1300e86afad76281890f5"
+    },
+    {
+      "dataset": "25P0003_heart__34c00f9a75c3",
+      "prepared_sha256": "8bb4a31452fcf00e54dcbc3a5100b1cd2b5191de92ca8bd0a6a3adce73d3e8a7",
+      "old_calls_sha256": "3f180f850e4a9e2f184ee2500a6f3b81ebbdca41a6723e19af34436e8afca288"
+    },
+    {
+      "dataset": "25P0015_PM_KidneySummer__ca4b60d7cc9e",
+      "prepared_sha256": "1e51ddda18c3c09e2197905bfdbc854612136a9af924286c207553b23b465b48",
+      "old_calls_sha256": "6368ddab639ff3782b93d3083f16fc101af6c2f05cdb2cebc3ab792202457fb7"
+    },
+    {
+      "dataset": "25P0072_VLC_PUFA_cuprizoneBrain__8baf66eeef84",
+      "prepared_sha256": "0b356c81259d35f028f11551c58d5d99fed08e7166e475c124538d5096e748a2",
+      "old_calls_sha256": "215b6d3ccc0582ade7418e973512da27fb6b8df1d93395679370e9c91d0bdef7"
+    },
+    {
+      "dataset": "25P0075_Zebrafish__a301fc17e125",
+      "prepared_sha256": "5a126ad8a5369a9215da0252de44752c42aee4a35c549075b8139abcaa35a766",
+      "old_calls_sha256": "50e4a47b013125407e83c2c6395eecb1bb534178dac35c45ed8cee5e4f10c5cb"
+    },
+    {
+      "dataset": "25P0092_Plasma__f555969960fe",
+      "prepared_sha256": "b935afe19b503b6f347910170fa323d397b0171363df72dae03b7b4a91d6687b",
+      "old_calls_sha256": "d5f3cc9acd0ecd2282edd00f17e553f1971199444ca4058918f05255136812d9"
+    },
+    {
+      "dataset": "25P0096_Astrocytes_in_ferroptosis__e3339c41ef18",
+      "prepared_sha256": "6d893cda09dd9302c6de28acf404ca747465a1875596827a2a8f8eafeb9e7590",
+      "old_calls_sha256": "fb9852c148ee8becfb57128d18327095f4485b17ee05ebe27f36635e58942744"
+    },
+    {
+      "dataset": "25P0096_MicroGlia_in_ferroptosis__cabc596817d1",
+      "prepared_sha256": "69976777faf194f6f768b09ed97fceaf76d3d644db1fb98bd2868ae6e25d22ad",
+      "old_calls_sha256": "6decbedf5c920c7c25469b96e5cb0d8d64d52fe29016429893c3a5f4f80a4d67"
+    },
+    {
+      "dataset": "25P0100_ScenicBrains__6ce8e42ee3e8",
+      "prepared_sha256": "c4ba542ffd7c0b289b4284e855ed61a5b0ecf6d7bf6c0c133d1d9ce573d8a802",
+      "old_calls_sha256": "f3d4b16a0b955bf223dd74a8aeceb693796e4c4c96f81ccc64837d1f08c2cc53"
+    },
+    {
+      "dataset": "26P0012_LSD__4cf1e1ff3653",
+      "prepared_sha256": "269877dde543f6e481e3e882f25db57614ff50ff99cf93eaf831b78b3bf7c310",
+      "old_calls_sha256": "b95c83955cd992c134d7c7e559591241c031b23ce96af6ca08d56665245ebf27"
+    },
+    {
+      "dataset": "26P0026_ALD_rat_brain__62ffe2995e66",
+      "prepared_sha256": "3834c0ae8a7fd8c8f4e10b7046da5376f3bb286000b3a74fdea23f4a4acf9920",
+      "old_calls_sha256": "d0b14d26c6857e16b6f1b9da8c465c9049ec311fe8a49f53534116a01d7fc6ca"
+    },
+    {
+      "dataset": "26P0033_EHTs_MAVA__6107b3d71890",
+      "prepared_sha256": "12bdbf95bd70b653b198abfcfe3fe1cb035e087c25814906d58e1479447b27e5",
+      "old_calls_sha256": "1ae5753914cf6f01d0644d17b73d915086df954433969598403bb25b61232d5b"
+    },
+    {
+      "dataset": "26P0038_MLC_Pex5_mouse__5ceeaf865709",
+      "prepared_sha256": "a9b4b4d10b59608c95d1d16985ecc800d8619429f4c31445150ba4ca8623c0fd",
+      "old_calls_sha256": "a4605b6edfbad1e87c6d54061cd6f5bea832a8f4107c82a5b5245adfd1e4f441"
+    }
+  ]
+}

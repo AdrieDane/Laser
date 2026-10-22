@@ -1,4 +1,90 @@
-LATEST CHECKPOINT — 22 October 2026, 017/018/019 COMPLETE
+LATEST CHECKPOINT — 22 October 2026, experiment020 COMPLETE
+
+FULL132 TABLES001 THROUGH020 DELIVERED before any next annotation experiment.
+020 not adopted:82,007/92,102=89.039326%,9,320 extras,1,619 different-feature
+choices;85/123 curated class/modes below90. vs009:+4 correct,+4 extras,0 wrong
+peak change=8 newcalls. Every009 call and original match preserved,all33/132
+verified. Only50% of newcalls agreewithmanual,too littlegain for addedcomplexity.
+Mode(correct/manual,extras,wrong):
+ RP_Pos40279/45206=89.1%,3370,912
+ RP_Neg12013/13600=88.3%,1956,423
+ NP_Pos17441/19380=89.994840%(ONE SHORT90),1874,171
+ NP_Neg12274/13916=88.2%,2120,113
+Class gains:RPposPC+1/PE+1,RPnegPE+1/PI+1;4extrasRPposPC. NPunchanged.
+Dataset additions:Sperm_cells4extras;Cardiomyopathy3correct;24P0110Zebrafish1correct.
+Original9697extras safeguard passes,but does NOT establish useful adoption.
+
+020 paired_discovery.py,6synthetic tests: native monoisotopic CDB catalogue inside
+SAME003 other-group envelope;>=3other-group RTcohorts/MAD<=10s,raw<3ppm/<=30s,
+OTHER frozenBASELINE strongautomatic exactcanonicalclass/CDB anchor(.9confidence/
+<1.5ppm). Actual declared-spike masses excludeWHOLEtarget within3ppm. KeepALL
+raw alternatives for eachidentity having>=1query absentfrom007. Explicitmetadata
+pairing ONLY,no filenameoffsets/NP-RP RTtransfer. Label-free profile/rawcharge/
+context/prior features saved+hashed BEFORE manual labels. Same180roundHGB,
+15inner/5outerdiscoveryfits. Winner bestBOTHidentityandfeature,margin.1 BEFORE
+novelty/occupancy/profile gates. Newwinner novelto007,>=8positive biological
+pairs/logcorr>=.8,score>=trainingcutoff. Every009 identity/feature/manual/standard
+protected;no weaker-free fallback/cascade. Trainingcutoff .5..1 maximizesnew
+correct under.3%endogenous-manual extrasbudget and>=80%correct/newcalls.
+Outerfoldcutoffs0=1,1=.7,2=1,3=.5,4=.6. Actualheldout agreement50%,not80%guarantee.
+
+IMPORTANT: published009 training-dataset outputs use different outermodels
+which may include evaluated-project labels. DO NOT use those for acceptance
+calibration.020 reconstructs oldtraining occupancy using008 INNER OOF007models
+MATCHINGouterfold+009 outer-training cutoffs,plus BASELINEprotectedstandards.
+Checks training/inner-validation/outer-excludedgroup disjointness. Test uses
+complete009including005standards. Still CONDITIONAL:outerRT/envelope/prior/old
+thresholds notinnercrossfitted; baselineknownprior exposure. Not external/pristine
+validation,analyticalFDR or fullproductionrun. Allnewfits exclude evaluatedgroups.
+
+Frozen local runner work/run_qe_paired_discovery_experiment.py;experiment_020.
+Unified34508annotation/67407evaluation COMPLETE.624source/dependencySHAchecks
+intact; rawworkbooks/fourlists unchanged. Privateblind/labeledquerytables/model
+pickles OUTSIDEGit. Portable runner changespaths/formatting only,useNEWworkspace.
+Complete7aggregate reports docs/validation/qe_20261022_020,referencev2 includes
+all92,102manual/28unresolved. Do not call consideredfeatures acceptedannotations.
+
+READ-ONLY paired_discovery_limits_v1 (not annotationaccuracy):12,473 matching-
+outerfold queryrows,6,795novelto007.273novelrows matchmanualfeatures;98passpaired
+8/logcorr.8;74alsohaveunoccupiedfeature+identityabsent009. Score/competitionstill
+apply. Mode(novelmanual,pairedgate,thenunoccupied/absentidentity):NPneg56,17,14;
+NPpos57,15,11;RPneg24,14,8;RPpos136,52,41. This route is not a majorsolution.
+Onlyaggregatecounts/sourcehashes inGit,no sample/featureidentitytables.
+
+NEXT021 NOT run/no real annotations changed:
+New UNUSED class_operating_point.py +7synthetic tests. TRAINING-only class/mode
+cutoff allocation usingSciPy MILP,not anotherglobalclassifier.009 optimized
+weakestMODE; usertarget is everyCURATEDCLASS/mode. One cutoffperclass; freeze
+under-supported(<3groups/<30manual) referencecutoff. ClassANDmode floors=
+min(referencecorrect,ceil(.9manual));TOTALcorrect>=referencecorrect. Pooled9.5%
+endogenous-training extrasbudget. Lexicographic:SUMper-classcoverage capped90%,
+thenpooledcorrect,thenfewerwrongpeaks/extras. Identicalcountpoints preferhigher
+cutoffs. SolverMUSTconfirmoptimality,elseNone;neverrelax safeguards silently.
+Reallocates above90%margin towardweakerclasses withouttotal/modeTRAININGloss.
+NOtestguarantee. SAMEglobalfeature/identitywinnersfixed BEFOREclasscutoffs;
+withheldtoplabel CANNOT promoteweakerlabel. Uniformcutoffparitytested.
+Prototypehas NOproduction/runnerhook. NO021protocol/outputs/models yet.
+
+Recommended021: SAME007physicalpools/finalscoremodels and005standards. Build
+per-class operatingtables from008 INNER OOF007 predictions for EACHmatching
+outerfold;ALLendogenousmanual denominators/extra-onlyclasses/canonicalclasskeys/
+unique-training-project counts. IncludeEXACT009referencepoint perclass,evenif
+outsidegrid. .05..1grid feasible. Independentclasscounts additiveONLYwithfixed
+globalfeaturewinners;usehelperselector,not classwise reranking. FitONLYouter
+TRAININGdata;fallbackunknownclasses009perstreamcutoff. Evaluateall33/referencev2
+anddeliverfull132table BEFORE022. Originalbaseline endpoints,alsoquantifyvs009;
+NOcherry-pickedclasses/datasets aftertest. This acceptance experiment doesNOT
+repairdiscovery;32class/modes candidateceiling<90 stillneed discovery/definitions.
+Otherhypotheses: actual validated standards-only mass-calibrated candidate
+admission(NOT016rescoring),or chemicallyexactNPparent/RPchild profileevidence
+without mergingO/P/1-2acyl fullidentities or NP/RP RTtransfer. Untested.475old
+mass-windowpotential is NOT475provennewcorrectannotations.
+
+GoalACTIVE,NOTachieved; no globalblocker. X4definition question unanswered but
+otherworkcanprogress. Appdefaults unchanged. Fullsuite618passed,8skipped,
+83subtests;Ruffclean. Lastpush618070b BEFORE020;inspectgitlog for newhash.
+
+OLDER CHECKPOINT — 22 October 2026, 017/018/019 COMPLETE
 
 FULL132 TABLES001 THROUGH019 DELIVERED before any next annotation experiment.
 019 REJECTED:81,995/92,102=89.026297%,9,382 extras,1,619 different-feature
