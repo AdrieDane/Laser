@@ -1,4 +1,122 @@
-LATEST CHECKPOINT — 22 October 2026, after016; annotation/evaluation COMPLETE
+LATEST CHECKPOINT — 22 October 2026, 017/018/019 COMPLETE
+
+FULL132 TABLES001 THROUGH019 DELIVERED before any next annotation experiment.
+019 REJECTED:81,995/92,102=89.026297%,9,382 extras,1,619 different-feature
+choices;85/123 curated class/modes below90. vs009:-8 correct,+66 extras,0 net
+wrong-feature change. Passing original9697 extras safeguard does NOT justify
+this model as an improvement. RPpositive+72correct;RPnegative-18,NPpositive-40,
+NPnegative-22. No cherry-picked mixture/adoption.009 remains simpler reference.
+019 mode(correct/manual,extras,wrong):
+ RP_Pos40349/45206=89.3%,3410,920
+ RP_Neg11993/13600=88.2%,1937,426
+ NP_Pos17401/19380=89.8%,1843,159
+ NP_Neg12252/13916=88.0%,2192,114
+Compared009,largest class correct loss NPnegativeBMP-28;NPpositivePC-18;
+RPnegativePE-P-11. Paired metadata alone is NOT disproven as discovery evidence;
+019 tested global scoring with EXACT old physical candidate rows only.
+All33 evaluation/referencev2 complete; raw workbooks/four peak-list fingerprints
+unchanged. Full7-file aggregate019 report docs/validation/qe_20261022_019.
+No live019 jobs:unified77930 annotation and47781 evaluation finished.
+Latestfullsuite605passed,8skipped,83subtests; Ruff app/portable tools clean.
+Goal ACTIVE,NOT achieved. No production defaults/entrypoints changed.
+Last confirmed push02e72ba BEFORE this checkpoint; inspect gitlog for new hash.
+
+NEXT020 NOT coded/run: improve candidate discovery,NOT another arbitrary global
+score-capacity change. Existing007 diagnostic has2336 RT-window gaps and903
+mass-window gaps; candidate-ceiling diagnostic finds3538 mapped endogenous
+manual features absentfrom007 (includes overlapping gap definitions; don't ADD
+these categories).32 class/modes cannotreach90 by scoring existing pool alone.
+Potential paired-profile-guided new ORIGINAL-feature discovery within bounded
+RT search,using native chemical catalogue/exactother-mode class/CDB anchors and
+metadata-validated specimens. Existing mass-only3ppm/RT10s pools preserved plus
+independently evidencednewqueries; noNP/RP RT transfer,wrongisomers/spikes/occupied
+features protected. Freeze physical rules,generate NEW training candidates and
+learn scores/cutoffs from other project groups BEFORE outer evaluation. Unknown
+pairing or insufficient rare-class support staysunknown. This is a hypothesis,
+NOT alreadyvalidated calls or permission to use heldout manual locations.
+Alternatively standards-only validated mass calibration candidate admission,
+not016's fixed-cutoff rescoring.475 old-window-potential diagnostic is not475
+newcorrect calls. All132/fullclass reporting policy applies to020 as usual.
+
+017/018 and preparation details below remain valid; supersede interim019 status.
+CHECKPOINT — 22 October 2026, 017/018 COMPLETE; interim019 evaluation
+
+Full132 tables through018 delivered. All33/132 use identical referencev2:
+92,102 manual entries,28 unresolved included. No source lists/workbooks changed.
+App entrypoints/defaults still unchanged. Goal ACTIVE,NOT achieved.
+
+017 native chemical-catalogue completion starting009:82,022 correct=89.055612%,
+9,350 extras,1,620 different-feature choices;85/123 class/modes below90.
+Vs009:+19 correct,+34 extras,+1 different feature=54 new calls. EVERY009 call
+preserved.347 fewer extras than original9697 safeguard. Modest research result,
+not default adoption or enough for class-level target. Mode(correct,extras,wrong):
+ RP_Pos40286,3389,912; RP_Neg12016,1959,423
+ NP_Pos17442,1874,171; NP_Neg12278,2128,114
+NPpos EXACT90%=17442/19380. Nine GA2-d RPpos matches,other rare catalogue gains;
+no old009 match lost. Native CodeDecoder chemistry,missing baseline+003 targets
+only,OTHER-fold envelope/RT/support,unique raw1.5ppm/5s before occupied/spike
+filters. No classifier refit; no rejected015 completion selections reused.
+
+018 bounded RP residual-plane peak selector starting009:ZERO replacements in
+ALL33. Exact009 outcomes82,003/92,102=89.034983%,9,316 extras,1,619 wrong peaks,
+85/123 below90. REJECTED as no improvement. Fixed accepted identity multisets,
+all132 counts/extras unchanged; NP unchanged. Query-excluded >=12 distinctCDB
+strongautomatic anchors,interpolation hull,full rank/condition<=100,independent
+anchor-LOO median<=1.5s/p90<=3s,physical RP Cpositive/DBnegative derivatives,
+residual slope bounds and shift<=60s. Old peak>=7s off;unique raw1.5ppm/3s
+alternative before occupancy/spike filtering. Do NOT silently loosen gates.
+Local frozen runners work/run_qe_catalogue_experiment.py and
+work/run_qe_rp_plane_experiment.py; all snapshots/dependencies preserved.
+Aggregate7-file reports docs/validation/qe_20261022_017 and018. No private IDs,
+raw sample profiles,crosswalks or trained pickles committed.
+
+NEW metadata-only audit explicit_specimen_pair_audit_v1:
+Load ONLY MS_metadata(filename,sample_id,column,mode,group,group_label). Exact
+filename/phase/mode shared sample_id links+original validated group agreement.
+30/33 datasets,120/132 modes pass,8-68 biological specimen IDs shared allfour.
+SCENIC_Retina group conflict,NAD_Liver/Muscle raw group mapping unvalidated:
+ALL their new pairing evidence withheld,not guessed. Numeric acquisition
+filename-offset pilot was NOT biological validation; never use it for pairing.
+Technical replicates may map to same ID but must count once. No lipid curation
+used to establish pairs. specimen_pairs.py has4 synthetic tests.
+
+019 new research runner work/run_qe_paired_sample_experiment.py finished all33
+selections AND evaluation; latest outcome/table above supersedes interim status.
+Exactly007
+physical pools/old evidence+8 explicit paired-specimen abundance descriptors.
+Preparation33done:217401 unique queries,36409 with variable paired profiles.
+Frozen BASELINE automatic OTHER-mode exact class/CDB anchors,.9conf/1.5ppm;
+>=8 positive biological pairs,technical repeats averaged before log. Raw/global
+sample-median-normalized/within-group correlations,logratioMAD,support,N,dof.
+Within-group >=8 specimens/>=4 residualdof; no NP/RP RT transfer. MissingNaN.
+SAME180-round globalHGB; NEW15INNER and5OUTER score fits. New training-only
+cutoffs from SAME009 joint weakest-mode objective/9.5% pooled endogenous budget,
+not frozen incompatible009 cutoffs. No outer test labels choose cutoffs. Same005
+standards; innerRTfeatures still outer-atlas-derived,not fullynested. Known prior
+baseline exposure; not external validation/FDR. Numerical ProcessPool3 workers,
+NOT subagents. Frozen runner+525 source/dependency fingerprint checks intact.
+Latestfullsuite605passed,8skipped,83subtests; Ruff app/portable tools clean.
+
+NEW READ-ONLY candidate_ceiling_v1 diagnostic,not new annotation performance:
+ALL endogenous manual entries90646,including28 unresolved;standards explicitly
+excluded ONLY from this diagnostic. Exact007 original-feature candidate presence:
+ NPneg12700/13510=94.0%; NPpos18668/19025=98.1%
+ RPneg12722/13365=95.2%; RPpos42990/44746=96.1%
+32 class/modes still below90 even with perfect selection; candidate discovery
+must change for those. Row-wise optimistic ceiling ignores identity/feature
+competition,not guaranteed attainable accuracy. Other candidates:6452 manual
+features available but notselected009,3538 mapped notinpool,28 unresolved.
+Local diagnostic saved source/input hashes; only aggregate tables inGit.
+
+AFTER019 full132 report, next hypothesis: paired OTHER-mode profile evidence may
+support wider-but-calibrated discovery for true features outside current10s RT
+window, rather than just rescoring old candidates. Must freeze candidate rules
+and train other-group ranking/cutoffs BEFORE heldout evaluation. This is NOT
+coded or tested. Need clear RT/mass uniqueness/competition and declared-spike
+protection; do not claim mass-window diagnostic475 as475 newcorrect annotations.
+X4 native chemistry definition request still unanswered; don't guess/drop it.
+
+OLDER CHECKPOINT — 22 October 2026, after016; annotation/evaluation COMPLETE
 
 FULL132 TABLES001 THROUGH016 DELIVERED before the next annotation experiment.
 016 REJECTED:81,867/92,102=88.88732%;9,243 extras;1,610 wrong peaks;86/123 curated

@@ -1,0 +1,20 @@
+{
+  "datasets": 33,
+  "dataset_modes": 132,
+  "manual": 92102,
+  "correct_before": 70270,
+  "correct_after": 82003,
+  "percent_before": 76.29584590996939,
+  "percent_after": 89.03498295368179,
+  "extras_before": 9697,
+  "extras_after": 9316,
+  "wrong_peak_before": 1373,
+  "wrong_peak_after": 1619,
+  "extras_no_increase_guard_pass": true,
+  "class_modes_below_90": 85,
+  "production_enabled": false,
+  "experiment": "018-bounded-RP-residual-plane-original-peak-choice",
+  "manual_reference": "v2, identical standard normalization mapping correction at both endpoints; not an annotation gain",
+  "target_achieved": false,
+  "note": "A passing pooled score does not establish >=90% in every curated class/mode. Goal also requires validated production integration, not just this offline experiment."
+}

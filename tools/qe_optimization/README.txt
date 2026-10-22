@@ -242,3 +242,53 @@ V1 remains historical; V2 after equivalent-adduct spike-protection guard repair.
 No full calls,curated feature mapping or original source writes in this check.
 Next experiment must prove correct original-feature annotations and controlled
 extras,not present reference enumeration/parity as annotation success.
+
+After016's full table,017 tested unique restored native catalogue targets:
+  python tools/qe_optimization/run_qe_catalogue_experiment.py
+Missing from baseline+003 reference only; matching outer-fold native CDB envelope,
+RT atlas and composition/channel support. Unique raw1.5ppm/5s hit BEFORE occupied
+and declared-spike filtering; competing new claims all withheld. All009 calls
+preserved. All33 complete:+19 correct,+34 extras,+1 different peak vs009. Total
+82,022/92,102=89.055612%,9,350 extras. Not a production/default adoption.
+
+After017's full table,018 tested a bounded RP residual-plane peak selector:
+  python tools/qe_optimization/run_qe_rp_plane_experiment.py
+Fixed009 identities/counts;>=12 distinct OTHER automatic CDB anchors,full-rank
+interpolation hull,independent LOO checks,physical RP derivatives. Old peak>=7s
+away,unique raw1.5ppm/3s alternative,occupied/spike protection,no cascades. All33
+complete:ZERO replacements,exact009 results. Rejected as no improvement; don't
+silently relax gates. Full132 tables through018 delivered before019.
+
+Read-only explicit specimen metadata audit (no annotation selections):
+  python tools/qe_optimization/audit_qe_specimen_pairs.py
+Loads ONLY MS_metadata,not curated MS/MS_data. Exact filename/phase/mode/shared
+sample_id plus validated group agreement.30/33 datasets pass; SCENIC_Retina group
+conflict and NAD_Liver/NAD_Muscle unknown group mapping remain unavailable. No
+guessing acquisition-number offsets. Private specimen maps remain outsideGit.
+
+019, after018's full table:
+  python tools/qe_optimization/run_qe_paired_sample_experiment.py
+Same007 pools and global180-round HGB,plus8 paired-biological-specimen abundance
+features;>=8 positive pairs,technical repeats averaged per specimen. OTHER-mode
+frozen BASELINE automatic exact class/CDB anchors only,not feedback from009 or
+test curation. Unknown metadata/profile evidence staysNaN. Refit final AND three
+inner group-excluded score models per outer fold; recalibrate NEW score cutoffs
+with EXACT009 joint weakest-mode objective/9.5% pooled endogenous training budget.
+Same005 standards. Inherited OUTER-training RT features are not fully inner-
+cross-fitted; known baseline exposure remains. Must evaluate all33/referencev2,
+deliver full132 table,check held-out extras and class regressions BEFORE adoption.
+Local frozen runner_source.py is authoritative for current execution; portable
+runner path substitutions/formatting need a NEW clean workspace for reproduction.
+019 complete/full132 table delivered:81,995 correct,9,382 extras,1,619 different-
+feature choices;85/123 curated class/modes below90. vs009:-8 correct,+66 extras,
+no net wrong-feature change. REJECTED; no default adoption or cherry-picking
+improved modes/datasets. New paired metadata/evidence helpers remain unused by
+production entrypoints. Inner/final model and source snapshots stay outsideGit.
+
+Read-only discovery-versus-selection audit (not new annotation accuracy):
+  python tools/qe_optimization/diagnose_qe_candidate_ceiling.py
+All endogenous manual entries,including unresolved; standards excluded only
+from this explicitly labelled diagnostic. Exact007 candidate presence is an
+optimistic ROW-WISE ceiling,not necessarily attainable under feature/identity
+competition.32 class/modes remain below90 even at this ceiling: scoring alone
+cannot solve those classes. Do not change annotation denominators or drop them.
