@@ -21,7 +21,7 @@ targeted-extraction, or dataset-specific workflows.
 
 ## Run the app
 
-Python 3.10–3.13 is supported.
+Python 3.10–3.14 is supported. Windows with Python 3.14 is tested in CI.
 
 ```bash
 python3 -m venv .venv
@@ -32,6 +32,10 @@ streamlit run app/app.py
 
 On macOS, you can instead double-click `Launch LASER Standard.command`. On
 Windows, run `Setup (Windows).bat` once and then `Launch LASER Standard.bat`.
+The Windows launcher listens on all network interfaces on port **8085** and
+does not open its own browser tab, so it can be started by the CFM Analysis
+Hub launcher. Set `LASER_STANDARD_HOST` or `LASER_STANDARD_PORT` before launch
+to override those defaults.
 
 Set `LASER_STANDARD_PROJECT` to prefill the XCMS project folder.
 
