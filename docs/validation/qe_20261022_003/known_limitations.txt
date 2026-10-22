@@ -1,0 +1,14 @@
+Known standard-protection limitation in experiments 003 and 004
+
+The saved endogenous chemical reference omits internal-standard rows. The
+compiler's embedded-reference mass-identical-spike check therefore had no
+complete declaration catalog in these two experiments. Previously accepted
+standard FEATURES were still reserved, and all standard/manual flags were
+scored correctly; the reported correct/extra/wrong-feature counts describe the
+actual outputs and remain unchanged. Neither experiment is deployed.
+
+The current development compiler accepts an explicit declared-standard catalog
+and flags missing protection input in its audit. A separate pure chemical
+compiler now produces declared targets even for standards not detected earlier.
+Recovery/standard-aware adjudication requires a new, fully reported experiment;
+do not silently rewrite the frozen experiment003/004 candidates or scores.

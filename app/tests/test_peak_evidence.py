@@ -141,3 +141,30 @@ def test_feature_or_sample_role_errors_are_not_silently_ignored():
     f.attrs["sample_roles"] = {"s1": "guess"}
     with pytest.raises(ValueError, match="sample role"):
         sample_roles(f)
+
+
+@pytest.mark.parametrize("charge", [2, 4])
+def test_multiply_charged_isotopes_use_charge_scaled_spacing(charge):
+    f = features()
+    f.loc[f.feature_id.eq("iso"), "mz"] = 750 + C13_SPACING / charge
+    correct = peak_evidence(f, ["001"], polarity="Neg", charge=charge).iloc[0]
+    assert correct.isotope_upper_feature_id == "iso"
+    assert (
+        peak_evidence(
+            f, ["001"], polarity="Neg", charge=1
+        ).isotope_upper_feature_id.iloc[0]
+        == ""
+    )
+
+
+@pytest.mark.parametrize("charge", [0, 5, True, 1.0])
+def test_charge_hypotheses_are_explicit_bounded_integers(charge):
+    with pytest.raises(ValueError, match="charge"):
+        peak_evidence(features(), ["001"], polarity="Pos", charge=charge)
+
+
+def test_default_charge_one_keeps_existing_evidence_identical():
+    assert_frame_equal(
+        peak_evidence(features(), ["001", "iso"], polarity="Pos"),
+        peak_evidence(features(), ["001", "iso"], polarity="Pos", charge=1),
+    )

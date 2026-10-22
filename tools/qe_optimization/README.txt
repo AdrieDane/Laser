@@ -72,3 +72,42 @@ or FDR. Manual-absent annotations are unconfirmed extras, not proven false hits.
 verify_qe_preparation_parity.py is a historical engineering check against the
 preserved old preparation cache. It needs that local cache; it is not an
 additional scientific selection experiment or part of the clean pipeline.
+
+Further fixed experiments, each AFTER the preceding full table was delivered:
+  python tools/qe_optimization/run_qe_chemical_experiment.py
+  python tools/qe_optimization/run_qe_context_experiment.py
+Evaluate/report each output exactly as above using reference v2. They are
+experiment_003 and experiment_004 respectively; neither changes app defaults.
+003/004 known_limitations.txt explains the missing separate standard catalog.
+
+Read-only diagnostics (NOT annotation performance experiments):
+  python tools/qe_optimization/diagnose_qe_local_rt.py
+  python tools/qe_optimization/build_qe_standard_rt.py --output <new empty diagnostic folder>
+The latter has preserved local v1/v2/v3 methodology-development versions; do not
+overwrite them or call their RT-window percentages annotation accuracy. Current
+standard RT code learns other-group positional REPORT metadata for declared
+spikes only; it does not alter benchmark isomer equivalence or relabel generic
+endogenous LPC/LPE. Read docs/PE_HANDOFF.txt for the current checkpoint.
+
+Experiment005 (full132-row table delivered before006) replays004 selections
+with conservative declared-standard completion, phase-specific reporting and
+channel handling. Endogenous models and benchmark equivalence are unchanged.
+First build standard RT v3 and independent endogenous-class residual transfer:
+  python tools/qe_optimization/build_qe_standard_rt.py --output <workspace>/outputs/qe_optimization_20261022/standard_rt_development_v3
+  python tools/qe_optimization/build_qe_standard_transfer.py
+  python tools/qe_optimization/run_qe_standard_experiment.py
+Evaluate/report experiment_005 as above with reference v2. The old v1/v2 standard
+diagnoses are historical, not necessary inputs to005. RT-only support is NOT
+annotation accuracy. New calls require a unique ORIGINAL feature before any
+occupancy filtering; conflicting RT sources withhold completion. Labelled
+standards retain their isotope masses and do not suppress unlabeled lipids.
+
+Experiment006, after delivering005's full table:
+  python tools/qe_optimization/run_qe_specialist_experiment.py
+Same004 evidence/candidates and005 standard models, new class/mode specialists
+where TRAINING support allows. Unknown or under-supported classes retain004
+global predictions; zero-positive training classes require >=6 groups before
+withholding full calls. Threshold .5/margin .05 remain fixed. Evaluate/report
+every dataset and mode, including regressions; do not adopt based on pooled90%
+if individual modes/classes remain poor. Raw truth, local trained pickles and
+source workbooks are NEVER repository inputs or files to commit.

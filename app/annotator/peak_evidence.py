@@ -105,6 +105,7 @@ def peak_evidence(
     feature_ids,
     *,
     polarity: str,
+    charge: int = 1,
     settings: PeakEvidenceSettings = PeakEvidenceSettings(),
 ) -> pd.DataFrame:
     """Return one evidence row per requested feature, including unknown values.
@@ -115,6 +116,12 @@ def peak_evidence(
     """
     if polarity not in {"Pos", "Neg"}:
         raise ValueError("Peak evidence polarity must be Pos or Neg")
+    if (
+        isinstance(charge, bool)
+        or not isinstance(charge, (int, np.integer))
+        or charge not in {1, 2, 3, 4}
+    ):
+        raise ValueError("Ion evidence charge must be an integer from 1 to 4")
     if not (0 < settings.ppm <= 3 and 0 < settings.coelution_seconds <= 5):
         raise ValueError("Ion evidence requires <=3 ppm and <=5 second coelution")
     if settings.minimum_profile_pairs < 4:
@@ -154,11 +161,11 @@ def peak_evidence(
     sorted_mass = mz[order]
     rows = []
     relations = [
-        ("isotope_lower", -C13_SPACING),
-        ("isotope_upper", C13_SPACING),
-        ("isotope_lower2", -2 * C13_SPACING),
+        ("isotope_lower", -C13_SPACING / charge),
+        ("isotope_upper", C13_SPACING / charge),
+        ("isotope_lower2", -2 * C13_SPACING / charge),
     ]
-    if polarity == "Pos":
+    if polarity == "Pos" and charge == 1:
         relations += [
             ("ammonium", POSITIVE_ADDUCT_DELTAS[0]),
             ("sodium", POSITIVE_ADDUCT_DELTAS[1]),

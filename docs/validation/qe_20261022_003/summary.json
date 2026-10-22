@@ -1,0 +1,20 @@
+{
+  "datasets": 33,
+  "dataset_modes": 132,
+  "manual": 92102,
+  "correct_before": 70270,
+  "correct_after": 79739,
+  "percent_before": 76.29584590996939,
+  "percent_after": 86.57683872228615,
+  "extras_before": 9697,
+  "extras_after": 8140,
+  "wrong_peak_before": 1373,
+  "wrong_peak_after": 1429,
+  "extras_no_increase_guard_pass": true,
+  "class_modes_below_90": 98,
+  "production_enabled": false,
+  "experiment": "003-group-trained-chemical-target-coverage",
+  "manual_reference": "v2, identical standard normalization mapping correction at both endpoints; not an annotation gain",
+  "target_achieved": false,
+  "note": "A passing pooled score does not establish >=90% in every curated class/mode. Goal also requires validated production integration, not just this offline experiment."
+}

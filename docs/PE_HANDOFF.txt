@@ -1,3 +1,156 @@
+LATEST ALL-CLASS CHECKPOINT — 22 October 2026, after005;006 RUNNING
+
+User permits prudent extras trade-offs; initial guardrail remains no net pooled
+extras increase vs the original baseline.90% by curated class/mode is NOT met.
+Production defaults/annotation entry points remain UNCHANGED. New components
+are isolated research helpers, not a deployed accuracy upgrade.
+
+All33 folders/132 modes,92,102 manual entries INCLUDING28 unresolved:
+  baseline:70,270 correct same-original-feature=76.3%;9,697 extras;1,373 wrong peaks
+  001:72,478=78.7%;6,446 extras;1,229 wrong peaks
+  002:78,310=85.0%;7,732 extras;1,417 wrong peaks
+  003:79,739=86.6%;8,140 extras;1,429 wrong peaks
+  004:80,044=86.9%;7,573 extras;1,418 wrong peaks
+  005:80,474=87.4%;7,488 extras;1,430 wrong peaks
+005 vs004:+430 correct,-85 extras,+12 different-feature choices.95/123 curated
+class/mode groups below90.005 mode totals (correct/manual,extras,wrong peaks):
+  RP_Pos39,826/45,206,2,997,828
+  RP_Neg11,516/13,600,1,328,340
+  NP_Pos17,332/19,380,1,774,173
+  NP_Neg11,800/13,916,1,389,89
+FULL132-row tables001 THROUGH005 delivered to user before each next experiment.
+Full aggregate dataset/mode/class reports are docs/validation/qe_20261022_00N/.
+V2 evaluation reference identical at all endpoints; no denominator changes.
+
+005 retains004 endogenous models, postprocesses declared standards only. New
+standard RT/channel/reporting priors exclude outer held-out project groups.
+Uses explicit declared chemistry, unique raw mass/RT hit BEFORE occupancy
+filtering, >=3 groups/channel support, preserved existing standard peak choices.
+Endogenous-class RT transfer excludes ALL declared spike masses from automatic
+alignment anchors. Independent RT sources differing>10s withhold completion.
+Phase-specific standard labels need>=90% training consensus AND valid independent
+mass/RT; benchmark equivalence unchanged; never relabel endogenous1/2 isomers.
+Baselines inherit prior development exposure; NOT untouched external validation.
+
+Experiment006 now running locally (session24366 at this checkpoint):
+  work/run_qe_specialist_experiment.py
+  outputs/qe_optimization_20261022/experiment_006/
+Do NOT launch duplicate jobs into its existing output. Fixed class/mode HGB
+specialists only if>=100 positive AND>=100 negative TRAINING candidate pairs
+and>=6 positive project groups. Within-class group-balanced weights,180 rounds,
+15 leaves,minleaf10,L2=2,lr.08,seed20261022. Otherwise global004 fallback; zero
+training positives with>=6 observed negative groups withhold full calls but
+retain candidates. Unknown classes fallback, not a heldout-label whitelist.
+EXACT004 candidate/evidence pools, threshold.5/margin.05; EXACT005 standard
+code/models rerun after selection using frozen baseline automatic alignment.
+NO006 scores yet. Evaluate all33 and report all132 rows before experiment007.
+Repository tool copies use explicit environment configuration as README states;
+executed local runners/source snapshots are retained outside Git unchanged.
+
+Latest verified FULL software suite:506 passed,8 skipped,83 subtests. New helper
+and research-tool lint clean. No private raw/curated/profile tables or trained
+model pickles committed.005 RT-only diagnostics v1/v2/v3 are preserved; onlyv3
+plus standard_transfer_development are005 inputs. Do not confuse RT-window
+support percentages with annotation accuracy. Existing old PE selector staysOFF.
+
+OLDER CHECKPOINT BELOW (superseded where it describes005 as not started)
+ALL-CLASS OPTIMIZATION CHECKPOINT — 22 October 2026, after experiment 004
+
+NO production annotation hook/default changed. Fresh baseline33 datasets /132
+modes complete,92,102 manual entries,28 unresolved mappings. Sources unchanged.
+Experiments001,002,003,004 COMPLETE and ALL132-row before/after tables for EACH
+were delivered to the user before starting the next selection experiment.
+All scores use the SAME independently verified v2 manual reference (960 standard
+profile-normalization fixes at BOTH endpoints, never algorithm gains).
+
+All-class same-original-feature scores, all manual entries in denominator:
+  baseline:70,270/92,102=76.3%;9,697 extras;1,373 wrong-feature calls.
+  001 atlas/logistic:72,478=78.7%;6,446 extras;1,229 wrong-feature calls.
+  002 dual-RT nonlinear:78,310=85.0%;7,732 extras;1,417 wrong-feature calls.
+  003 chemical coverage:79,739=86.6%;8,140 extras;1,429 wrong-feature calls.
+  004 raw-ion/run context:80,044=86.9%;7,573 extras;1,418 wrong-feature calls.
+Each corresponding docs/validation/qe_20261022_00N/ has full dataset/mode/class
+CSV tables and performance_before_after.txt.98/123 curated class/mode groups
+still below90% after004. Goal NOT achieved. The new RT/prior/classifier fits
+exclude each evaluated project group; inherited baseline models and development
+diagnostics have prior exposure, so NOT untouched external / pristine pipeline
+cross-validation. Replays are NOT fresh production raw-input annotation runs.
+
+003 widens class/mode composition envelopes from other-group extrema with small
+padding, validates charge-aware CH2/-H2 mass lattices and fills absent identities.
+004 keeps003 candidate universes exactly, adds charge-aware raw isotope/ion
+profile descriptors, known sample-group blank/QC evidence (unknown stays unknown),
+and context from OTHER strong automatic compositions plus known nM spike
+response. SAME HGB settings/threshold=.5/margin=.05 as002. No old rejected PE
+selector is reactivated. Default charge1 peak_evidence remains unchanged; optional
+charge2/4 is needed for the new all-class research helper.
+
+IMPORTANT003/004 LIMITATION:the inherited endogenous reference contains ZERO IS
+rows. The compiler's original embedded-standard mass-identical check therefore
+had no complete declaration catalog. Existing selected standard FEATURES were
+still reserved. Scores/extras/standard flags were evaluated correctly; these
+actual-output numbers are unchanged, not invalidated or silently rewritten.
+Known limitations are saved alongside BOTH reports. Current development compiler
+accepts a separate explicit declared-standard catalog and audits missing input;
+declared_standards.py compiles real targets from the existing verified chemical
+decoder independently of prior selection, including labelled masses.
+
+Baseline itself has945 correct standard calls,15 wrong-feature standard calls
+and806 unconfirmed extra standard channels. There are511 not-correct manual
+standard entries. Generic RP LPC/LPE standard labels fail comparison with the
+curated1-acyl labels; these also failed the first standard RT-library mapping,
+losing early RT calibrators needed for SPH and S1P. Do NOT weaken comparison
+equivalence: preserve1/2 positional labels. Development now resolves DECLARED
+spike chemical sums for library training, stores full report labels separately,
+and requires>=90% other-group reporting-label consensus; any emitted positional
+standard label still needs an independent RT match. This is not a general LPC/
+LPE endogenous isomer alias or dataset-name rule. No005 selections yet.
+
+Standard RT v3 is now COMPLETE (not annotation selections):work/build_qe_standard_rt.py --output
+outputs/qe_optimization_20261022/standard_rt_development_v3
+(former unified session17634; do not restart into the existing folder). It is RT-only
+diagnosis, NOT an annotation selection experiment. Earlier v1,v2 are preserved.
+v1 demanded120s span even for offset-only alignment and had0 NPnegative output;
+v2 fixes slope=1 for narrow-span standards, retaining strict residual checks and
+3ppm/10s candidate limits. v3 fixes declared-standard positional chemical lookup
+and learns phase-specific reporting metadata from TRAINING groups, not test RTs.
+All true standard RTs are read only for TRAINING or AFTER automatic prediction
+for diagnostics. No curated test file is a runtime input.
+
+LIVE additional RT-only diagnosis:work/build_qe_standard_transfer.py (unified
+session15212; inspect live process/output before restarting), writes
+standard_transfer_development/. It fits standard-specific residuals relative
+to OTHER-group endogenous class RT atlases, with ALL declared-spike masses
+excluded from automatic calibration anchors. This may support early RP LPC /
+LPE / SPH standards outside detected-standard RT coverage without widening
+3ppm/10s windows. standard_rt_transfer.py is unused by the production engine.
+If both standard-alignment and class-transfer RTs exist but disagree by>10s,
+new completion remains unknown. No005 selections have been run yet.
+
+Unused local_rt_surface.py was tested only as RT diagnostics, not a selection
+experiment. It added little RT-window coverage and is NOT enabled in004. Keep
+its diagnostics separate from annotation-accuracy reports.
+
+Next:finish/check v3 standard RT diagnosis, then implement a FIXED experiment005
+for declared-standard handling (channel priors, alias protection, conservative
+unique-mass/RT completion), preserving004 as exact predecessor. Report all132
+rows before another experiment. A subsequent class/mode-specific evidence-model
+experiment may help rare classes starved by the global HGB's large min-leaf
+setting; any such experiment needs grouped training, explicit support/OOD rules
+and a full report, not test-label-specific class whitelists or threshold sweeps.
+User target remains90% curated-class coverage across all four modes, not PE only.
+
+Latest completed full suite before the four transfer-helper tests:492 passed,
+8 skipped,83 subtests. A further full run is in session36956 (expected496);
+check its result instead of assuming it passed. New-file/tool lint was clean. Raw files,
+curated workbooks, per-feature truth and local model pickles stay OUT of Git.
+Runners and snapshots use trusted LOCAL pickles only. Pure research helpers and
+aggregate reports can be pushed; CFM main includes the newer launcher8085 /
+Python3.14 commits, merged earlier. Last confirmed pushed checkpoint89e1aff;
+current003/004 helpers/reports still need commit/push after final checks.
+
+OLDER CHECKPOINTS BELOW ARE SUPERSEDED
+
 ALL-CLASS OPTIMIZATION CHECKPOINT — 22 October 2026, after experiment 002
 
 Fresh baseline COMPLETE:33 raw-only runs,132 modes, sources SHA256 unchanged.
