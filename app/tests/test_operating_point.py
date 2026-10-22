@@ -5,6 +5,7 @@ from matlab_annotation.class_candidates import select_class_candidates
 from matlab_annotation.operating_point import (
     choose_training_operating_point,
     select_operating_candidates,
+    choose_balanced_training_points,
 )
 
 
@@ -64,3 +65,50 @@ def test_invalid_denominators_or_scores_fail_closed():
         select_operating_candidates(
             pd.DataFrame(), pd.Series(dtype=float), threshold=0.01
         )
+
+
+def test_pooled_budget_prioritizes_weak_mode_not_already_strong_mode():
+    table = pd.DataFrame(
+        dict(
+            stream=["A", "A", "B", "B"],
+            threshold=[0.2, 0.5, 0.2, 0.5],
+            manual=[100] * 4,
+            correct=[95, 90, 90, 70],
+            extras=[15, 3, 15, 3],
+            different_peak=[0] * 4,
+        )
+    )
+    assert choose_balanced_training_points(table, extras_per_manual=0.09) == {
+        "A": 0.5,
+        "B": 0.2,
+    }
+    assert choose_balanced_training_points(table, extras_per_manual=0.01) is None
+
+
+def test_balanced_ties_prefer_fewer_wrong_peaks_then_extras_then_higher_cutoff():
+    table = pd.DataFrame(
+        dict(
+            stream=["A", "A", "B", "B"],
+            threshold=[0.2, 0.5, 0.2, 0.5],
+            manual=[100] * 4,
+            correct=[90] * 4,
+            extras=[1] * 4,
+            different_peak=[2, 0, 0, 0],
+        )
+    )
+    assert choose_balanced_training_points(table) == {"A": 0.5, "B": 0.5}
+
+
+def test_balanced_points_reject_invalid_training_counts():
+    table = pd.DataFrame(
+        dict(
+            stream=["A", "B"],
+            threshold=[0.3, 0.3],
+            manual=[100, 100],
+            correct=[90, 90],
+            extras=[1, 1],
+            different_peak=[-1, 0],
+        )
+    )
+    with pytest.raises(ValueError):
+        choose_balanced_training_points(table)

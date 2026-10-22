@@ -1,4 +1,82 @@
-LATEST ALL-CLASS CHECKPOINT — 22 October 2026, after007;008 RUNNING
+LATEST ALL-CLASS CHECKPOINT — 22 October 2026, after009;010 RUNNING
+
+008 COMPLETE, NOT app default:81,456/92,102=88.4%;8,398 extras;1,571 wrong peaks.
+vs007:+979 correct,+936 extras,+154 wrong peaks. RPpositive90.4%, but RPnegative
+83.4%,NPpositive89.1%,NPnegative85.9%. Per-mode9% training extras limits favored
+RPpositive recall and made RPnegative stricter.92/123 curated class/mode groups
+below90. All132 rows delivered before009; no production adoption.
+
+009 COMPLETE, NOT app default:82,003/92,102=89.0%;9,316 extras;1,619 wrong peaks.
+vs008:+547 correct,+918 extras,+48 wrong peaks.85/123 curated class/mode groups
+below90. Still381 fewer extras than original baseline,246 MORE wrong peaks.
+009 allocates POOLED9.5% endogenous-extras/endogenous-manual TRAINING budget using
+the SAME008 inner-group predictions. First maximize weakest-mode coverage up to
+90%,then pooled correct,then fewer wrong-peak calls/extras/higher cutoffs. Same
+007 final models/pools, same005 standard handling; no held-out cutoff selection.
+009 mode totals(correct/manual,extras,wrong peaks):
+  RP_Pos40,277/45,206=89.1%,3,366,912
+  RP_Neg12,011/13,600=88.3%,1,956,423
+  NP_Pos17,441/19,380=89.99484%,1,874,171 (ONE MATCH SHORT of90%,despite rounding)
+  NP_Neg12,274/13,916=88.2%,2,120,113
+FULL132-row tables001 THROUGH009 delivered before each next experiment. User-
+facing009 NPnegative25P0075 before% had a typo; IMMEDIATELY CORRECTED to90.4%
+(416/460),not83.0%. Saved CSV/TXT and pooled totals were always correct.
+
+LIVE010:work/run_qe_capacity_experiment.py (unified session68288 at checkpoint),
+outputs/qe_optimization_20261022/experiment_010/. Inspect before restarting.
+SAME007 candidates/evidence,SAME009 cutoffs,SAME005 standards; ONLY global HGB
+max_iter600 rather than180.31 leaves,minleaf50,L2=2,lr.08,no early stopping,
+same seed/group-balanced weights. Newly trained models exclude outer evaluated
+groups. Cutoffs were learned for180-round models and are deliberately NOT
+recalibrated here; no test-label tuning. No new RT source enabled. No010 scores
+yet. Complete/evaluate all33 and deliver all132 rows BEFORE another experiment.
+
+RAW RT DIAGNOSTIC COMPLETE (NO annotation selections):
+  work/build_qe_raw_grid_diagnostic.py --workers3
+  outputs/qe_optimization_20261022/raw_grid_development_v1/
+All33 done. Frozen runner_source.py initially sequential; then same calculations
+continued with3 independent numerical workers, runner_source_parallel.py. The
+own sequential job was stopped after3 complete datasets; source data untouched.
+RT-window POTENTIAL newly admitted manual peaks:NPneg370,NPpos123,RPneg29,RPpos168
+=690. NOT690 correct annotations; no classifier/annotation experiment yet.
+Raw-grid class shifts inferred from OTHER compositions:<=90s search,anchor<1.5
+ppm,>=10% within-composition max intensity,prevalence>=25%/>=3 TRAINING groups,
+max80 anchor compositions,class>=9 total,>=8 OTHER,Cspan>=4,>=2DB; ambiguities
+withheld. A mass-degenerate feature cannot vote for multiple compositions.
+All declared-spike masses excluded. Each target C/DB excluded from its final
+shift. Only absolute shifts>=5s yield an extra RT source. NP/RP clustering3/5s.
+Any future candidate STILL must pass<3ppm/<=10s of independent new RT. App helper
+raw_grid_alignment.py is UNUSED in production/current010. Current development
+adds an EXACT support prefilter (counts distinct compositions before sorting);
+unit parity vs brute-force centers passes. Frozen RT diagnostic used original
+pre-prefilter source; compare full outputs with cached diagnostics before future
+annotation admissions. Do not modify its frozen source_snapshot.
+
+Mechanistic candidate guard to investigate BEFORE new RT selections: existing
+atlas_local_support_count>=4 means a class already has agreeing independent
+automatic alignment; a blind cold-start shift may be a wrong parallel grid.
+Restricting new RT to inadequately anchored classes would retain potential
+NPneg368,NPpos123,RPneg20,RPpos59 (570 total),while avoiding many bad parallel
+references. Diagnostic only, not a selected annotation experiment or accuracy.
+Actual candidate/model/extras validation still required. No011 runner yet.
+
+Current discovery diagnosis (007,NOT009) decomposes3538 excluded true features:
+2336 RT windows,903 mass windows,148 composition limits,128 absent theory,
+23 unavailable atlas. Source scripts/aggregate counts are reproducible; NEVER
+commit per-feature diagnostics/manual crosswalks.007 full_comparison NOW has
+private diagnostic CSVs:do NOT blindly copy its *.csv glob into Git. Whitelist
+the seven aggregate report files, as done for009. Raw inputs/curation unchanged.
+
+NO production hook/default changed;90% goal NOT achieved. New model fits exclude
+evaluated groups, but inherited baseline has prior exposure and inner classifier
+calibration inherits OUTER-training RT atlas. NOT untouched external or fully
+nested end-to-end CV; scores not identity probability/FDR. Sole33 folders/30
+project groups,92,102 manual INCLUDING28 unresolved, identical referencev2.
+Latest verified full suite525 passed,8 skipped,83 subtests. Current lint clean.
+Last pushed c6a8233; this checkpoint includes008/009 reports and RT/capacity tools.
+
+OLDER CHECKPOINT BELOW (superseded where describing008/009 as unfinished)
+ALL-CLASS CHECKPOINT — 22 October 2026, after007;008 RUNNING
 
 006 COMPLETE, NOT ADOPTED:79,939/92,102=86.8%;7,189 extras;1,443 wrong peaks.
 vs005:-535 correct,-299 extras,+13 wrong peaks. NPnegative improved but other

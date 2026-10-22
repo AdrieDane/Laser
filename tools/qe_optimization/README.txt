@@ -130,3 +130,26 @@ margin. No evaluated outer labels choose cutoffs. This is NOT fully nested RT
 cross-validation: outer-training atlas/evidence are inherited inside inner score
 folds. No test-set extra/FDR guarantee. Full132-row table and class reports still
 required before the next experiment, regardless of acceptance/rejection.
+
+008's individual mode budgets worsened RPnegative;009 therefore uses JOINT
+cutoffs from the SAME008 training tables, maximizing weakest-mode coverage within
+a POOLED9.5% endogenous extras/endogenous-manual training budget:
+  python tools/qe_optimization/run_qe_balanced_operating_experiment.py
+No evaluated labels choose cutoffs. Same007 final scores/pools, same005 standards.
+Evaluate/report all132 rows. Training budget is not a test-set/FDR guarantee.
+
+After009's full table,010 isolates global model capacity:
+  python tools/qe_optimization/run_qe_capacity_experiment.py
+Only600 rounds instead of180; same007 evidence/candidates,009 frozen thresholds,
+005 standard handling. Cutoffs are NOT recalibrated to600-round scores. No raw
+grid RT source enabled; inspect held-out extras and wrong features before adoption.
+
+Read-only raw RT mass-series diagnostic (NOT annotation accuracy):
+  python tools/qe_optimization/build_qe_raw_grid_diagnostic.py --workers 3
+Frozen other-group RT/prevalence, raw mass/RT/intensity only for inference.
+>=8 OTHER compositions required; competing grids and mass-degenerate votes
+withheld; declared-spike masses excluded. Predictions are frozen BEFORE reading
+the evaluation labels. Runtime sources remain unchanged. Diagnostic per-feature
+CSV/pickles stay OUTSIDE Git; only aggregate validation reports may be committed.
+Current helper has an exact, unit-tested support prefilter absent from the first
+frozen diagnostic source. Verify replay parity before future annotation admission.

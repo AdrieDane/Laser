@@ -75,3 +75,55 @@ def choose_training_operating_point(table, *, extras_per_manual=0.09):
         .iloc[0]
         .threshold
     )
+
+
+def choose_balanced_training_points(table, *, extras_per_manual=0.095, target=0.9):
+    """Allocate a POOLED training extras budget to the weakest measurement mode.
+
+    First maximize minimum per-mode correct coverage up to the requested target,
+    then total correct matches, then fewer wrong-peak choices/extras, then higher
+    cutoffs. Evaluation labels are not inputs. This is not an FDR guarantee.
+    """
+    required = {"stream", "threshold", "manual", "correct", "extras", "different_peak"}
+    if not required.issubset(table) or table.empty:
+        raise ValueError("Balanced operating points require per-mode training counts")
+    if not 0 <= extras_per_manual <= 1 or not 0 < target <= 1:
+        raise ValueError("Invalid training budget or coverage target")
+    parts = []
+    streams = sorted(table.stream.unique())
+    if not 2 <= len(streams) <= 4:
+        raise ValueError("Balanced selection requires two to four measurement streams")
+    for stream in streams:
+        p = (
+            table[table.stream.eq(stream)]
+            .copy()
+            .sort_values("threshold", ascending=False)
+        )
+        choose_training_operating_point(p, extras_per_manual=1.0)
+        if (
+            p.threshold.duplicated().any()
+            or p.different_peak.lt(0).any()
+            or not np.isfinite(p.different_peak).all()
+        ):
+            raise ValueError("Invalid/duplicate training operating points")
+        parts.append(p.reset_index(drop=True))
+    grids = np.meshgrid(*[np.arange(len(p)) for p in parts], indexing="ij")
+    indices = [g.ravel() for g in grids]
+    total_manual = sum(float(p.manual.iloc[0]) for p in parts)
+    correct = np.stack([p.correct.to_numpy(float)[i] for p, i in zip(parts, indices)])
+    extras = sum(p.extras.to_numpy(float)[i] for p, i in zip(parts, indices))
+    wrong = sum(p.different_peak.to_numpy(float)[i] for p, i in zip(parts, indices))
+    feasible = np.flatnonzero(extras <= extras_per_manual * total_manual)
+    if not len(feasible):
+        return None
+    denominator = np.asarray([float(p.manual.iloc[0]) for p in parts])[:, None]
+    minimum = np.minimum((correct / denominator).min(axis=0), target)
+    total_correct = correct.sum(axis=0)
+    # meshgrid follows descending threshold order: stable final tie-break.
+    best = max(
+        feasible,
+        key=lambda j: (minimum[j], total_correct[j], -wrong[j], -extras[j], -j),
+    )
+    return {
+        s: float(p.iloc[i[best]].threshold) for s, p, i in zip(streams, parts, indices)
+    }
