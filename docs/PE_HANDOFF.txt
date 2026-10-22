@@ -1,3 +1,60 @@
+ALL-CLASS OPTIMIZATION CHECKPOINT — 22 October 2026, after experiment 002
+
+Fresh baseline COMPLETE:33 raw-only runs,132 modes, sources SHA256 unchanged.
+All-class denominator92,102 manual entries;28 unresolved feature mappings remain.
+All previous mapped reference features were verified against exact export
+coordinates (91,114 controls;0 conflicts). Reference v2 additionally verifies
+960 previously unresolved INTERNAL STANDARDS by exact unique m/z/RT AND raw
+profile correlation>=0.999999 across>=4 real matched samples. Their exports were
+not protein-corrected. All non-standard mappings, old matches and denominators
+are unchanged. Apply v2 to BOTH endpoints; this is NOT an annotation gain.
+
+EXPERIMENT001 COMPLETE AND FULL132-ROW TABLE DELIVERED TO USER:
+  Current default:70,270/92,102=76.3%;9,697 extras;1,373 wrong-feature calls.
+  Atlas/logistic:72,478/92,102=78.7%;6,446 extras;1,229 wrong-feature calls.
+  Rejected for default deployment: NP-positive and many datasets regress.
+  Reports:docs/validation/qe_20261022_001/ (all class/mode/dataset rows).
+
+EXPERIMENT002 COMPLETE AND FULL132-ROW TABLE DELIVERED TO USER:
+  Dual fitted/atlas RT proposals + nonlinear evidence, same grouped5folds.
+  78,310/92,102=85.0%;7,732 extras;1,417 wrong-feature calls.
+  +8,040 correct vs default; extras-1,965, but wrong-feature calls+44.
+  RPpositive87.0%,RPnegative81.3%,NPpositive87.2%,NPnegative79.1%.
+  107/123 curated class/mode combinations still below90%. NOT target achieved.
+  Reports:docs/validation/qe_20261022_002/ (all class/mode/dataset rows).
+  No production hook/default change. Do not describe cached feature replay as
+  a fresh production run or these development examples as untouched external
+  validation. Training groups exclude the evaluated project; related folders
+  share one of30 groups. Outer-training RT features are not inner OOF features.
+
+The experiment002 class discovery ceiling is only87.5% for NPnegative even if
+all proposed correct features were selected. Missing-candidate diagnoses:
+NPnegative526 composition-limited,445 absent theory identities (410 PE-O+P),
+470 RT-window,155 mass-window,22 unavailable-atlas;114 standards also missing.
+Some NP ether/plasmalogen theory grids stop at DB7 while manual sums reach
+DB8-11. A labelled CE(16:0)-D7 standard also suppresses the genuinely distinct
+unlabelled CE(16:0) endogenous target in the inherited radix model. Need chemical
+target discovery fixes, not simply a lower acceptance threshold. Other modes
+also lose many targets to old composition ranges. Original references/raw
+features remain unchanged. Diagnostics are local outputs, not new selections.
+
+Next planned research step: group-trained, chemically validated composition
+envelopes and explicit target compilation to fill these missing identities;
+retain strict3ppm/10s new-candidate windows and protect truly mass-identical
+declared standards. No experiment003 selections have been run at this checkpoint.
+Later steps may require stronger independent RT alignment, declared-standard
+recovery and original-feature discrimination. Full tables after EACH experiment.
+
+Reproducible research runners now live in tools/qe_optimization/README.txt.
+Set external data/workspace environment paths; never commit raw profiles,
+per-feature truth, source workbooks or local model pickles. Per-experiment frozen
+sources/protocols in the task workspace are the exact executed versions.
+Latest full suite:464 passed,8 skipped,83 subtests. New helper/tool lint passes.
+Newer cfm/main launcher8085 and Python3.14 changes were merged/preserved; they
+do not change annotation. Baseline remains explicitly frozen4da94ef.
+
+OLDER IN-PROGRESS NOTES BELOW ARE SUPERSEDED BY THE CHECKPOINT ABOVE
+
 ALL-CLASS OPTIMIZATION STARTED — 22 October 2026
 
 Current in-progress checkpoint (not a completed improvement): two unused
