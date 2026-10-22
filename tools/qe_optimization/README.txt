@@ -221,3 +221,24 @@ The mapping audit counts failed DEFINITION/PHASE/FOLDER steps,not failed dataset
 304 such baseline failures; some rare classes also lack an outer-fold RTmodel.
 Zero-match labels stay in the denominator; X4 has blank native chemistry and
 cannot be responsibly guessed. See docs/PE_HANDOFF.txt for next-step hypotheses.
+
+After015's full table,016 tested mass CONTEXT on EXACT007 physical pools:
+  python tools/qe_optimization/run_qe_mass_context_experiment.py
+Blind BASELINE automatic standards validated against actual positive-quantity
+declared name/adduct/labelled mass. Neutral chemical masses vote once. Query
+excludes own feature/chemical mass channels. >=6 standards,MAD<=.6ppm,p90<=1.5ppm,
+abs median<=2ppm; unavailable staysNaN. Eight descriptors added,old raw ppm
+retained. SAME180-round globalHGB,EXACT009 cutoffs(not recalibrated),005 standards.
+All33 complete,full132 table delivered. REJECTED:136 fewer correct matches vs009
+for only73 fewer extras. No default/candidate-coordinate/window changes. This
+does not test a recalibrated operating point or expanded calibrated discovery.
+
+Unused native-catalogue helper/chemical parity (NOT annotation performance):
+  python tools/qe_optimization/verify_qe_catalogue_parity.py
+Output native_catalogue_parity_v2,refuses overwrite. All33 baseline reference
+unions,fold0 envelope as enumeration bounds.15,070 overlapping chemical targets,
+zero mass differences>1microDa. Native codes/formulas/charges,no guessed masses.
+V1 remains historical; V2 after equivalent-adduct spike-protection guard repair.
+No full calls,curated feature mapping or original source writes in this check.
+Next experiment must prove correct original-feature annotations and controlled
+extras,not present reference enumeration/parity as annotation success.

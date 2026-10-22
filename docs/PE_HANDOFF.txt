@@ -1,4 +1,83 @@
-LATEST CHECKPOINT — 22 October 2026, after015; ALL JOBS COMPLETE
+LATEST CHECKPOINT — 22 October 2026, after016; annotation/evaluation COMPLETE
+
+FULL132 TABLES001 THROUGH016 DELIVERED before the next annotation experiment.
+016 REJECTED:81,867/92,102=88.88732%;9,243 extras;1,610 wrong peaks;86/123 curated
+class/modes below90. vs009:-136 correct,-73 extras,-9 wrong peaks. Passing original
+extras guard does NOT compensate for lost coverage. Whole-method checkpoint009
+(82,003 correct,9,316 extras,1,619 wrong,85 below90) remains reference.014 has+32
+correct/no more extras but class regressions; no cherry-picked mixture/default.
+016 all-mode counts(correct/manual,extras,wrong):
+ RP_Pos40,215/45,206=89.0%,3,350,904
+ RP_Neg11,979/13,600=88.1%,1,953,423
+ NP_Pos17,410/19,380=89.8%,1,897,163
+ NP_Neg12,263/13,916=88.1%,2,043,120
+User-facing016 table typo26P0026 RPpositive BEFORE was IMMEDIATELY CORRECTED:
+86.3%(1,462/1,694),not83.3%(1,448/1,738). Saved CSV/TXT and pooled totals correct.
+
+016 is EXACT007 physical pools/old evidence plus8 descriptors from blind BASELINE
+automatic standards. Validate actual positive-quantity declared spike name/ion/
+reference mass(.05ppm),observed<3ppm; labelled masses preserved. Each NEUTRAL
+chemical votes once over split features/adducts. Median center enabled>=6 neutral
+masses,MAD<=.6ppm,p90<=1.5ppm,abs center<=2ppm. Query excludes OWN original feature
+and ALL neutral chemical groups with a channel within3ppm of query target. Old
+raw ppm remains; addcenter,MAD,p90,count,enabled,centered signed/abs/squared ppm.
+Unavailable staysNaN. No measured m/z/RT/feature IDs/candidate windows changed.
+Same007 global180-round HGB/group-balanced weights; SAME009 frozen thresholds
+(NOT recalibrated for new model scores),same005 standard handling. All models
+exclude evaluated project groups; prior baseline exposure/outer-training atlas
+features still not pristine nested/external validation. No FDR/probability claim.
+Actual executed local runner:work/run_qe_mass_context_experiment.py; output016
+source/dependency SHA-frozen.165 prepared tables/modelpickles/private anchors
+OUTSIDE Git. All33 evaluation complete/referencev2 unchanged,28 unresolved in
+92,102 denominator; source workbooks/raw lists verified unchanged by evaluator.
+No live016 jobs; unified66821/48839 finished. Model predictions/checks not app
+integration. Raw-input production baseline still frozen4da94ef; app defaults
+remain unchanged. Do NOT describe this as a full new production run.
+
+NEW UNUSED helper catalogue_targets.py +8 synthetic tests:
+Native theoretical C:DB enumeration independent of successful vendor RT mapping,
+using original CodeDecoder/phase composition/exact signed-charge masses. Does
+NOT need two surviving reference nodes PER adduct. RequiresOTHER-group envelope
+>=3 training cohorts; preserves native axes/adducts/O-P/positional distinctions;
+positive actual declared-spike masses protected. NonCDB/missing definitions not
+guessed; X4 and unsupported CoQ remain in manual denominators. Equivalent charge
+notations merge for spike protection rather than overwrite each other. No
+annotation selection/default hooks. Does not yet repair complete app workflow.
+
+Read-only parity:work/verify_qe_catalogue_parity.py -> native_catalogue_parity_v2
+All33 surviving baseline chemical reference unions,fold0 envelope as enumeration
+bounds.15,070 overlapping target pairs,0 mass conflicts>1e-6Da. Counts by stream:
+RPpos5292,RPneg2275,NPpos3450,NPneg4053. Max difference4.55e-13Da. NOT15,070 new
+annotations or held-out annotation accuracy. V1 frozen runner/summary preserved;
+V2 repeats after equivalent-charge spike guard repair,which has no effect with
+the empty declared-spike set in parity test. Aggregate CSV only inGit; no private
+original-feature/sample-profile data. Source/input SHA in local summary.
+
+RECOMMENDED NEXT017 (NOT started): native-catalogue missing-reference experiment
+starting009,NOT rejected016. Restore only theoretical nodes absent from the
+baseline+003 reference,using native catalogue/envelope and explicit declared-
+spike guard. Other-group RT atlas,composition/adduct support and independent raw
+feature evidence still needed BEFORE any full call. Reuse generic005/015 support
+models ONLY for matching outer fold,never test annotations. No dataset/class
+whitelist or fabricated confidence. Validate all33/132 including unchanged rows.
+This directly addresses0%-coverage classes GM2[t]/GA2[d]; does not promise global
+90% alone. Training+acceptance design must stay explicit and frozen before test.
+Alternatively a boundedRP class-specific RT residual PLANE,not common shift,
+could re-peak FIXED009 identities/counts without extra identities:>=12 strong
+other compositions,full-rank CDB coverage,independent leave-one-anchor-out checks,
+query excluded,strict unique raw hit,old occupied/spike/manual/standard protection,
+no cascades/conflicting claims. This is a hypothesis,NOT coded/tested.
+If returning to mass scoring,learn cutoffs from inner TRAINING groups for the
+new scores before drawing conclusions about calibration generally.016 tested
+fixed old cutoffs only. Do not silently optimize cutoffs against test results.
+
+Latest full suite577 passed,8 skipped,83 subtests; both new helper test files
+16pass. Ruff clean. Last confirmed push
+fd61f2f BEFORE this016 checkpoint. Goal ACTIVE,NOT achieved. No blocking global
+condition; X4 definition request remains unanswered but other work can progress.
+
+OLDER CHECKPOINT BELOW, superseded where it says016 not started
+CHECKPOINT — 22 October 2026, after015
 
 FULL132 TABLES001 THROUGH015 DELIVERED before each next annotation experiment.
 All33 datasets/four modes use identical referencev2,92,102 manual entries,

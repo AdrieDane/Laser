@@ -1,0 +1,5 @@
+stream,surviving_baseline_chemical_pairs,native_targets,overlapping_pairs,mass_conflicts_above_1_microDa,max_absolute_mass_difference_Da
+RP_Pos,27182,9166,5292,0,4.547473508864641e-13
+RP_Neg,19380,4911,2275,0,0.0
+NP_Pos,23297,6087,3450,0,2.2737367544323206e-13
+NP_Neg,24790,7622,4053,0,1.1368683772161603e-13

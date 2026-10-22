@@ -29,5 +29,14 @@ class-specific RTmodel from those same project labels. No entries were removed.
 Executed local runners under workspace/work/,portable copies under
 tools/qe_optimization/. Source workbooks/raw feature lists were not modified.
 Private per-feature diagnostics,source profiles,crosswalks and modelpickles
-remain outside Git. These3 aggregate tables contain no raw sample profiles or
+remain outside Git. These aggregate tables contain no raw sample profiles or
 original feature IDs.
+
+native_catalogue_mass_parity.csv (added after016):
+The UNUSED catalogue-target generator was compared with the union of surviving
+chemical references from all33 baseline runs. Frozen fold0 envelope supplies
+enumeration bounds.15,070 overlapping targets;0 differences>1microDa,maximum
+4.55e-13Da. Current read-only run native_catalogue_parity_v2 follows an equivalent-
+charge spike-protection guard fix; V1 remains historical. No annotations were
+selected and this is NOT an annotation-accuracy result. It does not validate
+unseen formula definitions,missing RTmodels or unknown X4 chemistry.
