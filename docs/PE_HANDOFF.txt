@@ -1,4 +1,100 @@
-LATEST CHECKPOINT — 22 October 2026, experiment020 COMPLETE
+LATEST CHECKPOINT — 22 October 2026, experiment021 COMPLETE, REJECTED
+
+FULL132 TABLES001 THROUGH021 DELIVERED before any next annotation experiment.
+021:81,610/92,102=88.608282%,9,669extras,1,579different-feature choices;
+92/123class/modes below90. vs009:-393correct,+353extras,-40wrongfeatures.
+Original9697extrasguard passesby28 butquality WORSE; not adopted/cherry-picked.
+Everymode lostcorrectmatches vs009. Mode(correct/manual,extras,wrong):
+ RP_Pos40138/45206=88.8%,3416,910
+ RP_Neg11923/13600=87.7%,1925,417
+ NP_Pos17394/19380=89.8%,2135,155
+ NP_Neg12155/13916=87.3%,2193,97
+No productiondefaults/entrypoints changed; goalACTIVE,NOTachieved.
+
+021 changedONLY acceptance allocation:EXACT007physicalpools,evidence,finalscore
+models and005standardhandling. All33 final candidate scoring_auditSeries EXACTLY
+equal009. New per-class tables fromSAME008 INNER OOF007 predictions,ALLendogenous
+manual/unresolved denominators,canonicalclasses,uniqueprojectcohortcounts.
+ALL5 exact009trainingreference parity checks passed. Three-stage MILPoptimal:
+onecutoffperclass,under-supported<3groups/<30manual frozen009;class/modefloors
+min(referencecorrect,ceil(.9manual)),totalcorrect>=reference;9.5%pooledendogenous
+trainingextrasbudget. ObjectiveSUMclasscoverage capped90%,thenpooledcorrect,
+thenfewerwrongpeaks/extras. Globalfeature+identitywinners fixed BEFOREcutoffs;
+withheldtoplabel cannot promoteweakerlabel. No refit/newcandidates/020additions.
+Class keys changedbyfold78/89/85/81/81;TRAINING totalcorrect gains0/7/1/0/0.
+Those constraints did NOT generalize toheldout data. InheritedouterRT/prior/
+envelope features notfully innercrossfitted;knownbaselineprior exposure. Not
+external/pristinepipeline validation,FDR or a freshproductionrun.
+Local executedrunner work/run_qe_class_operating_experiment.py ->experiment_021;
+unified69343annotation/6474evaluation COMPLETE.525source/dependencySHAchecks;
+allsourceworkbooks/fourlists unchanged,referencev2identical28unresolvedincluded.
+7aggregate reports docs/validation/qe_20261022_021. Portabletoolchangespaths,
+formatting andunusedloopvariable only. Privatepickles/featureprofiles outsideGit.
+
+NEW READ-ONLY training_feature_shift_v1 diagnostic,NOT newannotationperformance:
+Pairs SAME correctlymapped manual lipid/adduct/ORIGINALfeature between its007
+heldoutfold cache and four otherfold caches whose RT/priortraining includesit.
+347,867matchedpairrows; NOT additionalindependentdatasets/annotations. Conditions
+onpresence inBOTH caches; candidateavailabilitydifferencesreportedseparately.
+Atlas absoluteRTerror trainmedian->heldoutmedian,seconds:
+ NPneg .844->.886;NPpos1.018->1.072;RPneg2.660->2.732;RPpos1.989->2.022.
+Median paired increasesonly.026-.034s pooled; NOT proof thisexplains393loss.
+Largerweak-class shifts:RPnegGD2[d] medianpaired+1.635s(n109),RPposHex2Cer[t]
++1.356s(n111),RPnegS1P[d]+1.330s(n74),NPnegGD3[d]+1.140s(n288),RPposDLCL
++1.094s(n116),NPnegBMP+.894s(n1863). Commonclassesdominatepooledsummary.
+Candidateavailability(trainonly vsheldoutonly,FOURpairedcomparisons):NPneg709/143,
+NPpos208/54,RPneg333/105,RPpos463/151. Not counts ofnewacceptedannotations.
+OnlyaggregateCSV/sourcehashreceipt inGit; no individualfeaturepairs written.
+This supports testing query-excluded featuregeneration,NOT claiming asolecause
+or promising anaccuracygain before actualbenchmarking.
+
+NEXT022 RECOMMENDED: genuinely cross-fitted ENDOGENOUS trainingpredictors,
+notanother threshold sweep on thesamepartlyself-informed trainingfeatures.
+CurrentouterTRAINING query's ownmanualRT/CDBpresence canenteritsatlas/priors/
+envelope even thoughoutertestgroupsareexcluded. Innercalibrationfeaturemodels
+alsoincludeinnervalidationmanualobservations. Caveats previouslydisclosed; this
+can shiftminority-class train/testinputs and makes repeatedthreshold tuningweak.
+No evaluatedoutergroupcuration everentersnewscorefit; preserve that guarantee.
+
+NEW UNUSED nested_feature_folds.py+4synthetic tests plans efficientexclusion:
+Use SAME5 originalproject-groupblocks;forouterf,
+ -finalscoretrainingquery inblockk:RT/prior/envelopemodelsexclude{f,k};
+ -outerheldoutquery:modelsexclude{f};
+ -innerVALIDATIONblockj:scorefitqueries inblockk usemodelsexclude{f,j,k};
+ -innervalidationqueries:modelsexclude{f,j}.
+UseFOURinnerfolds(remainingoriginalblocks),notarbitrary3foldsthatrequirehundreds
+ofnewRTmodels. Only25distinct masks(5singles+10pairs+10triples). Validatedactual
+33datasets/30projectgroups:24/18/12traininggroups persingle/pair/triplemask.
+Relatedacquisitionsmuststaytogether; explicitprojectgroupmap,NEVER predictor.
+Eachqueryproject,outertestANDinnercalibrationproject excludedfromALLnew
+featuremodels relevanttoitsrole. Helperonlyplans,NO022models/outputs/runner yet.
+
+022implementation guidance:
+1.FitRTatlas,compositionpriors/envelope foreachmask fromONLYallowedobservations.
+2.Build reusable candidate/evidencepreparer fromfrozen001-007functions. First
+  PROVE physical/evidenceparity usingexisting007models oncacheddatasets BEFORE
+  testingnewexclusionmodels; do notsilentlychangechemistry/windows/gates.
+3.Outerheldout candidates/scorescope identical007 wherepossible; trainfeatures
+  regeneratedwithqueryexcludedmodels. Baselineautomaticanchors+rawfeatures ONLY.
+  Do NOT reusea querydataset's originalheldoutfold atlas for anotherouterfold:
+  that model includesnewoutertestlabels! Respectexplicitmaskplan.
+4.Innertrainingfeatures excludeouterf+validationj+queryk;validationf+j. Generate
+  label-freefeaturesfirst,thenattachtraininglabels. Modelweights/groupchecks
+  asbefore. Refitfixed180roundHGB; newTRAINING-only cutoffs with009weakestmode
+  objective/9.5%poolbudget. Rejected021classcutoffsnotreused/cherry-picked.
+5.Outerstandardsretainmatching005other-groupmodels;endoacceptancecalibration
+  excludesstandards. Knownbaselineprior exposure stillmeansNOpristineexternal
+  claim. 4vs3innerblocks/newfeaturegeneration areexplicitmethodchanges.
+6.Evaluateall33/allclasses/refv2,full132tablebeforeany023. Goalremains90%each
+  curatedclass/mode;32class/modes oldcandidateceiling<90 needdiscoveryafterward.
+  This is a HYPOTHESIS,not anexistingperformance improvement. Mass-calibrated
+  candidateadmission remainsanotherhypothesis;475windowpotentialNOT475newcalls.
+
+GoalACTIVE,no globalblocker;X4definitionunansweredbutotherprogresspossible.
+Fullsuite622passed,8skipped,83subtests; terminal60759confirmedcompletion.
+Ruffclean. Lastconfirmedpush741bd50 BEFORE021checkpoint;inspectgitlog fornewhash.
+
+OLDER CHECKPOINT — 22 October 2026, experiment020 COMPLETE
 
 FULL132 TABLES001 THROUGH020 DELIVERED before any next annotation experiment.
 020 not adopted:82,007/92,102=89.039326%,9,320 extras,1,619 different-feature

@@ -1,0 +1,5 @@
+stream,present_both,training_only,heldout_only
+NP_Neg,50657,709,143
+NP_Pos,74618,208,54
+RP_Neg,50783,333,105
+RP_Pos,171809,463,151

@@ -321,3 +321,27 @@ class/mode cutoff experiment. No real021 annotations or productionhooks yet.
 MILP cappedclasscoverage objective,pooledbudget,class+mode+totaltraining floors,
 under-supportedreferencefallback,exactglobalwinners(no promotion of losinglabel).
 Read docs/PE_HANDOFF.txt before building groupedOOFtrainingtables/realexperiment.
+
+After020's full132 table,021 tests class/mode TRAINING-cutoff allocation:
+  python tools/qe_optimization/run_qe_class_operating_experiment.py
+EXACT007candidates/evidence/finalscores,005standards. SAME008 INNER OOFscoremodels;
+all5exact009training-referenceparitychecks. MILP cappedclasscoverageobjective,
+9.5%pooledendogenoustraining extrasbudget,class/mode/totalfloors andunsupported
+fallbacks. No promotionoflosingfeaturelabels. All33finished/full132tableDELIVERED.
+REJECTED:81,610correct,9,669extras,1,579differentfeatures;92/123class/modesbelow90.
+vs009:-393correct,+353extras,-40wrongfeatures. All33finalscoresEXACT009unchanged.
+No appdefaults changed; heldoutcountsnotguaranteedbytrainingconstraints.
+
+Read-only paired feature-distribution diagnosis (NOT annotationperformance):
+  python tools/qe_optimization/diagnose_qe_training_feature_shift.py
+SAMEcorrectmanualquery inheldout007cache vsfourcacheswhoseatlastrainingincludes
+thatproject. Conditionsonpresence inBOTH; missingcandidatecountsseparate. Small
+pooledmedianRTdifference,butlarger forsomeminorityclasses. Not proof ofsolecause
+of021failure. Aggregateonly,nomodel/annotationchanges or per-featurepairtables.
+
+Unused nested_feature_folds.py +synthetictests prepares a future022properly
+nested ENDOGENOUS featuregeneration experiment:25exclusionmasks overexisting5
+projectblocks,4innerblocks. Everyquery,outertest andinner-validationproject
+excludedfromrelevantRT/prior/envelopemodels. Actual33/30groupplanvalidated.
+No022models/predictors/annotationsyet. Preservegroupchecks andprovegeneric007
+preparationparity BEFORE runningnewmodels. See current docs/PE_HANDOFF.txt.
