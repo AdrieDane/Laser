@@ -29,6 +29,11 @@ Evaluate/report experiment_022 with the same v2 manual reference and all132 rows
 before any023 annotation experiment. The first three commands are engineering
 preparation, NOT annotation accuracy experiments. The last command waits for
 the complete363-table preparation summary before fitting/accepting anything.
+The generic reporter also supports --before <other completed checkpoint>,
+writing comparison_with_<checkpoint-name>/ separately from full_comparison/.
+It verifies the two runs contain exactly the same dataset collection. For022,
+both originalbaseline ->022 and009 ->022 reports are published; the latter is
+the experiment delta, not a cumulative gain misattributed to the new change.
 Use the SAME5 project blocks, with FOUR inner score folds. Reference masks
 exclude the outer test, inner calibration and own-query project as applicable;
 all learned endogenous features are generated before supervised flags enter.

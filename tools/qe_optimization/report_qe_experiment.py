@@ -56,16 +56,32 @@ def fraction(row, side):
 
 
 def main():
-    global EXPERIMENT
+    global BASE, EXPERIMENT
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--experiment", type=Path, default=EXPERIMENT)
+    parser.add_argument("--before", type=Path, default=BASE)
     args = parser.parse_args()
+    original_baseline = BASE.resolve()
+    BASE = args.before.resolve()
     EXPERIMENT = args.experiment.resolve()
     protocol = json.loads((EXPERIMENT / "protocol.json").read_text())
     for root in (BASE, EXPERIMENT):
         summary = json.loads((root / "reports_v2/summary.json").read_text())
         assert summary["complete"] and summary["datasets_evaluated"] == 33, root
-    report = EXPERIMENT / "full_comparison"
+    before_manifest = json.loads((BASE / "run_manifest.json").read_text())
+    after_manifest = json.loads((EXPERIMENT / "run_manifest.json").read_text())
+    assert set(before_manifest["datasets"]) == set(after_manifest["datasets"]), (
+        "Comparisons require exactly the same dataset collection"
+    )
+    if BASE == original_baseline:
+        report = EXPERIMENT / "full_comparison"
+        before_description = "Before: fresh default-engine raw-input baseline from frozen 4da94ef sources, optional PE selector OFF."
+    else:
+        report = EXPERIMENT / ("comparison_with_" + BASE.name)
+        before_protocol = json.loads((BASE / "protocol.json").read_text())
+        before_description = (
+            "Before: " + before_protocol["name"] + ". " + before_protocol["run_kind"]
+        )
     report.mkdir(exist_ok=True)
     tables = {}
     groups = {
@@ -111,6 +127,7 @@ def main():
         class_modes_below_90=len(class_below),
         production_enabled=False,
         experiment=protocol["name"],
+        before_checkpoint=str(BASE),
         manual_reference="v2, identical standard normalization mapping correction at both endpoints; not an annotation gain",
         target_achieved=False,
         note="A passing pooled score does not establish >=90% in every curated class/mode. Goal also requires validated production integration, not just this offline experiment.",
@@ -121,7 +138,7 @@ def main():
         "",
         "Scope: all 33 active datasets, four modes each. Correct means the same lipid/adduct/mode AND original feature as manual curation.",
         "Correct percentage uses ALL manual entries, including unresolved feature mappings. Extras mean absent from that dataset/mode manual list, not proven false identities.",
-        "Before: fresh default-engine raw-input baseline from frozen 4da94ef sources, optional PE selector OFF.",
+        before_description,
         "After: "
         + protocol["run_kind"]
         + " Grouped five-fold held-out RT/prior/classifier fits. Not a fresh production run.",

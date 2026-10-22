@@ -1,4 +1,46 @@
-LATEST ENGINEERING CHECKPOINT — 22 October 2026, nested022 preparation
+LATEST SCIENTIFIC CHECKPOINT — 22 October 2026, experiment022 COMPLETE
+
+No productiondefaults/entrypoints changed; goalACTIVE,NOTachieved. Pooled gain
+but NOT a default upgrade:retainasresearch/nestedtrainingfoundation;BMPregresses.
+022:82385/92102=89.449741%,9238extras,1588different-featurechoices,
+77/123curatedclass/modes<90 (009had85). Vs009:+382correct,-78extras,-31wrong.
+Vsoriginalbaseline:+12115correct,-459extras,+215wrong(CUMULATIVE,not022alone).
+Noneof4pooledmodes>=90. Correct/manual,extras,wrong009 ->022:
+ RPpos40277/45206 ->40495/45206,3366 ->3361,912 ->894.
+ RPneg12011/13600 ->12125/13600,1956 ->1972,423 ->426.
+ NPpos17441/19380 ->17373/19380,1874 ->1838,171 ->169.
+ NPneg12274/13916 ->12392/13916,2120 ->2067,113 ->99.
+NPpos loses68correct;RPneg+16extras/+3wrong. BMP NPpos-122correct/-39extras,
+NPneg-41correct/+39extras. DoNOThideclasslosses/cherry-pick009/022classwinners.
+67curatedclass/modesgain,28lose,28same;69dataset/modesgain,54lose,9same.
+All28unresolvedmanualmappingsincluded;referencev2andall165sourcefilesunchanged.
+
+Terminal26323 EXIT0:all25scorefits,33annotations,33evaluations,full132reports.
+Completedvalidv2preparation363tables/33heldoutorder+predictorparitychecks.
+264source+440inputSHAchecks,25modelscope+528trainingquerymaskchecks,
+5calibrationscope/tablehashchecks PASS. Receipt verifiedterminal61843 EXIT0.
+20inner+5final180roundHGBfits;NEW4innercalibblocks+queryexcludedtrainingfeatures,
+same007heldoutphysical/evidence,005standards,.05margin,009objective9.5%budget.
+No020additions/021classcutoffs/massorRTwindowwidening. Validfullfrozenassets;
+invalidv1notreused. Fullsuite634passed/8skipped/83subtests;ruffclean.
+
+docs/validation/qe_20261022_022/:completebaseline ->022tables;versus_009/complete
+009 ->022tables. All33/132 plusallclass/modes/extras/wrongfeatures/denominators.
+decision.txt,protocol_summary.json,integrity_receipt.json. No privatequery/model/
+profile/crosswalkdata inGit. Cachedreplay+knownbaseline/vendorexposure,NOTfresh
+productionruns/untouchedexternal/pristinewholepipelinevalidation/FDR.
+Portable reporter now accepts --before <checkpoint>; createsseparatecomparison_
+with_<name>folder,neveroverwritesdefaultbaselinecomparison. Exactcollectioncheck.
+
+Full001-021tablesDELIVERED. 022FULL132tablegenerated/prepared foruserdelivery
+atthischeckpoint:VERIFYitsactualuser-facingdeliveryBEFOREany023experiment.
+NextREAD-ONLYdiagnosis:decomposeBMPscore/ranking/margin/cutoffchangesoldvsnew.
+Do notassumeoverallgainfixeshardclasses. Featureoccupancyalreadyshows6161/6452
+(95.5%)availablecorrectfeaturesunoccupied(291occupied),soassignmentaloneisnot
+primarygap. Discoverystillneededfor3538absentendomanualfeatures;475masswindow
+potentialNOT475calls. No globalblocker;X4definitionunansweredbutotherworkpossible.
+
+PREVIOUS ENGINEERING CHECKPOINT — 22 October 2026, nested022 preparation
 
 No022 annotation result yet; targetNOTachieved,productiondefaultsUNCHANGED.
 Full001-021 tables delivered. New engineering work is not an accuracy gain.

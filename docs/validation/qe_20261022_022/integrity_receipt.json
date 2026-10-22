@@ -1,0 +1,15 @@
+{
+  "source_file_hash_checks": 264,
+  "input_file_hash_checks": 440,
+  "fitted_model_group_scope_checks": 25,
+  "score_training_query_mask_checks": 528,
+  "calibration_scope_and_table_hash_checks": 5,
+  "completed_datasets": 33,
+  "original_source_file_hashes_checked_by_evaluator": 165,
+  "manual_denominator": 92102,
+  "unresolved_manual_rows": 28,
+  "model_rounds_each": 180,
+  "all_passed": true,
+  "annotation_experiment": "022",
+  "note": "Engineering integrity/group-scope receipt. Not untouched external validation or analytical FDR. No source/profile/feature IDs or model weights exported."
+}

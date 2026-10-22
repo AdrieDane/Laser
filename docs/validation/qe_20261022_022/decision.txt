@@ -1,0 +1,88 @@
+Experiment022 — query-excluded nested endogenous training, all33 datasets
+
+Decision: retain as research evidence and a properly nested training foundation,
+NOT an app-default upgrade. Pooled agreement improves but the requested90%
+by class/mode remains unmet; BMP regresses substantially. Do not cherry-pick
+outer-held-out class winners or silently combine009/022 predictions.
+No production entrypoint/default changed. Goal remains ACTIVE, not achieved.
+
+All92102 manual entries, including28 unresolved feature mappings. Correct means
+same lipid/adduct/mode AND original feature; internal standards included in
+performance reports. Manual-absent extras are unconfirmed, not proven false IDs.
+33 distinct original input sets,30 project groups; related acquisitions grouped.
+The identical v2 reference is applied to every endpoint. Original workbook plus
+four original peak-list hashes verified for each dataset (165 source files).
+
+Compared with original production baseline4da94ef:
+Correct70270/92102(76.295846%) ->82385/92102(89.449741%):+12115.
+Extras9697 ->9238:-459; different-feature choices1373 ->1588:+215.
+This large cumulative gain is NOT the effect of022 alone.
+
+Compared with previous research reference009 (the actual experiment delta):
+Correct82003/92102(89.034983%) ->82385/92102(89.449741%):+382,+0.414758pp.
+Extras9316 ->9238:-78; different-feature choices1619 ->1588:-31.
+Both original9697 and0099316 no-increase guards pass in pooled totals.
+Mode(correct/manual,extras,wrongfeature),009 ->022:
+ RPpositive40277/45206 ->40495/45206;3366 ->3361;912 ->894.
+ RPnegative12011/13600 ->12125/13600;1956 ->1972;423 ->426.
+ NPpositive17441/19380 ->17373/19380;1874 ->1838;171 ->169.
+ NPnegative12274/13916 ->12392/13916;2120 ->2067;113 ->99.
+RPnegative adds16extras for114more correct matches and3more wrong-feature
+choices. NPpositive loses68correct matches; do not hide this pooled regression.
+None of the four pooled modes reaches90%. Class/modes below90:85 ->77 of123.
+67curatedclass/modes gain correct matches,28lose,28unchanged. Dataset/mode rows:
+69gain correct matches,54lose,9unchanged. All rows/classes are reported.
+
+Important class regressions versus009:
+ NPpositiveBMP:-122correct,-39extras.
+ NPnegativeBMP:-41correct,+39extras.
+ NPnegativeFA-OH:-26correct,-73extras.
+Largest gains includeRPpositiveTG+42/CL+35,NPpositivePC+36,NPnegativePE-O+P+31.
+These observed outer-test differences identify future hypotheses, NOT a license
+to choose post-hoc class-specific deployment models from evaluated labels.
+
+Method:
+Same five project-group blocks, fixed180-round/cohort-balanced HGB architecture,
+strict007 outer-held-out physical candidates/evidence,005 standard adjudication
+and models,ambiguity margin.05. NEW endogenous score-training predictors exclude
+their own query project from learnedRT/prior/carbon/DB-range models. Inner fits
+also exclude the calibration block and outer test block. Four inner blocks
+replace the previous three. Newly generated INNER predictions choose mode
+cutoffs with the009 weakest-mode objective and pooled9.5%endogenous extra/manual
+training budget. No021class cutoffs,020additions or new mass/RTwindow widening.
+25numerical reference bundles,363label-free query tables,20inner+5final score
+fits. Legacy parity-cache supervised flags ignored, never predictor inputs.
+
+Integrity:264frozen source hashes,440input hashes,25fitted model scope checks,
+528training-query exclusion-mask checks,5calibration-scope/table-hash checks,
+33complete datasets. All passed; all models180rounds. Full165old-preparation
+paritychecks,363queryexclusionchecks,33outerqueryorder/predictorchecks passed.
+The earlierapp-only frozen-asset fallback was caught BEFORE022fit/annotation;
+invalidv1preparation preserved but not used. Validv2fullfrozenresources used.
+Fullsuite634passed,8skipped,83subtests;ruffclean.
+
+Limitations:
+Cached raw-feature/baseline replay, NOT new production raw-input runs. New
+endogenous fits/reference/cutoff scopes genuinely exclude relevant query/test/
+calibration projects, but inherited automatic/vendor baseline models retain
+known development exposure and005standards are not newly nested. Repeated
+development on these33datasets is NOT untouched external validation or an
+analytical identity probability/FDR. A training extras budget is no test bound.
+Private source profiles, original feature IDs, manual crosswalks and fitted
+weights remain outside Git; aggregate reports and hashed receipts only.
+
+Reporting:
+Top-level full132-row tables compare original baseline ->022 for continuity.
+versus_009/ contains COMPLETE132-row009 ->022 tables and every class/mode.
+Both use same denominators and distinguish extras,wrongfeatures,unresolved,
+missing and total annotation counts. Do not start023 until the complete022
+dataset/mode table is delivered to the user, not merely linked or generated.
+
+Next hypothesis (not tested): diagnose whyBMP scores/acceptance worsen with
+query-excluded training; distinguish score ranking,ambiguity and cutoff gates
+using READ-ONLY old/new scores before making another change. The occupancy
+diagnosis shows95.5% of009's available-but-not-selected correct features are
+unoccupied, so global feature-reassignment alone is unlikely to close the gap.
+Discovery separately needed for3538endogenous manual features absent007pools;
+475mass-offset-window potential is NOT475new correct calls. Keep prudent extras
+safeguards and report any per-mode/class trade-offs explicitly.
