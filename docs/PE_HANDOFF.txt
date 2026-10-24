@@ -1,4 +1,56 @@
-PAUSED AT USER REQUEST — 22 October 2026
+LATEST CHECKPOINT — 24 October 2026, resumed by user,024COMPLETE
+
+All33datasets/132modes evaluated; no live numerical jobs. No production defaults
+changed; target NOT achieved.024NOTadopted as global model; retain022research
+reference.024:82347/92102=89.408482%,9270extras,1540different-feature choices,
+79/123curatedclass/modes below90. Versus022:-38correct,+32extras,-48wrongfeatures.
+Noneofthisgain/loss should be attributed to newstandardcontext:NOTusedin024.
+
+What changed:training-only unknown labels forBMP in uncurated oppositeNPmode,
+when oneNPmode contains manualendogenousBMP. Allpositives identical022;unknown
+neverpositive,no RP/otherclass/all-absentlabelpolicy. No own-querycuration as
+runtimepredictor/polaritygate; manualcomparison/extrasdefinition EXACTunchanged.
+SAME022363originalpredictortables,25nestedfixed180-roundscorefits,005standards,
+009/022innercutoffobjective9.5%extra/manualtrainingbudget,.05margin. Cohortweights
+renormalizeafternegativewithholding. Calibrationsupervisionunchangedoriginal.
+
+BMP primary includesstandards:NPpos208/622 ->517/622(83.1%),extras174 ->466;
+NPneg249/520 ->430/520(82.7%),extras697 ->970. NetBMP+490correct/+565extras;
+otherclass/modesnet-528correct/-533extras. DoNOThidecollateralregressions or
+cherry-pick024BMPinto022fromtheseouter-testedresults. NPposallclasspooled90.015%
+doesNOTmeet90foreveryclass/dataset. Allclass/modecounts022 ->024:
+ RPpos40495/45206 ->40379/45206;extras3361 ->3248;wrong894 ->873.
+ RPneg12125/13600 ->12158/13600;extras1972 ->1973;wrong426 ->431.
+ NPpos17373/19380 ->17445/19380;extras1838 ->1933;wrong169 ->148.
+ NPneg12392/13916 ->12365/13916;extras2067 ->2116;wrong99 ->88.
+Dataset/modes43gain/77lose/12same;curatedclass/modes19gain/72lose/32same.
+
+IntegrityPASS:272source+466inputhashes,25modelpositive/scopes,528trainingqueries,
+33heldoutscorereproductions,132selector+005cleanupoutputs,5calibrationscope/hash/
+budgetchecks. Firstnaivecheckerassumedallendoselections surviveSTDcleanup;
+oneCL56spikealiasinPlasma legitimatelydemotedbyunchanged005. Verifiernowreplays
+ENTIREpipeline, no result/modelchanged. Fullsuite654passed/8skipped/83subtests,
+ruffclean. Earlierminor testblockorganizationfixed.165originalsourcehashes
+checkedbyevaluator;all92102manualincl28unresolvedsamev2references. Cachedgrouped
+replay,notfreshproduction/externalvalidation/FDR;priorbaselineexposure remains.
+
+Newsource:partial_curation_training.py+7tests;toolsrun_qe_partial_curation_experiment.py
+andverify_qe_partial_curation_experiment.py. Helpersunusedbyproduction.
+Privateartifacts:outputs/qe_optimization_20261022/experiment_024. Fullpublic
+aggregates:docs/validation/qe_20261024_024,topbaseline ->024,versus_022actualdelta,
+full132BMPcompanion. EndoBMPextrasafter1404:912samecompositioninoppositeNPmanual,
+492without. ALLremainextras,notproofidentity/feature. No rawIDs/profiles/weightsGit.
+Full132actual-deltatablepreparedforthisresponse;verifyactualuserdeliverybefore025.
+
+NEXT:separate025standard-contextfeatures on all363tables, use022baseline andOLD
+labelpolicy,not024mix.25properlynestedstandardbundlescompletedatpreviouspause;
+15numericcontexthelper+scopeguardsreadybutUNUSED. Ownquery/outer/innerexcluded
+standardmodelspermask,independentrawspikedetection, noself/companionanchors;
+provealloldpredictors/poolsunchanged. Refit25scoremodels+NEWOOFcutoffs/all33eval.
+No025hasstarted. Anyfutureclass-specificpartiallabelstrategyneedsanewcalibrated
+experiment,notposthoc022/024classensemble. Fullreportsbeforeeachnextexperiment.
+
+PREVIOUS PAUSE CHECKPOINT — 22 October 2026
 
 User requested a break and a changes/performance report. No experiment024 has
 started. No numerical annotation/training jobs remain running. Do not resume

@@ -42,7 +42,10 @@ BMP clarification (22 October 2026): LASER should annotate BOTH NP polarities
 when each has supporting evidence. Do not impose a preferred-polarity filter
 based on the manual list. Opposite-polarity manual support may be reported as
 a diagnostic, but manual-absent calls remain unconfirmed extras in the primary
-evaluation. A possible partial-curation training-label fix is not yet tested.
+evaluation. Experiment024 tested training-only unknown labels for opposite-NP
+BMP absence: BMP improved substantially, but all-class correct matches fell38
+and extras rose32 versus022. It is NOT adopted as a global/default model; do not
+silently combine022/024class outputs from outer-tested winners.
 
 Current optimization target (22 October): the user requests at least 90%
 correct same-original-feature coverage of manually curated lipid classes,

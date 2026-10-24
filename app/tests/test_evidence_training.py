@@ -73,6 +73,15 @@ def test_identifier_predictors_and_implicit_row_validation_rejected():
             excluded_groups={"z"},
             parameters=parameters,
         )
+    records, groups, parameters = fixture()
+    parameters["early_stopping"] = True
+    with pytest.raises(ValueError, match="row-wise"):
+        fit_grouped_evidence_model(
+            records,
+            training_groups=groups,
+            excluded_groups={"z"},
+            parameters=parameters,
+        )
 
 
 def test_new_standard_context_requires_its_own_query_excluded_scope():
@@ -96,13 +105,4 @@ def test_standard_context_may_not_reuse_outer_only_models_in_inner_calibration()
     with pytest.raises(ValueError, match="excluded scoring groups"):
         validate_feature_scope(
             query, {"a", "b"}, {"validation", "outer"}, query_is_training=False
-        )
-    records, groups, parameters = fixture()
-    parameters["early_stopping"] = True
-    with pytest.raises(ValueError, match="row-wise"):
-        fit_grouped_evidence_model(
-            records,
-            training_groups=groups,
-            excluded_groups={"z"},
-            parameters=parameters,
         )

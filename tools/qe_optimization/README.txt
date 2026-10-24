@@ -1,5 +1,23 @@
 QE collection research runners — 22 October 2026
 
+24 October resumption: experiment024 isolates partial BMP training supervision:
+  python tools/qe_optimization/run_qe_partial_curation_experiment.py
+  python tools/qe_optimization/evaluate_qe_baseline.py <experiment_024 output> --manual-reference <same v2 reference>
+  python tools/qe_optimization/report_qe_experiment.py --experiment <experiment_024 output>
+  python tools/qe_optimization/report_qe_experiment.py --experiment <experiment_024 output> --before <experiment_022 output>
+  python tools/qe_optimization/verify_qe_partial_curation_experiment.py
+Same363label-free022tables,25nested score fits,005standards and training-cutoff
+objective. ONLY known BMP negatives in an uncurated opposite NP polarity become
+UNKNOWN during permitted-group supervised fitting. All positives immutable;
+no new positives, runtime polarity preference or manual-presence predictors.
+Calibration/evaluation labels,92102manual denominator and ALL extras unchanged.
+No new standard context in024. Existing standard-context preparation is unused.
+Verifier checks25unchanged-positive/model-scope audits, heldout score reproduction,
+132selector output comparisons and5calibration hashes/budgets. Extra compositions
+also listed in the opposite NP manual list are diagnostic only, NOT excluded
+from extras and NOT proof of this polarity/adduct/feature. Deliver the complete
+132-row022 ->024table before another annotation-changing experiment.
+
 NOT production annotation entry points. No app hook/default has been enabled.
 These runners use the user's sole active 33-folder collection, and write all
 raw-data staging, local trusted pickles, manual crosswalks and model fits OUTSIDE

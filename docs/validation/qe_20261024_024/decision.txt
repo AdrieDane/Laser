@@ -1,0 +1,106 @@
+Experiment024 — partial BMP training labels, NOT adopted as the global model
+24 October 2026
+
+All33active datasets,132dataset/modes,33distinct original input sets,30project
+groups. All92102manual entries,including28unresolved mappings,remain in the
+primary denominator. Correct=same lipid/adduct/mode AND original feature.
+Manual-absent calls remain unconfirmed extras, NOT proven incorrect identities.
+Same referencev2 at both endpoints;165original workbook/peak-list hashes checked
+by evaluator. No raw data, manual reference or production entrypoint changed.
+
+Actual delta: retained research022 -> new024
+Correct82385/92102(89.449741%) ->82347/92102(89.408482%): -38.
+Unconfirmed extras9238 ->9270: +32.
+Different-feature choices1588 ->1540: -48.
+Curated class/modes below90:77 ->79of123. The requested goal is NOT achieved.
+Original9697extras guard passes, but0229238guard fails. Despite fewer wrong-peak
+choices, losing correct matches and adding extras is not a global improvement.
+Retain022asresearch reference, NOT an app default. Do not cherry-pick024BMP
+outputs into022using these outer-tested results as a deployment selection rule.
+
+Mode(correct/manual;extras;different-feature),022 ->024:
+ RPpositive40495/45206 ->40379/45206;3361 ->3248;894 ->873.
+ RPnegative12125/13600 ->12158/13600;1972 ->1973;426 ->431.
+ NPpositive17373/19380 ->17445/19380;1838 ->1933;169 ->148.
+ NPnegative12392/13916 ->12365/13916;2067 ->2116;99 ->88.
+NPpositive pooled90.015480% does NOT establish90in every class or dataset.
+Dataset/modes43gain/77lose/12same. Curated class/modes19gain/72lose/32same.
+
+BMP hypothesis produces a large, but incomplete, class improvement:
+ NPpositive208/622(33.440514%) ->517/622(83.118971%);extras174 ->466.
+ NPnegative249/520(47.884615%) ->430/520(82.692308%);extras697 ->970.
+These primary percentages include internal standards. One additional RPnegative
+BMP manual entry remains0/1 at both endpoints; no classes/entries are dropped.
+NP BMP combined+490correct/+565extras. Other class/modes net-528correct/-533extras.
+Largest losses:NPpositivePC-51,RPpositivePC-35,NPnegativeFA-32/FA-OH-30,
+NPpositiveSM-d-26/PS-25,NPnegativeSLBPA-24. Existing all-class classifier and
+recalibrated mode cutoffs couple outcomes across classes. This experiment does
+not isolate whether model retraining or cutoff changes explain each loss.
+
+What changed:
+User confirmed BMP should be annotated in BOTH NP polarities when supported.
+30datasets curate endogenousBMP in only one NP polarity(16positive/14negative),
+3in neither. For permitted supervised TRAINING groups only, known BMP negatives
+in the absent opposite NP mode become UNKNOWN, NOT positive. Unresolved manual
+BMP entries still establish presence; standards do not. All original positives
+unchanged. No policy for RP,other classes or BMP absent from both NP modes.
+No manual-presence runtime feature/filter, pseudo-positives, preferred-polarity
+rule or evaluation relabeling. Every manual-absent call still counts as an extra,
+including those whose composition appears in opposite-polarity manual curation.
+
+Same363label-free022query tables/pools,chemistry,carbon/DBranges,mass/RTwindows,
+fixed180-round HGB family/cohort balancing and.05ambiguity margin.25scorefits
+(20inner+5final),fourinner validationblocks,proper query/outer/inner reference
+exclusions. Cohort weights renormalize after unknown rows are withheld. New
+INNER predictions recalibrate mode cutoffs with SAME022 weakest-mode capped90%
+objective/grid.2..1 and9.5%endogenous training extras budget. Calibration labels
+remain EXACToriginal policy; no withholding of extras from cutoff optimization.
+Same005standard logic/models. New prepared standard-context features are NOT
+used in024. Optional standard-scope guard adds no old-predictor numeric change;
+score-fit/matrix/predict AST parity with oldsource explicitly checked.
+
+Engineering audit:
+All25models must preserve exact022positive counts and lose exactly the audited
+withheld-negative row count. Every fitted/query/calibration exclusion checked.
+Frozen source/input hashes,33heldout score reproductions,132complete selector+
+unchanged005standard-cleanup output comparisons,5calibration scope/hash/budget
+checks recorded in integrity_receipt.json. The first checker incorrectly assumed
+all endogenous selector calls survive existing spike-alias cleanup: one selected
+CL(56:0) in25P0092_Plasma RPpositive was legitimately demoted by unchanged005.
+Verifier now reproduces the ENTIRE recorded pipeline, not that false assumption.
+No annotation/model/result was changed to satisfy the check.
+All checks PASS:272source hashes,466input hashes,25model audits,528training-query
+scope checks,33score reproductions,132full pipeline output comparisons and5
+calibration checks. Existing spike-alias demotions reproduced:1.
+Fullsuite654passed,8skipped,83subtests;ruffclean. Seven new partial-label tests.
+
+Endogenous-only opposite-polarity diagnostic (standards excluded here ONLY):
+ NPpositive BMPextras160 ->452; composition also in oppositeNPmanual131 ->332.
+ NPnegative BMPextras679 ->952; composition also in oppositeNPmanual452 ->580.
+After:912of1404endogenousBMPextras have an opposite-NP manual composition;492do
+not. ALL1404remain extras. This is neither validation of their feature/adduct
+nor evidence that the other492are incorrect. Primary BMPextras above INCLUDE
+standards(14NPpositive/18NPnegative unchanged), explaining different totals.
+
+Limitations:
+Grouped cached raw-feature/baseline replay, NOT fresh production raw-input runs,
+untouched external validation or analytical FDR. Query-excluded endogenous
+references/models/cutoffs are nested, but inherited baseline/vendor development
+exposure and unchanged005standard handling remain. Training extras constraints
+do not bound test extras. Opposite-polarity composition support is a diagnostic,
+not confirmation of this polarity/adduct/feature or permission to discount extras.
+Private fitted weights,feature IDs,manual crosswalks and profiles remain outsideGit.
+
+Reports:
+Top-level originalbaseline ->024(CUMULATIVE,not024effect).
+versus_022/ actual022 ->024:complete132dataset/mode table,all dataset/mode/classes,
+pooled classes and complete132-row BMP companion. Zero-manual modes explicitly
+have no percentage. bmp_opposite_polarity_support.csv is diagnostic only.
+Deliver full132actual-delta table to user BEFORE025 or another annotation change.
+
+Next isolated test: new independently measured standard-anchored RT/intensity/
+composition/ppm evidence, using prepared25query/outer/inner-excluded standard
+reference bundles on all363querytables, proving all old predictors unchanged.
+Use022ascomparison/reference; do not mix in024partial labels simultaneously.
+Further label-policy isolation/class-specific training needs its OWN calibrated
+experiment, not a post-hoc022/024class ensemble. No025run has started.
