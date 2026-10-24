@@ -57,6 +57,16 @@ retain/reject decisions without asking between experiments. This does NOT
 waive the complete user-facing before/after table requirement before starting
 the next annotation-changing experiment, or authorize benchmark relabeling.
 
+24 October latest priority: postpone dedicated optimization of classes with
+very few manual entries. Working priority is class/mode combinations with at
+least 100 manual entries across at least three independent project groups;
+this cutoff is an agent-selected practical priority, not a user-defined
+exclusion or a revised benchmark denominator. Keep sparse classes visible in
+all full performance reports, and do not count their postponement as a gain.
+The incomplete catalogue_candidate_preparation_v2 prototype is parked (six
+dataset receipts, no annotation fits); do not present it as a completed
+experiment or resume sparse-class work ahead of well-represented classes.
+
 Latest retained research reference after029:82729/92102correct,9268unconfirmed
 extras,1604different-feature choices (all33datasets/132modes). Versus028:
 41morecorrect,-78extras,-24wrong. RPnegative loses48correct,NPnegative loses65;
@@ -84,8 +94,10 @@ declines. Full031TARGETscope132table delivered.029remainsresearchreference.
 Currentread-only029candidateaudit:6215missingmanualcorrect-featurecandidates
 alreadyinpool,3128mappedmissingfrompool,28unresolved(target92100);31/122class/
 modescannotreach90evenoptimisticrowwisecandidatecoverage. See
-docs/validation/qe_20261024_candidate_gaps_029. Next focusmissingchemicaltargets/
-discovery,notoutertestwinnerensembles.032notyetannotation-fitted.
+docs/validation/qe_20261024_candidate_gaps_029. Prioritize discovery/selection
+gaps in well-represented classes, not outer-test winner ensembles. Candidate-
+adduct-aware companion evidence is a prototype under test;032notyetannotation-
+fitted and no annotation improvement has been established for that prototype.
 
 BMP clarification (22 October 2026): LASER should annotate BOTH NP polarities
 when each has supporting evidence. Do not impose a preferred-polarity filter
