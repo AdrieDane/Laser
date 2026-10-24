@@ -1,0 +1,57 @@
+Experiment026 — tempered candidate-class/mode training weights, REJECTED
+24 October 2026
+
+All33datasets/132modes/33distinct original sets/30project groups. ALL92102manual
+entries incl28unresolved remain in denominator; correct requires same lipid,
+adduct,mode AND original feature. Samev2reference/all165source SHA256 checks.
+Extras mean absent from this dataset/mode manual list,not proven false IDs.
+
+Actual022 ->026:
+Correct82385/92102(89.449741%) ->82358/92102(89.420425%):-27.
+Extras9238 ->9301:+63;different-feature1588 ->1589:+1.
+77/123curated class/modes below90 at both endpoints. Target NOT achieved.
+Original9697extrasguard passes but022guard fails. Worse in all3pooled metrics,
+so REJECT;retain022researchreference,not a productiondefault. No cherry-picking
+individual outer-test class/dataset/mode winners into another deployment model.
+
+Mode(correct/manual;extras;different-feature),022 ->026:
+ RPpositive40495/45206 ->40368/45206;3361 ->3303;894 ->885.
+ RPnegative12125/13600 ->12110/13600;1972 ->1969;426 ->434.
+ NPpositive17373/19380 ->17476/19380;1838 ->1907;169 ->173.
+ NPnegative12392/13916 ->12404/13916;2067 ->2122;99 ->97.
+NPpositive pooled90.175439% is NOT90for every class/dataset.
+Dataset/modes56gain/60lose/16same;curatedclass/modes38gain/49lose/36same.
+BMP NPpositive208/622 ->208/622;extras174 ->166;NPnegative249/520 ->285/520,
+extras697 ->702. Includes standards;one RPnegativeBMP0/1 unchanged.
+
+Only training weights changed:within each cohort,class/mode candidate cells
+get fixedsqrt(median nonempty cell size / this cell size),factors clipped[.25,4]
+BEFORE normalizing equal total weight percohort. No positive/negative weighting,
+label changes,pseudo-positives,own-query curation features or matrix-ID predictor.
+EXACT022363pools/oldpredictors/allknownlabels,25nested180-roundHGBfits,new4inner
+OOFmodecutoffs/SAMEweakest-modeobjective/.2..1grid/9.5%endoextrasbudget/.05margin.
+SAME005standard handling. NO024partiallabels or025newcontext. Optional fitter
+weight_policy=None retains original behavior; production entrypoints unchanged.
+All25fits must preserve022knownpairs/positives/columnschema and equal-cohort
+weight sum error<1e-6. Fullsource/input/modelscope/output checks inreceipt.
+Current fullsuite660passed,8skipped,83subtests,including6classweight tests.
+
+Grouped cached-feature replay,not fresh production/raw-input runs,untouched
+externalvalidation or analyticalFDR. Baseline/vendor prior development exposure
+and unchanged005standard limitations remain; training extras budget is not a
+test guarantee. All raw features,profiles,measurements,curation IDs and fitted
+weights remain outsideGit. No source data/reference normalization changed.
+
+Top-level originalbaseline ->026 is CUMULATIVE.versus_022actualdelta has complete
+132dataset/mode and allclass reports,exact counts/denominators/unresolved/wrong
+features/totals. Full132table WAS delivered in commentary BEFORE027started.
+All integrity checks PASS:274source+465input hashes,25model/label/weight scopes,
+528trainingqueries,33score reproductions,132full pipeline outputs and5calibrations.
+
+Next direction:discovery,not another global score/cutoff sweep. Existing physical
+pool has32class/modes below90even at optimistic row-wise ceiling. Investigate
+independently measured declared-standard mass correction with stringent anchor
+consistency and leave-target-out checks,raw coordinates unchanged,existing calls
+protected. A previous522mass/475mass+RT window potential is NOT new correctness.
+One unresolved chemistry question,X4(twoNPnegative manual entries),asked
+nonblocking; no guessing formula or removing entries/denominators meanwhile.

@@ -1,5 +1,20 @@
 QE collection research runners — 22 October 2026
 
+026COMPLETE/REJECTED:82358correct,9301extras,1589differentfeatures vs022:-27/+63/+1.
+Full132table actually delivered BEFORE027. No mode/class cherry-picking.
+027fixed conservative new-mass discovery (not another scoring refit):
+  python tools/qe_optimization/run_qe_calibrated_mass_discovery.py
+No new score or cutoff fit. Independent RAWdeclared spike detector with EMPTY
+endogenous proposals;query-excluded outer standard/RT/envelope references.
+Actualneutralmassmedian>=6anchors,MAD<=.6ppm,p90<=1.5,abscenter<=2. Whole declared
+spike target masses within5.01ppm withheld; target excludes own neutral groups.
+Coarse corrected<3ppm/RT<=10s,>=3RTcohorts/in-domain/MAD<=10. ALLalternatives
+compete BEFORE fixedfineRT<=3s/MAD<=5/OTHERmode strong exactclassCDB evidence,
+novelrawabsppm>=3pair and unoccupiedfeature/absentidentity gates. ALL022calls
+immutable,rawobservedmz/RT/I untouched. Samechemicaltarget/rangebounds;unknown
+formulas cannot be guessed. Fixed thresholds NOT tuned against outer labels.
+Evaluate/reportv2all33/baseline+022andfull132table before028. Helpersunusedinapp.
+
 Autonomous cycles authorized24October; full132table still REQUIREDbeforeeachnext.
 025(after024tableDELIVERED):
   python tools/qe_optimization/prepare_qe_standard_context.py

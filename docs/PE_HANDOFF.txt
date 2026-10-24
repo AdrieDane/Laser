@@ -1,4 +1,63 @@
-LATEST CHECKPOINT — 24 October 2026,025COMPLETE/REJECTED;026RUNNING
+LATEST CHECKPOINT — 24 October 2026,026REJECTED;027RUNNING
+
+Autonomouscycles authorized,userrequestscontinuewithoutasking. Full025AND026
+132-rowtables actually delivered in commentary BEFORE next annotationcycle.
+No productiondefaultchanged;goalNOTachieved. Retain022researchreference.
+026:82358/92102=89.420425%,9301extras,1589differentfeatures,77/123classes<90;
+versus022:-27correct,+63extras,+1wrong. REJECTED globally. No cherry-pickedphase
+orclasscombination. Modecorrect/manual;extras;wrong022 ->026:
+ RPpos40495/45206 ->40368/45206;3361 ->3303;894 ->885.
+ RPneg12125/13600 ->12110/13600;1972 ->1969;426 ->434.
+ NPpos17373/19380 ->17476/19380;1838 ->1907;169 ->173.
+ NPneg12392/13916 ->12404/13916;2067 ->2122;99 ->97.
+BMPNPpos208/622unchanged/extras174 ->166;NPneg249/520 ->285/520/extras697 ->702.
+56dataset/modesgain/60lose/16same;38class/modesgain/49lose/36same. Allsource
+165hashes and92102manualincl28unresolvedsamev2reference.026integrityPASS274source
++465inputhashes,25modelpositive/weight/scopes,528trainingqueries,33scorereplays,
+132fulloutputreplays,5calibscope/hash/budgets. Docsqe_20261024_026aggregatesonly.
+
+Newmassdiscovery prototype+10tests:calibrated_mass_discovery.py. Fullcurrent
+suite670passed/8skipped/83subtests (660+10new). Lintclean. No raw data writes.
+027NOWRUNNING terminal12619:run_qe_calibrated_mass_discovery.py. Inspect livejobs
+andartifactsbeforepoll/restart. Outputsexperiment_027;33jobs,max3inflight,complete
+markers/protocolsource+inputhashes supportresume. Initial15ishdatasets mostly
+0-4additions EACH;theseare NOT yet correctannotations/accuracy(noevalyet).
+
+027is FIXED conservative additive rule,NOHGB/acceptancecutoff refit. Re-detect
+declaredspikes from RAWbaseline with EMPTYendoproposals and matchingouterSTD
+models(nested_standard_development_v1/exclude_f.json);RT/envelope same-mask
+nested_reference_development_v2. NOTrejected025scores/026weights/024labels.
+Useactual labelledneutralmasses asindependentvotes;>=6distinct neutralgroups,
+MAD<=.6ppm,p90<=1.5ppm,abscenter<=2 (existingmasscontextpolicy). Each target
+excludes all neutralgroupswithchannelwithin3ppm;wholepotentialspikealiases
+within5.01ppm ofanydeclaredspikemass withheld. Allcoarse corrected<3ppm/RT<=10s
+alternatives compete BEFORE any fineRT/novelty/support/occupancygate. RTmodels
+>=3otherprojects,in-domain,MAD<=10s. Fineacceptance:uniqueidentityANDfeature,
+RTerror<=3s,MAD<=5s,OTHERstreamstrong exactcanonicalclass/CDB automaticanchor
+(.9confidence,<1.5rawppm,unambiguousadductRT),novelpairabsrawppm>=3andnoexisting
+identity/occupiedfeature. ALL022calls/STDimmutable;originalmz/RT/I stayraw,
+calibratedmasserrorseparate. Bounds fromsameexistingreference+trainedenvelope.
+Olddatafeatures only fornovelty;no ownmanualinputorpredictor. No arbitrary
+formula/newCDBcatalogue guesses. Fixed thresholds prespecifiedbefore027eval,
+NOT tunedagainstheldoutlabels. Requiresonly5outerscopesbecauseNOinnerscorefit.
+
+NEXT:finish027,evalv2all33,baseline+022fullreports,verifyimmutability/newrule
+reproduction/scope/hashes,reportfull132table BEFORE028. Decideprudentretain/reject
+based actualcorrect/extras/wrong;don't claim475oldwindowpotentialas475gains.
+Still32class/modesbelow90candidateceiling,so scoringalonecannotfinishgoal.
+Candidatefollowinghypothesis:mode-specific scoreexperts(separateRPpos/RPneg/
+NPpos/NPnegmodels) toavoidglobalmodelcross-phaseinterference,notposthoctaking
+025NPand022RPpredictions. Wouldrefitall4expertsproperlynested,calibrateOOFs,
+same022features/labelsinitially,fullnewexperiment. NOTimplemented/run yet.
+Alternativefuture:learnadditiveacceptancefornewcalibratedmasscoarsepool using
+propernestedOOFandimmutableoldcalls,instead ofloosening027fixedtest gates.
+
+Nonblockingasyncquestionpending:WhatdoesX4mean?2NPnegative manualentries,
+nativechemicalformulaBLANK,oneproject,noRTmodels. Don'tguessorrelabel/dropthose
+entries. Continueotherclasseswhileawaitingreply. Userreplynotyetreceived.
+Publicreports/codedocspushCFMmain,privateprofiles/FIDs/models/measurementsNOgit.
+
+PREVIOUS CHECKPOINT — 24 October 2026,025COMPLETE/REJECTED;026RUNNING
 
 User explicitly requests autonomous evaluation/retain-reject decisions and next
 cycles without asking. Still deliver full132table AFTEReachcycle BEFOREnext.
