@@ -1,0 +1,48 @@
+Deployment benchmark and colleague report — user request,24October2026
+
+Trigger:
+Run this only after the ACTUAL integrated app is a defensible deployment
+candidate, not merely because a cached research replay has a high pooled score.
+Current research pipeline is not integrated/default and class-specific90%
+target remains unmet. Do not imply current installed app achieves research gains.
+
+Readiness assessment:
+Assess correct lipid+adduct+mode+SAME ORIGINAL FEATURE agreement against manual
+curation per class and mode, controlled unconfirmed extras and different-feature
+choices, and regressions across every active dataset. Target >=90% by curated
+class/mode, with explicit small-class/rare-matrix limitations. X4 excluded by
+user; all other classes retained. Do not claim FDR or untouched external data.
+Learned references/score models must exclude the query project and related
+acquisitions for benchmark evaluation. No own manual workbook or saved RT
+curation may become a runtime predictor. Frozen inputs/references/versions.
+
+Fresh end-to-end benchmark:
+Use all33active QE datasets/30projectgroups and all four modes. Execute the
+integrated app's real annotation/export route on original inputs, with exact
+version/build/settings/model/reference provenance. Research cached replays are
+development evidence only, not a substitute. Verify installed/packaged resource
+paths and run reproducibility, failures, runtime and output integrity.
+
+Requested exports:
+One output root; group datasets, with each mode's peakgroup file in its own
+subfolder. Names peakgrouplist_RP_Pos_annotated.txt, RP_Neg,NP_Pos,NP_Neg.
+Insert ONLY laser_annotation as column2 and adduct as column3.
+Preserve original rows/order, all original columns/values and original features.
+No quantitation/RT/mass/source annotation edits. Unselected rows stay blank.
+Verify dropping exactly those two new columns reproduces original content.
+Do NOT place raw profile exports, feature identifiers, manual crosswalks or
+fitted weights in Git; deliver exports privately to the user.
+
+Single colleague-ready report:
+Explain in plain language what correct/extra/different-feature means.
+Include percent and n/N matched to manual curation by lipid class AND mode,
+all-dataset pooled counts, per-dataset/mode detail, extras and wrong-feature
+counts separately, missing/unresolved mappings and class-specific limitations.
+Include before/after against a declared frozen app baseline and original-feature
+agreement, not only lipid names. Exclude X4 from target view (currently92100
+manual rows) and retain a transparent historical all-manual companion92102.
+Explain manual-absent calls are unconfirmed,not established false positives.
+Summarize remaining risks, readiness decision, benchmark scope/exclusions,
+development exposure and provenance. Produce one shareable finished report,
+with detailed tables as appendices; do not just hand over a research log.
+No polished deployment claim until the fresh app benchmark supports it.

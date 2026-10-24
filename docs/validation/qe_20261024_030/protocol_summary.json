@@ -1,0 +1,48 @@
+{
+  "name": "030-additive-newly-nested-NP-BMP-specialist-explicit-supervision-scope",
+  "baseline": "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/outputs/qe_optimization_20261022/baseline",
+  "previous": "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/outputs/qe_optimization_20261022/experiment_029",
+  "production_enabled": false,
+  "curation_runtime_input": false,
+  "folds": 5,
+  "inner_folds": 4,
+  "numerical_workers": 3,
+  "classifier": {
+    "max_iter": 180,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 10,
+    "l2_regularization": 2,
+    "learning_rate": 0.08,
+    "early_stopping": false,
+    "random_state": 20261024
+  },
+  "threshold_grid": [
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    1.0
+  ],
+  "additional_extras_per_endogenous_np_bmp_manual": 0.1,
+  "additional_different_features_per_np_mode_manual": 0.02,
+  "candidate_policy": "EXACT029 strict physical NP endogenous BMP candidates; no new discovery/mass/RT/range windows. 029core calls ALL immutable including standards and fixed027mass additions. Unique feature/identity winners fixed BEFORE ambiguity and occupancy; no alternative promotion or replacements.",
+  "supervision": "Fresh specialist fits, NOT copied024predictions. Only permitted training-group absent-opposite-NP BMP negatives become unknown, never positive. No manual-presence/polarity flags enter predictors or final query. All other labels immutable. Same15nested independent STD context and original predictors. One shared NP BMP model per nested fit, two fixed acquisition categories.",
+  "threshold_policy": "Four proper INNER project-held-out specialist predictions. NPmode cutoffs .5..1 jointly maximize minimum total core+rescue BMP coverage capped90, then total correct; fewer added wrongfeatures/extras as tiebreaks. Additional extras pooled <=10% of training NP BMP manual rows; added wrong features <=2% in EACH NP mode. Calibration truth/extras unchanged, including uncurated oppositeNP calls. Threshold1 is a no-addition fallback, no relaxation.",
+  "inner_core_occupancy": "Unchanged029 INNER OOF core scores/mode cutoffs plus blind baseline automatic standards. Do NOT use outer-only005cleanup or027mass references in inner calibration. Final immutable029full pipeline occupancy may differ after standard cleanup/massstage. Training budgets NOT testbounds.",
+  "validation": "Same33datasets/30projectgroups and same5outer/fourinner blocks. References exclude ownquery,outer andinnervalidation groups. Cached original feature replay,not fresh app runs. Priorbaseline/vendor/development exposure remains. Extras unconfirmed,not FDR; all92102manual rows incl28unresolved.",
+  "run_kind": "Cached029immutable annotations plus freshly nested/OOFcalibrated NP BMP specialist additions. All classes/modes fully evaluated.",
+  "scope_implementation_amendment": "Initial030stopped at the strict generic every-project-has-known-rows guard (13/33dataset outputs,16fits). Preserved unchanged outsideGit. Restart ALL25fits in this new directory. Same scientific rescue strategy/labels/predictors/budgets;explicitly distinguish full allowed reference projects from projects contributing known BMP rows. ALL allowed queries represented/validated,zero-label projects recorded,not silently dropped;no invented labels or weaker query/test exclusions.",
+  "model_fit_note": "25new180round pooledNP BMP fits,not phase/class cherry-picking among outer-tested oldmodels. minleaf10/maxleaf15 fixed before030evaluation. Conditional inherited core calibration limitations are explicit.",
+  "resource_receipt": {
+    "reference_data": "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/outputs/qe_optimization_20261022/experiment_030_scoped_v2/source_snapshot/reference_data",
+    "methods": "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/outputs/qe_optimization_20261022/experiment_030_scoped_v2/source_snapshot/methods",
+    "composition_ranges_sha256": "1723a3dd001f456afa07f621a11e3d3288afe8ab3169e94add64a49132053d28"
+  },
+  "full_private_protocol_sha256": "f921cdb843552149909ef9f8165ec4d75a9534b0700199fa76a89cfc307c25a1"
+}

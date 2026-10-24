@@ -1,0 +1,92 @@
+Experiment 030: additive NP BMP specialist, REJECTED
+24 October 2026
+
+Do NOT adopt these additions. Retain whole 029 as the research reference.
+Actual completed checkpoint is experiment_030_scoped_v2, all 33 datasets/
+132 modes/30 project groups. Initial strict-scope attempt was incomplete.
+
+Actual 029 -> completed030, all-class historical scope:
+Correct same-original-feature matches: 82729 -> 82785 of 92102 (+56).
+Correct percentage: 89.8232394519 -> 89.8840416060%, +0.0608021541 pp.
+Unconfirmed extras: 9268 -> 9430 (+162).
+Different-feature choices: 1604 -> 1605 (+1).
+219 additions = 56 correct + 162 unconfirmed extras + 1 different feature.
+All 93613 existing029 annotations preserved, including standards and massstage.
+688 tests passed, 8 skipped, 83 subtests after the scope implementation repair.
+
+Mode (correct/manual; extras; different-feature), before -> after:
+RP positive unchanged: 40648/45206; 3391; 932.
+RP negative unchanged: 12088/13600; 1995; 408.
+NP positive: 17637/19380 -> 17661/19380; 1944 -> 2039; 163 -> 163.
+NP negative: 12356/13916 -> 12388/13916; 1938 -> 2005; 101 -> 102.
+BMP NPpositive: 270/622 (43.4%) -> 294/622 (47.3%).
+BMP NPnegative: 146/520 (28.1%) -> 178/520 (34.2%).
+No curated class/mode reaches90 as a result: 77/123 still below90.
+Gains are concentrated: 32 NPnegative correct additions in one HMC3 dataset,
+while multiple datasets gain only extras. Do not keep only the successful
+dataset/fold. Manual-absent calls may be real, especially opposite-NP BMP,
+but remain unconfirmed extras; no selective discounting or polarity filter.
+
+Decision rationale:
+Almost three new extras per additional correct same-feature match is not a
+prudent gain. Strict029 no-increase guard fails. The original9697extra baseline
+still exceeds9430, but that historical slack does not justify this trade-off.
+No production defaults changed. Goal not achieved.
+
+Strategy tested:
+Keep all029core calls immutable. Train NEW shared NP BMP classifiers, not old
+024predictions, with genuine query/outer/inner-excluded original029 predictors
+and 15 exact-standard context features. Only permitted-training absent-opposite
+NP BMP negatives become UNKNOWN, never positive. Calibration/evaluation truth
+unchanged. Partial-label/polarity flags never predictor columns or query inputs.
+25 new180round specialist fits; fixed maxleaf15/minleaf10, equal contributing
+project weights. Four inner score-validation blocks choose .5..1 cutoffs jointly
+for two NP modes. Additional training extras <=10% endogenous NP BMP manual
+count; added different-feature calls <=2% manual count in EACH NPmode.
+These training budgets are not held-out guarantees and did not prevent extras.
+Original strict candidate pool/mass/RT/ranges unchanged; no discovery widening.
+Both feature and identity winners locked BEFORE ambiguity/occupancy. No weaker
+fallbacks, old replacements, isotope-feature promotion or manual-query lookup.
+
+Scope implementation issue and complete restart:
+Initial experiment_030 stopped at the generic fitter's requirement that every
+allowed project have known fitting rows: some correctly scoped projects lack
+known BMP candidates in a particular nested mask. That attempt produced13
+dataset outputs and16fits, NOT an all33 benchmark. It remains unmodified with
+its original sources/protocol/private outputs and original driver in Git.
+No outer accuracy evaluation of that partial attempt informed the repair.
+The class-specialist fitter now validates ALL allowed query/reference scopes,
+records actual contributing projects and explicit zero-label projects, and
+weights only real labelled contributors. It never invents class labels, hides
+missing projects or weakens query/test exclusions. Original generic fitter
+unchanged; tests prove exact prediction parity when all projects contribute.
+ALL25fits and33dataset outputs were restarted in experiment_030_scoped_v2;
+none of the partial outputs/models were mixed into this reported benchmark.
+Six completed nested models explicitly have zero-label reference projects.
+
+Integrity ALL PASS:
+285 frozen-source hashes,672input hashes,25model scope/supervision checks,
+528query exclusion/mask checks,33score reproductions,93613oldcall row checks,
+219new raw-coordinate checks,132fullselection reproductions and5calibration
+scope/hash/objective/budget checks. Same165source file hashes verified by eval.
+Private profiles/features/crosswalks/spike measurements/models stay outsideGit.
+
+Target scope update authorized AFTER this test:
+User says ignore X4. Historical tables above preserve all92102manual rows and
+28unresolved mappings. Companion target_scope_without_X4 removes ONLY its two
+NPnegative manual entries from target summaries (92100manual rows,122curated
+class/modes,76stillbelow90). Correct counts/extras/wrongfeatures unchanged.
+029target89.8251900109%,030target89.8859934853%. This denominator change is NOT
+an annotation gain. No raw curation/input/reference relabeling or formula guess.
+
+Cached original-feature replay, not fresh production annotation runs, pristine
+external validation or analyticalFDR. Known prior vendor/development exposure.
+Top-level baseline comparison is cumulative; versus_029 is actualdelta.
+Complete132-row table, separate wrongfeature counts and pooledBMP percentages
+delivered BEFORE031. Dataset-level BMP details are in the fullclass CSV.
+
+Next031: whole029 reference, no030specialist predictions/additions. Add16separate
+related-standard descriptors to ALL four core mode experts, refit/OOFcalibrate
+all100classifiers. Retain old15exactSTDfeatures and all labels/candidates/ranges,
+005standard cleanup and fixed027massstage. No assumed structural identity or
+shared RT/order between ether/positional classes and their related standards.

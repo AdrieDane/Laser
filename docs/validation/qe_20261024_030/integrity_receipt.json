@@ -1,0 +1,19 @@
+{
+  "all_passed": true,
+  "experiment": "030_scoped_v2",
+  "datasets": 33,
+  "dataset_modes": 132,
+  "source_hash_checks": 285,
+  "input_hash_checks": 672,
+  "model_scope_and_supervision_checks": 25,
+  "training_query_checks": 528,
+  "models_with_explicit_zero_label_groups": 6,
+  "heldout_score_reproductions": 33,
+  "immutable_core_rows_checked": 93613,
+  "new_annotation_raw_coordinate_checks": 219,
+  "full_selection_parity_checks": 132,
+  "calibration_scope_hash_budget_checks": 5,
+  "integrity_tool_sha256": "24e0214245531c74865ba93acb0d9c9fdd63e0fecb61fea4128d37951dfa954e",
+  "production_enabled": false,
+  "note": "Initial strict generic scope failure preserved; ALL25fits freshly restarted with explicit allowed/reference vs contributing label scopes. No label invention or weakened query/test exclusions. All029calls immutable; extras/manual denominator unchanged,not analyticalFDR/externalvalidation."
+}

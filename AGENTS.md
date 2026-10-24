@@ -38,6 +38,20 @@ untouched external validation data. Reinventory if the folder contents change.
 
 ## Reporting requirements
 
+24 October user update: ignore X4 for the optimization/90% target. Two NPnegative
+manual rows are excluded from a COMPANION target-scope view:92100manual rows,
+122curatedclass/modes,currently76below90 in retained029. Historical all-manual
+tables remain92102/123/77 for continuity; denominator change is NOT a gain.
+No formula guess or curation relabeling. See report_qe_target_scope.py.
+
+Deployment deliverable requested24October: once the ACTUAL integrated app is
+ready, run fresh end-to-end annotation/peakgroup exports for all33datasets,
+benchmark same original features by class/mode versuscuration, and produceONE
+colleague-ready report. Not current cachedresearchreplays. AddONLYcolumns2/3
+laser_annotation/adduct to originals, names *_annotated.txt, private output
+root with dataset/mode subfolders. Detailed requirements recorded in
+docs/validation/deployment_benchmark_plan.txt. Not yet deployment-ready.
+
 24 October: user explicitly authorizes autonomous optimization cycles and
 retain/reject decisions without asking between experiments. This does NOT
 waive the complete user-facing before/after table requirement before starting
@@ -54,6 +68,15 @@ Original9697extrasbaseline still429higher. Compare next algorithm against029.
 030:NEWnested/OOF-calibrated NP BMP specialist additions,all029calls immutable.
 No posthoc old024model/class output splice. Related-standard descriptors have
 been prepared WITHOUTannotation decisions;notused029/030.
+
+030completed_scoped_v2 REJECTED:82785correct/9430extras/1605differentfeatures:
+versus029+56/+162/+1,219totaladditions. Initialstrictscopeattempt failed
+incomplete13datasets/16fits;preservedunchanged. ALL25fits restarted explicitly
+distinguishingallowedreferenceprojects from real supervised contributors;
+no inventedlabels or weakenedexclusions. Full030table delivered before031.
+031currentlytests16related-standard descriptors on ALLfour029coreexperts,
+keeping029labels/exactSTDfeatures/candidates/005standards/fixed027massstage.
+NOrejected030scores/labels/additions. Comparewhole031algorithm against029.
 
 BMP clarification (22 October 2026): LASER should annotate BOTH NP polarities
 when each has supporting evidence. Do not impose a preferred-polarity filter
