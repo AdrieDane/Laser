@@ -74,6 +74,111 @@ def verify_raw_preparation(dataset):
     return prepared_tables
 
 
+def verify_heldout_dataset(dataset):
+    configure_frozen_resources(OUT / "source_snapshot")
+    from matlab_annotation.mode_evidence_experts import (
+        predict_mode_evidence_experts as predict_grouped_evidence,
+    )
+    from matlab_annotation.calibrated_mass_discovery import select_calibrated_additions
+    from matlab_annotation.operating_point import select_operating_candidates
+    from matlab_annotation.declared_standards import declared_standard_targets
+    from matlab_annotation.standard_completion import complete_declared_standards
+
+    folds = json.loads((QE / "rt_atlas_development/fold_assignment.json").read_text())
+    projects = json.loads((OUT / "run_manifest.json").read_text())["datasets"]
+    assert (OUT / "runs" / dataset / "complete.json").exists()
+    parity, demoted_aliases = 0, 0
+    outer = folds[dataset]
+    mask = {d[:7] for d in projects if folds[d] == outer}
+    path = (
+        QE
+        / "adduct_family_preparation_v1/prepared"
+        / f"exclude_{outer}"
+        / (dataset + ".pkl")
+    )
+    data = pd.read_pickle(path)
+    assert not {"training_positive", "training_label_known"} & set(data["pool"])
+    model = pd.read_pickle(OUT / f"fold_{outer}_nested_model.pkl")
+    assert set(model["excluded_groups"]) == mask
+    recorded = pd.read_pickle(OUT / "runs" / dataset / "scoring_audit.pkl")
+    pd.testing.assert_series_equal(predict_grouped_evidence(data, model), recorded)
+    automatic = pd.read_csv(
+        OUT / "runs" / dataset / "automatic_annotations.csv",
+        dtype={"feat_feature_id": str},
+        low_memory=False,
+    )
+    baseline = pd.read_pickle(QE / "baseline/runs" / dataset / "full_annotation.pkl")
+    catalogue = declared_standard_targets(
+        OUT / "source_snapshot/reference_data/matlab_pipeline",
+        baseline["internal_standards_expected"],
+    )
+    standards = json.loads(
+        (
+            QE / "experiment_005/models" / f"fold_{outer}_standard_models.json"
+        ).read_text()
+    )
+    mass_pool = pd.read_pickle(OLD / "runs" / dataset / "private_mass_candidates.pkl")
+    automatic_anchors = pd.concat(
+        [
+            p["annotations"].copy().assign(stream=stream)
+            for stream, p in baseline["streams"].items()
+        ],
+        ignore_index=True,
+    )
+    thresholds = json.loads(
+        (OUT / "calibration" / f"fold_{outer}/operating_points.json").read_text()
+    )["thresholds"]
+    for stream, part in data["pool"].groupby("stream", sort=False):
+        expected = select_operating_candidates(
+            part,
+            recorded.loc[part.index],
+            threshold=thresholds[stream],
+            ambiguity_margin=0.05,
+        )
+        # Existing005 cleanup can demote a newly selected endogenous
+        # mass-identical spike alias. Compare the FULL unchanged pipeline,
+        # not an assumption that all raw selector calls survive cleanup.
+        payload = baseline["streams"][stream]
+        protected = (
+            payload["annotations"][
+                payload["annotations"].is_is.fillna(False).astype(bool)
+            ]
+            .copy()
+            .assign(stream=stream)
+        )
+        expected, _, audit = complete_declared_standards(
+            pd.concat([expected, protected], ignore_index=True),
+            payload["features"],
+            catalogue[catalogue.stream.eq(stream)],
+            standards["library"],
+            standards["atlas"],
+            standards["transfer"],
+            standards["channels"],
+            stream=stream,
+            alignment_annotations=payload["annotations"],
+        )
+        if "action" in audit:
+            demoted_aliases += int(
+                audit.action.eq("demote_mass_identical_spike_alias").sum()
+            )
+        local_mass = (
+            mass_pool[mass_pool.stream.eq(stream)] if len(mass_pool) else mass_pool
+        )
+        additions = select_calibrated_additions(
+            local_mass, automatic_anchors, expected, stream=stream
+        )
+        expected = pd.concat([expected, additions], ignore_index=True)
+        actual = automatic[automatic.stream.eq(stream)]
+        keys = ["name", "adduct", "feat_feature_id", "is_is"]
+        assert set(
+            expected[keys].astype(str).itertuples(index=False, name=None)
+        ) == set(actual[keys].astype(str).itertuples(index=False, name=None))
+        parity += 1
+    assert parity == 4
+    print("HELDOUT FULL PIPELINE REPRODUCED", dataset, flush=True)
+    return parity, demoted_aliases
+
+
 def main():
     protocol = json.loads((OUT / "protocol.json").read_text())
     assert (
@@ -90,14 +195,6 @@ def main():
     summary = json.loads((OUT / "reports_v2/summary.json").read_text())
     assert summary["complete"] and summary["datasets_evaluated"] == 33
     sys.path.insert(0, str(OUT / "source_snapshot/app"))
-    from matlab_annotation.mode_evidence_experts import (
-        predict_mode_evidence_experts as predict_grouped_evidence,
-    )
-    from matlab_annotation.calibrated_mass_discovery import select_calibrated_additions
-    from matlab_annotation.operating_point import select_operating_candidates
-    from matlab_annotation.declared_standards import declared_standard_targets
-    from matlab_annotation.standard_completion import complete_declared_standards
-
     folds = json.loads((QE / "rt_atlas_development/fold_assignment.json").read_text())
     projects = json.loads((OUT / "run_manifest.json").read_text())["datasets"]
     paths = list(OUT.glob("fold_*_nested_model.pkl")) + list(
@@ -179,98 +276,12 @@ def main():
                 new_context_predictors=12,
             )
         )
-    parity, demoted_aliases = 0, 0
-    for dataset in projects:
-        outer = folds[dataset]
-        mask = {d[:7] for d in projects if folds[d] == outer}
-        path = (
-            QE
-            / "adduct_family_preparation_v1/prepared"
-            / f"exclude_{outer}"
-            / (dataset + ".pkl")
-        )
-        data = pd.read_pickle(path)
-        assert not {"training_positive", "training_label_known"} & set(data["pool"])
-        model = pd.read_pickle(OUT / f"fold_{outer}_nested_model.pkl")
-        assert set(model["excluded_groups"]) == mask
-        recorded = pd.read_pickle(OUT / "runs" / dataset / "scoring_audit.pkl")
-        pd.testing.assert_series_equal(predict_grouped_evidence(data, model), recorded)
-        automatic = pd.read_csv(
-            OUT / "runs" / dataset / "automatic_annotations.csv",
-            dtype={"feat_feature_id": str},
-            low_memory=False,
-        )
-        baseline = pd.read_pickle(
-            QE / "baseline/runs" / dataset / "full_annotation.pkl"
-        )
-        catalogue = declared_standard_targets(
-            OUT / "source_snapshot/reference_data/matlab_pipeline",
-            baseline["internal_standards_expected"],
-        )
-        standards = json.loads(
-            (
-                QE / "experiment_005/models" / f"fold_{outer}_standard_models.json"
-            ).read_text()
-        )
-        mass_pool = pd.read_pickle(
-            OLD / "runs" / dataset / "private_mass_candidates.pkl"
-        )
-        automatic_anchors = pd.concat(
-            [
-                p["annotations"].copy().assign(stream=stream)
-                for stream, p in baseline["streams"].items()
-            ],
-            ignore_index=True,
-        )
-        thresholds = json.loads(
-            (OUT / "calibration" / f"fold_{outer}/operating_points.json").read_text()
-        )["thresholds"]
-        for stream, part in data["pool"].groupby("stream", sort=False):
-            expected = select_operating_candidates(
-                part,
-                recorded.loc[part.index],
-                threshold=thresholds[stream],
-                ambiguity_margin=0.05,
-            )
-            # Existing005 cleanup can demote a newly selected endogenous
-            # mass-identical spike alias. Compare the FULL unchanged pipeline,
-            # not an assumption that all raw selector calls survive cleanup.
-            payload = baseline["streams"][stream]
-            protected = (
-                payload["annotations"][
-                    payload["annotations"].is_is.fillna(False).astype(bool)
-                ]
-                .copy()
-                .assign(stream=stream)
-            )
-            expected, _, audit = complete_declared_standards(
-                pd.concat([expected, protected], ignore_index=True),
-                payload["features"],
-                catalogue[catalogue.stream.eq(stream)],
-                standards["library"],
-                standards["atlas"],
-                standards["transfer"],
-                standards["channels"],
-                stream=stream,
-                alignment_annotations=payload["annotations"],
-            )
-            if "action" in audit:
-                demoted_aliases += int(
-                    audit.action.eq("demote_mass_identical_spike_alias").sum()
-                )
-            local_mass = (
-                mass_pool[mass_pool.stream.eq(stream)] if len(mass_pool) else mass_pool
-            )
-            additions = select_calibrated_additions(
-                local_mass, automatic_anchors, expected, stream=stream
-            )
-            expected = pd.concat([expected, additions], ignore_index=True)
-            actual = automatic[automatic.stream.eq(stream)]
-            keys = ["name", "adduct", "feat_feature_id", "is_is"]
-            assert set(
-                expected[keys].astype(str).itertuples(index=False, name=None)
-            ) == set(actual[keys].astype(str).itertuples(index=False, name=None))
-            parity += 1
+    with ProcessPoolExecutor(max_workers=3) as executor:
+        results = list(executor.map(verify_heldout_dataset, projects))
+    assert len(results) == 33
+    parity = sum(p for p, _ in results)
+    demoted_aliases = sum(n for _, n in results)
+    assert parity == 132
     calibration_checks = 0
     for outer in range(5):
         folder = OUT / "calibration" / f"fold_{outer}"

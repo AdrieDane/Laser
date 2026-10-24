@@ -1,0 +1,29 @@
+Engineering checks,24October2026 — NOT annotation performance
+
+Current app/tests:709passed,8skipped,83subtests passed (344.72seconds).
+Includes9synthetic tests of unused standard_anchored_retention:
+exact-class shift/isotope transfer; immutable inputs; spike-mass protection;
+no ether-class merging; no feedback from transfer-only detections; sparse,
+disagreeing, large, unknown/infinite-cohort or out-of-domain support withheld;
+own-query references, cross-stream input and manual flags rejected.
+
+One real-input numerical-prediction smoke test:
+25P0092_Plasma__f555969960fe, matching query-excluded outer standard bundle,
+blind staged automatic alignment, independently saved spike measurements,
+original blind theoretical grids. No manual comparison read or model fitted.
+RPpositive:5505chemical target predictions across8classes; shifts-1.4884..0.3110s.
+RPnegative:0supported predictions; missing support stays unavailable.
+NPpositive:1952predictions across8classes; shifts-3.7333..1.2711s.
+NPnegative:1363predictions across8classes; shifts-1.2294..2.4485s.
+These counts are THEORETICAL TARGET PREDICTIONS, NOT features considered,
+correct accepted annotations, promised gains or a dataset benchmark.
+No candidate join, annotation selection, original-coordinate edit or export.
+All-dataset nested preparation and held-out acceptance evaluation still needed.
+
+Separate032 verification-tool smoke checks:
+25P0092_Plasma raw adduct measurements reproduced and all11masked tables checked
+for exact old-pool/old-predictor and new-descriptor parity.
+21P0116_Zoemba held-out scores and all4full selector/005STD/fixed027mass outputs
+reproduced exactly;zero alias demotions in that case. Not a full032integrity
+receipt; complete33dataset/25model/132output verification remains required.
+Verifier parallelizes independent dataset checks only,not annotation policy.
