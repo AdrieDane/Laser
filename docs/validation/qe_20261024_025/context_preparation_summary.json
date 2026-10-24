@@ -1,0 +1,12 @@
+{
+  "datasets": 33,
+  "dataset_mask_tables": 363,
+  "all_complete": true,
+  "new_numeric_features": 15,
+  "supervised_labels_used_for_predictors": false,
+  "original_pool_exact_parity_checks": 363,
+  "original_predictor_exact_parity_checks": 363,
+  "standard_query_exclusion_checks": 363,
+  "annotation_changes": false,
+  "note": "LABEL-FREE standard-context preparation ONLY. Exact022 candidate pools and all old predictors immutable; add15numeric predictors from independently detected declared spikes. No proposed endo calls, query manual comparison or annotation selection used."
+}

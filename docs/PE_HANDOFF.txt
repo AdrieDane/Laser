@@ -1,4 +1,59 @@
-LATEST CHECKPOINT — 24 October 2026, resumed by user,024COMPLETE
+LATEST CHECKPOINT — 24 October 2026,025COMPLETE/REJECTED;026RUNNING
+
+User explicitly requests autonomous evaluation/retain-reject decisions and next
+cycles without asking. Still deliver full132table AFTEReachcycle BEFOREnext.
+024FULLtable delivered previousfinal;025FULLtable actually delivered commentary
+in this turn BEFORE026started. No productiondefaultchanged; targetNOTachieved.
+Retain022researchreference(82385correct/9238extras/1588differentfeatures),notdefault.
+
+025:82384/92102=89.448655%,9335extras,1575differentfeatures,77/123classes<90.
+Versus022:-1correct,+97extras,-13differentfeatures. REJECTED globally.
+Mode022 ->025correct/manual;extras;wrong:
+ RPpos40495/45206 ->40330/45206;3361 ->3217;894 ->886.
+ RPneg12125/13600 ->12099/13600;1972 ->1920;426 ->413.
+ NPpos17373/19380 ->17548/19380;1838 ->2008;169 ->176.
+ NPneg12392/13916 ->12407/13916;2067 ->2190;99 ->100.
+BMP NPpos208/622 ->257/622;extras174 ->257. NPneg249/520 ->217/520;
+extras697 ->703. No cherry-picking025NPand022RP outputs.
+
+025added15independent declared-standard RT/I/CDB/ppm fields ONLY, all363old
+pool/predictor exact parity checks pass. Newstdmodels SAME25query/outer/inner
+excludedmaskscopes. Emptyendoproposals,strictactualisotopemass/rawuniqueness,
+no self/companionanchors,no manualruntimeinputs. Known positive/negative row
+counts identical022 in all25fits. SAME005finalstandards. Standard-contextprep
+complete at outputs/qe_optimization_20261022/standard_context_preparation_v1.
+1415independentlymeasured ions/84232of210595heldoutqueryrows have sameclasscontext;
+availabilityNOTaccuracy. All25nestedstdmodels atnested_standard_development_v1.
+
+025integrityallPASS:272source+491inputhashes,25modelscopes/unchangedlabelcounts,
+528trainingqueries,33scorereproductions,132fullselector+005cleanupoutputs,5
+calibrationchecks,363oldpool/predictorchecks,492preparationinputhashes.165original
+hashes verifiedbyevaluator,all92102manualincl28unresolvedsamev2. Cachedgrouped
+replay,notfreshproduction/externalvalidation/FDR;knownbaselineexposure remains.
+Docs/publicaggregate:docs/validation/qe_20261024_025;versus_022actualdelta.
+
+026NOWRUNNING terminal43144:run_qe_class_balanced_experiment.py. Inspect live
+process/artifactsbeforepolling/restarting. Outputsexperiment_026,NOT025continued.
+UseEXACT022old363features/pools/labels,NOT024unknownlabelsor025context. Only
+sampleweights:withincohort,sqrt(median nonempty candidateclass/mode cell size /
+cell size),factorsclipped[.25,4],normalizeequalcohorttotalweights. NOTpositive/
+negativeweights,manualclasspresenceorhardcodedmatrixidentitypredictors. Same
+25nested180roundHGBfits,new4innerOOF modecutoffs/9.5%endotrainingextra budget,
+.05margin,005standardmethod. Everyfit mustpreserve022knownpair/positivecounts,
+samecolumns andcohortweighttotalerror<1e-6. Defaultsweight_policy=Noneunchanged.
+Newunusedproduction class_balanced_weights.py+6tests;11focused weight/scope tests
+passed. Full660tests passed before lastcohort-total-audit metadata addition;
+rerunfullsuite toverifylatestsource.025snapshotFROZENbeforeprototypecode,so025
+didNOTuseclassweightsornewoptionalfitbranch. No026performanceclaimed yet.
+
+NEXT:finish026,evalv2all33,reportbaselineand022actualdelta,runnewverifytool,
+publishaggregateonly,andDELIVERfull132tablebefore027. If026notbetterretain022.
+Candidate-ceiling32class/modes<90persists;newdiscoveryphysicalevidence(notmore
+cutoff-onlysweeps) maybenext. Newnestedstandardcontextisavailableforresearch
+mass-offset/RT discovery,butdoNOTsilentlycombinefailed025features or024labels.
+Privateprofiles,FIDs,measurements/fittedweights/crosswalks NEVERGit. PushCFMmain.
+
+PREVIOUS CHECKPOINT — 24 October 2026, resumed by user,024COMPLETE
 
 All33datasets/132modes evaluated; no live numerical jobs. No production defaults
 changed; target NOT achieved.024NOTadopted as global model; retain022research

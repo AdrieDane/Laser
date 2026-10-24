@@ -107,11 +107,13 @@ def evidence_matrix(evidence, model):
 
 
 def fit_grouped_evidence_model(
-    data_by_dataset, *, training_groups, excluded_groups, parameters
+    data_by_dataset, *, training_groups, excluded_groups, parameters, weight_policy=None
 ):
     """Same fixed HGB/cohort-balanced weighting as007, genuinely excluded inputs."""
     from sklearn.ensemble import HistGradientBoostingClassifier
 
+    if weight_policy not in (None, "tempered_class_mode"):
+        raise ValueError("Unknown research sample-weight policy")
     if parameters.get("early_stopping") is not False:
         raise ValueError(
             "Disable implicit row-wise validation/early stopping for grouped research fits"
@@ -163,6 +165,28 @@ def fit_grouped_evidence_model(
     )
     counts = Counter(groups)
     weights = np.asarray([len(groups) / len(counts) / counts[g] for g in groups])
+    if weight_policy == "tempered_class_mode":
+        from .class_balanced_weights import tempered_class_mode_weights
+
+        if not {"stream", "class"}.issubset(x):
+            raise ValueError("Explicit candidate stream/class required for balancing")
+        weights = tempered_class_mode_weights(groups, x.stream, x["class"])
+        totals = Counter()
+        for cohort, weight in zip(groups, weights):
+            totals[cohort] += float(weight)
+        target_weight = len(groups) / len(counts)
+        model["sample_weight_policy"] = dict(
+            kind=weight_policy,
+            exponent=0.5,
+            minimum_factor=0.25,
+            maximum_factor=4.0,
+            minimum_weight=float(weights.min()),
+            maximum_weight=float(weights.max()),
+            cohort_total_target=float(target_weight),
+            cohort_total_max_abs_error=float(
+                max(abs(v - target_weight) for v in totals.values())
+            ),
+        )
     estimator = HistGradientBoostingClassifier(
         **parameters, categorical_features=[c in categories for c in x]
     )

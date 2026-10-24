@@ -38,6 +38,11 @@ untouched external validation data. Reinventory if the folder contents change.
 
 ## Reporting requirements
 
+24 October: user explicitly authorizes autonomous optimization cycles and
+retain/reject decisions without asking between experiments. This does NOT
+waive the complete user-facing before/after table requirement before starting
+the next annotation-changing experiment, or authorize benchmark relabeling.
+
 BMP clarification (22 October 2026): LASER should annotate BOTH NP polarities
 when each has supporting evidence. Do not impose a preferred-polarity filter
 based on the manual list. Opposite-polarity manual support may be reported as

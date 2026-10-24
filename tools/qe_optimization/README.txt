@@ -1,5 +1,28 @@
 QE collection research runners — 22 October 2026
 
+Autonomous cycles authorized24October; full132table still REQUIREDbeforeeachnext.
+025(after024tableDELIVERED):
+  python tools/qe_optimization/prepare_qe_standard_context.py
+  python tools/qe_optimization/run_qe_standard_context_experiment.py
+  python tools/qe_optimization/evaluate_qe_baseline.py <experiment_025> --manual-reference <samev2>
+  python tools/qe_optimization/report_qe_experiment.py --experiment <experiment_025> --before <experiment_022>
+  python tools/qe_optimization/verify_qe_standard_context_experiment.py
+15numeric independent spike-context fields;25nested standard models,363exact
+old-pool/predictor parity checks. Same labels and final005standard handling.
+Completed82384correct/9335extras/1575different-features:versus022-1/+97/-13;
+REJECTED globally. Full132table delivered before026. No class/modecherry-picking.
+
+026(after025tableDELIVERED):
+  python tools/qe_optimization/run_qe_class_balanced_experiment.py
+  python tools/qe_optimization/evaluate_qe_baseline.py <experiment_026> --manual-reference <samev2>
+  python tools/qe_optimization/report_qe_experiment.py --experiment <experiment_026> --before <experiment_022>
+  python tools/qe_optimization/verify_qe_class_balanced_experiment.py
+Fixedsqrt inverse candidate-class/mode cell weights,clipped[.25,4]withincohort,
+then equal total cohort weights. Uses022oldfeatures and labels,NOT024/025combo.
+Optionalweight_policy=None preserves original fit behavior; productionunused.
+Same25nested fixed180HGB fits,newOOFcutoffs,9.5%endoextra trainingbudget,005STD.
+All33/allclasses/full132table and heldout trade-offs required before adoption.
+
 24 October resumption: experiment024 isolates partial BMP training supervision:
   python tools/qe_optimization/run_qe_partial_curation_experiment.py
   python tools/qe_optimization/evaluate_qe_baseline.py <experiment_024 output> --manual-reference <same v2 reference>

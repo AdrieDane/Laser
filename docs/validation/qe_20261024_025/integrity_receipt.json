@@ -1,0 +1,18 @@
+{
+  "integrity_tool_sha256": "eaca571280178cfde45e305a88c642fa6992859d3b038da9913e817ce6f2091b",
+  "source_file_hash_checks": 272,
+  "input_file_hash_checks": 491,
+  "fitted_model_scope_and_unchanged_positive_checks": 25,
+  "training_query_exclusion_checks": 528,
+  "heldout_score_reproduction_checks": 33,
+  "selector_plus_unchanged_standard_cleanup_parity_checks": 132,
+  "existing_standard_alias_demotions_reproduced": 1,
+  "calibration_scope_hash_budget_checks": 5,
+  "completed_datasets": 33,
+  "all_passed": true,
+  "annotation_experiment": "025",
+  "new_standard_context_used": true,
+  "original_pool_and_predictor_parity_checks": 363,
+  "standard_context_preparation_inputs_verified": 492,
+  "note": "Engineering integrity, not external validation/FDR. All positive and negative labels/pair counts unchanged022;15newnumeric nested standard features only. Evaluation truth/extras unchanged. Private model/feature data stay outside Git."
+}

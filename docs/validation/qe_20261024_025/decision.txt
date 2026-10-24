@@ -1,0 +1,73 @@
+Experiment025 — independent standard context, NOT adopted globally
+24 October 2026
+
+All33datasets/132modes/33distinct input sets/30project groups,all92102manual
+entries incl28unresolved. Correct=same lipid/adduct/mode/original feature.
+Manual-absent extras are unconfirmed,not proven incorrect. Same referencev2
+and all165original input SHA256 checks at evaluation; raw sources unchanged.
+
+Actual022 ->025 delta:
+Correct82385/92102(89.449741%) ->82384/92102(89.448655%): -1.
+Extras9238 ->9335:+97; different-feature1588 ->1575:-13.
+77/123curated class/modes remain below90. TargetNOTachieved; appdefaults unchanged.
+Original9697extrasguard passes,but022guard fails. No correct gain for extra cost,
+so retain022research reference. DoNOTcherry-pick025NP predictions into022RP outputs.
+
+Mode(correct/manual;extras;different-feature),022 ->025:
+ RPpositive40495/45206 ->40330/45206;3361 ->3217;894 ->886.
+ RPnegative12125/13600 ->12099/13600;1972 ->1920;426 ->413.
+ NPpositive17373/19380 ->17548/19380;1838 ->2008;169 ->176.
+ NPnegative12392/13916 ->12407/13916;2067 ->2190;99 ->100.
+NPpositive90.546956%pooled doesNOTmean90in every class/dataset.
+Dataset/modes59gain/54lose/19same;curatedclass/modes49gain/44lose/30same.
+BMP NPpositive208/622 ->257/622,extras174 ->257;NPnegative249/520 ->217/520,
+extras697 ->703. Includes internal standards. Additional RPnegative BMP0/1
+unchanged. Largest gainsNPpositiveBMP+49/SM-d+27/PS+25/PC+18/SM-t+11;
+lossesRPpositiveDG-33,NPnegativeBMP-32,RPpositivePC-O-24/CE-20,RPnegativePI-12.
+
+What changed:
+15numeric standard-anchored RT,intensity,nM-response,C/DB,adduct/ppm context
+features added to EXACT022 physical pools/old predictors. Independently detect
+declared spikes from RAW features with EMPTY endogenous proposals; same blind
+baseline alignment. Actual labelled masses,<3ppm/<=10s raw uniqueness BEFORE
+occupancy; no self/companion-ion anchors,conflicting IDs withheld,exact classes,
+unknown units/evidence left unknown. These are evidence,not absolute quantitation
+or guaranteed identities. No new endogenous candidates,mass/RTwindow/range changes.
+
+All25standard RT/library/channel/transfer reference masks fitted previously with
+query/outer/inner exclusions;5single-mask models reproduce005numerically and33
+chemical catalogues match. All363newquerytables prove exact original pool and
+old-predictor equality,15numeric new columns and matching standard-reference scope.
+Heldout33tables:1415independently measured standard ions;84232of210595candidate
+rows have same-class context. Availability is NOT annotation accuracy.
+
+25fixed180-round HGBrefits,4inner blocks andNEWtraining-only mode cutoffs with
+same022weakest-mode objective/.2..1grid/9.5%endogenous extras budget/.05margin.
+All25positive AND negative row counts exactly022. NO024partial labels. New
+class-weighting prototype was implemented AFTER025snapshot was frozen and is
+UNUSED in025; current app default remains original cohort weights.
+Final005standard annotation logic/models unchanged. No production hook/default.
+
+Engineering:13focused standard/context/scope tests passed. Current fullsuite
+660passed,8skipped,83subtests includes6UNUSED futureweighting tests; do not treat
+those as an additional025performance experiment. All fitted source/model/input
+integrity and full output reproduction checks recorded in integrity_receipt.json.
+All passed:272source+491input hashes,25model scopes/unchanged label counts,
+528training-query exclusions,33score reproductions,132complete output replays,
+5calibration checks,363exact old-pool/predictor checks and492preparation inputs.
+Private measurements,raw profiles,manual feature IDs and fitted weights outsideGit.
+
+Grouped cached-feature research replay, NOT fresh production raw-input runs,
+untouched external whole-pipeline validation or analytical FDR. Inherited blind
+baseline/vendor exposure remains; final005standards not newly nested. Repeated
+development on these33datasets is known exposure. Training budget is not testbound.
+
+Top-level comparison is CUMULATIVE originalbaseline ->025;versus_022actualdelta
+contains complete132tables and every class/mode. All132actualdelta rows WERE
+delivered in user-facing commentary BEFORE026started. Opposite-polarity manual
+absence remains an extra,not a runtime gate.
+
+Next separate026:fixed tempered class/mode candidate-cell weighting within each
+training cohort,keeping equal total cohort weight and capped factors[.25,4],
+no positive/negative relabeling. Use022oldfeatures,NOTrejected025or024combination.
+This tests minority-class training capacity without another cutoff-only sweep.
