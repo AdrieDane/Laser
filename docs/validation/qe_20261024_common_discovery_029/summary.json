@@ -1,0 +1,19 @@
+{
+  "annotation_changes": false,
+  "models_fitted": 0,
+  "datasets": 33,
+  "priority_class_modes": 86,
+  "priority_manual_entries": 90871,
+  "priority_missing_entries": 8975,
+  "reason_counts": {
+    "correct_feature_candidate_already_available": 6085,
+    "RT_outside_10seconds": 2275,
+    "mass_outside_3ppm": 409,
+    "identity_absent_from_current_theoretical_grid": 138,
+    "standard_specialist_gap": 40,
+    "unresolved_manual_feature": 28
+  },
+  "source_sha256": "71c86cd4e97dfb911d5a433b9acc854bc15c491dc282351a97036beddb5c7458",
+  "note": "READ-ONLY common-class diagnosis of retained029missing calls,not proposed/accepted new annotations. >=100manual and>=3independent projects perclass/mode. Full92102historical/92100target denominators unchanged. Query-excluded outer reference;manual usedONLYto diagnose evaluation failures,never refit a query. RT/mass gate categories are diagnostics,not guarantees that wider windows would be safe or sufficient.",
+  "verified_input_hashes": 104
+}

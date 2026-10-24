@@ -95,9 +95,27 @@ Currentread-only029candidateaudit:6215missingmanualcorrect-featurecandidates
 alreadyinpool,3128mappedmissingfrompool,28unresolved(target92100);31/122class/
 modescannotreach90evenoptimisticrowwisecandidatecoverage. See
 docs/validation/qe_20261024_candidate_gaps_029. Prioritize discovery/selection
-gaps in well-represented classes, not outer-test winner ensembles. Candidate-
-adduct-aware companion evidence is a prototype under test;032notyetannotation-
-fitted and no annotation improvement has been established for that prototype.
+gaps in well-represented classes, not outer-test winner ensembles.
+032nowRUNNING after031full132table:363label-free preparations complete with
+exact029pool/old-predictor parity;12native-adduct-aware same-acquisition numeric
+descriptors added. Allfourmodeexperts refit with SAME029labels/15exactSTDfields,
+OOFobjective/budget,005cleanup/fixed027massstage. No032result/retentiondecision
+yet;doNOTstart033annotation fits until full032table is delivered.
+
+Read-only common-class029diagnosis COMPLETE:86priorityclass/modes,90871manual,
+81896correct,43below90. Of8975missing:6085correct-feature candidates already
+available,2275outside current nested RTprediction10s,409outside3ppm,138missing
+exacttheoreticalidentity/adduct,40STDspecialist gaps,28unresolved. RTcategory
+is relative to the atlas/fallback,not proof it is the only exclusion cause.
+1043RTgaps are10-15s.104inputhashes verified. See
+docs/validation/qe_20261024_common_discovery_029. No annotation changes.
+Newunused standard_anchored_retention prototype+9synthetic tests: exact-class
+independent PRIMARY-library spike RT residual versus OTHER-group isotope
+transfer;no feedback from transfer-only detections,no ether/lyso merging,
+strict reference exclusion,weak/disagreeing/out-of-domain anchors withheld.
+Returns numerical predictions ONLY,no candidates/annotations;NOTused032.
+Promising next discovery strategy after032table,not proven gains. Mainmanual
+scope unchanged;92072mapped target entries have zero shared-feature conflicts.
 
 BMP clarification (22 October 2026): LASER should annotate BOTH NP polarities
 when each has supporting evidence. Do not impose a preferred-polarity filter

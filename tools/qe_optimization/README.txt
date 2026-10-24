@@ -25,7 +25,16 @@ raw acquisition;correlation requires>=4non-QC/nonblank profiles. Review-only
 ions remain evidence,not newly accepted annotations. Allfour180roundexperts
 refit with same nested scopes/OOFbudget,005STDcleanup/fixed027massstage. Not031
 relatedSTDfeatures,030partiallabels/specialist or rarecatalogue expansion.
-No032annotation result yet;full132table mandatory before033.
+032now running after complete363table label-free parity preparation;no result
+or retentiondecision yet. Full132table mandatory before033annotation fitting.
+Read-only common diagnosis finished:6085prioritymissing correctfeatures already
+inpool;2275outside nestedRT10s,409outside3ppm,138missingexacttarget,40STDgaps,
+28unresolved. See docs/validation/qe_20261024_common_discovery_029.
+Unused standard_anchored_retention prototype tests exact-class independent
+primary-library spike offsets versus OTHER-group isotope-specific transfer.
+No feedback from transfer-only spikes,weak/disagreeing/out-of-domain support,
+class merging or own-query references. Nine synthetic tests passed;NOactual
+candidates/annotations or033model fits yet. NOTpartof032andNOTproduction.
 
 Deferred source prototype:catalogue_target_completion.py and
 prepare_qe_catalogue_candidates.py. Preparationv2 intentionally parked after

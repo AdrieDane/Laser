@@ -1,5 +1,6 @@
 """Verify032 unchanged pools/labels/scopes and native-adduct companion evidence."""
 
+from concurrent.futures import ProcessPoolExecutor
 import hashlib
 import json
 from pathlib import Path
@@ -19,6 +20,58 @@ OLD = QE / "experiment_027"
 def sha(path):
     with path.open("rb") as handle:
         return hashlib.file_digest(handle, "sha256").hexdigest()
+
+
+def verify_raw_preparation(dataset):
+    configure_frozen_resources(OUT / "source_snapshot")
+    from matlab_annotation.adduct_family_evidence import adduct_family_evidence
+
+    prep = QE / "adduct_family_preparation_v1"
+    keys = ["stream", "class", "adduct", "ref_mz", "feat_feature_id"]
+    prepared_tables = 0
+    checkpoint = json.loads((prep / "checkpoints" / (dataset + ".json")).read_text())
+    measurement = Path(checkpoint["measurement_path"])
+    assert sha(measurement) == checkpoint["measurement_sha256"]
+    saved = pd.read_pickle(measurement)
+    baseline = pd.read_pickle(QE / "baseline/runs" / dataset / "full_annotation.pkl")
+    actual = pd.concat(
+        [
+            adduct_family_evidence(
+                part,
+                baseline["streams"][stream]["features"],
+                OUT / "source_snapshot/reference_data/matlab_pipeline",
+                stream=stream,
+            )
+            for stream, part in saved["queries"].groupby("stream", sort=False)
+        ]
+    ).reindex(saved["queries"].index)
+    pd.testing.assert_frame_equal(actual, saved["evidence"])
+    actual.index = pd.MultiIndex.from_frame(saved["queries"][keys])
+    assert actual.index.is_unique
+    for path, digest in checkpoint["prepared_sha256"].items():
+        path = Path(path)
+        assert sha(path) == digest
+        data = pd.read_pickle(path)
+        old = pd.read_pickle(
+            QE
+            / "standard_context_preparation_v1/prepared"
+            / path.parent.name
+            / path.name
+        )
+        pd.testing.assert_frame_equal(data["pool"], old["pool"])
+        pd.testing.assert_frame_equal(
+            data["evidence"][old["evidence"].columns], old["evidence"]
+        )
+        expected = actual.reindex(pd.MultiIndex.from_frame(data["pool"][keys]))
+        expected.index = data["pool"].index
+        pd.testing.assert_frame_equal(data["evidence"][expected.columns], expected)
+        assert (
+            data["adduct_family_measurements_sha256"]
+            == checkpoint["measurement_sha256"]
+        )
+        prepared_tables += 1
+    print("RAW ADDUCT MEASUREMENTS REPRODUCED", dataset, flush=True)
+    return prepared_tables
 
 
 def main():
@@ -44,7 +97,6 @@ def main():
     from matlab_annotation.operating_point import select_operating_candidates
     from matlab_annotation.declared_standards import declared_standard_targets
     from matlab_annotation.standard_completion import complete_declared_standards
-    from matlab_annotation.adduct_family_evidence import adduct_family_evidence
 
     folds = json.loads((QE / "rt_atlas_development/fold_assignment.json").read_text())
     projects = json.loads((OUT / "run_manifest.json").read_text())["datasets"]
@@ -248,58 +300,10 @@ def main():
         assert sha(prep / "source_snapshot" / path) == digest
     for path, digest in p["input_sha256"].items():
         assert sha(Path(path)) == digest
-    # Reproduce all raw measurements, then check all 363 masked tables against
-    # both their original029 predecessors and the reproduced new descriptors.
-    keys = ["stream", "class", "adduct", "ref_mz", "feat_feature_id"]
-    measured_datasets, prepared_tables = 0, 0
-    for dataset in projects:
-        checkpoint = json.loads(
-            (prep / "checkpoints" / (dataset + ".json")).read_text()
-        )
-        measurement = Path(checkpoint["measurement_path"])
-        assert sha(measurement) == checkpoint["measurement_sha256"]
-        saved = pd.read_pickle(measurement)
-        baseline = pd.read_pickle(
-            QE / "baseline/runs" / dataset / "full_annotation.pkl"
-        )
-        actual = pd.concat(
-            [
-                adduct_family_evidence(
-                    part,
-                    baseline["streams"][stream]["features"],
-                    OUT / "source_snapshot/reference_data/matlab_pipeline",
-                    stream=stream,
-                )
-                for stream, part in saved["queries"].groupby("stream", sort=False)
-            ]
-        ).reindex(saved["queries"].index)
-        pd.testing.assert_frame_equal(actual, saved["evidence"])
-        actual.index = pd.MultiIndex.from_frame(saved["queries"][keys])
-        assert actual.index.is_unique
-        for path, digest in checkpoint["prepared_sha256"].items():
-            path = Path(path)
-            assert sha(path) == digest
-            data = pd.read_pickle(path)
-            old = pd.read_pickle(
-                QE
-                / "standard_context_preparation_v1/prepared"
-                / path.parent.name
-                / path.name
-            )
-            pd.testing.assert_frame_equal(data["pool"], old["pool"])
-            pd.testing.assert_frame_equal(
-                data["evidence"][old["evidence"].columns], old["evidence"]
-            )
-            expected = actual.reindex(pd.MultiIndex.from_frame(data["pool"][keys]))
-            expected.index = data["pool"].index
-            pd.testing.assert_frame_equal(data["evidence"][expected.columns], expected)
-            assert (
-                data["adduct_family_measurements_sha256"]
-                == checkpoint["measurement_sha256"]
-            )
-            prepared_tables += 1
-        measured_datasets += 1
-        print("RAW ADDUCT MEASUREMENTS REPRODUCED", dataset, flush=True)
+    # Reproduce EVERY raw measurement and all363 old/new masked tables.
+    with ProcessPoolExecutor(max_workers=3) as executor:
+        counts = list(executor.map(verify_raw_preparation, projects))
+    measured_datasets, prepared_tables = len(counts), sum(counts)
     assert measured_datasets == 33 and prepared_tables == 363
     receipt = dict(
         integrity_tool_sha256=sha(Path(__file__)),
