@@ -1,0 +1,69 @@
+Experiment 031: related-standard descriptors, REJECTED
+24 October 2026
+
+Retain 029 as the whole research reference. No production defaults changed.
+Target not achieved. This is not a phase/class-specific winner ensemble.
+
+Actual029 ->031, all33datasets/132modes/30projectgroups:
+Correct82729 ->82728 (-1), extras9268 ->9180 (-88), different-feature1604 ->1592 (-12).
+User-authorized target excludingX4:82729/92100 (89.8251900109%) ->
+82728/92100 (89.8241042345%). Historical all-manual denominator92102 preserved
+in top-level/maincomparison tables. 28unresolved remain in both denominators.
+X4's exclusion is a scope update, NOT an algorithmic gain.
+
+Mode(correct/manual;extras;different-feature),before ->after:
+RPpositive40648/45206 ->40519/45206;3391 ->3327;932 ->919.
+RPnegative12088/13600 ->12121/13600;1995 ->1960;408 ->401.
+NPpositive17637/19380 ->17698/19380;1944 ->1960;163 ->164.
+NPnegative12356/13914 ->12390/13914;1938 ->1933;101 ->108.
+NPnegative target denominator is13914, historical13916 (twoX4rows).
+
+Why reject despite fewer extras/wrongfeatures:
+RPpositive loses129correct, other three pooledmodes gain128combined.
+Target class/modes below90 increase76 ->78 of122. Capped90 class-average
+falls71.0076068 ->70.7658149%. 46curated cells gain,38lose,38unchanged.
+Largest losses:RPpositivePC-29,TG-O-23,CE-13,DG-P-12,PC-P-12,DG-11,AC-11.
+Gains includeNPpositiveBMP+39,PC-O+P+14,NPnegativeBMP+13,RPnegativePI+10.
+These isolated gains do not justify posthoc splicing successful old outputs.
+No reduction in rawmass/RT limits, CDB ranges or accepted-feature identity checks.
+
+What changed:
+All100modeclassifiers refitted in25nested parentfits,180rounds each.
+Same029physical pools,knownlabels,rowcounts,oldpredictors and15exactSTDfields.
+Add16NUMERIC separately labelled RELATED-standard descriptors:PE/PCether classes
+use diacyl-headgroup context;lyso positional/generic classes use related lyso
+context. Nativeclasses/modes remain distinct;NOassumed sharedRT/order/identity/
+concentration. No self/companion standard anchors; sourcepool/classes unchanged.
+363pool/oldpredictor parity checks and reproduced15oldexactSTDfeatures/rawspike
+coordinates;reference models exclude ownquery/outer/innerprojects.
+Same029OOFcutoff objective,core9.5%endoextras-trainingbudget,.05margin,
+005standard cleanup andfixed027massstage. No030specialist/partiallabels/scores,
+026classweights or old025prediction splice. Finalextras not testbounded.
+
+IntegrityALLPASS:284frozen source hashes,529input hashes,25model/supervision
+checks,528queryexclusions,33reproducedscores,132fullcore/STD/mass replays,
+5calibration hashes/scopes/budgets,363physical/old-column parity checks,
+795label-free preparation inputhashes. One005STDaliasdemotion reproduced.
+Same165originalsourcefilehashes verified by evaluator; rawinputs unchanged.
+Privateprofiles/features/spike measurements/crosswalks/fittedweights outsideGit.
+
+Full132-row TARGET-scope user-facing table and different-feature mode totals
+delivered before any032annotation fit. Target_scope_without_X4 companion
+preserves 029/031consistentdenominators; all-manual historical tables also saved.
+Cached original-feature replay,not fresh app runs,untouched externalvalidation
+or analyticalFDR. Knownpriorvendor/developmentexposure remains. Extras mean
+unconfirmed manual-absent calls,not proven false identities.
+
+Next strategy: candidate discovery, not another small score-only feature tweak.
+Read-only029audit shows31of122targetclass/modes cannot reach90withcurrent
+candidate rows,even ignoring allfeature/identitycompetition.6215missingmanual
+features already inpool;3128mappedmanual features notinpool;28unresolved.
+This is an optimistic availability diagnosis,not additional correct calls.
+GA2-d andGM2-t have definedcataloguechemistry but missing exactidentity/adduct
+targets in several blind baseline reference grids. Next prototype should
+compile missing/underspecified chemical class-ion lattices directly with the
+existing native cataloguedecoder,not invent masses/formulas or usequerycuration.
+Keep same3ppm/10s limits and group-excluded RT/CDBreference support.
+Newdiscovery must be propagated through ALL363nested label-free preparations,
+then supervised refit/OOFcalibration and all33evaluation; no outer-onlypool fix
+or claim that rawpotential counts equal actualacceptedcorrect annotations.

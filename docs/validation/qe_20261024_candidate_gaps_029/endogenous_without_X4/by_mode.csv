@@ -1,0 +1,5 @@
+stream,manual_count,same_manual_peak,candidate_available,selection_gap,discovery_gap,unresolved,selected_correct_percent,optimistic_candidate_percent,correct_needed_to_90,discovery_needed_for_90
+NP_Neg,13508,11971,12756,785,750,2,88.62155759549897,94.43292863488303,187,False
+NP_Pos,19025,17289,18717,1428,306,2,90.87516425755585,98.38107752956635,0,False
+RP_Neg,13365,11874,12813,939,549,3,88.84399551066218,95.86980920314254,155,False
+RP_Pos,44746,40220,43258,3038,1467,21,89.88512939704107,96.67456308943817,52,False

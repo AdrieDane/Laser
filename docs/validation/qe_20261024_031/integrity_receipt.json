@@ -1,0 +1,21 @@
+{
+  "integrity_tool_sha256": "902fdda8178a794d040783ba79ec8e02af86250433e1a876d3d6eb6764241c81",
+  "source_file_hash_checks": 284,
+  "input_file_hash_checks": 529,
+  "fitted_model_scope_and_unchanged_positive_checks": 25,
+  "training_query_exclusion_checks": 528,
+  "heldout_score_reproduction_checks": 33,
+  "selector_plus_unchanged_standard_cleanup_parity_checks": 132,
+  "existing_standard_alias_demotions_reproduced": 1,
+  "calibration_scope_hash_budget_checks": 5,
+  "completed_datasets": 33,
+  "all_passed": true,
+  "annotation_experiment": "031",
+  "new_standard_context_used": true,
+  "original_pool_and_predictor_parity_checks": 363,
+  "standard_context_preparation_inputs_verified": 795,
+  "fitted_mode_experts": 100,
+  "core_reference": "029",
+  "fixed_mass_stage_reference": "027",
+  "note": "Engineering integrity,not external validation/FDR. Same029corepools/labels/exactstandardfeatures with16separate related-standard descriptors;fourmodeexperts ALLrefit. Same005STDandfixed027massselection. Calibrationbudgetcoverscoreonlyasin027;no outer-onlymassproposals enterinnercutofffitting. All92102manualentries/extras unchangeddefinition;privateprofiles/models stayoutsideGit."
+}

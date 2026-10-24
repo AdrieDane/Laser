@@ -78,6 +78,15 @@ no inventedlabels or weakenedexclusions. Full030table delivered before031.
 keeping029labels/exactSTDfeatures/candidates/005standards/fixed027massstage.
 NOrejected030scores/labels/additions. Comparewhole031algorithm against029.
 
+031alsoREJECTED:82728correct/9180extras/1592differentfeatures,vs029-1/-88/-12;
+RPpositive-129correct;targetclass/modesbelow90rise76to78of122,cappedclassmean
+declines. Full031TARGETscope132table delivered.029remainsresearchreference.
+Currentread-only029candidateaudit:6215missingmanualcorrect-featurecandidates
+alreadyinpool,3128mappedmissingfrompool,28unresolved(target92100);31/122class/
+modescannotreach90evenoptimisticrowwisecandidatecoverage. See
+docs/validation/qe_20261024_candidate_gaps_029. Next focusmissingchemicaltargets/
+discovery,notoutertestwinnerensembles.032notyetannotation-fitted.
+
 BMP clarification (22 October 2026): LASER should annotate BOTH NP polarities
 when each has supporting evidence. Do not impose a preferred-polarity filter
 based on the manual list. Opposite-polarity manual support may be reported as

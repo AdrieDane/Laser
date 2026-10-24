@@ -1,0 +1,49 @@
+{
+  "datasets": 33,
+  "annotation_changes": false,
+  "models_fitted": 0,
+  "source_sha256": "a7a598a4b43e5dcb56cb4ea26f88919aacd9ecb2f85f563414ff2534c7a10f2e",
+  "input_hash_checks": 66,
+  "scopes": {
+    "all_manual": {
+      "counts": {
+        "manual_count": 92102,
+        "same_manual_peak": 82729,
+        "candidate_available": 88944,
+        "selection_gap": 6215,
+        "discovery_gap": 3130,
+        "unresolved": 28
+      },
+      "curated_class_modes": 123,
+      "class_modes_below_90": 77,
+      "class_modes_needing_discovery_for_90": 32
+    },
+    "target_without_X4": {
+      "counts": {
+        "manual_count": 92100,
+        "same_manual_peak": 82729,
+        "candidate_available": 88944,
+        "selection_gap": 6215,
+        "discovery_gap": 3128,
+        "unresolved": 28
+      },
+      "curated_class_modes": 122,
+      "class_modes_below_90": 76,
+      "class_modes_needing_discovery_for_90": 31
+    },
+    "endogenous_without_X4": {
+      "counts": {
+        "manual_count": 90644,
+        "same_manual_peak": 81354,
+        "candidate_available": 87544,
+        "selection_gap": 6190,
+        "discovery_gap": 3072,
+        "unresolved": 28
+      },
+      "curated_class_modes": 121,
+      "class_modes_below_90": 76,
+      "class_modes_needing_discovery_for_90": 29
+    }
+  },
+  "note": "Read-only optimistic rowwise candidate availability,NOT attainable accuracy or a new annotation result. Includes current full physical pools (mass proposals and standards); mutually competing identities/features ignored. STD alias already-matched calls count as available. All raw rows unchanged. X4target exclusion authorized separately; no curation enters runtime/model predictors."
+}

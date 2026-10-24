@@ -1,0 +1,5 @@
+stream,manual_rows_before,manual_same_peak_before,unresolved_manual_rows_before,laser_not_in_manual_list_before,laser_same_manual_lipid_different_peak_before,unique_laser_annotations_before,correct_manual_percent_before,manual_rows_after,manual_same_peak_after,unresolved_manual_rows_after,laser_not_in_manual_list_after,laser_same_manual_lipid_different_peak_after,unique_laser_annotations_after,correct_manual_percent_after,correct_gain,extra_change
+NP_Neg,13916,12356,2,1938,101,14397,88.78988215004311,13916,12390,2,1933,108,14433,89.03420523138833,34,-5
+NP_Pos,19380,17637,2,1944,163,19744,91.0061919504644,19380,17698,2,1960,164,19822,91.32094943240456,61,16
+RP_Neg,13600,12088,3,1995,408,14492,88.88235294117646,13600,12121,3,1960,401,14483,89.125,33,-35
+RP_Pos,45206,40648,21,3391,932,44980,89.91726761934257,45206,40519,21,3327,919,44774,89.6319072689466,-129,-64

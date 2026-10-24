@@ -1,0 +1,328 @@
+031-related-standard-descriptors-for-fixed-four-mode-experts
+
+Scope: all 33 active datasets, four modes each. Correct means the same lipid/adduct/mode AND original feature as manual curation.
+Correct percentage uses ALL manual entries, including unresolved feature mappings. Extras mean absent from that dataset/mode manual list, not proven false identities.
+Before: fresh default-engine raw-input baseline from frozen 4da94ef sources, optional PE selector OFF.
+After: Cached original-feature replay,not fresh production raw-input runs. All4 modeexperts refitted with16newseparate related-standard descriptors; newINNEROOFcutoffs. Same029supervision/corepool/exactSTDfeatures,005STDhandling andfixed027massstage. Comparewholealgorithm against029;030rejected. Grouped five-fold held-out RT/prior/classifier fits. Not a fresh production run.
+Algorithm development inspected example-data RT diagnostics; these results are not untouched external validation.
+Recorded validation scope: Grouped held-out evaluation across33datasets/30projectgroups. Newly learned endogenous feature references,scoremodels andcutoffs exclude relevantquery/evaluation/calibrationgroups. Reference/preparation parity is engineering evidence,not annotationaccuracy. Prior algorithm development has inspected these examples.
+Recorded fitting limitations: All4 mode experts refitted at180rounds each,100classifiers in25nested parentfits. Same029knownpositive/negative labels and rowcounts,adding ONLY16related-standard descriptors. Ether PE/PC use diacyl-headgroup descriptor;lyso positional/generic classes use explicit related lyso descriptor. Not assumed sameRT/order/structure/concentration; native class and measurement mode remain predictors. All STD references exclude query/outer/innergroups. Same005cleanup/fixed027massstage. No030BMPmodel/unknownlabels/additions,026weights or posthoc winners.
+Both endpoints use reference v2: 960 independently verified internal-standard raw-profile mapping corrections; all prior matches and manual denominators preserved. Not counted as algorithm gains.
+Pooled correct: 76.3% (70270/92102) -> 89.8% (82728/92102).
+Total unconfirmed extras: 9697 -> 9180. No-increase guard: True.
+Class/mode combinations still below 90%: 79. No production default changed.
+
+COMPLETE DATASET/MODE BEFORE AND AFTER TABLES
+
+RP_Pos
+Dataset | Correct/manual before | Correct/manual after | Extras before | Extras after | Wrong-peak calls before | Wrong-peak calls after | Unresolved manual entries
+21P0116_Zoemba | 43.6% (541/1242) | 47.5% (590/1242) | 58 | 80 | 91 | 144 | 1
+24P0010_Sperm_cells | 69.6% (541/777) | 91.5% (711/777) | 18 | 50 | 4 | 16 | 0
+24P0023_HCM_T2D | 62.2% (743/1194) | 90.7% (1083/1194) | 98 | 174 | 12 | 27 | 1
+24P0024_ALD_Scenic_HMC3 | 72.4% (1046/1445) | 85.8% (1240/1445) | 112 | 127 | 33 | 18 | 0
+24P0026_Heart_tissue_slices_ALI | 82.3% (1066/1295) | 88.5% (1146/1295) | 60 | 51 | 6 | 7 | 0
+24P0027_SCENIC_Retina | 86.0% (1168/1358) | 94.0% (1277/1358) | 121 | 112 | 11 | 14 | 0
+24P0037_Manidipine_sulfatide | 52.4% (595/1135) | 86.4% (981/1135) | 24 | 84 | 29 | 60 | 1
+24P0041_Cardiomyopathy | 80.3% (1326/1651) | 89.9% (1484/1651) | 71 | 76 | 14 | 17 | 3
+24P0044_Zebrafish3month_QE3 | 48.8% (537/1101) | 87.7% (966/1101) | 14 | 35 | 41 | 31 | 1
+24P0044_Zebrafish3months | 81.7% (1093/1338) | 91.6% (1226/1338) | 147 | 87 | 28 | 23 | 1
+24P0064_SIMONE_heart | 87.6% (1484/1694) | 95.9% (1624/1694) | 142 | 149 | 16 | 18 | 0
+24P0069_Zebrafish_Florit | 82.0% (1251/1525) | 93.1% (1420/1525) | 110 | 122 | 19 | 20 | 0
+24P0089_Fruitflies_UK | 54.2% (586/1082) | 68.6% (742/1082) | 78 | 75 | 40 | 43 | 0
+24P0098_SIMONE | 83.0% (1457/1755) | 95.7% (1680/1755) | 98 | 93 | 23 | 24 | 0
+24P0101_LysoIP | 67.9% (839/1235) | 81.4% (1005/1235) | 92 | 64 | 64 | 80 | 3
+24P0107_KHK_Inhibitor_Muscle | 80.6% (929/1152) | 93.5% (1077/1152) | 55 | 94 | 10 | 29 | 1
+24P0110_Zebrafish | 67.4% (1471/2184) | 82.2% (1796/2184) | 101 | 87 | 89 | 81 | 2
+24P0118_ALI | 82.6% (920/1114) | 94.3% (1050/1114) | 37 | 42 | 12 | 12 | 0
+24P0119_NAD_Liver | 78.0% (1119/1435) | 94.3% (1353/1435) | 120 | 220 | 16 | 19 | 0
+24P0119_NAD_Muscle | 81.1% (1094/1349) | 94.4% (1273/1349) | 173 | 277 | 24 | 23 | 0
+24P1000_Project | 56.3% (756/1343) | 83.4% (1120/1343) | 23 | 42 | 28 | 64 | 2
+25P0003_heart | 81.2% (1336/1645) | 92.2% (1516/1645) | 75 | 76 | 18 | 27 | 0
+25P0015_PM_KidneySummer | 77.5% (1175/1516) | 93.1% (1412/1516) | 76 | 101 | 11 | 18 | 2
+25P0072_VLC_PUFA_cuprizoneBrain | 82.3% (1073/1304) | 94.2% (1229/1304) | 90 | 85 | 4 | 8 | 1
+25P0075_Zebrafish | 83.0% (1302/1568) | 95.4% (1496/1568) | 60 | 87 | 6 | 7 | 0
+25P0092_Plasma | 82.2% (734/893) | 96.6% (863/893) | 67 | 103 | 8 | 6 | 0
+25P0096_Astrocytes_in_ferroptosis | 83.4% (1355/1624) | 94.0% (1527/1624) | 82 | 81 | 14 | 14 | 0
+25P0096_MicroGlia_in_ferroptosis | 83.1% (1095/1318) | 94.0% (1239/1318) | 216 | 223 | 23 | 12 | 1
+25P0100_ScenicBrains | 87.1% (1177/1352) | 94.2% (1274/1352) | 77 | 100 | 10 | 13 | 1
+26P0012_LSD | 80.2% (834/1040) | 90.9% (945/1040) | 99 | 93 | 4 | 8 | 0
+26P0026_ALD_rat_brain | 86.3% (1462/1694) | 94.7% (1605/1694) | 66 | 102 | 8 | 9 | 0
+26P0033_EHTs_MAVA | 79.5% (1349/1697) | 87.6% (1487/1697) | 114 | 98 | 12 | 17 | 0
+26P0038_MLC_Pex5_mouse | 83.1% (957/1151) | 94.0% (1082/1151) | 28 | 37 | 11 | 10 | 0
+
+RP_Neg
+Dataset | Correct/manual before | Correct/manual after | Extras before | Extras after | Wrong-peak calls before | Wrong-peak calls after | Unresolved manual entries
+21P0116_Zoemba | 50.5% (144/285) | 83.2% (237/285) | 22 | 43 | 11 | 16 | 1
+24P0010_Sperm_cells | 76.6% (85/111) | 98.2% (109/111) | 3 | 5 | 1 | 0 | 0
+24P0023_HCM_T2D | 64.8% (212/327) | 89.6% (293/327) | 27 | 53 | 16 | 17 | 0
+24P0024_ALD_Scenic_HMC3 | 73.0% (516/707) | 90.8% (642/707) | 46 | 81 | 31 | 27 | 0
+24P0026_Heart_tissue_slices_ALI | 80.9% (207/256) | 96.9% (248/256) | 30 | 35 | 3 | 3 | 0
+24P0027_SCENIC_Retina | 76.0% (370/487) | 88.9% (433/487) | 67 | 53 | 15 | 21 | 0
+24P0037_Manidipine_sulfatide | 54.0% (204/378) | 92.3% (349/378) | 18 | 25 | 11 | 11 | 0
+24P0041_Cardiomyopathy | 73.6% (327/444) | 82.0% (364/444) | 37 | 32 | 7 | 11 | 0
+24P0044_Zebrafish3month_QE3 | 60.8% (90/148) | 38.5% (57/148) | 21 | 29 | 3 | 3 | 0
+24P0044_Zebrafish3months | 72.6% (273/376) | 85.6% (322/376) | 50 | 73 | 11 | 14 | 0
+24P0064_SIMONE_heart | 72.7% (453/623) | 91.2% (568/623) | 61 | 60 | 14 | 13 | 0
+24P0069_Zebrafish_Florit | 77.8% (287/369) | 94.3% (348/369) | 45 | 72 | 8 | 8 | 0
+24P0089_Fruitflies_UK | 59.0% (216/366) | 73.5% (269/366) | 29 | 27 | 7 | 6 | 0
+24P0098_SIMONE | 71.1% (461/648) | 89.4% (579/648) | 34 | 50 | 37 | 33 | 0
+24P0101_LysoIP | 58.0% (211/364) | 82.7% (301/364) | 38 | 81 | 5 | 11 | 0
+24P0107_KHK_Inhibitor_Muscle | 73.1% (299/409) | 91.4% (374/409) | 52 | 77 | 21 | 17 | 0
+24P0110_Zebrafish | 59.0% (399/676) | 78.6% (531/676) | 139 | 149 | 28 | 39 | 0
+24P0118_ALI | 55.5% (91/164) | 89.0% (146/164) | 17 | 32 | 6 | 6 | 0
+24P0119_NAD_Liver | 69.5% (262/377) | 90.5% (341/377) | 38 | 43 | 6 | 8 | 0
+24P0119_NAD_Muscle | 81.6% (266/326) | 95.1% (310/326) | 87 | 116 | 5 | 2 | 1
+24P1000_Project | 62.4% (237/380) | 91.1% (346/380) | 45 | 63 | 13 | 13 | 0
+25P0003_heart | 73.5% (333/453) | 89.2% (404/453) | 30 | 48 | 13 | 16 | 0
+25P0015_PM_KidneySummer | 75.3% (357/474) | 88.6% (420/474) | 35 | 44 | 14 | 18 | 0
+25P0072_VLC_PUFA_cuprizoneBrain | 70.5% (334/474) | 90.3% (428/474) | 43 | 57 | 1 | 5 | 0
+25P0075_Zebrafish | 68.1% (265/389) | 92.3% (359/389) | 90 | 84 | 13 | 10 | 0
+25P0092_Plasma | 65.6% (120/183) | 88.0% (161/183) | 13 | 24 | 0 | 4 | 0
+25P0096_Astrocytes_in_ferroptosis | 70.3% (501/713) | 93.3% (665/713) | 37 | 66 | 15 | 17 | 0
+25P0096_MicroGlia_in_ferroptosis | 80.7% (396/491) | 94.1% (462/491) | 88 | 145 | 12 | 14 | 1
+25P0100_ScenicBrains | 72.2% (328/454) | 94.7% (430/454) | 23 | 70 | 7 | 11 | 0
+26P0012_LSD | 64.5% (162/251) | 95.6% (240/251) | 37 | 62 | 4 | 5 | 0
+26P0026_ALD_rat_brain | 73.6% (500/679) | 89.7% (609/679) | 16 | 45 | 9 | 16 | 0
+26P0033_EHTs_MAVA | 81.9% (303/370) | 95.1% (352/370) | 57 | 63 | 3 | 2 | 0
+26P0038_MLC_Pex5_mouse | 74.6% (334/448) | 94.6% (424/448) | 59 | 53 | 6 | 4 | 0
+
+NP_Pos
+Dataset | Correct/manual before | Correct/manual after | Extras before | Extras after | Wrong-peak calls before | Wrong-peak calls after | Unresolved manual entries
+21P0116_Zoemba | 76.3% (431/565) | 88.8% (502/565) | 118 | 47 | 11 | 4 | 0
+24P0010_Sperm_cells | 76.6% (236/308) | 92.5% (285/308) | 41 | 29 | 1 | 0 | 1
+24P0023_HCM_T2D | 57.1% (287/503) | 85.7% (431/503) | 144 | 77 | 12 | 10 | 0
+24P0024_ALD_Scenic_HMC3 | 84.4% (721/854) | 90.7% (775/854) | 194 | 76 | 7 | 11 | 0
+24P0026_Heart_tissue_slices_ALI | 87.0% (416/478) | 98.1% (469/478) | 107 | 47 | 1 | 0 | 0
+24P0027_SCENIC_Retina | 83.4% (393/471) | 96.8% (456/471) | 112 | 99 | 3 | 4 | 0
+24P0037_Manidipine_sulfatide | 55.3% (271/490) | 74.3% (364/490) | 90 | 43 | 23 | 16 | 1
+24P0041_Cardiomyopathy | 91.0% (486/534) | 97.4% (520/534) | 124 | 61 | 0 | 0 | 0
+24P0044_Zebrafish3month_QE3 | 71.5% (364/509) | 93.5% (476/509) | 43 | 20 | 6 | 2 | 0
+24P0044_Zebrafish3months | 88.7% (456/514) | 96.5% (496/514) | 113 | 81 | 1 | 0 | 0
+24P0064_SIMONE_heart | 88.0% (683/776) | 88.8% (689/776) | 80 | 25 | 0 | 0 | 0
+24P0069_Zebrafish_Florit | 85.8% (567/661) | 94.1% (622/661) | 146 | 70 | 1 | 0 | 0
+24P0089_Fruitflies_UK | 65.0% (221/340) | 74.7% (254/340) | 126 | 32 | 16 | 14 | 0
+24P0098_SIMONE | 90.2% (638/707) | 97.7% (691/707) | 144 | 127 | 2 | 2 | 0
+24P0101_LysoIP | 70.6% (351/497) | 86.1% (428/497) | 90 | 57 | 31 | 30 | 0
+24P0107_KHK_Inhibitor_Muscle | 80.4% (411/511) | 93.0% (475/511) | 107 | 62 | 2 | 3 | 0
+24P0110_Zebrafish | 77.0% (743/965) | 83.9% (810/965) | 180 | 105 | 17 | 13 | 0
+24P0118_ALI | 89.0% (459/516) | 97.9% (505/516) | 90 | 31 | 4 | 2 | 0
+24P0119_NAD_Liver | 82.8% (547/661) | 90.9% (601/661) | 139 | 126 | 5 | 8 | 0
+24P0119_NAD_Muscle | 87.1% (566/650) | 96.2% (625/650) | 131 | 103 | 7 | 5 | 0
+24P1000_Project | 71.4% (498/697) | 84.5% (589/697) | 133 | 84 | 16 | 18 | 0
+25P0003_heart | 84.7% (546/645) | 93.8% (605/645) | 135 | 53 | 9 | 3 | 0
+25P0015_PM_KidneySummer | 79.5% (494/621) | 89.2% (554/621) | 142 | 93 | 5 | 3 | 0
+25P0072_VLC_PUFA_cuprizoneBrain | 87.4% (604/691) | 92.9% (642/691) | 86 | 68 | 0 | 1 | 0
+25P0075_Zebrafish | 86.2% (683/792) | 93.8% (743/792) | 59 | 40 | 1 | 1 | 0
+25P0092_Plasma | 86.1% (329/382) | 95.3% (364/382) | 33 | 12 | 1 | 1 | 0
+25P0096_Astrocytes_in_ferroptosis | 86.4% (514/595) | 92.4% (550/595) | 48 | 29 | 0 | 0 | 0
+25P0096_MicroGlia_in_ferroptosis | 86.7% (464/535) | 90.3% (483/535) | 47 | 28 | 1 | 1 | 0
+25P0100_ScenicBrains | 84.8% (543/640) | 92.0% (589/640) | 65 | 60 | 4 | 8 | 0
+26P0012_LSD | 85.0% (430/506) | 91.3% (462/506) | 62 | 26 | 2 | 0 | 0
+26P0026_ALD_rat_brain | 91.3% (691/757) | 93.7% (709/757) | 72 | 84 | 3 | 4 | 0
+26P0033_EHTs_MAVA | 87.2% (558/640) | 88.4% (566/640) | 89 | 28 | 0 | 0 | 0
+26P0038_MLC_Pex5_mouse | 94.0% (347/369) | 99.7% (368/369) | 30 | 37 | 0 | 0 | 0
+
+NP_Neg
+Dataset | Correct/manual before | Correct/manual after | Extras before | Extras after | Wrong-peak calls before | Wrong-peak calls after | Unresolved manual entries
+21P0116_Zoemba | 51.1% (137/268) | 62.7% (168/268) | 58 | 52 | 0 | 2 | 0
+24P0010_Sperm_cells | 53.7% (123/229) | 67.7% (155/229) | 30 | 19 | 16 | 7 | 0
+24P0023_HCM_T2D | 64.6% (199/308) | 91.6% (282/308) | 51 | 55 | 1 | 1 | 0
+24P0024_ALD_Scenic_HMC3 | 70.2% (497/708) | 88.6% (627/708) | 115 | 89 | 1 | 4 | 0
+24P0026_Heart_tissue_slices_ALI | 69.0% (185/268) | 82.8% (222/268) | 46 | 27 | 0 | 0 | 0
+24P0027_SCENIC_Retina | 70.3% (348/495) | 94.5% (468/495) | 59 | 73 | 0 | 0 | 0
+24P0037_Manidipine_sulfatide | 43.8% (234/534) | 62.5% (334/534) | 35 | 43 | 11 | 19 | 0
+24P0041_Cardiomyopathy | 78.9% (307/389) | 92.8% (361/389) | 50 | 47 | 2 | 2 | 0
+24P0044_Zebrafish3month_QE3 | 46.8% (130/278) | 88.1% (245/278) | 23 | 32 | 1 | 0 | 0
+24P0044_Zebrafish3months | 86.4% (274/317) | 97.2% (308/317) | 185 | 74 | 1 | 1 | 0
+24P0064_SIMONE_heart | 83.6% (458/548) | 95.4% (523/548) | 31 | 100 | 0 | 0 | 0
+24P0069_Zebrafish_Florit | 83.1% (340/409) | 91.2% (373/409) | 103 | 46 | 0 | 0 | 0
+24P0089_Fruitflies_UK | 58.6% (178/304) | 79.3% (241/304) | 52 | 61 | 8 | 11 | 0
+24P0098_SIMONE | 72.5% (508/701) | 79.9% (560/701) | 75 | 32 | 3 | 7 | 0
+24P0101_LysoIP | 68.4% (232/339) | 79.6% (270/339) | 31 | 28 | 2 | 0 | 0
+24P0107_KHK_Inhibitor_Muscle | 72.1% (271/376) | 85.6% (322/376) | 95 | 43 | 3 | 3 | 0
+24P0110_Zebrafish | 80.2% (597/744) | 96.0% (714/744) | 95 | 80 | 1 | 1 | 0
+24P0118_ALI | 87.4% (201/230) | 99.6% (229/230) | 80 | 39 | 0 | 0 | 0
+24P0119_NAD_Liver | 78.0% (334/428) | 97.4% (417/428) | 51 | 98 | 1 | 1 | 0
+24P0119_NAD_Muscle | 86.0% (381/443) | 99.5% (441/443) | 82 | 79 | 0 | 0 | 0
+24P1000_Project | 49.3% (244/495) | 58.6% (290/495) | 40 | 65 | 9 | 15 | 1
+25P0003_heart | 63.3% (304/480) | 79.2% (380/480) | 52 | 51 | 14 | 18 | 0
+25P0015_PM_KidneySummer | 78.6% (363/462) | 97.6% (451/462) | 60 | 58 | 1 | 4 | 1
+25P0072_VLC_PUFA_cuprizoneBrain | 81.4% (382/469) | 98.1% (460/469) | 17 | 86 | 1 | 2 | 0
+25P0075_Zebrafish | 90.4% (416/460) | 98.0% (451/460) | 48 | 33 | 0 | 0 | 0
+25P0092_Plasma | 80.3% (143/178) | 85.4% (152/178) | 54 | 17 | 0 | 0 | 0
+25P0096_Astrocytes_in_ferroptosis | 87.1% (445/511) | 99.0% (506/511) | 89 | 98 | 0 | 0 | 0
+25P0096_MicroGlia_in_ferroptosis | 90.6% (345/381) | 97.4% (371/381) | 137 | 118 | 0 | 0 | 0
+25P0100_ScenicBrains | 74.6% (334/448) | 94.9% (425/448) | 13 | 37 | 2 | 2 | 0
+26P0012_LSD | 83.1% (271/326) | 93.9% (306/326) | 90 | 51 | 0 | 0 | 0
+26P0026_ALD_rat_brain | 83.3% (448/538) | 97.4% (524/538) | 21 | 45 | 0 | 0 | 0
+26P0033_EHTs_MAVA | 82.9% (388/468) | 95.3% (446/468) | 127 | 109 | 8 | 7 | 0
+26P0038_MLC_Pex5_mouse | 91.4% (351/384) | 95.8% (368/384) | 46 | 48 | 0 | 1 | 0
+
+COMPLETE POOLED CLASS/MODE TABLE (counts pooled before division)
+Mode | Lipid class | Correct/manual before | Correct/manual after | Extras before | Extras after | Wrong-peak calls before | Wrong-peak calls after
+NP_Neg | BMP | 1.2% (6/520) | 30.6% (159/520) | 20 | 519 | 0 | 0
+NP_Neg | C1P-d | 65.0% (65/100) | 93.0% (93/100) | 5 | 11 | 0 | 0
+NP_Neg | C1P-t | n.a. (0 manual) | n.a. (0 manual) | 2 | 0 | 0 | 0
+NP_Neg | CL | 89.4% (973/1088) | 93.2% (1014/1088) | 196 | 66 | 16 | 17
+NP_Neg | Cer-d | n.a. (0 manual) | n.a. (0 manual) | 268 | 108 | 0 | 0
+NP_Neg | DLCL | 58.0% (65/112) | 89.3% (100/112) | 6 | 16 | 0 | 0
+NP_Neg | FA | 74.9% (325/434) | 82.3% (357/434) | 242 | 118 | 0 | 0
+NP_Neg | FA-OH | 68.3% (200/293) | 52.6% (154/293) | 463 | 188 | 0 | 1
+NP_Neg | GD1-d | 0.0% (0/32) | 0.0% (0/32) | 3 | 0 | 0 | 0
+NP_Neg | GD1-t | 0.0% (0/5) | 0.0% (0/5) | 0 | 0 | 0 | 0
+NP_Neg | GD3-d | 19.5% (17/87) | 62.1% (54/87) | 35 | 63 | 0 | 0
+NP_Neg | GD3-t | 0.0% (0/45) | 71.1% (32/45) | 7 | 21 | 0 | 0
+NP_Neg | GM1-d | 25.6% (11/43) | 69.8% (30/43) | 0 | 2 | 2 | 5
+NP_Neg | GM1-t | n.a. (0 manual) | n.a. (0 manual) | 1 | 0 | 0 | 0
+NP_Neg | GM2-d | 31.8% (34/107) | 82.2% (88/107) | 4 | 12 | 0 | 0
+NP_Neg | GM2-t | 0.0% (0/39) | 0.0% (0/39) | 0 | 0 | 0 | 0
+NP_Neg | GM3-d | 72.5% (150/207) | 87.4% (181/207) | 7 | 10 | 0 | 0
+NP_Neg | GM3-t | 49.0% (24/49) | 69.4% (34/49) | 5 | 8 | 0 | 0
+NP_Neg | GM4-d | n.a. (0 manual) | n.a. (0 manual) | 2 | 0 | 0 | 0
+NP_Neg | GM4-t | n.a. (0 manual) | n.a. (0 manual) | 30 | 0 | 0 | 0
+NP_Neg | Hex2Cer-d | n.a. (0 manual) | n.a. (0 manual) | 25 | 24 | 0 | 0
+NP_Neg | HexCer-d | n.a. (0 manual) | n.a. (0 manual) | 26 | 26 | 0 | 0
+NP_Neg | LPA | 77.2% (206/267) | 95.1% (254/267) | 24 | 23 | 2 | 2
+NP_Neg | LPA-O+P | n.a. (0 manual) | n.a. (0 manual) | 2 | 0 | 0 | 0
+NP_Neg | LPC | n.a. (0 manual) | n.a. (0 manual) | 79 | 57 | 0 | 0
+NP_Neg | LPC-O+P | n.a. (0 manual) | n.a. (0 manual) | 1 | 0 | 0 | 0
+NP_Neg | LPE | 94.8% (654/690) | 99.6% (687/690) | 19 | 17 | 3 | 3
+NP_Neg | LPE-O+P | 73.8% (228/309) | 98.7% (305/309) | 6 | 16 | 1 | 0
+NP_Neg | LPG | 53.7% (239/445) | 92.4% (411/445) | 9 | 35 | 1 | 1
+NP_Neg | LPI | 79.2% (312/394) | 92.9% (366/394) | 12 | 21 | 1 | 0
+NP_Neg | LPS | n.a. (0 manual) | n.a. (0 manual) | 9 | 0 | 0 | 0
+NP_Neg | MLCL | 71.0% (125/176) | 91.5% (161/176) | 6 | 9 | 0 | 0
+NP_Neg | PA | 90.0% (848/942) | 99.5% (937/942) | 39 | 34 | 1 | 0
+NP_Neg | PC | n.a. (0 manual) | n.a. (0 manual) | 192 | 63 | 0 | 0
+NP_Neg | PC-O+P | n.a. (0 manual) | n.a. (0 manual) | 8 | 0 | 0 | 0
+NP_Neg | PE | 83.4% (1878/2251) | 90.5% (2037/2251) | 115 | 95 | 16 | 30
+NP_Neg | PE-O+P | 70.2% (1499/2135) | 91.9% (1963/2135) | 32 | 74 | 10 | 14
+NP_Neg | PG | 84.8% (835/985) | 98.0% (965/985) | 28 | 45 | 9 | 7
+NP_Neg | PI | 91.5% (1137/1243) | 97.7% (1214/1243) | 67 | 48 | 22 | 11
+NP_Neg | PS | n.a. (0 manual) | n.a. (0 manual) | 29 | 29 | 0 | 0
+NP_Neg | S1P-d | 21.2% (21/99) | 87.9% (87/99) | 3 | 11 | 0 | 0
+NP_Neg | S1P-t | n.a. (0 manual) | n.a. (0 manual) | 7 | 0 | 0 | 0
+NP_Neg | SLBPA | 7.7% (13/169) | 55.0% (93/169) | 3 | 40 | 0 | 14
+NP_Neg | SM-d | n.a. (0 manual) | n.a. (0 manual) | 62 | 60 | 0 | 0
+NP_Neg | SM4-d | 79.3% (325/410) | 94.4% (387/410) | 27 | 42 | 2 | 3
+NP_Neg | SM4-t | 75.4% (178/236) | 96.2% (227/236) | 15 | 22 | 0 | 0
+NP_Neg | X3 | 0.0% (0/2) | 0.0% (0/2) | 0 | 0 | 0 | 0
+NP_Neg | X4 | 0.0% (0/2) | 0.0% (0/2) | 0 | 0 | 0 | 0
+NP_Pos | 3-O-acylSM-d | n.a. (0 manual) | n.a. (0 manual) | 1 | 0 | 0 | 0
+NP_Pos | AC | 93.7% (1238/1321) | 93.6% (1237/1321) | 254 | 119 | 2 | 2
+NP_Pos | AC-2OH | 0.0% (0/5) | 0.0% (0/5) | 0 | 0 | 0 | 0
+NP_Pos | AC-OH | 91.1% (542/595) | 96.0% (571/595) | 73 | 36 | 0 | 0
+NP_Pos | APCS | n.a. (0 manual) | n.a. (0 manual) | 3 | 0 | 0 | 0
+NP_Pos | BMP | 52.3% (325/622) | 49.7% (309/622) | 331 | 241 | 1 | 1
+NP_Pos | CL | n.a. (0 manual) | n.a. (0 manual) | 29 | 29 | 0 | 0
+NP_Pos | Cer-d | 81.2% (781/962) | 94.5% (909/962) | 517 | 87 | 0 | 0
+NP_Pos | DLCL | n.a. (0 manual) | n.a. (0 manual) | 1 | 0 | 0 | 0
+NP_Pos | GA1-d | 78.7% (70/89) | 86.5% (77/89) | 11 | 14 | 0 | 0
+NP_Pos | GA1-t | 0.0% (0/6) | 50.0% (3/6) | 0 | 6 | 0 | 0
+NP_Pos | GM3-t | n.a. (0 manual) | n.a. (0 manual) | 6 | 0 | 0 | 0
+NP_Pos | GM4-t | n.a. (0 manual) | n.a. (0 manual) | 1 | 0 | 0 | 0
+NP_Pos | Hex2Cer-d | 87.1% (318/365) | 91.8% (335/365) | 234 | 129 | 0 | 0
+NP_Pos | Hex2Cer-t | 66.0% (33/50) | 72.0% (36/50) | 48 | 34 | 0 | 0
+NP_Pos | Hex3Cer-d | 7.7% (9/117) | 84.6% (99/117) | 7 | 34 | 0 | 0
+NP_Pos | HexCer-d | 32.4% (84/259) | 59.5% (154/259) | 65 | 81 | 9 | 16
+NP_Pos | HexCer-t | 18.0% (20/111) | 26.1% (29/111) | 45 | 102 | 0 | 0
+NP_Pos | LPC | 85.3% (1237/1450) | 93.7% (1358/1450) | 106 | 83 | 19 | 25
+NP_Pos | LPC-O+P | 70.9% (428/604) | 92.9% (561/604) | 28 | 47 | 0 | 4
+NP_Pos | LPE | n.a. (0 manual) | n.a. (0 manual) | 16 | 16 | 0 | 0
+NP_Pos | LPE-O+P | n.a. (0 manual) | n.a. (0 manual) | 4 | 0 | 0 | 0
+NP_Pos | LPG | n.a. (0 manual) | n.a. (0 manual) | 20 | 20 | 0 | 0
+NP_Pos | LPS | 52.7% (119/226) | 80.1% (181/226) | 8 | 13 | 0 | 0
+NP_Pos | LysoSM-d | n.a. (0 manual) | n.a. (0 manual) | 12 | 0 | 0 | 0
+NP_Pos | MLCL | n.a. (0 manual) | n.a. (0 manual) | 3 | 0 | 0 | 0
+NP_Pos | PC | 86.9% (3652/4202) | 94.4% (3966/4202) | 232 | 145 | 77 | 64
+NP_Pos | PC-O+P | 85.8% (2195/2559) | 97.3% (2490/2559) | 84 | 82 | 26 | 14
+NP_Pos | PE | 96.5% (2083/2158) | 91.7% (1978/2158) | 276 | 183 | 17 | 13
+NP_Pos | PG | n.a. (0 manual) | n.a. (0 manual) | 19 | 19 | 0 | 0
+NP_Pos | PI | n.a. (0 manual) | n.a. (0 manual) | 60 | 58 | 0 | 0
+NP_Pos | PS | 74.5% (645/866) | 87.4% (757/866) | 300 | 146 | 16 | 5
+NP_Pos | SM-d | 79.1% (1523/1926) | 95.1% (1831/1926) | 412 | 122 | 25 | 18
+NP_Pos | SM-t | 85.0% (644/758) | 93.3% (707/758) | 104 | 86 | 0 | 2
+NP_Pos | SM4-d | n.a. (0 manual) | n.a. (0 manual) | 10 | 10 | 0 | 0
+NP_Pos | SPH-d | 1.6% (2/129) | 85.3% (110/129) | 0 | 18 | 0 | 0
+RP_Neg | 1-acylLPE | 68.9% (501/727) | 90.5% (658/727) | 26 | 54 | 30 | 34
+RP_Neg | 2-acylLPE | 69.0% (309/448) | 84.4% (378/448) | 14 | 36 | 12 | 18
+RP_Neg | BMP | 0.0% (0/1) | 0.0% (0/1) | 3 | 0 | 0 | 0
+RP_Neg | CL | n.a. (0 manual) | n.a. (0 manual) | 55 | 49 | 0 | 0
+RP_Neg | DLCL | n.a. (0 manual) | n.a. (0 manual) | 2 | 0 | 0 | 0
+RP_Neg | FA | 77.8% (628/807) | 88.5% (714/807) | 134 | 170 | 12 | 19
+RP_Neg | FA-OH | 43.8% (220/502) | 68.5% (344/502) | 125 | 213 | 18 | 39
+RP_Neg | GD1-d | 49.3% (103/209) | 90.9% (190/209) | 8 | 31 | 1 | 1
+RP_Neg | GD1-t | 54.8% (34/62) | 80.6% (50/62) | 1 | 6 | 0 | 0
+RP_Neg | GD2-d | 18.4% (7/38) | 60.5% (23/38) | 1 | 4 | 0 | 1
+RP_Neg | GD2-t | 0.0% (0/2) | 0.0% (0/2) | 0 | 0 | 0 | 0
+RP_Neg | GD3-d | 48.4% (46/95) | 93.7% (89/95) | 12 | 31 | 0 | 1
+RP_Neg | GD3-t | 8.3% (3/36) | 86.1% (31/36) | 4 | 12 | 0 | 0
+RP_Neg | GM1-d | 66.7% (46/69) | 95.7% (66/69) | 0 | 3 | 0 | 0
+RP_Neg | GM1-t | 100.0% (1/1) | 0.0% (0/1) | 2 | 0 | 0 | 0
+RP_Neg | GM2-d | 34.7% (35/101) | 88.1% (89/101) | 4 | 15 | 0 | 0
+RP_Neg | GM2-t | 0.0% (0/25) | 0.0% (0/25) | 0 | 0 | 0 | 0
+RP_Neg | GM3-d | 71.6% (197/275) | 97.1% (267/275) | 3 | 15 | 0 | 0
+RP_Neg | GM3-t | 51.8% (29/56) | 87.5% (49/56) | 10 | 21 | 0 | 0
+RP_Neg | GM4-t | n.a. (0 manual) | n.a. (0 manual) | 1 | 0 | 0 | 0
+RP_Neg | LPE-O | 30.7% (50/163) | 89.0% (145/163) | 1 | 11 | 1 | 3
+RP_Neg | LPE-P | 67.5% (237/351) | 93.4% (328/351) | 12 | 23 | 3 | 5
+RP_Neg | LPG | 34.8% (39/112) | 57.1% (64/112) | 55 | 78 | 6 | 10
+RP_Neg | LPI | 58.6% (153/261) | 85.8% (224/261) | 16 | 26 | 31 | 30
+RP_Neg | LPS | 39.4% (143/363) | 77.4% (281/363) | 24 | 59 | 16 | 22
+RP_Neg | MLCL | n.a. (0 manual) | n.a. (0 manual) | 31 | 0 | 0 | 0
+RP_Neg | PE | 95.5% (2502/2621) | 94.1% (2466/2621) | 208 | 119 | 87 | 70
+RP_Neg | PE-O | 76.1% (587/771) | 87.9% (678/771) | 88 | 84 | 9 | 5
+RP_Neg | PE-P | 75.0% (1568/2092) | 91.7% (1918/2092) | 71 | 138 | 69 | 60
+RP_Neg | PG | 0.0% (0/2) | 0.0% (0/2) | 4 | 1 | 0 | 0
+RP_Neg | PI | 75.2% (757/1007) | 89.3% (899/1007) | 308 | 338 | 24 | 24
+RP_Neg | PS | 62.5% (920/1472) | 92.4% (1360/1472) | 146 | 243 | 32 | 46
+RP_Neg | S1P-d | 6.8% (6/88) | 77.3% (68/88) | 0 | 12 | 0 | 7
+RP_Neg | SLBPA | 38.7% (130/336) | 80.4% (270/336) | 22 | 111 | 0 | 3
+RP_Neg | SM4-d | 64.4% (213/331) | 94.0% (311/331) | 33 | 37 | 5 | 2
+RP_Neg | SM4-t | 44.9% (79/176) | 91.5% (161/176) | 10 | 20 | 0 | 1
+RP_Pos | 1-acylLPC | 58.3% (839/1440) | 87.1% (1254/1440) | 12 | 66 | 37 | 62
+RP_Pos | 2-acylLPC | 69.6% (626/900) | 87.1% (784/900) | 26 | 58 | 4 | 13
+RP_Pos | AC | 70.8% (951/1344) | 85.3% (1146/1344) | 103 | 115 | 58 | 53
+RP_Pos | AC-OH | 50.1% (336/670) | 76.0% (509/670) | 33 | 74 | 20 | 40
+RP_Pos | CE | 63.9% (1364/2134) | 87.7% (1871/2134) | 113 | 261 | 56 | 16
+RP_Pos | CL | 90.5% (1930/2133) | 98.8% (2107/2133) | 40 | 50 | 5 | 10
+RP_Pos | Cer-d | 64.3% (821/1277) | 88.5% (1130/1277) | 94 | 157 | 12 | 19
+RP_Pos | Cer-m | 0.0% (0/4) | 0.0% (0/4) | 0 | 0 | 0 | 0
+RP_Pos | CoQ | 0.0% (0/3) | 0.0% (0/3) | 0 | 0 | 0 | 0
+RP_Pos | DG | 72.2% (2195/3041) | 87.6% (2665/3041) | 201 | 244 | 58 | 95
+RP_Pos | DG-O | 56.6% (582/1028) | 76.2% (783/1028) | 143 | 173 | 3 | 12
+RP_Pos | DG-P | 55.7% (336/603) | 69.2% (417/603) | 142 | 103 | 1 | 5
+RP_Pos | DLCL | 21.2% (7/33) | 69.7% (23/33) | 0 | 5 | 0 | 0
+RP_Pos | GA1-d | 38.0% (30/79) | 89.9% (71/79) | 0 | 3 | 0 | 0
+RP_Pos | GA1-t | 0.0% (0/3) | 33.3% (1/3) | 0 | 0 | 0 | 0
+RP_Pos | GA2-d | 0.0% (0/36) | 0.0% (0/36) | 0 | 0 | 0 | 0
+RP_Pos | GA2-t | 0.0% (0/1) | 0.0% (0/1) | 0 | 0 | 0 | 0
+RP_Pos | GM3-d | n.a. (0 manual) | n.a. (0 manual) | 1 | 0 | 0 | 0
+RP_Pos | GM3-t | n.a. (0 manual) | n.a. (0 manual) | 8 | 0 | 0 | 0
+RP_Pos | Hex2Cer-d | 50.2% (164/327) | 94.5% (309/327) | 0 | 7 | 0 | 2
+RP_Pos | Hex2Cer-t | 5.9% (2/34) | 55.9% (19/34) | 0 | 1 | 0 | 1
+RP_Pos | Hex3Cer-d | 8.9% (11/124) | 97.6% (121/124) | 0 | 3 | 0 | 0
+RP_Pos | Hex3Cer-t | 0.0% (0/4) | 25.0% (1/4) | 0 | 2 | 0 | 0
+RP_Pos | HexCer-d | 61.4% (467/760) | 86.7% (659/760) | 90 | 70 | 8 | 7
+RP_Pos | HexCer-t | 53.8% (155/288) | 84.4% (243/288) | 30 | 53 | 0 | 2
+RP_Pos | LPC-O | 70.0% (396/566) | 89.0% (504/566) | 6 | 16 | 11 | 17
+RP_Pos | LPC-P | 47.6% (180/378) | 82.3% (311/378) | 9 | 32 | 3 | 10
+RP_Pos | LPG | n.a. (0 manual) | n.a. (0 manual) | 8 | 8 | 0 | 0
+RP_Pos | MLCL | 48.3% (70/145) | 93.1% (135/145) | 5 | 9 | 0 | 0
+RP_Pos | PC | 81.0% (4049/4997) | 89.4% (4469/4997) | 322 | 335 | 164 | 198
+RP_Pos | PC-O | 76.6% (2014/2629) | 87.8% (2308/2629) | 103 | 195 | 51 | 74
+RP_Pos | PC-P | 68.6% (1256/1830) | 80.4% (1471/1830) | 150 | 184 | 44 | 58
+RP_Pos | PE | 90.8% (2006/2209) | 88.5% (1954/2209) | 260 | 184 | 71 | 83
+RP_Pos | PI | n.a. (0 manual) | n.a. (0 manual) | 25 | 25 | 0 | 0
+RP_Pos | PS | n.a. (0 manual) | n.a. (0 manual) | 15 | 15 | 0 | 0
+RP_Pos | SM-d | 73.6% (1362/1851) | 93.4% (1728/1851) | 23 | 65 | 27 | 39
+RP_Pos | SM-t | 39.7% (137/345) | 80.3% (277/345) | 4 | 44 | 1 | 6
+RP_Pos | SM4-d | n.a. (0 manual) | n.a. (0 manual) | 12 | 12 | 0 | 0
+RP_Pos | SPH-d | 0.8% (1/131) | 77.1% (101/131) | 0 | 12 | 0 | 3
+RP_Pos | TG | 88.2% (8567/9714) | 94.3% (9160/9714) | 595 | 448 | 88 | 84
+RP_Pos | TG-O | 85.9% (3557/4139) | 96.4% (3988/4139) | 229 | 298 | 17 | 10
+RP_Pos | X1 | 0.0% (0/3) | 0.0% (0/3) | 0 | 0 | 0 | 0
+RP_Pos | X2 | 0.0% (0/3) | 0.0% (0/3) | 0 | 0 | 0 | 0
+
+Every dataset/mode/class, including unchanged rows, is in by_dataset_mode_class_before_after.csv.
+Do not start another annotation-changing experiment until the complete tables have been delivered to the user.

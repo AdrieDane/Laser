@@ -1,0 +1,21 @@
+{
+  "datasets": 33,
+  "dataset_modes": 132,
+  "manual": 92102,
+  "correct_before": 82729,
+  "correct_after": 82728,
+  "percent_before": 89.82323945191202,
+  "percent_after": 89.82215369915963,
+  "extras_before": 9268,
+  "extras_after": 9180,
+  "wrong_peak_before": 1604,
+  "wrong_peak_after": 1592,
+  "extras_no_increase_guard_pass": true,
+  "class_modes_below_90": 79,
+  "production_enabled": false,
+  "experiment": "031-related-standard-descriptors-for-fixed-four-mode-experts",
+  "before_checkpoint": "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/outputs/qe_optimization_20261022/experiment_029",
+  "manual_reference": "v2, identical standard normalization mapping correction at both endpoints; not an annotation gain",
+  "target_achieved": false,
+  "note": "A passing pooled score does not establish >=90% in every curated class/mode. Goal also requires validated production integration, not just this offline experiment."
+}
