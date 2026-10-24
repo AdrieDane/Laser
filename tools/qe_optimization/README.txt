@@ -1,5 +1,39 @@
 QE collection research runners — 22 October 2026
 
+24 October latest priority: postpone sparse class/modes. Working priority is
+>=100 manual entries in >=3 independent project groups:86class/modes and90871
+manual rows. This is a work priority,NOT revised benchmark exclusions. All
+33datasets/132modes and all classes stay in reports; onlyX4 is user-excluded in
+the companion target scope. Retained029target:82729/92100,9268extras,1604wrong.
+Within priority class/modes:81896/90871=90.1234%,43of86stillbelow90 individually.
+Priority-scope extras are NOT the all-class extras total.
+  python tools/qe_optimization/report_qe_priority_classes.py --comparison <full_comparison_directory>
+
+030scoped_v2 REJECTED versus029:+56correct/+162extras/+1wrong;no default change.
+031related-standard model REJECTED versus029:-1correct/-88extras/-12wrong;
+RPpositive loses129correct and targetclass/modesbelow90rise76to78of122.
+Both full132tables delivered;029 remains the retained research reference.
+
+Prospective032 (after031table delivered):
+  python tools/qe_optimization/prepare_qe_adduct_family_context.py
+  python tools/qe_optimization/run_qe_adduct_family_experiment.py
+  python tools/qe_optimization/verify_qe_adduct_family_experiment.py
+ONLY12native-adduct-aware query-local companion measurements added to029's
+old predictors. Physical pools/15exactSTDcontext/labels unchanged. Signed native
+chemistry gives partner masses for ACTUAL source adduct;3ppm/2s search on same
+raw acquisition;correlation requires>=4non-QC/nonblank profiles. Review-only
+ions remain evidence,not newly accepted annotations. Allfour180roundexperts
+refit with same nested scopes/OOFbudget,005STDcleanup/fixed027massstage. Not031
+relatedSTDfeatures,030partiallabels/specialist or rarecatalogue expansion.
+No032annotation result yet;full132table mandatory before033.
+
+Deferred source prototype:catalogue_target_completion.py and
+prepare_qe_catalogue_candidates.py. Preparationv2 intentionally parked after
+six datasets/66tables,NOannotation fits or accuracy results. Do not resume
+dedicated sparse-class optimization ahead of current well-represented gaps.
+Read-only next-step diagnosis (NOannotation changes):
+  python tools/qe_optimization/diagnose_qe_common_discovery_gaps.py
+
 Latest verified reference: 029, 82729/92102 correct (89.823239%), 9268 extras,
 1604 different-feature choices. Actual vs028: +41/-78/-24. Retained research
 only, NOT app default; 77/123 curated class/modes remain below90. RPnegative
@@ -10,7 +44,7 @@ Full132table delivered BEFORE030. See docs/validation/qe_20261024_029.
 029 refits ALL four028 mode experts with15 genuinely nested independent STD
 features; same labels/candidate pools/005STD cleanup/fixed027massstage.
 
-Prospective030 additive NP BMP specialist (NO old024prediction splice):
+Historical030 additive NP BMP specialist (REJECTED;NO old024prediction splice):
   python tools/qe_optimization/run_qe_bmp_rescue_experiment.py
 ALL029calls immutable; fresh25nested specialist fits with training-only partial
 BMP labels and same029predictors. No mass/RT/range changes. Inner-only additional
