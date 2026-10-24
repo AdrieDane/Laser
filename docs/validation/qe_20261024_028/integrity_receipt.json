@@ -1,0 +1,19 @@
+{
+  "integrity_tool_sha256": "e8edec9056fe87ae7ba1495d18f926ed221d1100620412697c5067274ccab61c",
+  "source_file_hash_checks": 278,
+  "input_file_hash_checks": 501,
+  "fitted_model_scope_and_unchanged_positive_checks": 25,
+  "training_query_exclusion_checks": 528,
+  "heldout_score_reproduction_checks": 33,
+  "selector_plus_unchanged_standard_cleanup_parity_checks": 132,
+  "existing_standard_alias_demotions_reproduced": 0,
+  "calibration_scope_hash_budget_checks": 5,
+  "completed_datasets": 33,
+  "all_passed": true,
+  "annotation_experiment": "028",
+  "new_standard_context_used": false,
+  "fitted_mode_experts": 100,
+  "core_reference": "022",
+  "fixed_mass_stage_reference": "027",
+  "note": "Engineering integrity,not external validation/FDR. Same022corefeatures/labels;fourfixedmodeexperts forALLmodes,notposthocphasewinners. Same005STDandfixed027massselection. Calibrationbudgetcoverscoreonlyasin027;no outer-onlymassproposals enterinnercutofffitting. All92102manualentries/extras unchangeddefinition;privateprofiles/models stayoutsideGit."
+}

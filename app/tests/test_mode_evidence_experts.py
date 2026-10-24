@@ -65,3 +65,31 @@ def test_a_project_may_not_be_silently_dropped_from_one_expert():
         fit_mode_evidence_experts(
             records, training_groups=groups, excluded_groups={"z"}, parameters=params
         )
+
+
+def test_standard_context_scope_is_preserved_through_every_mode_subset():
+    records, groups, params, query = fixtures()
+    for record in [*records.values(), query]:
+        record["evidence"]["q_declared_standard_RT_difference_seconds"] = 2.0
+        record["standard_reference_training_groups"] = record[
+            "reference_training_groups"
+        ]
+        record["standard_reference_excluded_groups"] = record[
+            "reference_excluded_groups"
+        ]
+    model = fit_mode_evidence_experts(
+        records, training_groups=groups, excluded_groups={"z"}, parameters=params
+    )
+    assert all(
+        "q_declared_standard_RT_difference_seconds" in m["columns"]
+        for m in model["experts"].values()
+    )
+    assert np.isfinite(predict_mode_evidence_experts(query, model)).all()
+    query["standard_reference_training_groups"] = [*groups, "z"]
+    with pytest.raises(ValueError, match="excluded scoring groups"):
+        predict_mode_evidence_experts(query, model)
+    records["a"]["standard_reference_training_groups"] = ["a", "b"]
+    with pytest.raises(ValueError, match="own project"):
+        fit_mode_evidence_experts(
+            records, training_groups=groups, excluded_groups={"z"}, parameters=params
+        )

@@ -1,0 +1,74 @@
+Experiment 028: four independently fitted measurement-mode models
+24 October 2026
+
+Retain as the next RESEARCH reference, NOT a production default.
+The target of 90% in every curated class/mode remains unmet.
+
+Actual comparison, 027 -> 028, all 33 datasets / 132 modes / 30 project groups:
+Correct same-original-feature matches: 82408/92102 -> 82688/92102
+Correct percentage: 89.4747128184% -> 89.7787235891%, +0.3040107707 pp.
+Unconfirmed extras: 9243 -> 9346 (+103).
+Same manual lipid/adduct on a different feature: 1589 -> 1628 (+39).
+All 92102 manual entries, including 28 unresolved feature mappings, remain
+in the denominator. No reference labels, input files or exclusions changed.
+
+Mode (correct/manual; extras; different-feature choices), before -> after:
+RP positive: 40504/45206 -> 40603/45206; 3362 -> 3390; 894 -> 932.
+RP negative: 12127/13600 -> 12136/13600; 1972 -> 2047; 427 -> 429.
+NP positive: 17380/19380 -> 17528/19380; 1839 -> 1984; 169 -> 166.
+NP negative: 12397/13916 -> 12421/13916; 2070 -> 1925; 99 -> 101.
+
+Costs and limitations:
+79/123 curated class/mode combinations remain below 90%, versus 77 before.
+58 combinations gain correct matches, 34 lose and 31 are unchanged.
+Descriptive mean class coverage capped at 90% improves 69.8714 -> 70.4149%,
+but does not erase regressions or replace the full manual denominators.
+Large gains: NPpositive BMP +52, RPpositive TG +31, NPpositive SM-d +27,
+NPpositive PE +26, RPpositive DG +22, NPpositive SM-t +20, NPnegative CL +16.
+Losses include NPpositive PC -20, NPnegative BMP -19, RPnegative 1-acylLPE -12,
+RPpositive PC -10, NPnegative SLBPA -9 and RPnegative PE-P -9.
+BMP NPpositive is 260/622 (41.8%), NPnegative 230/520 (44.2%).
+Do not impose a preferred BMP polarity or discount manual-absent calls.
+
+Decision:
+Keep this whole algorithm as a research reference because correct counts improve
+in all four pooled modes, the capped class-average improves, and the overall
+gain is useful. Accept explicitly the 103-extra / 39-wrong-feature cost for 280
+additional correct matches. This fails a strict no-increase rule against 027.
+It still has 351 fewer extras than the ORIGINAL 9697-extra baseline.
+This is not proof of analytical false discovery rate, and not ready for an
+automatic production upgrade. Do not splice successful old class/mode outputs.
+
+What changed:
+All four mode experts independently refitted, 180 rounds each, in 25 nested
+parent fits (100 classifiers). Labels, candidate pools, predictor columns and
+known positive/negative counts are identical to 022. This increases total model
+capacity, so gains cannot be attributed purely to routing by measurement mode.
+Query/outer/inner-excluded references and four inner score-validation blocks
+are preserved. Same weakest-mode capped-90% cutoff objective and pooled 9.5%
+endogenous-training extras budget. Budget covers core selection only, as in 027.
+Unchanged 005 standard cleanup and fixed 027 physical mass proposal/selection
+follow new core selection. No outer-only mass proposals enter inner calibration.
+Mass additions protect current core calls, not all historical 027 calls.
+No rejected 024 partial labels, 025 standard-context predictors or 026 weights.
+
+Verification:
+All checks passed: 278 frozen source files, 501 input hashes, 25 model/supervision
+checks, 528 query exclusions, 33 reproduced held-out scores, 132 complete
+selector/standard/mass pipeline replays and 5 calibration scope/hash/budget checks.
+673 tests passed, 8 skipped, 83 subtests at the 028 checkpoint.
+Private raw profiles, feature IDs, references and fitted weights stay outside Git.
+
+Cached original-feature replay, NOT fresh production raw-input runs or untouched
+external validation. Inherited baseline/vendor and prior development exposure
+remain. Extras mean absent from the manual list, not proven false positives.
+The top-level comparison is cumulative original baseline -> 028.
+versus_027 contains the actual experiment delta; versus_022 is secondary.
+The complete user-facing 132-row table and separate wrong-feature mode totals
+were delivered before any 029 score fitting began.
+
+Next isolated test 029: add 15 independently measured, genuinely nested standard
+context predictors to ALL four mode experts, refitting all of them. Keep 028
+labels, physical candidates, model family, calibration objective/budget,
+005 standard cleanup and fixed 027 mass stage. Evaluate against 028 in all
+33 datasets, without asking the user to approve each cycle.
