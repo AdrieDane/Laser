@@ -43,14 +43,17 @@ retain/reject decisions without asking between experiments. This does NOT
 waive the complete user-facing before/after table requirement before starting
 the next annotation-changing experiment, or authorize benchmark relabeling.
 
-Latest retained research reference after028:82688/92102correct,9346unconfirmed
-extras,1628different-feature choices (all33datasets/132modes). Versus027:
-280morecorrect,+103extras,+39wrong;allfourpooledmodes gaincorrect. Class/modes
-below90 nevertheless rise77to79of123;goalNOTachieved. Researchtrade-off only,
-NOTproductiondefault. Original9697extrasbaseline still351higher. Compare next
-algorithm against028.025/026remain rejected;027fixedmassstage retained.
-Full028table delivered before029.029tests15nested independently measured STD
-context columns added to ALLfour028modeexperts,not oldmodel/classwinners.
+Latest retained research reference after029:82729/92102correct,9268unconfirmed
+extras,1604different-feature choices (all33datasets/132modes). Versus028:
+41morecorrect,-78extras,-24wrong. RPnegative loses48correct,NPnegative loses65;
+NPnegativeBMP loses84 (146/520=28.1%). These regressions MUSTremain explicit.
+77/123curatedclass/modesbelow90;goalNOTachieved. NOTproductiondefault.
+Original9697extrasbaseline still429higher. Compare next algorithm against029.
+025/026remain rejected;027fixedmassstage+028modeexperts retained with029's
+15independent nested standardcontext columns. Full029table delivered before030.
+030:NEWnested/OOF-calibrated NP BMP specialist additions,all029calls immutable.
+No posthoc old024model/class output splice. Related-standard descriptors have
+been prepared WITHOUTannotation decisions;notused029/030.
 
 BMP clarification (22 October 2026): LASER should annotate BOTH NP polarities
 when each has supporting evidence. Do not impose a preferred-polarity filter

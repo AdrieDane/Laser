@@ -1,8 +1,31 @@
 QE collection research runners — 22 October 2026
 
-027COMPLETE,retained SMALL research addon:82408correct/9243extras/1589different-
+Latest verified reference: 029, 82729/92102 correct (89.823239%), 9268 extras,
+1604 different-feature choices. Actual vs028: +41/-78/-24. Retained research
+only, NOT app default; 77/123 curated class/modes remain below90. RPnegative
+loses48correct and NPnegative loses65, including84 lost NPnegativeBMP matches.
+Full132table delivered BEFORE030. See docs/validation/qe_20261024_029.
+  python tools/qe_optimization/run_qe_standard_mode_experiment.py
+  python tools/qe_optimization/verify_qe_standard_mode_experiment.py
+029 refits ALL four028 mode experts with15 genuinely nested independent STD
+features; same labels/candidate pools/005STD cleanup/fixed027massstage.
+
+Prospective030 additive NP BMP specialist (NO old024prediction splice):
+  python tools/qe_optimization/run_qe_bmp_rescue_experiment.py
+ALL029calls immutable; fresh25nested specialist fits with training-only partial
+BMP labels and same029predictors. No mass/RT/range changes. Inner-only additional
+extras budget10%ofendoNPBMPmanual; wrongfeatures<=2%inEACHNPmode. Final extras
+not guaranteed. Whole132table plus BMP class-specific table required after.
+
+Label-free related-standard descriptors (not used029/030):
+  python tools/qe_optimization/prepare_qe_related_standard_context.py
+Separate16context columns, no identity merging or assumed sharedRT/order,
+source classes/coordinates immutable.363pool/old-column parity and reproduced
+15oldexactSTDfeatures/rawmeasuredcoordinates. NOannotation decisions/gains.
+
+Historical027COMPLETE,retained SMALL research addon:82408correct/9243extras/1589different-
 features,versus022+23/+5/+1. All29newcalls=23correct+5extras+1differentfeature.
-Full132table delivered BEFORE028. Currentresearchreference027,NOTproduction.
+Full132table delivered BEFORE028. Superseded researchreference027,NOTproduction.
   python tools/qe_optimization/verify_qe_calibrated_mass_discovery.py
 All132fixedrule/scope replays,33immutableoldtables,29rawcoordinates,276source/
 148inputhashes passed;sourcefiles165unchanged checkedbyevaluator. No newscorefit.

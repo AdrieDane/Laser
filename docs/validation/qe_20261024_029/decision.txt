@@ -1,0 +1,81 @@
+Experiment 029: independently measured internal-standard context, four mode models
+24 October 2026
+
+Retain as a SMALL research improvement, not an app default. Goal not achieved.
+
+Actual 028 -> 029, all 33 datasets / 132 modes / 30 project groups:
+Correct same-original-feature matches: 82688 -> 82729 of 92102 (+41).
+Percentage: 89.7787235891% -> 89.8232394519%, +0.0445158628 pp.
+Unconfirmed extras: 9346 -> 9268 (-78).
+Different-feature choices: 1628 -> 1604 (-24).
+All manual entries remain in the denominator, including 28 unresolved mappings.
+These are all-class results, including standards. No truth/denominator changes.
+
+Mode (correct/manual; extras; different-feature), before -> after:
+RP positive: 40603/45206 -> 40648/45206; 3390 -> 3391; 932 -> 932.
+RP negative: 12136/13600 -> 12088/13600; 2047 -> 1995; 429 -> 408.
+NP positive: 17528/19380 -> 17637/19380; 1984 -> 1944; 166 -> 163.
+NP negative: 12421/13916 -> 12356/13916; 1925 -> 1938; 101 -> 101.
+
+Important regressions:
+RP negative loses 48 correct matches, NP negative loses 65. These are real costs,
+not hidden by pooled totals. In particular NP negative BMP falls 230/520 (44.2%)
+to 146/520 (28.1%), losing 84 correct matches. NP positive BMP rises 260/622 to
+270/622 (43.4%). Other losses include RP negative PI -34, LPG -14, RP positive
+PC-O -13 and NP positive HexCer-d -11. Complete class tables include all gains
+and losses, including classes with no manual rows.
+49 class/mode cells gain matches, 39 lose, 53 unchanged (including absent cells).
+77/123 curated class/mode combinations remain below 90%, versus 79 before.
+Descriptive capped-90 class-average rises only 70.4148833 -> 70.4303091%.
+Not a large improvement or achievement of the user's class-specific target.
+
+Decision rationale:
+The whole algorithm improves total correct matches while reducing both extras
+and wrong-feature choices, with a tiny improvement in capped class-average and
+two fewer class/modes below 90%. Keep as research reference with the negative
+mode/BMP regressions prominently recorded. Strict pooled no-increase-extra
+guard passes; original 9697-extra baseline remains 429 higher.
+Do not splice in 028 BMP/negative-mode outputs after observing these tests.
+No production entrypoint or scientific default has changed.
+
+What changed:
+Add ONLY 15 numeric, independently detected declared-standard context columns
+to all four 028 mode experts; refit all 100 classifiers in 25 nested parent fits.
+Exact original candidate pools/predictor columns/labels and positive/negative
+counts unchanged. Standard-reference models exclude relevant query, outer test
+and inner calibration groups. Spike detection starts from EMPTY endogenous
+proposals, actual labelled masses and positive declared quantities. No self/
+companion-ion anchors, no ether/positional class merging or runtime curation.
+Same 180-round model family, cohort weighting, weakest-mode cutoff objective,
+pooled 9.5% core endogenous-training extras budget and .05 ambiguity margin.
+Same 005 standard cleanup and fixed 027 mass discovery after new core calls.
+Outer-only mass caches NEVER enter inner calibration; final extras not bounded.
+No 024 partial labels, 026 class weights or related-standard descriptors.
+
+Verification:
+All passed: 278 frozen-source hashes, 529 input hashes, 25 model scope/count/
+supervision checks, 528 training query exclusions, 33 score reproductions,
+132 complete core/standard/mass pipeline replays, 5 calibration scope/hash/budget
+checks, 363 original-pool/predictor parity checks and 492 preparation inputs.
+Two existing standard-alias demotions reproduced by the full pipeline.
+682 tests passed, 8 skipped, 83 subtests before the later BMP prototype.
+Private raw measurements, profiles, feature IDs, crosswalks and models outside Git.
+
+Cached original-feature replay, not fresh production raw-input annotation runs
+or untouched external validation. Known inherited/vendor/development exposure
+remains. Extras are manual-absent/unconfirmed, not established false positives/FDR.
+Top-level report is cumulative original baseline -> 029. versus_028 is actual
+experiment delta. Full 132-row user-facing table, wrong-feature mode totals,
+and explicit negative-mode/BMP losses delivered BEFORE 030 annotation fitting.
+
+Next isolated strategy 030:
+Keep ALL 029 annotations immutable. Train a NEW jointly NP BMP specialist,
+using properly query/outer/inner-excluded predictors and the training-only
+absent-opposite-NP unknown-label policy, not old 024 output predictions.
+Calibrate rescue cutoffs on four inner score-validation blocks. Additional
+training extras <=10% of endogenous NP BMP manual count and added wrong-feature
+choices <=2% in EACH NP mode; these are not held-out guarantees.
+Only add missing identities on free original features; lock winners before
+ambiguity/occupancy, never promote weaker alternatives or replace old calls.
+Related-standard descriptors have been prepared/tested without annotations,
+but remain UNUSED by both 029 and 030.
