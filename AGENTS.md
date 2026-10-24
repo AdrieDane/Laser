@@ -1,5 +1,15 @@
 # Experiment reporting policy
 
+## Current work status — PAUSED by user,24October2026
+
+The user requested a pause at the next safe stopping point. Experiment032and
+its complete integrity replay are finished;032was rejected and029remains the
+retained research reference. Full132-row032table was delivered. No033annotation
+fits started,no annotation jobs remain running,no production defaults changed.
+Do not start another optimization cycle until the user resumes. Handoff and
+next implementation notes:docs/validation/next_common_RT_experiment.txt;
+verified results:docs/validation/qe_20261024_032/versus_029/.
+
 ## Active example collection — user decision, 22 October 2026
 
 The ONLY active example collection for future optimization and performance
@@ -96,11 +106,29 @@ alreadyinpool,3128mappedmissingfrompool,28unresolved(target92100);31/122class/
 modescannotreach90evenoptimisticrowwisecandidatecoverage. See
 docs/validation/qe_20261024_candidate_gaps_029. Prioritize discovery/selection
 gaps in well-represented classes, not outer-test winner ensembles.
-032nowRUNNING after031full132table:363label-free preparations complete with
-exact029pool/old-predictor parity;12native-adduct-aware same-acquisition numeric
-descriptors added. Allfourmodeexperts refit with SAME029labels/15exactSTDfields,
-OOFobjective/budget,005cleanup/fixed027massstage. No032result/retentiondecision
-yet;doNOTstart033annotation fits until full032table is delivered.
+032annotation/evaluation COMPLETE,REJECTED:82652correct/9186extras/1623different-
+features,versus029-77/-82/+19. Target82652/92100=89.7415852%;77of122below90.
+All77lostcorrect are in86prioritycells:81896/90871 ->81819/90871;43 ->44below90;
+capped90prioritymean83.8606410 ->83.8244654. Sparsecorrect833/1229unchanged.
+Full032TARGETscope132user-facing rows and separate wrong-feature mode totals
+HAVEbeen delivered;doNOTrepeat merely because another cycle starts.
+363label-free old-pool/old-column parity preparation;12native-adduct-aware
+same-acquisition measurements. Allfourmodeexperts refit with SAME029labels,
+15exactSTDfields,OOFobjective/budget,005cleanup/fixed027massstage.029retained.
+Complete032integrity ALLPASSED:289source/529inputhashes,25models,528query-
+exclusions,33scores/132outputs/5calibrations,33raw-measurement reproductions,
+363old/new prepared table checks,432preparation inputs,twoSTDaliasdemotions.
+No033annotation fits yet. No appdefaults. Next implementation notes:
+docs/validation/next_common_RT_experiment.txt.
+See docs/validation/qe_20261024_032/versus_029 for actualdelta (top-level tables
+compare original baseline for continuity). Currentworktree app/tests709passed,
+8skipped,83subtests;these are engineering checks,not annotation accuracy.
+
+Read-only032fit-symmetry audit:36of40entire-expert serialized pairs identical;
+four0/1pair experts differ in estimator_preprocessor serialization. Other
+individual estimator state fields and expert metadata matched in a key audit,
+but full transform/score equivalence NOTproven. No fit-cache or model reuse
+implemented;actual032still25parentfits/100modeclassifiers. Preserve provenance.
 
 Read-only common-class029diagnosis COMPLETE:86priorityclass/modes,90871manual,
 81896correct,43below90. Of8975missing:6085correct-feature candidates already

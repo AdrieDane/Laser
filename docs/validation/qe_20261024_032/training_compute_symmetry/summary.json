@@ -1,0 +1,12 @@
+{
+  "annotation_changes": false,
+  "models_fitted": 0,
+  "paired_exclusion_scopes": 10,
+  "compared_inner_model_files": 20,
+  "compared_mode_expert_pairs": 40,
+  "entire_expert_pickle_identical_checks": 36,
+  "all_expert_pairs_identical": false,
+  "verified_input_hashes": 20,
+  "source_sha256": "5d945c32a8ed9571612fbc80dcdbfb12f54fd8f804a19d6e4db270c1442a21f1",
+  "note": "READ-ONLY numerical serialization/scope symmetry audit,not an annotation experiment, performance gain or cache implementation. Entire expert dictionaries include estimator AND predictor transforms/metadata; parent core-reference hashes remain distinct provenance. Even if all40match,current25fit runner/output remains unchanged. Future caching must key complete input/label/source/parameter/reference scopes,record reuse honestly,and verify all heldout/calibration scores and final132outputs before claiming annotation parity."
+}

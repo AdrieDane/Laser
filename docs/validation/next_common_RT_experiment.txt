@@ -1,0 +1,95 @@
+Prospective next optimization cycle after032 — implementation notes
+24October2026; NO033annotation fits or performance claims yet.
+
+PAUSED by explicit user request after032complete verification. No annotation
+jobs running. Do not begin this next cycle until the user resumes.
+
+Reference and prerequisites (032integrity nowALLPASSED):
+Use retained029,NOTrejected032/031/030outputs. Full032TARGETscope132table has
+been delivered. Wait for032complete integrity receipt before next annotation
+fit;do not assume a running replay has passed. Prioritize86class/modes with
+>=100manual and>=3projectgroups,while all classes stay in full reports. Leave
+sparse-class catalogue preparationv2 parked. X4alone is target-excluded.
+
+Hypothesis:
+Improve RTprediction using independently detected,known chemical spikes rather
+than widening mass/RTacceptance limits. 029read-only priority diagnosis finds
+2275missing features >10s from current class-atlas/fallback;1043are10-15s away.
+These are diagnostic opportunities,NOTpromised accepted correct matches.
+Also6085missing prioritymatches alreadyhave candidates;RTdiscovery alone cannot
+solve all selection/class problems,especiallyBMP. No concurrent partial-label
+or matrix-policy experiment in this cycle: isolate the RTanchoring hypothesis.
+
+Existing unused prototype:
+app/matlab_annotation/standard_anchored_retention.py,9synthetic tests passed,
+one realPlasma numerical-prediction smoke test. No candidate join/annotation
+selection implemented. Uses exactclass,samestream primary-library independently
+detected spikes; compares actualRTagainst OTHER-project isotope-specific class
+transfer. Transfer-only spike detections cannot feed back as endogenous anchors.
+One chemical:>=10transfergroups/MAD<=2s;multiple chemicals each>=3/MAD<=3s,
+offsets agreeingwithin3s;abs shift<=30s. Endogenous atlasdomain/cohorts/MAD gates.
+No ether/lyso positional merging. These are prospective conservative settings,
+not claimed universally correct science or outer-test-optimized thresholds.
+
+Label-free preparation,ALL363query/mask tables:
+1. Start from standard_context_preparation_v1 (029's oldpool+15exactSTDfields),
+   not related_standard_preparation_v1 or adduct_family_preparation_v1.
+2. Match nested endogenous/standard reference bundles to each query/outer/inner
+   mask. Check exact allowed/excluded groups,query exclusion and atlas identity.
+   Load blind baseline rawfeatures and staged automatic/declaration metadata;
+   saved independent spike measurements can be reused ONLYwith verified hashes,
+   rawcoordinates and reproduced old15context. No manual workbook/RTfit reads.
+3. Use original native theoretical targets plus existing envelope completion,
+   with same group-excluded CDBbounds/accepted adducts/polarity/monoisotopic
+   chemistry. Do not incorporate deferred rarecatalogue expansion or guess
+   unsupported formulas. Call standard_anchored_retention for numerical targets.
+4. Join ORIGINALfeatures at rawabsppm<3 and <=10s from supported alignedRT.
+   Protect ALLactual declared-spike masses ANDindependently measured spikeFIDs;
+   targets/features cannot serve as their own independent anchors. Keep current
+   physical competitors;no occupancy-first removal or promotion of losinglabels.
+   No existing pair/identity/observed coordinate edits;append only genuinely new
+   target/adduct/feature pairs,with explicit source metadata and no fakeMATLABcode.
+5. Preserve old physical rows/coordinates and stable identities/order. Re-enrich
+   joint candidate/evidence pools so competition counts reflect new candidates.
+   Old competition-derived values may legitimately change;do NOTfalsely claim
+   every old predictor value is immutable after adding physical competitors.
+   Rawquality and independent reference/STDvalues must remain reproducible.
+   Add numerical standard-alignedRTerrors/support/uncertainty to old ANDnew
+   queries;unavailable staysNaN,not invented zero-RT or forcedsupport.
+6. New reference-derived predictors need explicit standard scope protection in
+   validate_feature_scope,not only a new q_name. Existing15STDfields/metadata
+   already enforce it for this combined experiment;add targeted guard tests so
+   future isolated use cannot omit provenance and leak outer/inner projects.
+7. Physical query keys may be shared across masks ONLYfor truly raw local
+   measurements. RTpredictions,priors,spike references and learned source weights
+   MUSTuse each mask's own allowed reference bundles. Never cache an outer-only
+   RTproposal table into inner calibration or training features.
+
+Storage/runtime:
+Keep source snapshots/protocol/input hashes and completed per-dataset receipts.
+Consider delta artifacts referencing hashed029tables: new rows/new predictors
+and explicit changed competition columns,with exact round-trip reconstruction
+tests. Full oldtable duplication is not mandatory if equivalence is proven.
+Otherwise use full tables while space permits. Do not delete historical private
+research or originaldata to make room;last checked free space~62GiB.
+Reuse only RAWquality caches for original features/stream/charge;no saved
+curation,prior/atlas/score evidence under a raw-cache label.
+Read-only symmetric-fit audit found36of40serialized experts identical;theother
+four differ in estimator_preprocessor serialization. Model reuse is NOTproven
+andNOTimplemented. Any compute shortcut must bind complete source/label/input/
+parameter/reference scopes and verify allscores/132outputs,not assume symmetry.
+
+Fitting and evaluation:
+Fresh four-mode experts/INNEROOFcalibration with all permitted groups and
+query/outer/inner excluded references. Same180round family,9.5%core endogenous
+trainingextrasbudget,.05ambiguity,005STDcleanup andfixed027massstage. No outer-
+only mass cache in inner fitting. New physical queries legitimately change
+training row/positive totals;check original labelled pairs are preserved and
+new positives arise ONLYfrom permitted-group labels AFTERfeature generation.
+Do not keep029's old rowcount equality assertion blindly when pools expand.
+Compare WHOLEalgorithm vs029 on all33/132,samev2reference and92102historical/
+92100target denominators,including28unresolved. Deliver full before/after table
+withpercent+n/N,extras andseparatewrongfeatures before another experiment.
+Class/mode/priority companions do not replace all-class reports. Report gains
+ANDregressions;no posthoc phase/class winner splicing,extra-discounting or
+productiondefault changes before actual deployment readiness/fresh app benchmark.

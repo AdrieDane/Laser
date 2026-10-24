@@ -1,0 +1,85 @@
+Experiment032: native-adduct-aware companion evidence, REJECTED
+24October2026
+
+Retain029as the whole research reference. No production defaults changed.
+The90%perclass/mode target remains unmet. No posthoc class/phase winner splice.
+
+Actual029 ->032,all33datasets/132modes/30projectgroups:
+Correct82729 ->82652 (-77),unconfirmedextras9268 ->9186 (-82),
+different-feature choices1604 ->1623 (+19).
+User target excludingX4:89.8251900109% (82729/92100) ->
+89.7415852334% (82652/92100). Historical all-manual92102 retained separately;
+X4exclusion is NOTan algorithm gain.28unresolved manual entries remain included.
+
+Mode correct/manual;extras;different-feature,before ->after:
+RPpositive40648/45206 ->40596/45206;3391 ->3365;932 ->944.
+RPnegative12088/13600 ->12088/13600;1995 ->1995;408 ->408.
+NPpositive17637/19380 ->17581/19380;1944 ->1900;163 ->161.
+NPnegative12356/13914 ->12387/13914;1938 ->1926;101 ->110.
+NPnegative historical denominator13916 includes twoX4rows; target13914doesnot.
+
+Why reject:
+All77lost correct matches are in the86priorityclass/modes (>=100manual,
+>=3independent project groups). Correct81896/90871 ->81819/90871;
+90.1233617% ->90.0386262%. Prioritycellsbelow90rise43 ->44; capped90priority
+class-average83.8606410% ->83.8244654%. Targetcellsbelow90rise76 ->77of122.
+Sparseclasscorrect totals833/1229unchanged;they remain in all reports.
+Largest priority losses:RPpositivePC-27,TG-O-22,CE-11;NPpositivePC-19,AC-9,
+HexCer-d-8. Gains includeNPnegativeBMP+14,NPpositiveBMP+9,NPnegativeFA+8,
+NPnegativeFA-OH+8 andRPpositivePE+5. Do not selectively splice those gains.
+Fewer extras do not compensate for fewer correct matches and more wrong peaks.
+
+What changed:
+Add12query-local native-adduct-family measurements to029's exact same physical
+pools,oldpredictors and15independent nested STDcontext features. Nativechemical
+mass offsets and SIGNEDcharge use the actual candidate adduct,not fixedH-based
+offsets. Same-acquisition original profiles only;partner<3ppm/<=2seconds,
+>=4biological or unknown-role profiles;QC/blank-only correlations withheld.
+Review-only ions remain evidence,NOTnew accepted identities. Self features
+cannot support themselves; duplicated partner detections cannot inflate votes.
+Allfourmodeexperts refitted,180rounds each,100classifiers in25nested parentfits.
+Same029knownlabels/rowcounts,OOFcutoff objective/9.5%endogenous trainingextras
+budget/.05ambiguity,005STDcleanup andfixed027massstage. No widened mass/RT/ranges,
+no rejected030labels/specialist or031relatedSTDdescriptors. No ownquerycuration.
+363label-free old-pool/old-column parity checks passed before fitting.
+
+Evaluation/reporting:
+All165original workbook/peak-list sourcehashes checked by evaluator. Samev2
+manual reference and960previously verified STDmapping repairs at BOTHendpoints;
+not counted as algorithm gains. All132TARGETscope user-facing rows plus separate
+different-feature mode totals were delivered before any033annotation fit.
+Top-level reports compare original rawbaseline ->032 for continuity;
+versus_029/ is the actual experimentdelta. It includes all-manual historical,
+target_without_X4 and priority-only companion views. Priority is NOTan exclusion.
+Cached original-feature replay,not fresh app runs,untouched external validation
+or analyticalFDR. Repeated development/vendor exposure remains. Extras mean
+manual-absent unconfirmed calls,not established false identities.
+
+Complete integrity replay ALLPASSED:289frozen source hashes,529input hashes,
+25model/supervision checks,528trainingqueryexclusions,33reproducedscores,
+132full selector/005STD/fixed027mass replays,5calibration scopes/hashes/budgets,
+33raw adduct-measurement reproductions,363all-mask new-descriptor and old-pool/
+old-predictor comparisons,432label-free preparation inputs. Two005STDalias
+demotions reproduced. Receipt added only after all checks completed.
+Current worktree app/tests:
+709passed,8skipped,83subtests passed;engineering evidence,not annotation accuracy.
+Rawprofiles/FIDs/crosswalks/measured spikes/fittedweights remain outsideGit.
+
+Read-only compute audit:36/40symmetric entire-expert serializations identical,
+four differ in estimator_preprocessor serialization (other individual state
+fields and expert metadata matched in a follow-up key comparison). This does
+NOTprove their transforms/scores equivalent. No model reuse/cache implemented.
+Keep actual25fit provenance; do not silently claim only15fits occurred.
+
+Next hypothesis:
+Independent standard-anchored RT predictions for well-represented classes,
+not another small score-only descriptor addition. Read-only029diagnosis:
+2275prioritymissing features are outside current nestedRT10s;1043are10-15s.
+Exact-class primary-library spike detections can estimate query-local residuals
+relative to OTHER-project isotope-specific class transfer. New prototype has
+9synthetic tests andone real-input numerical smoke test,NOannotation gains yet.
+Keep strict3ppm/10s matching,alloriginal observedcoordinates,physical competitors,
+declared-spike feature/mass protection andevery query/outer/inner exclusion.
+Propagate new discovery/evidence through all363masked preparations,then fresh
+groupedfits/OOFcalibration/all33evaluation andfull132table. Do not use an outer-
+only candidate patch or treat proposed/available rows as accepted correct calls.

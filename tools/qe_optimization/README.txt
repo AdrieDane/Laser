@@ -25,8 +25,13 @@ raw acquisition;correlation requires>=4non-QC/nonblank profiles. Review-only
 ions remain evidence,not newly accepted annotations. Allfour180roundexperts
 refit with same nested scopes/OOFbudget,005STDcleanup/fixed027massstage. Not031
 relatedSTDfeatures,030partiallabels/specialist or rarecatalogue expansion.
-032now running after complete363table label-free parity preparation;no result
-or retentiondecision yet. Full132table mandatory before033annotation fitting.
+032COMPLETE/REJECTED:82652correct,9186extras,1623differentfeatures;vs029-77/-82/+19.
+Full132TARGETscope table delivered. All77lostcorrect in86prioritycells;43 ->44
+prioritycellsbelow90. Retain029,NOTthe isolated032NPnegative/BMPgains.
+IntegrityALLPASS:289source/529inputhashes,25models/528queryexclusions,33scores,
+132fulloutputs/5calibrations,33rawmeasurements/363prepared tables.709current
+app/tests passed,8skipped,83subtests. No productiondefaults. Next implementation
+notes:docs/validation/next_common_RT_experiment.txt. No033annotation fit yet.
 Read-only common diagnosis finished:6085prioritymissing correctfeatures already
 inpool;2275outside nestedRT10s,409outside3ppm,138missingexacttarget,40STDgaps,
 28unresolved. See docs/validation/qe_20261024_common_discovery_029.
