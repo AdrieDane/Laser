@@ -43,6 +43,13 @@ retain/reject decisions without asking between experiments. This does NOT
 waive the complete user-facing before/after table requirement before starting
 the next annotation-changing experiment, or authorize benchmark relabeling.
 
+Latest retained research reference after027:82408/92102correct,9243unconfirmed
+extras,1589different-feature choices (all33datasets/132modes). This is022plus
+fixed conservative mass-calibrated additions:23morecorrect,+5extras,+1wrong.
+Small explicitly accepted research trade-off; NOT a productiondefault upgrade
+or90%target achievement. Compare the next complete algorithm against027, with
+022ascore-scoring diagnostic where appropriate.025and026remain rejected.
+
 BMP clarification (22 October 2026): LASER should annotate BOTH NP polarities
 when each has supporting evidence. Do not impose a preferred-polarity filter
 based on the manual list. Opposite-polarity manual support may be reported as

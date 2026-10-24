@@ -1,0 +1,23 @@
+{
+  "name": "027-fixed-standard-calibrated-mass-discovery",
+  "baseline": "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/outputs/qe_optimization_20261022/baseline",
+  "previous": "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/outputs/qe_optimization_20261022/experiment_022",
+  "production_enabled": false,
+  "curation_runtime_input": false,
+  "numerical_workers": 3,
+  "folds": 5,
+  "score_refitting": false,
+  "threshold_fitting": false,
+  "candidate_policy": "Same existing chemical reference+group-trained composition envelope; existing range settings binding. Only new rawabsppm>=3pairs may be added. Correctedabsppm<3 and atlasRT<=10s,>=3RTtraininggroups,in-domain,MAD<=10s. Leave-target-out standard calibration>=6distinct actualneutralmasses,MAD<=.6ppm,p90<=1.5ppm,absmedian<=2ppm. Whole declared-spike mass aliases within5.01ppm withheld. All coarse alternatives compete BEFORE novelty/fine gates/occupancy.",
+  "acceptance_policy": "FIXED, no test-label tuning: unique feature per identity AND identity per feature in coarse pool,RTerror<=3s,atlasMAD<=5s,strong exact canonicalclass/CDB automaticanchor in ANOTHERstream(confidence>=.9,rawabsppm<1.5,unambiguousadductRT). Existing022identities/features/standards ALLimmutable. No replacements or fallback promotion. No learned scores, probabilities or FDR claims.",
+  "standard_policy": "Independently re-detect declared actual isotope spikes from raw features with EMPTY endogenous proposals,matching query-excluded outer standard/RTmodels. Positive quantities and rawunique3ppm/10s evidence; no own-neutral mass anchor. Does NOT reuse rejected025score predictions or026weights/024labels. Final022standard calls immutable.",
+  "validation": "All33datasets/30projectgroups using SAMEouterblocks; relevant learned RT/envelope/standard references exclude queryproject. Fixed physical rule has no inner cutoff/score fitting. Cached baseline/original-feature replay with known inherited baseline/vendor development exposure; NOT untouched external whole-pipeline validation or analyticalFDR.",
+  "model_fit_note": "No new score fit. Existing022calls retained exactly. RT/standard reference models exclude outer/querygroups. Physical mass centering uses measured query-run chemical standards only,not manual annotations or own feature/neutral identities. No new formula guessed; unknown classes remain unsupported.",
+  "run_kind": "Saved022immutable calls plus fixed-rule independent standard-calibrated new original-feature discovery. Raw observed m/z,RT,I unchanged;calibratedmasserror is a separate descriptor. Not fresh production raw-input runs.",
+  "resource_receipt": {
+    "reference_data": "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/outputs/qe_optimization_20261022/experiment_027/source_snapshot/reference_data",
+    "methods": "/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard/outputs/qe_optimization_20261022/experiment_027/source_snapshot/methods",
+    "composition_ranges_sha256": "1723a3dd001f456afa07f621a11e3d3288afe8ab3169e94add64a49132053d28"
+  },
+  "full_private_protocol_sha256": "cb09075e534053f824c6f7d5002f7b3cae92dac2e12a5e416137babddf02a9d1"
+}

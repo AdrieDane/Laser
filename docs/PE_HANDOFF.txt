@@ -1,4 +1,67 @@
-LATEST CHECKPOINT — 24 October 2026,026REJECTED;027RUNNING
+LATEST CHECKPOINT — 24 October 2026,027RETAINED SMALLRESEARCH;028EVALUATING
+
+Userexplicitlyauthorizesautonomouscycles/retain-reject decisions. Continue,
+doNOTaskpermissionbetweenexperiments. Full025/026/027tablesACTUALLYDELIVERED
+incommentary BEFOREeachnextcycle. No productiondefaultchanged;90%goalNOTmet.
+Newretainedresearchreference027:82408/92102=89.474713%,9243extras,1589different
+features,77/123class/modes<90.022corestill82385/9238/1588.027actualgain+23correct,
++5extras,+1wrong;29additions=23samefeaturecorrect/5unconfirmedextras/1wrongpeak.
+Smallexplicitprudenttradeoff,NOTbigprogress orproductionadoption. Original9697
+extra guardpasses(454fewer),strict022extra guardfails(+5);doNOThidethis.
+Modecorrect/manual;extras;wrong022 ->027:
+ RPpos40495/45206 ->40504/45206;3361 ->3362;894 ->894.
+ RPneg12125/13600 ->12127/13600;1972 ->1972;426 ->427.
+ NPpos17373/19380 ->17380/19380;1838 ->1839;169 ->169.
+ NPneg12392/13916 ->12397/13916;2067 ->2070;99 ->99.
+WrongnewcallRPnegativePE. Nooriginalcallremoved/replaced. No mode>=90.
+Allclassesfull92102manualincl28unresolved unchangedv2,165sourcehashespass.
+
+027ALLintegrityPASS:276source+148input hashes,132scope+fixedrulereproductions,
+33oldcalltablechecks,29rawcoordinatechecks. Exactly0newscore/cutofffits.
+Sourcefilesnevermodified;ordinaryCSVandminutes/secondsfloatingroundoffonly
+allowedin exportedresearchannotationRTvalues,NOTretentionadjustments. Actual
+scriptverify_qe_calibrated_mass_discovery.py. Docsqe_20261024_027publicaggregates,
+versus_022actualdelta. Coremasshelper+10tests unchangedfromfrozen027snapshot.
+
+028corefittingANDannotationCOMPLETE terminal62741exit0.100classifiersALL4modes
+(25nested parentdicts,4experts each,180roundsEACH)usingEXACT022core363predictor
+tables/labels. Freshnew4innerOOFcoremodecutoffs,005stdlogic unchanged,thenEXACT
+027fixedmasshelper/cachedLABEL-FREEproposal pool perouterdataset. No cherry-
+picking025NP/022RPpredictions;ALLexpertsrefitted. NO024partiallabels,025features
+or026classweights. Project-balancedWITHINMODE;thisincreases totalmodelcapacity.
+Modelparentsumknownpairs/positives/columns matches022for all25fits. Everychild
+scopeexcludesallown/query/cal/testgroupsviaoldqueryexcludedfeaturebank.
+
+028EVALUATIONNOWRUNNING terminal1766:evaluate_qe_baseline.py experiment_028
+--manual-reference manual_reference_v2. Inspectcurrentstatusbeforerestart.
+Outputsexperiment_028. Noperformanceclaimed yet. Newsource mode_evidence_experts.py
++3tests;allcurrentfullsuite673passed/8skipped/83subtests. Focusedmode3testsPASS.
+Same027massselection doneAFTERnewcore/stdcalls,previousCURRENTcorecallsimmutable
+withinmassstage. Coreoccupancymaychangewhichmassadditionspass;baseline027calls
+overallCANchangebecausecorescorerchanges;doNOTassertglobalimmutabilityfor028.
+CalibrationbudgetcoverscoreendoONLYas027inherited022did; outer-only masscache
+never entersinnerOOFbudgetfitting/training(no reference leak). Finalextrasnotbounded.
+
+NEXT:wait1766thenreport028baselineandMAIN--beforeexperiment_027;also022diagnostic.
+runverify_qe_mode_expert_experiment.py(newunusedverifierprepared/lintclean):
+25parent/100childscopes+rowcounts+180rounds+constantstreamcategory+cohortweights
+unchanged,528querymaskchecks,33scorereplays,132coreselector+005STD+fixed027mass
+replays,5corecalibrationhash/scope/budgetchecks. Inspectit iffailure;doNOTchange
+results to satisfyaudit. Publishaggregateonly,ful132tableBEFORE029.
+Chooseprudentretain/rejectagainst027,reportgain/loss/extras/wrongpermode/class.
+DefaultappstillOFF. Goalnotcomplete evenifpooled90;class/modegoalall123 matters.
+
+Possiblefuture29hypotheses(NOTimplemented/run):if028useful,addnestedstdcontext15
+featureswithinALL4modeexperts(proper363query/outer/inner masks,25preparedSTDmodels)
+toavoid025globalshared-modelNPbenefit/RPloss interference. OrBMPspecialist/additive
+training-onlyunknownpolicywithimmutableotherclasscalls andproperOOFcalibration,
+NOTposthoccopying024BMPoutputs. Physicalcandidateceilings32oldcoreclass/modes<90
+stillrequirediscovery/genericchemicalRTsupport;X4blankformula2entries unresolved.
+AsyncquestionWhatdoesX4mean?pending,noreplyyet;doNOTdrop/guessthoseentries.
+Priorbaseline/vendor exposureknown,repeated33datasetdevelopmentNOTexternal/FDR.
+Privateprofiles,FIDs,curatedcrosswalks,rawSTDmeasurements/fittedweightsNEVERgit.
+
+PREVIOUS CHECKPOINT — 24 October 2026,026REJECTED;027RUNNING
 
 Autonomouscycles authorized,userrequestscontinuewithoutasking. Full025AND026
 132-rowtables actually delivered in commentary BEFORE next annotationcycle.

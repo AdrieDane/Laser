@@ -1,5 +1,26 @@
 QE collection research runners — 22 October 2026
 
+027COMPLETE,retained SMALL research addon:82408correct/9243extras/1589different-
+features,versus022+23/+5/+1. All29newcalls=23correct+5extras+1differentfeature.
+Full132table delivered BEFORE028. Currentresearchreference027,NOTproduction.
+  python tools/qe_optimization/verify_qe_calibrated_mass_discovery.py
+All132fixedrule/scope replays,33immutableoldtables,29rawcoordinates,276source/
+148inputhashes passed;sourcefiles165unchanged checkedbyevaluator. No newscorefit.
+
+028fixed FOUR mode experts (not selecting old phase winners):
+  python tools/qe_optimization/run_qe_mode_expert_experiment.py
+  python tools/qe_optimization/evaluate_qe_baseline.py <experiment_028> --manual-reference <samev2>
+  python tools/qe_optimization/report_qe_experiment.py --experiment <experiment_028> --before <experiment_027>
+  python tools/qe_optimization/verify_qe_mode_expert_experiment.py
+100classifiers(180roundsEACH)in25nested parentmodels;ALL4experts refit. Same022
+corepredictors/labels,005standards,EXACT027fixed label-free physicalmasspool and
+sameadditionselectorafternewcore/stdcalls. Changed coreoccupancy may change
+massadditions;wholealgorithmcomparedagainst027,also022forcorecontext. No025new
+standardcontextfields/026weights/024labels. EqualprojectweightswithinMODE;
+moretotalmodelcapacitythanoldshared180roundclassifier. OOFcutoffs/budget cover
+core endogenouscalls ONLY,asin027; outer-only mass proposal caches NEVERenter
+innercalibrationortraining. Finalextrasbudgetnotguaranteed. Full132before029.
+
 026COMPLETE/REJECTED:82358correct,9301extras,1589differentfeatures vs022:-27/+63/+1.
 Full132table actually delivered BEFORE027. No mode/class cherry-picking.
 027fixed conservative new-mass discovery (not another scoring refit):

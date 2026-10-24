@@ -1,0 +1,77 @@
+Experiment027 — fixed independent mass-calibrated additions, small research gain
+24 October 2026
+
+Retain as incremental RESEARCH reference, NOT productiondefault. GoalNOTachieved.
+All33datasets/132modes/33distinct original input sets/30project groups. Correct
+requires same lipid/adduct/mode AND original feature;all92102manual entries incl
+28unresolved remain denominator. Samev2reference/all165originalfilehashes checked.
+Extras are unconfirmed manual-absent calls,NOT proven wrong biological identities.
+
+Actual022 ->027:
+Correct82385/92102(89.449741%) ->82408/92102(89.474713%):+23,+.024972pp.
+Extras9238 ->9243:+5;different-feature1588 ->1589:+1.
+29total additions:23correctsamefeature,5unconfirmedextras,1differentfeature.
+All022acceptedcalls retained,including standards;no old matches lost.
+77/123curated class/modes STILLbelow90. Not a big improvement; rounded89.4 ->89.5
+must NOTbe represented as a full.1pp gain. No FDR/untouchedvalidation claim.
+
+Mode(correct/manual;extras;different-feature),022 ->027:
+ RPpositive40495/45206 ->40504/45206;3361 ->3362;894 ->894.
+ RPnegative12125/13600 ->12127/13600;1972 ->1972;426 ->427.
+ NPpositive17373/19380 ->17380/19380;1838 ->1839;169 ->169.
+ NPnegative12392/13916 ->12397/13916;2067 ->2070;99 ->99.
+No mode reaches90. All-mode/classes correct counts cannot decrease under this
+immutable additive design. One newwrong-feature call is RPnegativePE;doNOThideit.
+Gains:NPpositivePC+5,RPpositiveCer-d+4,NPnegativeGM2-d+2,PE+5across3modes,
+RPpositiveSM-d+2,and individual otherclasses. ExtrasCL2,PE1,HexCer-d1,SM-t1.
+
+Prudent trade-off decision delegated byuser:5moreextras(0.054%ofprior9238)and
+1wrongfeature for23correctsamefeature matches is a small explicit cost. Original
+9697extrasguard stillpasses(454fewerextras);strict022no-increaseguard fails.
+Retain for research/composition with later independently validated strategies,
+not as a production upgrade. Only29newcalls tested,known development exposure;
+no robust generalization guarantee. Do not remove opposite-polarity-supported
+calls from extras,or cherry-pick successful datasets/classes after evaluation.
+
+Fixed physical mechanism,NOnew scoremodel/acceptancecutoff fit:
+Independently re-detect declared actual isotope spikes from rawfeatures with
+EMPTY endogenousproposals and own-query/outer-excluded RT/standard references.
+Positivequantity,unique raw3ppm/10s,stdadductRTcoherence,actuallabelledneutral
+masses;eachneutralmassvotesonce. Median calibration>=6distinctneutralgroups,
+MAD<=.6ppm,p90<=1.5ppm,abscenter<=2ppm. Targetexcludes allnearby3ppmcalibrator
+neutralgroups. Whole targetwithin5.01ppmofANYdeclaredspikemass withheld to
+avoid self/spikealias calibration. No scorepredictions from rejected025/026.
+
+Sameexistingchemicalreferences+group-trained envelope/rangebounds. Query-excluded
+RT>=3cohorts,in-domain,MAD<=10s. GenerateALL correctedmass<3ppm/RT<=10s
+alternatives beforefine/support/novelty/occupancygates. Fixedaddition gate:
+onefeatureperidentity AND oneidentityperfeature,RT<=3s,MAD<=5s,strongOTHER-mode
+exactcanonicalclass/CDB baselineautomaticanchor(.9confidence,<1.5rawppm,
+unambiguousadductRT),newpairwithabsrawppm>=3,absentoldidentity/freefeature.
+No replacements/fallbackpromotion;ALL022calls immutable. Originalobserved m/z,
+RT/intensity preserved(up to ordinary seconds/minutes/CSV floating roundoff);
+calibratedmasserror is separate. Sourcepeaklist/workbookbytes NEVERchanged.
+
+IntegrityALLPASS:276frozen source+148input hashes,33oldcalltables checked,
+132scope/full independent-rule reproductions,29rawcoordinate checks. Exactly0
+newscorefits/0cutofffits. Fullsuite670passed/8skipped/83subtests includes10mass
+prototype tests;additional3futuremode-expert tests passed separately,UNUSED027.
+Private anchors/proposals/featureIDs/rawprofiles/curatedcrosswalks/models outsideGit.
+
+Cached original-feature replay,not fresh production raw-input runs,untouched
+externalwhole-pipelinevalidation or analyticalFDR. Query/outer RT+standard
+references excluded,but inherited baseline/vendor developmentexposure remains.
+Physical gates fixed before027evaluation,NOT selected by this heldout table.
+Previous475mass+RTwindowpotential was NOT475correct annotations;actual29newcalls
+are much fewer. Further opportunities require newvalidatedmethods,not hiding gates.
+
+Top-level originalbaseline ->027 is CUMULATIVE;versus_022actualdelta includes
+complete132dataset/mode and allclass tables. Full132table ACTUALLYDELIVERED in
+commentary BEFORE028started. No benchmark
+labels/denominators altered. X4definition question pending;2entries not dropped.
+
+Next prospective028:ALLfour mode-specific experts refitted together with proper
+nested training/OOFcalibration,not posthoc selecting025NP/022RP winners. Same022
+corefeatures/labels/180roundfamily;fixed027masscandidatepolicy retained unchanged
+after new core/stdselection. Compare actual whole algorithm against027,also022.
+Mode experts prepared/tested only;no028annotation run at this decision checkpoint.

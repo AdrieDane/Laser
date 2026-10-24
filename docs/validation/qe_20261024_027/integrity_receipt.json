@@ -1,0 +1,14 @@
+{
+  "annotation_experiment": "027",
+  "integrity_tool_sha256": "514546eee1715cc5b17c8b01dec888f0820ccdb2f23cbe31d39606a9cfa80ba4",
+  "source_file_hash_checks": 276,
+  "input_file_hash_checks": 148,
+  "datasets": 33,
+  "mode_scope_and_full_rule_reproduction_checks": 132,
+  "immutable_old_call_tables_checked": 33,
+  "raw_coordinate_checks": 29,
+  "new_annotation_score_fits": 0,
+  "new_acceptance_cutoff_fits": 0,
+  "all_passed": true,
+  "note": "Fixed-rule/group-reference/immutability engineering checks, not external validation/FDR. All original92102manualentries retained, sourcehashes165checkedbyevaluator. No private feature/model/profile data exported."
+}
