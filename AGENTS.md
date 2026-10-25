@@ -1,5 +1,37 @@
 # Experiment reporting policy
 
+## CURRENT044 READY TO FIT — complete current no-fit gate PASS
+
+FULL v2 preflight session1230 DONE0 ALLPASS. All330unique independent target/
+scope checks,ALL25parent/528uses matrices/weights/categories/support/constructor,
+ALL33disabled ENTIRE041 annotations/candidate frames EXACT.2333source/input
+bindings. Receipt d0f7e8900c5f05ed91041f92e24b54c79244e1665c9fe18b05eb7f5e1fdd0f60;
+support a1dc7d53417f879d3311d55eae86639862d1437751fb90219671c4885417a6be.
+Current source_inputs equality check session45788 running/verify beforefit.
+No044 initialize/models/outerannotations yet. Needcommit/pushthen launch
+run_qe_bmp_context_experiment.py (3workers), not anotherpreflight/preparation.
+DoNOTedit source-bound runner/helpers/plan/checker now. Oldv1stoppedbeforefits,
+v2ALLchecks fresh (no partial reuse). Complete363numeric gate alreadyPASS.
+Whole041 retained82740/92100,E9270,W1604;goal NOTmet/defaults unchanged.
+
+Additional READ-ONLY prospective whole-decision script now implemented BEFORE
+any actualfits: report_qe_bmp_context_tradeoff.py +3syntheticboundarytestsPASS.
+SHA0525d9c325942b99cee2fefb66e0ec2752969c7794863e59179fbff1628ffd54.
+It is post-output ANALYSIS, not a model/predictor; run manually AFTER complete
+postprocess_qe_bmp_context.py/fullmaster. Usesalreadyfrozenplan EXACTlimits:
+>=100newmatches,Enew<=TPnewand<=571,unsupported-otherNPcompositionE<=.1endoBMPN,
+wrongnew<=5and<=.005NperNP,oldcorrectloss0/nootherclasschange. CountsALL extras,
+otherNP manual support only safety category, never runtime/exemption. Outputs
+prospective_tradeoff_decision/decision.json +full66BMP%/n/N/E/wrong/countCSV.
+Does not automatically startnextcycle/changeannotations/reselectcuts. Source
+not a runtime dependency; preserve its separate analysis receipt/hash as well.
+
+After newrunnerDONE0, manuallyrunpostprocess_qe_bmp_context.py, FULLmaster and
+this tradeoffreport, then FULL132chat%+n/N+TOTAL Ebefore/after+wrongmodetotals,
+BMPfulltable linked,endo/STD companions,WHOLEdecision before045. All5INNERgrid
+choices BEFORE any outerannotations. DoNOTinferperformancefrompreflight or
+oldphysicaldiagnostics. Need keepworkingautonomously,notendatcheckpoint.
+
 ## CURRENT044 preparation COMPLETE / no-fit gate v2 RUNNING — ACTIVE
 
 User go on. Whole041 remains82740/92100correct (89.83713355%),9270unconfirmed

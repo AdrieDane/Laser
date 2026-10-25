@@ -1,0 +1,23 @@
+044 no-fit model/export gate COMPLETE, v2
+
+ALL330unique nested training tables independently checked against permitted
+manual targets and partial-BMP unknown policy. All positives/other flags and
+original163inputs unchanged by labeling. All25actual parent preparations and
+528training-query uses checked for matrices, targets, equal-project weights,
+categories, actual BMP-positive contributors and constructor settings.
+ALL33 disabled ENTIRE041 annotation/candidate exports EXACT. No example-data
+classifier fits or annotation changes in this gate.2333source/input bindings.
+
+Receipt SHA256:
+d0f7e8900c5f05ed91041f92e24b54c79244e1665c9fe18b05eb7f5e1fdd0f60
+Parent support/matrix receipt SHA256:
+a1dc7d53417f879d3311d55eae86639862d1437751fb90219671c4885417a6be
+
+The v1 no-fit attempt was stopped before completion for the documented empty-
+disable verifier fix. V2 reran ALL checks; no partial audit reuse. No scientific
+parameters, targets, windows or budgets changed.40focused tests pass, plus3
+fixed whole-method decision boundary tests (43 total across these checks).
+
+Full actual044 classifier/INNER grid/outer annotation/benchmark integrity is
+NOT established by this preflight receipt. Those checks must run after fitting.
+All041 calls remain immutable. No production/default/deployment claim.
