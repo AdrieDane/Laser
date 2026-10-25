@@ -9,6 +9,7 @@ from annotator.composition_ranges import DEFAULT_COMPOSITION_RANGE_SETTINGS
 from matlab_annotation.coherent_retention import (
     coherent_retention_predictions,
     composition_block,
+    alignment_doublebonds,
     retention_family,
 )
 
@@ -125,6 +126,39 @@ def test_rp_isomer_branches_keep_relative_rt_and_np_does_not_inherit_rp_grouping
         "2-acyl LPC", "NP_Pos"
     )
     assert retention_family("PC[O]", "RP_Pos") == retention_family("PC[P]", "RP_Pos")
+
+
+def test_formula_equivalent_ether_plasmalogen_hypotheses_hold_out_each_others_peaks(
+    monkeypatch,
+):
+    args = inputs(monkeypatch, classes=("PC[O]", "PC[P]"))
+    plasmalogen = args[0]["class"].eq("PC[P]")
+    # P(C:D) is isobaric with O(C:D+1), including across the holdout boundary.
+    args[0].loc[plasmalogen, "ref_mz"] = (
+        500
+        + 3 * args[0].loc[plasmalogen, "carbon"]
+        + 0.123 * (args[0].loc[plasmalogen, "db"] + 1)
+    )
+    args[1].loc[plasmalogen, "mz"] = args[0].loc[plasmalogen, "ref_mz"] * (1 + 0.2e-6)
+    effective = [
+        alignment_doublebonds(c, d, "RP_Pos")
+        for c, d in args[0][["class", "db"]].itertuples(index=False, name=None)
+    ]
+    blocks = composition_block(args[0].carbon, effective)
+    before, _ = call(args)
+    own = args[0].index[
+        args[0]["class"].eq("PC[O]") & args[0].carbon.eq(30) & args[0].db.eq(1)
+    ][0]
+    alternate = args[0].index[plasmalogen & args[0].carbon.eq(30) & args[0].db.eq(0)][0]
+    assert blocks[own] == blocks[alternate]
+    assert args[0].loc[own, "ref_mz"] == args[0].loc[alternate, "ref_mz"]
+    args[1].loc[blocks == blocks[own], "rt"] += 50 / 60
+    after, _ = call(args)
+    pd.testing.assert_frame_equal(
+        before.loc[blocks == blocks[own]],
+        after.loc[blocks == blocks[own]],
+        check_exact=True,
+    )
 
 
 def test_odd_carbon_prediction_is_allowed_but_odd_anchors_do_not_vote(monkeypatch):

@@ -13,8 +13,11 @@ validated analytical limits. All normal composition targets, including odd
 carbon, remain eligible for predictions/possible later annotation.
 
 Every target holds out its entire deterministic composition block
-(carbon//2 + 3*doublebonds) % 5 from raw-query alignment anchors, across ALL
-branches of its RT family. Its own peak/CDB cannot align itself. These five
+(carbon//2 + 3*total_doublebonds) % 5 from raw-query alignment anchors, across ALL
+branches of its RT family. For RP plasmalogens total_doublebonds=writtenDB+1:
+O(C:D) and P(C:D-1), not O(C:D) and P(C:D), share a formula and must be held out
+TOGETHER. NP exact classes retain their provided composition convention.
+Its own peak/formula cannot align itself through an alternate label. These five
 chemical-coordinate partitions are NOT independent projects or biological CV.
 Same shift for RP O/P or 1/2-acyl family branches in the same block; NP uses
 exact canonical classes, not the RP grouping. Base trained relative RTs are
@@ -33,6 +36,12 @@ evaluation; assert chemical-name aliases give the same numeric prediction.
 Evaluate all mapped endogenous manual RTs excluding X4, including unavailable
 chemical lookups, and prove measured RTs equal original raw features. Report
 gained AND lost RT-window proximity. This is NOT annotation accuracy or gains.
+
+Engineering revision BEFORE any manual evaluation: v1 completed all33blind
+numeric predictions; source review then caught the O/P holdout issue above.
+All v1 artifacts and source preserved; no v1 manual table was opened, evaluated
+or used to select settings. v2 corrects ONLY this grouping, unchanged thresholds,
+and reruns all33blind predictions before any evaluation. No annotations changed.
 
 Why change direction
 Repeated classification/threshold changes are not giving a substantial gain.

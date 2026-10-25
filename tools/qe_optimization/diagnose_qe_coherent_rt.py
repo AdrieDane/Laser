@@ -18,7 +18,7 @@ from frozen_resources import configure_frozen_resources
 from run_qe_standard_mode_experiment import sha, dump
 
 QE = WORKSPACE / "outputs/qe_optimization_20261022"
-OUT = QE / "coherent_RT_diagnostic_v1"
+OUT = QE / "coherent_RT_diagnostic_v2"
 BASE = QE / "baseline"
 REFS = QE / "nested_reference_development_v2"
 STD = QE / "standard_context_preparation_v1"
@@ -28,6 +28,7 @@ OBS = QE / "rt_atlas_development/observations.pkl"
 
 def check_binding(protocol):
     assert sha(Path(__file__)) == protocol["runner_sha256"]
+    assert (OUT / "runner_source.py").read_bytes() == Path(__file__).read_bytes()
     for path, digest in protocol["input_sha256"].items():
         assert sha(Path(path)) == digest, path
     for path, digest in protocol["source_sha256"].items():
@@ -71,7 +72,8 @@ def initialize():
             OUT / "protocol.json",
             dict(
                 purpose="Numeric RT diagnostic ONLY. No annotation changes, candidates, classifier fits, cutoffs or exports. RT proximity is NOT identification accuracy/FDR. Saved blind raw-input payloads with prior development exposure,not untouched validation.",
-                policy="Frozen 5 OTHER-group references; exact expected exclusion scopes/fingerprints; independent mask-matched spike measurements. Top intensity decile raw features,even-C anchors ONLY,native ions,<1.5ppm,maximum90s,bw2s,>=6features/compositions,>=3Ccounts/2DBcounts/3neighborlinks,peakratio>=1.25. Coherent offsets leave out each target's ENTIRE chemical-coordinate block (C//2+3DB)%5 across every isomer branch. RPonly explicit isomer families;NPexactclasses. Preserve base branch RT differences. Training>=3projects/MAD<=5s,trained domain+existingrange envelope. Spike mass5.01ppm/FIDs protected. Unsupported remainsbaseline;shift only near supporting CDB domain. NOquerycuration used to construct/choose offsets. These fixed settings are developmental proposals,not analytical validation.",
+                policy="Frozen 5 OTHER-group references; exact expected exclusion scopes/fingerprints; independent mask-matched spike measurements. Top intensity decile raw features,even-C anchors ONLY,native ions,<1.5ppm,maximum90s,bw2s,>=6features/compositions,>=3Ccounts/2DBcounts/3neighborlinks,peakratio>=1.25. Coherent offsets leave out each target's ENTIRE formula-equivalent chemical-coordinate block (C//2+3totalDB)%5 across every isomer branch. RP P-class totalDB=writtenDB+1,so O(C:D) and P(C:D-1) are held out TOGETHER. NPexactclasses retain their own composition convention. RPonly explicit isomer families. Preserve base branch RT differences. Training>=3projects/MAD<=5s,trained domain+existingrange envelope. Spike mass5.01ppm/FIDs protected. Unsupported remainsbaseline;shift only near supporting CDB domain. NOquerycuration used to construct/choose offsets. These fixed settings are developmental proposals,not analytical validation.",
+                supersedes="v1 completed33blind numeric predictions but NEVER opened manual evaluation. Source review caught O/P writtenDB-versus-formula holdout issue BEFORE evaluation. Allv1artifacts/source preserved,not claimed as accuracy or used to tune settings. v2 corrects formula holdout grouping only;all other numeric thresholds remain fixed.",
                 stages="All33/132blind prediction artifacts AND fingerprint receipt saved before any manual observation workbook/table is opened. Evaluate only frozen class/CDB/ion lookup. No tuning inside this pilot.",
                 annotation_changes=False,
                 classifier_fits=0,
@@ -89,6 +91,7 @@ def initialize():
                 input_sha256={str(p): sha(p) for p in inputs},
             ),
         )
+        shutil.copy2(Path(__file__), OUT / "runner_source.py")
     protocol = json.loads((OUT / "protocol.json").read_text())
     check_binding(protocol)
     return protocol, projects, folds

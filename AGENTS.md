@@ -2,6 +2,17 @@
 
 ## CURRENT039 COMPLETE / NUMERICAL RT PROTOTYPE — 25 October 2026
 
+LATEST NUMERICENGINEERING: coherent_RT_diagnostic_v1 ALL33blind predictions
+completed(session83777DONE0),NEVERmanual-evaluated. Source review caught RP
+O(C:D)/P(C:D-1) formulaequivalents mustshareholdout,not samewrittenDB.
+v1source/allartifacts preserved;NOTaccuracy/tuning. v2 uses RP P writtenDB+1
+ONLYforholdoutblock,doesNOTchangeprintedcomposition/trainedRTaxis/NPconvention.
+16focusedtestsPASS,fullsuite rerunning. New diagnose_qe_coherent_rt.py OUTv2;
+separateALL33blindprediction/evaluation gates. verify_qe_coherent_rt_pilot.py
+implements scratchALL33/132exactreplay plusfreshindependent spike measurements.
+Needv2allpredictions BEFOREmanualeval;no040annotations/classifierfits/defaults.
+19softwaretool testsPASS. Source/plan/checkpoint push thenv2numericalpilot.
+
 039 COMPLETE,REJECTED,masterintegrity ALLPASS. Full132chat before/after table
 and separate wrong-mode totals ALREADYDELIVERED;doNOTrepeat.029 remains retained:
 82729/92100correct=89.825190%,9268extras,1604wrong;43/86prioritycellsbelow90.

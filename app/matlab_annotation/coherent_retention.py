@@ -22,6 +22,19 @@ def composition_block(carbon, db):
     return (np.asarray(carbon, dtype=int) // 2 + 3 * np.asarray(db, dtype=int)) % 5
 
 
+def alignment_doublebonds(lipid_class, db, stream):
+    """O-C:D and P-C:(D-1) share a formula, not O-C:D and P-C:D.
+
+    This ONLY groups holdouts; never changes reported C/DB or trained RT axes.
+    NP unresolved classes retain their own provided composition convention.
+    """
+    cls = canonical_lipid_class(lipid_class)
+    return int(db) + int(
+        stream.startswith("RP_")
+        and cls in {"PC[P]", "PE[P]", "LPC[P]", "LPE[P]", "DG[P]"}
+    )
+
+
 def retention_family(lipid_class, stream):
     """Share only explicit RP isomer families; NP retains its own exact classes."""
     cls = canonical_lipid_class(lipid_class)
@@ -69,7 +82,7 @@ def coherent_retention_predictions(
     vote for a shared shift. These restrictions apply ONLY to anchors, not the
     prediction/annotation universe. Native ions, <1.5ppm, ±90s, >=3 training
     projects and <=5s training MAD; actual spike masses/FIDs excluded. For EACH
-    target, its entire C/DB block across ALL branches in the family is excluded
+    target, its entire formula-equivalent C/DB block across ALL branches is excluded
     from raw-query anchor construction. Thus its own peak cannot align itself.
     RP isomer branches receive the SAME offset for a given chemical block;
     their trained/base relative RT differences are not collapsed or reversed.
@@ -161,8 +174,12 @@ def coherent_retention_predictions(
     finite &= numeric.carbon.eq(numeric.carbon.round()) & numeric.db.eq(
         numeric.db.round()
     )
+    effective_db = [
+        alignment_doublebonds(c, d, stream)
+        for c, d in zip(data.loc[finite, "class"], numeric.loc[finite, "db"])
+    ]
     data.loc[finite, "_block"] = composition_block(
-        numeric.loc[finite, "carbon"], numeric.loc[finite, "db"]
+        numeric.loc[finite, "carbon"], effective_db
     )
     eligible = finite & base.atlas_in_domain & base.atlas_training_cohorts.ge(3)
     eligible &= base.atlas_training_mad_seconds.le(5) & base.atlas_rt_seconds.notna()
