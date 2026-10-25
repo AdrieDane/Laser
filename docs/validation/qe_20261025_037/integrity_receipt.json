@@ -1,0 +1,23 @@
+{
+  "all_passed": true,
+  "annotation_experiment": "037",
+  "integrity_tool_sha256": "3133b69cdb3eb6525e7e90d73b0d922e106ae7c526d845fa873e916148152c0c",
+  "source_file_hash_checks": 308,
+  "input_file_hash_checks": 537,
+  "new_parent_fits": 25,
+  "new_mode_classifiers": 100,
+  "all_training_query_scope_label_weight_reconstructions": 528,
+  "inner_score_reproductions": 132,
+  "full_training_grid_and_cutoff_reproductions": 5,
+  "heldout_score_reproductions": 33,
+  "full005standard027mass_pipeline_reproductions": 132,
+  "raw_coordinate_stream_checks": 132,
+  "accepted_candidate_export_parity_checks": 33,
+  "identical_manual_reference_hash_checks": 33,
+  "raw_coordinate_rtol": 1.7763568394002505e-15,
+  "raw_coordinate_atol": 0,
+  "preexisting_roundoff_cells": 198,
+  "standard_alias_demotions": 1,
+  "production_enabled": false,
+  "note": "Engineering integrity,NOTuntouched validation/FDR. EXACT029physicalrows/predictors/labels;ONLYfixedquarterweight uncertain cross-mode negativeTRAININGevidence,equalprojecttotals. All4modeexperts freshlyfitted withquery/outer/innerexcludedreferences. Calibrationtruthunchanged,same009/005/027. OnlyX4targetexcluded."
+}

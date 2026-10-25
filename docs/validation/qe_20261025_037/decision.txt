@@ -1,0 +1,71 @@
+Experiment 037 rejected. Retain the whole version 029 as the research reference.
+No production defaults changed. The 90% per-class, per-mode goal is not met.
+
+What changed
+Only training weights: a negative example received quarter weight when its
+class was absent from this training dataset's manual mode, but present in
+another manual mode, provided it contradicted neither a curated identity nor
+a mapped curated peak. All original labels, candidates and predictors stayed
+unchanged. Project totals were equalized within each mode. All four mode
+classifiers were freshly fitted at 180 rounds: 25 parents, 100 classifiers.
+The original 009 calibration, 005 standard handling and fixed 027 mass stage
+were retained. No rejected experiment's class/mode winners were spliced in.
+
+Results: version 029 -> 037
+All 33 active datasets, 132 dataset/mode combinations, 30 project groups.
+Target scope: 92,100 manual entries, excluding only the user's X4 class (2 rows).
+All 28 unresolved manual-feature mappings remain in that denominator.
+Correct means the same lipid, adduct, mode AND original feature.
+
+Correct: 82,729 -> 82,629 (-100); 89.8251900109% -> 89.7166123779%.
+Unconfirmed extras: 9,268 -> 9,421 (+153).
+Different-original-peak choices: 1,604 -> 1,574 (-30).
+
+Mode         Correct before -> after / manual   Extras before -> after  Wrong peaks
+RP positive  40648 -> 40435 / 45206              3391 -> 3269           932 -> 908
+RP negative  12088 -> 12166 / 13600              1995 -> 2069           408 -> 416
+NP positive  17637 -> 17576 / 19380              1944 -> 1964           163 -> 148
+NP negative  12356 -> 12452 / 13914              1938 -> 2119           101 -> 102
+
+The 86 better-represented class/mode combinations (90,871 manual entries):
+Correct 81,896 -> 81,780 (-116); below 90%: 43 -> 42.
+Mean class/mode percentage, capped at 90%: 83.8606409894 -> 84.6756231624.
+The 36 sparse target cells remain visible: 833 -> 849 / 1,229 manual entries.
+All target class/mode cells below 90%: 76 -> 75 out of 122.
+
+Interpretation
+Several weak classes improved: BMP gained 86 correct matches in NP negative
+and 81 in NP positive. But their extras rose by 177 and 64 respectively.
+There were material losses elsewhere, including NP-positive PC (-77),
+RP-positive PC (-34), DG (-32), TG-O (-28), DG-O (-24) and TG (-22).
+RP-positive PE fell from 1953/2209 (88.4%) to 1943/2209 (88.0%).
+These gains do not outweigh the overall correct-match loss and extra calls.
+The predeclared total-correct and extras guards fail, so the WHOLE experiment
+is rejected. Its improved individual classes are not adopted separately.
+
+Integrity: all checks passed
+308 frozen-source and 537 input hashes; all 25 models / 100 fresh experts;
+528 training-query label, scope, independent review-flag and weight checks;
+132 inner scores, five complete calibration grids/cutoff choices, 33 outer
+scores and 132 full final-pipeline/original-coordinate reproductions;
+33 accepted-candidate/export parity checks and identical manual-reference hashes.
+198 pre-existing floating-point round-off cells were within the unchanged
+8-epsilon relative / zero absolute tolerance; one standard alias was demoted
+by the existing standard stage. These are engineering checks, not accuracy gains.
+
+The complete 132-row target-scope table with percent (correct/manual), extras
+before/after and separate wrong-peak totals was delivered in chat BEFORE the
+next experiment. Actual changes against 029 are in versus_029/. Top-level
+tables compare the original baseline for historical continuity (92,102 rows).
+Removing X4 from the companion target scope is not an improvement.
+
+Limitations and next step
+These are grouped held-out saved-input research replays, NOT fresh end-to-end
+production runs or untouched external validation. Prior development exposure
+and inherited automatic/vendor references remain. Manual-absent calls are
+unconfirmed extras, not established false positives or an analytical FDR.
+
+Next: test the separately prepared conditional peak-selection approach while
+keeping 029's whole accepted lipid/adduct/standard identity list fixed. It
+must preserve annotation and extras counts exactly and independently prove
+better original-peak agreement across all 33 datasets. No deployment claim.

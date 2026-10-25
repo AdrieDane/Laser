@@ -21,6 +21,21 @@ Post037driver43924 waitingALL33outputs theneval/reports/FULLverify. DoNOTduplica
 annotationaccuracy. Sourcecurrentconditionalmodel/pair changes UNUSEDby037,
 andall037hash-bound criticalsources unchanged. No038annotationfits yet.
 
+SUPERSEDING037STATUS:COMPLETE,REJECTED,FULL132user-facing table+wrongmode totals
+DELIVERED.82729 ->82629/92100 (-100correct),89.8251900 ->89.7166124%;extras
+9268 ->9421(+153);wrong1604 ->1574(-30). Priority81896 ->81780/90871(-116),
+43 ->42below90/86,capped90mean83.8606410 ->84.6756232. Sparse833 ->849/1229;
+alltarget76 ->75below90/122. BMPNPneg+86correct/+177extras,NPpos+81/+64,while
+RPposPC/DG/TGandNPposPClose. DoNOTspliceBMPoutputs.029retained,defaultsunchanged.
+037masterintegrity ALLPASS:308source/537inputs,25parents/100freshclassifiers,
+528ALLtraininglabels/scopes/independentflags/weights,132INNER+5fullgrids/cuts,
+33outer/132fullpipelines/rawcoords,33acceptedcandidate-export/goldhash checks;
+198preexistingroundoff,1STDaliasdemotion. All037sessions35714/43924DONEexit0.
+Publicdecision docs/validation/qe_20261025_037/decision.txt;publishaggregates/push
+next. No needredo037. Nextactual038is identity-preserving conditionalpeak
+refinement fromWHOLE029;pairednumericalprototype ready,butannotationmovehelper,
+runner/calibrator/verifier stillneedimplementation. NO038fits yet.
+
 Userrevokedpause. Continueautonomous optimization;029retained,defaults unchanged.
 New verify_qe_empirical_preparation_resumable.py wraps UNCHANGEDoriginalchecker
 functions;FULL33/363reconstruction restarted (NOoldstdout/partialreuse). It saves
