@@ -1,0 +1,5 @@
+stream,assessed_original_RTs,empirical_reference_available,predictions_available_before,predictions_available_after,within_10_seconds_before,within_10_seconds_after,newly_within_10_seconds,no_longer_within_10_seconds,median_absolute_RT_error_before,median_absolute_RT_error_after
+NP_Neg,13506,11511,13433,13433,12582,12577,16,21,0.9686698285421471,0.9035787889265521
+NP_Pos,19023,17361,18997,18997,18418,18377,33,74,1.0867868509390064,0.866684991062499
+RP_Neg,13362,11622,13332,13332,12486,12519,214,181,2.869815003979568,1.6207037230212222
+RP_Pos,44722,41284,44631,44631,42741,42762,393,372,2.1012464031956597,1.4048732616175812

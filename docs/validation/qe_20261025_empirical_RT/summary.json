@@ -1,0 +1,16 @@
+{
+  "annotation_changes": false,
+  "classifier_fits": 0,
+  "numerical_reference_fits": 5,
+  "assessed_original_RTs": 90613,
+  "datasets": 33,
+  "dataset_modes": 132,
+  "empirical_reference_available": 81778,
+  "within_10_seconds_before": 86227,
+  "within_10_seconds_after": 86235,
+  "newly_within_10_seconds": 656,
+  "no_longer_within_10_seconds": 648,
+  "source_hash_checks": 300,
+  "input_hash_checks": 44,
+  "note": "Numerical RT diagnostic ONLY; no annotation changes, classifier fits, candidates or acceptance. NOT annotation performance,90%coverage or deployment validation. Use mapped endogenous reference observations only as numerical RT evaluation targets. X4excluded by user;unresolved rows cannot have an assessed originalRT,so absent here but NOT removed from full annotation benchmark denominators. Known prior development exposure;not untouched validation."
+}

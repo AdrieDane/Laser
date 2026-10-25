@@ -1,0 +1,54 @@
+Numerical RT diagnostic ONLY — no annotation behaviour changed
+25October2026. Retained annotation reference remains029.
+
+All33datasets/132modes,30projectgroups. Fit5outer-group-excluded numerical
+references before evaluating held-out compositions. Exact-class/CDB residuals
+against the parent polynomial,project-normalized with the parent's bounded
+class-balanced affine model. One value per project/class/CDB;>=3projects,
+MAD<=5seconds,absmedian<=30seconds,shrink n/(n+3). Recompute automatic-anchor
+alignment under the corrected reference; do not simply add a correction twice.
+Exact ether/positional classes remain separate. No query curation in fitting
+or automatic alignment. Known curated compositions are evaluation locations
+ONLY,not runtime target identities or a way of adding missing chemicals.
+
+90613mapped endogenous original RTs assessed (X4excluded);28unresolved RTs
+cannot be assessed here but REMAIN in full annotation denominators. Internal
+standards are not endogenous RT targets.90615mapped observations includingX4
+were separately compared with their actual original-feature RTs: all BITEXACT,
+zero discrepancies at any tolerance. Model source/input hashes are private;
+300source/44input hashes frozen before fitting.749app tests passed,8skipped,
+83subtests. No classifier fit, candidates, lipid calls or exports changed.
+
+Results
+81778assessed entries have an exact-composition empirical correction. RTs
+within10seconds:86227 ->86235.656newly within10;648no longer within10.
+Median absolute RTerrors (seconds):
+RP_Pos2.101246 ->1.404873;RP_Neg2.869815 ->1.620704;
+NP_Pos1.086787 ->0.866685;NP_Neg0.968670 ->0.903579.
+Full dataset/mode/class numerical tables accompany this note. These numbers
+are NOT correct-annotation percentages, accepted gains, extras estimates or
+an attainable candidate/annotation ceiling. The diagnostic isolates atlas RT
+prediction,not the complete fitted-reference/atlas candidate union,strict
+mass/adduct/range guards,feature competition or score acceptance.
+
+Interpretation / prospective experiment036
+Better typical RTprecision justifies a LABEL-FREE physical-candidate audit and
+then a full nested annotation experiment; near-zero net10second count does not
+justify replacing the old candidate pool. Preserve ALL029candidate identities,
+physical coordinates and old reference/predictor values except recomputed
+competition context. Append ONLY genuinely new original-feature pairs at the
+SAME rawabsppm<3 / RT<=10s around the numerical prediction. Same native+existing
+envelope chemistry/adducts/ranges,protect actual spikes and measuredSTD FIDs.
+Keep both old and new RTerror evidence,so references can be assessed jointly.
+The648RTs leaving the new10second window must NOT remove old candidates.
+
+Build ALL25properly query/outer/inner-excluded empirical references and363query
+tables;5singlefold references must match this numerical diagnostic exactly.
+New reference scope/hash metadata must be checked before fitting/prediction.
+Fresh ALL4modeexperts,100classifiers in25parents;old-labelled pairs preserved,
+newlabels ONLYafterlabel-free generation and permitted-project checks. Same009
+mode calibration/.05ambiguity/9.5%endo-INNERbudget,005STD/fixed027massstage.
+No034classcuts/035familymodels/rejected033RTpools or outer-winner splice.
+Full33/132curation comparison,complete user-facing table,original-feature and
+scope integrity,then retain/reject WHOLEalgorithm. No default adoption or
+deployment claim from numerical RTprecision. Prior development exposure remains.

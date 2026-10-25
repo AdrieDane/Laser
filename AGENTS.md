@@ -2,6 +2,20 @@
 
 ## Current work status — RESUMED by user,25October2026
 
+NEXT036implementation (NO036annotation fits yet): empirical composition RTunion
+fromWHOLE029. Numeric-only pilot empirical_RT_reference_diagnostic_v1 complete:
+33/132,90613mappedendoRTsexclX4;81778exact-CDBcorrections. Within10s86227 ->86235;
+656newlywithin,648leave. MedianRPpos2.101246 ->1.404873s,RPneg2.869815 ->1.620704s;
+NPpos1.086787 ->.866685,NPneg.968670 ->.903579. NOTannotationaccuracy/gains.
+90615mapped observation RTs independently checked BITEXACT againstrawfeatureRT.
+749app tests passed/8skipped/83subtests. app/matlab_annotation/empirical_retention.py
+pure prototype+5tests;diagnose_qe_empirical_rt.py freezes5numericalrefs before
+queryevaluation. All input/source/protocol filesPRIVATE;source+aggregates onlyGit.
+Next build25nestedempiricalrefs,363oldpool-preservingstrict3ppm/10scandidate
+tables+8numericdescriptors;freshALL4experts/OOFmodecalibration,005/027unchanged.
+DoNOTremoveold648candidateoptions orborrowrejected033-035outputs. NewRTreference
+scopeguardrequired. Implementationplan:docs/validation/next_empirical_RT_experiment.txt.
+
 035COMPLETE,REJECTED. Full132TARGETscope chat table+wrongmode totals DELIVERED.
 029retained.82729 ->82535/92100 (-194correct),89.8251900 ->89.6145494%;extras
 9268 ->9167(-101);wrong1604 ->1619(+15). Priority81896 ->81706/90871(-190),

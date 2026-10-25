@@ -1,0 +1,50 @@
+Prospective036: empirical composition RT union — NOannotation performance yet
+25October2026. Supersedes old next_common_RT_experiment.txt/033plan.
+033,034,035COMPLETE,REJECTED; ALLfull132chat tables+integrity delivered.
+RetainWHOLE029:82729/92100target,9268extras,1604wrong. No appdefault changes.
+
+Numerical-only pilot completed: see qe_20261025_empirical_RT/interpretation.txt.
+749app tests/8skipped/83subtests. Predictive RTmedians improve all4modes;656
+RTs newlywithin10,648leave. NOT annotation gains. Preserve old candidatepool
+and old RTdescriptors; append strict3ppm/10s original-feature proposals with8
+newnumeric empiricalRTdescriptors. Re-enrich competition; original coordinates
+and identities immutable. No posthoc model/class/mode winner selection.
+
+Prototype app/matlab_annotation/empirical_retention.py is NUMERICAL ONLY;
+fit_empirical_retention(data,atlas,training_groups,excluded_groups) has explicit
+parent atlas training_scope_sha256 verification. Other-project residual model:
+exactclass/CDB,one vote/project,>=3projects,MAD<=5s,absmedian<=30s,shrinkn/(n+3).
+predict_aligned_empirical_retention recomputes blind automatic global/local
+anchors with corrected reference; no manual flags or target self-vote.
+Five diagnostic singlefold JSONreferences PRIVATE in
+empirical_RT_reference_diagnostic_v1; no classifier fits/annotation calls.
+
+Next implementation
+1.Build all25exclusion-mask empirical refs from SAME90643original observation
+table with mapped-onlytraining inputs. Filtertrainingdatasets BEFOREfit; query,
+outer/inner groups excluded. Verify five singlefold models EXACTdiagnostic.
+2.Newcandidate module,not edits to frozen033standard_aligned_candidates. Native
+targets+old envelope only,stable name/adductkeys;no rarecatalogue/matrixlimits.
+Numeric8features acrossold+newqueries: empirical signed/absRTerror, exact-CDB
+offset/trainingprojects/MAD, changefromoldalignedRT, exactreferenceavailable,
+predictionavailable. Unsupported unknownsNaN,availability0,notinvented evidence.
+3.Newpreparer based on033cachedpreparer's preservation/enrichment pattern but
+starts standard_context_preparation_v1,NOT033expandedpools. Old measuredSTD
+context15reproduced from matchingquerymask;SPIKEprotection unchanged. Empirical
+RT uses blindBASELINE automatic anchors as in numerical diagnostic,not scored
+029accepted calls or savedmanualRTfit. Whole363label-free tables required.
+4.Add empirical_reference_training_groups/excluded_groups/hash guard for new
+q_empirical_ predictors (sameauthorized endogenous groups as parent references).
+Keep common/standard guards and forbidden supervisedpredictors. Testleakage.
+5.FreshALL4modeexperts180rounds;25parents/100freshclassifiers. Oldpairs/labels
+preserved; newphysicalpair labels attachedONLYpermittedtraining/calibration
+groups AFTERgeneration. Same009modecutobjective/.05margin/9.5%budget;005STDand
+fixed027massstage. No rejected034classcuts/035familyscorers/033STD-RTdescriptors.
+6.Fullall33eval with manual_reference_v2 (NOTbaseline/evaluation_v2argument),
+versus029reports,X4targetcompanion,prioritycompanion,full132userfacingtable,
+allsource/input/queryscope/raw-coordinate/score/preparation/parameterintegrity.
+Onlythen retain/reject wholealgorithm. No productiondefaults/deploymentexport.
+
+User wants autonomouscycles. No new approval question needed. Never describe
+this collection as untouched validation/FDR. Do not upload raw profiles,FIDs,
+crosswalks,fitted reference/classifier weights. Aggregate reports/source only.
