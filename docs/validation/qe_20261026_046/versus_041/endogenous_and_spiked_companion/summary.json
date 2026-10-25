@@ -1,0 +1,37 @@
+{
+  "datasets": 33,
+  "dataset_modes": 132,
+  "scopes": {
+    "endogenous": {
+      "manual_entries": 90644,
+      "correct_before": 81365,
+      "correct_percent_before": 89.7632496359384,
+      "extras_before": 8549,
+      "different_feature_before": 1577,
+      "unresolved_manual_before": 28,
+      "correct_after": 81710,
+      "correct_percent_after": 90.14385949428534,
+      "extras_after": 8974,
+      "different_feature_after": 1580,
+      "unresolved_manual_after": 28
+    },
+    "spiked_references": {
+      "manual_entries": 1456,
+      "correct_before": 1375,
+      "correct_percent_before": 94.43681318681318,
+      "extras_before": 721,
+      "different_feature_before": 27,
+      "unresolved_manual_before": 0,
+      "correct_after": 1375,
+      "correct_percent_after": 94.43681318681318,
+      "extras_after": 721,
+      "different_feature_after": 27,
+      "unresolved_manual_after": 0
+    }
+  },
+  "primary_historical_manual_entries": 92100,
+  "excluded_classes": [
+    "X4"
+  ],
+  "note": "Companion ONLY: endogenous90644 vs spiked1456. Historicalprimary92100 unchanged. RemovingstandardsNOTannotationgain. Samev2manualreferences/unresolvedrows retained. Extrasareunconfirmed,notFP/FDR. Both endpoints use unique-pair/duplicate semantics of originalvalidator. Previouslyexposedgroupeddevelopment,notdeployment/externalvalidation."
+}

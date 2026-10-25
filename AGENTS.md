@@ -1,5 +1,67 @@
 # Experiment reporting policy
 
+## CURRENT046 COMPLETE / REJECTED WHOLE — optimization ACTIVE
+
+Producer19995DONE0,post80881DONE0,fullmasterALLPASS. Fixeddecision71665DONE0:
+REJECT345newTP/425newE/3newW.331EotherNPcuratedcomposition,94unsupported;ALL425
+stillprimary. ALLotherguardspass. RetainWHOLE041,notoutersplice/budgetrelaxation.
+3350inputbindings/895artifacts;planned=finalcheckerSHAfed3a6265a39137daa8e7525eeecd2b748970c8161d7e10a98f529e27f90bd5a.
+All25/528/132/5fullgrids/33outer/rawquant/oldcalls/freshgold checked. Nojobsremain.
+FULL132CHAT+wrongmodetotals ALREADYDELIVERED,doNOTrepeat. Full66BMP CSV now
+ready forlink/publication docs/validation/qe_20261026_046,endoSTD companions.
+Publish/commit/push46closure then47prospectiveplan/implementation. All046/044
+sourcesfrozen;defaultsunchanged. 43/86prioritybelow90;GoalNOTmet,keepworking.
+
+## CURRENT046 all33 benchmark COMPLETE / full132CHAT DELIVERED / master RUNNING
+
+046producer19995DONE0;post80881RUNNING /tmp/laser_046_post.log. All33eval/primary/
+priority/endogenous+STD reportsDONE. FULL132targetscopeCHAT %n/N+TOTALextras and
+separatewrongmodetotals DELIVERED; doNOTrepeat. Complete66BMP link stillpending
+fixedtradeoffreport aftermasterPASS. No047actual beforefullclosure/publication.
+
+Actual046vsWHOLE041:82740 ->83085/92100=89.83713355 ->90.21172638%,+345;
+E9270 ->9695(+425),W1604 ->1607(+3). Alloldcallsimmutable,otherclasses/RP unchanged.
+BMP NPneg146 ->265/520=28.1 ->51.0%,E528 ->693(+165),W0 ->1;
+BMP NPpos270 ->496/622=43.4 ->79.7%,E227 ->487(+260),W1 ->3.
+43/86priority,76/122alltarget class/modes stillbelow90. Global90.21 NOTgoalmet.
+Endogenous81365 ->81710/90644=89.76325 ->90.14386%,E8549 ->8974,W1577 ->1580.
+Spikesunchanged1375/1456,E721,W27. All28unresolvedremainprimarydenominator.
+FixedWHOLEguard FAILS Enew425>345newTP; userinformednotadopting. Needcomplete
+master/fixedreport BEFOREcloseddecision/publication. All25parent/528traininguse
+checks ALREADYfreshPASS. Full132INNER/13directcuts/cache/newscalaradmission/
+five169grids and33outer/oldcells/fullquant/freshgold currentlyrunning.
+Frozen046sources/checker plannedSHAfed3a6265a39137daa8e7525eeecd2b748970c8161d7e10a98f529e27f90bd5a.
+Whole041 remainsretained/defaultsunchanged. Do notloosenlimits orspliceoutermodes.
+
+NEXT47 IDEAS ONLY,not implemented/selected: fourof5INNER046 positivecutchoices
+hit .5minimum; original native select_operating_candidates permits .05. Could
+extend prospectively accepted INNER score-domain below arbitrary.5 boundary
+while SAME163fields/50models/nativephysics/.05ambiguity/alloldcalls/finalguard.
+Needs NEWpureselector with AST-exact nativephysics except lowercut validation,
+new22level/484grid helper,preflight/fullchecker; NEVERfake-score-rescale/clip.
+AllnewchoicesfromauthorizedINNERonly/all5beforeouter. This is not evidence of
+futuregains,notdeclaredmethodyet. Otherlongerterm physics: existing027 fullcoarse
+mass-corrected pools vs restrictive strongAUTO-othermode gate; current163strict
+raw3ppm excludes those newpairs. Oldmassoffsetpilotalreadyexists,027actual+23TP/
+5E/1W retained; donotclaimmissingmasscalibration or475potential=475gains.
+PC-P immutable-coreceiling1594/1830<90,needsRT/mass discovery oroldcallchanges.
+Old030BMP-onlyspecialist and026classweights alreadyrejected;donotreinventblindly.
+GoalACTIVE,doNOTendmerelycheckpoint. CFMmainonlypush.
+
+## CURRENT046 actual producer COMPLETE / postprocess RUNNING — optimization ACTIVE
+
+Source+plan+score-free diagnostic pushed CFMmain5e69c51. Actual046producer19995
+DONE0: all5newINNERjointgrids BEFORE all33newouter outputs. SAME50models,
+newphysical-onlyadmission,old041callsimmutable. All3350input bindings frozen.
+Planned full checker SHA fed3a6265a39137daa8e7525eeecd2b748970c8161d7e10a98f529e27f90bd5a.
+postprocess_qe_bmp_continuous.py now RUNNING /tmp/laser_046_post.log (session
+returned to activechat). All33evaluation/primary/priority/endoSTD thenfullmaster
+still pending. Do not infer performance from number of newcalls. Need complete
+master then fixed report_qe_bmp_continuous_tradeoff.py manually;FULL132CHAT
+%n/N+TOTALextras,wrongtotals,66BMP link/endoSTD/wholedecision BEFORE047actual.
+Whole041 remains retained pendingwhole decision;defaults unchanged. DoNOTedit
+bound046/044sources, relaxguards, spliceouterwinners orstopmerelycheckpoint.
+
 ## CURRENT046 no-cut preflight COMPLETE — optimization ACTIVE
 
 Session67799 DONE0. BMP_continuous_admission_preflight_v1 receipt ALLPASS:

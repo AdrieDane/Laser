@@ -1,0 +1,245 @@
+{
+  "all_passed": true,
+  "reused_parents": 25,
+  "reused_experts": 50,
+  "training_query_uses": 528,
+  "inner_query_cases": 132,
+  "datasets": 33,
+  "dataset_mode_cases": 132,
+  "new_classifier_fits": 0,
+  "planned_verifier_sha256": "fed3a6265a39137daa8e7525eeecd2b748970c8161d7e10a98f529e27f90bd5a",
+  "quantitative_checks": [
+    {
+      "legacy_flags": 1904,
+      "available_measurement_cells": 8915,
+      "inherited_empty_old_measurement_cells": 50233,
+      "preexisting_roundoff_cells": 12,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 1389,
+      "available_measurement_cells": 6430,
+      "inherited_empty_old_measurement_cells": 33851,
+      "preexisting_roundoff_cells": 2,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 2494,
+      "available_measurement_cells": 14994,
+      "inherited_empty_old_measurement_cells": 142300,
+      "preexisting_roundoff_cells": 4,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3705,
+      "available_measurement_cells": 18979,
+      "inherited_empty_old_measurement_cells": 86777,
+      "preexisting_roundoff_cells": 3,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 2267,
+      "available_measurement_cells": 14950,
+      "inherited_empty_old_measurement_cells": 93334,
+      "preexisting_roundoff_cells": 5,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3011,
+      "available_measurement_cells": 15654,
+      "inherited_empty_old_measurement_cells": 207234,
+      "preexisting_roundoff_cells": 8,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 2331,
+      "available_measurement_cells": 10532,
+      "inherited_empty_old_measurement_cells": 54932,
+      "preexisting_roundoff_cells": 6,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3016,
+      "available_measurement_cells": 13276,
+      "inherited_empty_old_measurement_cells": 80282,
+      "preexisting_roundoff_cells": 2,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 1904,
+      "available_measurement_cells": 8296,
+      "inherited_empty_old_measurement_cells": 33680,
+      "preexisting_roundoff_cells": 4,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 2709,
+      "available_measurement_cells": 11853,
+      "inherited_empty_old_measurement_cells": 45288,
+      "preexisting_roundoff_cells": 7,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3761,
+      "available_measurement_cells": 19894,
+      "inherited_empty_old_measurement_cells": 146441,
+      "preexisting_roundoff_cells": 6,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3115,
+      "available_measurement_cells": 15892,
+      "inherited_empty_old_measurement_cells": 159780,
+      "preexisting_roundoff_cells": 9,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 1783,
+      "available_measurement_cells": 9628,
+      "inherited_empty_old_measurement_cells": 71192,
+      "preexisting_roundoff_cells": 8,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3881,
+      "available_measurement_cells": 17665,
+      "inherited_empty_old_measurement_cells": 141497,
+      "preexisting_roundoff_cells": 4,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 2374,
+      "available_measurement_cells": 11894,
+      "inherited_empty_old_measurement_cells": 62723,
+      "preexisting_roundoff_cells": 8,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 2573,
+      "available_measurement_cells": 12892,
+      "inherited_empty_old_measurement_cells": 98349,
+      "preexisting_roundoff_cells": 4,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 4434,
+      "available_measurement_cells": 22080,
+      "inherited_empty_old_measurement_cells": 218868,
+      "preexisting_roundoff_cells": 9,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 2084,
+      "available_measurement_cells": 11312,
+      "inherited_empty_old_measurement_cells": 130400,
+      "preexisting_roundoff_cells": 5,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3235,
+      "available_measurement_cells": 15520,
+      "inherited_empty_old_measurement_cells": 175699,
+      "preexisting_roundoff_cells": 4,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3254,
+      "available_measurement_cells": 15992,
+      "inherited_empty_old_measurement_cells": 182563,
+      "preexisting_roundoff_cells": 2,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 2727,
+      "available_measurement_cells": 11786,
+      "inherited_empty_old_measurement_cells": 48318,
+      "preexisting_roundoff_cells": 7,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3216,
+      "available_measurement_cells": 15942,
+      "inherited_empty_old_measurement_cells": 101562,
+      "preexisting_roundoff_cells": 7,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3156,
+      "available_measurement_cells": 16448,
+      "inherited_empty_old_measurement_cells": 86912,
+      "preexisting_roundoff_cells": 11,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3080,
+      "available_measurement_cells": 16652,
+      "inherited_empty_old_measurement_cells": 175672,
+      "preexisting_roundoff_cells": 7,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3312,
+      "available_measurement_cells": 15812,
+      "inherited_empty_old_measurement_cells": 137184,
+      "preexisting_roundoff_cells": 3,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 1717,
+      "available_measurement_cells": 8944,
+      "inherited_empty_old_measurement_cells": 87565,
+      "preexisting_roundoff_cells": 5,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3530,
+      "available_measurement_cells": 18820,
+      "inherited_empty_old_measurement_cells": 138920,
+      "preexisting_roundoff_cells": 9,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3079,
+      "available_measurement_cells": 16230,
+      "inherited_empty_old_measurement_cells": 120918,
+      "preexisting_roundoff_cells": 5,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3037,
+      "available_measurement_cells": 15022,
+      "inherited_empty_old_measurement_cells": 125554,
+      "preexisting_roundoff_cells": 7,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 2179,
+      "available_measurement_cells": 12585,
+      "inherited_empty_old_measurement_cells": 169912,
+      "preexisting_roundoff_cells": 6,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3757,
+      "available_measurement_cells": 16945,
+      "inherited_empty_old_measurement_cells": 85277,
+      "preexisting_roundoff_cells": 5,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 3164,
+      "available_measurement_cells": 18409,
+      "inherited_empty_old_measurement_cells": 214899,
+      "preexisting_roundoff_cells": 3,
+      "raw_stream_checks": 4
+    },
+    {
+      "legacy_flags": 2435,
+      "available_measurement_cells": 11948,
+      "inherited_empty_old_measurement_cells": 119542,
+      "preexisting_roundoff_cells": 8,
+      "raw_stream_checks": 4
+    }
+  ],
+  "note": "ALL25frozenparents/50experts explicitlyreused;full528target/matrix/weight/scopechecks,132INNERscore/per-projectcounts/all5complete169jointgrids/scalaradmissionallcuts,33outerpredictions/rawquant/oldcalls/freshmanualcomparisons/samegold. Notnewfits/deployment/untouchedexternalvalidation/FDR."
+}

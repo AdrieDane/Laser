@@ -1,0 +1,48 @@
+Experiment046 — REJECTED WHOLE (26 October2026)
+
+Compared with whole retained research experiment041,not rejected044/045.
+All33 QE folders/132 dataset-mode cases/30 project groups. Correct means same
+lipid/adduct/mode/ORIGINAL feature as manual curation. X4 alone excluded;all92100
+other manual rows remain,including1456 spiked standards and28 unresolved rows.
+
+Correct:82740/92100 (89.83713355%) ->83085/92100 (90.21172638%): +345.
+Unconfirmed extras:9270 ->9695 (+425). Wrong peaks:1604 ->1607 (+3).
+773 new calls=345 correct+425 unconfirmed extras+3 wrong peaks.
+BMP NPnegative:146 ->265/520 (28.08% ->50.96%);extras528 ->693;wrong0 ->1.
+BMP NPpositive:270 ->496/622 (43.41% ->79.74%);extras227 ->487;wrong1 ->3.
+All old calls preserved;all other classes/RP modes unchanged.
+43/86 priority class/modes and76/122 all-target class/modes STILL below90%.
+Pooled90.21% is NOT90% in every class and mode and is not deployment readiness.
+
+Fixed prospective whole-method guard REJECTS425new extras>345new correct.
+All other prospective guard conditions pass. Retain WHOLE041;do not keep only
+successful datasets/polarities or relax the rule after seeing results. Although
+9695 extras is below original baseline9697,this does not override the failure.
+331/425 extras have composition curated in the other NP polarity;94 do not.
+ALL425 count in primary extras. Other-mode support is not chemical proof and
+manual absence is not established false positivity or an analytical FDR.
+
+What changed relative to044: removed mandatory opposite-NP sample-profile gate.
+Same25 parent/50 classifiers and163 inputs;profile and PA evidence stay continuous
+model predictors. Source physical eligibility remains mandatory after native
+strict3ppm/ownclassRT10s/global competition/.05 ambiguity/identity-best/standard/
+isotope/occupancy guards. No weaker fallback. Original044 joint INNER169-point
+calibration policy,not045 headroom/LPO. All5 choices before any outer output.
+No new classifier fits;no query manual files/curator fits/name-based routing.
+
+Integrity master ALLPASS:25 reused parents/528 independent training uses,132
+fresh INNER scores/per-project counts/every13 direct cuts vs cache,all5 full169
+grids,33 fresh outer selections/old cells/original raw quantities/fresh gold
+comparisons/same reference hashes.3350 input bindings/895 output artifacts.
+Planned=final checker SHA256:
+fed3a6265a39137daa8e7525eeecd2b748970c8161d7e10a98f529e27f90bd5a
+57 focused tool tests and Ruff pass. No app source/default changes.
+
+Endogenous:81365 ->81710/90644 (89.76325% ->90.14386%);extras8549 ->8974;
+wrong1577 ->1580. Spikes unchanged1375/1456=94.43681%;extras721,wrong27.
+These are companions,not substituted primary denominators or annotation gains.
+
+Full132 before/after CHAT table and separate wrong-mode totals delivered.
+Full66BMP table,endogenous+standard companions,all-class tables included here.
+Saved-input grouped development with extensive prior exposure;not fresh app
+deployment runs,untouched external validation,or proof of chemical correctness.
