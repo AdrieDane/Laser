@@ -1,5 +1,54 @@
 # Experiment reporting policy
 
+## CURRENT047 no-cut preflight COMPLETE — optimization ACTIVE
+
+Session99745 DONE0: ALLPASS25reusedparents/50experts,132freshINNERscoresbitexact
+044,132fixed.5admissionsEXACT046,all5new22level/484potentialcurveinputs(nochoice),
+33disabled ENTIRE041annotations+candidates parity.3360inputbindings/15curves.
+No learned operatingpoints/newfits/outeroutputs yet. ALL67testsPASS,RuffPASS.
+All47runtime/helper/plan/master/post/report sources FROZEN; DO NOT EDIT.
+Commit/pushthese sources/plan CFMmain thenactual047runner. Noqueuedrunner.
+WhenproducerDONE0 manuallypostprocess_qe_bmp_extended.py thenfixedtradeoffreport
+AFTERfullmasterPASS. Full132CHAT/66BMP/endoSTD/wholedecision/publication BEFORE
+048actual. Whole041stillretained/defaultsunchanged;goalNOTmet,continueworking.
+
+## CURRENT047 IMPLEMENTED / no-cut preflight RUNNING — optimization ACTIVE
+
+046COMPLETE/REJECTED/ALLPASS/published+pushed CFMmain eb4aa91. Full132CHAT,
+wrongmodetotals,66BMP CSVlink/endoSTD companions/wholedecision DELIVERED;doNOT
+repeat046table. Whole041 retained82740/92100,E9270,W1604;defaultsUNCHANGED.
+
+047plan docs/validation/next_BMP_extended_score_experiment.txt written BEFORE
+choices/outputs. ONLY046change: full native score domain .05,.10,...,.95,.975,
+.99,1disable (22levels/484jointgrid). SAME163fields/25parents50models/native
+3ppm/10s/.05ambiguity/global+identitywinners/physical-onlyadmission/all041calls
+immutable. No score rescale/clip,window/CDB/labels/weights/PAhardveto change.
+Rationale TRAINING cuts046:4/5NPpositive hit .5min. Native selector already
+permits .05; arbitrary .5wrapperfloor may clip trainingchoices. Notclaimgains.
+FinalWHOLEguard EXACT044/045/046 unchanged (ASTtestPASS). Original044INNER
+budgets/objective,just22leveldomain;all5grids beforeANYnewouterannotations.
+
+New pure bmp_extended_scores.py uses research native-selector COPY; runtime
+assert_native_body_parity proves ASTidentical to original after ONLYrestoring
+.5 lowerbound (imports/functionname normalized). This check runs inpreflight
+andactualinitialize/master. Exactactual scoreSeries used. New484grid scalar
+checker tests pass,old>=.5domainparity tests pass,no-fallback/physics/ambiguity/
+explicitdisable tests pass. ALL67focusedtools testsPASS/RuffPASS. Noappedit.
+Newrun/preflight/fullchecker/postprocessor/fixedreport files *_qe_bmp_extended*.
+Runtimeinitialize configures44snapshot BEFORE lazyapp ASTcomparison (fixed
+beforeanyprefreeze). Source_inputs binds all44+46frozen3350currentinputs,
+diagnostic masks andnew47sources/plan/checker. Old44/45/46sourceunchanged.
+
+Preflight session99745 RUNNING /tmp/laser_047_preflight.log. No47OUTinitialize,
+learnedcuts orouteroutputs. Allnew47sources/helper/plan/checker nowboundbygate:
+DO NOT EDIT. Gatechecksall25/50modelmetadata,132freshOOFscoresbitexact044 plus
+132fixed.5proposalsEXACT046,all5new22levelcurves(nochoice),33disabledENTIRE041
+annotations/candidateparity. Waitfullreceipt/DONE0,commit/pushsourceCFMmain,
+thenactual047runner. Noqueuedactualrunner. Fullmasterwillfresh528traininguses,
+132all22directvs-cache/proposals/counts,all5independent484grids,33outer/oldcells/
+rawquant/freshgold. Whole047decision+FULL132CHAT/66BMP/endoSTD BEFORE048actual.
+Goal ACTIVE,NOTmet;keepworkingautonomously,notstopmerelycheckpoint.
+
 ## CURRENT046 COMPLETE / REJECTED WHOLE — optimization ACTIVE
 
 Producer19995DONE0,post80881DONE0,fullmasterALLPASS. Fixeddecision71665DONE0:
