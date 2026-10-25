@@ -19,7 +19,7 @@ from run_qe_atlas_experiment import species, adduct
 
 QE = ROOT / "outputs/qe_optimization_20261022"
 BASE = QE / "baseline"
-PREPARED = QE / "standard_aligned_candidate_preparation_v1"
+PREPARED = QE / "standard_aligned_candidate_preparation_v2"
 REFERENCES = QE / "nested_reference_development_v2"
 STD = QE / "experiment_005"
 CORE = QE / "experiment_029"
@@ -44,6 +44,18 @@ def initialize():
         and ready["dataset_mask_tables"] == 363
         and not ready["supervised_labels_used_for_predictors"]
     )
+    equivalence_path = PREPARED / "cache_parity_receipt.json"
+    equivalence = json.loads(equivalence_path.read_text())
+    assert (
+        equivalence["all_passed"]
+        and equivalence["exact_full_dataset_parity_checks"] >= 6
+    )
+    for path, digest in equivalence["inputs_sha256"].items():
+        assert sha(Path(path)) == digest
+    assert (
+        sha(Path(__file__).with_name("verify_qe_composition_cache.py"))
+        == equivalence["verifier_sha256"]
+    )
     projects = json.loads((BASE / "run_manifest.json").read_text())["datasets"]
     if not (OUT / "protocol.json").exists():
         OUT.mkdir(exist_ok=False)
@@ -61,6 +73,8 @@ def initialize():
             if p.is_file()
         }
         inputs = [
+            equivalence_path,
+            Path(__file__).with_name("verify_qe_composition_cache.py"),
             Path(__file__).with_name("frozen_resources.py"),
             Path(__file__).with_name("run_qe_atlas_experiment.py"),
             PREPARED / "summary.json",
@@ -94,6 +108,9 @@ def initialize():
             assert (snapshot / "app/matlab_annotation" / name).read_bytes() == (
                 PREPARED / "source_snapshot/app/matlab_annotation" / name
             ).read_bytes(), name
+        assert (snapshot / "app/annotator/composition_ranges.py").read_bytes() == (
+            PREPARED / "source_snapshot/app/annotator/composition_ranges.py"
+        ).read_bytes()
         mass_receipt = json.loads((MASS / "integrity_receipt.json").read_text())
         assert mass_receipt["all_passed"] and mass_receipt["datasets"] == 33
         inputs.extend(
@@ -138,6 +155,7 @@ def initialize():
             new_adduct_family_context_used=False,
             new_standard_aligned_discovery_used=True,
             new_numeric_features=8,
+            engineering_cache_policy="Deterministic normalization/range lookup only; no decisions/measurements/references/labels cached. Full pool/predictor/metadata parity against ALL completed uncachedv1cases checked BEFOREfits. Incomplete original preparation preserved, no original annotation fits. Final all363raw reproduction mandatory.",
             research_retention_policy="Prefer whole-algorithm gains in correct original-feature matches with no increase versus029's9268unconfirmedextras or1604different-feature choices. Also inspect the86well-represented class/modes (>=100manual,>=3projectgroups), their capped90mean and per-mode regressions. Any trade-off must be quantified explicitly; no automatic production adoption,outer-winner class splicing or denominator exclusions. Sparse classes remain visible;onlyX4target exclusion authorized.",
             mass_discovery_policy="EXACT027fixed label-free physical proposal pools and same selection helper,applied AFTER newcore/005STD calls. Mass scope excludes query/outer. Novelty is relative to unchanged022physical pool. Existing current core calls immutable within mass stage. Changed core occupancy may change mass additions; full033algorithm evaluated versus029.",
             folds=5,

@@ -36,7 +36,7 @@ def verify_raw_preparation(dataset):
     from matlab_annotation.candidate_preparation import enrich_candidate_pools, _quality
     from matlab_annotation.evidence_training import validate_feature_scope
 
-    prep = QE / "standard_aligned_candidate_preparation_v1"
+    prep = QE / "standard_aligned_candidate_preparation_v2"
     oldroot = QE / "standard_context_preparation_v1"
     checkpoint = json.loads((prep / "checkpoints" / (dataset + ".json")).read_text())
     baseline = pd.read_pickle(QE / "baseline/runs" / dataset / "full_annotation.pkl")
@@ -197,7 +197,7 @@ def verify_heldout_dataset(dataset):
     mask = {d[:7] for d in projects if folds[d] == outer}
     path = (
         QE
-        / "standard_aligned_candidate_preparation_v1/prepared"
+        / "standard_aligned_candidate_preparation_v2/prepared"
         / f"exclude_{outer}"
         / (dataset + ".pkl")
     )
@@ -423,7 +423,7 @@ def main():
         assert table.extras.sum() <= 0.095 * table.manual.sum() + 1e-8
         calibration_checks += 1
     pd.DataFrame(audits).to_csv(OUT / "training_supervision_audit.csv", index=False)
-    prep = QE / "standard_aligned_candidate_preparation_v1"
+    prep = QE / "standard_aligned_candidate_preparation_v2"
     preparation = json.loads((prep / "summary.json").read_text())
     assert preparation["all_complete"] and preparation["dataset_mask_tables"] == 363
     assert preparation["original_candidate_coordinate_parity_checks"] == 363

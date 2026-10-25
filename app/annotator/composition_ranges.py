@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import csv
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 import re
 from typing import Any, Mapping, cast
@@ -115,10 +116,12 @@ class CompositionRangeSettings:
         return dict(self.group_ranges)
 
     def class_lookup(self) -> dict[str, ClassCompositionRange]:
-        return {
-            canonical_lipid_class(rule.lipid_class): rule
-            for rule in self.class_ranges
-        }
+        # Return a fresh mutable dictionary, never expose cached mutable state.
+        try:
+            return dict(_class_range_items(tuple(self.class_ranges)))
+        except TypeError:
+            # Legacy Python callers may construct non-hashable rule objects.
+            return {canonical_lipid_class(r.lipid_class): r for r in self.class_ranges}
 
     def decide(
         self,
@@ -261,20 +264,40 @@ def composition_range_settings_from_dict(
 
 def canonical_lipid_class(value: object, *, species: object = "") -> str:
     """Map LASER/MATLAB spellings onto the example-data class labels."""
-    label = " ".join(str(value).strip().split())
+    # Convert BEFORE caching: callers may pass mutable/unhashable objects, and
+    # their current string representation remains the complete cache key.
+    label, positional = _canonical_lipid_label_text(str(value))
+    if positional:
+        return label
+    return _canonical_lipid_class_text(label, str(species))
+
+
+@lru_cache(maxsize=1024)
+def _canonical_lipid_label_text(value: str) -> tuple[str, bool]:
+    label = " ".join(value.strip().split())
     compact = label.replace(" ", "")
     positional = re.fullmatch(r"([12]-acyl)(LPC|LPE)", compact, re.I)
     if positional:
-        return f"{positional.group(1).lower()} {positional.group(2).upper()}"
+        return f"{positional.group(1).lower()} {positional.group(2).upper()}", True
     marker = re.fullmatch(r"(.+)-(O\+P|O|P|d|t|m|q)", label)
     if marker:
         label = f"{marker.group(1)}[{marker.group(2)}]"
-    species_text = str(species)
+    return label, False
+
+
+@lru_cache(maxsize=16384)
+def _canonical_lipid_class_text(label: str, species_text: str) -> str:
     hydroxy = re.search(r"\)-(\d*OH)$", species_text, re.I)
     if hydroxy and label in {"AC", "FA"}:
         suffix = hydroxy.group(1).upper()
         return f"{label}-{suffix}"
     return label
+
+
+@lru_cache(maxsize=256)
+def _class_range_items(rules: tuple[ClassCompositionRange, ...]) -> tuple:
+    # Preserve duplicate canonical-key semantics (the final rule wins).
+    return tuple((canonical_lipid_class(rule.lipid_class), rule) for rule in rules)
 
 
 _SPHINGO_ROOTS = {

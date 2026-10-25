@@ -18,8 +18,18 @@ recognizes q_standard_aligned_ even without oldSTDcolumns.713app/tests passed,
 8skipped,83subtests. Label-free preparationv1 is running across363query/masks;
 first Sperm_cells dataset independently reconstructed all11masks including raw
 spike detection/all predictors. This is integrity,NOT annotation accuracy.
-Runner waits for complete preparation before fresh25nested/100expert033fits,
-then samev2evaluation/full132report/integrity. NO033performance claim yet.
+Latest engineering checkpoint supersedes that preparation status: original
+v1preparation intentionally interrupted after6complete dataset receipts to
+cache deterministic text normalization/immutable range lookup ONLY. All files
+preserved, no annotation fits.715app/tests passed/8skipped/83subtests. Cached
+v2single Sperm_cells11mask exact-parity smoke is running; v2fullpreparer NOTyet
+launched. Original queued fit launcher was stopped BEFOREanyfits. After the
+smoke: run prepare_qe_standard_aligned_candidates_cached.py, then
+verify_qe_composition_cache.py (ALL6complete v1datasets/66tables must match
+exactly), then033run/evaluate/report/fullverification.033runner now requires
+v2preparation ANDthe cache-equivalence receipt before fitting. No thresholds,
+references, raw measurements, scores or labels enter the NEWtext/range cache;
+pre-existing raw-quality caches unchanged. NO033performance claim yet.
 Do not start a duplicate033runner or a next experiment before its fulltable.
 Sources:prepare/run/verify_qe_standard_aligned*_experiment.py in tools (prepare
 file is prepare_qe_standard_aligned_candidates.py).029remains retained.

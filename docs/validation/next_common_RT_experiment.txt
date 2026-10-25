@@ -14,6 +14,18 @@ tools/qe_optimization/{prepare_qe_standard_aligned_candidates,
 run_qe_standard_aligned_experiment,verify_qe_standard_aligned_experiment}.py.
 Below notes remain the prospective protocol,not evidence of measured gains.
 
+LATEST ENGINEERING CHECKPOINT supersedes the preceding running/queued status:
+715tests passed,8skipped,83subtests. Original v1preparation interrupted after
+6complete datasets/66tables; original waiting fit launcher stopped beforefits.
+All outputs and frozen sources preserved. New deterministic normalization/
+immutable range-lookup caches are engineering ONLY, not new RTpolicy or labels.
+Cached v2Sperm_cells11mask EXACT full-output parity smoke running; no fullv2
+preparer or033fits yet. After smoke: prepare_qe_standard_aligned_candidates_cached.py,
+verify_qe_composition_cache.py (all6oldcomplete datasets/66tables exact), then
+run_qe_standard_aligned_experiment.py and samev2evaluate/fullreports/fullverify.
+Runner requires complete363v2tables ANDcache parity receipt beforeANYfits.
+Full v2raw reconstruction across33/363 still mandatory,not replaced by cacheQA.
+
 Reference and prerequisites (032integrity nowALLPASSED):
 Use retained029,NOTrejected032/031/030outputs. Full032TARGETscope132table has
 been delivered. Wait for032complete integrity receipt before next annotation
