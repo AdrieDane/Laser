@@ -2,6 +2,29 @@
 
 ## Current work status — RESUMED by user,25October2026
 
+LATEST checkpoint:033COMPLETE,REJECTED;029retained. FULL132TARGETscope table
+plus separate wrong-feature totals DELIVERED in this chat;doNOTrepeat merely
+because another cycle starts.033target82729/92100=89.8251900% (NO net gain),
+extras9268 ->9243 (-25),wrong1604 ->1611 (+7). Priority81896 ->81881/90871
+(-15),43 ->45below90/86;capped90mean83.8606410 ->83.8573513. Sparse833 ->848.
+Alltargetclass/modesbelow90:76 ->79/122. Both main+supplemental integrityALLPASS:
+294source/531inputs,25models/100fresh180roundexperts,528queryexclusions,
+33outer scores/132fulloutputs,33rawSTD/363ALLpool+predictorreproductions,
+1105prepinputs,132rawcoordinate stream checks. Supplemental132INNERscores,
+5complete countgrids/5cutoffchoices and33identicalmanualreferencehashchecks.
+Full v2preparation363complete; six uncached datasets/66tables EXACTparity,
+8086normalizations/100range dictionaries. No model cache/reuse.715tests passed,
+8skipped,83subtests. All033annotation/evaluation/verification jobs finished.
+Reports:docs/validation/qe_20261025_033;actualdelta versus_029 (not top-level).
+766newouter candidate pairs,7630all masks are NOTaccepted matches/gains.
+Correct evaluator reference argument is QE/manual_reference_v2,NOT
+baseline/evaluation_v2 (the latter has comparison tables,not reference inputs).
+No034fits/annotation decisions yet. Next: class-aware INNER-only acceptance
+calibration from WHOLEretained029; unchanged candidates/scores/competition,
+training-only support/extra+wrong guards; no rejected033winner splicing.
+Do not change app annotation defaults yet. All older status paragraphs below
+are historical; this checkpoint supersedes their in-progress033descriptions.
+
 The user requested a pause at the next safe stopping point. Experiment032and
 its complete integrity replay are finished;032was rejected and029remains the
 retained research reference. Full132-row032table was delivered. No033annotation

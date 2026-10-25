@@ -1,0 +1,44 @@
+{
+  "all_passed": true,
+  "annotation_changes": false,
+  "new_fits": false,
+  "source_sha256": "f0b434c0cd5ee5b0fe583bed72ee35364f640352f376ded58915e9ea837fde39",
+  "identical_manual_reference_hash_checks": 33,
+  "inner_heldout_dataset_score_reproductions": 132,
+  "complete_training_count_grid_reproductions": 5,
+  "training_only_operating_point_selection_reproductions": 5,
+  "fold_results": [
+    {
+      "outer": 0,
+      "blind_dataset_score_checks": 26,
+      "operating_point_rows": 68,
+      "artifact_hash_count": 33
+    },
+    {
+      "outer": 1,
+      "blind_dataset_score_checks": 26,
+      "operating_point_rows": 68,
+      "artifact_hash_count": 33
+    },
+    {
+      "outer": 2,
+      "blind_dataset_score_checks": 26,
+      "operating_point_rows": 68,
+      "artifact_hash_count": 33
+    },
+    {
+      "outer": 3,
+      "blind_dataset_score_checks": 27,
+      "operating_point_rows": 68,
+      "artifact_hash_count": 34
+    },
+    {
+      "outer": 4,
+      "blind_dataset_score_checks": 27,
+      "operating_point_rows": 68,
+      "artifact_hash_count": 34
+    }
+  ],
+  "note": "Supplemental engineering replay,not new annotation performance. Original full discovery/pipeline integrity receipt is separately required. No outer evaluated labels choose cutoffs; all inner data references and score models exclude outer and inner validation groups.",
+  "manual_reference_identity_input_hash_count": 99
+}

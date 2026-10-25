@@ -1,0 +1,120 @@
+Experiment 033: standard-assisted retention times — REJECTED
+25 October 2026
+
+Keep version 029 as the whole retained research reference. No annotation
+defaults changed. The per-class/per-stream 90% target is still not achieved.
+
+Outcome on all 33 datasets / 132 dataset-stream combinations / 30 project groups
+
+Correct original-peak matches: 89.8% (82,729 / 92,100) before AND after.
+Unconfirmed extras: 9,268 -> 9,243 (25 fewer).
+Annotations on a different peak from manual curation: 1,604 -> 1,611 (7 more).
+The target denominator excludes only the two user-excluded X4 rows; all 28
+unresolved manual peaks remain in it. Historical 92,102-row reports are kept
+separately. Changing the denominator is not an annotation improvement.
+
+Why reject
+
+There is no net gain in correct matches. The 86 well-represented class/stream
+combinations lose 15 correct matches: 81,896 -> 81,881 of 90,871 manual entries
+(90.1234% -> 90.1069%). The number below 90% rises from 43 to 45. The diagnostic
+capped-90 class mean also falls: 83.8606410 -> 83.8573513.
+Sparse classes gain 15 matches (833 -> 848 / 1,229), cancelling that loss in
+the total. They remain in every full report, but are not the current focus.
+Across all target classes, 76 -> 79 of 122 class/stream combinations fall below
+90%. Fewer extras do not justify more wrong peaks and worse common-class results.
+
+Correct/manual counts; extras; wrong-peak choices, before -> after:
+RP positive: 40,648 -> 40,614 / 45,206; 3,391 -> 3,406; 932 -> 924.
+RP negative: 12,088 -> 12,113 / 13,600; 1,995 -> 1,970; 408 -> 416.
+NP positive: 17,637 -> 17,621 / 19,380; 1,944 -> 1,948; 163 -> 172.
+NP negative: 12,356 -> 12,381 / 13,914; 1,938 -> 1,919; 101 -> 99.
+The historical NP-negative denominator is 13,916 including X4.
+
+Largest common-class losses include NP-positive BMP (-29), RP-positive TG-O
+(-17), NP-positive AC (-12), RP-positive PC (-12), and RP-positive DG (-9).
+Gains include NP-negative BMP (+11), NP-positive PC (+11), RP-positive TG (+9)
+and NP-negative SLBPA (+7). Do not combine only the winning classes or modes
+with older outputs: this experiment was evaluated as one complete algorithm.
+
+What was tested
+
+Known, independently detected spikes estimate an exact-class, same-stream RT
+offset against isotope-specific transfer references learned in other projects.
+Transfer-only spike detections cannot feed back as anchors. Single-chemical
+support needs at least 10 transfer groups and MAD <= 2 seconds; multiple
+chemicals need at least 3 groups each, MAD <= 3 seconds and offsets agreeing
+within 3 seconds. Maximum absolute shift is 30 seconds; supported atlas domain
+and uncertainty gates remain binding. No ether/lyso class merging was added.
+
+All old 029 physical candidates and original coordinates were retained. New
+proposals use original features at raw absolute mass error < 3 ppm and RT error
+<= 10 seconds from the supported aligned prediction. Declared spike masses and
+measured spike feature IDs are protected. Native chemical targets and the
+existing group-excluded composition envelope are unchanged; no rare-catalogue
+expansion, wider mass/RT window, new matrix limiter or formula guess was used.
+There were 766 additional physical candidate rows across the 33 outer test
+pools; 7,630 across all 363 reference masks. These are NOT accepted annotations
+or correct-match gains. Competition evidence was recomputed on expanded pools.
+
+Eight numerical aligned-RT descriptors were added to old and new candidates,
+alongside the existing 15 exact standard-context fields. All four mode experts
+were freshly fitted: 100 classifiers, 180 rounds each, in 25 nested parents.
+Old labelled pairs were preserved. New labels enter only AFTER label-free
+generation, for permitted training/calibration groups. No query/outer/inner
+group enters its learned references. The prior training-only operating-point
+objective, 9.5% endogenous-manual extras budget, 0.05 ambiguity margin, 005
+standard cleanup and fixed 027 mass stage were retained. No rejected 030
+partial labels, 031 related-standard descriptors or 032 adduct descriptors.
+
+Engineering and provenance — ALL CHECKS PASSED
+
+294 frozen source hashes; 531 input hashes; 25 model/supervision scopes;
+528 training-query exclusions; 33 reproduced outer score sets; 132 complete
+selector/standard-cleanup/mass-stage outputs; 132 original-measurement checks;
+33 independent spike reproductions; all 363 physical pools and ALL predictors
+reconstructed; 1,105 preparation inputs verified. One standard-alias demotion
+was reproduced. Existing candidate coordinates are preserved exactly; final
+raw measurements allow only IEEE arithmetic rounding (8 * machine epsilon
+relative, absolute 0), never an analytical coordinate adjustment.
+
+Supplemental replay reproduced all 132 INNER held-out score sets, all five
+complete training-count grids and all five cutoff choices. All 33 manual
+reference hashes match the original baseline, 029 and 033. The evaluator also
+checked all 165 original workbook/peak-list source hashes. The same v2 manual
+reference and 960 earlier verified standard mapping repairs apply at both
+endpoints; those repairs are not counted as gains.
+
+The original uncached preparation was interrupted after six completed datasets
+only for deterministic text/range lookup caching, before any annotation fits.
+All six complete datasets / 66 tables matched EXACTLY, plus 8,086 class/species
+normalizations and all 100 nested range dictionaries. Original outputs remain
+preserved. The new cache contains only deterministic text and complete immutable
+range-rule lookups, not models, RT predictions, measurements, scores or labels.
+No classifier reuse or symmetric-fit shortcut: all 100 classifiers were fitted.
+Current app tests: 715 passed, 8 skipped, 83 subtests passed.
+
+Reporting and limitations
+
+The full 132-row TARGET-scope comparison and separate wrong-peak totals were
+delivered to the user before the next experiment. Top-level tables compare the
+original default baseline for continuity; versus_029 is the actual experiment
+comparison. Target and common-class views supplement, not replace, full tables.
+
+These are cached original-feature, grouped held-out research replays, not fresh
+production-app runs, untouched external validation or analytical FDR. Algorithm
+development has already inspected these examples. Extras are manual-absent,
+unconfirmed calls, not proven false identities. Raw profiles, feature IDs,
+manual crosswalks, standard measurements and fitted models stay outside Git.
+
+Next separate experiment
+
+Use retained 029, not the rejected 033 mode/class winners. Test training-only
+class-specific acceptance calibration while leaving candidates, scores and
+physical competition unchanged. The read-only diagnosis identifies 3,935
+missing common-class peaks that win fixed competition but fall below the mode
+cutoff; this is an opportunity, not a promised safe gain. Use grouped INNER
+predictions only, protect baseline correct totals and wrong-peak counts per
+stream, retain the pooled extras budget, and keep sparse/unsupported classes
+at the previous stream cutoff. All 33 datasets / 132 streams must be evaluated
+and their full table delivered again. The app is not deployment-ready yet.

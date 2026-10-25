@@ -1,0 +1,14 @@
+{
+  "all_passed": true,
+  "annotation_accuracy_claim": false,
+  "changed_non_test_sources": [
+    "app/annotator/composition_ranges.py"
+  ],
+  "exact_full_dataset_parity_checks": 6,
+  "exact_pool_evidence_and_metadata_table_checks": 66,
+  "original_AST_canonical_class_species_checks": 8086,
+  "original_AST_nested_range_dictionary_checks": 100,
+  "verifier_sha256": "2e5c7644f9d44d18da9e5dced5101b4639dd98214d2c594444ca9957a609d447",
+  "note": "Deterministic text/range cache only. Lookup key contains ALL supplied immutable class rules, including numerical bounds and flags; return dictionaries are fresh. No atlas/standard model, RTprediction, raw measurement, score, label or annotation decision cached. Original v1preparation preserved. Full v2raw replay still required for all363tables. Not annotation improvement.",
+  "input_file_hash_count": 171
+}
