@@ -1,0 +1,83 @@
+Prospective043 direction: new RAWopposite-polarity evidence, comparatorWHOLE041.
+042COMPLETE/rejected/noacceptedchanges. No043models/annotations yet.
+
+Reason:041only+11correct/+2extras,042two-stage classifiers addednone safely.
+132INNER-only rankdiagnosis gives weaktradeoffs (atgap.1,222potentialwrong->
+correct versus195correct->wrong, repeatedtrainingcases,notgains). Do NOT
+blindly rerankoldcalls orselectfavourableclasses fromthatmodel.
+
+NEWinformation,notanothercapacity/cutoffchange: for each existingstrictcandidate,
+derive expectedOTHER-POLARITY ion masses from its ACTUALnativeclass/phase adduct
+template/charge. Search original OTHERpolarity peaklist directly, not just
+features alreadyassigned by baselineautomatic annotations. SameRP orsameNP
+only; NEVERcompare/transferRPvsNP RT. Native review-only ions (e.g.RPnegative
+PCformate) mayprovideNUMERICALevidence, nevernewacceptedionchannels/identities.
+Thisdiffers from019/020strongBASELINEAUTOothermodeanchors and032same-stream
+nativeadductfamilies. No rejectedmodel/score outputsplicing.
+
+Owncandidate universe/mass/RT/CDBranges EXACT029, current041acceptedcalls ALL
+immutable. No newcandidate frompartnersearch andno mass/RTwindowwidening for
+acceptedannotations. Otherrawmasssearch strict3ppm. Expectedpartner uses
+theoreticalref_mz +ACTUALsourceionoffset/charge andcorrect opposite nativeion
+offset/charge; noassumeduniversalH/NH4offset. Multiplycharged negative ions
+handled. SameoriginalfeatureIDs/areas preserved, IDsgroup/searchonlynotinputs.
+
+Biological pairing ONLYexplicitMS_metadata sample_id/phase/mode/filename/group
+validation. Existingpairaudit:30datasetsvalid,3unsupported; unsupportedmapping
+staysunknown, nofilenameoffset/orderguesses. Atleast8positivepairedbiological
+specimens forprofilecomparisons, within-groupneeds>=4residualDOF. Technical
+replicateareas averagedperspecimen beforelog. QC/blanks never supplybiological
+correlation. Rawglobalpersamplelogmedian normalization independentoftargets.
+Include raw/normalized/within-groupPearson,Spearman andleave-one-specimen-out
+robustness; mean/medianlog-ratiolocation andMAD, not justmaxcorrelation.
+DistinctpartnerFIDcounts andbest-versus-second margins quantifyambiguity.
+Onephysicalpartner cannotinflate evidence acrossseveralionaliases.
+
+RTmustnotbeinferredfrominsufficientanchors: existingoutermeasurement tables
+have atmost1sharedRPstandard and2NPstandards perdataset; NONEhas>=3. DoNOT
+inventglobalRTmap fromthem. Potentialnewread-onlyaugmentation: independently
+detecteddeclaredspikes inonepolarity canpredictothernativeionmasses including
+reviewonlychannels. KnownspikecompoundIDs/theoreticalmasses—notcuration or
+endogenousmodelself-labels—supplypotentialextraRTanchors. SourceSTDadducts
+mustagreeRTwithin3s; rawalternate-ion hitabsppm<1.5 anduniqueincoarsesamephase
+30s search BEFOREoccupancy. Ambiguous/disagreeingions withholdthatcompound.
+Atleastonealreadysharedtrustedspike neededtoseedcoarseshift; absentseed=>UNKNOWN,
+not self-calibratedfalsepairclustering. NoaugmentedSTD fullannotation/promotions.
+
+Ifaugmentationworks, RPglobalaffine map needs>=6distinctdeclaredspikecompounds,
+>=120s RTspan,sourceinterpolationonly(+/-30s),slope.8..1.2,abscommonshift<=30s,
+leave-one-standard-outmedian<=2s,p90<=4s. Numerical descriptors only, notnew
+candidateadmissions. NPmustNOTinheritRPgloballinearity: exact-classpairedSTD
+offsetonly if>=2distinctindependentspikecompounds withMAD<=2s; otherwise NP
+RTmapUNKNOWN. NoPCester->ether orPG->BMP RTassumption. UnsupportedRTdoesnot
+becomea falsezero-residual. Mass/profile-only evidence clearlyseparate from
+independentlyRT-supported evidence. RawRTdeltas arenotclaimedmappedresiduals.
+
+Beforemodelrefits: PURE numericpilotALL33/132; freezeALL33rawmeasurements BEFORE
+manualdiagnostic. No annotationchanges. Showavailability/ambiguity bymode/class
+and whether measurements distinguish missingcorrect ORIGINALfeature candidates
+fromwrong-peak/competing-label/manual-absent hypotheses. Diagnostics only, not
+acceptedgains or FDR. Ifuninformative, rejectdirectionwithoutwastinganotherfull
+annotation experiment. No posthocnumericcutoffwinnerspresentedasvalidated.
+
+Ifpromising, prepareall363nestedquery/masktables: retainoriginalpools and108
+oldpredictors EXACT,appenddeclarednumeric rawcounterpartfields. Featurebuilder
+refusessupervision. Raw-profile caches mayreuseONLYrawmatrix+metadata+iontable
+hashboundperphysicaltuple measurements; NOmodelscore/curation/reference membership
+incache andALLmask-specificSTDfeatures recomputed. Proveuncached/cachedparity,
+independentall363measurementconstruction +sameoldtables/columns/scopes before
+learning. Model stage willreturnto4binarycandidate-modeexperts atEXACT029HGB
+params,NOT042classblinddetectiontargets. All25parents/100freshclassifiers;
+current041acceptedannotations ALLfixed. Properquery+outer+inner exclusion,
+trainingtruthunchanged,no partialBMPmaskinthishypothesis. Same041conservative
+class/modeINNERcalibration, original005/027outeronlyinputs neverintoINNER.
+All5calibrations beforeanyouterselection. Fullrunner/verifier/preflight before
+actualfits; wholemethodbenchmarkall33/132/fullchatpercent+n/N/extras/wrong-mode
+totals/decision before044. Newrawevidencecouldlaterhelporiginalpeakcorrection,
+but no043oldcallreassignment/currentdefaultchange unlessseparatelypredeclared.
+
+Wholemethodretain initialguard: newcorrect>=4xnewunconfirmedextras,noaddedwrong,
+no oldcorrectloss,bettargetbelow90prioritycells/no worsecappedmean/count. DoNOT
+relaxafterseeingheldoutresults. ExtrasunconfirmednotFP/FDR. Sparseclassesvisible/
+deferred, X4onlyexcluded,28unresolvedremainprimary. Goal90%EACHclass/mode still
+unmet; previouslyexposedgroupeddevelopment,nottouch-freeexternal/deployment.

@@ -1,0 +1,67 @@
+RAW OPPOSITE-POLARITY EVIDENCE — RESEARCH PREPARATION, NOT AN ANNOTATION UPDATE
+
+Scope: all33 active QE folders,132 dataset/mode combinations,30 project groups.
+Retained annotation result remains experiment041:82740/92100 same-original-
+feature manual matches (89.8371%),9270 unconfirmed extras,1604 cases where the
+manually curated identity is assigned to a different original peak.43/86
+priority class/modes remain below90%. Production defaults are unchanged.
+
+WHY THIS IS DIFFERENT
+Previous paired-profile evidence depended on a strong BASELINE AUTOMATIC
+annotation in the other mode. The new, unused prototype searches original
+OTHER-POLARITY raw peaks using the candidate's native class/phase adduct and
+charge. An unassigned partner can therefore supply numerical evidence. This
+does not create a new candidate or accept the partner as an annotation.
+Native review-only ions remain evidence-only. RP and NP are never RT-linked.
+
+RT AVAILABILITY — COMPLETE, NO MANUAL FILES USED BY THE RT AUDIT
+Existing independently detected shared standards supply at most1 RP pair and
+2 NP pairs per dataset. They cannot justify a general RT map. Additional
+declared-spike native ion searches were therefore tested with strict mass,
+uniqueness, independent-compound/FID and RT-fit checks.
+
+RP:8/33 datasets qualify for a global within-phase polarity RT relation.
+NP:18/33 qualify for an EXACT Cer[d] class relation only. This is NOT a global
+NP relation and supplies no NP PE/PC RT support. Each direction uses the SAME
+observed pairs, not independent new observations. Unsupported mappings stay
+unknown; those datasets are not discarded as generally unusable.
+
+RP checks:>=6 distinct spike compounds,>=120s span, bounded affine relation,
+leave-one-standard-out median error<=2s and90th percentile<=4s, limited source-
+RT interpolation range. NP checks:>=2 distinct spikes in the exact class,
+offset MAD<=2s. Raw alternate-ion searches require<1.5ppm and unique hits in
+a coarse30s search seeded by an already trusted shared spike. No seed means
+no augmentation. Disagreeing/ambiguous aliases are withheld, not accumulated.
+
+PROFILE MEASUREMENTS — UNDER NUMERICAL VALIDATION
+The second prototype produces32 numeric fields. Opposite-polarity raw peaks
+must be within3ppm of native predicted masses. It uses explicitly validated
+MS_metadata specimen links only;30 datasets have supported pairing,3 do not.
+Technical-replicate areas are averaged before taking logarithms. Biological
+correlations require>=8 paired specimens, within-group correlations also>=4
+residual degrees of freedom. QC/blanks never supply biological correlation.
+Normalization uses raw global sample medians, not curated target annotations.
+
+Measurements include raw/normalized/within-group correlations, Spearman,
+leave-one-specimen-out robustness, log-ratio location/MAD, distinct-partner
+counts and ambiguity. Raw RT differences are NOT confirmed RT residuals.
+RT-supported measurements require a qualifying independent spike relation.
+
+ENGINEERING STATUS
+15 focused application tests passed; full application suite862 passed,
+8 skipped,83 subtests passed.6 synthetic diagnostic/independent-calculation
+checks passed. These are software checks, NOT annotation performance gains.
+All33 physical measurement tables are being frozen before the retrospective
+manual-reference diagnostic. An independent checker reconstructs all32 fields
+with separate charge algebra, NumPy profiles/correlations, centered-point
+leave-one-out calculations and RT-map application. Full receipts are required
+before the manual-reference diagnostic can execute.
+
+No new classifier fits, selected annotations, cutoffs or app defaults here.
+If useful, these measurements still need full363 nested query/reference
+preparation, independent construction checks, a full fit/export preflight and
+a fresh100-classifier nested experiment. The user's full132-row before/after
+annotation table will be supplied for any actual annotation-changing trial.
+Manual-absent extras are unconfirmed, not demonstrated false positives/FDR.
+This collection has been used for development; it is not a fresh external
+deployment validation. The >=90% EACH-class/EACH-mode goal is not met.
