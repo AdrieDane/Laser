@@ -129,7 +129,7 @@ def main():
         original_AST_nested_range_dictionary_checks=lookups,
         inputs_sha256=inputs,
         verifier_sha256=sha(Path(__file__)),
-        note="Deterministic text/range cache only. No raw measurements, learned references, scores, manual labels or annotation decisions cached. Original v1preparation preserved. Full v2raw replay still required for all363tables. Not annotation improvement.",
+        note="Deterministic text/range cache only. Lookup key contains ALL supplied immutable class rules, including numerical bounds and flags; return dictionaries are fresh. No atlas/standard model, RTprediction, raw measurement, score, label or annotation decision cached. Original v1preparation preserved. Full v2raw replay still required for all363tables. Not annotation improvement.",
     )
     (NEW / "cache_parity_receipt.json").write_text(
         json.dumps(result, indent=2), encoding="utf-8"

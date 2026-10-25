@@ -155,7 +155,7 @@ def initialize():
             new_adduct_family_context_used=False,
             new_standard_aligned_discovery_used=True,
             new_numeric_features=8,
-            engineering_cache_policy="Deterministic normalization/range lookup only; no decisions/measurements/references/labels cached. Full pool/predictor/metadata parity against ALL completed uncachedv1cases checked BEFOREfits. Incomplete original preparation preserved, no original annotation fits. Final all363raw reproduction mandatory.",
+            engineering_cache_policy="Deterministic normalization/range lookup only. Lookup key includes complete supplied immutable class rules (numerical bounds and flags), returned dictionaries fresh; no atlas/STDmodel, RTprediction, measurement, label, score or decision cached. Full pool/predictor/metadata parity against ALL completed uncachedv1cases checked BEFOREfits. Incomplete original preparation preserved, no original annotation fits. Final all363raw reproduction mandatory.",
             research_retention_policy="Prefer whole-algorithm gains in correct original-feature matches with no increase versus029's9268unconfirmedextras or1604different-feature choices. Also inspect the86well-represented class/modes (>=100manual,>=3projectgroups), their capped90mean and per-mode regressions. Any trade-off must be quantified explicitly; no automatic production adoption,outer-winner class splicing or denominator exclusions. Sparse classes remain visible;onlyX4target exclusion authorized.",
             mass_discovery_policy="EXACT027fixed label-free physical proposal pools and same selection helper,applied AFTER newcore/005STD calls. Mass scope excludes query/outer. Novelty is relative to unchanged022physical pool. Existing current core calls immutable within mass stage. Changed core occupancy may change mass additions; full033algorithm evaluated versus029.",
             folds=5,
@@ -297,6 +297,7 @@ def with_training_labels(data, *, permitted_groups, excluded_groups):
         pool.iloc[: len(old_pool)][coords].reset_index(drop=True),
         old_pool[coords].reset_index(drop=True),
         check_dtype=False,
+        check_exact=True,
     )
     keys = [
         (s, species(n), adduct(a), str(fid))

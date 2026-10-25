@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import sys
 
+import numpy as np
 import pandas as pd
 
 from context import WORKSPACE
@@ -93,7 +94,7 @@ def verify_raw_preparation(dataset):
         saved_measured = pd.read_pickle(
             oldroot / "measurements" / name / (dataset + ".pkl")
         )
-        pd.testing.assert_frame_equal(measured, saved_measured)
+        pd.testing.assert_frame_equal(measured, saved_measured, check_exact=True)
         contexts[name], extra = {}, []
         for stream, payload in baseline["streams"].items():
             declared = staged["declared"][staged["declared"].stream.eq(stream)].copy()
@@ -134,11 +135,13 @@ def verify_raw_preparation(dataset):
             data["pool"][coords],
             expanded[coords],
             check_dtype=False,
+            check_exact=True,
         )
         pd.testing.assert_frame_equal(
             data["pool"].iloc[: len(old["pool"])][coords].reset_index(drop=True),
             old["pool"][coords].reset_index(drop=True),
             check_dtype=False,
+            check_exact=True,
         )
         physical[name] = expanded.drop(
             columns=[c for c in expanded if c.startswith("q_cross_mode_")]
@@ -168,8 +171,8 @@ def verify_raw_preparation(dataset):
         extra = pd.concat(extra).reindex(fresh["pool"].index)
         evidence = pd.concat([fresh["evidence"], exact, extra], axis=1)
         evidence = evidence.reindex(columns=saved["evidence"].columns)
-        pd.testing.assert_frame_equal(evidence, saved["evidence"])
-        pd.testing.assert_frame_equal(fresh["pool"], saved["pool"])
+        pd.testing.assert_frame_equal(evidence, saved["evidence"], check_exact=True)
+        pd.testing.assert_frame_equal(fresh["pool"], saved["pool"], check_exact=True)
     assert len(reconstructed) == 11
     print(
         "RAW SPIKES, ALIGNED DISCOVERY AND ALL PREDICTORS REPRODUCED",
@@ -192,7 +195,7 @@ def verify_heldout_dataset(dataset):
     folds = json.loads((QE / "rt_atlas_development/fold_assignment.json").read_text())
     projects = json.loads((OUT / "run_manifest.json").read_text())["datasets"]
     assert (OUT / "runs" / dataset / "complete.json").exists()
-    parity, demoted_aliases = 0, 0
+    parity, demoted_aliases, roundoff_cells = 0, 0, 0
     outer = folds[dataset]
     mask = {d[:7] for d in projects if folds[d] == outer}
     path = (
@@ -206,11 +209,14 @@ def verify_heldout_dataset(dataset):
     model = pd.read_pickle(OUT / f"fold_{outer}_nested_model.pkl")
     assert set(model["excluded_groups"]) == mask
     recorded = pd.read_pickle(OUT / "runs" / dataset / "scoring_audit.pkl")
-    pd.testing.assert_series_equal(predict_grouped_evidence(data, model), recorded)
+    pd.testing.assert_series_equal(
+        predict_grouped_evidence(data, model), recorded, check_exact=True
+    )
     automatic = pd.read_csv(
         OUT / "runs" / dataset / "automatic_annotations.csv",
         dtype={"feat_feature_id": str},
         low_memory=False,
+        float_precision="round_trip",
     )
     baseline = pd.read_pickle(QE / "baseline/runs" / dataset / "full_annotation.pkl")
     catalogue = declared_standard_targets(
@@ -274,6 +280,22 @@ def verify_heldout_dataset(dataset):
         )
         expected = pd.concat([expected, additions], ignore_index=True)
         actual = automatic[automatic.stream.eq(stream)]
+        original = payload["features"].set_index(
+            payload["features"].feature_id.astype(str)
+        )
+        measured = original.loc[actual.feat_feature_id.astype(str)]
+        for observed, source in (
+            ("feat_mz", "mz"),
+            ("feat_rt", "rt"),
+            ("feat_intensity", "intensity"),
+        ):
+            a, b = actual[observed].to_numpy(float), measured[source].to_numpy(float)
+            # Legacy observed RTs can carry one seconds/minutes conversion ULP.
+            # Permit IEEE arithmetic roundoff only, not analytical movement.
+            np.testing.assert_allclose(
+                a, b, rtol=8 * np.finfo(float).eps, atol=0, equal_nan=True
+            )
+            roundoff_cells += int((~((a == b) | (np.isnan(a) & np.isnan(b)))).sum())
         keys = ["name", "adduct", "feat_feature_id", "is_is"]
         assert set(
             expected[keys].astype(str).itertuples(index=False, name=None)
@@ -281,7 +303,7 @@ def verify_heldout_dataset(dataset):
         parity += 1
     assert parity == 4
     print("HELDOUT FULL PIPELINE REPRODUCED", dataset, flush=True)
-    return parity, demoted_aliases
+    return parity, demoted_aliases, roundoff_cells
 
 
 def main():
@@ -402,8 +424,9 @@ def main():
     with ProcessPoolExecutor(max_workers=3) as executor:
         results = list(executor.map(verify_heldout_dataset, projects))
     assert len(results) == 33
-    parity = sum(p for p, _ in results)
-    demoted_aliases = sum(n for _, n in results)
+    parity = sum(p for p, _, _ in results)
+    demoted_aliases = sum(n for _, n, _ in results)
+    roundoff_cells = sum(n for _, _, n in results)
     assert parity == 132
     calibration_checks = 0
     for outer in range(5):
@@ -447,6 +470,10 @@ def main():
         training_query_exclusion_checks=training_queries,
         heldout_score_reproduction_checks=33,
         selector_plus_unchanged_standard_cleanup_parity_checks=parity,
+        original_raw_coordinate_final_annotation_stream_checks=parity,
+        raw_coordinate_comparison_relative_tolerance=8 * np.finfo(float).eps,
+        raw_coordinate_comparison_absolute_tolerance=0,
+        preexisting_floating_arithmetic_roundoff_cells=roundoff_cells,
         existing_standard_alias_demotions_reproduced=demoted_aliases,
         calibration_scope_hash_budget_checks=calibration_checks,
         completed_datasets=33,

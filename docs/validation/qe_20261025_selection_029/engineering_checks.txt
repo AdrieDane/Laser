@@ -1,0 +1,29 @@
+Engineering checks, 25 October 2026 — NOT new annotation accuracy
+
+Current app regression suite: 715 passed, 8 skipped, 83 subtests passed.
+
+Deterministic normalization/range-lookup cache:
+- Complete physical pools, all predictors and metadata matched EXACTLY across
+  all six completed uncached datasets: 66 split-specific tables.
+- 8,086 actual class/species pairs matched the original uncached function.
+- All 100 nested class-range dictionaries matched the original implementation.
+- The key contains complete immutable class rules, including bounds and flags.
+  Returned dictionaries are fresh. No model, predicted RT, raw measurement,
+  score, manual label or annotation decision enters this new cache.
+- Cached preparation is not a new annotation result. The complete 33-dataset
+  experiment and its 363-table reconstruction are still required.
+
+Read-only preflight on retained 029 final annotations:
+- All 33 datasets / 132 stream checks passed against original feature rows.
+- Feature identity is exact. Mass, RT and intensity agree within IEEE floating
+  arithmetic rounding: relative tolerance 8 * machine epsilon, absolute 0.
+- 195 individual numeric values differ at that rounding scale, including
+  pre-existing seconds/minutes conversion rounding. These are not 195 wrong
+  peaks or adjusted measurements. No annotation or source file was changed.
+- Original-row preservation in the new preparation is checked exactly against
+  the previous candidate tables. The new experiment's final annotations must
+  separately pass the original-feature measurement check.
+
+The full-dataset evaluation still verifies original workbook and peak-list
+hashes. None of these engineering checks establishes chemical identity,
+analytical false-discovery rate, or deployment readiness.

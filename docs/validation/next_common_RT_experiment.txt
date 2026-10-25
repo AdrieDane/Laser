@@ -19,12 +19,33 @@ LATEST ENGINEERING CHECKPOINT supersedes the preceding running/queued status:
 6complete datasets/66tables; original waiting fit launcher stopped beforefits.
 All outputs and frozen sources preserved. New deterministic normalization/
 immutable range-lookup caches are engineering ONLY, not new RTpolicy or labels.
-Cached v2Sperm_cells11mask EXACT full-output parity smoke running; no fullv2
-preparer or033fits yet. After smoke: prepare_qe_standard_aligned_candidates_cached.py,
+Cached v2Sperm_cells11mask EXACT full-output parity PASSED. Fullv2preparation
+is now running,with a chained launcher queued after complete363tables.
+All6completed uncached datasets/66FULLtables matched EXACTLY;8086actual class/
+species strings and100nested range dictionaries matched original functions.
+No033fits yet. Workflow: prepare_qe_standard_aligned_candidates_cached.py,
 verify_qe_composition_cache.py (all6oldcomplete datasets/66tables exact), then
 run_qe_standard_aligned_experiment.py and samev2evaluate/fullreports/fullverify.
 Runner requires complete363v2tables ANDcache parity receipt beforeANYfits.
 Full v2raw reconstruction across33/363 still mandatory,not replaced by cacheQA.
+
+Read-only retained029selection diagnosis v2 complete; see
+docs/validation/qe_20261025_selection_029/interpretation.txt. Of8975priority
+missing:3935correct peaks win fixed competition but fall below mode cutoff;
+1101lose identity competition,402lose labelcompetition,193ambiguity,3257absent
+COREpool,59STDspecialist,28unresolved. Existing selector reproduced132cases;
+104input hashes. 3935NOTguaranteed safegains:449scores<.05,1679[.05,.2),1807>=.2.
+Firstpass4552included617also blocked by identity competition; source85c206a
+and original v1output preserved. No fit/cutoff/annotation change in diagnosis.
+After033FULLtable, consider class-aware INNER-only acceptance cutoffs on the
+retainedwholealgorithm,holding per-mode innercorrect counts >=prior and
+wrong/extras budgets. Eligibility from traininggroups ONLY; sparsefallback.
+Do NOT start this next experiment before033table; no outer-winner splicing.
+
+Retained029raw-coordinate preflight passed ALL33/132:195numeric cells have
+only IEEE rounding (e.g.seconds/minutes),not scientific coordinate adjustment.
+Future033final raw check permits ONLYrtol8*machineeps,atol0,IDs exact; no loose
+analytical tolerance. Old candidate coordinates/identities EXACTpreservation.
 
 Reference and prerequisites (032integrity nowALLPASSED):
 Use retained029,NOTrejected032/031/030outputs. Full032TARGETscope132table has

@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+from pathlib import Path
 
 import pandas as pd
 
@@ -11,7 +12,7 @@ from run_qe_atlas_experiment import species, adduct
 
 QE = WORKSPACE / "outputs/qe_optimization_20261022"
 CORE = QE / "experiment_029"
-OUT = QE / "common_selection_diagnosis_029_v1"
+OUT = QE / "common_selection_diagnosis_029_v2"
 
 
 def sha(path):
@@ -41,7 +42,7 @@ def main():
     common = set(support[support.manual.ge(100) & support.projects.ge(3)].index)
     assert len(common) == 86
     OUT.mkdir(exist_ok=False)
-    rows, inputs = [], {}
+    rows, inputs, selector_parity = [], {}, 0
     for dataset in projects:
         fold = folds[dataset]
         pool_path = (
@@ -59,7 +60,7 @@ def main():
         scores = pd.read_pickle(score_path)
         assert pool.index.equals(scores.index)
         thresholds = json.loads(threshold_path.read_text())["thresholds"]
-        ranked, selected = [], []
+        ranked, selected, potential = [], [], []
         for stream, part in pool.groupby("stream", sort=False):
             chosen = select_operating_candidates(
                 part,
@@ -76,8 +77,22 @@ def main():
             second = r.groupby("feat_feature_id").score.shift(-1)
             r["clear"] = second.isna() | (r.score - second).ge(0.05)
             r["above_cutoff"] = r.score.ge(thresholds[stream])
+            eligible = r[r.wins_feature & r.clear].drop_duplicates(["name", "adduct"])
+            actual_keys = ["name", "adduct", "feat_feature_id"]
+            assert set(
+                eligible.loc[eligible.above_cutoff, actual_keys].itertuples(
+                    index=False, name=None
+                )
+            ) == set(chosen[actual_keys].itertuples(index=False, name=None))
+            selector_parity += 1
+            potential.append(eligible)
             ranked.append(r)
-        ranked, selected = pd.concat(ranked), pd.concat(selected)
+        ranked, selected, potential = (
+            pd.concat(ranked),
+            pd.concat(selected),
+            pd.concat(potential),
+        )
+
         def keys(frame):
             return [
                 (s, species(n), adduct(a), str(fid))
@@ -85,7 +100,12 @@ def main():
                     ["stream", "name", "adduct", "feat_feature_id"]
                 ].itertuples(index=False, name=None)
             ]
+
         selected_keys = set(keys(selected))
+        potential_keys = set(keys(potential))
+        winning_scores = {}
+        for key, value in zip(keys(potential), potential.score):
+            winning_scores[key] = max(value, winning_scores.get(key, float("-inf")))
         groups = {}
         for index, key in zip(ranked.index, keys(ranked)):
             groups.setdefault(key, []).append(index)
@@ -107,14 +127,14 @@ def main():
                 reason = "correct_original_peak_absent_from_core_candidates"
             elif key in selected_keys:
                 reason = "selected_by_core_but_not_final_after_standard_cleanup"
+            elif key in potential_keys:
+                reason = "winning_correct_original_peak_below_mode_score_cutoff"
             else:
                 candidates = ranked.loc[groups[key]]
                 winners = candidates[candidates.wins_feature]
                 clear = winners[winners.clear]
-                if clear.above_cutoff.any():
+                if len(clear):
                     reason = "different_original_peak_won_same_lipid_identity"
-                elif len(clear):
-                    reason = "correct_original_peak_below_mode_score_cutoff"
                 elif len(winners):
                     reason = "correct_original_peak_withheld_for_close_label_scores"
                 else:
@@ -125,11 +145,13 @@ def main():
                     stream=entry.stream,
                     lipid_class=entry.lipid_class,
                     reason=reason,
+                    winning_score=winning_scores.get(key, float("nan")),
                 )
             )
         print("READ-ONLY SELECTION DIAGNOSIS", dataset, flush=True)
     rows = pd.DataFrame(rows)
     assert len(rows) == 8975
+    assert selector_parity == 132
     rows.groupby(["dataset", "stream", "lipid_class", "reason"]).size().rename(
         "missing_manual_annotations"
     ).reset_index().to_csv(OUT / "by_dataset_mode_class_reason.csv", index=False)
@@ -144,8 +166,29 @@ def main():
         priority_class_modes=86,
         priority_missing_manual_annotations=len(rows),
         by_reason=rows.reason.value_counts().to_dict(),
+        original_selector_parity_checks=selector_parity,
+        cutoff_only_scores_below_0_05=int(
+            (
+                rows.reason.eq("winning_correct_original_peak_below_mode_score_cutoff")
+                & rows.winning_score.lt(0.05)
+            ).sum()
+        ),
+        cutoff_only_scores_0_05_to_0_2=int(
+            (
+                rows.reason.eq("winning_correct_original_peak_below_mode_score_cutoff")
+                & rows.winning_score.ge(0.05)
+                & rows.winning_score.lt(0.2)
+            ).sum()
+        ),
+        cutoff_only_scores_at_least_0_2=int(
+            (
+                rows.reason.eq("winning_correct_original_peak_below_mode_score_cutoff")
+                & rows.winning_score.ge(0.2)
+            ).sum()
+        ),
+        source_sha256=sha(Path(__file__)),
         inputs_sha256=inputs,
-        note="Read-only diagnostic opportunities,NOT guaranteed recoverable matches or annotation gains. Uses known curation ONLYfor diagnosis,never feature preparation. Core candidates exclude separate005STD/fixed027massstage; available-category boundaries therefore differ from the full029candidate audit. Prior development exposure,not external validation.",
+        note="Read-only diagnostic opportunities,NOT guaranteed recoverable matches or gains. V2gives identity/feature competition precedence even when correct peak is belowcutoff; cutoff-only means correct peak wins fixed competition BEFOREcutoff. Existing selector reproduced132cases. Raw pooled0.05/0.2score bands are diagnosis,not fitted thresholds. Curation ONLYfor diagnosis,never feature preparation. Core candidates exclude005STD/fixed027massstage; category boundaries differ from full029candidate audit. Prior development exposure,not external validation.",
     )
     (OUT / "summary.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
     print(

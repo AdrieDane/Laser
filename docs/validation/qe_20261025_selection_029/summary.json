@@ -1,0 +1,24 @@
+{
+  "annotation_changes": false,
+  "fits_or_new_cutoffs": false,
+  "reference": "029",
+  "datasets": 33,
+  "priority_class_modes": 86,
+  "priority_missing_manual_annotations": 8975,
+  "by_reason": {
+    "winning_correct_original_peak_below_mode_score_cutoff": 3935,
+    "correct_original_peak_absent_from_core_candidates": 3257,
+    "different_original_peak_won_same_lipid_identity": 1101,
+    "other_lipid_label_ranked_higher_on_original_peak": 402,
+    "correct_original_peak_withheld_for_close_label_scores": 193,
+    "standard_specialist_not_core_selector": 59,
+    "manual_original_peak_unresolved": 28
+  },
+  "original_selector_parity_checks": 132,
+  "cutoff_only_scores_below_0_05": 449,
+  "cutoff_only_scores_0_05_to_0_2": 1679,
+  "cutoff_only_scores_at_least_0_2": 1807,
+  "source_sha256": "d5108948f68101adcf32f8360d8948a794f687ded858aac6e9d725009e0583c9",
+  "note": "Read-only diagnostic opportunities,NOT guaranteed recoverable matches or gains. V2gives identity/feature competition precedence even when correct peak is belowcutoff; cutoff-only means correct peak wins fixed competition BEFOREcutoff. Existing selector reproduced132cases. Raw pooled0.05/0.2score bands are diagnosis,not fitted thresholds. Curation ONLYfor diagnosis,never feature preparation. Core candidates exclude005STD/fixed027massstage; category boundaries differ from full029candidate audit. Prior development exposure,not external validation.",
+  "input_file_hash_checks": 104
+}

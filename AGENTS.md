@@ -22,9 +22,10 @@ Latest engineering checkpoint supersedes that preparation status: original
 v1preparation intentionally interrupted after6complete dataset receipts to
 cache deterministic text normalization/immutable range lookup ONLY. All files
 preserved, no annotation fits.715app/tests passed/8skipped/83subtests. Cached
-v2single Sperm_cells11mask exact-parity smoke is running; v2fullpreparer NOTyet
-launched. Original queued fit launcher was stopped BEFOREanyfits. After the
-smoke: run prepare_qe_standard_aligned_candidates_cached.py, then
+v2single Sperm_cells11mask EXACT full-output parity PASSED (pool,predictors,
+metadata). Full v2preparer is now running, followed by a new queued launcher.
+Original v1queued fit launcher was stopped BEFOREanyfits. Current workflow:
+prepare_qe_standard_aligned_candidates_cached.py, then
 verify_qe_composition_cache.py (ALL6complete v1datasets/66tables must match
 exactly), then033run/evaluate/report/fullverification.033runner now requires
 v2preparation ANDthe cache-equivalence receipt before fitting. No thresholds,
@@ -33,6 +34,16 @@ pre-existing raw-quality caches unchanged. NO033performance claim yet.
 Do not start a duplicate033runner or a next experiment before its fulltable.
 Sources:prepare/run/verify_qe_standard_aligned*_experiment.py in tools (prepare
 file is prepare_qe_standard_aligned_candidates.py).029remains retained.
+
+Read-only selection diagnosis v2 completed ALL33/132; no annotation changes or
+new cutoffs. Of8975priority missing:3935correct peaks win fixed competition but
+fall below mode cutoff;1101lose identity competition;402lose labelcompetition;
+193ambiguous;3257absent COREpool;59STDspecialist;28unresolved.3935includes449
+scores<.05,1679in[.05,.2),1807>=.2. These are NOT guaranteed safe gains. Initial
+v1count4552included617also blocked by identity competition;source85c206a kept.
+See docs/validation/qe_20261025_selection_029/interpretation.txt. AFTER033full
+table, class-aware INNER-only cutoff calibration is a promising next separate
+experiment; do NOT start it yet or infer thresholds from outer query labels.
 
 ## Active example collection — user decision, 22 October 2026
 

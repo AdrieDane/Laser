@@ -1,0 +1,63 @@
+Where LASER misses manually annotated peaks
+Read-only diagnosis, 25 October 2026
+
+This diagnosis does not change any annotations. The retained research version
+(029) still matches 89.8% of the manual list on the correct original peak:
+82,729 / 92,100. It produces 9,268 unconfirmed extras and 1,604 annotations on
+a different peak from the one manually selected. Only X4 is target-excluded.
+
+Scope: all 33 datasets, with four measurement streams each (132 checks).
+The breakdown focuses on 86 well-represented class/stream combinations:
+at least 100 manual entries across at least three independent project groups.
+Their 90,871 manual entries include 8,975 missing correct-peak matches.
+Sparse classes remain in the full benchmark; they are not removed from it.
+
+Why those 8,975 correct-peak matches are missing
+
+3,935  The correct peak wins internal competition, but its score is below
+       the acceptance cutoff currently shared by the measurement stream.
+1,101  A different peak is preferred for the same lipid identity.
+  402  A different lipid label scores higher on the correct original peak.
+  193  The leading label on the correct peak is withheld because another
+       label scores too closely (the existing 0.05 ambiguity margin).
+3,257  The correct peak is absent from the core candidate search.
+   59  Internal standards, handled by a separate part of the workflow.
+   28  The manually selected original peak remains unresolved.
+
+These categories do not overlap. They are diagnostic counts, not new matches.
+The 1,101 internal peak-competition cases are not the 1,604 actual wrong-peak
+annotations: in some cases neither competing peak is currently accepted.
+The core search excludes separate standard and mass-correction proposals, so
+its absence count differs from the earlier full-candidate-pool diagnosis.
+
+The 3,935 cutoff-only cases are NOT guaranteed safe improvements. They include
+449 scores below 0.05, 1,679 from 0.05 to below 0.2, and 1,807 at least 0.2 but
+below the relevant stream cutoff. The existing calibration grid starts at
+0.2. These are agreement scores, not probabilities of chemical identity.
+Accepting more must be tested against extras AND wrong-peak choices.
+
+Why the initial count changed
+
+The first pass counted 4,552 below-cutoff cases. Of these, 617 would still lose
+to another peak after lowering the cutoff. The refined breakdown places them
+under peak competition, leaving 3,935 cutoff-only cases. The first-pass source
+is preserved in Git commit 85c206a. Neither diagnosis changes annotations.
+
+Verification and limitations
+
+All 132 existing selector outputs were reproduced using stored scores and the
+original fold cutoffs. A private manifest records 104 input-file hashes. No
+model or new cutoff was fitted. Only aggregate counts are saved in Git; raw
+feature IDs, manual crosswalk rows, fitted models and private paths stay local.
+These datasets have already informed development, so this is not independent
+external validation. Extras are unconfirmed, not proven false annotations.
+
+Next hypothesis, AFTER experiment 033 has finished and its full table is shown
+
+Test acceptance cutoffs for individual classes using only held-out TRAINING
+groups. Keep physical competition unchanged, constrain extras and wrong-peak
+choices, and protect the prior number of correct training matches per stream.
+Use training-only class support to decide eligibility; keep sparse/unsupported
+classes at the prior stream cutoff. Do not choose cutoffs from final test data
+or combine class winners from previously tested algorithms. This is a plan,
+not a fitted or tested improvement.
