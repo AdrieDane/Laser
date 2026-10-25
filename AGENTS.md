@@ -8,11 +8,19 @@ are historical. 036 and 037 COMPLETE, integrity ALL PASS, REJECTED. Their full
 pushed CFMmain, latest fb48bc9. No jobs remain from those experiments.
 029 remains retained:82729/92100correct=89.825190%,9268extras,1604wrong;
 43/86priority class/modes below90;goal NOT achieved;production defaults unchanged.
-038 source under implementation: conditional within-identity original-peak
-refinement; WHOLE029accepted identity/standard list stays fixed, hence extras
-must remain EXACT. No 038 actual fits/annotations yet. Runner now requires
-hash-bound no-fit preflight. Final full25parent/528training/132INNER/33OUTER
-independent integrity and full132chat table mandatory before039. Plan/source:
+038 NOW RUNNING session16613 (PID19481), 3/5outerblocks complete at latest check;
+folds3/4 still fitting. Fresh conditional within-identity rankers, WHOLE029accepted
+identity/standard list fixed, extras must remain EXACT. Training safeguards
+disabled almost all moves; do NOT loosen frozen038rules or infer full results.
+Hash-bound no-fit preflight passed one complete19query innerparent, independent
+pair/weight/classsupport counts, one real ALLmode scalar/matrix exact parity.
+Earlyactualparent integrity also PASS (not wholeexperiment).782apptestsPASS,
+8skipped/83subtests;three new runner accounting testsPASS. Source pushed CFMmain
+e18fb14. Queued postrun session52956 waits ALL33outputs then evaluates v2manual,
+builds baseline/029/targetX4/priority reports, and FULL038verifies. Do NOTduplicate
+runner/queue, edit frozen/source-bound files, or start039annotations before
+full132chat table/wholedecision. Final25parents/528training/132INNER/33OUTER
+integrity mandatory. Plan/source:
 docs/validation/next_conditional_peak_experiment.txt;
 tools/qe_optimization/run_qe_conditional_peak_experiment.py.
 
