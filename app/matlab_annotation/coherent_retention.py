@@ -75,6 +75,7 @@ def coherent_retention_predictions(
     query_group,
     expected_excluded_groups,
     ranges,
+    competing_class_anchor_guard=False,
 ):
     """Return numeric predictions and an audit, NEVER original-peak identities.
 
@@ -87,6 +88,10 @@ def coherent_retention_predictions(
     RP isomer branches receive the SAME offset for a given chemical block;
     their trained/base relative RT differences are not collapsed or reversed.
     Unsupported/ambiguous/out-of-anchor-domain targets retain baseline RT.
+    Opt-in competing-class guard: a raw anchor must be >=5s closer to this
+    family's baseline RT than EVERY other-family near-exact-mass hypothesis
+    (within max(1e-5Da,0.05ppm)). Other families include ODD-carbon targets too.
+    This is a conservative ANCHOR veto, not a forced class annotation.
     """
     if stream not in {"RP_Pos", "RP_Neg", "NP_Pos", "NP_Neg"}:
         raise ValueError("Explicit acquisition stream required")
@@ -204,6 +209,10 @@ def coherent_retention_predictions(
         ],
         index=data.index,
     )
+    competitors = data.loc[eligible].sort_values("ref_mz", kind="stable")
+    competing_masses = competitors.ref_mz.to_numpy(float)
+    competing_families = competitors._family.to_numpy()
+    competing_rts = base.loc[competitors.index, "atlas_rt_seconds"].to_numpy(float)
     raw = features[["feature_id", "mz", "rt", "intensity"]].copy()
     for c in ("mz", "rt", "intensity"):
         raw[c] = pd.to_numeric(raw[c], errors="raise")
@@ -218,6 +227,7 @@ def coherent_retention_predictions(
         )
     observed_mass = raw.mz.to_numpy(float)
     rows = []
+    rejected_rows = []
     # Strict mass-search interval first; reference names/feature IDs only link
     # physical measurements and deduplicate votes, never predict an offset.
     for i, target in data.loc[eligible & numeric.carbon.mod(2).eq(0)].iterrows():
@@ -230,6 +240,18 @@ def coherent_retention_predictions(
             ppm = float((feature.mz - mass) / mass * 1e6)
             if abs(ppm) >= 1.5 or abs(residual) > 90:
                 continue
+            if competing_class_anchor_guard:
+                precision = max(1e-5, mass * 0.05e-6)
+                other_lo, other_hi = np.searchsorted(
+                    competing_masses, [mass - precision, mass + precision], side="left"
+                )
+                other = competing_families[other_lo:other_hi] != target._family
+                alternatives = competing_rts[other_lo:other_hi][other]
+                if len(alternatives) and (
+                    abs(residual) + 5.0 > np.min(np.abs(feature.rt * 60 - alternatives))
+                ):
+                    rejected_rows.append((target._family, int(target._block)))
+                    continue
             rows.append(
                 dict(
                     feature_id=str(feature.feature_id),
@@ -269,6 +291,10 @@ def coherent_retention_predictions(
                     excluded_composition_block=int(block),
                     physical_mass_hits=len(anchor),
                     **result,
+                    competing_class_guard_enabled=competing_class_anchor_guard,
+                    competing_class_vetoed_hypotheses=sum(
+                        f == family and b != block for f, b in rejected_rows
+                    ),
                 )
             )
             if not result["supported"]:

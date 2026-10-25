@@ -1,5 +1,34 @@
 # Experiment reporting policy
 
+## LATEST: coherent RT numeric pilot REJECTED / competing-family guard ready
+
+coherent_RT_diagnostic_v2 ALL33/132 numerical predictions/evaluation COMPLETE.
+Full scratch ALL33/132prediction+33audit replay andfresh33independent spike
+measurement inputs EXACT;masterALLPASS,session52812DONE0.320source/147inputs/
+99boundartifacts. ALL33blind receipt BEFOREmanualeval;90613mappedendoRTs,
+89724theoreticallookups,36512shiftavailable.Within10s85626->85076:465gained,
+1015lost. These are RTproximity,NOTannotationgains/coverage. REJECTreplacement.
+No annotation changes;029STILL82729/92100correct,9268extras,1604wrong.039FULL132
+chat reporting done;no040annotationexperiment yet. Publicnumericreport:
+docs/validation/qe_20261025_coherent_RT (all132rows+classaggregates/interpretation).
+v1nevermanualevaluated,allartifacts/source preserved;v2formulaholdoutfix only.
+No numerical jobs remain;v2predict77477DONE0,evaluate35633DONE0,audit52812DONE0.
+
+Next single-change NUMERICALpilot:competing_class_RT_diagnostic_v1,
+diagnose_qe_competing_class_rt.py --predict/--evaluate. NewOPT-IN
+coherent_retention_predictions(...competing_class_anchor_guard=True): EVERY
+rawanchor needs5sRTadvantage vsALLother-family near-exact-mass hypotheses,
+includingODDcarboncompetitors.Native/trainingdomain>=3projects/MAD<=5s same.
+SameRPisomerfamily NOTveto competitors;NPexactclasslogic. Alloldsettingsand
+formulaequivalentblockholds retained.No manualquery/classwinnerlist/defaults.
+Plan docs/validation/next_competing_class_RT_discovery.txt. IndependentSTD
+agreement NOTmixedintothispilot;possiblelater separatehypothesis. Newverifier
+verify_qe_competing_class_rt_pilot.py mirrors fullscratch/freshSTD ALL33audit.
+18focusedtestsPASS,818apptestsPASS/8skip/83subtests;3newfrozen-stage testsPASS,
+19otherresearchtooltestsPASS. Source/pilotplan/publicv2report push next,then
+runnewblindpilot. DoNOTeditfrozenapp snapshot/currentrunner/planonceactive.
+GoalNOTmet,optimizationACTIVE;doNOTpause/endatcheckpointunlessuserasks.
+
 ## CURRENT039 COMPLETE / NUMERICAL RT PROTOTYPE — 25 October 2026
 
 LATEST NUMERICENGINEERING: coherent_RT_diagnostic_v1 ALL33blind predictions

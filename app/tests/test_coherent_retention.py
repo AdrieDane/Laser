@@ -214,3 +214,56 @@ def test_supervision_reference_scope_and_original_feature_conflicts_rejected(
             case[1]["feature_id"] = "same"
         with pytest.raises(ValueError):
             call(case)
+
+
+def headgroup_inputs(monkeypatch):
+    args = inputs(monkeypatch, classes=("PC", "PE"))
+    pe = args[0]["class"].eq("PE")
+    args[0].loc[pe, "ref_mz"] -= 100
+    args[1].loc[pe, "mz"] = args[0].loc[pe, "ref_mz"] * (1 + 0.2e-6)
+    args[1].loc[pe, "rt"] += 56 / 60
+
+    def base(targets, automatic, atlas, *, stream):
+        return pd.DataFrame(
+            dict(
+                atlas_rt_seconds=200
+                + 5 * targets.carbon
+                - 3 * targets.db
+                + targets["class"].eq("PE").astype(int) * 60,
+                atlas_in_domain=True,
+                atlas_training_cohorts=4,
+                atlas_training_mad_seconds=1.0,
+            ),
+            index=targets.index,
+        )
+
+    monkeypatch.setattr(
+        "matlab_annotation.coherent_retention.predict_aligned_retention_atlas", base
+    )
+    return args, pe
+
+
+def test_competing_class_mass_hypotheses_veto_a_strong_wrong_headgroup_shift(
+    monkeypatch,
+):
+    args, pe = headgroup_inputs(monkeypatch)
+    # Only PC is abundant enough to anchor. Its identical masses must not drag
+    # PE predictions 35 seconds toward the wrong headgroup's raw peaks.
+    args[1].loc[pe, "intensity"] = 1.0
+    unguarded, _ = call(args)
+    assert unguarded.loc[pe, "coherent_shift_seconds"].lt(-30).all()
+    guarded, audit = call(args, competing_class_anchor_guard=True)
+    assert not guarded.loc[pe, "coherent_available"].any()
+    assert audit.competing_class_vetoed_hypotheses.sum() > 0
+    np.testing.assert_array_equal(
+        guarded.loc[pe, "coherent_rt_seconds"], guarded.loc[pe, "baseline_rt_seconds"]
+    )
+
+
+def test_competing_class_guard_can_separate_two_chemically_isobaric_raw_rt_series(
+    monkeypatch,
+):
+    args, _ = headgroup_inputs(monkeypatch)
+    guarded, _ = call(args, competing_class_anchor_guard=True)
+    assert guarded.coherent_available.all()
+    np.testing.assert_allclose(guarded.coherent_shift_seconds, 25, atol=1e-8)

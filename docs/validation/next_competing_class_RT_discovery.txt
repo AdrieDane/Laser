@@ -1,0 +1,42 @@
+Numerical RT pilot only: competing-class anchor veto,25 October 2026
+No annotation experiment040, no candidate/acceptance/default changes.
+
+Unrestricted coherent v2 was worse as a numerical replacement across all33:
+90613 mapped endogenous manual RTs,89724 blind theoretical lookups,36512
+coherent-shift predictions. Within10seconds85626 ->85076:465gained,1015lost.
+Do not claim these as identified lipids or keep only the classes that improved.
+Retained annotation reference029 remains82729/92100correct,9268extras,1604wrong.
+
+Mechanistic concern: an accurately measured mass can fit different headgroups.
+A strong raw mass/RT ridge may belong to another class, not an RT shift of the
+requested class. PG/BMP are an example of chemically isobaric classes; RP PC
+and PE can also have mass-equivalent compositions with different carbon counts.
+The numerical losses alone do NOT prove the alternate chemical identities.
+
+Predeclared new, class-agnostic guard
+EVERY potential raw anchor, in EVERY family/mode, must be at least five seconds
+closer to its family's existing baseline RT prediction than to EVERY other-
+family target at the same near-exact theoretical mass. Equality tolerance:
+max(1e-5Da,0.05ppm),allowing catalog rounding but not general1.5ppm neighbors.
+Use ALL supported native-ion theoretical compositions as competitors, including
+ODD-carbon targets even though anchors remain even-carbon. Competitors use the
+same existing >=3project/MAD<=5s/domain/chemical-envelope support. No query
+curation, thresholds chosen by an outer class table, hard-coded dataset shifts,
+or successful-class list. Five seconds is a prospective conservative ambiguity
+margin, not a claimed physical law/FDR. It can withhold true shifted anchors.
+
+Same RP isomer-family branches are NOT cross-headgroup veto competitors; their
+relative trained RTs and formula-equivalent O(C:D)/P(C:D-1) holdout remain.
+NP retains exact classes, without imposing RP ordering. All other v2 numerical
+settings, spike guards and complete formula-block holdouts remain unchanged.
+If too few unambiguous raw anchors remain, return UNKNOWN/baseline,not a class
+assignment. No candidates, annotations or classifier fits are made here.
+
+Tools diagnose_qe_competing_class_rt.py --predict/--evaluate, followed by
+verify_qe_competing_class_rt_pilot.py. ALL33/132 blind predictions must freeze
+before manual evaluation. Fresh full scratch replay and independent spike
+measurement replay for ALL33,not a sample; all fingerprint checks. These are
+developmental reused-reference/raw-payload numerical checks,not untouched
+external validation or annotation accuracy. If this fails, reject it too;
+do not relax margins after the fact. Independent-standard agreement could be
+a SEPARATE future study,not silently mixed into this single-change pilot.

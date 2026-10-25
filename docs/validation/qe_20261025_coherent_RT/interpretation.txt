@@ -1,0 +1,53 @@
+Decision: reject unrestricted coherent RT shifts as a replacement prediction.
+Numerical diagnostic ONLY. No annotations changed; no experiment040 run.
+The 90% correct-annotation goal remains unmet. Keep research reference029.
+
+All33active datasets/four modes:90613 mapped endogenous original RTs assessed.
+All33blind numerical predictions were frozen and fingerprinted BEFORE opening
+the manual evaluation table.89724 rows had a theoretical class/CDB/ion lookup;
+889 unavailable lookups stay in this RT diagnostic denominator.36512 rows had
+a supported coherent shift. Standards/unresolved mappings are not RT-assessable
+here, but remain in the separate full annotation benchmark denominator.
+
+Within10seconds of the frozen numerical prediction:
+RPpositive42709 ->42527;88newlyinside,270no longerinside.
+RPnegative12064 ->12033;12newlyinside,43no longerinside.
+NPpositive18417 ->18297;170newlyinside,290no longerinside.
+NPnegative12436 ->12219;195newlyinside,412no longerinside.
+Total85626 ->85076;465newlyinside,1015no longerinside,net550worse.
+These numbers are NOT correct annotations,accepted assignments,lipids recovered
+or gains toward90%annotationcoverage. No original peak was selected or changed.
+Actual retained annotation results stay82729/92100correct,9268unconfirmed
+extras,1604different-original-peak choices. No application defaults changed.
+
+Large RT regressions:NPnegativePG230,PA117,BMP49grosslosses;NPpositiveBMP185,
+PS98;RPpositivePE137. Some other classes improve,especiallyNP PE/PE-O+P,but
+do not keep only successful outer-evaluated classes. High raw mass/RT coherence
+alone cannot establish a headgroup:other chemical identities can share mass.
+That is a mechanistic concern,not proof of the alternate identities.
+
+Independent engineering replay PASSED for ALL33/132 entire blind numerical
+tables and all33audit tables,not a sample. Fresh independent spike detections
+also matched all33saved mask-matched inputs exactly.320source/147input checks,
+99fingerprint-bound prediction artifacts. No manual truth read by the verifier.
+Five group-excluded numerical RT references were deliberately reused;zero
+reference/classifier fits. All query/outer/reference scopes and spike guards
+checked. Original measured RTs checked against intact original features.
+
+The initial v1 engineering scan was NEVER compared with manual truth. Source
+review caught formula-equivalent RP O(C:D)/P(C:D-1) holdout grouping;v1 outputs
+and source were preserved. Reported v2 corrects that grouping,otherwise fixed
+settings. This is not a tuned winner chosen between v1/v2 accuracy tables.
+
+Next single-change numerical hypothesis:chemistry-wide competing-class anchor
+veto. A raw anchor must be >=5seconds closer to its family's baseline RT than
+to every supported other-family near-exact-mass hypothesis,including odd-carbon
+competitors. This is not a hand-picked successful-class list. New all33blind
+predictions must freeze before evaluation. No annotation experiment follows
+until numerical evidence warrants it. Independent-standard agreement would be
+a separate future hypothesis,not silently combined with that one change.
+
+Limitations:developmental saved raw-payload/reference checks with prior dataset
+exposure,not untouched external validation,fresh app runs,identification
+probabilities or analytical FDR. Original peakgroup exports/reporting require
+actual app integration and fresh end-to-end validation later.

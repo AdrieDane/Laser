@@ -1,0 +1,17 @@
+{
+  "all_passed": true,
+  "annotation_changes": false,
+  "classifier_fits": 0,
+  "manual_evaluation_loaded": false,
+  "datasets": 33,
+  "full_blind_stream_prediction_reproductions": 132,
+  "full_blind_dataset_audit_reproductions": 33,
+  "freshly_reproduced_independent_standard_inputs": 33,
+  "source_sha256": "903ef828e04b4793a99c38fbf5d13aed02f6457f8e8778f76931f84052b6f58c",
+  "protocol_sha256": "5fc5d234ae4b10155f186fc42edabe9632223987c566ac4a85e8fe43d3fd41dd",
+  "blind_all33_receipt_sha256": "f2f8ecb7c0af01bb816a591f0b38447b645ea9e7338f02e734b51f7ce71decf2",
+  "source_hash_checks": 320,
+  "input_hash_checks": 147,
+  "bound_prediction_artifacts": 99,
+  "note": "Engineering replay,not identification performance or analytical FDR. ALL33/132 entire numerical tables reproduced exactly in new scratch;originals untouched. Fresh spike measurements matched frozen scope-matched inputs exactly. No manual truth loaded by this verifier."
+}
