@@ -1,0 +1,30 @@
+Read-only diagnostic, all33active datasets/fourmodes,25October2026
+
+4494mapped endogenousmanual features have another distinct candidate label
+on the SAME originalfeature, same adduct and theoreticalmass within1e-8Da.
+There are4785alternate labels;736ofthese curated features are not currently
+matched by retained029. These are potential decision problems,NOT gains or
+guaranteed recoverable matches. Many already-correct features also have
+competing labels and could be harmed by an inaccurate new method.
+
+Largest missing-match counts with such alternatives:
+RPpositive PC-P154,PC-O125,DG-O110,DG-P65,one-acylLPC57,two-acylLPC45;
+RPnegative PE-O45,PE-P41,two-acylLPE42,one-acylLPE30.
+This pattern motivates testing a learned isomer-label comparison using RP
+RT/chemical evidence. No fixed RT ordering or chemistry fact inferred solely
+from these counts; the new hypothesis still requires grouped held-out tests.
+BMP has few such exact-mass same-feature competitors in these prepared pools;
+this proposed method is NOT claimed to solve the BMP sensitivity gap.
+
+Project support column counts actual independent project groups among ALL
+curated features with competing isomer labels in that class/mode, not just
+currently missing matches. It is not an out-of-fold training eligibility mask.
+Any classifier must recompute support within each permitted training split.
+
+No classifiers fitted, annotation changes, predictor changes, query-curation
+runtime use or benchmark denominator exclusions. Mappedendogenous-only is a
+diagnostic scope; allmanual benchmark keeps standards and unresolved rows.
+The private audit checked67input hashes (33prepared tables/33manualcomparison
+tables/foldassignment) before/after and its script source hash. Raw feature
+IDs, manual crosswalks, profiles, classifier weights stay private.
+Source:tools/qe_optimization/diagnose_qe_isomer_label_competition.py.

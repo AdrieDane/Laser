@@ -1,5 +1,32 @@
 # Experiment reporting policy
 
+## SUPERSEDING LATEST — 038 benchmark COMPLETE, final integrity running
+
+038 ALL25freshparents/100modeclassifiers and33dataset/132modeoutputs COMPLETE.
+Full132user-facing TARGETscope table +wrong-mode totals DELIVERED this turn.
+Overall82729/92100=89.825190%,9268extras,1604wrong unchanged from029. Exactly
+two peakmoves:NPnegCL+1correct (1015->1016/1088);RPnegPI-1(889->888/1007).
+NPnegwrong101->100,RPneg408->409;RPpos932/NPpos163unchanged.43/86priority
+cells remainbelow90;priority81896/90871 unchanged, but capped90mean declines
+because CLalreadyabove90 while PIbelow. REJECT038;029retained,defaultsunchanged.
+FULLintegrity session52956/PID19989 NOW RUNNING,22/25parents checked at latest;
+must finish528training/132INNER/fivegrids/33OUTER/allrawquant/export/goldhash
+checks before masterPASS/publicaggregatepublication. Do NOTduplicate or edit
+hash-bound038runner/verifier/app source files. Completedfitting16613done0.
+
+Read-only isomerlabeldiagnostic ALL33/132 COMPLETE,67inputhashes/script hash:
+4494curatedendo features havecompetingSAMEfeature/adduct/theoreticalmasslabels,
+4785alternates;736currentlymissingcorrectmatches. NOTgains. MainRPposPC-P154,
+PC-O125,DG-O110,DG-P65,one-acylLPC57,two-acylLPC45;RPnegPE-O45/PE-P41,
+two-acylLPE42/one-acylLPE30. Sparseactualclasspairprojects mustberecomputed
+withintrainingONLY. NotclaimedBMPsolution. Publicaggregateinterpretation:
+docs/validation/qe_20261025_isomer_label_competition.
+039plan:docs/validation/next_isomer_label_experiment.txt. UNUSED newpure
+isomer_label_pairs.py/model.py/resolution.py +16focusedtestsPASS;synthetic8round
+modelsONLY,NOactual039fits/annotationoutputs.798fullapptestsPASSbeforelast
+label-pair eligibleprefilter;16newfocusedtestsPASSafter;fullsuite rerunpending.
+Allold038source-bound files UNCHANGED. No039before038fullintegrity/decision.
+
 ## LATEST CURRENT STATUS — 038 implementation, 25 October 2026
 
 User said go on; optimization ACTIVE. All older RUNNING/PAUSED paragraphs below

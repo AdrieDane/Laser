@@ -1,0 +1,98 @@
+Proposed separate039: distinguish ISOMER LABELS on the SAME original feature
+25October2026. Design only; no039classifier fits or annotation outputs yet.
+Start only after038fullintegrity/decision/publication. Its full132chat table
+has already been delivered. WHOLE029 remains the proposed reference; NEVER
+take class/mode winners from rejected038or037outputs.
+
+Reason
+Read-only all33/132 audit of029:4494mappedendogenous curated features have
+another corecandidate label at the SAME originalfeature, SAME adduct and
+SAME theoreticalmass (absolute tolerance1e-8Da).4785distinct alternate labels;
+736ofthese curated features currently lack an exact manual match. These are
+structural opportunities,NOT guaranteed gains. They include154RPposPC-P,
+125PC-O,110DG-O,65DG-P,57one-acylLPC,45two-acylLPC;RPneg45PE-O,41PE-P,
+42two-acylLPE,30one-acylLPE. Full public aggregate/qualification counts stay
+visible; sparse classes not excluded from benchmark. No claim this solves BMP.
+
+The user emphasized RP ether/plasmalogen and lyso positional RT ordering.
+Existing absolute pointwise scores may be similar for isomer hypotheses.
+Test a numerical conditional comparator of their RT/chemical evidence rather
+than another peak-moving layer or posthoc class-specific winner splice.
+
+TRAINING proposal
+Use original029strictphysicalcorepools and108label-free predictors; no new
+mass/RT windows, formulas, carbon ranges or claimed RT-order constants.
+For a permitted TRAINING originalfeature with ONE mapped curated label,
+compare it with KNOWNnegative labels on that SAMEfeature/adduct/theoreticalmass.
+Deduplicate physical label variants independently of supervision. No invented
+negative examples for entirely manual-absent features. Reject contradictory
+duplicate labels/multiplepositive identities. Names/FIDs serve grouping ONLY.
+Two orientations, signednumericdifferences/symmetricmidpoints/missingness,
+categorical left/right;feature-total weight1 then equal actualproject totals.
+Fresh fixed4mode conditional models,25nestedparents/100experts ifsupported;
+180rounds, no rowwiseearlystopping. Need>=100pairrows and>=3actualprojects
+permode, and>=3actualtrainingprojects for EACH unordered chemicalclass pair.
+Explicit unknown/fallback if unsupported; neverinvent labels/projects.
+Samequery/outer/inner-excluded reference scopes and authorization-before-label
+guards. No cohort name/matrix/FID/curated RT fit as model predictors.
+
+Runtime proposal
+Keep ALL candidate physical coordinates and quantification untouched. Compare
+only distinct isomer labels at one originalfeature/adduct/theoreticalmass.
+Never relabel standards or declared-spike masses/features. A unique label
+must beat EVERY other label in its complete physical isomer cluster by the
+learned conditional confidence. Missing/unsupported/contradictory comparisons
+leave the ORIGINAL whole cluster unchanged. No partial unsupported pruning.
+
+Separate feature-detection evidence from isomer preference: if resolved,
+use the maximum original029pointwise score WITHINthat complete cluster as
+the feature-detection proxy for the selected label, and withhold competing
+cluster labels. Retain original label scores and conditional preferences
+SEPARATELY; transferred score is NOT an analyticalidentityprobability/FDR.
+Leave non-isomer/adduct competitors in global one-feature/one-identity
+competition with the original .05ambiguity rule. Conditionalconfidence1
+explicitly disables this new method and must reproduce029core EXACTLY.
+This is a hypothesis requiring fullbenchmark,not an established confidence
+interpretation or permission to force a manual-like label.
+
+Calibration proposal, frozen BEFORE any039fits
+Use NEWINNERblind conditional preferences. All original029pointwise models
+andmodeoperatingcutoffs deliberately reused/hash-bound,not claimed asfresh
+classifiers. INNERbase remains same oldcoreselection boundary, NEVER imports
+outer-only005STDfits/027masspools into inner-excluded calibration.
+Choose conditionalcutoff PERMODE from[.55,.6,.7,.8,.9,.95,1(disable)] using
+only allowed INNERcuration. Maximize commonclassmean coverage capped90,
+then totalcorrect,then fewerwrong/extras,then highercutoff. CommonTRAINING
+cells>=100endomanual and>=3projects. No totalMODEcorrectloss,wrongincrease,
+or extrasincrease against original coreselection. Do NOT require zero loss
+in every individual trainingclass as038did: its many simultaneous strict
+constraints disabled almost all moves. Show all class gains/regressions.
+No-moves must reproduce original core and remain feasible.
+OUTERnewcoreselection then EXACT005STDcleanup/fixed027massstage from029,
+using only matching outer-excluded resources. No score/class outputs from
+rejected experiments. Same fullmanualv2 and all28unresolved in benchmarkN.
+
+Whole-algorithm retain/reject
+Require strictlymorecorrect SAMEoriginalpeak matches, no totalextrasincrease,
+no wrongpeakincrease, improved capped90prioritymean and no increase in
+priorityclass/modes below90. Report every mode/class regression explicitly.
+Reject or diagnose whole method if guards fail; never splice outer winners.
+Goal still>=90% EACH class/mode, not merely90%pooled. Sparse classes deferred
+as a work priority only; X4 the sole user-excluded target class.
+Full33/132percent(n/N)+extras before/after chat table, separate wrongpeaks,
+full nested support/score/grid/standard/mass/rawoutput integrity, sourcefreeze,
+aggregate-onlyGitpublication and decision BEFOREnextannotationexperiment.
+Saved-input groupeddevelopment, NOT fresh production or externalvalidation.
+
+Unused implementation checkpoint, no039annotation fits
+isomer_label_pairs.py builds authorizedsamefeature/adduct/mass TRAININGpairs;
+isomer_label_model.py provides numerical4modefit/antisymmetricpreferences,
+actualclass-pairprojectqualification andexplicitunknowns. Synthetic8roundfits
+ONLY;noexamplemodels. isomer_label_resolution.py produces numerical score
+proposals for complete supported clusters;no annotations/files. Original
+pointwise scores remain separate. Duplicate physical reference versions cannot
+multiply pairvotes;ALLversions included in olddetectionproxy/suppression.
+Non-cliquemasschains/inconsistentduplicate theoreticalmass/role withheld,
+no partial unsupported pruning. Allspikeprotections/strict3ppm/10s preserved.
+Sixteen focusedengineering testsPASS. Fullrunner/nestedcalibration/prefitgate/
+independentintegrity stillneedimplementation;do NOT call this039benchmarkdone.

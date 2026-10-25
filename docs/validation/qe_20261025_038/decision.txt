@@ -1,0 +1,32 @@
+Experiment038 REJECTED; retained research reference remains029.
+Complete benchmark all33active datasets/132modes. Full132row target-scope table
+and separatewrongpeak mode totals delivered in the user chat25October2026.
+Final independentintegrity is STILL RUNNING;no masterPASS/publication claim yet.
+
+What changed
+Fresh conditionalwithin-identity peakrankers,25parents/100modeexperts,180rounds,
+new INNERcalibratedconfidence thresholds. WHOLE029acceptedlipid/adduct/standard
+list fixed. Strictoriginalmass/RT andspikeprotections,onlyinitiallyfreepeaks,
+no chains/swaps/newidentities. Originalrawsamplevalues/bounds copiedon moves.
+Names/FIDs groupingONLY;querycuration neverused for predictions. Allrelevant
+query/outer/innerreferences excluded. No production defaults changed.
+
+Outcome versus029, targetscope excludesONLYuserX4(2rows)
+Correctsameoriginalpeak82729/92100 ->82729/92100,89.8251900109% unchanged.
+Unconfirmedextras9268 ->9268. Differentpeakchoices1604 ->1604.
+Wellrepresentedpriority81896/90871 unchanged,43/86class/modesstillbelow90.
+Alltarget76/122class/modesstillbelow90. All28unresolved remainprimaryN.
+
+Onlytwofinalpeakmoves; onegain andoneloss cancel:
+NPnegative CL1015 ->1016/1088 (93.2904% ->93.3824%);
+RPnegative PI889 ->888/1007 (88.2820% ->88.1827%).
+Wrongpeakmodecounts:RPpos932unchanged,RPneg408 ->409,NPpos163unchanged,
+NPneg101 ->100. Everydataset/mode extra count andacceptedidentitylist unchanged.
+The below90class PIgets worse while CLwasalreadyabove90,so capped90priority
+mean falls. No overallgain and no progress toward the actualclass-by-classgoal.
+Do NOTretain onlytheNPnegative moveorrelax038rulesposthoc. Whole038rejected.
+
+Next hypothesis is a SEPARATE method comparing isomerLABELS ononefeature,
+not peak-moving. It muststartfromWHOLE029,not038or037class/modewinners.
+Saved-input groupeddevelopment,NOTfreshproduction/untouchedexternalvalidation,
+NOTanalyticalidentityprobabilities/FDR. Notdeploymentready.
