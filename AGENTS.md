@@ -1,5 +1,41 @@
 # Experiment reporting policy
 
+## CURRENT042 PREPARATION — ACTIVE, no actualexamplefits/annotations yet
+
+041retained COMPLETE/pushed6563f1a, FULL132chat table ALREADYDELIVERED. Newbest
+04182740/92100correct,E9270,W1604;43/86prioritybelow90. Defaultsunchanged.
+Near-mass rounding diagnostic041ALL33/132 COMPLETE,DONE0session76975:
+8902physicalpairs,ALLexact1e-8Da;ZEROnew0.05ppmnear pairs.4494curatedfeatures
+haveexactrivals,732stillmissing041correct (old029736,4nowcorrect041).
+ALL33physicaltables frozenBEFOREmanualcomparison. No annotationchanges/models.
+Rejectroundingexplanation. Publicqe_20261025_near_mass_labels,source/testsready.
+
+Next042plan docs/validation/next_feature_label_factorization.txt. UNUSEDpure
+feature_label_examples.py +feature_label_model.py implemented. Featuretarget
+isoriginalFIDanypositive/allknownnegative/otherwiseunknown;STDfeaturesexcluded.
+Classblind315numericfeatureinputs; conditional labels original108inputs ONLYon
+knownpositive ambiguousfeatures. No oldscorerscorecap/stacking, no names/FIDs/
+curationflags as predictors. Perstage/mode actualcontributor weights/support,
+wholeunsupportedclusterwithheld, singletonconditional1onlysupportedclasses.
+Up to200freshclassifiers/25parents, same029params. All041calls immutable.
+
+FullCONSTRUCTION auditfeature_label_target_audit_v2 COMPLETEALLPASS session10885:
+330unique tables/528uses,1320tablemode checks,330independentmanualkey labels,
+ALLnumericaggregates independently NumPychecked, alloldpredictorsunchanged.
+V1session25248/PID27223 +children intentionallyTERMstopped forverification-
+onlyperformancefix; source/logsavedprivateaudit_v1. Noactualmodel/annoutputs.
+V2ALL330restarted, no partial/stdout reuse. HelperfeatureconstructorUNCHANGED.
+13focusedtestsPASS,847app testsPASS/8skip/83subtests. Modelprototype synthetic
+8roundfits ONLY. No042driver/calibrator/fullverifier or completefitpreflight yet.
+Constructionreceipt DOESNOTauthorizeexamplefits; stillneedALL33disabledENTIRE
+041exports/rawquant tests/fullcurrentmodelsource preflight BEFOREfits. Existing
+builder/checker/plan hashboundinconstructionreceipt; doNOTedit withoutversioning.
+Newmodel files addedafterconstructionaudit maynotbecovered; fullfitpreflight
+mustbindcurrentwholecode. All newsource/publicengineeringdocs pendingGitnext.
+No livejobs now. Needcomplete042orchestrator+fullchecker/preflight thennewfits.
+ComparatorWHOLE041, not029. FULL132chat/report/wholedecision BEFORE043.
+GoalNOTmet,optimizationACTIVE;doNOTendmerelycheckpoint/usergoon.
+
 ## CURRENT041 COMPLETE / RETAINED RESEARCH — supersedes preflight/running below
 
 ALL33/132 outputs/evaluation/FULLmaster integrity COMPLETE ALLPASS,session30323

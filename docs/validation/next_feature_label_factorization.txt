@@ -1,0 +1,82 @@
+Prospective042: separate original-feature detection from competing label choice.
+Comparator WHOLEretained041, not029 or rejected040. No actual042fits yet.
+
+Reason to change strategy:041safely added11correct/2extras but leaves43/86
+well-represented class/modesbelow90. Numerous cutoff, capacity, family/class
+weighting, standard/RTcontext and conditional-ranking experiments are documented.
+Do not claim those approaches are new. Near-mass rounding diagnostic041 found
+ZERO additional manually curated features with0.05ppm near-equivalent rivals
+beyondexact1e-8Da competitors; do not widen chemistry/RT/ppm rules on that basis.
+
+NEW hypothesis: train two different targets instead of using one candidate-level
+agreement score both to detect a feature and decide its label.039trained local
+exact-mass label pairs, but capped feature detection at maximum oldpointwise
+score; it could not independently rescue weakly scored truefeatures.042will
+learn a separate class-blind original-feature detector and a conditional label
+classifier. All competing PHYSICAL labels on a feature participate, not only
+exact-mass pairs. Neither predictions nor probabilities from029/039/040 enter
+new predictors. No old-model stacking with inadequately nested training scores.
+
+UNCHANGED: exact029physical candidates/108original predictors fromproperly
+query/outer/inner-excluded references. No new candidate/mass/RT/composition
+windows. Every accepted041call/identity/feature/metadata immutable. Additional
+calls only on free original features/identities, native monoisotopic targets,
+strict3ppm/10s and independent/named STDfeature/declaredmass5.01ppm protection.
+No curator-presence flags/datasetnames/FIDs/savedfits as runtime predictors.
+
+Stage1 observation unit: ONEstream/originalfeature, not repeatedcandidate rows.
+Training positive if any permitted mapped endogenous candidate is positive;
+negative ONLYif all candidate labels knownnegative. Any unresolved-only
+possibility makes it UNKNOWN, notnegative. Contradictory multiple true lipid/
+adduct labels on one feature are a harderror. Entire standard-bearing features
+excluded. Feature numeric input: min/median/max across candidate versions for
+each numeric original predictor, plus distinctidentity/class/adduct counts.
+No names, IDs or class labels as detector categorical predictors. Stream routes
+four separate experts. Candidate IDs group rows only; notmodelinput. Missing
+values remainunknown. No labels participate in aggregation or construction.
+
+Stage2 observation unit: candidate label conditional on a KNOWNPOSITIVEfeature
+with>=2distinctlipid/adduct hypotheses. Correct label positive, knownalternative
+negative; unresolved alternative labels remainunknown. No manual-absentfeature
+negative masquerades as proof of incorrect label. Uses original108predictors,
+not stage1fittedscores, not oldpointwise model scores. Four separate experts.
+Each class must have>=20positive examples from>=3actualprojects to be eligible
+for NEWcalls; forambiguouscluster requireALLcompetingclassessupported. Sparse
+or unsupportedclusters withhold additions, not fallback promotion. Singleton
+label gets conditionalrank1 onlyiftrainingclasssupport exists. Duplicate
+candidate versions collapse bysame physical lipid/adduct hypothesis; max
+conditionalrank for that hypothesis, normalize overALLdistincthypotheses.
+New candidate agreement rank=feature_detector_rank * normalized_label_rank.
+These are curator-agreement ranks, NOT chemical posterior probabilities/FDR.
+
+Both models: samefixed029HGB180rounds/31leaves/minleaf50/L2=2/lr.08/noearlystop/
+seed20261022. Equal totalactualproject weight WITHIN each mode/stage. Reference
+permissions and actual supervisedcontributors keptseparate;unsupportedexpert
+requires>=20positive/20negative observations from>=3actualprojects,elseUNKNOWN.
+Up to25nestedparents x8stage/modeexperts=200fresh classifiers, not reusedfits.
+Everytrainingquery usesreferences excludingownqueryfold+outer+inner asneeded.
+
+Training calibtargets keeporiginal manualdefinition, not partialBMPunknown
+policy. Use fourproper INNERheldoutproject predictions perouter. Same
+conservative041per-class support, free-winner/ambiguity, marginalextras/wrong/
+leave-oneprojectout safeguards andcutgrid; score1disable explicit. Protect
+old041INNERcore occupancy plusblindautomaticSTD/matchingindependentSTD; no
+outer-only005/027references usedinINNER. All5calibrations finishbeforeANY
+outerannotation/evaluation. Conditional earlier-cutoff fitting limitations
+remainexplicit, not fresh external validation.
+
+Before actualfits: full330unique trainingtable/528uses label/aggregate/scope
+preflight with independentmanual-key checks and unchangedoriginal predictors;
+all33disabledENTIRE041exports exact, stage-target synthetic tests, allrawnew
+measurement export tests. Complete runner/calibrator/verifier exists BEFORE
+snapshot/fits. Frozenallsource/inputprovenance; no tuning afterouterevaluation.
+All25model/stage/support audits,132INNERscores/fullcurves/cuts,33outer/132mode
+originalmeasurements/oldcells/candidate-export parity/samegoldhashes mandatory.
+
+Whole-method retain/reject: no oldcorrectloss byconstruction, newcorrect>=4x
+newunconfirmedextras, no additionaldifferent-feature choices, gains inbelow90
+well-representedclass/modes, no worsebelow90count/capped90mean. No selective
+class/fold splices. Full132 all-class percent+n/N/extras table andwrong-mode
+totals IN CHAT before043. Compare against041(82740/92100,E9270,W1604).
+All28unresolved staydenominator; onlyX4excluded. Sparseclasses visible/deferred.
+No deployment claim ordefaultchange; freshintegratedapp benchmark lateroncefit.

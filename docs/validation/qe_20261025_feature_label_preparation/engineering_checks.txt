@@ -1,0 +1,43 @@
+Prospective feature/label factorization: construction audit ONLY, not accuracy.
+
+Retained reference still041:82,740/92,100correct,9,270unconfirmedextras,
+1,604different-feature choices;43/86well-represented cells below90.
+No example042classifier fits/annotation outputs yet. Production unchanged.
+
+New pure unused modules: feature_label_examples.py and feature_label_model.py.
+Separate ONE-original-feature detection target from conditional candidate-label
+target on knownpositive features. Unknown alternatives stayunknown; no standard
+feature or contradictory multi-positive feature can become a trainingnegative.
+Class-blind numeric detection aggregates original315input fields:
+min/median/max of104numeric original predictors +3hypothesis counts.
+The other4original predictor fields are categorical, not detector inputs.
+Conditional classifier uses original108candidate predictors. No old model scores,
+manual class-presence flags, names/FIDs or dataset names enter predictor columns.
+Sparse/unsupported entire label clusters withhold, never promote an alternative.
+All target-label/aggregation/model scope tests PASS (13focused tests).
+Full currentapp suite847passed,8skipped,83subtests passed; no actualdataset fits.
+
+Full construction audit v2 ALLPASS:
+330unique nested trainingtables corresponding to528training uses/25futureparents;
+1,320table/mode checks; all330original108predictor frames unchanged; labels
+independently reconstructed from manual identity keys after authorization;
+ALLnumeric aggregate cells independently reconstructed with NumPy (not the
+pandas groupby helper being tested); allscopes checked beforemanualaccess.
+Unresolved rows never silently become knownnegatives.315featurepredictors.
+Counts repeat each dataset through10masks and are NOT independent sample counts.
+These are not annotation performance or claimed newcorrect matches.
+
+Initial v1construction checker intentionally stopped for a pure verification
+performance improvement: removed repeated whole-frame filtering/scalar pandas
+indexing in independent checks. Preserved v1source/logs/artifacts; no models or
+annotation outputs existed. V2reran ALL330checks, no stdout/partialreceipt reuse.
+Actual target/feature constructor unchanged. Full v2receipt private/hashbound.
+
+STILL REQUIRED beforeanyactual042examplefits: complete runner/calibrator and
+full master verifier; full current-source model/preparation preflight including
+ALL33disabledENTIRE041annotation/candidate export parity and newrawmeasurement
+export tests. Construction-only receipt is NOT fit authorization. Needproper
+query+outer+inner exclusion and distinctreferencepermissions/actualcontributors.
+Up to200newmodel fits atfixed029parameters; all5calibrations beforeanyouter
+annotations. After: full33/132benchmark+engineering replay+FULL132chat table,
+samegoldhashes/denominators, wholemethoddecision BEFORE043. No deployment claim.

@@ -1,0 +1,25 @@
+Read-only catalogue near-mass label diagnostic, retained041, ALL33/132 modes.
+
+No annotations, predictors, candidate windows, models or app defaults changed.
+All33physical competing-label pair tables frozen BEFORE manual comparison.
+Same original feature/adduct, distinct label; compare oldexact1e-8Da with
+prospectively fixed0.05ppm numerical near-equivalence. This is a numerical
+catalogue-rounding check, NOT chemical formula/isomer identity proof.
+
+4,494 mapped endogenous manual features have exact-mass competing labels;
+732 currently lack the correct same-original-feature annotation in041.
+ZERO additional curated features gain a competitor from the0.05ppm near rule.
+The earlier029diagnostic had736missing among these4,494; four are now correct
+in retained041. This difference is a consequence of the documented041gain,
+not improvement from this read-only diagnostic.
+
+Reject catalogue rounding as the proposed explanation for the large remaining
+class-label gap. Do not widen the actual mass tolerance or reinterpret the
+732opportunities as achievable/accepted gains. No classifier or annotation
+experiment was run, so no new before/after annotation table is implied.
+Scope is mapped endogenous diagnosis only, NOT a revised primary denominator.
+Unresolved/spike rows remain in the unchanged full manual benchmark elsewhere.
+
+Sources: diagnose_qe_near_mass_labels.py, syntheticguard testPASS. Private
+receipt hashes source/67inputs and all33frozen physical outputs; numerical
+aggregates only published, no original feature IDs or patient profiles.
