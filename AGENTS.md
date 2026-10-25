@@ -2,7 +2,22 @@
 
 ## Current work status — RESUMED by user,25October2026
 
-NEXT036implementation (NO036annotation fits yet): empirical composition RTunion
+036IMPLEMENTATION/PREPARATION RUNNING (NO036annotation fits yet):754app tests
+passed,8skipped,83subtests. ALL25nested_empirical_RT_references_v1 complete;
+5singlefold references EXACTnumericdiagnostic. empirical_RT_candidate_preparation_v1
+running3workers,firstSperm_cells11masktablescomplete (271newcandidate rows over
+ALL11masks,NOTannotations). New empirical_candidates.py strict3ppm/10s+8numeric
+fields;oldcoords/referencefields preserved,15STDfields reproduced,competition
+re-enriched. evidence_training.py NEWq_empirical_ reference scopeguard+tests.
+Sources:build_qe_empirical_rt_references.py,prepare_qe_empirical_candidates.py,
+run_qe_empirical_experiment.py (notstarted). verify_qe_empirical_preparation.py
+reconstructs25refs+fresh363STDmeasurements+ALL363fullphysical/predictor/metadata
+tables inisolatedownscratch,notcachedreceipt shortcut. Early11mask Sperm replay
+currentlyrunning. Needfullannotationverifier+132INNERcutreplay stillimplement.
+Do NOTduplicate existingpreparer or startfits before363tables/earlyreplaypass.
+Source/aggregateworkcontinues;029retained;appdefaults unchanged.
+
+036rationale: empirical composition RTunion
 fromWHOLE029. Numeric-only pilot empirical_RT_reference_diagnostic_v1 complete:
 33/132,90613mappedendoRTsexclX4;81778exact-CDBcorrections. Within10s86227 ->86235;
 656newlywithin,648leave. MedianRPpos2.101246 ->1.404873s,RPneg2.869815 ->1.620704s;

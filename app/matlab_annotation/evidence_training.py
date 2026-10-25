@@ -89,6 +89,26 @@ def validate_feature_scope(
             raise ValueError(
                 "A query's own project entered its standard-context references"
             )
+    empirical_keys = {
+        "empirical_reference_training_groups",
+        "empirical_reference_excluded_groups",
+    }
+    if any(
+        str(c).startswith("q_empirical_") for c in data["evidence"]
+    ) or empirical_keys & set(data):
+        if not empirical_keys.issubset(data):
+            raise ValueError("Explicit nested empirical-RT reference scope required")
+        empirical_groups = set(data["empirical_reference_training_groups"])
+        if (
+            not empirical_groups
+            or not empirical_groups.issubset(training)
+            or empirical_groups & excluded
+        ):
+            raise ValueError("Empirical-RT references include excluded scoring groups")
+        if query in empirical_groups or query not in set(
+            data["empirical_reference_excluded_groups"]
+        ):
+            raise ValueError("A query's own project entered empirical-RT references")
 
 
 def evidence_matrix(evidence, model):
