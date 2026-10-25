@@ -15,8 +15,13 @@ classes still compete globally for original features. SAME009MODEcalibration
 no rejected033candidates/newpredictors/partiallabels. Protocol frozen,runner
 run_qe_family_experiment.py active; verify_qe_family_experiment.py prepared.
 No035performance yet. NeedALL33eval/full132table/integrity/decision before036.
-029retained, appdefaults unchanged. Current tests742fullpassed plus2taxonomy
-tests added/passed; updated fullsuite running. No external/production claims.
+029retained, appdefaults unchanged.744fullapp/tests passed,8skipped,83subtests;
+plus3aggregatepublisher tests. One real035parent audit reproduced all19training
+query labels/scopes and13familyexpert support/contributor counts. Whole035
+integrity remains mandatory; this earlyaudit is NOT accuracy. New publisher
+publish_qe_aggregate_report.py requires complete33/132+ALLPASS receipt,explicit
+decision.txt and approvedaggregatecolumns only; no rawID/profile/model upload.
+No external/production claims.
 
 034COMPLETE,REJECTED;029retained. Full132TARGETscope table +wrongmode totals
 DELIVERED before any035annotation.82729 ->82814/92100 (+85),89.8251900 ->89.9174810%;
