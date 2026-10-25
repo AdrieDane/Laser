@@ -1,0 +1,9 @@
+{
+  "all_passed": true,
+  "datasets": 33,
+  "dataset_modes": 66,
+  "annotation_changes": false,
+  "classifier_fits": 0,
+  "thresholds_selected": false,
+  "note": "Optimistic candidate availability,NOT annotation performance or attainable gains. ALL33 masks frozen before query curation read in this diagnostic; historical exposure acknowledged. All BMP manual rows remain denominators; old calls unchanged. No rank/conflict/extra constraints included. Never a query-curation runtime filter."
+}

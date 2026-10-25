@@ -1,0 +1,61 @@
+Experiment046 prospective plan — continuous BMP evidence,26October2026
+
+Whole041 comparator retained. 044 and045 rejected as whole methods. Complete
+045 full132 CHAT/66BMP report/whole rejection published and pushed28691e5 before
+this experiment. No old source/output/call changes or favourable-polarity splice.
+
+Read-only score-free admission diagnostic froze all33 masks before decoding
+manual tables. Existing strong-profile rule ceilings:317/520 NPnegative=60.96%,
+456/622 NPpositive=73.31%. Even opposite-class-RT-candidate-only requirement
+caps NPnegative423/520=81.35%. Source physical-only optimistic ceilings480/520
+and613/622; these are NOT attainable performance/gains. Therefore opposite-NP
+counterpart/profile availability/strong correlation cannot be mandatory to
+reach90%. Unknown or weak sample-pattern evidence is not proof of absence.
+
+Single change relative to044 whole research method: replace absolute mandatory
+cross-polarity profile gate by source_physical==1. Use SAME163 numeric inputs
+(including all32 scope-specific BMP/PA/profile fields) continuously in SAME25
+parent/50 NP HGB classifiers. Those classifiers were trained on all known rows,
+not only hard-gate-passing examples. No new classifier fits or score mixing.
+No .5 score-floor change, C/DB window change, mass/RT expansion or PA hard veto.
+
+Native strict3ppm/ownmaskedclassRT<=10seconds/ions/isotope/standard ID+mass
+protection/global all-class competition/.05 ambiguity/identity-best/occupied
+feature+identity protections all unchanged. Fixed global winners first, then
+BMP and source_physical; no weaker fallback or old-call replacement. All041
+annotations/text/candidate flags and original quantitative cells immutable.
+No query curation, saved curator fits, manual opposite-mode presence, dataset
+names/paths/matrix guesses enter prediction. Explicit specimen metadata only.
+
+Restore EXACT044 INNER joint calibration policy (not rejected045 stricter
+25%headroom/LPO policy):13declared levels .5,.55,...,.95,.975,.99,1disable;
+full169 pair grid, Enew<=TPnew,Enew<=.5primaryBMPN,unsupported-other-NP-
+composition extras<=.1endoBMPN,wrong<=.005endoBMPN pooled+eachNP,enabledmode
+>=20newcorrect in>=3actual project groups. Related folders combined first.
+Objective max sum capped90 coverage, then more newcorrect,fewer extras,fewer
+wrong,higher positive then negative threshold. Infeasible=>bothdisabled.
+Explicit contrast is044 admission-only ablation, NOT045 headroom ablation.
+ALL132 INNER predictions replayed with proper query/outer/inner-group exclusions,
+all5 calibration choices before ANY new outer annotations. No point is selected
+from outer results. No borrowing041outer occupancy for INNERcalibration.
+
+No-cut preflight: all25/50 frozen classifier scopes/support/parameters/matrix
+receipts,all132 fresh scores bitexact044,all33 disabled entire041 output parity;
+new per-folder/project/pooled curves saved WITHOUT cutoff selection. Full
+source/app/reference/model/plan/checker hashes frozen before experiment starts.
+Full master independently checks all528 training-query uses,all132 original
+scores,changed admission scalar,per-case counts,all13cuts direct-vs-cache,
+all5 full169 grids,33 outer selections,old cells/new raw quant/fresh gold matches.
+
+FINAL WHOLE acceptance EXACT044/045:>=100new correct;Enew<=TPnew AND<=571;
+unsupported-other-NP-composition extras<=.1endoBMPN;Wnew<=5 AND<=.005endoBMPN
+eachNP;no old-correct loss/no outside-NPBMP/standard/quant changes;>=1BMPmode
+improves. All extras including other-NP-manual composition count PRIMARY.
+Do not relax these limits after observing results. Whole method only.
+
+Full33/132 before/after %n/N+TOTALextras CHAT,wrongmode totals,full66BMPclass
+CSV,endogenous+spiked companions and whole decision BEFORE next actual trial.
+Source and privacy-safe aggregates pushed to CFMmain. No raw donor profiles,
+feature IDs,models or manual workbooks uploaded. Repeatedly exposed grouped
+development,not untouched external validation,analytical confidence or FDR.
+App defaults unchanged;no deployment declaration from global90% alone.

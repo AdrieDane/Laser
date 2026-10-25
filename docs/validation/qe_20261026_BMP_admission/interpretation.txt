@@ -1,0 +1,29 @@
+BMP admission-ceiling diagnostic — all33 QE datasets
+
+No annotations,model scores,thresholds,quantification or defaults changed.
+All33 outer-only numeric eligibility masks frozen before reading manual labels
+in this diagnostic. Query projects excluded from masked mass/RT references.
+Strong-gate scalar check and nesting pass;all saved input hashes unchanged.
+Source physical eligibility independently constructed/verified in experiment044.
+
+Gate                       NPnegative ceiling      NPpositive ceiling
+Strong sample-pattern       317/520=60.96%           456/622=73.31%
+Measurable profile>=8 BIO   410/520=78.85%           545/622=87.62%
+Opposite class-RT candidate 423/520=81.35%           602/622=96.78%
+Source physical only       480/520=92.31%           613/622=98.55%
+
+Existing correct BMP:146/520 NPnegative,270/622 NPpositive. Each ceiling adds
+only missing mapped manual rows whose exact original-feature candidate is
+eligible and not blocked by existing041 identity/feature occupancy. All manual
+BMP rows remain denominators, including standards/unresolved. All66 dataset-
+mode cases are in by_dataset_mode_gate.csv; gate variants repeat denominators.
+
+Interpretation: hard cross-polarity profile/counterpart requirements structurally
+prevent90% in at least one polarity. They cannot be fixed by perfect ranking
+alone. Continuous evidence can remain useful without being an absolute veto.
+
+These are OPTIMISTIC availability bounds, NOT performance/accepted annotation
+gains. They ignore model rankings,ambiguity,conflicts among new calls and extras;
+achievable performance can be lower. No best gate selected from annotation
+performance here. Subsequent method requires prospective plan/independent full
+benchmark. Historical exposure acknowledged;not untouched external validation.

@@ -1,5 +1,52 @@
 # Experiment reporting policy
 
+## CURRENT046 no-cut preflight COMPLETE — optimization ACTIVE
+
+Session67799 DONE0. BMP_continuous_admission_preflight_v1 receipt ALLPASS:
+25reusedparents/50experts,132freshINNERscores bitexact044,newfolder/project/
+pooled curves ALL5folds,33disabled ENTIRE041 annotations+candidates parity.
+No newfits or operatingpoints. Bound3350inputs/15curveartifacts. All046sources,
+helper/plan/checker/postprocessor/fixedguard FROZEN; DO NOT EDIT.57tooltestsPASS,
+RuffPASS. Ready to commit/pushsource+diagnostic thenactual046runner. No queued
+runner. Full132045CHAT ALREADYDELIVERED;046full132CHAT not yet possible.
+Actual046 must finishALL5jointcalibrations before33outeroutputs. Then manually
+postprocess_qe_bmp_continuous.py(full33eval+reports+master),fixedguardreport,
+FULL132CHAT+66BMP/endoSTD/wholedecision/publication BEFORE047actualexperiment.
+Whole041 retained/defaults unchanged;GoalNOTmet. Keep working autonomously.
+
+## CURRENT046 IMPLEMENTED / no-cut preflight RUNNING — optimization ACTIVE
+
+045 full132 CHAT %n/N+TOTALextras and separate wrong totals DELIVERED, complete
+66BMP link/endo+STD companion/whole rejection delivered; safe reports pushed
+28691e5. Do NOT repeat045table. Whole041 still retained;defaults unchanged.
+
+NEW score-free BMP admission ceiling diagnostic COMPLETE all33/66. Strict
+profile gate max317/520NPneg=60.96%,456/622NPpos=73.31%;counterpart-only max
+423/520=81.35% NPneg. Sourcephysical-only max480/520=92.31%,613/622=98.55%.
+Optimistic availability,NOT performance/gains. All33 blind masks before manual
+decode;exact original-feature/occupancy/full denominators;scalar+nesting/hash
+checksPASS. Private BMP_admission_ceiling_041_v1, safe aggregate report
+docs/validation/qe_20261026_BMP_admission. No annotation experiment in diagnostic.
+
+046 prospective plan docs/validation/next_BMP_continuous_admission_experiment.txt.
+EXPLICIT single-change contrast vs044: remove mandatory profile/counterpart
+veto, require only original source_physical==1 after unchanged global/native
+selector. SAME25/50models/163fields, profiles remain continuous model inputs.
+Restore original044 INNERjoint169grid policy (NOT045headroom/LPO). FinalWHOLE
+guard EXACT044/045 unchanged;>=100newTP,E<=TPand571,etc. Allold041immutable.
+No cutoff-floor/window/CDB/PAhardveto/model change. No outermanualpresence filter.
+
+New046runner/helper/no-cutpreflight/fullchecker/postprocessor/fixedguard written;
+57focused tool testsPASS,Ruff initially onlytest formatting thenformatted. Noapp
+edits. Current no-cut preflight session67799 /tmp/laser_046_preflight.log RUNNING;
+hashbinding/models/132freshINNERscores/newcurves/33disabledENTIRE041 parity.
+NO046cut choice or outeroutput yet. Allnew046 runtime/helper/plan/checker now
+bound by running gate: DO NOT EDIT. Wait completepreflight receipt/DONE0 then
+commit/push CFMmain before actual046run. Noqueuedactualrunner.
+Fullchecker redoes528traininguses,all13direct-vs-cachecuts,132newadmission/
+counts,all5independent169grids,33outer/oldcells/rawquant/freshgold. Full132CHAT
+and66BMP/wholedecision BEFORE047. Goal ACTIVE;do not endmerelycheckpoint.
+
 ## CURRENT045 COMPLETE / REJECTED WHOLE — optimization ACTIVE
 
 26October2026: 045 producer and postprocessor DONE0; full independent master

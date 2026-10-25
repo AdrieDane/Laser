@@ -1,0 +1,31 @@
+BMP admission-ceiling diagnostic — specified26October2026
+
+Read-only, before experiment046. Whole041 retained;045 rejected and fully reported.
+Question: can the hard cross-polarity sample-profile gate even permit90% of
+manual BMP rows, assuming perfect scoring/ranking of remaining candidates?
+
+Use all33 outer-only, query-project-excluded163-column tables, same original
+candidate pool and independently checked native mass/RT/ion/isotope/standard
+physical eligibility from044. No predictor construction or model changes.
+Freeze four numeric eligibility masks for all33 before opening manual tables:
+1 source physical only,2 additionally a class-RT-valid opposite-NP candidate,
+3 additionally measurable profile with>=8 BIO pairs,4 existing strong profile
+gate (raw/normalized correlation>=.8,worst raw leave-one-out>=.6).
+All masks exclude occupied041 features/identities. No scores or operating-point
+selection; no classifier fits, accepted calls, new quantification or app edits.
+
+After all33 blind eligibility artifacts and receipt exist, decode041 manual
+comparison tables. Count each missing mapped manual row that has its exact
+lipid/adduct/mode/original-feature in each eligibility set. All manual BMP rows,
+including standards/unresolved, remain denominators. Existing correct rows
+remain as-is. Do not equate number of candidates with number of annotations.
+Ceiling=existing correct+eligible missing exact rows. It is optimistic: ignores
+ranking/ambiguity/conflicts among new calls/extras and may not be attainable.
+Report all66 dataset-mode cases and2 mode totals. Primary extras remain ALL
+extras; opposite-manual presence is not a runtime filter or proof.
+
+Scope/provenance/physical measurements already fully independently verified044.
+This diagnostic validates exact saved input bindings,mask nesting and scalar
+strong-profile eligibility, and retains all33 blind tables privately. Do not
+claim new untouched holdout testing: same data have extensive prior exposure.
+Write prospective046 method only after this diagnostic; never modify44/45 files.
