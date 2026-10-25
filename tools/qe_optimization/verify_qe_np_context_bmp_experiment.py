@@ -30,6 +30,26 @@ def normalized_csv(frame):
     )
 
 
+def verify_candidate_flags(candidates, previous_candidates):
+    """Preserve legacy provenance flags; require new acceptances to clear them."""
+    from standard_lipidomics.validation import _boolean
+
+    def keys(frame, both=False):
+        accepted = frame.automatic_accepted.map(_boolean).fillna(False).astype(bool)
+        if both:
+            accepted &= frame.automatic_candidate.map(_boolean).fillna(False).astype(bool)
+        return set(runner.accepted_keys(frame.loc[accepted]))
+
+    old_accepted = keys(previous_candidates)
+    old_legacy = keys(previous_candidates, both=True)
+    actual_accepted = keys(candidates)
+    actual_legacy = keys(candidates, both=True)
+    assert old_accepted.issubset(actual_accepted)
+    assert actual_legacy == old_legacy, "Inherited provenance changed or new call still marked candidate"
+    assert not (actual_accepted - old_accepted) & actual_legacy
+    return len(old_legacy)
+
+
 def verify_parent(job):
     configure_frozen_resources(OUT / "source_snapshot")
     from annotator.composition_ranges import canonical_lipid_class
@@ -389,11 +409,9 @@ def verify_dataset(job):
         runner.accepted_keys(actual)
     )
     assert len(candidates.loc[flags]) == len(actual)
-    assert (
-        not candidates.loc[flags, "automatic_candidate"]
-        .map(_boolean)
-        .fillna(False)
-        .any()
+    inherited_candidate_flags = verify_candidate_flags(
+        candidates,
+        pd.read_pickle(runner.PREVIOUS / "runs" / dataset / "candidates.pkl"),
     )
     assert set(runner.accepted_keys(previous)).issubset(
         set(runner.accepted_keys(actual))
@@ -481,6 +499,7 @@ def verify_dataset(job):
         roundoff=rounding,
         available_measurement_cells_checked=available,
         inherited_unpopulated_old_measurement_cells=inherited,
+        inherited_accepted_candidate_provenance_flags=inherited_candidate_flags,
     )
 
 
@@ -542,6 +561,9 @@ def main():
             original_coordinate_stream_checks=132,
             old_allcell_export_preservation_datasets=33,
             candidate_export_parity_checks=33,
+            inherited_accepted_candidate_provenance_flags=sum(
+                r["inherited_accepted_candidate_provenance_flags"] for r in outputs
+            ),
             identical_manual_reference_hash_checks=33,
             added_annotations=sum(r["added_annotations"] for r in outputs),
             preexisting_roundoff_cells=sum(r["roundoff"] for r in outputs),

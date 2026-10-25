@@ -158,3 +158,27 @@ def test_descriptive_classifier_kind_is_not_an_estimator_keyword_or_parameter_ch
         assert constructor.get_params()[k] == v
     with pytest.raises(ValueError):
         runner.estimator_parameters(dict(kind="unapproved_model", max_iter=180))
+
+
+def test_audit_preserves_legacy_candidate_flags_but_forbids_them_on_new_acceptances(
+    tmp_path, monkeypatch
+):
+    from verify_qe_np_context_bmp_experiment import verify_candidate_flags
+
+    previous, pool, added, _ = inputs(tmp_path, monkeypatch)
+    pool.loc[0, "automatic_candidate"] = True
+    old = runner.PREVIOUS / "runs/example/candidates.pkl"
+    pool.to_pickle(old)
+    annotations, candidate = runner.assemble_exports(
+        "example", previous, runner.fill_original_features("example", added)
+    )
+    assert len(annotations) == 2
+    assert verify_candidate_flags(candidate, pool) == 1
+    bad = candidate.copy()
+    bad.loc[bad.feat_feature_id.eq("other"), "automatic_candidate"] = True
+    with pytest.raises(AssertionError):
+        verify_candidate_flags(bad, pool)
+    bad = candidate.copy()
+    bad.loc[bad.feat_feature_id.eq("best"), "automatic_candidate"] = False
+    with pytest.raises(AssertionError):
+        verify_candidate_flags(bad, pool)

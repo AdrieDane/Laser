@@ -1,0 +1,47 @@
+Experiment 040 v2: REJECTED. Retain whole experiment 029; no app defaults changed.
+
+All 33 active datasets /132 modes, same 30 project groups and manual reference.
+Correct means same lipid, adduct, mode and ORIGINAL feature. Target excludes
+only X4 (two rows); all 28 unresolved mappings remain in the denominator.
+
+Correct: 82,729 -> 82,804 /92,100 (89.825190% ->89.906623%): +75.
+Unconfirmed extras: 9,268 ->9,464 (+196); not proven false positives/FDR.
+Different-feature choices: 1,604 ->1,605 (+1).
+Well-represented class/modes below90%: 43/86 ->43/86, unchanged.
+All target class/modes below90%: 76/122 ->76/122, unchanged.
+NP-negative BMP: 146 ->217 /520; extras528 ->667; different-feature0 ->1.
+NP-positive BMP: 270 ->274 /622; extras227 ->284; different-feature1 ->1.
+All other class/modes unchanged. No favourable-fold/class output splice.
+
+Method: 25 fresh nested parents /50 NP-wide all-class HGB classifiers, original
+029 hyperparameters/predictors/candidates. Training-only partial BMP absence
+mask as predeclared. Global all-label competition before BMP-only add-on routing;
+all accepted029 calls/metadata immutable. Original030 grid/budgets unchanged.
+272 added calls =75 correct +196 manual-absent extras +1 different-feature.
+The increase in extras exceeds the new correct matches; BMP is still far below90.
+Reject the WHOLE algorithm, not merely its unfavourable folds or NP polarity.
+
+Integrity ALL PASS: all25 parents/528 training uses,132 INNER scores/five complete
+grids,33 outer exports/132 modes, all old CSV cells, all new raw measurements,
+same33 reference hashes;323 source/1096 input hashes. Final checker reran ALL
+components after correcting a metadata-only audit assumption. Old029 has93,613
+accepted candidate rows ALSO carrying legacy automatic_candidate provenance.
+Those exact keys remain unchanged, while every newly accepted row must clear
+its candidate flag. No annotation/model/scientific parameter changed for repair.
+Original checker preserved privately; planned/final hashes separate in receipt.
+450,109 populated measurement cells checked;3,827,658 already unpopulated internal
+old-cache cells recorded separately. Final raw peakgroup export must use original
+feature rows, not these internal caches.195 inherited CSV roundoff cells checked.
+
+Unfitted initial040 v1 failed at its first constructor, before any model.fit or
+annotation outputs; preserved separately. V2 filtered descriptive classifier
+kind metadata exactly as original029 and repeated full330-table preflight.
+No performance result is attributed to the unfitted attempt.
+
+Full132 target-scope table and separate wrong-feature totals delivered in chat
+before041. BMP_complete_132.csv is the class-specific full tested-scope companion;
+zero-manual percentages are unavailable, not assumed100%.
+
+These are saved-input grouped development experiments with prior exposure,
+not untouched external validation or fresh integrated-app deployment results.
+The90% PER CLASS/PER MODE goal remains unmet; no deployment benchmark yet.

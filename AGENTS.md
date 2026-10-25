@@ -1,5 +1,30 @@
 # Experiment reporting policy
 
+## CURRENT040 COMPLETE / REJECTED — supersedes all older running statuses
+
+040v2 ALL33/132 annotations/evaluation and FULL master integrity COMPLETE ALLPASS.
+FULL132 target-scope chat table + separate wrong-mode totals ALREADY DELIVERED.
+BMP-specific132 companion linked and published. Correct82729 ->82804/92100(+75),
+extras9268 ->9464(+196), wrong1604 ->1605(+1);43/86priority and76/122alltarget
+class/modes below90 unchanged. REJECT WHOLE040;029retained,defaults unchanged.
+NPnegBMP146 ->217/520,E528 ->667,W0 ->1;NPpos270 ->274/622,E227 ->284,W1same.
+Do NOT splice favourablepolarity/folds. All25freshparents/50NPclassifiers,
+528training/132INNER/fivegrids/33outer/rawquant/goldhash checksPASS.323source/
+1096inputs/549artifacts.6runner testsPASS. Fullchecker reran ALLcomponents after
+metadata-only repair:93613 accepted029candidate rows ALSO carrylegacycandidate
+flags; preserve EXACToldkeys,clearflags ONLYnewacceptedcalls. Oldcheckerplanned
+SHA4a2320f8... preservedprivately;finalSHA012ee25a... . No scientificchanges.
+Source/model/annotation outputs unchanged. Session35648DONE0;no live040jobs.
+Publicreport docs/validation/qe_20261025_040;privateexperiment_040_v2 authoritative.
+Unfittedv1 history below preserved. No needredo040models/evaluation/audits.
+
+Next direction: add-only per-class calibration from WHOLE029 frozen scores,
+not034replacement/global-budget redistribution and notrejected040models.
+Needpredeclaredplan/prototype/preflight beforeany041 outputs. ALLoldaccepted
+identities/features immutable. Training-onlyclasssupport/marginalagreement/
+noaddedwrong guards, scopechecks; noquerycuration orouter005/027INNERborrowing.
+GoalNOTmet,workACTIVE;user saidgoon. DoNOTpause/endmerelycheckpoint.
+
 ## CURRENT040 ENGINEERING v2 — preflightPASS, readyfreshfits (supersedes readyv1)
 
 Initial040producer15252/PID25165 STOPPEDexit1 atFIRSTHGBconstructor: old029
