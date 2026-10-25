@@ -1,0 +1,26 @@
+Read-only029peak-competition diagnostic,all33datasets/132measurementmodes.
+No annotations,labels,models orcutoffs changed.67inputhashes verified.
+Source diagnose_qe_peak_competition.py SHA256:
+b084cc052af70d8e7b5ea747edabcad35fa3d21f4aaf42421137d09f9716bcc9.
+
+6848mappedendogenousmanual identities havecorrectoriginalfeature ANDanother
+distinctfeature alreadyincorecandidatepool.7122wrongpeak alternatives.
+1749ofthese identities lackthecorrectmatch in029;995arecalledonanotherpeak.
+These counts overlap,NOTdisjoint additiveerrors. They are opportunities,
+NOTvalidated recoverable gains orindependentbiological replicates.
+
+Mode             Multi-peak identities  Wrongalternatives Missingcorrect Wrongcalls
+RPpositive       3934                   4135              1053           591
+RPnegative       1477                   1518               378           279
+NPpositive       1070                   1097               233            95
+NPnegative        367                    372                85            30
+
+RPpositivePE:291suchidentities,80missingcorrect,53currentlywrongpeakcalls.
+No validatedimprovement or guarantee ofrecoveringthese53.
+
+Standards/unresolved/not-in-pool identities excluded ONLYfromthisstructural
+diagnostic,NOTfrombenchmarkdenominators. This is a developmentdiagnosis using
+knowncuration,notuntouchedexternalvalidation oranalyticalFDR.
+Privatefull33/132andclass tables:peak_competition_diagnostic_029_v1.
+No rawFIDs,curatedprofiles/crosswalks orlearnedweights published.
+Potentialseparatenextmethod:../next_conditional_peak_experiment.txt.

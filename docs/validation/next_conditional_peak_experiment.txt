@@ -1,0 +1,93 @@
+Potential next separate experiment: identity-preserving original-peak refinement
+25October2026. Design/prototype ONLY,NOannotation/ranker fits. Must finish037
+fullbenchmark/integrity/table/wholealgorithmdecision BEFOREanynext experiment.
+
+Why
+029read-only diagnostic:6848mapped endogenousmanual identities have both the
+correctoriginalfeature andanotherdistinctfeature alreadyin corecandidatepool.
+7122distinct wrongpeak alternatives.1749ofthese identities lackcurrentcorrect
+matches,including995currentlycalled onanotherpeak. These are overlapping
+structuralopportunities,NOTguaranteedgains or independentbiologicalcases.
+Bymode multi-peakidentities/wrongalternatives/missing/currentwrongcalls:
+ RPpositive3934/4135/1053/591
+ RPnegative1477/1518/378/279
+ NPpositive1070/1097/233/95
+ NPnegative367/372/85/30
+ForRPpositivePE,291suchidentities,80missingmatches,53wrongpeakcalls.
+No redefinition ofmanualdenominators/standards/unresolved rows inbenchmark;
+structuraldiagnostic aloneexcludes standards/unresolved/not-in-pool identities.
+Source diagnose_qe_peak_competition.py,67inputhashes,all33/132.
+
+Separate two questions
+1.Is there enough evidence to accept this lipid identity?
+2.Which original peak should represent an already accepted identity?
+Existing pointwise scorer mixes these questions and manual-absence supervision.
+Proposed conditionaltraining compares candidatepeaks WITHINtheSAMEidentity,
+using onlyauthorizedTRAININGcuratedidentities withcorrectandknownwrongpeaks.
+It doesNOTguess negative peak labels for manual-absent identities.
+
+Purepair-builder prototype (UNUSED,no model fitting):
+app/matlab_annotation/conditional_peak_pairs.py +sixsyntheticengineeringtests.
+Validatequery/reference scopes BEFOREpairlabels used. Names/FIDs groupingONLY,
+never predictors. Eachpositive feature pairedwithallknownwrongdistinctfeatures
+ofsame stream/name/adduct. Bothorientations,balanced1/0labels. Numeric signed
+differences/symmetricmidpoints/signedmissingness; categoricalleft/right values,
+no inventedcategory distances. Stablelabel-independent physicaldeduplication;
+contradictoryduplicate labels/multiplepositivefeatures rejected. Identity
+totalpairweight1,thenactualcontributingproject totals equalized. Fullpermitted
+reference scope andactualsupervisedcontributors recordedSEPARATELY;neverinvent
+rows/groups toforceequality. Actualfit mustretain allquery/outer/inner exclusions.
+
+Conservative runtime proposal
+Startfrom the WHOLEretainedreference AFTER037decision (029if037rejected,
+037onlyifWHOLE037retained),not a class/mode winner splice. FREEZEallaccepted
+lipid/adduct/isstandard identities and initialoccupiedoriginalfeatures.
+Never change standards. Only an accepted endogenous identity whoseCURRENT
+peak existsin the same originalcorepool is eligible; mass-only/protectedcalls
+withoutthatrepresentation stayunchanged. Challenger mustbeanotherstrictphysical
+candidate SAMEidentity,not aninitiallyoccupiedfeature,not anactualdeclared
+spike mass/feature. No new candidates,ranges,RTmodels or masscalibration.
+
+Freshmode-specific conditionalpairrankers,25nestedparents/100experts ifsupported,
+samefixed180roundHGBfamily. Explicitminimum100pairrows from>=3actualsupervised
+projects permode; unsupportedmodes keeporiginalpeaks. No rowwiseearlystopping.
+Allowedreferencepermissions remainallallowedgroups; actualsupervisedcontributors
+separate,as in the pair builder. Model categories/numerics contain no names,
+FIDs,manualflags orcohort identifiers. Antisymmetric preference:
+0.5*(p(challenger,current)+1-p(current,challenger)). Never an analyticalidentity
+probability/FDR. At query time useONLYphysicalevidence,notcuration.
+
+Compare challengers againstCURRENTacceptedpeak. Candidatewithhighestpreference
+proposesmove; closealternative challengers orclosecompetingidentityproposals
+on one freefeature(within0.05)withheld. Initialoccupiedfeatures remainreserved,
+evenaftermove; no chains/swaps/displacement ofanyexistingannotation. Update
+ORIGINALmeasured coordinates/intensities from the chosenrawrow,not adjustedRT/mz.
+Theoreticalidentity/adduct/isstandard remainEXACT. Allacceptedcallcounts and
+manual-absentidentity extras MUSTremainEXACT bydataset/mode/class; mechanically
+verifythis. Correctcalls canstillbe harmed bybadmoves; thisisNOTa guarantee
+ofbetterpeakaccuracy. FullcurrentSTD/massidentitylist staysfrozen,no cleanup
+rerunthatcouldsilently add/drop identities afterrefinement.
+
+Training-only calibration proposal
+All base identity acceptance rules/scores stay frozen fromtheWHOLEreference.
+Trainpairranker excludingouter/inner/query groups andusingmatchingnested
+label-freephysical/predictor tables. INNERblind rankerpreferences selectmove
+confidence perMODEfromfixedgrid[0.5,0.6,0.7,0.8,0.9,0.95,1.0];1.0meansdisable
+allmoves(explicitpolicy,not probabilistic rounding). Calibrationtargets use
+originalcuratedfeatures onallowedgroups ONLY. Include no-movesasfeasible.
+Priorityclass/mode thresholdobjective: maximizecapped90class/mode coverage,
+thenoverallcorrect,thenhighercutoff. Trainingguards: no commonclass/mode
+correctcount or totalmodecorrectcount maydecline; no increasewrongpeaks.
+Calibratedconfidence is NOTchemicalFDR. Finalexactcalibration/pipeline/source
+protocol and allinnerinputs mustbefrozen BEFOREouterannotation.
+
+Evaluation
+WHOLEalgorithm versus WHOLEreference,all33/132. Same92102historicalmanual,
+target92100excludesuserX4only,all28unresolved remainprimarydenominator.
+86prioritycells/36sparsecells visible. FULL132user-facing before/after
+percent(n/N)+extrascounts andseparatewrongpeaks beforeanotherexperiment.
+Allidentity/annotationcounts/extras mustmatchreferenceEXACTLY; reportevery
+featuremove andgain/loss inprivateaudits; onlyaggregatespublic. Verifyoriginal
+rawcoords andannotation/candidateacceptedflag/export parity forALLoutputs.
+No ownquery manualpeak/name/FID modelprediction,or test-class winner splicing.
+Researchprototype,NOTdeploymentoruntouchedexternalvalidation.

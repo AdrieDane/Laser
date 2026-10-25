@@ -14,6 +14,19 @@ wrappersources. Allprevious18cases mustberecomputed (no validatedoldreceipts).
 No037fitsyet; its330tablepreflightreceipt stillbindscurrentsources. Finish036
 master/publicaggregates thenrun037asplanned. Pauseparagraphsbelowhistorical.
 
+Queueddriver session35714 waits036masterPASS,then publishes036safeaggregates,
+commits/pushes CFMmain,andstarts037. DoNOTstarta duplicate037runner. Usercan
+pausequeueexplicitly;no037models existuntilbothfull036checkscomplete.
+Read-only peakcompetition diagnostic completed ALL33/132,67inputhashes:
+6848curatedendo identities havecorrect+otheroriginalpeak available,7122wrong
+alternatives,1749missingcorrect including995currentwrongpeakcalls. Opportunities
+NOTgains. Pureunused conditional_peak_pairs.py+6synthetictests constructs
+authorizedTRAININGwithinidentitypairs;NOclassifierfits/scoring/annotations.
+769fullapptestsPASS/8skipped/83subtests. No037method/source-boundfiles modified.
+Potentialidentity-preservingpeakrefinement plan (NOextraidentitycalls) saved
+docs/validation/next_conditional_peak_experiment.txt;NO038experiment before037
+FULLbenchmark/integrity/table/wholedecision. Allfutureplans not currentgains.
+
 ## USER-REQUESTED PAUSE — 25October2026,latest status
 
 User said "pauze when you can". PAUSED; doNOTcontinue optimization unless
