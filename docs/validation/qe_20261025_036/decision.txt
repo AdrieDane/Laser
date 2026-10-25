@@ -1,0 +1,51 @@
+036 REJECTED. Retain WHOLE029 as research reference. No production defaults changed.
+
+Empirical composition RT references improved median RT prediction, but did NOT
+improve final correct annotation coverage. All original029candidate options
+were retained; strict new3ppm/10s empirical candidates and8numeric RTfields
+were added. All4modeexperts freshly fitted,100classifiers in25parents,180rounds
+each,with original labels and same009INNERcalibration/005STD/fixed027massstage.
+Otherprojectclass/CDB references exclude query,outertest andinnervalidation.
+No rejected033RTpools,034classcuts or035familymodels were combined into036.
+
+All33active datasets/132modes,30projectgroups,grouped held-out research replay.
+NOTfresh end-to-end app runs,untouched external validation or analyticalFDR.
+Prior development exposure and inherited automatic/vendor references remain.
+The public aggregate publisher requires complete benchmark AND masterPASS;
+see integrity_receipt.json for independent reconstruction checks.
+
+Target scope: all manual classes except user-excludedX4(2NPnegative entries).
+Denominator92100 unchanged,including28unresolved original-feature mappings.
+Historical all-manual reports remain92102; excludingX4is NOTan improvement.
+Correct means same lipid/adduct/mode/ORIGINALfeature. Extras are calls absent
+from the manual list,unconfirmed rather than provenwrong. Different-peak
+choices are separate; unresolved references are NOTprovenwrongpeak choices.
+
+029 ->036:
+Correct82729 ->82546/92100 (-183),89.8251900109 ->89.6264929425%.
+Unconfirmed extras9268 ->9202 (-66). Different original peaks1604 ->1589 (-15).
+Targetclass/modes below90:76 ->77of122.
+
+RPpositive40648 ->40517/45206; extras3391 ->3281; wrong932 ->910.
+RPnegative12088 ->12154/13600; extras1995 ->2038; wrong408 ->416.
+NPpositive17637 ->17460/19380; extras1944 ->1852; wrong163 ->164.
+NPnegative12356 ->12415/13914; extras1938 ->2031; wrong101 ->99.
+
+Priority86class/modes (>=100manual entries,>=3independentprojects):
+81896 ->81713/90871,90.1233616885 ->89.9219773085%.
+Below90:43 ->44of86. Capped90class/mode mean83.8606409894 ->83.5970788465%.
+Sparse36targetcells:833/1229 unchanged; remainvisible,not benchmark exclusions.
+
+Examples of regressions: NPpositiveBMP-44correct,RPpositiveCE-35,DG-28,
+NPpositivePC-24,PS-22,RPpositiveDG-P-21. NPnegativeBMP+24correct but+65extras;
+coverageonly170/520=32.7%,and NPpositiveBMPfell270 ->226/622=36.3%.
+Do NOTsplice successful class/mode outputs into029.
+
+Full132row target-scope table with percent(n/N) and extrasbefore/after,plus
+separate wrong-feature totals,ALREADYDELIVEREDinchat before037preparation.
+Actualdelta is versus_029/,NOTtop-level tables(originalbaseline continuity).
+
+Next separate hypothesis: temper uncertain negative TRAININGevidence while
+preserving ALL029physicaltables,predictors,known/positive labels and benchmark
+truth. Predeclared plan/guards:../next_review_tempered_experiment.txt.
+90%PERCLASS/PERMODEgoal remains unmet; no deployment-readiness claim.

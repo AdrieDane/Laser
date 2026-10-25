@@ -1,0 +1,31 @@
+Read-only029negative-supervision audit,25October2026.
+No annotations,labels,candidates,cutoffs or models changed by this diagnostic.
+ALL33active datasets/132modes; one outer-excluded physical table per dataset.
+These are210595candidate rows,NOTindependentcases or actualfit pooledrows.
+
+Mutuallyexclusive categories,with listed precedence:
+87080correctoriginalpeak manualpositives;
+39alreadyunknown(unresolved manualidentity);
+8061otherpeaks for a mapped curatedidentity;
+5978otherlabels on a mapped curatedpeak;
+37351absentidentities within a class/mode with endogenousmanualentries;
+51280classabsent from THISmanualmode,present anothermanualmode;
+20806classabsent from allfourmanualmodes.
+Counts sum210595. Standards do not establish endogenousclassreview.
+Exactcanonicalclasses retained; no ether/positional family merging.
+
+Interpretation:51280rows have weaker evidence of being true chemicalnegatives.
+This is NOTevidence they are chemicallycorrect or trulyunreviewed: absence
+may be genuine. Existing manualcuration is not exhaustivechemicaltruth.
+No pseudo positives or automaticmanualreference corrections are justified.
+All classes incl user-target-excludedX4 remainvisible in this audit.
+
+V2 repeated all66inputhashchecks after source formatting. V1andV2aggregate
+tables BYTEIDENTICAL. Source:tools/qe_optimization/diagnose_qe_negative_supervision.py
+SHA256 e3bf442682cdbfca72f66e40b4d5f4e6def2c9afe5ba75b0c125ca07c10450a3.
+Private full132dataset/mode andclass/category tables retained in workspace;
+no raworiginalfeatureIDs,manualprofiles orcrosswalks published.
+
+Next037test is not a relabeling: fixedquarterweight for uncertain negatives,
+alltruth unchanged,fullstrongnegativeweight forcuratedidentity/peakconflicts,
+same extrasdefinition and nestedbudget. See../next_review_tempered_experiment.txt.
