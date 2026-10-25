@@ -1,37 +1,73 @@
-Experiment038 REJECTED; retained research reference remains029.
-Complete benchmark all33active datasets/132modes. Full132row target-scope table
-and separatewrongpeak mode totals delivered in the user chat25October2026.
-Final independentintegrity is STILL RUNNING;no masterPASS/publication claim yet.
-The first audit passed25parents/132INNER/grids but stopped on CSV inference of
-nullable previouspeakID metadata (123readas123.0). Verifier now reads that
-auditID asTEXT;annotations/models/selectedcoordinates unchanged. FULLchecks
-restarted fromscratch,withhash-bound completedcomponent receipts;no failedrun
-stdout/partialchecks usedasproof. Publicmetrics remain unchanged.
+Decision: reject experiment 038. Keep 029 as the retained research version.
+The application defaults have not changed.
 
-What changed
-Fresh conditionalwithin-identity peakrankers,25parents/100modeexperts,180rounds,
-new INNERcalibratedconfidence thresholds. WHOLE029acceptedlipid/adduct/standard
-list fixed. Strictoriginalmass/RT andspikeprotections,onlyinitiallyfreepeaks,
-no chains/swaps/newidentities. Originalrawsamplevalues/bounds copiedon moves.
-Names/FIDs groupingONLY;querycuration neverused for predictions. Allrelevant
-query/outer/innerreferences excluded. No production defaults changed.
+All 33 active datasets and four modes were benchmarked. The complete 132-row
+before/after table and separate wrong-peak totals were delivered in the user
+chat on 25 October 2026. The final integrity audit has PASSED.
 
-Outcome versus029, targetscope excludesONLYuserX4(2rows)
-Correctsameoriginalpeak82729/92100 ->82729/92100,89.8251900109% unchanged.
-Unconfirmedextras9268 ->9268. Differentpeakchoices1604 ->1604.
-Wellrepresentedpriority81896/90871 unchanged,43/86class/modesstillbelow90.
-Alltarget76/122class/modesstillbelow90. All28unresolved remainprimaryN.
+The first audit checked all 25 models and 132 inner validation cases, but
+stopped when a nullable previous-peak ID was read from CSV as a number
+(for example, 123.0 instead of the text 123). The check now explicitly reads
+that audit field as text. Models, annotations and selected coordinates did
+not change. The restarted audit also caught CSV conversion of an empty
+mobility-unit string to a missing value. Text metadata is now checked with
+raw CSV text preserved; numeric measurements keep their original strict
+checks. Failed-run logs and partial checks were not reused as proof.
 
-Onlytwofinalpeakmoves; onegain andoneloss cancel:
-NPnegative CL1015 ->1016/1088 (93.2904% ->93.3824%);
-RPnegative PI889 ->888/1007 (88.2820% ->88.1827%).
-Wrongpeakmodecounts:RPpos932unchanged,RPneg408 ->409,NPpos163unchanged,
-NPneg101 ->100. Everydataset/mode extra count andacceptedidentitylist unchanged.
-The below90class PIgets worse while CLwasalreadyabove90,so capped90priority
-mean falls. No overallgain and no progress toward the actualclass-by-classgoal.
-Do NOTretain onlytheNPnegative moveorrelax038rulesposthoc. Whole038rejected.
+All 33 outer output/measurement checks were rerun successfully. The 25 model
+and five calibration checks used only completed, fingerprint-bound receipts
+after an exact syntax-tree comparison proved their functions, imports and
+global bindings unchanged and all input/artifact fingerprints still matched.
+The final 63-case receipt passed: 310 source and 1,132 input file checks,
+528 training-query checks, 132 inner predictions, five complete calibration
+grids/cutoff choices, 132 original-coordinate stream checks, both moved peaks'
+full raw quantification/boundaries, 33 candidate/export checks and 33 identical
+manual-reference checks. There were 195 pre-existing floating-point roundoff
+cells within the unchanged tolerance. No analytical tolerance was relaxed.
 
-Next hypothesis is a SEPARATE method comparing isomerLABELS ononefeature,
-not peak-moving. It muststartfromWHOLE029,not038or037class/modewinners.
-Saved-input groupeddevelopment,NOTfreshproduction/untouchedexternalvalidation,
-NOTanalyticalidentityprobabilities/FDR. Notdeploymentready.
+What was tested
+The method learned which original peak to choose for an already accepted
+lipid. It could not add or remove lipid identities, change standards, borrow
+an occupied peak or chain several replacements. It retained the original
+mass/RT limits and spike protections. A replacement copied the actual new
+feature's sample values and peak boundaries.
+
+There were 25 fresh model fits, containing 100 mode-specific classifiers,
+with 180 training rounds each. Move thresholds were chosen using inner
+training-group validation. Relevant query, outer-test and inner-validation
+groups were excluded from learned references and classifier fits. The query
+dataset's manual annotations were not used for prediction.
+
+Results compared with 029
+Use versus_029/ for the actual experiment comparison. The top-level tables
+compare with the original default-engine baseline for historical context;
+those earlier gains are not improvements caused by experiment 038.
+Correct original-peak matches: 82,729/92,100 -> 82,729/92,100 (89.825190%).
+Unconfirmed extras: 9,268 -> 9,268.
+Wrong-original-peak choices: 1,604 -> 1,604.
+Well-represented classes: 81,896/90,871 correct, unchanged; 43 of 86 class/mode
+combinations remain below 90%. Across all target classes, 76 of 122 remain
+below 90%. Only user-excluded X4 (two entries) is outside the target count.
+All 28 unresolved manual-feature mappings remain in the primary denominator.
+
+Only two peaks changed, with offsetting results:
+NP-negative CL: 1,015 -> 1,016/1,088 (93.2904% -> 93.3824%).
+RP-negative PI: 889 -> 888/1,007 (88.2820% -> 88.1827%).
+Wrong-peak counts by mode: RP positive 932 -> 932; RP negative 408 -> 409;
+NP positive 163 -> 163; NP negative 101 -> 100. Every dataset/mode's extra
+count and complete accepted identity list stayed unchanged.
+
+Why it was rejected
+There was no overall gain. PI, already below 90%, got worse; CL was already
+above 90%. The class-by-class target did not improve. Do not keep only the
+favourable NP-negative result or relax 038's rules after seeing these tests.
+The whole method is rejected.
+
+Next hypothesis
+Separately test how LASER distinguishes competing isomer labels on the same
+original peak. Start from the whole 029 version, not selected favourable
+class/mode outputs from rejected experiments 037 or 038.
+
+These are saved-input, grouped development results, not fresh production
+runs or untouched external validation. Curator agreement is not an analytical
+identification probability or false-discovery rate. Not deployment-ready.

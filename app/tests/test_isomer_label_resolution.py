@@ -152,3 +152,16 @@ def test_high_preference_cannot_force_label_without_distinct_rt_support(monkeypa
     )
     pd.testing.assert_series_equal(modified, scores, check_exact=True)
     assert audit.iloc[0].decision == "isomer_rt_evidence_not_distinct"
+
+
+def test_no_comparison_rows_preserve_baseline_even_with_empty_object_schema(
+    monkeypatch,
+):
+    data, _, _, scores = fixture(monkeypatch)
+    empty = pd.DataFrame(columns=module.PAIR_COLUMNS)
+    for threshold in (0.7, 1.0):
+        modified, audit = module.resolve_isomer_scores(
+            data["pool"], scores, empty, {s: threshold for s in MODES}
+        )
+        pd.testing.assert_series_equal(modified, scores, check_exact=True)
+        assert audit.empty

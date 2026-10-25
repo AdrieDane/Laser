@@ -100,5 +100,8 @@ pointwise scores remain separate. Duplicate physical reference versions cannot
 multiply pairvotes;ALLversions included in olddetectionproxy/suppression.
 Non-cliquemasschains/inconsistentduplicate theoreticalmass/role withheld,
 no partial unsupported pruning. Allspikeprotections/strict3ppm/10s preserved.
-Sixteen focusedengineering testsPASS. Fullrunner/nestedcalibration/prefitgate/
-independentintegrity stillneedimplementation;do NOT call this039benchmarkdone.
+Seventeen focused engineering tests and the full 799-test application suite
+pass (8 skipped;83 subtests passed). Four synthetic runner tests also pass.
+Runner, nested calibration, pre-fit gate and independent integrity verifier
+are implemented. Pre-fit checks and final source review are still required
+before actual039fits;do NOT call this039benchmarkdone.

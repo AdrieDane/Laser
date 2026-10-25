@@ -4,6 +4,7 @@ from io import StringIO
 import json
 
 import pandas as pd
+import pytest
 
 import verify_qe_conditional_peak_experiment as verifier
 
@@ -81,3 +82,38 @@ def test_partial_inner_or_outer_checks_cannot_complete_integrity(tmp_path, monke
         json.dumps(dict(outer, result=dict(dataset="a", raw_stream_checks=3)))
     )
     assert verifier.completed_component(path, "outer", "a", "hash") is None
+
+
+def test_raw_csv_text_preserves_empty_units_and_literal_missing_like_strings():
+    raw = pd.read_csv(
+        StringIO(
+            "feat_mobility_unit,feat_quantification_measure\n,NA\n1/K0,intensity\n"
+        ),
+        dtype=str,
+        keep_default_na=False,
+    )
+    assert raw.feat_mobility_unit.tolist() == ["", "1/K0"]
+    assert raw.feat_quantification_measure.tolist() == ["NA", "intensity"]
+
+
+def test_component_reuse_requires_exact_science_functions_and_global_bindings():
+    before = "import math\nX = 1\ndef inventory(): return 1\ndef verify_model(): return 2\ndef verify_calibration(): return 3\ndef verify_dataset(): return 4\ndef verify_component(): return 5\ndef main(): return 6\n"
+    corrected_csv_check = before.replace(
+        "def verify_dataset(): return 4",
+        "def verify_dataset(): return 'CSV text fixed'",
+    )
+    proof = verifier.unchanged_components(before, corrected_csv_check)
+    assert set(proof["unchanged_function_ast_sha256"]) == {
+        "inventory",
+        "verify_model",
+        "verify_calibration",
+    }
+    for changed in (
+        corrected_csv_check.replace("X = 1", "X = 2"),
+        corrected_csv_check.replace(
+            "def verify_model(): return 2", "def verify_model(): return 7"
+        ),
+        corrected_csv_check + "\ndef verify_pairs(): return 0\n",
+    ):
+        with pytest.raises(AssertionError):
+            verifier.unchanged_components(before, changed)

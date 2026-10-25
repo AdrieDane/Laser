@@ -202,7 +202,7 @@ def resolve_isomer_scores(
     finite = pd.to_numeric(scores, errors="coerce").dropna()
     if not np.isfinite(finite).all() or ((finite < 0) | (finite > 1)).any():
         raise ValueError("Invalid original pointwise scores")
-    values = preferences.preference.dropna()
+    values = preferences.preference.dropna().to_numpy(float)
     if not np.isfinite(values).all() or ((values < 0) | (values > 1)).any():
         raise ValueError("Invalid conditional isomer preferences")
     rt_values = preferences[

@@ -1,5 +1,41 @@
 # Experiment reporting policy
 
+## CURRENT FINAL038 / READY039 — 25 October 2026
+
+038 COMPLETE,REJECTED, masterintegrity ALLPASS. Full132chat table+wrongmode
+totals ALREADYDELIVERED;doNOTrepeat.029retained82729/92100=89.825190%,9268E,
+1604wrong;43/86prioritycellsbelow90.038onlytwooffsettingmoves:NPnegCL+1,
+RPnegPI-1;totalmetricsunchanged,prioritycappedmeanworse. No defaults changed.
+V2fullchecks25parents/132INNER+31outer hadcompletehashboundreceipts buttwo
+outerCSVtextchecksfailed(blankmobility_unit parsedNaN). V3preservesrawCSVtext.
+EXACTcheckerfunction/import/globalAST+ALLunchanged artifact/inputhashproof
+allowedONLY30completedmodel/INNERreceipts reuse;NOstdout/partialreuse.
+ALL33outer/rawquant/acceptedexport/gold checks freshlyrerunandPASS.63current
+componentreceipts,718boundartifacts,310source/1132inputs,25parents100experts,
+528trainingqueries/132INNER/5grids,132rawstreams/2movedFULLquant,195preexisting
+roundoffcells. Master toolSHA512b764fd6cbca3600cf59c6289f18320b2abf3abce0a9df538d776181717f1d.
+V3session87679DONE0;V2/oldpostdriverDONE1. No038jobsrunning. DO NOTeditfinal
+038verifier:039preflight hashbindsit. Public038aggregatespublished including
+actualdelta versus_029;pendingcurrentGitcheckpoint/push. SourceV3hascosmetic
+RuffE731lambda warning,NOTfunctional/testfailure;keepverifiedsourceimmutable.
+
+039preflight COMPLETEALLPASS session23450 (v2afteremptycomparisonsdtypefix;
+firstattempt12224failedbeforeanyoutputs/fits).19query completeinnerparent,
+independentpairs/weights/support all4modes. Pairrows/projectsRPpos3104/18,
+RPneg1542/18,NPpos100/10,NPneg114/11. ALL33unscoredphysical/RT/spikeconstructs
+andALL33disabledFULL005/027acceptedkeys/counts/candidateexports EXACT029.
+ClassifierfitsZERO,annotationchangesFALSE. Receipt isomer_label_preflight_v1.
+800apptestsPASS,8skip,83subtests;18focused isomer tests;9scoperesume/runner tests.
+No039initialize/fits yet. Aftercurrentsource/public038commit+push, run039.
+ALLcurrentapp/helper/runner/preflight/plan source+inputs hash-bound;doNOTedit
+them during039. Planned039verifierhash recorded separately so engineering
+checkerfixescanbeversionedwithoutchanging scientificfrozenprotocol/results.
+All25newconditionalparents,old029pointwiseparents deliberately reused;actual
+modeclassifiercounts may<100 ifsparse. Newfixed1secondRTadvantage+complete
+supportedclasspairwinner guards;NPunsupportedfallsbackold,notinvented fits.
+Whole039full33/132eval/integrity/FULL132chat table/wholedecision required
+BEFORE040. GoalstillNOTmet,autonomousworkACTIVE;newusergoonrevokedallpauses.
+
 ## LATEST AUDIT REPAIR / 039 IMPLEMENTATION — supersedes running statuses below
 
 038annotationbenchmark COMPLETE/REJECTED;full132chat table/wrongmode totals

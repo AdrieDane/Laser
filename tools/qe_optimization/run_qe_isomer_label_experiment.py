@@ -105,7 +105,6 @@ def initialize():
             "context.py",
             "frozen_resources.py",
             "preflight_qe_isomer_labels.py",
-            "verify_qe_isomer_label_experiment.py",
             "verify_qe_conditional_peak_experiment.py",
         ):
             files.add(Path(__file__).with_name(n))
@@ -124,6 +123,9 @@ def initialize():
             minimum_contributing_projects=3,
             minimum_class_pair_projects=3,
             minimum_rt_advantage_seconds=1.0,
+            planned_integrity_tool_sha256=sha(
+                Path(__file__).with_name("verify_qe_isomer_label_experiment.py")
+            ),
             pairing_policy="Same029strictcorephysicalrows/108predictors. AuthorizedTRAININGmappedlabel versusKNOWNwrongisomerlabel onSAMEoriginalfeature/adduct/theoreticalmass1e-8Da ONLY. Bothorientations,featuretotal1 thenequalactualprojecttotals. No pseudo negatives for entirelymanual-absentfeatures. All4conditionalexperts fresh180rounds ifsupported;actualcontributors separatefullreferencepermissions. Unorderedchemicalclasspairs need>=3actualtrainingprojects,elseunknown.",
             score_policy="Original029pointwiseclassifiers deliberately reused/hashbound. COMPLETE supportedisomercluster only:unique labelmustbeatEVERYalternative bylearnedconditionalcut;otherwiseWHOLEcluster unchanged. UseMAXoriginalpointwise score acrossALLoriginalreferenceversions WITHINcluster asfeature-detectionPROXYforwinner,suppressotherclusterlabels. Keeporiginalscores/conditionalpreferences separate. Nonisomer/adductcompetitors untouched,globalonefeature/oneidentityselection/.05margin unchanged. Proxy/pairpreference NOTanalyticalidentityprobability/FDR.",
             physical_policy="No newcandidates/formulas/ranges/massorRTmodels. Strictoriginalraw<3ppm anddualRT<=10s;STD/namedIS/declaredspikemass5.01ppm/independentlymeasuredspikefeatures immutable. Completecliquemassclusters;inconsistentduplicate mass/role/noncliquemasschains/unknownpairswithheld. No querycurationusedbyruntime;physicalmeasurements/quantification unchanged.",

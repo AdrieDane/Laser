@@ -33,6 +33,11 @@ def independent_support(records, mode):
             | part.name.astype(str).str.endswith(" (IS)")
         )
         part = part[~standards]
+        part = part.loc[
+            part.groupby(["stream", "feat_feature_id", "adduct"])
+            .name.transform("size")
+            .ge(2)
+        ]
         positive_features = set(part.loc[part.training_positive, "feat_feature_id"])
         for _, group in part[part.feat_feature_id.isin(positive_features)].groupby(
             ["stream", "feat_feature_id", "adduct"], sort=False
@@ -183,7 +188,11 @@ def main():
     folds_path = runner.QE / "rt_atlas_development/fold_assignment.json"
     folds = json.loads(folds_path.read_text())
     inputs[str(folds_path)] = runner.sha(folds_path)
-    from matlab_annotation.isomer_label_resolution import PAIR_COLUMNS
+    from matlab_annotation.isomer_label_resolution import (
+        PAIR_COLUMNS,
+        isomer_label_preferences,
+    )
+    from matlab_annotation.isomer_label_model import FORMAT
 
     empty = pd.DataFrame(columns=PAIR_COLUMNS)
     for dataset in projects:
@@ -201,6 +210,37 @@ def main():
             inputs[str(p)] = runner.sha(p)
         raw = runner.load_predictors(dataset, {outer})
         scores = runner.pointwise_scores(dataset, outer, raw)
+        old_scope = pd.read_pickle(runner.OLD / f"fold_{outer}_nested_model.pkl")
+        permissions = dict(
+            training_reference_permissions=old_scope["training_cohorts"],
+            excluded_groups=old_scope["excluded_groups"],
+        )
+        # Scope-only, ALLexperts explicitlyunsupported: validate all physical
+        # pairs/RT/spike guards without fabricating any fitted classifier/score.
+        unsupported = dict(
+            format=FORMAT,
+            original_columns=list(raw["evidence"]),
+            experts={s: dict(supported=False, **permissions) for s in runner.MODES},
+            minimum_class_pair_projects=3,
+            **permissions,
+        )
+        measured_path = (
+            runner.PREPARED / "measurements" / f"exclude_{outer}" / (dataset + ".pkl")
+        )
+        inputs[str(measured_path)] = runner.sha(measured_path)
+        protected, masses = runner.physical_context(dataset, {outer}, snapshot=REPO)
+        unscored = isomer_label_preferences(
+            raw,
+            unsupported,
+            protected_features_by_stream=protected,
+            protected_masses_by_stream=masses,
+        )
+        assert unscored.preference.isna().all()
+        assert np.isfinite(
+            unscored[["left_rt_error_seconds", "right_rt_error_seconds"]].to_numpy(
+                float
+            )
+        ).all()
         cuts = json.loads(cuts_path.read_text())["thresholds"]
         selected, disabled, _ = runner.select_core(
             raw["pool"], scores, empty, {s: 1.0 for s in runner.MODES}, cuts
@@ -236,6 +276,7 @@ def main():
             annotation_changes=False,
             training_queries=len(base["training_feature_masks"]),
             independent_pair_weight_class_project_checks=4,
+            unscored_physical_pair_RT_spike_construction_checks=33,
             disabled_score_noop_checks=33,
             disabled_full005027_accepted_key_parity_checks=33,
             disabled_candidate_export_parity_checks=33,
@@ -244,7 +285,7 @@ def main():
             support_artifact_sha256=runner.sha(
                 OUT / "private_independent_pair_support.pkl"
             ),
-            note="Pre-fitengineering ONLY;no newmodels/preferences/annotations. Full25parent/528query/132INNER/33OUTER039verification stillmandatory.",
+            note="Pre-fitengineering ONLY;no fittedclassifiers/scoredpreferences/newannotations. Scope-only unsupportedexperts verifyALL33physicalpair/RT/spikeconstruction;allpreferencesUNKNOWN. Full25parent/528query/132INNER/33OUTER039verification stillmandatory.",
         ),
     )
     print("039 PREFIT PAIR/WEIGHT/ALL33DISABLED FULLPIPELINE PASS", flush=True)

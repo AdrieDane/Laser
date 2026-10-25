@@ -349,6 +349,13 @@ def verify_dataset(dataset):
     expected = apply_peak_refinements(
         before, raw["pool"], moves, features_by_stream=features
     )
+    raw_csv_text = (
+        pd.read_csv(
+            folder / "automatic_annotations.csv", dtype=str, keep_default_na=False
+        )
+        if len(moves)
+        else None
+    )
     assert runner.call_keys(actual) == runner.call_keys(before)
     assert list(actual) == list(expected)
     rounding = 0
@@ -397,7 +404,9 @@ def verify_dataset(dataset):
                         atol=0,
                     )
                 else:
-                    assert str(observed) == str(value)
+                    assert raw_csv_text.loc[
+                        r.annotation_index, "feat_" + str(col)
+                    ] == str(value), col
     candidate = pd.read_pickle(folder / "candidates.pkl")
     pd.testing.assert_frame_equal(
         candidate,
@@ -495,16 +504,109 @@ def completed_component(path, kind, name, binding):
     return None
 
 
+def unchanged_components(previous_source, current_source):
+    """Exact AST proof: only dataset CSV/check dispatch may change, not science."""
+    import ast
+
+    a, b = ast.parse(previous_source), ast.parse(current_source)
+    dump_ast = lambda node: ast.dump(node, include_attributes=False)
+    globals_a = [
+        dump_ast(n)
+        for n in a.body
+        if not isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
+    ]
+    globals_b = [
+        dump_ast(n)
+        for n in b.body
+        if not isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
+    ]
+    assert globals_a == globals_b, "Module imports/global bindings changed"
+    old = {n.name: n for n in a.body if isinstance(n, ast.FunctionDef)}
+    new = {n.name: n for n in b.body if isinstance(n, ast.FunctionDef)}
+    assert set(new) - set(old) <= {"unchanged_components", "migration_proof"}
+    assert not set(old) - set(new)
+    proof = {}
+    for name in set(old) - {"main", "verify_component", "verify_dataset"}:
+        x, y = dump_ast(old[name]), dump_ast(new[name])
+        assert x == y, (name, "changed: cannot reuse completed component")
+        proof[name] = hashlib.sha256(x.encode()).hexdigest()
+    return dict(
+        unchanged_function_ast_sha256=proof,
+        imports_globals_ast_sha256=hashlib.sha256(
+            json.dumps(globals_a).encode()
+        ).hexdigest(),
+    )
+
+
+def migration_proof(binding, artifacts, paths):
+    previous = OUT / "verification_sources/verify_v2.py"
+    proof = unchanged_components(previous.read_text(), Path(__file__).read_text())
+    old_artifacts = dict(artifacts)
+    old_artifacts[str(Path(__file__))] = sha(previous)
+    old_binding = hashlib.sha256(
+        json.dumps(old_artifacts, sort_keys=True).encode()
+    ).hexdigest()
+    names = [("model", p.relative_to(OUT).as_posix()) for p in paths] + [
+        ("inner", str(f)) for f in range(5)
+    ]
+    for kind, name in names:
+        path = (
+            OUT
+            / "verification_components"
+            / (hashlib.sha256((kind + ":" + name).encode()).hexdigest() + ".json")
+        )
+        assert completed_component(path, kind, name, old_binding) is not None, (
+            kind,
+            name,
+        )
+    proof.update(
+        previous_verifier_sha256=sha(previous),
+        current_verifier_sha256=sha(Path(__file__)),
+        previous_verification_identity_sha256=old_binding,
+        current_verification_identity_sha256=binding,
+        permitted_reuse_kinds=["model", "inner"],
+        eligible_complete_components=30,
+        note="ONLYcompletedhash-boundV2receipts,ALLartifact/inputhashesunchanged,EXACTsamecheckerfunctions/imports/globals/dependencies. NOstdout/partialreuse. ALL33outerchecks rerun withrawCSVtextpreservation;V2outerreceipts NOTreused.",
+    )
+    path = OUT / "verification_migration_v2_to_v3.json"
+    runner.dump(path, proof)
+    return dict(
+        previous_binding=old_binding,
+        previous_source_sha256=sha(previous),
+        proof_sha256=sha(path),
+    )
+
+
 def verify_component(task):
-    kind, name, binding = task
+    kind, name, binding, migration = task
     configure_frozen_resources(OUT / "source_snapshot")
     filename = hashlib.sha256((kind + ":" + name).encode()).hexdigest() + ".json"
-    receipt = OUT / "verification_components" / filename
+    receipt = OUT / "verification_components" / binding / filename
     previous = completed_component(receipt, kind, name, binding)
     if previous is not None:
         print("HASH-BOUND COMPLETED CHECK REUSED", kind, name, flush=True)
         return kind, name, previous
-    if kind == "model":
+    result, reused = None, False
+    if kind in {"model", "inner"}:
+        assert (
+            sha(OUT / "verification_migration_v2_to_v3.json")
+            == migration["proof_sha256"]
+        )
+        result = completed_component(
+            OUT / "verification_components" / filename,
+            kind,
+            name,
+            migration["previous_binding"],
+        )
+        reused = result is not None
+    if reused:
+        print(
+            "EXACT-AST/UNCHANGED-ARTIFACT COMPLETED V2 CHECK REUSED",
+            kind,
+            name,
+            flush=True,
+        )
+    elif kind == "model":
         result = verify_model(OUT / name)
     elif kind == "inner":
         result = verify_calibration(int(name))
@@ -512,7 +614,7 @@ def verify_component(task):
         result = verify_dataset(name)
     else:
         raise ValueError(kind)
-    receipt.parent.mkdir(exist_ok=True)
+    receipt.parent.mkdir(parents=True, exist_ok=True)
     runner.dump(
         receipt,
         dict(
@@ -521,6 +623,10 @@ def verify_component(task):
             name=name,
             verification_identity_sha256=binding,
             result=result,
+            reused_unchanged_v2_component=reused,
+            source_ast_migration_proof_sha256=migration["proof_sha256"]
+            if reused
+            else None,
         ),
     )
     return kind, name, result
@@ -539,9 +645,12 @@ def main():
     )
     assert len(paths) == 25
     binding, artifacts = verification_binding()
-    tasks = [("model", p.relative_to(OUT).as_posix(), binding) for p in paths]
-    tasks += [("inner", str(f), binding) for f in range(5)]
-    tasks += [("outer", d, binding) for d in projects]
+    migration = migration_proof(binding, artifacts, paths)
+    tasks = [
+        ("model", p.relative_to(OUT).as_posix(), binding, migration) for p in paths
+    ]
+    tasks += [("inner", str(f), binding, migration) for f in range(5)]
+    tasks += [("outer", d, binding, migration) for d in projects]
     with ProcessPoolExecutor(max_workers=4) as executor:
         checked = list(executor.map(verify_component, tasks))
     models = [v for kind, _, v in checked if kind == "model"]
@@ -572,6 +681,13 @@ def main():
         )
     runner.initialize()  # Recheck EVERY bound input/source after the full replay.
     assert verification_binding() == (binding, artifacts)
+    assert (
+        sha(OUT / "verification_sources/verify_v2.py")
+        == migration["previous_source_sha256"]
+    )
+    assert (
+        sha(OUT / "verification_migration_v2_to_v3.json") == migration["proof_sha256"]
+    )
     result = dict(
         all_passed=True,
         annotation_experiment="038",
@@ -579,6 +695,9 @@ def main():
         verification_identity_sha256=binding,
         bound_verification_artifacts=len(artifacts),
         completed_component_receipts=63,
+        exact_ast_unchanged_v2_training_calibration_components=30,
+        freshly_replayed_outer_components=33,
+        source_ast_migration_proof_sha256=migration["proof_sha256"],
         source_file_hash_checks=len(protocol["source_snapshot_sha256"]),
         input_file_hash_checks=len(protocol["input_sha256"]),
         new_parent_fits=25,
@@ -595,7 +714,7 @@ def main():
         identical_manual_reference_hash_checks=33,
         preexisting_roundoff_cells=sum(d["roundoff"] for d in outer),
         production_enabled=False,
-        note="Saved-input WHOLE029identity-preserving refinement. No new lipid identities/standards/extras. Integrity engineering NOT externalvalidation/FDR or deployment readiness. IDs explicitly readastext,includingnullable previouspeakID metadata. ALLchecks recomputedafterfix;no failedrunstdout/partialchecks reused. Componentreceipts savedONLYafterwholecasePASS,hashboundALLprotocol/model/score/output/evaluation/reportartifacts;source/inputhashes recheckedbefore/aftermaster.",
+        note="Saved-input WHOLE029identity-preserving refinement;no newidentities/standards/extras. IntegrityNOTexternalvalidation/FDR/deployment. IDsreadasTEXT;rawCSVtextpreservesblankmobilityunits. Only30completedV2training/INNERreceipts reusedwithEXACTcheckerfunction/import/globalASTandunchangedALLartifact/inputhashproof. ALL33outer/rawquant checks rerun. NOstdout/partialreuse. All63completedcomponentreceipts hashbound,currentFULLsource/input/artifactsrecheckedbefore/aftermaster.",
     )
     pd.DataFrame(models).to_csv(OUT / "conditional_training_audit.csv", index=False)
     pd.DataFrame(outer).to_csv(OUT / "peak_refinement_output_audit.csv", index=False)

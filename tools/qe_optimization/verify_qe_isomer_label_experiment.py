@@ -3,6 +3,7 @@
 from collections import Counter, defaultdict
 from concurrent.futures import ProcessPoolExecutor
 from io import StringIO
+import hashlib
 import json
 from pathlib import Path
 
@@ -66,6 +67,12 @@ def verify_model(path):
         assert sha(reference) == scope["reference_sha256"]
     expected = verify_pairs(records, training, excluded)
     protocol = json.loads((OUT / "protocol.json").read_text())
+    for key in (
+        "minimum_pair_rows",
+        "minimum_contributing_projects",
+        "minimum_class_pair_projects",
+    ):
+        assert model[key] == protocol[key]
     fitted = 0
     for mode, expert in model["experts"].items():
         values = expected[mode]
@@ -536,6 +543,99 @@ def verify_dataset(dataset):
     )
 
 
+def verification_binding():
+    files = {
+        OUT / "protocol.json",
+        OUT / "runner_source.py",
+        Path(__file__),
+        Path(__file__).with_name("preflight_qe_isomer_labels.py"),
+        Path(__file__).with_name("verify_qe_conditional_peak_experiment.py"),
+    }
+    files.update(OUT.glob("fold_*_nested_model.pkl"))
+    for name in ("calibration", "runs", "evaluation_v2", "reports_v2"):
+        files.update(p for p in (OUT / name).rglob("*") if p.is_file())
+    hashes = {str(p): sha(p) for p in sorted(files)}
+    return hashlib.sha256(
+        json.dumps(hashes, sort_keys=True).encode()
+    ).hexdigest(), hashes
+
+
+def completed_component(path, kind, name, binding):
+    try:
+        record = json.loads(path.read_text())
+    except (OSError, ValueError):
+        return None
+    if not (
+        record.get("all_passed") is True
+        and record.get("kind") == kind
+        and record.get("name") == name
+        and record.get("verification_identity_sha256") == binding
+    ):
+        return None
+    result = record.get("result")
+    if kind == "model":
+        return (
+            result
+            if isinstance(result, dict)
+            and result.get("model") == name
+            and result.get("training_queries", 0) > 0
+            and isinstance(result.get("fresh_experts"), int)
+            and 0 <= result["fresh_experts"] <= 4
+            else None
+        )
+    if kind == "inner":
+        projects, folds = inventory()
+        return (
+            result
+            if type(result) is int
+            and result == sum(folds[d] != int(name) for d in projects)
+            else None
+        )
+    if kind == "outer":
+        return (
+            result
+            if isinstance(result, dict)
+            and result.get("dataset") == name
+            and result.get("raw_stream_checks") == 4
+            else None
+        )
+    return None
+
+
+def verify_component(task):
+    kind, name, binding = task
+    configure_frozen_resources(OUT / "source_snapshot")
+    path = (
+        OUT
+        / "verification_components"
+        / (hashlib.sha256((kind + ":" + name).encode()).hexdigest() + ".json")
+    )
+    result = completed_component(path, kind, name, binding)
+    if result is not None:
+        print("039 HASH-BOUND COMPLETED CHECK REUSED", kind, name, flush=True)
+        return kind, result
+    if kind == "model":
+        result = verify_model(OUT / name)
+    elif kind == "inner":
+        result = verify_calibration(int(name))
+    elif kind == "outer":
+        result = verify_dataset(name)
+    else:
+        raise ValueError(kind)
+    path.parent.mkdir(exist_ok=True)
+    runner.dump(
+        path,
+        dict(
+            all_passed=True,
+            kind=kind,
+            name=name,
+            verification_identity_sha256=binding,
+            result=result,
+        ),
+    )
+    return kind, result
+
+
 def main():
     protocol, projects = runner.initialize()
     assert (
@@ -548,17 +648,28 @@ def main():
         + list(OUT.glob("calibration/fold_*/inner_block_*_model.pkl"))
     )
     assert len(paths) == 25
-    with ProcessPoolExecutor(max_workers=2) as executor:
-        models = list(executor.map(verify_model, paths))
-        inner = list(executor.map(verify_calibration, range(5)))
-        outer = list(executor.map(verify_dataset, projects))
+    binding, artifacts = verification_binding()
+    tasks = [("model", p.relative_to(OUT).as_posix(), binding) for p in paths]
+    tasks += [("inner", str(f), binding) for f in range(5)]
+    tasks += [("outer", d, binding) for d in projects]
+    with ProcessPoolExecutor(max_workers=4) as executor:
+        checked = list(executor.map(verify_component, tasks))
+    models = [v for kind, v in checked if kind == "model"]
+    inner = [v for kind, v in checked if kind == "inner"]
+    outer = [v for kind, v in checked if kind == "outer"]
+    assert len(models) == 25 and len(inner) == 5 and len(outer) == 33
     assert sum(m["training_queries"] for m in models) == 528
     assert sum(inner) == 132 and sum(d["raw_stream_checks"] for d in outer) == 132
     runner.initialize()
+    assert verification_binding() == (binding, artifacts)
     result = dict(
         all_passed=True,
         annotation_experiment="039",
         integrity_tool_sha256=sha(Path(__file__)),
+        planned_integrity_tool_sha256=protocol["planned_integrity_tool_sha256"],
+        verification_identity_sha256=binding,
+        bound_verification_artifacts=len(artifacts),
+        completed_component_receipts=63,
         source_file_hash_checks=len(protocol["source_snapshot_sha256"]),
         input_file_hash_checks=len(protocol["input_sha256"]),
         fresh_conditional_parent_fits=25,
