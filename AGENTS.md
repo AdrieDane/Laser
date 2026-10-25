@@ -1,5 +1,34 @@
 # Experiment reporting policy
 
+## LATEST AUDIT REPAIR / 039 IMPLEMENTATION — supersedes running statuses below
+
+038annotationbenchmark COMPLETE/REJECTED;full132chat table/wrongmode totals
+ALREADYDELIVERED.029retained. First fullintegrity run completed25parent and
+132INNER/fivegrids checks butFAILEDouter nullablepeak_refinement_old_feature_id
+metadata:CSVinferrednumeric123.0 instead oftext123. This is audit-IDtyping,
+NOT a change in actualselectedfeatures/annotations/metrics. No masterPASS yet.
+Fixed ONLYverifier CSVdtype;annotationrunner/snapshots/models/outputs unchanged.
+FULLverification restarted fromscratchsession66466,/tmp/laser_038_verify_v2.log,
+fourworkers. NOfailedrunstdout/partialchecks reused. Newcomponentreceipts written
+ONLYafterwholecasePASS,hashboundALLprotocol/model/score/output/evaluation/report
+artifacts+verifier/helper source;masterchecksALLsource/inputs/artifacts again.
+Do NOTeditverify_qe_conditional_peak_experiment.py while66466running.
+Three resume/nullableIDengineering testsPASS. Originalpostqueue52956endedexit1;
+do NOTwait for it or claim038integrity complete. NeedmasterPASS thenpublic038
+aggregates/finaldecision/push beforeany039actualfits.
+
+039UNUSEDprototype source now includes runner/calibrator/preflight/verifier:
+run/preflight/verify_qe_isomer_label_experiment.py (preflight filename is
+preflight_qe_isomer_labels.py). NO039initialize/preflight/classifierfits yet.
+Newfixed1secondminimum closestRTadvantage overEVERYisomeralternative prevents
+classfrequency/highpairscore aloneforcingcoelutinglabels. BEFOREfits,not a
+chemicalorderinglaw/FDRclaim.17focusedapptests+7tooltestsPASS;full799suite
+pendingafterlastRTmetadata guard. Preflight will checkonecomplete19queryinner
+pair/weight/supportscope andALL33disabledFULL005/027outcomes==WHOLE029,zerofits.
+It requires038masterPASS. 039runner requireshashboundpreflight before snapshot/
+fits. NeedsourceQA/preflight andfinal reviewbeforelaunch. Groupedreferences,
+fullbenchmarkdenominators/STD/massstages/OLDpointwisescores remainunchanged.
+
 ## SUPERSEDING LATEST — 038 benchmark COMPLETE, final integrity running
 
 038 ALL25freshparents/100modeclassifiers and33dataset/132modeoutputs COMPLETE.

@@ -14,7 +14,14 @@ from .evidence_training import validate_feature_scope
 from .isomer_label_model import predict_isomer_label_preferences
 from .mode_evidence_experts import MODES
 
-PAIR_COLUMNS = ["cluster_id", "left_index", "right_index", "preference"]
+PAIR_COLUMNS = [
+    "cluster_id",
+    "left_index",
+    "right_index",
+    "preference",
+    "left_rt_error_seconds",
+    "right_rt_error_seconds",
+]
 
 
 def _physical_clusters(pool):
@@ -143,8 +150,18 @@ def isomer_label_preferences(
             or not (np.isfinite(rt) & (np.abs(rt) <= 10)).any(axis=1).all()
         ):
             continue
+        nearest_rt = pd.Series(
+            np.min(np.where(np.isfinite(rt), np.abs(rt), np.inf), axis=1), index=indices
+        )
         rows.extend(
-            dict(cluster_id=cluster_id, left_index=a, right_index=b, preference=np.nan)
+            dict(
+                cluster_id=cluster_id,
+                left_index=a,
+                right_index=b,
+                preference=np.nan,
+                left_rt_error_seconds=float(nearest_rt.loc[a]),
+                right_rt_error_seconds=float(nearest_rt.loc[b]),
+            )
             for a, b in combinations(indices, 2)
         )
     result = pd.DataFrame(rows, columns=PAIR_COLUMNS)
@@ -155,7 +172,9 @@ def isomer_label_preferences(
     return result
 
 
-def resolve_isomer_scores(pool, scores, preferences, thresholds):
+def resolve_isomer_scores(
+    pool, scores, preferences, thresholds, *, minimum_rt_advantage_seconds=1.0
+):
     """Complete supported unique pairwise winner only; 1 explicitly disables.
 
     Return adjusted detection proxies plus private decision audit. Both original
@@ -173,12 +192,24 @@ def resolve_isomer_scores(pool, scores, preferences, thresholds):
         raise ValueError(
             "Explicit [.55,1] conditional thresholds for ALL modes required"
         )
+    if (
+        not np.isfinite(minimum_rt_advantage_seconds)
+        or not 0.5 <= minimum_rt_advantage_seconds <= 10
+    ):
+        raise ValueError(
+            "A positive explicit physical RT-separation margin is required"
+        )
     finite = pd.to_numeric(scores, errors="coerce").dropna()
     if not np.isfinite(finite).all() or ((finite < 0) | (finite > 1)).any():
         raise ValueError("Invalid original pointwise scores")
     values = preferences.preference.dropna()
     if not np.isfinite(values).all() or ((values < 0) | (values > 1)).any():
         raise ValueError("Invalid conditional isomer preferences")
+    rt_values = preferences[
+        ["left_rt_error_seconds", "right_rt_error_seconds"]
+    ].to_numpy(float)
+    if not np.isfinite(rt_values).all() or (rt_values < 0).any():
+        raise ValueError("Explicit finite nonnegative blind RT errors required")
     output, audit = scores.copy(), []
     clusters = _physical_clusters(pool)
     for cid, pairs in preferences.groupby("cluster_id", sort=False):
@@ -212,6 +243,7 @@ def resolve_isomer_scores(pool, scores, preferences, thresholds):
             member_count=len(members),
             winner_index=np.nan,
             conditional_min_preference=np.nan,
+            minimum_rt_advantage_seconds=np.nan,
             feature_detection_proxy=np.nan,
             threshold=threshold,
             decision="unresolved",
@@ -222,9 +254,15 @@ def resolve_isomer_scores(pool, scores, preferences, thresholds):
             row["decision"] = "unknown_or_unsupported_pair_in_complete_cluster"
         else:
             support = {i: [] for i in members}
+            rt_advantage = {i: [] for i in members}
             for pair in pairs.itertuples():
                 support[pair.left_index].append(float(pair.preference))
                 support[pair.right_index].append(1 - float(pair.preference))
+                delta = float(pair.right_rt_error_seconds) - float(
+                    pair.left_rt_error_seconds
+                )
+                rt_advantage[pair.left_index].append(delta)
+                rt_advantage[pair.right_index].append(-delta)
             winners = [i for i, p in support.items() if min(p) >= threshold]
             if len(winners) == 1:
                 winner = winners[0]
@@ -238,7 +276,14 @@ def resolve_isomer_scores(pool, scores, preferences, thresholds):
                 )
                 indices = pool.index[versions]
                 old_scores = scores.loc[indices]
-                if old_scores.isna().any():
+                advantage = min(rt_advantage[winner])
+                row["minimum_rt_advantage_seconds"] = advantage
+                if (
+                    not np.isfinite(rt_advantage[winner]).all()
+                    or advantage < minimum_rt_advantage_seconds
+                ):
+                    row["decision"] = "isomer_rt_evidence_not_distinct"
+                elif old_scores.isna().any():
                     row["decision"] = "unscored_original_label_version"
                 else:
                     proxy = float(old_scores.max())

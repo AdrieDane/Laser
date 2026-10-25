@@ -45,6 +45,12 @@ learned conditional confidence. Missing/unsupported/contradictory comparisons
 leave the ORIGINAL whole cluster unchanged. No partial unsupported pruning.
 
 Separate feature-detection evidence from isomer preference: if resolved,
+require the winner's CLOSEST available permitted nestedRTprediction to fit
+the measuredfeature at least1.0second BETTERthanEACHalternative'sclosest
+prediction. Fixedbeforeany039fits;not a chemicalRTordering law/FDR guarantee.
+Tied/coeluting/insufficientlydistinct RT cannot be overcome by classprevalence
+or a high conditional score alone. Original3ppm/10s gates still also apply.
+Then, only if both conditional preference and RT-separation guards pass,
 use the maximum original029pointwise score WITHINthat complete cluster as
 the feature-detection proxy for the selected label, and withhold competing
 cluster labels. Retain original label scores and conditional preferences

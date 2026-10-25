@@ -6,6 +6,7 @@ is read only by verification, never by blind peak-refinement runtime.
 
 from collections import Counter, defaultdict
 from concurrent.futures import ProcessPoolExecutor
+import hashlib
 import json
 from pathlib import Path
 
@@ -323,7 +324,7 @@ def verify_dataset(dataset):
     )
     actual = pd.read_csv(
         folder / "automatic_annotations.csv",
-        dtype={"feat_feature_id": str},
+        dtype={"feat_feature_id": str, "peak_refinement_old_feature_id": str},
         float_precision="round_trip",
         low_memory=False,
     )
@@ -437,6 +438,94 @@ def verify_dataset(dataset):
     )
 
 
+def verification_binding():
+    files = {
+        OUT / "protocol.json",
+        OUT / "runner_source.py",
+        Path(__file__),
+        Path(__file__).with_name("preflight_qe_conditional_peaks.py"),
+    }
+    files.update(OUT.glob("fold_*_nested_model.pkl"))
+    for name in ("calibration", "runs", "evaluation_v2", "reports_v2"):
+        files.update(p for p in (OUT / name).rglob("*") if p.is_file())
+    hashes = {str(p): sha(p) for p in sorted(files)}
+    identity = hashlib.sha256(json.dumps(hashes, sort_keys=True).encode()).hexdigest()
+    return identity, hashes
+
+
+def completed_component(path, kind, name, binding):
+    """No stdout/partial checks accepted; only complete hash-bound receipts."""
+    try:
+        record = json.loads(path.read_text())
+    except (OSError, ValueError):
+        return None
+    if not (
+        record.get("all_passed") is True
+        and record.get("kind") == kind
+        and record.get("name") == name
+        and record.get("verification_identity_sha256") == binding
+    ):
+        return None
+    result = record.get("result")
+    if kind == "model":
+        return (
+            result
+            if isinstance(result, dict)
+            and result.get("model") == name
+            and result.get("training_queries", 0) > 0
+            and result.get("fresh_experts", 0) > 0
+            else None
+        )
+    if kind == "inner":
+        projects, folds = inventory()
+        return (
+            result
+            if isinstance(result, int)
+            and result == sum(folds[d] != int(name) for d in projects)
+            else None
+        )
+    if kind == "outer":
+        return (
+            result
+            if isinstance(result, dict)
+            and result.get("dataset") == name
+            and result.get("raw_stream_checks") == 4
+            else None
+        )
+    return None
+
+
+def verify_component(task):
+    kind, name, binding = task
+    configure_frozen_resources(OUT / "source_snapshot")
+    filename = hashlib.sha256((kind + ":" + name).encode()).hexdigest() + ".json"
+    receipt = OUT / "verification_components" / filename
+    previous = completed_component(receipt, kind, name, binding)
+    if previous is not None:
+        print("HASH-BOUND COMPLETED CHECK REUSED", kind, name, flush=True)
+        return kind, name, previous
+    if kind == "model":
+        result = verify_model(OUT / name)
+    elif kind == "inner":
+        result = verify_calibration(int(name))
+    elif kind == "outer":
+        result = verify_dataset(name)
+    else:
+        raise ValueError(kind)
+    receipt.parent.mkdir(exist_ok=True)
+    runner.dump(
+        receipt,
+        dict(
+            all_passed=True,
+            kind=kind,
+            name=name,
+            verification_identity_sha256=binding,
+            result=result,
+        ),
+    )
+    return kind, name, result
+
+
 def main():
     protocol, projects = runner.initialize()
     assert (
@@ -449,10 +538,16 @@ def main():
         + list(OUT.glob("calibration/fold_*/inner_block_*_model.pkl"))
     )
     assert len(paths) == 25
-    with ProcessPoolExecutor(max_workers=2) as executor:
-        models = list(executor.map(verify_model, paths))
-        inner = list(executor.map(verify_calibration, range(5)))
-        outer = list(executor.map(verify_dataset, projects))
+    binding, artifacts = verification_binding()
+    tasks = [("model", p.relative_to(OUT).as_posix(), binding) for p in paths]
+    tasks += [("inner", str(f), binding) for f in range(5)]
+    tasks += [("outer", d, binding) for d in projects]
+    with ProcessPoolExecutor(max_workers=4) as executor:
+        checked = list(executor.map(verify_component, tasks))
+    models = [v for kind, _, v in checked if kind == "model"]
+    inner = [v for kind, _, v in checked if kind == "inner"]
+    outer = [v for kind, _, v in checked if kind == "outer"]
+    assert len(models) == 25 and len(inner) == 5 and len(outer) == 33
     assert sum(m["training_queries"] for m in models) == 528
     assert sum(inner) == 132 and sum(d["raw_stream_checks"] for d in outer) == 132
     # Aggregated extras/annotation totals invariant, independently from runtime.
@@ -476,10 +571,14 @@ def main():
             check_exact=True,
         )
     runner.initialize()  # Recheck EVERY bound input/source after the full replay.
+    assert verification_binding() == (binding, artifacts)
     result = dict(
         all_passed=True,
         annotation_experiment="038",
         integrity_tool_sha256=sha(Path(__file__)),
+        verification_identity_sha256=binding,
+        bound_verification_artifacts=len(artifacts),
+        completed_component_receipts=63,
         source_file_hash_checks=len(protocol["source_snapshot_sha256"]),
         input_file_hash_checks=len(protocol["input_sha256"]),
         new_parent_fits=25,
@@ -496,7 +595,7 @@ def main():
         identical_manual_reference_hash_checks=33,
         preexisting_roundoff_cells=sum(d["roundoff"] for d in outer),
         production_enabled=False,
-        note="Saved-input WHOLE029identity-preserving refinement. No new lipid identities/standards/extras. Integrity engineering NOT externalvalidation/FDR or deployment readiness.",
+        note="Saved-input WHOLE029identity-preserving refinement. No new lipid identities/standards/extras. Integrity engineering NOT externalvalidation/FDR or deployment readiness. IDs explicitly readastext,includingnullable previouspeakID metadata. ALLchecks recomputedafterfix;no failedrunstdout/partialchecks reused. Componentreceipts savedONLYafterwholecasePASS,hashboundALLprotocol/model/score/output/evaluation/reportartifacts;source/inputhashes recheckedbefore/aftermaster.",
     )
     pd.DataFrame(models).to_csv(OUT / "conditional_training_audit.csv", index=False)
     pd.DataFrame(outer).to_csv(OUT / "peak_refinement_output_audit.csv", index=False)

@@ -141,3 +141,14 @@ def test_non_clique_mass_chain_is_not_silently_split_into_supported_partial_clus
     data, model, protection, _ = fixture(monkeypatch)
     data["pool"].loc[[0, 1, 2], "ref_mz"] = [700.0, 700.0 + 0.9e-8, 700.0 + 1.8e-8]
     assert module.isomer_label_preferences(data, model, **protection).empty
+
+
+def test_high_preference_cannot_force_label_without_distinct_rt_support(monkeypatch):
+    data, model, protection, scores = fixture(monkeypatch)
+    data["evidence"].loc[[0, 1], "absolute_RT_error_seconds"] = 1.0
+    prefs = module.isomer_label_preferences(data, model, **protection)
+    modified, audit = module.resolve_isomer_scores(
+        data["pool"], scores, prefs, {s: 0.7 for s in MODES}
+    )
+    pd.testing.assert_series_equal(modified, scores, check_exact=True)
+    assert audit.iloc[0].decision == "isomer_rt_evidence_not_distinct"

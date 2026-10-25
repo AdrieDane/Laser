@@ -2,6 +2,11 @@ Experiment038 REJECTED; retained research reference remains029.
 Complete benchmark all33active datasets/132modes. Full132row target-scope table
 and separatewrongpeak mode totals delivered in the user chat25October2026.
 Final independentintegrity is STILL RUNNING;no masterPASS/publication claim yet.
+The first audit passed25parents/132INNER/grids but stopped on CSV inference of
+nullable previouspeakID metadata (123readas123.0). Verifier now reads that
+auditID asTEXT;annotations/models/selectedcoordinates unchanged. FULLchecks
+restarted fromscratch,withhash-bound completedcomponent receipts;no failedrun
+stdout/partialchecks usedasproof. Publicmetrics remain unchanged.
 
 What changed
 Fresh conditionalwithin-identity peakrankers,25parents/100modeexperts,180rounds,
