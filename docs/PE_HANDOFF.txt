@@ -1,3 +1,135 @@
+LATEST CHECKPOINT — 25October2026,USER-REQUESTED PAUSE,029RETAINED
+
+User: "pauze when you can". Alljobs STOPPED; no037fits. DoNOTcontinue until
+userresumes. All source/plans/checkpoint pushed CFMmain. No productiondefaults.
+Latestsource: eaae51c;decision/diagnosis:4c7a777;thispausecheckpoint follows.
+
+Workspace ROOT:
+/Users/yorrick/Documents/Codex/2026-10-19/https-github-com-yrjjaspers-laser-standard
+REPO=ROOT/work/repo; QE=ROOT/outputs/qe_optimization_20261022.
+Onlyactivecollection (33folders/132modes/30groupedprojects):
+/Users/yorrick/Library/Mobile Documents/com~apple~CloudDocs/Work/AI/example_data_CFM/QE_example_datasets
+Python /Library/Frameworks/Python.framework/Versions/3.13/bin/python3.
+Set LASER_OPTIMIZATION_WORKSPACE=ROOT,LASER_QE_DATASETS=collection,
+OPENBLAS_NUM_THREADS=1,OMP_NUM_THREADS=1. Run tools fromREPO.
+PushONLYcfm main,Core-Facility-Metabolomics-AUMC/LASER-standard-lipidomics.
+
+Goalnotachieved:90%correct originalfeature perclass/eachmode,controlledextras.
+IgnoreX4for targetonly(2rows),sparseclassespostponednotexcluded. All28unresolved
+manualfeature mappings stayin primarydenominator. No manualreference relabeling.
+FULL132user-facing percent(n/N)+extrasbefore/after table afterEVERYannotation
+experiment BEFOREnext. Separatewrongpeak totals. NOtest-class winner splicing.
+Researchreplays areNOTfreshdeployment/untouchedexternalvalidation/FDR.
+
+Retained029 TARGET:82729/92100=89.8251900109%,9268extras,1604wrongpeaks.
+Historic92102manual.86prioritycells90871manual:81896correct,43below90,capped90
+mean83.8606409894.36sparsecells833/1229;alltarget76/122below90.029regressions
+versus028(RPneg-48,NPneg-65 inclBMP-84)remain disclosed. Notproductiondefault.
+
+Allthisturn033/034/035/036 REJECTED;FULL132tables deliveredforEACH inchat.
+033:82729correct/9243extras/1611wrong;no netcorrectgain,priority-15.
+034:82814/9405/1610;+85correct but+137extras,+6wrong,prioritybelow90worse.
+035:82535/9167/1619;-194correct,prioritybelow90worse.
+033/034/035integrity COMPLETEALLPASS;publicdocs qe_20261025_033/034/035.
+
+036empiricalCDBRTunion:82546/92100=89.6264929425%,9202extras,1589wrong.
+Versus029:-183correct,-66extras,-15wrong. Priority81713/90871,44below90,
+capped90mean83.5970788465;alltarget77/122below90. Sparse833/1229unchanged.
+RPpos40517/45206,E3281,W910;RPneg12154/13600,E2038,W416;
+NPpos17460/19380,E1852,W164;NPneg12415/13914,E2031,W99.
+NPposBMP-44correct;NPnegBMP+24correct/+65extras. Wholealgorithm rejected.
+Publicdecision docs/validation/qe_20261025_036/decision.txt. Fullprivateactualdelta
+QE/experiment_036/comparison_with_experiment_029, incltarget_scope_without_X4
+andoptimization_priority;top-level full_comparison comparesoriginalbaseline.
+
+036ALL25nestedempiricalreferences,ALL33/363v3physicaltables,ALL25parents/
+100freshmodeclassifiers,33outerannotations/evaluation COMPLETE. DO NOT rerunfits.
+V1scalar12datasets/132tables,v2vector6/66 intentionallystopped/preserved.
+V3fastprepCOMPLETE;ALL198comparisons over132uniquequery/masks EXACTequivalence
+witholdimplementations verified. V3preflight Sperm11freshSTD/fulltables PASS.
+PrivateQE/empirical_RT_candidate_preparation_v3 andnested_empirical_RT_references_v1.
+
+036MASTERintegrity INCOMPLETE ONLYBECAUSE USERPAUSE:
+verify_qe_empirical_experiment.py finished25models/528ALLtraininglabels/scopes,
+132INNERscores+5fullgrids/cutchoices,33outerscores+132fullselector/005STD/
+027mass/rawcoords andidenticalmanualhashes. Itwaswaitingforfullprep replay;
+SIGINTpause(session86734exit130),NOmasterreceipt. ModelauditCSV persists;
+otherpassedchecks reportedstdoutbutnot masterPASS. DoNOTinventpassreceipt.
+verify_qe_empirical_preparation_fast.py refittedall25numericrefs andcompleted
+18datasets/198fullmaskedtable+freshSTDchecks beforeuserpause,session19873exit143.
+Parent12989/workers13044/13045 stopped;nojobs remain. Originals/fits unchanged.
+Temporaryverificationcopies frominterruptedworkers mayremain in OSscratch;
+theyareNOTsourcefiles orvalidatedcheckpoints. No materialdata removed.
+Checkerhasno per-dataset resumereceipts: onresume rerunfull363independent replay
+(orimplementrigoroushashboundnewresumechecker,not trustingstdout). Sourceof
+existingchecker is036protocol/preflightHASHBOUND;doNOTeditit in-place.
+
+Next037: fixedquarterweight lesscertainNEGATIVE TRAININGevidence. EXACT029
+physical363pools/predictors/positive+knownlabels;no036RTfields/candidates/models.
+FlagONLYnegativeclassabsentthismanualmode butpresentanotherendogenousmanualmode,
+withNOcuratedidentity ORoriginalpeakcontradiction. Allotherfactors1,perproject
+totalsrenormalizedequalwithinmode. No pseudopositives/rowdeletion/unknownpolicy.
+No ownquerycurationpredictors;manualread permissions BEFOREfileopen andagain
+insidehelper. Canonicalether/positionalclasses notmerged. ALL4expertsfresh180,
+25parents/100classifiers,original009calibrationtruth/budget+005STD+027mass.
+Opt-inonly weight_policy="review_aware_negative";defaultNoneunchanged.
+
+Read-onlysupervisionaudit v2 COMPLETEALL33/132,66inputhashes.210595outercandidate
+rows(notactualfitpooledrows):87080positive,39alreadyunknown,8061wrongidentitypeak,
+5978otherlabelcuratedpeak,37351absentidentityreviewedcell,51280classabsentthis
+modepresentothermode,20806absentallmanualmodes. Absence may betruechemicalabsence,
+NOTproof ofmislabels/truepositive. V1/v2tables BYTEIDENTICALafterformatting.
+QE/negative_supervision_diagnostic_029_v2;publicinterpretation
+docs/validation/qe_20261025_negative_supervision/interpretation.txt.
+
+037CODEANDPREFLIGHT READY,NOFITS:
+app/matlab_annotation/review_aware_supervision.py,optionalbranches in
+evidence_training.py andmode_evidence_experts.py;7newtests;full763passed,
+8skipped,83subtests. TwoinitialTESTfixtureexpectation failures werefixedbefore
+fullsuite/preflight;no scientificresult changes. RuffallnewsourcePASS.
+tools/qe_optimization/run_qe_review_tempered_experiment.py
+tools/qe_optimization/verify_qe_review_tempered_experiment.py
+tools/qe_optimization/preflight_qe_review_supervision.py
+037preflight COMPLETEALLPASS:25parents/528queryuses/330uniquetrainingtables,
+alloldphysical/predictor/labels EXACT,all100expertpositive+knowncounts unchanged,
+independentcategorycounts matchnewflagbyclass/mode. Receipt:
+QE/review_supervision_preflight_v1/receipt.json. Hashesbind CURRENTsources incl
+runner/helper/preflight/diagnostic andallinputs. DoNOTeditthesebefore037fits;
+intentionalchangesrequireexplicitnewpreflightversion/rebuild,not updatedhashes.
+New037initialize REQUIRES036masterPASS and330tablepreflightALLsource/inputhashes
+BEFOREsnapshot/fits. Old009calibrationASTEXACT exceptapply_review=Falsefortruth.
+
+NEXTONRESUME:
+1.ReadAGENTS fully. Confirmnosessionsremain. Keep029retained.
+2.Runverify_qe_empirical_preparation_fast.py FULL363+25refs. Inparallel run
+verify_qe_empirical_experiment.py (itcomputesallchecks thenwaits forfullprep).
+No model/preparationreruns needed. Bothmasterreceipts mandatory.
+3.Publish036aggregates usingpublish_qe_aggregate_report.py --experiment
+QE/experiment_036 --before QE/experiment_029 --destination
+REPO/docs/validation/qe_20261025_036 --decision rejected. Decisionalreadyexists.
+Publisherblockswithoutall-passreceipt;DONOTbypass. PushsafeaggregatesONLY.
+4.Runrun_qe_review_tempered_experiment.py (ALL25freshfits;363tables re-used).
+5.Evaluatewith evaluate_qe_baseline.py QE/experiment_037 --manual-reference
+QE/manual_reference_v2 (NOTbaseline/evaluation_v2),thenreport_qe_experiment.py
+--experiment QE/experiment_037,bothdefaultbaseline and--before QE/experiment_029;
+report_qe_target_scope.py --comparison QE/experiment_037/comparison_with_experiment_029
+--exclude-class X4;report_qe_priority_classes.py same--comparison.
+6.Runverify_qe_review_tempered_experiment.py FULL528labels/independentflags/
+weights,132INNERscores/5grids+cutchoices,33outer/132fullpipeline/rawcoords,
+33acceptedcandidate/export parities andmanualreferencehashchecks.
+7.DeliverFULL132targetscope percent(n/N)+extrasbefore/after table andseparate
+wrongtotals. DecideWHOLE037 perpredeclaredguards in
+docs/validation/next_review_tempered_experiment.txt. Morecorrect,extras<=9268,
+wrong<=1604,prioritycappedmeanincreases,prioritybelow90<=43,no mode-0.5pp.
+Publishaggregates/push. No038annotationexperimentbefore037table/integrity/decision.
+
+DeploymentstillNOTready. Lateruserdeliverable: freshintegratedapp33runs,
+originalpeakgroupsONLYcolumns2laser_annotation/3adduct,otherwiseunchanged,
+names*_annotated.txt,dataset/modesubfolders,onecolleague-readyclass/mode report.
+Privatecuration/profiles/FIDs/crosswalks/learnedweightsNEVERGit.
+
+OLDER CHECKPOINTS BELOW ARE HISTORICAL,NOTLIVEJOBS:
+
 LATEST CHECKPOINT — 24 October 2026,027RETAINED SMALLRESEARCH;028EVALUATING
 
 Userexplicitlyauthorizesautonomouscycles/retain-reject decisions. Continue,

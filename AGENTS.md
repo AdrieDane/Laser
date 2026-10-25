@@ -1,5 +1,36 @@
 # Experiment reporting policy
 
+## USER-REQUESTED PAUSE — 25October2026,latest status
+
+User said "pauze when you can". PAUSED; doNOTcontinue optimization unless
+userresumes. Allannotation/evaluation/preflight/verification processes STOPPED.
+No037fits started. Source+plans pushed CFMmain.029retained,defaults unchanged.
+
+036full132targetscope table ALREADYDELIVERED,REJECTED (-183correct,-66extras,
+-15wrong versus029). ALL25models/528trainingqueries,132INNERscores/fivegrids/
+cutoffs and33outerscores/132fullpipeline+originalcoordinate checks completed
+successfully, but masterverifier was waiting forphysicalpreparationreplay.
+Userpause interrupted that wait (session86734exit130) and physicalreplay
+(19873exit143):18datasets/198fullmaskedtables hadcompleted,freshSTDchecks too;
+25numericalreferences hadreproduced. ALL33/363preparedinputs and100classifiers
+remain intact. NOmasterPASS receipt,NOclaim whole036integrity complete.
+Finalpublisher blocked correctly;public036decision only,fullmetrics local.
+Onresume finishFULL363preparationintegrity andmasterannotationverifier before
+037fits. Existingchecker doesnotpersist per-dataset verificationreceipts:
+rerun fullchecker (or implement separately hash-bound resume receipts,NOTfrom
+stdout alone); never fabricate masterPASS frompartial progress. Oldpreparers
+andallnewannotation outputs complete;doNOTrerunactual036fits/preparation.
+
+037preflight COMPLETEDALLPASS beforepause:330unique trainingtables/528query
+uses/25parents,all100oldexpertknown/positivecounts equal029,independentreview
+categoryflags match percanonicalclass/mode;alloldphysical/predictor/labels
+EXACT. Receipt review_supervision_preflight_v1/receipt.json,hash-bound current
+runner/helper/preflight/diagnostic andallinputs.763apptestsPASS/8skipped/83subtests.
+No037annotations. Next run_qe_review_tempered_experiment.py requires036master
+ANDpreflightallhashes. Predeclaredguardplan docs/validation/next_review_tempered_experiment.txt.
+Fullnextsteps/paths:docs/PE_HANDOFF.txt(top). Stale RUNNINGparagraphs below
+are historical and MUSTNOTbe treated as liveprocesses or permission toresume.
+
 ## Current work status — RESUMED by user,25October2026
 
 LATEST CHECKPOINT (supersedes all earlier036in-progress paragraphs): ALL036
