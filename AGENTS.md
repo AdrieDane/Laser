@@ -17,6 +17,16 @@ master/publicaggregates thenrun037asplanned. Pauseparagraphsbelowhistorical.
 Queueddriver session35714 waits036masterPASS,then publishes036safeaggregates,
 commits/pushes CFMmain,andstarts037. DoNOTstarta duplicate037runner. Usercan
 pausequeueexplicitly;no037models existuntilbothfull036checkscomplete.
+Supplemental scheduling session38205 runslast8cases(reverseinventoryorder)
+with2additionalworkers via verify_qe_empirical_preparation_tail.py. It calls
+UNCHANGEDoriginal.verify_case,checksALLbindinghashesbefore/after,andONLYwrites
+theSAMEhash-bound completedcase receipts AFTERfullreplay. Main19926stillowns
+ALL33/363+25refs/masterPASS;itslaterqueuedtailcases canreusevalidatedchecks.
+No frozenchecker/wrapper/scientificsource/input changed. Supplementalreceipt
+explicitly complete_experiment_integrity=False;not amasterPASS ornewdatasets.
+Post037driver session43924 waitsALL33complete thenevaluatesmanual_reference_v2,
+buildsfullbaseline/029/targetX4/priorityreports,andrunsFULL037integrity.
+DoNOTduplicatethesequeues orstart038before037fulluser-facingtable/decision.
 Read-only peakcompetition diagnostic completed ALL33/132,67inputhashes:
 6848curatedendo identities havecorrect+otheroriginalpeak available,7122wrong
 alternatives,1749missingcorrect including995currentwrongpeakcalls. Opportunities
