@@ -2,6 +2,22 @@
 
 ## Current work status — RESUMED by user,25October2026
 
+035INPROGRESS after034full132table/rejection: fixed chemical family/mode scoring
+on EXACT029all363preparedpools/predictors/labels. Four predeclared families:
+glycerophospholipids,sphingolipids,glycerolipids,fatty_acid_ester; canonical
+ether/positional aliases normalized for routing ONLY,not merged as identities.
+Trainfamilyif>=200knownrows,>=20positive/negative,positivesfrom>=3projects.
+Otherwise explicit HASHBOUND029modeexpert fallback. Actual supervised projects
+recorded separately from FULLallowed reference scope; no invented labels/rows.
+Fresh180rounds per eligible expert (first6parents each13familyexperts); ALL
+classes still compete globally for original features. SAME009MODEcalibration
+/.05ambiguity/9.5%INNERbudget,005STDcleanup/fixed027massstage. NOT034classcuts,
+no rejected033candidates/newpredictors/partiallabels. Protocol frozen,runner
+run_qe_family_experiment.py active; verify_qe_family_experiment.py prepared.
+No035performance yet. NeedALL33eval/full132table/integrity/decision before036.
+029retained, appdefaults unchanged. Current tests742fullpassed plus2taxonomy
+tests added/passed; updated fullsuite running. No external/production claims.
+
 034COMPLETE,REJECTED;029retained. Full132TARGETscope table +wrongmode totals
 DELIVERED before any035annotation.82729 ->82814/92100 (+85),89.8251900 ->89.9174810%;
 extras9268 ->9405(+137),wrong1604 ->1610(+6). Priority81896 ->81981/90871;
