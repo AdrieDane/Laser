@@ -1,0 +1,61 @@
+Prospective read-only pilot: class-RT-valid cross-phase FA/FA-OH support
+26October2026; no annotation-changing experiment048 yet
+
+Question: do UNASSIGNED same-class candidates in the other chromatographic
+phase provide useful independent profile measurements for missing FA/FA-OH?
+Existing paired_sample_evidence uses strong accepted automatic anchors. The
+new043raw descriptors search OTHERPOLARITY within one phase. FA-OH has no
+positive counterpart in its native catalogue; neither mechanism fully measures
+unassigned NPnegative<->RPnegative class-RT-supported candidate partners.
+
+Use ONLY all33 active QE folders and saved original raw features/explicit BIO
+specimen metadata. Source candidate pools remain unchanged. Query's whole
+project/fold excluded from RT/envelope/standard references. Strict native ion,
+raw3ppm/ownmaskedclassRT10seconds/isotope/declaredstandard protections on BOTH
+ends. NEVER transfer or equate RP and NP retention times. Same native canonical
+class and theoretical neutral mass within .05ppm (exact-composition association,
+not a .05ppm observed-mass admission limit). Invert actual native ion/charge.
+No class merging,O/P branch inference,new formulas or hypothetical annotations.
+
+Measure FA and FA-OH in RPnegative and NPnegative only. Same physical partner
+counts once despite alternative hypotheses. Same feature-ID string across two
+acquisitions does NOT mean the same physical feature; namespace includesstream.
+No accepted-call requirement on either end. No curation,model scores,automatic
+acceptance flags or saved manual RT fits used to build/select graph partners.
+
+Profiles use explicit matching biological specimen IDs and consistent group
+metadata,technical positive-area means BEFORE logarithms,>=8paired BIO values.
+Raw/global-median-normalized/within-group/Spearman/worst leave-one-out/ratio/MAD
+metrics remain continuous;unknown staysNaN. No hard profile admission gate.
+Best measured partner uses rawcorrelation rounded12digits,then theorymass-
+closeness rounded8digits,intensity,solely for deterministic numerical ties;
+raw coordinates,areas and reported correlation measurements are NOT rounded.
+also retain profile margin and physical/profile partner counts. A profile
+match supports consistency,NOT proof of chemical identity or analytical FDR.
+
+Freeze all33 numeric tables and private complete partner graphs BEFORE any
+manual-table decoding for this pilot. Independent scalar graph/charge/native
+physics and original-area NumPy profile reconstruction on all33 before labels.
+Synthetic tests include differing RP/NP RT,no partner within ownclass RT,
+same strings in separate feature namespaces,technical means,missing/flat
+profiles,duplicate physical partners,wrong class/formula,standard protection
+and no supervision. No model fits,threshold choices,new accepted calls or
+source-data edits. No raw profiles/FIDs toGit; only safe aggregate diagnostics.
+
+Only AFTER full blind and independent receipts, read041 manual comparisons
+to describe measurement availability/distributions for already-correct,
+currently-missing same-original-feature candidates,wrong peaks and unconfirmed
+identities. No threshold selected from these descriptive labels. Count candidate
+options,not accepted annotation gains. Full manual denominators not replaced.
+Separately acknowledge existing-core ceilings: FA-OH NPneg263/293=89.76%,
+RPneg418/502=83.27% even with perfect scoring and immutable old calls. So this
+pilot alone CANNOT solve90% for both; new validated discovery is also needed.
+Mass correction027 andSTD-alignedRT033 already exist/tested; do not reinvent
+or call old475mass-window possibilities correct annotations. Pilot tests a
+new evidence source,not a claim that same candidate pool can achieve all goals.
+
+If informative, require a separate prospective model/discovery experiment and
+all363mask-specific construction/checks,proper fresh nested fits/calibration,
+whole-method benchmark/extras/wrongpeak guards/full132CHAT before adoption.
+No048actualmethod/retention budget specified here. Extensive prior exposure
+disclosed; not untouched external validation,deployment or chemical confidence.

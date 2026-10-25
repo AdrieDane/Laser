@@ -1,5 +1,47 @@
 # Experiment reporting policy
 
+## CURRENT cross-phase FA/FA-OH read-only pilot IMPLEMENTED / READY
+
+047v2 COMPLETE/REJECTED/ALLPASS/publicsafe reports pushedCFMmain d5176b8.
+Full132CHAT/wrongmodetotals/66BMP link/endoSTD/wholedecision DELIVERED;doNOT
+repeat047table. Whole041stillretained82740/92100,E9270,W1604;defaultsUNCHANGED.
+
+New READ-ONLY pilot (NOT048annotationexperiment) allsource/plan nowwritten:
+next_cross_phase_candidate_pilot.txt;
+cross_phase_candidate_measurements.py;cross_phase_candidate_independent.py;
+prepare_qe_cross_phase_candidate_pilot.py;verify_qe_cross_phase_candidate_pilot.py;
+diagnose_qe_cross_phase_candidate_pilot.py;test_cross_phase_candidate_measurements.py.
+Noactualdatasetpilot hasrun yet. Newpuremodule17numericfields forFA/FA-OH
+RPneg<->NPneg samecanonicalclass/nativeclass-ion/theoryneutralwithin.05ppm,
+bothendsownmaskedraw3ppm/10s/std/isotopephysicalguard. NOcrossphaseRTtransfer,
+prioracceptedpartnerrequirement/querycuration/scores/newannotations/newfits.
+Actualnativefamilies inspected:FA andFA-OH bothRP/NP ONLY[M-H]-;canonicalFA-OH
+is literallyFA-OH (notFA[OH]),positivealiases testadded. Nativeglobalcharge
+inversion independently scalarchecked;includes synthetic2-/1- pairingcase.
+ExplicitBIO>=8,positive technicalmeansbeforelogs,unknownNaN,all17continuous,
+no hard profilegate. Roundcorr12/theoryppm8forrankingkeysONLY (rawvaluesintact).
+Bothsourceandpartnerphysicalnamespaces(stream,FID);equalstringscrossphaseokay.
+OutputlinksprivateIDs;no sourcequant changes,sourceMZ/RT/I equalitychecked.
+
+Independent scalargraph/physicaleligibility/nativecharge+original-area NumPy
+profilechecker implemented;doesNOTcall producer/neutral_ion_mass/_family/
+_profiles/_profile_result. Reuses previouslyindependent numeric.profiles/
+comparison and independent oldBMPeligibility. Syntheticcomparison cases8
+plusFAOHpositivealias now9;ALL79focusedtools testsPASS,RuffPASS. Prioroneunit
+empty-filterDataFrame.assign expansionbug fixed BEFORErealdata:filterppmindex
+BEFOREassign;no fakeNaNpartner. AllnewfilesNOTyetFROZEN untilproducerstarts.
+
+Commit/pushnewpilot sourceplan thenrun prepare_qe_cross_phase_candidate_pilot.py
+inFRESHprocess;all33label-freegraphs/numericfields+blindreceipt. Thenmanually
+verify_qe_cross_phase_candidate_pilot.py ALL33,ONLYAFTERbothfullreceipts run
+diagnose_qe_cross_phase_candidate_pilot.py. Labelsfirstdecodedthere. Sourcehash
+bindings allapp/method/ref/currentold108tables/explicitmeta/maps/stdmodels/
+producer/independent/checker/analysis beforestart. Noqueuedjobs. Read-only
+countsavailOPTIONS notacceptedannotationgains. Scope33datasets*2negmodes*2classes
+=132availabilityrows,NOT132four-modebenchmark. FAOHcoreceilings89.76%NP/83.27%RP
+mean validateddiscovery ALSOneeded. No048classifier/annotationplan yet. No more
+cutoff-onlysweeps. GoalACTIVE/NOTmet;continueautonomously,notendcheckpoint.
+
 ## CURRENT047v2 COMPLETE / REJECTED WHOLE — optimization ACTIVE
 
 Producer15482DONE0,post14640DONE0,fullmasterALLPASS. Fixedreport19528DONE0:
