@@ -22,6 +22,7 @@ def test_unknown_columns_and_partial_collection_cannot_be_published(tmp_path):
 def test_private_inputs_and_absolute_paths_removed():
     record = {
         "input_sha256": {"/private/feature": "hash"},
+        "source_input_sha256": {"/private/mixed-source-and-feature": "hash"},
         "before_checkpoint": "/private/experiment_029",
         "nested": {"resource_receipt": {"path": "/private"}, "count": 33},
     }

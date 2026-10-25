@@ -58,6 +58,7 @@ def public_json(value):
             if k
             not in {
                 "input_sha256",
+                "source_input_sha256",
                 "resource_receipt",
                 "artifact_sha256",
                 "fold_results",

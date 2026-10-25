@@ -1,5 +1,31 @@
 # Experiment reporting policy
 
+## CURRENT041 COMPLETE / RETAINED RESEARCH — supersedes preflight/running below
+
+ALL33/132 outputs/evaluation/FULLmaster integrity COMPLETE ALLPASS,session30323
+DONE0. FULL132target-scope chat table +separatewrong-mode totals DELIVERED.
+WHOLE041 retained research ONLY;new bestreference041. Appdefaults UNCHANGED.
+029 ->041:82729 ->82740/92100 (+11),89.8251900109 ->89.8371335505%;extras9268
+->9270(+2),wrong1604unchanged.13additions;alloldcalls/metadata immutable.
+RPpos2-acylLPC+7correct/Eunchanged;NPposLPS+4/E+2;allothercellsunchanged.
+43/86priority and76/122alltarget below90 unchanged;capped90prioritymean
+83.8606409894 ->83.8902652834. Prespecified WHOLE-method tradeoff passes,
+but benefitverySMALL/notdeploymentready. DO NOT call pooled90goal achieved.
+25frozen029models/100experts deliberatelyreused;ALL132INNER/33outer scores
+BITEXACT;5completecurves/cutsreplays;33alloldcells/newrawquant/gold checks.
+1041source/input hashes,324snapshot,396artifacts.439824populated measurement
+cells,3827658inheritedemptyoldcache,195preexistingroundoff.93613legacyflags
+unchanged. Final/plannedcheckerSHA101f2ba233ef8cca19dd8d81ccd4ca9efbdbbf2c164a4de82bf20f5fd00a1b83.
+No live041jobs. DoNOTredo041fits/eval/audits. Publicdocs/validation/qe_20261025_041
+ready;publisher updated tostripprivate source_input_sha256 mappings,4testsPASS.
+Publish/pushcheckpoint next. Nextactual042 comparator MUSTWHOLE041,not029.
+Needinvestigate stronger discrimination,notrelax041frozenguards. Existing006
+class-specialists,026classweights,019pairedsample,035familyexperts,039conditional
+isomerlabels ALREADYtested;reviewtheir differences beforeclaiming newhypothesis.
+Potentialnewread-only audit: catalogue rounding hides equivalent-label competitors
+from039's exact1e-8Da clusters. No042plan/implementation/models/outputs yet.
+GoalNOTmet;workACTIVE,usergoon;doNOTendmerelycheckpoint.
+
 ## CURRENT041 PREFLIGHT PASS — optimization ACTIVE
 
 040fullyrejected/published/pusheda20b9aa;FULL132chat table ALREADYDELIVERED.

@@ -1,0 +1,52 @@
+041 RETAINED RESEARCH ONLY: whole conservative add-only method, new reference041.
+No production app defaults changed; no posthoc class/fold output splicing.
+
+All33active datasets/132modes/30projectgroups, same manual reference. Same lipid,
+adduct, mode and ORIGINAL feature required. Only X4 (two rows) target-excluded;
+all28unresolved mappings remain in primary denominator.
+
+029 ->041 target correct82,729 ->82,740 /92,100:
+89.8251900109% ->89.8371335505% (+11).
+Unconfirmed extras9,268 ->9,270 (+2), not proven false positives or FDR.
+Different-feature choices1,604 ->1,604 (no increase).
+13added calls =11correct +2extras; zero old annotations lost/changed.
+43/86well-represented class/modes below90 unchanged;76/122alltarget unchanged.
+Capped90priority mean83.8606409894 ->83.8902652834 (small improvement).
+Priority correct81,896 ->81,907 /90,871; sparse833/1229 unchanged.
+
+RPpositive2-acylLPC788 ->795 /900 (87.555556% ->88.333333%), E56unchanged/W11same.
+NPpositiveLPS179 ->183 /226 (79.203540% ->80.973451%), E13 ->15/W0same.
+All other class/modes unchanged; both improving classes remainbelow90.
+Mode W unchanged: RPpos932, RPneg408, NPpos163, NPneg101.
+
+Method: EXACT029 frozen25scoringparents/100classifiers/candidates/predictors,
+ALL132INNER and33outer scores independently reproduced bitexact. No refits.
+Only new authorizedINNER perclass/mode thresholds for genuinely free, global
+unambiguous winners; strongest identity feature fixed before other filters.
+Old029 accepted calls/metadata immutable including005standards/027mass additions.
+Eligibility and safeguards fixed in predeclaredplan before predictions:
+training>=100manual/3projects, corecoverage<90; newcorrect>=10/3projects;
+zeroaddedwrong; extras<=20%newcorrect AND<=2%sameclassmanual; pooled and
+leave-one-project-out agreement>=80%; substantialproject>=50%. No globalbudget
+trading. All five class calibrations completed before any outer annotations.
+Native strict3ppm/10seconds/monoisotope/spike FID+mass protections retained.
+
+Prespecified WHOLE-method guard passes:11newcorrect >=4x2newextras; no lostold
+correct call, no increasewrong, gains in below90priority cells, no worsebelow90
+count, higher cappedmean. Retain this small improvement, NOT deploymentready.
+
+Full preflightALLPASS:132nested scores/authorizedlabels/scopes and33disabled
+ENTIRE CSV/candidate exports exact029.834app tests/8skipped/83subtests PASS;
+10newpure app safeguards,9tool export/authorization tests,1fullclass reporttest.
+Final master ALLPASS:1041source/input hashes,324snapshot files,396bound artifacts,
+all25modelscopes/100expert scopes,132INNER/fivecomplete classcurve/selection
+replays,33outer/132original coordinate checks,33alloldcells/candidate parity/
+referencehash checks.439,824populated measurement cells;3,827,658inheritedempty
+internal old-cache cells explicitly recorded;195preexisting CSV roundoff cells.
+93,613legacyaccepted+candidate provenance flags unchanged; allnewflags cleared.
+Final/planned checkerSHA101f2ba233ef8cca19dd8d81ccd4ca9efbdbbf2c164a4de82bf20f5fd00a1b83.
+
+FULL132target table and separate wrong-mode totals DELIVERED in chat before042.
+Previously exposed saved-input groupeddevelopment replay, not independentexternal
+validation, chemical correctness/FDR proof, or fresh integrated app deployment.
+90% EACHclass/mode goal still unmet. The app still uses its previous defaults.
