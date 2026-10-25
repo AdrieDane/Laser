@@ -1,5 +1,39 @@
 # Experiment reporting policy
 
+## CURRENT042 FULL PREFLIGHT PASS / READY TO FIT — ACTIVE
+
+042runner/calibrator/FULLverifier/export helpers implemented; noactualfitsyet.
+tools/qe_optimization/run_qe_feature_label_experiment.py;
+verify_qe_feature_label_experiment.py;preflight_qe_feature_label_models.py;
+immutable_exports.py +verify_immutable_exports.py;postprocess_qe_feature_label.py.
+New puremodel prepare_feature_label_training exposesEXACTno-fitstageconstruction,
+no scientificchange. Full847app testsPASS/8skip/83subtests afterrefactor;
+5newexport/authorization/rawquantcorruption testsPASS;13appfocusedalreadyPASS.
+
+FULLpreflightfeature_label_model_preflight_v1 COMPLETEALLPASS session44587DONE0:
+ALL25parent preparations/528uses,315detector+108label schemas/scopes/flags,
+independentclass/project support counts,unfittedHGBconstructor. ALL33disabled
+ENTIRE041CSV/candidates exact. Source/input1254hashes. Freshcurrent-source
+source_inputs()==receipt checkedTRUE afterfinish;runnerSHAf70d6dd4... .
+Allapp/model/runner/helper/preflight/plan/input source nowhashbound;doNOTedit.
+Model file wasNOTboundinearlierconstructionaudit,butISboundinthisFULLgate.
+Full042checker exists BEFOREfits;plannedhashwillfreezeininitialize. No042OUT
+initialize/models/annotationoutputs yet. Needcommit/pushthenstart042runner.
+Up to25parents x8stages/modes=200fresh180roundclassifiers. ALL5calibrations
+beforeANYouterannotation. All041calls immutable;compareWHOLE041 not029.
+Newjoint rankcandidate sets refuse unsupportedclusters AFTERglobalcompetition,
+so a zero-score unknown cannot be admitted via a zero classcutoff. Raw exports
+usegenericexplicit041checkpoint assembly, NOT040helper's implicit029 input.
+Legacyacceptedcandidateflags unchanged; allnewflags cleared. Noquerycuration.
+
+FinalFULLaudits25parents/528uses/132INNER/fivegrids/33outer/132rawstreams/same
+referencehashes/oldallcells/newfullquant mandatory; full132chat table+separate
+wrongmode totals/wholedecision BEFORE043. PostprocessorrequiresALL33complete,
+doesnotwaitforproducer/startnextcycle/publishautomatically. Needlaunchmanually
+afterproducerDONE0. No production defaults/deployment claim. GoalNOTmet.
+041FULL132chat alreadydelivered,retained82740/92100,E9270,W1604,43/86below90.
+Latestpushed1a119b4 beforecurrentrunner commit;workACTIVE,usergoon.
+
 ## CURRENT042 PREPARATION — ACTIVE, no actualexamplefits/annotations yet
 
 041retained COMPLETE/pushed6563f1a, FULL132chat table ALREADYDELIVERED. Newbest

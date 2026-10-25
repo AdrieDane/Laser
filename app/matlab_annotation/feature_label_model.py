@@ -76,9 +76,10 @@ def _supported_classes(counts, projects):
     return sorted(c for c, n in counts.items() if n >= 20 and len(projects[c]) >= 3)
 
 
-def fit_feature_label_model(
-    data_by_dataset, *, training_groups, excluded_groups, parameters
+def prepare_feature_label_training(
+    data_by_dataset, *, training_groups, excluded_groups
 ):
+    """Expose the exact no-fit preparation for independent preflight/audits."""
     allowed, excluded = set(training_groups), set(excluded_groups)
     if {d["query_group"] for d in data_by_dataset.values()} != allowed:
         raise ValueError("All permitted training projects must be represented")
@@ -154,6 +155,19 @@ def fit_feature_label_model(
             reference_excluded_groups=list(data["reference_excluded_groups"]),
             modes=mode_counts,
         )
+    return records, query_audit, original_columns, detector_columns
+
+
+def fit_feature_label_model(
+    data_by_dataset, *, training_groups, excluded_groups, parameters
+):
+    records, query_audit, original_columns, detector_columns = (
+        prepare_feature_label_training(
+            data_by_dataset,
+            training_groups=training_groups,
+            excluded_groups=excluded_groups,
+        )
+    )
     experts = {}
     for stream, r in records.items():
         detector, detector_support = _fit(
@@ -190,8 +204,8 @@ def fit_feature_label_model(
         )
     return dict(
         format=FORMAT,
-        training_reference_permissions=sorted(allowed),
-        excluded_groups=sorted(excluded),
+        training_reference_permissions=sorted(training_groups),
+        excluded_groups=sorted(excluded_groups),
         columns=original_columns,
         feature_columns=detector_columns,
         experts=experts,
