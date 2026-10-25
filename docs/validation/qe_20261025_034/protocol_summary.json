@@ -1,0 +1,23 @@
+{
+  "experiment": "034-guarded-class-cutoffs-on-frozen029-inner-scores",
+  "decision": "rejected",
+  "retained_research_reference": "029",
+  "datasets": 33,
+  "dataset_modes": 132,
+  "independent_project_groups": 30,
+  "new_classifier_fits": 0,
+  "frozen029_models": 25,
+  "frozen029_mode_experts": 100,
+  "minimum_training_manual": 100,
+  "minimum_training_projects": 3,
+  "minimum_correct_training_winners": 20,
+  "minimum_positive_projects": 3,
+  "unchanged_ambiguity_margin": 0.05,
+  "training_extras_per_endogenous_manual": 0.095,
+  "all_five_calibrations_frozen_before_outer_selection": true,
+  "sparse_class_cutoffs_unchanged": true,
+  "fixed_peak_competition": true,
+  "production_enabled": false,
+  "fresh_raw_input_runs": false,
+  "note": "See decision.txt for method, held-out regressions, definitions and limitations. Raw agreement scores are not chemical probabilities. Training safeguards are not held-out guarantees or FDR. No posthoc class/mode winner splice."
+}

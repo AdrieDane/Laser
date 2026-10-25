@@ -2,7 +2,18 @@
 
 ## Current work status — RESUMED by user,25October2026
 
-034INPROGRESS: guarded class cutoffs on EXACT retained029 scores/models and
+034COMPLETE,REJECTED;029retained. Full132TARGETscope table +wrongmode totals
+DELIVERED before any035annotation.82729 ->82814/92100 (+85),89.8251900 ->89.9174810%;
+extras9268 ->9405(+137),wrong1604 ->1610(+6). Priority81896 ->81981/90871;
+43 ->44below90/86; alltarget76 ->77below90/122. Sparseunchanged833/1229.
+RPnegative-12correct; NPpositiveBMP+63correct/+65extras,not90%. ALLintegrityPASS:
+296source/481inputhashes,25UNCHANGEDmodels/100experts,ZEROclassifierfits,
+528queryscopechecks,132INNER+33outerBITEXACTscores,5curves/choices reproduced,
+660uniformselectorparities,132fullpipeline/rawcoordinatechecks,33manualhashes.
+Reports docs/validation/qe_20261025_034; actualdelta versus_029. No appdefault.
+Next needs better candidate discrimination,not just accepting more old scores.
+
+034method: guarded class cutoffs on EXACT retained029 scores/models and
 standard_context_preparation_v1. New helper guarded_class_operating_point.py
 alongside UNCHANGED preexisting class_operating_point.py.725tests passed,
 8skipped,83subtests. Protocol frozen,ALL5INNER calibrations completed BEFORE

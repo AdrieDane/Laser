@@ -1,0 +1,65 @@
+Experiment034: class-specific acceptance cutoffs — REJECTED
+25 October2026. Retained research reference remains029; NO app defaults changed.
+
+What changed
+Only acceptance cutoffs on EXACT029 frozen candidates, predictors and models.
+All five outer-training class calibrations finished before final query selection.
+Eligibility uses only that outer-training split: >=100 endogenous manual rows,
+>=3 independent projects, >=20 correct fixed winners from >=3 projects.
+Sparse/unsupported classes keep029cutoff. Fixed label/identity competition and
+.05 ambiguity unchanged; class cutoffs can be below.05 because raw agreement
+scores are NOT chemical probabilities. No mass/RT/composition-window changes.
+Every eligible class retains its training correct count; each stream's training
+wrong-peak count cannot rise. Same pooled9.5%endogenous training extras budget.
+Lexicographic capped90%class coverage, correct, fewerwrong/extras, cutoffstability.
+Nonoptimal solver returns the WHOLE baseline; no relaxed budget/partial winner.
+25old029models/100experts deliberately reused and reproduced, ZEROclassifierfits.
+Same005standardcleanup and fixed027mass stage; NO033scores/candidates/descriptors.
+
+Scope and definitions
+All33active folders /132dataset-modes /30independent projectgroups.
+Same lipid/adduct/mode AND ORIGINAL FEATURE as manual required. All manual
+entries including28unresolved mappings remain in denominator. Extras are absent
+from that dataset/mode manual list: UNCONFIRMED, not proven false identities/FDR.
+X4alone user-excluded from companion target view (2rows), not an annotation gain.
+Cached original-feature research replay, NOT fresh production annotation or
+untouched external validation. Repeated development exposure remains.
+
+Actual comparison versus029 (versus_029/; top-level compares original baseline)
+Target:82729/92100=89.8251900109% ->82814/92100=89.9174809989% (+85correct).
+Unconfirmed extras9268 ->9405 (+137); wrong-peak calls1604 ->1610 (+6).
+Target class/modes below90%76 ->77of122. Historical all-manual denominator92102;
+same numerators/extras/wrong; historical below90%77 ->78of123.
+Priority86class/modes:81896 ->81981/90871 (+85),90.1233616885 ->90.2169008815%;
+below90%43 ->44of86. Priority-scope extras8387 ->8524; wrong1589 ->1595.
+Sparse36class/modes:833/1229correct,253extras,15wrong,33below90 unchanged.
+Priority-scope extras omit classes with zero manual entries; full9405authoritative.
+
+Mode totals (target denominators)
+RP_Pos:40648 ->40664/45206; extras3391 ->3420; wrong932 ->935.
+RP_Neg:12088 ->12076/13600; extras1995 ->2000; wrong408 ->410.
+NP_Pos:17637 ->17695/19380; extras1944 ->2012; wrong163 ->162.
+NP_Neg:12356 ->12379/13914; extras1938 ->1973; wrong101 ->103.
+NP_Pos BMP270 ->333/622 (+63correct,+65extras); NP_Neg SLBPA86 ->114/169
+(+28correct,+38extras). These are NOT90%coverage. RP_Pos PE1953/2209 unchanged.
+Losses include NP_Pos Hex2Cer-d(-7),NP_Neg GM3-d(-7),NP_Pos AC(-6),
+RP_Pos AC-OH(-5),RP_Neg2-acylLPE(-4). No posthoc successful-class/mode splice.
+
+Decision
+Reject: small gain does not justify137additional extras,6additionalwrongpeaks,
+RPnegative regression and more priority class/modes below90%. Training-only
+constraints do NOT guarantee held-out gains.029 remains the next reference;
+its earlier regressions versus028 (RPnegative-48,NPnegative-65 including
+NPnegativeBMP-84) also remain explicit. Goal not achieved; not deployment-ready.
+Full132target-scope user-facing table and separate wrong-peak totals delivered
+in chat before any next annotation-changing experiment.
+
+Verification ALLPASSED
+725app tests,8skipped,83subtests.296source/481input hashes,528training-query
+exclusion checks;25frozenmodels/100experts.132INNER+33outer scoreSeries BITEXACT;
+ALL5class curves/parameter choices reproduced,660uniformselectorparities;
+132full selection+005cleanup+027mass replays and raw-coordinate stream checks.
+OnlyIEEE roundoff permitted (rtol8*eps,atol0),195preexisting cells.2STDalias
+demotions reproduced.33identical original manual-reference hashes.
+No fitted weights,raw profiles,feature identifiers or crosswalks uploaded.
+Private protocol/inputs/outputs remain in local experiment_034 folder.
