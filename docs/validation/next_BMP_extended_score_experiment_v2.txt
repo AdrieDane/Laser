@@ -1,0 +1,75 @@
+Experiment047 prospective plan — complete native score domain,26October2026
+
+Whole041 remains retained. 046 complete/fullmasterPASS,whole rejected425new
+extras>345newcorrect,all132 CHAT/66BMP/endogenous+spikes published eb4aa91.
+No posthoc mode splice or acceptance-budget relaxation. App defaults unchanged.
+
+Rationale from TRAINING calibration: fourof5 NPpositive INNER choices in046 hit
+the arbitrary allowed .5 minimum; the existing native operating selector supports
+.05..1. Scores learn curator agreement and are NOT chemical identity probabilities.
+An admissible score-domain boundary may prevent better training tradeoffs, but
+there is NO claim that lower scores give true annotations or achieve90%.
+
+ONLY change relative to046: allow all native score-domain thresholds .05,.10,
+.15,...,.95,.975,.99,1.0 explicit disable (22levels/484 joint pairs). Same163
+inputs/25parent50classifiers from044, same source_physical-only admission as046,
+same original candidates/labels/native3ppm/ownclassRT10s/.05 ambiguity/global
+competition/identity-best/isotope+standard guards and allold041 immutable.
+No classifier refits, score clipping/rescaling/offsets, mass/RT/CDB changes,
+query curation,curator fits,manual-otherpolarity-presence or name-based routing.
+
+New research native-selector copy MUST AST-match existing selector after ONLY
+restoring .5 lower-bound validation (imports/name may be normalized in test).
+Same original numeric score Series used directly. New .05 domain is NOT a new
+physical-confidence claim or an invitation to keep lowering the floor later.
+Full132 fixed .5 admissions must match046 exactly before new cuts are chosen.
+All22 threshold selections checked direct vs cached to forbid weaker fallback.
+
+Same original044 INNER safety/objective: Enew<=TPnew AND<=.5primaryBMPN;
+unsupported-other-NP-composition extras<=.1endoBMPN;wrong<=.005endoBMPN pooled
+and eachNP;enabledmode>=20newcorrect in>=3actualproject groups. Related folders
+combined first; full484 grid, max sum capped90 coverage,then newcorrect,fewer
+extras,fewer wrong,higher positive then negative cuts. Infeasible=>bothdisabled.
+All132 fresh OOF scores with proper query/outer/inner-group exclusion. Proper
+INNER041 occupancy,notoutercalls. ALL5 new choices before ANY new outer output.
+No point selected using outer evaluation results. Historical exposure disclosed.
+
+No-cut preflight all25/50 scopes/support/params/matrixreceipts,132 freshscore
+bitexact044 replays/132 fixed .5 parity checks/new per-project full22curves,
+33disabled ENTIRE041 annotation+candidates parity; all source/model/plan/checker
+bindings frozen. No learned cuts or new classifier fits in preflight.
+Full independent master rechecks528traininguses,all132new-domain cases/all22
+directcuts-vs-cache,scalar sourcephysical,independent per-case gold counts and
+all5full484 grids,33outer/rawquant/oldcells/freshgold/same references.
+
+FINAL WHOLE guard EXACT044/045/046:>=100newcorrect;Enew<=TPnew AND<=571;
+unsupported-other-NP-composition extras<=.1endoBMPN;Wnew<=5 AND<=.005endoBMPN
+eachNP;no oldloss/nooutside-NPBMP/standard/quant changes;>=1BMPmode improves.
+ALL extras count PRIMARY,even if other-NP manual composition exists. Never a
+runtime manual-presence filter or proven chemical false-positive estimate.
+No change in denominator:92100manualrows incl1456standards/28unresolved;X4only
+excluded. Sparse classes deferred but retained in reports/denominators.
+
+Full33/132 CHAT %n/N+TOTALextras+separatewrongmodecounts,full66BMP CSV,endo+STD
+companions/wholedecision/publication+CFMmain push BEFORE next actual experiment.
+No raw profiles/FIDs/models/workbooks toGit. Cached saved-input grouped research,
+NOT untouched external validation,FDR,fresh integrated app run or deployment.
+
+
+V2 INITIALIZATION-ONLY RESTART — scientific plan above unchanged
+
+First047 attempt passed all33 no-cut preflight checks but aborted during startup,
+before protocol/cut selection/any outer annotations. Native AST validation had
+imported scientific modules under044 before configure switched to047snapshot;
+resource_paths is import-cached. The isolation guard correctly refused this.
+No reference fallback is accepted and no guard/cache-reset workaround is used.
+
+Preserve original047 source/plan/preflight/failed snapshot/log and zero-output
+receipt. New *_v2 orchestration and experiment_047_v2 folders ONLY. Configure
+new final snapshot exactly once before native AST-validation imports, AFTER
+protocol resource configuration and binding checks. Same helper/fields/scores/
+22levels/484grid/physics/budgets/models/labels. No parameter choices from partial
+results (none exist). Repeat full25/50/132/33 no-cut gate from fresh calculations,
+then all5 calibration grids and33 outputs/fullmaster/whole decision. Explicit
+source hashes bind old failure and new runtime. No new performance claimed.
+

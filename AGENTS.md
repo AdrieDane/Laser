@@ -1,5 +1,51 @@
 # Experiment reporting policy
 
+## CURRENT047v2 no-cut preflight COMPLETE — optimization ACTIVE
+
+Session27474DONE0 /tmp/laser_047_v2_preflight.log. Fresh25/50/132/fixed.5EXACT046/
+all5new22levelcurves/33disabled ENTIRE041 parity ALLPASS.3369inputbindings,
+15curveartifacts. ALL70focusedtools testsPASS,RuffPASS. No47v2cuts/OUToutputs yet.
+Original47v1failedinitialization remainspreserved;zerochoices/zeroouteroutputs,
+no performance. Old47source83d6a3a unchanged. Newv2onlyinitorderdifferent;
+actualconfigureownsnapshot BEFORE native appimports,neverconfigure44thenown.
+Scientifichelper/domain/physics/budgets/50models EXACTsame;ASTcorefunctionparity.
+Allv2sources/plan/helper/checker FROZEN DO NOT EDIT. Readycommit/push CFMmain
+thenactual run_qe_bmp_extended_experiment_v2.py inFRESHprocess. Noqueuedrunner.
+Needactualall5calibrationsBEFORE33outputs,post_v2/fullmaster/fixedreport/full132
+CHAT+66BMP/endoSTD/wholedecision/publication BEFORE048. Whole041retained.
+Reminder033standard-aligned RT discovery alreadytested/rejected;doNOTreinvent
+asnewmissingfeature. Existing033/036poolunion audit alsoexists. GoalACTIVE.
+
+## CURRENT047v2 INITIALIZATION-ONLY RESTART / no-cut preflight RUNNING
+
+047v1 source83d6a3a pushed. Preflight99745DONE0 ALLPASS3360inputs/15curves.
+Actualv1producer66311ABORTED beforeprotocol/cuts/ANYouteroutputs. It configured
+44snapshot then native AST-check imported resource_paths; later47configuration
+correctly failed isolation guard because imported resource constants cached44.
+No fallback tolerated;no guard bypass/cache reset. Failedsnapshot/log/zero-output
+receipt preserved in QE/experiment_047;oldv1sources/plan/preflight UNCHANGED.
+No47performance exists;do not infer or report one. Whole041 remainsretained.
+
+NEW separate *_qe_bmp_extended*_v2.py orchestration and experiment_047_v2;
+nativehelper bmp_extended_scores.py UNCHANGED. Fix ONLY initialization order:
+configure final own snapshot before native-AST imports,afterprotocol resource
+configuration/binding checks. NEVERconfigure44thenimportappbeforeownsnapshot.
+Same50models/163fields/22levels/484grid/physics/labels/budgets;allalgorithmic
+functions project_curves/cases/assemble/calibrate/run_fold/master core/assess
+ASTIDENTICAL v1-v2. Regressiontests verifyordering+freshprocess correct-root
+works/stalerootstillrefused. Existing047plan cloned+explicitinitialization-only
+addendum docs/validation/next_BMP_extended_score_experiment_v2.txt. All v1
+failure/source/preflightbindings bound in v2. Nochoicesfrompartialresults:none.
+
+V2 preflight RUNNING /tmp/laser_047_v2_preflight.log (session returned inchat).
+Freshall25/50,132scores/fixed.5parity/newcurves,33disabledwhole041checks repeated;
+no oldstdout/curve shortcut. v2sources/helper/plan/master nowFROZEN:DO NOT EDIT.
+13specificextended/startup testsPASS;full70focusedtests launched concurrently.
+RuffPASS. Noappedit. Waitv2fullreceipt/DONE0,commit/pushnewv2sources CFMmain,
+thenrun run_qe_bmp_extended_experiment_v2.py inFRESHprocess. Noqueuedrunner.
+Postprocessor_v2/manualfixedreport_v2 AFTERfullmaster,thenFULL132CHAT/66BMP/
+endoSTD/wholedecision/publication BEFORE048actual. GoalACTIVE;continueworking.
+
 ## CURRENT047 no-cut preflight COMPLETE — optimization ACTIVE
 
 Session99745 DONE0: ALLPASS25reusedparents/50experts,132freshINNERscoresbitexact
