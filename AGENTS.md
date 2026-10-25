@@ -18,6 +18,18 @@ Do NOTduplicate existingpreparer or startfits before363tables/earlyreplaypass.
 Source/aggregateworkcontinues;029retained;appdefaults unchanged.
 
 LATEST036engineering checkpoint V3 (supersedes ALLv1/v2runningstatus below):
+ALLscalar/vector/fast equivalence PASSED:12scalar+6overlappingvector datasets,
+198fullcomparisons over132UNIQUEquery/masktables. Everyold+newphysical row,
+predictor andreference metadata value EXACT;RTfitter/align/scope/scalarfallback
+andwholeper-hit gate ASTchecked. Verifier SHA256:
+d44cdcf67f935cc801d74dfee44341e0dba6141a6026809d39b6fda7270e7e23.
+Snapshotpyc filenames differ only byroot:ownfilehashes stillchecked,andALLcode
+attributes/recursiveconstants compared exceptco_filename;no scientificsource
+hash relaxation. Fastv3preflight ALSO PASSEDfreshSTD+11ALLtables;receipt saved.
+V3preparationcurrently17/33datasets complete (187tables),stillrunning.
+No036fits yet;doNOTduplicatepreparation. Need363summarythenrun036 andfullfast
+preparationreplay (canparallelfit),eval/full132chatreport/wholeintegrity/decision.
+
 756app tests passed,8skipped,83subtests. Sourcepureoptimizations ONLY: vector
 RTlookup plus vector search forprovably EMPTY original-mass intervals before
 UNCHANGEDper-hit gates. Every theoretical target/prediction stillreturned.

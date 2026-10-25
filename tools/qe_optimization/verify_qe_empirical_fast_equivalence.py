@@ -3,7 +3,9 @@
 import ast
 import copy
 import json
+import marshal
 from pathlib import Path
+import types
 
 import pandas as pd
 
@@ -27,6 +29,34 @@ def tree(root, name):
     return ast.parse(
         (root / "source_snapshot/app/matlab_annotation" / name).read_text()
     )
+
+
+def code_signature(value):
+    """Own frozen pyc semantics,excluding ONLY embedded snapshot filename."""
+    if isinstance(value, types.CodeType):
+        fields = (
+            "co_argcount",
+            "co_posonlyargcount",
+            "co_kwonlyargcount",
+            "co_nlocals",
+            "co_stacksize",
+            "co_flags",
+            "co_code",
+            "co_consts",
+            "co_names",
+            "co_varnames",
+            "co_freevars",
+            "co_cellvars",
+            "co_name",
+            "co_qualname",
+            "co_firstlineno",
+            "co_linetable",
+            "co_exceptiontable",
+        )
+        return tuple((name, code_signature(getattr(value, name))) for name in fields)
+    if isinstance(value, tuple):
+        return tuple(code_signature(v) for v in value)
+    return value
 
 
 def main():
@@ -90,6 +120,15 @@ def main():
         inputs[str(root / "protocol.json")] = sha(root / "protocol.json")
         for relative, digest in protocol["source_sha256"].items():
             assert sha(root / "source_snapshot" / relative) == digest
+            if relative.endswith(".pyc"):
+                old_code = marshal.loads(
+                    (root / "source_snapshot" / relative).read_bytes()[16:]
+                )
+                new_code = marshal.loads(
+                    (NEW / "source_snapshot" / relative).read_bytes()[16:]
+                )
+                assert code_signature(old_code) == code_signature(new_code), relative
+                continue
             if "/tests/" not in relative and not relative.endswith(
                 ("/empirical_retention.py", "/empirical_candidates.py")
             ):
