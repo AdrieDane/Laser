@@ -2,6 +2,25 @@
 
 ## RESUMED — latest user said "go on",25October2026
 
+LATEST:036FULLintegrity COMPLETEALLPASS;doNOTre-runany036verification/fits.
+302source/560inputs,25parents/100experts,528trainingqueries,132INNERscores/
+5fullgrids+cutchoices,33outerscores/132fullpipelines/rawcoords,33goldhashes;
+196preexistingfloatroundoffcells,0STDaliasdemotions. FullphysicalreplayALL33/
+363tables+363freshSTDmasks+25refreplaysPASS,605source/1169inputchecks plus
+2152hashbound verificationfiles. Last8cases verifiedviaunchangedfunction in
+supplemental scheduler;mainreusedONLYmatchingvalidatedreceipts. No oldstdout
+orpartialcase reuse. Sessions19926/72180/38205 DONEexit0. Masterreceipts exist.
+Public036aggregates committed/pushed29bc106,actualdelta versus_029.036REJECTED,
+029retained. FULL132targetscope tableALREADYDELIVEREDbeforepause;doNOTrepeat.
+
+037NOWFITTING session35714(after036publication/push),8/25parents complete at
+lastcheck,32/100freshmodeexperts. Noouterdatasetsyet. Preflightallhashes passed;
+allperexpertlabels/rows/positives SAME029,ONLYfixedquarterweightuncertainnegatives.
+Post037driver43924 waitingALL33outputs theneval/reports/FULLverify. DoNOTduplicate.
+774fullapptestsPASS/8skipped/83subtests,newconditionalprototype testsONLY;not
+annotationaccuracy. Sourcecurrentconditionalmodel/pair changes UNUSEDby037,
+andall037hash-bound criticalsources unchanged. No038annotationfits yet.
+
 Userrevokedpause. Continueautonomous optimization;029retained,defaults unchanged.
 New verify_qe_empirical_preparation_resumable.py wraps UNCHANGEDoriginalchecker
 functions;FULL33/363reconstruction restarted (NOoldstdout/partialreuse). It saves
