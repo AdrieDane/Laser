@@ -98,7 +98,7 @@ def fit_empirical_retention(observations, atlas, *, training_groups, excluded_gr
     )
 
 
-def predict_empirical_reference(targets, atlas, model, *, query_group):
+def _predict_empirical_reference_scalar(targets, atlas, model, *, query_group):
     if model.get("format") != FORMAT:
         raise ValueError("Explicit empirical RT reference required")
     training, excluded = set(model["training_groups"]), set(model["excluded_groups"])
@@ -126,6 +126,80 @@ def predict_empirical_reference(targets, atlas, model, *, query_group):
         out.loc[index, "empirical_offset_seconds"] = item["offset_seconds"]
         out.loc[index, "empirical_training_projects"] = item["training_projects"]
         out.loc[index, "empirical_training_MAD_seconds"] = item["training_MAD_seconds"]
+    return out
+
+
+def predict_empirical_reference(targets, atlas, model, *, query_group):
+    """Equivalent vector lookup; no cross-query/model prediction cache.
+
+    Keep the scalar path for unusual dtypes, preserving public input behaviour.
+    Keys, float additions and missing flags remain identical. Caller outputs
+    and reference weights are never mutated.
+    """
+    if (
+        not isinstance(targets, pd.DataFrame)
+        or targets.empty
+        or not {"carbon", "db"}.issubset(targets)
+    ):
+        return _predict_empirical_reference_scalar(
+            targets, atlas, model, query_group=query_group
+        )
+    plain = all(
+        isinstance(targets[c].dtype, np.dtype)
+        and (
+            np.issubdtype(targets[c].dtype, np.integer)
+            or np.issubdtype(targets[c].dtype, np.floating)
+        )
+        for c in ("carbon", "db")
+    )
+    if not plain:
+        return _predict_empirical_reference_scalar(
+            targets, atlas, model, query_group=query_group
+        )
+    if model.get("format") != FORMAT:
+        raise ValueError("Explicit empirical RT reference required")
+    training, excluded = set(model["training_groups"]), set(model["excluded_groups"])
+    if training & excluded or query_group in training or query_group not in excluded:
+        raise ValueError("Query project must be explicitly excluded")
+    _verify_atlas_scope(atlas, training)
+    out = predict_retention_atlas(targets, atlas)
+    for field in (
+        "empirical_offset_seconds",
+        "empirical_training_projects",
+        "empirical_training_MAD_seconds",
+    ):
+        out[field] = np.nan
+    keys = (
+        targets.stream.astype(str)
+        + "|"
+        + targets["class"].map(canonical_lipid_class)
+        + "|"
+        + targets.carbon.map(lambda v: f"{float(v):g}")
+        + "|"
+        + targets.db.map(lambda v: f"{float(v):g}")
+    )
+    reference = model["models"]
+    offsets = keys.map(
+        {k: item["offset_seconds"] for k, item in reference.items()}
+    ).to_numpy(float)
+    corrected = out.atlas_rt_seconds.to_numpy(float) + offsets
+    valid = (
+        np.isfinite(targets.carbon.to_numpy(float))
+        & np.isfinite(targets.db.to_numpy(float))
+        & out.atlas_rt_seconds.notna().to_numpy()
+        & np.isfinite(corrected)
+        & (corrected > 0)
+    )
+    out.loc[valid, "atlas_rt_seconds"] = corrected[valid]
+    out.loc[valid, "empirical_offset_seconds"] = offsets[valid]
+    for field, key in (
+        ("empirical_training_projects", "training_projects"),
+        ("empirical_training_MAD_seconds", "training_MAD_seconds"),
+    ):
+        values = keys.map({k: item[key] for k, item in reference.items()}).to_numpy(
+            float
+        )
+        out.loc[valid, field] = values[valid]
     return out
 
 

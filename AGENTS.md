@@ -17,6 +17,27 @@ currentlyrunning. Needfullannotationverifier+132INNERcutreplay stillimplement.
 Do NOTduplicate existingpreparer or startfits before363tables/earlyreplaypass.
 Source/aggregateworkcontinues;029retained;appdefaults unchanged.
 
+LATEST036engineering checkpoint supersedes preceding v1runningstatus:
+755app tests passed,8skipped,83subtests. RealSperm_cells independentALL11masked
+tables+freshSTDmeasurements EXACTreconstruction PASSED. Scalarv1preparer was
+SIGINTstopped intentionally after9complete receipts;runningworkers mayfinish
+up to12receipts (allpartial/completefiles preserved),ZEROannotationfits.
+Only empirical numericallookup vectorized,NOpredictioncache/scientificchange;
+originalscalarfallback preserved forunusualdtypes/emptyinputs. Newv2preparer
+prepare_qe_empirical_candidates_vectorized.py is RUNNING3workers,OUT
+empirical_RT_candidate_preparation_v2;full755tests passed BEFOREits snapshot.
+Originalscalar snapshots untouched. Mustrun verify_qe_empirical_lookup_equivalence.py
+against ALLcompletedv1datasets (>=9/>=99fulltables),not samplechecks. Scope/fitter/
+alignment AST unchanged;runtimeotherfile hashes equal;allfullpool/predictor/meta
+values must match EXACTLY. Needv2real11maskreplay with
+verify_qe_empirical_preparation_vectorized.py and recordv2preflight_receipt.json.
+run_qe_empirical_experiment.py nowTARGETSv2,requires363complete tables,
+lookup_equivalence_receipt.json+v2preflight beforeANYfits. Fullannotationverifier
+verify_qe_empirical_experiment.py nowIMPLEMENTED:25models/528ALLtraininglabels+
+oldpair/scopes,132INNERscore/countgrids/cutchoices,33outer/132fullpipeline+
+rawcoordinate/goldhashreplays;requiresFULL363v2preparationintegrityreceipt too.
+No036fitlaunchyet. No accuracyclaim. Source/tools saved;continuationauthorized.
+
 036rationale: empirical composition RTunion
 fromWHOLE029. Numeric-only pilot empirical_RT_reference_diagnostic_v1 complete:
 33/132,90613mappedendoRTsexclX4;81778exact-CDBcorrections. Within10s86227 ->86235;

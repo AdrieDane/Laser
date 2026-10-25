@@ -152,3 +152,23 @@ def test_curated_anchors_and_supervised_query_flags_rejected():
             predict_aligned_empirical_retention(
                 targets, automatic, atlas, model, stream="RP_Pos", query_group="query"
             )
+
+
+def test_vector_lookup_exact_scalar_parity_missing_and_unusual_dtype_inputs():
+    from matlab_annotation.empirical_retention import (
+        _predict_empirical_reference_scalar,
+    )
+
+    _, _, atlas, model, targets = fixture()
+    for frame in (
+        targets,
+        targets.astype({"carbon": float, "db": float}),
+        targets.assign(carbon=[np.nan, np.inf, 35.0]),
+        targets.astype({"carbon": "Int64", "db": "Int64"}),
+        targets.iloc[:0],
+    ):
+        expected = _predict_empirical_reference_scalar(
+            frame, atlas, model, query_group="query"
+        )
+        actual = predict_empirical_reference(frame, atlas, model, query_group="query")
+        pd.testing.assert_frame_equal(actual, expected, check_exact=True)

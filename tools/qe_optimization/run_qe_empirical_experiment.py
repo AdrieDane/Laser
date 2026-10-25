@@ -19,7 +19,7 @@ from run_qe_atlas_experiment import species, adduct
 
 QE = ROOT / "outputs/qe_optimization_20261022"
 BASE = QE / "baseline"
-PREPARED = QE / "empirical_RT_candidate_preparation_v1"
+PREPARED = QE / "empirical_RT_candidate_preparation_v2"
 EMPIRICAL = QE / "nested_empirical_RT_references_v1"
 REFERENCES = QE / "nested_reference_development_v2"
 STD = QE / "experiment_005"
@@ -45,6 +45,37 @@ def initialize():
         and ready["dataset_mask_tables"] == 363
         and not ready["supervised_labels_used_for_predictors"]
     )
+    preflight_path = PREPARED / "preflight_receipt.json"
+    preflight = json.loads(preflight_path.read_text())
+    assert (
+        preflight["all_passed"] and preflight["full_masked_table_reproductions"] == 11
+    )
+    assert preflight["independent_standard_mask_measurement_reproductions"] == 11
+    preflight_checker = Path(__file__).with_name(
+        "verify_qe_empirical_preparation_vectorized.py"
+    )
+    assert sha(preflight_checker) == preflight["verifier_sha256"]
+    assert (
+        sha(PREPARED / "checkpoints" / (preflight["dataset"] + ".json"))
+        == preflight["checkpoint_sha256"]
+    )
+    for path, digest in preflight["prepared_sha256"].items():
+        assert sha(Path(path)) == digest
+    equivalence_path = PREPARED / "lookup_equivalence_receipt.json"
+    equivalence = json.loads(equivalence_path.read_text())
+    assert (
+        equivalence["all_passed"]
+        and equivalence["exact_full_masked_table_comparisons"] >= 99
+    )
+    assert equivalence["completed_scalar_datasets"] == len(
+        list((QE / "empirical_RT_candidate_preparation_v1/checkpoints").glob("*.json"))
+    )
+    equivalence_checker = Path(__file__).with_name(
+        "verify_qe_empirical_lookup_equivalence.py"
+    )
+    assert sha(equivalence_checker) == equivalence["verifier_sha256"]
+    for path, digest in equivalence["inputs_sha256"].items():
+        assert sha(Path(path)) == digest
     reference_ready = json.loads((EMPIRICAL / "summary.json").read_text())
     assert (
         reference_ready["all_complete"] and reference_ready["reference_bundles"] == 25
@@ -67,6 +98,10 @@ def initialize():
             if p.is_file()
         }
         inputs = [
+            preflight_path,
+            preflight_checker,
+            equivalence_path,
+            equivalence_checker,
             EMPIRICAL / "protocol.json",
             EMPIRICAL / "summary.json",
             Path(__file__).with_name("frozen_resources.py"),
@@ -146,7 +181,7 @@ def initialize():
             curation_runtime_input=False,
             score_architecture="ALL four fixed measurement-mode experts;180rounds EACH,100classifiers in25nested parent fits. Not a posthoc choice of old phase/class winners.",
             partial_curation_labels_used=False,
-            new_standard_context_used=True,
+            existing_standard_context_used=True,
             new_adduct_family_context_used=False,
             new_empirical_RT_discovery_used=True,
             new_numeric_features=8,
