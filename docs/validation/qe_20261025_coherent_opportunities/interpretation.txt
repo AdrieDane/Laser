@@ -1,0 +1,26 @@
+Read-only mechanical candidate upper bounds,not an annotation experiment.
+ALL33/132 physical proposal pools from the WHOLE competing-class RT rule were
+constructed and fingerprinted BEFORE manual annotation comparisons were read.
+No successful-class subset,score/classifier fit,acceptance or default change.
+
+1378currentlymissing mapped endogenous manual correct-feature keys appear in
+these blind proposal pools.1120were ALREADYavailable in the old029core.
+258are new correct-feature candidate keys absent oldcore:38identities already
+called on another peak,1correctfeature occupied,and219mechanicallyfree if all
+old029calls remain fixed. These are optimistic structural upper bounds,not
+identified lipids or gains. Only18free NEWoptions concern the43priorityclass/
+mode combinations below90%;only3are RPpositivePE. Mostfreeoptionsare NP PE
+classes already above90%,so this is insufficient as the next main improvement.
+
+All proposed pairs use original features,rawmasserror<3ppm and<=10seconds
+from a supported blind RTprediction. Native ions/ranges/scope restrictions
+inherited from the complete numerical pilot;actual declared spike masses and
+measured/named-standard feature IDs protected again in physical joins.
+Source/input/pool fingerprints rechecked after the comparison. Detailed rows
+contain ONLY aggregate counts. No rawfeature IDs,sampleprofiles or model files
+published. Counts overlap older033/036candidate discoveries;do not sum them.
+
+Actual annotation performance remains retained029:82729/92100correctsamepeak,
+9268unconfirmedextras,1604differentpeakchoices. Extrasnot provenfalsepositives.
+This is saved-input development diagnosis,not untouched external validation,
+fresh production output or an analytical false-discovery rate.

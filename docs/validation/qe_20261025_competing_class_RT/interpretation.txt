@@ -1,0 +1,64 @@
+Decision: not suitable as a replacement RT prediction. Auxiliary discovery
+opportunities will be investigated separately,without changing annotations.
+No experiment040, no classifier fits, no accepted-annotation/default changes.
+Retained annotation reference029:82729/92100correct,9268extras,1604wrong peaks.
+The 90%goal per curated lipid class/mode is NOT achieved.
+
+What changed
+One prospective chemistry-wide ANCHOR veto,not a chosen successful-class list.
+A raw peak needs >=5seconds better baseline RT proximity for the proposed
+family than every supported other-family near-exact-mass chemical hypothesis,
+including odd-carbon competitors. RP O/P isomer-family branches are not veto
+competitors;their formula-equivalent holdout and trained relative RTs remain.
+NP retains exact-class logic,not RP ordering. All other numeric settings fixed.
+This ambiguity margin is a developmental rule,not a physical law or FDR.
+
+All33datasets/four modes:90613mapped endogenous original RTs.89724 theoretical
+class/CDB/ion lookups;889unavailable remain in this RT-only denominator.36630
+rows with a supported coherent shift. All33blind query predictions fingerprinted
+BEFORE opening manual evaluation. Five frozen group-excluded RT references
+deliberately reused;zero new reference fits,classifier fits or annotation calls.
+
+Original RTs within10seconds of a frozen numerical prediction:
+RPpositive42709 ->42638;83newlyinside,154no longerinside.
+RPnegative12064 ->12033;12newlyinside,43no longerinside.
+NPpositive18417 ->18531;175newlyinside,61no longerinside.
+NPnegative12436 ->12530;154newlyinside,60no longerinside.
+Total85626 ->85732;424newlyinside,318no longerinside,net106better.
+
+These are NOT correctly identified lipids,annotation gains or coverage against
+the full manual annotation list. No original peak has been selected or moved.
+All actual annotation counts/extras/wrong peaks remain unchanged. Standards
+and unresolved manual mappings remain in the full annotation denominator but
+are not assessable as endogenous observed RTs in this separate diagnostic.
+
+Compared with the previous unrestricted RTpilot,the guard reduces RT-window
+losses1015 ->318,and gains465 ->424. It removes many PG/PA/PS/BMP/PE failures,
+but both RP modes are still worse than their original RT predictions. Do not
+adopt only NP or successful classes. Independent-standard agreement was NOT
+silently combined into this single-change pilot. Unsupported chemical rivals
+without a trained RT model remain a limitation;strong raw mass/RT coherence
+still cannot prove a headgroup or resolve every isomer.
+
+Full independent engineering replay PASSED:ALL33/132entire prediction tables,
+all33audit tables and fresh independent spike measurement inputs exactly
+reproduced in new scratch.320source/147input checks,99bound artifacts. No
+manual truth loaded by the verifier. Original RTs also matched original raw
+features exactly during evaluation. Structural tests confirm the new runner
+changes only the explicit anchor-guard option in prediction construction;
+all full-verification functions are unchanged from the earlier pilot.
+
+Next read-only step
+Construct and freeze the COMPLETE physical candidate pools from this same
+class-agnostic rule for ALL33/132 BEFORE inspecting manual annotation matches.
+Count whether missing manual correct-feature candidates are genuinely new or
+were already present in the retained core;also count identities/features that
+are already occupied. Mechanically free candidates are ONLY an optimistic
+upper bound,not accepted annotations or gains. If useful, a NEW complete
+grouped/nested annotation experiment could preserve old calls and test whether
+additional evidence yields real gains with a predeclared bounded extras policy.
+No successful-class output splicing or posthoc threshold relaxation.
+
+Saved raw-payload/reference DEVELOPMENT pilot with prior dataset exposure,not
+fresh integrated app runs or untouched external validation. Curator agreement
+and RT proximity are not analytical identification probabilities or FDR.

@@ -1,0 +1,50 @@
+Why RT discovery is not the main remaining target bottleneck
+Read-only reuse of completed029all33development diagnostics,not a new benchmark.
+All actual annotations/defaults unchanged:82729/92100correct,9268extras,1604
+different-original-peak choices. Only user-excluded X4 outside target denominator.
+
+There are43 well-represented class/mode combinations still below90% of manual
+curation. Together these contain31242manual entries and25791correct original-
+peak matches. Reaching at least90% in EACH requires2346additionalcorrect
+matches,not merely a higher pooled percentage. Integer ceilings are respected:
+RPpositivePE needs36morecorrect,not35 (rounding to90.0% is not reaching90%).
+
+Their5451currentlymissing correct matches fall into these DISJOINT diagnostics:
+2609:the correct original peak wins existing competition,but its score is below
+     the mode's acceptance cutoff.
+1727:the correct original peak is absent from core candidate options.
+502: another peak wins for the same lipid identity.
+387: another lipid label wins on the correct original peak.
+171: close label scores cause the correct peak to be withheld.
+41: standard-specific processing gap,not the core selector.
+14: unresolved original-feature mapping;still in primary annotation denominator.
+These are diagnostic opportunities,NOT guaranteed safe gains. Lowering every
+cutoff indiscriminately can add many unconfirmed extras and wrong-peak calls.
+
+The new coherentRT rule's full blind physical joins produced258new correct-peak
+candidate options for currentlymissingmanual entries,of which219are mechanically
+free with ALLoldcalls preserved;38identities already called elsewhere and1peak
+occupied.1120othermissing matches in that pool were ALREADYoldcoreoptions.
+No classifier scores,accepted annotations or performance gains were produced.
+
+Crucially,only18of those219free NEWoptions belong to the43prioritybelow90
+class/mode combinations. Most219are NP PE/PE-O+P,already above90%overall.
+Only3newfreeoptions are RPpositivePE. RTdiscovery alone therefore cannot close
+the2346targetdeficit. These opportunity counts overlap other diagnostic
+categories and older033/036pools;never add them as independent gains.
+
+Next focus: better class-aware selection/acceptance while protecting existing
+calls,with proper grouped calibration and an explicit bounded extras trade-off.
+NP BMP alone accounts for612needed matches:NPnegative322,NPpositive290.
+Its correct peaks are usually already available but suppressed/ambiguous.
+A new hypothesis may train NP-wide contextual models with training-only partial
+BMP supervision,retaining all other lipid classes as contrast,then propose only
+BMP calls that WIN global competition and do not replace existing029calls.
+This differs from030's BMP-only specialist. Fresh model fits and fullall33/132
+evaluation required;doNOTsplice favourable024/037outeroutputs. Not implemented
+as an annotation experiment yet;no performance claim for this future strategy.
+
+Complete43-row table shows deficits,counts,extras,wrong peaks and disjoint
+reasons. Sparseclasses remain in the full benchmark but their dedicated
+optimization remains deferred as requested. Known development exposure;
+no untouched external-validation or analytical FDR claim.

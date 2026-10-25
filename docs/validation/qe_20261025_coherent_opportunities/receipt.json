@@ -1,0 +1,14 @@
+{
+  "datasets": 33,
+  "dataset_modes": 132,
+  "annotation_changes": false,
+  "classifier_fits": 0,
+  "manual_opened_only_after_all_blind_pools": true,
+  "source_sha256": {
+    "diagnose_qe_coherent_opportunities.py": "379c6b4b2a963806ba038583c0340cd776614c294dce491c893b920cf7256ac4",
+    "diagnose_qe_discovery_unions.py": "33f691cb5c136fe6a874f8a72505880cc570596c930ca1db044f214e63773e8f"
+  },
+  "input_file_hash_checks": 308,
+  "blind_physical_pool_hash_checks": 33,
+  "note": "Mechanical upper bounds ONLY,NOT annotation gains/accepted annotations/FDR. Entire class-agnostic RT rule applied,no successful-class subset. No candidate acceptance or baseline change."
+}

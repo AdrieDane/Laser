@@ -1,0 +1,13 @@
+{
+  "purpose": "Numeric RT diagnostic ONLY. No annotation changes, candidates, classifier fits, cutoffs or exports. RT proximity is NOT identification accuracy/FDR. Saved blind raw-input payloads with prior development exposure,not untouched validation.",
+  "policy": "Frozen 5 OTHER-group references; exact expected exclusion scopes/fingerprints; independent mask-matched spike measurements. Top intensity decile raw features,even-C anchors ONLY,native ions,<1.5ppm,maximum90s,bw2s,>=6features/compositions,>=3Ccounts/2DBcounts/3neighborlinks,peakratio>=1.25. Coherent offsets leave out each target's ENTIRE formula-equivalent chemical-coordinate block (C//2+3totalDB)%5 across every isomer branch. RP P-class totalDB=writtenDB+1,so O(C:D) and P(C:D-1) are held out TOGETHER. NPexactclasses retain their own composition convention. RPonly explicit isomer families. Preserve base branch RT differences. Training>=3projects/MAD<=5s,trained domain+existingrange envelope. Spike mass5.01ppm/FIDs protected. Unsupported remainsbaseline;shift only near supporting CDB domain. NOquerycuration used to construct/choose offsets. NEWfixedclass-agnostic ANCHORveto: each physical raw hit must be >=5seconds closer to its family baseline RT than EVERY other-family near-exact-mass hypothesis within max(1e-5Da,0.05ppm),including ODDcarbon competitors. SameRPisomerfamily alternatives are NOT veto competitors. All old numeric settings remain. No per-class outer winner selection. Developmental,not analytical validation.",
+  "stages": "All33/132blind prediction artifacts AND fingerprint receipt saved before any manual observation workbook/table is opened. Evaluate only frozen class/CDB/ion lookup. No tuning inside this pilot.",
+  "supersedes": "Unrestricted coherentv2 numeric pilot was worse:465newlywithin10seconds/1015lost. It is NOT an annotation result. Newv1 adds a chemistry-wide competing-family anchor veto,not a posthoc list of successful classes. All33/132 new blind predictions freeze BEFORE manual evaluation. No target/candidate/annotation changes or classifier fits.",
+  "annotation_changes": false,
+  "classifier_fits": 0,
+  "numerical_reference_fits": 0,
+  "reused_numerical_reference_bundles": 5,
+  "datasets": 33,
+  "modes": 132,
+  "groups": 30
+}

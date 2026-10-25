@@ -1,0 +1,20 @@
+{
+  "annotation_changes": false,
+  "classifier_fits": 0,
+  "numerical_reference_fits": 0,
+  "datasets": 33,
+  "dataset_modes": 132,
+  "assessed_original_RTs": 90613,
+  "blind_lookup_available": 89724,
+  "coherent_RT_available": 36630,
+  "within_10_seconds_before": 85626,
+  "within_10_seconds_after": 85732,
+  "gained": 424,
+  "lost": 318,
+  "blind_all33_receipt_sha256": "a234a6b2b9a6da83c24d734dba20c407db745aede86d3f50adf1e76947c90bbe",
+  "evaluated_manual_observations_sha256": "6469d0b85ff1b795fd33ababf0fe54ed545581f80bbb3bc624161fe5cf91863b",
+  "source_hash_checks": 320,
+  "input_hash_checks": 142,
+  "purpose": "Numeric RT diagnostic ONLY. No annotation changes, candidates, classifier fits, cutoffs or exports. RT proximity is NOT identification accuracy/FDR. Saved blind raw-input payloads with prior development exposure,not untouched validation.",
+  "note": "Mapped endogenous RT-only assessment excludes X4;missing theoretical/native-ion lookups remain in this RT denominator. Unresolved/manualSTD rows are not RT assessable here but remain in full annotation benchmark. No annotation performance/gain is claimed."
+}

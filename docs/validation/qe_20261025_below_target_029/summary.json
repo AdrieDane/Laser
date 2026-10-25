@@ -1,0 +1,23 @@
+{
+  "annotation_changes": false,
+  "new_classifier_fits": 0,
+  "reference": "retained029",
+  "below90_priority_class_modes": 43,
+  "priority_class_modes": 86,
+  "manual_entries": 31242,
+  "correct_original_peak_matches": 25791,
+  "total_additional_correct_needed_to_reach90_in_each": 2346,
+  "mutually_exclusive_missing_reason_totals": {
+    "correct_peak_wins_but_is_below_cutoff": 2609,
+    "correct_peak_absent_from_core": 1727,
+    "different_peak_wins_same_identity": 502,
+    "other_label_wins_correct_peak": 387,
+    "close_label_scores_withhold_correct_peak": 171,
+    "standard_specialist_gap": 41,
+    "unresolved_original_peak": 14
+  },
+  "mechanically_free_new_coherent_candidate_opportunities": 18,
+  "source_sha256": "14a73524fcc13c562302f9fa2206e96f1b778cd1d5571b742c9f7a797cc8bdfb",
+  "note": "Reuses completed all33development diagnostics/counts,not a new annotation benchmark. Deficits are per-class/mode ceilings,not pooled90%. New coherent candidate opportunities overlap other categories/old033036discoveries and are upper bounds,not accepted matches or guaranteed gains. All43prioritybelow90classes shown; sparse classes deferred,not excluded from fullbenchmark.",
+  "input_file_hash_checks": 3
+}

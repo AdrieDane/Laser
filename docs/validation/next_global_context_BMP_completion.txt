@@ -1,0 +1,82 @@
+Experiment040 proposal: NP-wide contextual scoring, add-only BMP completion
+Predeclared BEFORE fits/annotation changes. Retained WHOLE029 is the comparator.
+
+Why this step
+The43priorityclass/modes below90 need2346morecorrect original-peak matches.
+Only18of the new coherentRT mechanicallyfree candidates address these cells;
+RT discovery will not close the main gap. NP BMP accounts for612of the target
+deficit (322negative,290positive);577missing correct peaks already win fixed
+competition but are below mode cutoffs,another97have close-label ambiguity.
+These are opportunities,not guaranteed gains. Do not lower all cutoffs blindly.
+
+New hypothesis,not a splice of rejected024/037results
+030 trained a BMP-only specialist shared across NP polarities;its improvement
+was too small for its extras. New040 fits an independent NP-mode classifier
+using ALL NP lipid classes as context/contrast,not only BMP rows. Training-only
+uncurated-opposite-NP BMP negatives become UNKNOWN using the exact existing024/
+030policy;all positives and other-class labels unchanged. No pseudo-positives.
+All other classes remain in the global training matrix. Fixed same029HGB
+parameters/predictor schema and cohort balance. Fresh25nested parents,up to50
+NP-mode classifiers;no fresh RP classifiers and no old024/037model reuse.
+Unsupported BMP mode(<20knownpositivepairs from3actualtrainingprojects) keeps
+old behaviour. Full allowed reference scopes and actual contributors explicit.
+
+Use exact029363prepared physical/predictor tables. No new RT/candidate/range/
+mass windows,coherentRTdescriptors,reviewweight037or successful-class score mix.
+Every query/outer/inner reference exclusion remains. Manual files opened only
+AFTER authorization for permitted training/calibration groups;never final query.
+
+Inference and annotation preservation
+New scores cover ALL NP candidate labels. A proposed BMP must WIN GLOBAL
+feature/identity competition and the existing0.05labelambiguity margin,not
+merely win among BMP alternatives. Its strongest identity feature is fixed
+before ambiguity/occupancy;no weaker-alternative promotion. Then allow only
+BMP endogenous proposals on initially free original peaks and identities.
+All old029accepted annotations across ALLclasses,modes,standards and fixed027
+mass additions remain IMMUTABLE. No replacement/stealing/cascades. Actual
+declared spike masses5.01ppm and independent measured/named-standard features
+protected. Preserve original measurements;new rows copy available original
+feature/sample/boundary values,not incomplete internal candidate-cache schema.
+Other-class new scores only serve as competition,not accepted replacement calls.
+This is a prospectively fixed algorithm,not selecting successful outerclasses.
+
+Calibration: keep030extra/wrong budgets for a fair method comparison
+Four proper INNER project-group predictions per outerfold. Same NP cutoff
+grid0.50..1.00step0.05;1explicitly meansno additions even if a score equals1.
+Jointly maximize minimum TOTALbaseline+addition BMP correct/manual coverage,
+capped90%,then totalcorrect,feweraddedwrong/extras,higherthresholds. Count
+ALLendogenousmanualBMP entries inclunresolved;standardcalls remainunchanged.
+Added unconfirmed extras pooled acrossNP
+<=10%of endogenous manual NP BMP rows;added different-peak calls <=2%of manual
+BMP rows in EACHNPmode. No relaxation if infeasible;disablefallbackalways.
+This is a bounded potential increase versus029,not analytical FDR or a guaranteed
+outer bound. User delegated prudent extras trade-offs;full actual extras before/
+after must be reported. Old original baseline still9697extras,retained0299268.
+
+Inner occupancy uses SAME029INNER OOF core scores/cutoffs plus blind automatic
+standards and scope-matched independent spike protection. DoNOTborrowouter-only
+005standardcleanup/027masscache intoINNER. Final full029occupancy may differ,
+so exact preservation and full held-out evaluation remain mandatory.
+
+Safety and acceptance
+No tuning based on final outerlabels. No posthoc class/mode winner retention.
+Before fits:all330unique trainingtables/528uses label/scope/predictor parity;
+independent masked-negative audit;all33disabled full029accepted-key/candidate
+export/measurement parity;synthetic global-competition/occupancy/spike tests.
+After fits:all25parentlabels/scopes/support/weight metadata;132INNERscoretable
+replays/fivecompletegrids/cutchoices;all33outer/132moderesults,fullsamegoldhashes,
+originalquantification andALLoldacceptedidentity/feature/measurement preservation.
+No blanket guarantee of gains. Retain only if the whole result has meaningful
+improvement in below90classes,controlled reported extras/wrongchoices,and no
+oldmatch losses. A tiny gain at disproportionate extra cost is rejected,as030.
+No default or deployment claim from cached research. Need actual integration/
+fresh raw end-to-end benchmark and colleague report later if deployment-ready.
+
+Mandatory report BEFORE any041annotation experiment
+Complete132dataset/modebefore-after table in chat,correct percentage+n/N,total
+extrasbefore/after,and separatewrongpeakmodecounts. Also save/link complete
+BMP-specific132table and class/mode all-class report. Show every active33folder;
+X4soleuserexcludedtarget;28unresolved remainprimarydenominator. Sparseclasses
+stillvisible;no dedicatedrareclassoptimization. Saved-input groupeddevelopment
+with prior exposure,not untouched externalvalidation or actual identification
+probabilities/FDR. Goal >=90%in EACHcuratedclass/mode,not pooled90%.

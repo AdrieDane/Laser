@@ -1,5 +1,56 @@
 # Experiment reporting policy
 
+## LATEST — RT pilots finished; target-selection040 prototype,NOactual040fits
+
+Both NUMERICAL RT pilots COMPLETE with ALL33/132fresh exactscratch replays and
+fresh33independent spike-input replays,masterALLPASS. Noannotationchanges or
+classifierfits in either. Unrestrictedcoherentv2:85626->85076RTswithin10s,
+465gained/1015lost,REJECTreplacement. Newcompeting-familyguardv1:
+85626->85732,424gained/318lost;NPimprovesbutBOTH RPmodesworse,NOTreplacement.
+All320source/147input/99boundartifactchecks PASS. Sessions77477/35633/52812
+(coherentv2) and54238/74268/66614(competingguard) allDONE0. Reports published:
+qe_20261025_coherent_RT andqe_20261025_competing_class_RT. GuardpublicpendingGit.
+No liveannotation/numericjobs;doNOTredo these computations onresume.
+
+Newfullblindphysicaljoin auditALL33/132 COMPLETE,DONE0session50859. Freezeall33
+pools BEFOREmanualcomparison.1378missingmanualkeys innewpool,1120ALREADYoldcore,
+258genuinelynewkeys:38identityblocked,1featureblocked,219mechanicallyfree.
+ONLY18of219address43priorityclass/modesbelow90,only3RPpositivePE. These are
+UPPERBOUNDS,NOTacceptedannotations/gains. MostNPPEalreadyabove90. Source
+diagnose_qe_coherent_opportunities.py;privatecompeting_class_RT_opportunities_v1.
+Publicsanitizedcounts qe_20261025_coherent_opportunities,notpushedyet.
+
+Read-only43below90targetbottlenecks COMPLETE:31242manual,25791correct,2346more
+neededto90EACH.5451missingdisjoint:2609correctpeakwinsbutbelowcut,1727absentcore,
+502differentpeakwinsidentity,387otherlabelwinsfeature,171ambiguouslabels,41STD,
+14unresolved. NEWcoherentfreeopportunitiesonly18. NP BMPtargetdeficit612(322neg,
+290pos);577missingcorrectwinnersbelowcut+97ambiguous. RPpositivePE needs36more,
+NOT35(integerceiling;35wouldonlyroundto90). Source summarize_qe_below_target.py,
+privatebelow_target_bottlenecks_029_v1,publicqe_20261025_below_target_029.
+
+NEXT040predeclaredplan:docs/validation/next_global_context_BMP_completion.txt.
+TrainNP-wide ALLCLASS context models,not030BMP-onlyspecialist. EXACTold024/030
+training-onlyoppositeNPBMPunknownmask,positives/otherlabels/predictorsunchanged.
+Fresh25parents,up to50NP-modeexperts atEXACT029parameters;no freshRPmodels.
+NewBMPproposalsmustWINALLCLASSglobalcompetition/.05marginBEFOREBMPfilter and
+occupancy. Old029acceptedALLclasses/modes/STD/027calls immutable,nofallback
+promotion. Same030cutgrid.5..1(explicit1disable),extras<=.10ENDOGENOUS BMPmanual
+pooledNP,wrong<=.02BMPmanualEACHNPmode;no posthocbudgetrelax. No rejected024/037
+outermodelsplice. NewnumericRTdescriptors NOTused040;exact029363tables/108cols.
+
+UNUSEDpureapp np_context_bmp_completion.py implements scopedNPcontextfit/score,
+maskedlabelwrapper,globalwinner+protectedspike add-onlyselector.6syntheticunit
+testsPASS;824app testsPASS/8skip/83subtests;24researchtooltestsPASS. UNKNOWNmode
+fallbackif<20positiveBMPpairs/3actualprojects. NOreal040preflight/initialize/
+models/annotationoutputs yet. Need040runner/calibrator/fullverifier andpreflight
+ALL330unique trainingtables/528uses +ALL33disabledexact029export/quantparity
+BEFOREfits. No sourcebound040yet. Keepouter-only005/027out ofINNERcalibration.
+Publicdiagnostics+newplan/prototype needcommit/pushnext,thenimplementdriver.
+029STILL82729/92100correct,9268extras,1604wrong,43/86prioritybelow90;goalNOTmet.
+FULL132039before/after+wrongtotals ALREADYDELIVERED,doNOTrepeat fornumericchecks.
+Nextactual040mustfinishfull132chat table+BMP132linkedreport/integrity/decision
+before041. WorkACTIVE;doNOTpause/endmerelyata checkpoint;latestusergoon.
+
 ## LATEST: coherent RT numeric pilot REJECTED / competing-family guard ready
 
 coherent_RT_diagnostic_v2 ALL33/132 numerical predictions/evaluation COMPLETE.
