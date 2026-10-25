@@ -455,7 +455,10 @@ def verify_dataset(dataset):
         low_memory=False,
     )
     pd.testing.assert_frame_equal(actual, normalized, check_exact=True)
-    rounding = 0
+    rounding, available_cells, inherited_missing_cells = 0, 0, 0
+    raw_csv_text = pd.read_csv(
+        folder / "automatic_annotations.csv", dtype=str, keep_default_na=False
+    )
     for mode, payload in baseline["streams"].items():
         output = actual[actual.stream.eq(mode)]
         assert not output.feat_feature_id.astype(str).duplicated().any()
@@ -473,8 +476,10 @@ def verify_dataset(dataset):
                 a, b, rtol=8 * np.finfo(float).eps, atol=0, equal_nan=True
             )
             rounding += int((~((a == b) | (np.isnan(a) & np.isnan(b)))).sum())
-        # Every quantitative/boundary raw field available in the accepted
-        # core schema must retain the original feature's actual measurement.
+        # A concatenated schema can contain STD-only boundary/sample columns
+        # absent from the original core candidates. Verify ALL populated values
+        # against raw measurements; separately prove any blanks were inherited,
+        # not newly lost. Original peakgroup exports use original raw rows.
         core_keys = accepted_keys(selected[selected.stream.eq(mode)])
         core_rows = output[
             [
@@ -495,19 +500,43 @@ def verify_dataset(dataset):
             if pd.api.types.is_numeric_dtype(
                 measured
             ) and pd.api.types.is_numeric_dtype(observed):
+                present = observed.notna().to_numpy()
                 np.testing.assert_allclose(
-                    observed.to_numpy(float),
-                    measured.to_numpy(float),
+                    observed.to_numpy(float)[present],
+                    measured.to_numpy(float)[present],
                     rtol=8 * np.finfo(float).eps,
                     atol=0,
                     equal_nan=True,
                     err_msg=col,
                 )
+                missing = measured.notna().to_numpy() & ~present
             else:
-                assert (
-                    observed.fillna("").astype(str).tolist()
-                    == measured.fillna("").astype(str).tolist()
-                ), col
+                actual_text = (
+                    raw_csv_text.loc[core_rows.index, col].astype(str).to_numpy()
+                )
+                expected_text = measured.fillna("").astype(str).to_numpy()
+                present = actual_text != ""
+                assert (actual_text[present] == expected_text[present]).all(), col
+                missing = (expected_text != "") & ~present
+            available_cells += int(present.sum())
+            inherited_missing_cells += int(missing.sum())
+            if missing.any() and col in raw["pool"]:
+                # The exact accepted physical row must already have lacked the
+                # value upstream. Never exempt a lost populated measurement.
+                for r in core_rows.iloc[np.flatnonzero(missing)].itertuples():
+                    upstream = raw["pool"]
+                    upstream = upstream[
+                        upstream.stream.eq(r.stream)
+                        & upstream.name.eq(r.name)
+                        & upstream.adduct.eq(r.adduct)
+                        & upstream.feat_feature_id.astype(str).eq(
+                            str(r.feat_feature_id)
+                        )
+                    ]
+                    assert len(upstream) and upstream[col].isna().any(), (
+                        col,
+                        "new measurement loss",
+                    )
     candidates = pd.read_pickle(folder / "candidates.pkl")
     accepted = candidates[candidates.automatic_accepted]
     assert accepted_keys(accepted) == accepted_keys(actual) and len(accepted) == len(
@@ -540,6 +569,8 @@ def verify_dataset(dataset):
         raw_stream_checks=4,
         roundoff=rounding,
         resolved_isomer_clusters=resolved,
+        available_core_measurement_cells_checked=available_cells,
+        inherited_unpopulated_core_measurement_cells=inherited_missing_cells,
     )
 
 
@@ -602,19 +633,80 @@ def completed_component(path, kind, name, binding):
     return None
 
 
+def migration_proof(binding, artifacts, paths):
+    from verify_qe_conditional_peak_experiment import unchanged_components
+
+    previous = OUT / "verification_sources/verify_v1.py"
+    proof = unchanged_components(previous.read_text(), Path(__file__).read_text())
+    protocol = json.loads((OUT / "protocol.json").read_text())
+    assert sha(previous) == protocol["planned_integrity_tool_sha256"]
+    old_artifacts = dict(artifacts)
+    old_artifacts[str(Path(__file__))] = sha(previous)
+    old_binding = hashlib.sha256(
+        json.dumps(old_artifacts, sort_keys=True).encode()
+    ).hexdigest()
+    tasks = [("model", p.relative_to(OUT).as_posix()) for p in paths] + [
+        ("inner", str(f)) for f in range(5)
+    ]
+    for kind, name in tasks:
+        previous_receipt = (
+            OUT
+            / "verification_components"
+            / (hashlib.sha256((kind + ":" + name).encode()).hexdigest() + ".json")
+        )
+        assert (
+            completed_component(previous_receipt, kind, name, old_binding) is not None
+        ), (kind, name)
+    proof.update(
+        previous_verifier_sha256=sha(previous),
+        current_verifier_sha256=sha(Path(__file__)),
+        previous_verification_identity_sha256=old_binding,
+        current_verification_identity_sha256=binding,
+        reused_kinds=["model", "inner"],
+        complete_components=30,
+        note="Only30completedV1training/INNERreceipts reused withEXACTsciencefunction/import/globalAST andALLunchangedinput/artifacthashproof. No stdout/partialreuse. ALL33outerchecks rerun; populated rawvalues strictchecked,preexisting schema-only blanks separatelyproven againstfrozencandidate availability. No annotation/model/output changed.",
+    )
+    path = OUT / "verification_migration_v1_to_v2.json"
+    runner.dump(path, proof)
+    return dict(
+        previous_binding=old_binding,
+        previous_source_sha256=sha(previous),
+        proof_sha256=sha(path),
+    )
+
+
 def verify_component(task):
-    kind, name, binding = task
+    kind, name, binding, migration = task
     configure_frozen_resources(OUT / "source_snapshot")
     path = (
         OUT
         / "verification_components"
+        / binding
         / (hashlib.sha256((kind + ":" + name).encode()).hexdigest() + ".json")
     )
     result = completed_component(path, kind, name, binding)
     if result is not None:
         print("039 HASH-BOUND COMPLETED CHECK REUSED", kind, name, flush=True)
         return kind, result
-    if kind == "model":
+    result, reused = None, False
+    if kind in {"model", "inner"}:
+        assert (
+            sha(OUT / "verification_migration_v1_to_v2.json")
+            == migration["proof_sha256"]
+        )
+        old_path = OUT / "verification_components" / path.name
+        result = completed_component(
+            old_path, kind, name, migration["previous_binding"]
+        )
+        reused = result is not None
+    if reused:
+        print(
+            "039 EXACT-AST/UNCHANGED-ARTIFACT COMPLETED V1 CHECK REUSED",
+            kind,
+            name,
+            flush=True,
+        )
+    elif kind == "model":
         result = verify_model(OUT / name)
     elif kind == "inner":
         result = verify_calibration(int(name))
@@ -622,7 +714,7 @@ def verify_component(task):
         result = verify_dataset(name)
     else:
         raise ValueError(kind)
-    path.parent.mkdir(exist_ok=True)
+    path.parent.mkdir(parents=True, exist_ok=True)
     runner.dump(
         path,
         dict(
@@ -631,6 +723,10 @@ def verify_component(task):
             name=name,
             verification_identity_sha256=binding,
             result=result,
+            reused_unchanged_v1_component=reused,
+            source_ast_migration_proof_sha256=migration["proof_sha256"]
+            if reused
+            else None,
         ),
     )
     return kind, result
@@ -649,9 +745,12 @@ def main():
     )
     assert len(paths) == 25
     binding, artifacts = verification_binding()
-    tasks = [("model", p.relative_to(OUT).as_posix(), binding) for p in paths]
-    tasks += [("inner", str(f), binding) for f in range(5)]
-    tasks += [("outer", d, binding) for d in projects]
+    migration = migration_proof(binding, artifacts, paths)
+    tasks = [
+        ("model", p.relative_to(OUT).as_posix(), binding, migration) for p in paths
+    ]
+    tasks += [("inner", str(f), binding, migration) for f in range(5)]
+    tasks += [("outer", d, binding, migration) for d in projects]
     with ProcessPoolExecutor(max_workers=4) as executor:
         checked = list(executor.map(verify_component, tasks))
     models = [v for kind, v in checked if kind == "model"]
@@ -662,6 +761,13 @@ def main():
     assert sum(inner) == 132 and sum(d["raw_stream_checks"] for d in outer) == 132
     runner.initialize()
     assert verification_binding() == (binding, artifacts)
+    assert (
+        sha(OUT / "verification_sources/verify_v1.py")
+        == migration["previous_source_sha256"]
+    )
+    assert (
+        sha(OUT / "verification_migration_v1_to_v2.json") == migration["proof_sha256"]
+    )
     result = dict(
         all_passed=True,
         annotation_experiment="039",
@@ -670,6 +776,9 @@ def main():
         verification_identity_sha256=binding,
         bound_verification_artifacts=len(artifacts),
         completed_component_receipts=63,
+        exact_ast_unchanged_v1_training_calibration_components=30,
+        freshly_replayed_outer_components=33,
+        source_ast_migration_proof_sha256=migration["proof_sha256"],
         source_file_hash_checks=len(protocol["source_snapshot_sha256"]),
         input_file_hash_checks=len(protocol["input_sha256"]),
         fresh_conditional_parent_fits=25,
@@ -685,8 +794,14 @@ def main():
         accepted_candidate_export_parity_checks=33,
         identical_manual_reference_hash_checks=33,
         preexisting_roundoff_cells=sum(d["roundoff"] for d in outer),
+        available_core_measurement_cells_checked=sum(
+            d["available_core_measurement_cells_checked"] for d in outer
+        ),
+        inherited_unpopulated_core_measurement_cells=sum(
+            d["inherited_unpopulated_core_measurement_cells"] for d in outer
+        ),
         production_enabled=False,
-        note="Saved-input groupeddevelopment,NOTexternalvalidation/FDR. Original029pointwisescores/physicalrows fixed;onlynewconditionalisomerlabelscores/cuts. Full independent005/027outerpipeline andrawquantitychecks;all28unresolved remainprimaryN,onlyX4userexcludedtarget.",
+        note="Saved-inputdevelopment,NOTexternalvalidation/FDR. Original029pointwise/physicalrows fixed. ALL33outer/full005/027and3rawcoords rerun;ALLpopulatedcorequantification/boundaryvalues checkedagainstoriginalrawrows. Schema-onlyblanksalreadyabsentinfrozencorecandidates countedseparately,NOTnewdataloss/not claimedascheckedpopulatedvalues;originalpeakgrouprawdataretained. Only30completedunchangedV1training/INNERreceipts reusedwithEXACTsourceAST/ALLinput-artifactproof,no stdout/partialreuse. All28unresolvedinprimaryN,onlyuserX4targetexcluded.",
     )
     pd.DataFrame(models).to_csv(
         OUT / "conditional_label_training_audit.csv", index=False

@@ -1,0 +1,101 @@
+Next direction after the rejected 039 label-comparison experiment
+Planning/numerical prototype only. No new annotation experiment started.
+
+25 October implementation, fixed BEFORE the numerical pilot
+Pure adapter coherent_retention.py now implements scope/stream/spike guards.
+The numeric search uses the top intensity decile of finite positive original
+features, only even-carbon anchor compositions, native ions, mass error <1.5ppm,
+maximum +/-90 seconds, bandwidth 2 seconds and 0.5-second search resolution.
+Minimum six distinct features/compositions, three carbon counts, two DB counts,
+three C+2 or DB+1 neighbor links and density peak ratio 1.25. No noise/sparse/
+ambiguous-mode forced shift. These are proposed developmental settings, not
+validated analytical limits. All normal composition targets, including odd
+carbon, remain eligible for predictions/possible later annotation.
+
+Every target holds out its entire deterministic composition block
+(carbon//2 + 3*doublebonds) % 5 from raw-query alignment anchors, across ALL
+branches of its RT family. Its own peak/CDB cannot align itself. These five
+chemical-coordinate partitions are NOT independent projects or biological CV.
+Same shift for RP O/P or 1/2-acyl family branches in the same block; NP uses
+exact canonical classes, not the RP grouping. Base trained relative RTs are
+preserved for branches that receive the shift. Application restricted to the
+supporting anchor composition rectangle plus two carbons/one DB, trained atlas
+domain, >=3 training projects/MAD<=5s and unchanged composition envelopes.
+Declared spike masses within5.01ppm and independently measured/named-standard
+feature IDs cannot vote; unsupported cases retain the baseline prediction.
+
+Diagnostic tool diagnose_qe_coherent_rt.py has separate --predict/--evaluate
+stages. ALL33/132 blind raw-query numerical predictions, source/input hashes
+and a complete receipt must exist BEFORE reading any manual evaluation table.
+Five original group-excluded RT references are deliberately reused; zero new
+reference fits or classifier fits. Freeze class/CDB/ion lookup before manual
+evaluation; assert chemical-name aliases give the same numeric prediction.
+Evaluate all mapped endogenous manual RTs excluding X4, including unavailable
+chemical lookups, and prove measured RTs equal original raw features. Report
+gained AND lost RT-window proximity. This is NOT annotation accuracy or gains.
+
+Why change direction
+Repeated classification/threshold changes are not giving a substantial gain.
+029 remains the complete retained research reference; do not splice favourable
+outputs from rejected experiments. The goal is >=90% correct original-peak
+matches for each curated class/mode, not merely 90% pooled coverage.
+
+Read-only 029 diagnostics found 2,275 priority manual matches outside the
+current predicted 10-second RT window. Their median discrepancy is 15.7 s;
+the 90th percentile is 37.1 s. This is a diagnostic, NOT evidence that simply
+widening windows would be safe. Large affected groups include NP-negative PE
+and PE-O+P, RP-positive TG/PC/PC-O/PE, and a few datasets with systematic shifts.
+Keep all 33 datasets; never hard-code their names/offsets or discard difficult
+datasets to improve the reported percentages.
+
+A new read-only audit inspected the WHOLE label-free 033/036 physical candidate
+preparations, not their rejected model scores or selected class outputs.
+Together they contain correct original-feature candidates for 340 currently
+missing mapped endogenous manual entries that were absent from the old core.
+Only 258 are mechanically free if all old accepted identities/occupied features
+remain protected; 57 already have the identity called on another peak and 25
+have an occupied correct feature. The 258 is an optimistic upper bound, not
+an annotation gain. Only 12 are RP-positive PE, insufficient alone for its 90%
+target. We need a stronger RT-discovery strategy, not just that old pool union.
+
+Proposed staged approach
+1. First test a pure numerical, label-free RT-coherence primitive. Search
+   original high-abundance/high-mass-accuracy features for several compositions
+   that support the SAME shift relative to permitted trained RT templates.
+   Normalize votes so duplicate references, multiple adducts and one ambiguous
+   peak cannot invent independent support. Require multiple distinct original
+   features, compositions, carbon counts and double-bond counts. Withhold
+   sparse, diffuse or competing modes. Return a numerical offset or UNKNOWN;
+   never emit annotations or alter original measurements at this stage.
+2. Build a phase-specific adapter with explicit query/outer/inner reference
+   exclusions, independently measured spike protections and chemistry-based
+   family grouping. RP ether/plasmalogen/positional ordering must not be imposed
+   on NP. Preserve trained relative isomer branches; do not independently warp
+   two labels onto the same peak. Consider unambiguous/mostly-even-carbon high-
+   abundance series for anchoring only, not excluding odd species from annotation.
+   Assess possible cross-headgroup isobars and use independent standards or
+   family consistency where needed. No query curation/saved curator RT fits.
+3. Freeze numerical query predictions BEFORE opening manual truth for a
+   diagnostic. Test ALL33/132 for RT errors/coverage, including regressions,
+   not only favourable matrices/classes. This is NOT annotation performance.
+4. Only if that stage is promising, declare a full annotation experiment with
+   nested references for all required masks, original-coordinate parity,
+   calibrated evidence/extra controls and the mandatory full132-row comparison.
+   Preserve the whole retained result or otherwise explicitly test the whole
+   replacement algorithm. No posthoc class/mode winner splices.
+
+Control extras prudently
+No net increase remains the initial safeguard. The user delegated trade-offs:
+a small, clearly reported increase may be reasonable for a substantial gain,
+but it must be predeclared and quantitatively bounded before such a test.
+Do not silently discount extras using opposite-polarity manual support, claim
+FDR, or relax safeguards after seeing outer results. BMP should still be
+annotated in both NP polarities when supported. Sparse classes remain visible;
+only user-excluded X4 is outside the target denominator.
+
+Before deployment
+Fresh actual-app runs, original peakgroup files with ONLY inserted columns 2/3
+laser_annotation/adduct, unchanged original values/order, *_annotated.txt names,
+all dataset/mode folders and one colleague-ready class/mode report remain
+required. Internal candidate caches do not contain every original sample/boundary
+field; exports must always take the intact original peakgroup rows by feature ID.

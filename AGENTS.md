@@ -1,5 +1,39 @@
 # Experiment reporting policy
 
+## CURRENT039 COMPLETE / NUMERICAL RT PROTOTYPE — 25 October 2026
+
+039 COMPLETE,REJECTED,masterintegrity ALLPASS. Full132chat before/after table
+and separate wrong-mode totals ALREADYDELIVERED;doNOTrepeat.029 remains retained:
+82729/92100correct=89.825190%,9268extras,1604wrong;43/86prioritycellsbelow90.
+039 was82731correct(+2),9271extras(+3),1603wrong(-1);negligiblegain/regressions.
+Fresh25conditionalparents/82modeclassifiers;old029pointwise deliberately reused.
+All33/132 complete. V2checker reranALL33outerchecks;30completedmodel/INNER
+receipts reusedONLYwith unchangedfunction/import/globalAST+ALLartifacthashproof.
+274395availablecoremeasurementcells checked;3802743already-unpopulated internal
+cachecells separately recorded. No rawfeatureloss. Finalexports MUSTuse intact
+originalpeakgrouprows,not internalcandidatecaches.316source/1231inputs/851bound
+artifacts,63receipts,528trainingqueries/132INNER+disabledparities/5grids/33gold
+checks PASS. CheckerSHA59eaacee0b60dbd9d3cce6023de4c741f2dc26d5baf8f8457528b26e5e37198e.
+Sessions51545fitDONE0,22789oldpostDONE1(V1checker),46826finalauditDONE0.
+No038/039jobs running;038already pushed27eb8ee.039publicaggregates/decision
+docs/validation/qe_20261025_039 now ready for Git. No applicationdefaults changed.
+
+Read-only whole033/036physicalpoolunion audit completeALL33:340newcorrect
+candidates for currentlymissingmanualentries absentold029core;258mechanically
+free ifoldidentities/featuresprotected,57identityblocked,25featureblocked.
+UPPERBOUNDS,NOTgains.Only12freeRPpositivePE,insufficientalonefor90%.No rejected
+models/scores/winnerclasssplice. Private discovery_union_opportunities_029_v1.
+
+Next numerical-only coherentRTdiagnostic:docs/validation/next_coherent_RT_discovery.txt.
+Unusedcoherent_rt_shift.py primitive+coherent_retention.py scopeadapter ready:
+15focusedtestsPASS;815app testsPASS/8skip/83subtests. NoactualRTpilot predictions
+or040annotationexperiment yet. Fixed5chemicalCDBblocks holdOUTeach target's
+ENTIREblock acrossisomerbranches. Topdecile/evenCanchors only,not targetfilters.
+Separate diagnose_qe_coherent_rt.py --predict/--evaluate freezesALL33query
+predictions BEFORE manualRTdiagnostic. No ownquerycuration/namedoffsets. NumericalRTaccuracy is
+NOTannotationperformance.039FULL132reporting alreadydone,so nextactualcycle
+allowed onceproperlydeclared/validated. GoalNOTmet,workACTIVE,userresumed.
+
 ## CURRENT FINAL038 / READY039 — 25 October 2026
 
 038 COMPLETE,REJECTED, masterintegrity ALLPASS. Full132chat table+wrongmode

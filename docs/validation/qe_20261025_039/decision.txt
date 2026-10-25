@@ -1,0 +1,73 @@
+Decision: reject experiment 039. Keep 029 as the retained research version.
+No application defaults changed. The 90% goal per class and mode is not met.
+
+All 33 active datasets and four modes were tested. The complete 132-row
+before/after table and separate wrong-peak totals were delivered in the user
+chat on 25 October 2026. The final integrity audit has PASSED.
+
+What was tested
+New conditional comparisons between isomer labels on the SAME original peak,
+adduct and theoretical mass. Only complete, supported comparison groups could
+change; ambiguous/unsupported groups kept the original behaviour. A proposed
+winner also needed at least a one-second advantage in its closest permitted
+RT prediction. This experimental margin is not a chemical law or error rate.
+The original mass/RT limits, spike protections and one-feature/one-identity
+selection remained in place. Original pointwise scores were kept separately
+from the proposed feature-detection score and conditional label preference.
+
+There were 25 fresh conditional parent models containing 82 freshly fitted
+mode classifiers (180 rounds each); unsupported modes explicitly fell back.
+The 25 original 029 pointwise parent models were deliberately reused, not
+claimed as fresh fits. New thresholds used only permitted inner validation
+groups. The same outer standard-cleanup and fixed mass-discovery stages ran.
+All relevant query, outer and inner reference exclusions were checked.
+
+Results versus 029, excluding ONLY user-excluded X4 (two manual entries)
+Correct original-peak matches: 82,729 -> 82,731/92,100.
+Coverage: 89.825190% -> 89.827362%: only two additional correct matches.
+Unconfirmed extras: 9,268 -> 9,271, three more.
+Different-original-peak choices: 1,604 -> 1,603, one fewer.
+Well-represented classes: 81,896 -> 81,898/90,871; still 43 of 86 class/mode
+combinations below 90%. Sparse classes unchanged. All 28 unresolved manual
+feature mappings remain in the primary denominator.
+
+Main class changes
+RP-positive PC-P: +6 correct; PC-O: -4; 2-acyl LPC: +1.
+RP-negative PE-O: +1 correct; 2-acyl LPE: -2.
+The gain is negligible and includes regressions in classes still below 90%.
+Do not keep only favourable class/mode outputs. The whole method is rejected.
+
+Use versus_029/ for the actual experiment comparison. Top-level tables compare
+with the original default-engine baseline for historical context; those earlier
+gains must not be attributed to experiment 039.
+
+Integrity and measurement availability
+316 source and 1,231 input file checks; 851 bound verification artifacts;
+528 training-query checks; 132 inner predictions and disabled-selector parity
+checks; five complete calibration grids/cutoff choices; 33 full outer replays;
+132 original-coordinate stream checks; 33 candidate/export and manual-reference
+identity checks. All 63 completed case receipts are fingerprint-bound.
+
+The first checker incorrectly assumed every column in the combined internal
+annotation schema had been populated in the original core candidate cache.
+For example, peak-boundary columns populated in standard rows were already
+absent from core candidates before this experiment. The corrected check proves
+that no populated value was lost, checks all available values against original
+raw features, and separately records inherited unpopulated cache cells.
+It checked 274,395 available measurement cells and recorded 3,802,743 inherited
+unpopulated cells; these are not new raw-data losses. Original peakgroup data
+remain intact. Quantitative peakgroup exports must use original source rows,
+not treat the internal candidate cache as the original measurement table.
+195 pre-existing floating-point roundoff cells stayed within the unchanged
+strict tolerance. No numerical measurement tolerance was relaxed.
+
+All 33 outer checks were rerun under the corrected checker. The 25 completed
+model and five calibration receipts were reused only after exact function,
+import and global-binding syntax-tree comparisons and unchanged fingerprints
+for every input/artifact. Failed-run logs and partial checks were not reused.
+Actual and initially planned checker hashes are both recorded in the receipt.
+
+These are saved-input, grouped development results, not fresh production runs
+or untouched external validation. Extras are unconfirmed, not proven false
+positives. Curator agreement is not an analytical identification probability
+or false-discovery rate. Not deployment-ready.
