@@ -1,0 +1,44 @@
+Same original peak, competing lipid label: read-only diagnostic
+25 October 2026. Whole041 remains retained. No annotation changes or fits.
+
+All132 matching INNER cases replayed the new043 joint scores exactly, with
+query/outer/inner reference exclusions. Models checked against completion
+hashes. All132 blind proposals frozen BEFORE permitted training truth decoded.
+Each dataset repeats four outer-training contexts: numbers below are repeated
+diagnostic opportunities, NOT independent observations or benchmark gains.
+
+Best label on the ORIGINAL occupied feature is fixed before filtering. Old
+identity's score must exist; unknown old score is not replaced with zero.
+Guarded screen requires target identity unused elsewhere, its absolute best
+feature fixed before filters, global .05 clear winner, strict original3ppm/
+10second/native-adduct/monoisotope/spike protection. No weaker fallback.
+Gold sets preserve multiple curated features for one identity. Standards and
+ambiguous duplicate old calls withheld. All proposed changes remain unapplied.
+
+Potential manual matches improved / currently correct manual matches lost:
+Minimum gap   Feature only    Guarded screen    Guarded + measured profile
+0             48 / 44         23 / 12           18 / 10
+.05           30 / 21         23 / 12           18 / 10
+.10           17 / 10         11 / 5             8 / 5
+.20            3 / 2           3 / 1             3 / 1
+.30            0 / 1           0 / 0             0 / 0
+.50            0 / 0           0 / 0             0 / 0
+
+At .10 guarded screen:11 potential corrections,5 potential losses and1
+neither-label-matches move. Summed diagnostic extra change=-3;different-peak
+change=-3. These are not accepted gains: no simultaneous-move/global-conflict
+resolution, operating-point calibration or held-out annotation changes tested.
+Manual absence is unconfirmed, not chemical falsehood. No favourable-class
+splicing or new annotation experiment is justified by these small counts.
+
+Conclusion: general relabeling with these joint scores is not a convincing
+route to the large remaining coverage gap. Continue with genuinely different
+chemical evidence, specifically class-RT-valid NP BMP counterpart hypotheses
+and PA formate interference described by the curator's reference slides.
+
+Engineering:5 new synthetic label-diagnostic tests plus6 original peak-
+diagnostic tests pass. Ruff passes. Complete private receipt binds all inputs,
+models, source and132 frozen files. Aggregate class-pair/mode and dataset-mode
+tables provided here contain no raw feature IDs/profiles/curated workbooks.
+Production defaults unchanged.041:82740/92100=89.83713355%,9270unconfirmed
+extras,1604different-peak choices. Target90%EACHclass/mode not met.

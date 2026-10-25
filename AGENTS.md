@@ -1,5 +1,76 @@
 # Experiment reporting policy
 
+## CURRENT: label diagnostic and BMP physical pilot complete; optimization ACTIVE
+
+All older RUNNING paragraphs are historical. No actual044 plan/models/outputs
+yet. Whole041 retained:82740/92100 correct (89.83713355%),9270unconfirmed extras,
+1604different-peak choices;43/86priority cells below90. Goal NOT met. Defaults
+unchanged.043 rejected and full132chat already delivered; DO NOT repeat.
+
+New same-feature label diagnostic COMPLETE ALLPASS, session6728 DONE0:
+combined_raw_model_label_rank_audit_v1. All132 INNER scores replayed exactly,
+all132blind proposals frozen before authorized training truth. Fixed ORIGINAL
+feature/strongest label first; require known old score, unused new identity,
+absolute identity-best feature, global .05clear/3ppm/10s/native/STD safeguards,
+no fallback. Atgap.1 raw17potential corrections/10correct losses; guarded11/5;
+guarded+profile8/5. Four repeated outer-training contexts/dataset, NOT accepted
+gains. No new fits/annotations. Reject general relabeling as major improvement.
+Public docs/validation/qe_20261025_combined_label_ranks contains aggregates.
+
+Curator PPT missing from Downloads, recovered USER REFERENCE ONLY from
+SOURCE.parent/archive/annotatie_gateways.pptx. Read slides1-50 text using
+presentation skill. Slides23/33 describe PA formate interference in NP BMP and
+checking PA primary coeluting profile/intensity. Do not include archived DATASETS.
+
+NEW pure tools-only bmp_context_measurements.py + prospective measurement plan
+next_BMP_candidate_context_pilot.txt. NOT used by app. Different from019strong
+AUTO-only or043unrestricted raw partners: unassigned OPPOSITE NP BMP candidates
+must have SAME name/composition and pass THEIR OWN masked class RT/native/mass/
+STD/isotope eligibility. PA primary hypotheses must pass OWN RT, native PA
+formate charge/offset algebra, strict3ppm/2s coelution. Raw/norm/within/LOO and
+PA/BMP log-ratio/MAD measurements, explicit metadata >=8BIO, technical means
+BEFORE log, QC/blanks excluded. Unknown stays NaN. No RP/NP RT transfer.
+
+ALL33 single-outer-mask pilot COMPLETE, session33728 DONE0:
+BMP_candidate_context_pilot_v1. Independent ALL33/102656 numeric cells COMPLETE
+ALLPASS, session47924 DONE0, BMP_candidate_context_independent_check_v1. No
+measurement/eligibility/template_mass/_profiles/_profile_result calls in checker;
+independent scalar graph/charge/physical guard + old independent NumPy profile
+functions. Shared native definitions/metadata parser, not independent chemistry.
+ALL33 retrospective descriptive diagnostic COMPLETE, session41178 DONE0:
+BMP_candidate_context_diagnostic_041_v1. All3208options frozen and independently
+checked BEFORE manual decoding. No thresholds selected/new annotations/fits.
+19new/existing synthetic tools tests PASS, RuffPASS. App source UNCHANGED.
+
+Signal: missing-correct BMP options334neg/344pos; class-RT counterpart profiles
+264/334 and276/344, medianrawcorr.875/.932. Wrong-peak median.307/.266 (7/8 and
+6/7measured, tiny sample). Unconfirmed without opposite-NP curated composition:
+492neg/628pos, profiles131/492 and134/628, medianrawcorr.628/.626. Unconfirmed
+WITH other-NP-curated composition605neg/405pos, profiles526/605 and359/405,
+medianrawcorr.929/.869. These are OPTION distributions NOT benchmark gains or
+independent samples. Opposite manual support ONLY diagnostic category, never
+runtime filter/feature; all such calls STILL primary unconfirmed extras.
+Negative PA profiles42missingtrue vs88unconfirmed/no-opposite;median PA/BMP
+logratio-1.986 vs+1.980, rawcorr.284 vs.635. Not universal veto/chemical proof.
+
+Public docs/validation/qe_20261025_BMP_candidate_context. Blind receipt SHA
+f0785dd73c415ac9bcdea4e262d01ed0e9ada7b93ce428868188ea86a5aa9c2a;
+independent acd8faf5023c9466ce8cf6085f793cbf4382bea5c286828b120c25902c794f50.
+Diagnostic abfb63a4e5dac4c1ab5b1dd4b2d6ac9ceb5bce0fef3e5da1f95dc710cfdeab95.
+Preserve pilot sources/plan/inputs now hashbound. Any later scientific changes
+need versioned fresh preparation/audit. No live jobs after41178 completion.
+
+NEXT: predeclare actual044 BMP-context strategy and explicit prudent extras
+tradeoff BEFORE new annotation results. Strong counterpart-only candidates may
+be valid despite manual one-polarity convention; cannot silently hide extras
+or reuse0414:1guard then relax posthoc. Current guard remains unless a NEW
+prospective plan explicitly changes it. User delegated prudent tradeoffs and
+requires both NP polarities when supported. Need all363 mask-SPECIFIC graphs
+(no union membership across masks), nested scopes/independent construction/
+model/export preflight/full verifier before any fits. Old041 calls immutable
+initially safest. Retrospective ALL33 informs hypotheses, not untouched external
+validation. Continue autonomously, do NOT stop merely checkpoint. Push cfm/main.
+
 ## CURRENT043 CLOSED / COMBINED PEAK DIAGNOSTIC COMPLETE — optimization ACTIVE
 
 43FULL132chat+wrongmodetotals DELIVERED (NPnegLysoIP260/339typo corrected),

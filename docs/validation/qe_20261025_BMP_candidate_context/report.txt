@@ -1,0 +1,69 @@
+BMP class-specific opposite-polarity evidence and PA formate interference
+Measurement-only pilot, 25 October 2026. No annotation changes or model fits.
+
+All33 datasets measured with each query's outer-project-excluded reference
+mask. Both NP polarities considered; no preferred/manual-presence polarity
+rule. Opposite-polarity partners can be UNASSIGNED BMP candidates, but each
+must pass its OWN class RT window, native adduct, strict3ppm, monoisotope and
+standard protection. No inter-polarity RT transfer assumption. Negative BMP
+mass may also be explained as PA formate: inspect coeluting<=2second primary
+PA candidates inside THEIR OWN class RT window and strict3ppm bounds.
+Curator reference slides23/33 motivated this additional chemical hypothesis.
+
+All33 physical tables frozen BEFORE retrospective manual comparison. Independent
+scalar graph, charge algebra, original coordinates, physical eligibility and
+NumPy profile calculations checked ALL102656 numeric cells across3208 BMP
+candidate options. Independent code does not call the measurement, template
+mass, eligibility, profile builder or profile-comparison implementations.
+Shared native ion catalogue/metadata parser are not independent chemical proof.
+8 new synthetic measurement tests,5 label-diagnostic tests,6 previous peak-
+diagnostic tests pass (19 total). Ruff passes. No app source/default change.
+
+Descriptive results, NOT accepted annotation gains:
+Category                         NP-negative                    NP-positive
+Missing curated correct options  334                            344
+  measured class/RT counterpart  264/334                        276/344
+  median raw correlation         .875404                        .931867
+Wrong-peak options                8                              7
+  measured class/RT counterpart  7/8                            6/7
+  median raw correlation         .306668                        .266326
+Unconfirmed; no curated opposite
+NP composition support           492                            628
+  measured class/RT counterpart  131/492                        134/628
+  median raw correlation         .627902                        .626254
+Unconfirmed; curated composition
+in the OTHER NP polarity only    605                            405
+  measured class/RT counterpart  526/605                        359/405
+  median raw correlation         .929106                        .868972
+
+For NP-negative PA-interference profiles, only available measurements:
+Missing correct BMP options:42 measured;median PA/BMP log ratio=-1.985977,
+median correlation=.284242. Unconfirmed without opposite-curated composition:
+88 measured;median PA/BMP log ratio=1.980299,median correlation=.635312.
+These are distributions of candidate OPTIONS, not independent samples or
+statistical/chemical validation. The PA measurements do not cover every option.
+
+Strong opposite-polarity evidence in many unconfirmed options is consistent
+with the known manual convention of listing BMP in only one NP polarity.
+It does NOT prove those calls chemically correct. Opposite manual support is
+used ONLY as a descriptive evaluation category; it is never a runtime filter
+or predictor. ALL such calls remain unconfirmed extras in primary evaluation.
+Correlation can reflect shared sample effects, not chemical identity.
+
+Conclusion: worth a proper nested annotation experiment, unlike the small
+general peak/label swapping opportunities. It is not itself a deployment rule.
+Future fitted use needs363 separately scoped candidate graphs, not unioned
+membership across reference masks. Physical-only raw-profile memoization may
+be shared but cannot create target candidates from an excluded reference.
+Any revised extras tradeoff must be prospectively explicit, total extras still
+reported, and cannot be retrofitted after seeing the new annotation results.
+
+Private complete receipt SHA256:
+Blind:f0785dd73c415ac9bcdea4e262d01ed0e9ada7b93ce428868188ea86a5aa9c2a
+Independent:acd8faf5023c9466ce8cf6085f793cbf4382bea5c286828b120c25902c794f50
+Diagnostic:abfb63a4e5dac4c1ab5b1dd4b2d6ac9ceb5bce0fef3e5da1f95dc710cfdeab95
+
+Whole041 retained:82740/92100 correct original-peak matches (89.83713355%),
+9270unconfirmed extras,1604different-peak choices. This pilot changes NONE.
+Target90%EACH class/mode not met. Full132benchmark policy applies to the next
+ACTUAL annotation-changing experiment, not descriptive measurement tables.

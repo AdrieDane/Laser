@@ -1,0 +1,48 @@
+Prospective measurement-only BMP context pilot, 25 October 2026
+
+No annotation experiment, classifier fit, threshold selection or app-default
+change. Retained whole041 remains the reference. All33 physical tables must
+freeze before retrospective curation comparison. Any later annotation trial
+requires a separate prospective plan, proper363 masked preparations, nested
+calibration, full integrity and the complete132-row before/after chat report.
+
+The user's curator slides (archived annotatie_gateways.pptx, slides23/33) describe
+PA formate interference in NP-negative BMP and checking coeluting PA primary
+ions/intensity. Slides17/20 also describe checking evidence between modes.
+These are hypotheses, not universal chemical vetoes. No archived DATASETS are
+included. Do not hard-filter BMP by manual presence or prefer one NP polarity.
+
+New measurements, different from019 strong-automatic-only and043 unrestricted
+raw opposite-polarity mass partners:
+1. Opposite NP polarity BMP hypotheses with the SAME chemical name/composition,
+   each already inside its OWN query-excluded class RT window and native mass/
+   adduct/monoisotope/standard safeguards. Unassigned hypotheses can support
+   one another. No cross-polarity RT subtraction/transfer is treated as evidence.
+2. For each negative BMP hypothesis, reinterpret its mass as a potential PA
+   formate ion using the ACTUAL native PA adduct offsets/charges. Search for
+   PA primary [M-H]- candidates inside THEIR OWN masked RT window, strict3ppm
+   theoretical and observed match, coelution<=2seconds. Distinct candidate PA
+   identities sharing a raw feature must not inflate physical support counts.
+3. Compare raw biological profiles, normalized/within-group/leave-one-out
+   correlations, log-ratio location and MAD for BOTH kinds of link. Require
+   explicit validated sample metadata, >=8 positive biological specimens,
+   technical areas averaged BEFORE logs. QC/blanks are not biological evidence.
+   No sample-ID guessing, no common-group mean alone, no missing=zero proof.
+4. Negative BMP's PA evidence may be reported alongside a positive BMP's
+   fixed best candidate-negative counterpart, but it is NOT proof of absence.
+
+The physical proposal graph is mask-specific. Do NOT union counterpart
+membership across masks or use manual labels, saved curated fits, old model
+scores or dataset identities to select links. Profiles may be memoized using
+ONLY original raw IDs/areas/metadata. A later full-model prep must recompute
+membership for each of363query masks even if raw correlations are cached.
+
+This pilot uses one proper outer-query-excluded mask per each33datasets,
+not a model training table. Preserve original pools/measurements and unknowns.
+Keep all discovered link counts and continuous measurements, not just
+apparently favourable links. Best link fixed by raw correlation, then smaller
+mass error and higher raw intensity, BEFORE truth. Report missing correct,
+current correct, wrong-peak and unconfirmed options separately only AFTER
+ALL33freeze+independent numeric/scope checks. Never call potential links new
+annotations, benchmark gains or analytical FDR. If weak, reject without
+class/polarity/dataset winner splicing.
