@@ -1,5 +1,25 @@
 # Experiment reporting policy
 
+## CURRENT045 COMPLETE / REJECTED WHOLE — optimization ACTIVE
+
+26October2026: 045 producer and postprocessor DONE0; full independent master
+ALLPASS (25 reused parents/50 experts,528 training uses,132 INNER cases,
+five full169 grids/project-removal witnesses,33 outer/original-quant/gold checks).
+No fresh classifier fits. Fixed prospective whole decision REJECTED: +74 correct,
++205 unconfirmed extras,0 new wrong peaks; minimum100 gain and E<=TP both fail.
+Whole041 retained82740/92100,E9270,W1604;04582814/92100,E9475,W1604.
+BMP NPneg+48,NPpos+26. 201/205 extras have opposite-NP curated composition;
+ALL205 still primary extras, not exempted or established false positives.
+Defaults unchanged. No favourable-polarity splice or posthoc budget relaxation.
+FULL132 CHAT pending next, publication docs/validation/qe_20261026_045 underway.
+Before046 annotation experiment, deliver complete132 before/after %n/N and
+total extras, wrong-mode totals, full66BMP link, endo/standard companion and
+whole decision. Then read-only prospective gate-coverage-ceiling diagnostic:
+freeze all33 numeric eligibility masks before reading query curation; quantify
+whether hard sample-profile gate structurally prevents90%BMP. Diagnostic is
+optimistic candidate availability, NOT annotation gains/heldout validation.
+Do not edit frozen44/45 sources. No046 method yet; goal remains ACTIVE.
+
 ## CURRENT045 IMPLEMENTED / no-cut preflight RUNNING — optimization ACTIVE
 
 044COMPLETE/REJECTED/published/pushed77f2cc7. FULL132%+n/N+TOTALextrasCHAT plus

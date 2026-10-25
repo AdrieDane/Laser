@@ -1,0 +1,21 @@
+{
+  "datasets": 33,
+  "dataset_modes": 132,
+  "manual": 92102,
+  "correct_before": 82740,
+  "correct_after": 82814,
+  "percent_before": 89.83518273218823,
+  "percent_after": 89.91552843586459,
+  "extras_before": 9270,
+  "extras_after": 9475,
+  "wrong_peak_before": 1604,
+  "wrong_peak_after": 1604,
+  "extras_no_increase_guard_pass": false,
+  "class_modes_below_90": 77,
+  "production_enabled": false,
+  "experiment": "045-project-robust-BMP-operatingpoints",
+  "before_checkpoint": "experiment_041",
+  "manual_reference": "v2, identical standard normalization mapping correction at both endpoints; not an annotation gain",
+  "target_achieved": false,
+  "note": "A passing pooled score does not establish >=90% in every curated class/mode. Goal also requires validated production integration, not just this offline experiment."
+}

@@ -1,0 +1,33 @@
+Experiment045 — REJECTED WHOLE (26 October2026)
+
+Comparator: whole retained research experiment041, not rejected044.
+All33 QE folders,132 dataset-mode cases,30 project groups. X4 alone excluded.
+All92100 other manual entries remain, including1456 spiked references and28
+unresolved reference rows. Correct means same lipid/adduct/mode/original feature.
+
+Correct:82740/92100 (89.83713355%) ->82814/92100 (89.91748100%): +74.
+Unconfirmed extras:9270 ->9475: +205. Wrong peaks:1604 ->1604: no change.
+BMP NPnegative gains48, NPpositive gains26. All other classes/modes unchanged.
+No old correct calls lost; all old calls and original quantification immutable.
+
+Fixed prospective guard fails: fewer than100 new exact manual matches and
+205 new unconfirmed extras exceed74 new correct. Whole method rejected.
+No favourable-mode splice, no posthoc guard relaxation. Whole041 retained.
+All205 extras count in primary results;201 have composition curated in the
+other NP polarity,4 do not. This is descriptive support, not chemical identity
+proof and not an exemption. Manual absence is not established false positivity.
+
+Single change: training-only conservative joint operating points (25% headroom
+and leave-one-project calibration-count stability), reusing the same25 parent/
+50 classifiers and163 numeric inputs from044. No new classifier fits. Project
+removal checks calibration-count influence, not retraining models per removal.
+All5 calibration grids frozen before33 new outer predictions. Full master PASS:
+25 parent/528 training-use checks,132 INNER cases,full169 grids/project witnesses,
+all33 outer scores/physical rules/old cells/new quant/fresh manual comparisons.
+Planned and final checker SHA256:
+4b28f1a91880364024a1785409972c06d822f587cfccc6216989ffe7cb8e687f
+
+Endogenous/spiked companion results are included without replacing primary
+denominators. Grouped development on repeatedly inspected QE data; not untouched
+external validation, deployment approval, or a chemical false-discovery estimate.
+Application defaults unchanged. Per-class/per-mode90% goal not achieved.
