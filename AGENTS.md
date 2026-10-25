@@ -1,5 +1,84 @@
 # Experiment reporting policy
 
+## CURRENT044 preparation COMPLETE / no-fit gate v2 RUNNING — ACTIVE
+
+User go on. Whole041 remains82740/92100correct (89.83713355%),9270unconfirmed
+extras,1604different-peaks,43/86prioritybelow90. Defaults/appsource UNCHANGED.
+Goal NOT met.043full132chat already delivered; NO044annotation experiment yet.
+
+Actual044 prospective plan now docs/validation/next_BMP_candidate_context_experiment.txt,
+written/announced BEFORE new fits/scores/cuts/outer results. Research-only NP
+BMP completion: original131 +32new class-RT counterpart/PA fields (163), fresh
+25NP-wide ALLCLASS context parents/upto50NP experts, original029180roundparams/
+equal-project weights. Pre-existing040 TRAINING-only opposite-NP BMP unknown
+policy, evaluation labels unchanged. Whole041 ALL old calls immutable. Fixed
+new-call gate: native3ppm/own10s/STD protected; counterpart in OWN masked BMP
+RTwindow, >=8BIO raw ANDnormalizedcorr>=.8, worst rawLOO>=.6; no query labels.
+PA evidence continuous, NOT universal veto. No RP classifiers/default changes.
+
+NEW EXPLICIT prospective extras tradeoff (user informed): wholemethod needs
+>=100newmanualsame-original-peak matches; newTOTALunconfirmedextras<=newcorrect
+AND<=571 overall (half1142BMPmanual; atmost6.2%above9270oldextras), unsupported-
+opposite-composition extras<=.1endogenousBMPmanual; newwrong<=5total and<=.005
+eachNPendoBMPmanual. ALL extras still primary, including other-NP-curated
+compositions. That support is an EVAL/INNER safety category, NEVER runtime
+filter/feature. Old0414:1 guard superseded ONLY by this prospectively specified
+method, not relaxed after results. INNER proportional budgets/full169jointgrid,
+each enabled mode>=20newexactmatches/3projects. No feasible pair=>BOTHdisabled.
+Select capped90coverage sum,thenmorecorrect/fewerextras/fewerwrong/highercuts.
+Full plan governs. Whole rejection means NO favourableclass/polarity splicing.
+
+ALL363 preparation COMPLETE session56466 DONE0:
+BMP_candidate_context_preparation_v1. Sparse sidecars bind EXACT original131
+tables/masks/reference membership. Additional validate_scope explicitly checks
+NEW reference-dependent namespace (old app scopeguard intentionally unchanged).
+ALL363 independentconstruction COMPLETE ALLPASS session58126 DONE0:
+BMP_candidate_context_construction_check_v1. ALL1120128newnumericcells/old131/
+pool/scopes/schema, ALL33outerEXACTpilotparity. No graph unions/manual reads/
+fits/annotations. Preserve bound preparer/checker/plan/pilot/app sources.
+Preparation receipt5ad064035b019d3aceff508198af9d66c2f34fc6aacb7d957d3631f525ba3b01;
+constructioncfa0a3e2ad6f098bda37c31ee066005daf15d94b022e5b6d7194752fadda090c.
+
+NEW runtime/model/selector/grid/preflight/FULLmaster/postprocessor implemented
+under tools/qe_optimization: bmp_context_completion.py,
+run_qe_bmp_context_experiment.py, preflight_qe_bmp_context_models.py,
+verify_qe_bmp_context_experiment.py,postprocess_qe_bmp_context.py.
+Custom prepare_training exposes EXACT matrices/targets/cohort weights BEFORE
+fits, actual matrices hashed; synthetic same-input scores BITEXACT old NP fit.
+Whole proper041INNER occupancy from original43helper only (NOT43scores/models).
+All5grids beforeANYouteroutputs. Outerexports use generic immutable helper,
+allnew full original quantfields filled, preserveold text/flags. Fullmaster
+implements25parents/528independent targets/scopes/weights/support/parameters,
+132INNERscore/proposal/count/fullCartesian grid replay,33outer/alloldcells/
+fullrawquant andfreshmanualcomparison/samegoldhash. Not run yet (no models).
+Calib caches fixed .5winner sets then thresholds; master checks EVERY real
+case/threshold against direct selector, no weaker fallback. Explicit1disable.
+
+NOFIT initialsession3904/PID35395 intentionallyTERMstopped (DONE143) BEFORE
+completion/models to correct checker-only empty-disable schema comparison.
+Different unused score/status columns in two ZERO-row proposals are not an
+annotation change. All old source/log/planned bindings preserved privately in
+BMP_candidate_context_model_preflight_v1/engineering_sources. No partial receipt
+reuse. Only checker handling +PREFLIGHTtargetv2 changed, NO scientific changes.
+
+FULL fresh v2 no-fit gate CURRENTLY RUNNING session1230,
+/tmp/laser_BMP_context_model_preflight_v2.log. Target
+BMP_candidate_context_model_preflight_v2. Must complete ALL330unique independent
+label/scope checks, ALL25parent/528uses matrices/weights/support/categories,
+unfitted constructor oldkwargs, ALL33disabled ENTIRE041CSV/candidates EXACT.
+40focused tool tests PASS; RuffPASS. New tests purely synthetic fits ONLY,
+NO actual example fits/044initialize/models/outerannotations yet.
+All current runtime/model/runner/preflight/verifier/postprocessor/plan/input
+source now hashbound by in-flight gate: DO NOT EDIT while running. Failed gate
+requires honest versioned repair/restart; never manufacture current receipt.
+After gate completes, review/check source_inputs equality; commit/push then
+launch new044runner. No queued launcher/postprocessor: start manually ONLYafter
+full gate. After runnerDONE0, run postprocess_qe_bmp_context.py, full master,
+FULL132 chat%+n/N+TOTALextras +wrongmode totals +BMP/endo/STD companions and whole
+decision BEFORE045. Need evaluate newplan's complete wholetradeoff explicitly,
+not old0414:1criterion. No production-ready claim or finaldeploymentexports yet.
+Continueautonomously; do NOT stop merelycheckpoint. Push CFMmain only.
+
 ## CURRENT: label diagnostic and BMP physical pilot complete; optimization ACTIVE
 
 All older RUNNING paragraphs are historical. No actual044 plan/models/outputs

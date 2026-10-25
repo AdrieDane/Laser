@@ -1,0 +1,121 @@
+Prospective actual044: physically supported BMP completion from WHOLE041
+25 October 2026. Freeze BEFORE any044 model fitting, calibration or outer
+annotation outputs. No production-default/deployment change authorized by this
+research plan. The full132 before/after chat policy remains mandatory.
+
+Rationale and development exposure
+The measurement-only ALL33 pilot and independently checked descriptive
+diagnostic suggest class-RT-valid opposite-NP hypotheses and PA formate
+interference provide information absent from043. These examples already have
+extensive development exposure. Hypothesis selection has used aggregate
+diagnostics. Grouped nested checks below are NOT untouched external validation.
+Do not cherry-pick classes/folds/datasets after outer results or borrow rejected
+040/043 models/scores/annotation additions. Compare WHOLE method against041.
+
+Fixed data, predictors and scope
+All33 active datasets/132modes/30project groups, current folds/reference_v2.
+Historical primary target denominator92100 (X4 only excluded), including all
+28unresolved mappings and1456spiked-standard entries; report endogenous90644
+and standards1456 companions too. No dataset exclusions or reference relabels.
+Correct means SAME original feature+lipid+adduct+mode as manual curation.
+No changes in raw areas, candidate identities, mass/RT windows, C/DB ranges,
+standards, prior occupancy or the WHOLE041 annotations. Old calls ALL immutable.
+
+Original131 predictors from043's validated raw-mass/profile preparation,
+PLUS32 BMP candidate-context numeric fields from the frozen pilot helper.
+Other-class/new-field values unknown, not fabricated chemical absence.
+Recompute candidate graph membership SEPARATELY in EACH363 reference mask:
+query/outer/inner projects excluded as appropriate. Do not union membership
+across masks. Pure raw biological profiles/correlations may be memoized only
+by original raw IDs/areas/explicit validated metadata, not old scores/curation.
+Sparse sidecars are allowed but loading must reconstruct aligned163-column
+predictors, exact old131/pools, and prove mask/reference provenance explicitly.
+NO query-curation, saved curated fits, FIDs or dataset names as model inputs.
+
+Model
+NP-wide ALLCLASS context, prospectively BMP-only additions. Fresh25parents,
+up to50 fresh180-round binary NP mode classifiers, EXACT original029parameters
+and equal-project/cohort weighting. No new RP classifier. No rejected score
+stacking, hyperparameter tuning or family/class winner ensemble.
+Use pre-existing040 TRAINING-ONLY partial BMP supervision: only known negative
+BMP rows in the uncurated opposite NP polarity become UNKNOWN when manual BMP
+exists in exactly one NP polarity. Positives/other labels unchanged. Unknown
+is NOT positive. Evaluation labels unchanged. Authorize permitted training
+groups BEFORE opening labels; distinguish allowed refs from actual supervised
+contributors. Each mode needs>=20knownBMPpositive pairs from>=3actualprojects;
+otherwise explicit unknown/disable, not fabricated labels/support.
+All NP classes compete globally BEFORE BMP filtering, physical gates and old
+occupancy. Fix identity's best original feature before filters; no weaker
+fallback when best is occupied/ambiguous/unsupported. .05 global label margin.
+
+New-call physical gate (fixed before new scores)
+Only NP BMP native monoisotope hypotheses: strict3ppm/ownclassRT<=10s, old
+standard mass/feature shields. Query AND counter-candidate each pass THEIR OWN
+mask-specific physical/RT guards. At least one opposite-NP same-BMP-composition
+candidate with>=8explicit paired positive biological specimens; raw AND global-
+normalized log-profile correlation>=.8, worst leave-one-out raw correlation>=.6.
+No guessed sample pairs, cross-NP RT equality or RP/NP RT transfer. Require
+finite measurements for these gates. Technical areas averaged BEFORE logs.
+PA primary candidate/profile/log-ratio fields remain continuous model evidence,
+NOT a universal hard veto. No manual-polarity/presence rule at runtime.
+
+Nested operating point
+Use132 proper matching INNER predictions, never outer-only005/027fits in the
+INNER path. Same proper041 INNER occupancy reconstructed under authorized
+references; final outer exports preserve the ENTIRE exact041 CSV/candidate
+metadata and original quantitative values. Missing/unsupported evidence cannot
+be promoted by a zero cutoff. Fixed score grid .50,.55,...,.95,.975,.99,1.0
+(1=explicit disable), one cut per NP mode, complete TWO-mode Cartesian grid.
+All five calibration grids/cuts frozen BEFORE any outer annotation output.
+
+Explicit extras tradeoff, supersedes0414:1 ONLY for this new research method
+The user wants both NP polarities when supported although manual BMP is usually
+listed in one. Primary extras remain ALL calls absent from that dataset/mode's
+manual list, including strong opposite-curated compositions. Do not hide them,
+call them proven false, or change primary correct/manual percentages.
+Permitted prospective tradeoff for this whole method:
+- Newly matched manual original-peak BMP entries>=100 across the complete33.
+- New total unconfirmed extras<=new correct matches AND<=571 across all33.
+  571 is half the historical1142manualBMP entries, not a revised denominator.
+  This is at most6.2% above retained9270extras; report the actual increase and
+  original9697baseline too. Passing is not proof of analytical FDR/readiness.
+- New extras whose composition is NOT manually curated in the other NP
+  polarity<=10% of endogenous manual BMP count. This is an EVALUATION/INNER
+  safety category ONLY, never a query/runtime input, exemption or hidden extra.
+- New different-peak choices<=5 total and<=0.5% of each NP mode's endogenous
+  manualBMP entries. Existing correct calls cannot be lost (immutable).
+Use proportionate budgets in INNER calibration: new extras<=new correct and
+<=0.5 all-manualBMP count in that training fold, unsupported-composition extras
+<=.1endogenousBMPmanual, wrong<=.005endogenousBMPmanual per NP mode and pooled.
+Enable a mode only with>=20new exact matches from>=3actual project groups.
+If no eligible joint grid point, disable BOTH modes rather than inventing a
+weaker cutoff. Select eligible pair by highest summed min(coverage,.90) across
+two BMP modes, then most new correct, fewer total extras, fewer wrong, higher
+thresholds (fixed tie order NP_Pos then NP_Neg). Record complete grids/choices.
+Whole outer retention additionally requires>=100new correct, all above global
+budgets, at least one of the two BMP mode coverages improves, no regression
+of old classes/modes/standard/raw exports. Otherwise reject WHOLE method.
+Do not keep favourable polarity/class/dataset outputs after whole rejection.
+Do not relax these limits after inspecting the new results.
+
+Required engineering BEFORE fits
+ALL363 sparse tables/old131/pool/scopes verified. Independent all numeric and
+physical membership reconstruction (not producer self-replay only); outer
+33new-fields EXACTpilot parity where the same inputs/masks apply. Original raw
+coordinates/areas unchanged. Full25parent/528training-query preparation with
+independent partial-supervision/support/weights checks; unfitted constructor
+parameter parity; all33 disabled ENTIRE041 annotations/candidates EXACT.
+Pure extra/mode/grid/physical gates and export protections synthetic tests.
+Full model/INNER/grid/outer/rawquant/gold integrity verifier implemented and
+hash-frozen BEFORE actual fits. Record all source/input/planned checker hashes.
+
+Required AFTER fits
+All25parents/50oractualsupported NP classifiers,528training query scope/label/
+weight/contributor checks;132 INNER scores/all5fulljointgrids/cuts;33outer/
+132mode exports; all old cells/candidate flags/new original rawquant checked;
+same reference hashes. FULL132 chat with percentages+n/N and TOTAL extras
+before/after, separate wrong-peak mode totals, BMP full table linked, endogenous
+and spike companions, whole retain/reject decision BEFORE any045experiment.
+Publish only safe aggregate reports/source, no raw data/profiles/models/manual
+workbooks. Push CFMmain. Actual integrated end-to-end deployment benchmark and
+colleague report remain later work, not cached research accuracy claims.

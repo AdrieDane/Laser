@@ -1,0 +1,34 @@
+Nested preparation for prospective044, 25 October 2026
+
+ALL363 mask-specific sidecars complete and independently checked,33datasets.
+Original131 predictors and pools preserved EXACT. New32 fields are sparse BMP
+measurements; loading reconstructs aligned163-column inputs with unknowns for
+other candidates. Graph memberships are NEVER unioned across reference masks.
+All33 outer-mask sidecars match the original blind pilot EXACTLY.
+Independent scalar physical/graph/charge and NumPy profile checks verified
+ALL1120128 new numeric cells, plus old131/pool/scope/schema integrity.
+No manual tables opened, no models fitted or annotations changed in this stage.
+
+Preparation receipt SHA256:
+5ad064035b019d3aceff508198af9d66c2f34fc6aacb7d957d3631f525ba3b01
+Independent construction receipt SHA256:
+cfa0a3e2ad6f098bda37c31ee066005daf15d94b022e5b6d7194752fadda090c
+
+Next fit protocol:next_BMP_candidate_context_experiment.txt. Fresh NP-wide
+all-class context, TRAINING-only partial BMP unknowns, fixed old model settings/
+project weighting, all041 calls immutable, fixed physical profile gates.
+Full25parent/528use no-fit gate, constructor checks and all33 disabled entire-
+export parity are still required BEFORE any example-data classifier fits.
+The complete model/INNER joint-grid/outer export verifier exists before fits.
+
+40 focused synthetic tools tests pass, including bitexact scores against old
+NP training for identical synthetic163-column data and explicit scope/extra/
+unknown/disable/original-peak safeguards. These are engineering checks, not
+annotation performance. App source/defaults remain unchanged.
+
+An initial no-fit gate was intentionally stopped before completion to correct
+ONLY verifier accounting of two empty disable frames with different UNUSED
+score/status columns. Old source/log/planned bindings preserved privately.
+No models or annotation outputs existed. Fresh v2 FULL330unique/25parent/528use
+gate restarts every check; no partial stdout/result reuse or weakened science.
+Whole041 still82740/92100 correct,9270unconfirmed extras,1604different-peaks.
