@@ -1,0 +1,63 @@
+Experiment041: conservative class completion on WHOLE retained029, predeclared.
+
+Motivation: 034 changed acceptance boundaries for existing calls and redistributed
+a global extras budget, losing correct matches in some classes. 040 protected
+old calls but its new BMP scores produced196 extras for75 new correct matches.
+Do NOT reuse034 cutoffs or040 models/scores. Use029 unchanged candidates,108
+predictors,25 frozen scoring parents/100 classifiers and existing nested INNER
+predictions. No classifier refits, wider windows or rejected discovery pools.
+
+EVERY029 accepted call/feature/identity/metadata, including005standards and027mass
+additions, stays immutable. Only globally winning, unambiguous, monoisotopic
+endogenous candidates on unused original features/identities may be added.
+Fix the strongest feature for each normalized identity BEFORE ambiguity,
+occupancy and threshold filtering: no weaker alternative is promoted. Same.05
+label margin, native adducts, strict raw3ppm/10seconds, declared-spike5.01ppm
+mass protection and independent/named standard FID protection. Odd/long lipids
+not categorically excluded. No query curation, saved RT fits, FIDs/dataset names
+as predictors. Canonical aliases only for identity/class comparison.
+
+Calibrate EACH class/mode independently on four matching INNER-held-out project
+blocks. Other-project model/reference exclusion remains query+outer+inner.
+Eligibility TRAINING only: >=100 endogenous manual entries from>=3 independent
+project groups; reconstructed029core correct/manual below90%. X4 excluded.
+Sparse classes retain029 unchanged. No hard-coded outer deficient class list.
+
+Candidate cutoff grid: disabled1.0 plus fixed positive-score coverage quantiles
+5%,10%,...,100% of available correct free proposals (exact positive score
+boundaries, including scores below.05 for uniquely unambiguous physical peaks).
+Only thresholds with >=10 newly correct matches from>=3 projects are eligible.
+Additional different-feature calls MUST be0. Additional unconfirmed extras
+<=20% of newcorrect AND <=2% of that SAMEclass/mode manual count. Added
+correct/allnewcalls >=80% pooled AND after omitting EACH contributing project;
+every project contributing>=3calls must have >=50% agreement. Unknown/unresolved
+calls stay in allnewcalls, not removed to inflate agreement. These are curator
+agreement safeguards, not chemical posterior probabilities/FDR/test guarantees.
+NO global budget trading, no old-call removals, no threshold relaxation if no
+feasible point. Disable completion for that class/mode explicitly.
+
+Choose highest TRAINING incremental correct count capped at the number required
+for90% of that class/mode; ties fewer extras, fewer total calls, higher cutoff.
+All five calibrations MUST finish BEFORE any outer query annotations/evaluation.
+Calibrate against029INNER core occupancy plus blind baseline automatic standards
+and matching independent standard protection; DO NOT borrow outer-only005/027
+references intoINNER. Final immutable029occupancy may differ; limitation explicit.
+
+Before predictions: full source/input snapshot; full132INNER scores re-predicted
+BITEXACT from029models; scopes/labels/positives authorized before manual access;
+all33disabled annotation and candidate exports EXACT029 and rawnew-feature
+export tests; no annotation outputs before source/engineering checks pass.
+Full verifier exists before any actual calibration/output. All132 mode outputs,
+same manual reference/hash/denominators, original measurements for every new
+row, raw old CSV cells preserved; accepted-candidate key parity checked.
+Report full132 all-class before/after IN CHAT with n/N/percent/extras and wrong
+peak totals BEFORE next experiment. Publish aggregate-only results/decision.
+
+Compare WHOLE041 vsWHOLE029, not favourable classes/folds. Initial retain guard:
+no lost correct oldcalls by construction, total new correct >=4x new extras,
+no increase in different-feature choices, better coverage of below90priority
+classes, no worse priority below90count/cappedmean. These test checks decide
+retain/reject WHOLEmethod only; no outer-based parameter/class selection.
+Even if retained, no production/deployment claim until integrated fresh app
+benchmark on all33 datasets; these are previously exposed grouped development
+replays. Goal is90% EACH class/mode, not pooled89.8->90 as a substitute.

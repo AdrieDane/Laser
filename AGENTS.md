@@ -1,5 +1,27 @@
 # Experiment reporting policy
 
+## CURRENT041 PREFLIGHT PASS — optimization ACTIVE
+
+040fullyrejected/published/pusheda20b9aa;FULL132chat table ALREADYDELIVERED.
+041 plan docs/validation/next_add_only_class_completion.txt; new unusedpure
+add_only_class_completion.py. Frozen02925parents/100experts explicitlyreused,
+NOnewclassifierfits/rejected040scores. ALLold029calls immutable; new allclass
+strictphysicalfreewinners only. TRAININGclasssupport>=100manual/3projects and
+corecoverage<90; newcorrect>=10/3projects,zeroaddedwrong,extras<=.2newcorrect
+AND<=.02sameclassmanual; pooled+leave-oneprojectout agreement>=80%, eachproject
+with>=3calls>=50%. No globalbudgettrading. Quantilecutgrid/disable1 fixedinplan.
+
+Prefitadd_only_class_preflight_v1 COMPLETEALLPASS,session5692DONE0: ALL132INNER
+scores reproduced BITEXACT, authorizedlabels/scopechecks, ALL33disabled entire
+CSV/candidateframes EXACT029. No thresholdselection/outerannotationoutputs.
+100reusedexpertprojectscopechecks alsoPASS.834app testsPASS/8skip/83subtests,
+9new/existingtoolengineeringtestsPASS +1completeclassreporttestPASS.
+Currentapp/runner/commonhelper/plan/inputfiles hashbound;doNOTeditthese now.
+Full041checker exists BEFOREcalibration. Next commit/pushthenrun041runner,
+ALL5calibrations beforeanyouter, all33eval/report/FULLintegrity/FULL132chat
+before042. No041initialize/output yet. Retain029 untilwholemethoddecision.
+No appdefaults/deployment claim;90%EACHclass/mode goalstillNOTmet.
+
 ## CURRENT040 COMPLETE / REJECTED — supersedes all older running statuses
 
 040v2 ALL33/132 annotations/evaluation and FULL master integrity COMPLETE ALLPASS.

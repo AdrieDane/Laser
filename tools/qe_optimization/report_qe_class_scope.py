@@ -30,11 +30,15 @@ def report(comparison, lipid_class, destination):
         n, d = result[f"manual_same_peak_{side}"], result[f"manual_rows_{side}"]
         result[f"correct_manual_percent_{side}"] = 100 * n / d.where(d.ne(0))
     assert len(result) == 132
-    assert result.manual_same_peak_before.sum() == selected.manual_same_peak_before.sum()
+    assert (
+        result.manual_same_peak_before.sum() == selected.manual_same_peak_before.sum()
+    )
     assert result.manual_same_peak_after.sum() == selected.manual_same_peak_after.sum()
     destination.parent.mkdir(parents=True, exist_ok=True)
     result.to_csv(destination, index=False)
-    print(f"Complete {lipid_class} companion: 33 datasets /132 tested modes: {destination}")
+    print(
+        f"Complete {lipid_class} companion: 33 datasets /132 tested modes: {destination}"
+    )
 
 
 if __name__ == "__main__":
