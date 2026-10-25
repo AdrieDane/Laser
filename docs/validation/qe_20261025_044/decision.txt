@@ -1,0 +1,50 @@
+044 BMP candidate-context completion: REJECT WHOLE METHOD
+Retain WHOLE041 as the research reference. Production defaults unchanged.
+
+All33datasets/132modes, same manual references and original-feature requirement.
+Correct means SAME lipid+adduct+measurementmode+ORIGINALfeature as manual.
+Target scope excludes ONLY X4 (2entries); all28unresolved entries stay in N.
+Standards remain in the primary92100entries; endogenous90644 is a companion,
+not a denominator substitution or performance gain.
+
+Compared with retained041, the experimental044 output:
+Correct:82740/92100 (89.83713355%) ->83012/92100 (90.13246471%),+272.
+TOTALunconfirmed extras:9270 ->9580,+310.
+Different-original-peak choices:1604 ->1605,+1.
+583newcalls=272manualsame-peak matches+310unconfirmedextras+1differentpeak.
+All old accepted calls/quantitative values unchanged; all gains are NP BMP.
+
+BMP NP-negative:146/520 (28.1%) ->256/520 (49.2%);
+  extras528 ->690,+162; different-peak0 ->0.
+BMP NP-positive:270/622 (43.4%) ->432/622 (69.5%);
+  extras227 ->375,+148; different-peak1 ->2.
+RP and other classes unchanged.43/86common class/modes and76/122alltarget
+class/modes remain below90. Pooled90.1% DOES NOT meet90%EACHclass/mode.
+
+Prospective rejection reason:310newextras >272newcorrect matches. The fixed
+whole-method limit requires no more than1newextra per newly matched manual
+annotation (plus other safeguards). Do not relax this after seeing results.
+9580extras is still below the original9697baseline, but that does NOT override
+this experiment's predeclared criterion. No favourable NPpositive/class/data
+splicing after rejecting the whole method.
+
+Extras are calls absent from the dataset/mode's manual list, NOT proven false
+positives. Many may reflect BMP being manually listed in only one NP polarity.
+The user wants both polarities when supported. Other-polarity curated support
+is recorded ONLY as an evaluation safety category, never a runtime predictor,
+preferred-polarity filter, hidden exclusion or proof of chemical identity.
+
+Method: fresh25NP-wide all-class context parents/50modeclassifiers, original
+fixed180roundparameters/equal-project weighting; TRAINING-only partial BMP
+unknowns, evaluation labels unchanged. Original131features plus32new physical
+fields,363separately masked candidate graphs, no graph-membership union.
+Counterparts can be unassigned but must pass THEIR OWN class RT/native3ppm/
+monoisotope/STD guards; >=8explicitBIO pairs, raw/normalizedcorr>=.8, LOO>=.6.
+PA formate/primary coelution and profile/intensity evidence are continuous
+model inputs, not an unconditional chemical veto. All041calls immutable.
+
+Five complete INNER joint-cutoff grids finished before outer annotations.
+This is extensively exposed, grouped saved-input research, NOT an untouched
+external test, fresh integrated app run, deployment approval or analytical FDR.
+Full132before/after table and separate wrong-mode totals delivered in chat.
+Full integrity and explicit tradeoff receipts accompany the final publication.

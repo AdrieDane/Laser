@@ -1,0 +1,38 @@
+{
+  "retain_whole_research_method": false,
+  "checks": {
+    "at_least_100_new_manual_matches": true,
+    "new_total_extras_no_more_than_new_correct": false,
+    "new_total_extras_no_more_than_571": true,
+    "unsupported_composition_extras_budget": true,
+    "new_wrong_no_more_than_five": true,
+    "new_wrong_per_mode_budget": true,
+    "no_old_manual_match_loss": true,
+    "no_change_outside_NP_BMP": true,
+    "at_least_one_BMP_mode_improves": true
+  },
+  "counts": {
+    "gains": 272,
+    "old_correct_lost": 0,
+    "manual": 92100,
+    "new_calls": 583,
+    "changed_outside_BMP": 0,
+    "extras": 310,
+    "unsupported_extras": 30
+  },
+  "new_wrong_by_mode": {
+    "NP_Pos": 1,
+    "NP_Neg": 0
+  },
+  "endogenous_BMP_manual_by_mode": {
+    "NP_Pos": 604,
+    "NP_Neg": 505
+  },
+  "new_correct_BMP_by_mode": {
+    "NP_Pos": 162,
+    "NP_Neg": 110
+  },
+  "all_extras_still_primary": true,
+  "production_enabled": false,
+  "note": "WHOLE method only. No class/polarity/dataset splicing after rejection; decision is a research retention check, not deployment approval or chemical FDR."
+}

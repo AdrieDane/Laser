@@ -1,5 +1,56 @@
 # Experiment reporting policy
 
+## CURRENT044 COMPLETE / REJECTED WHOLE — optimization ACTIVE
+
+044producer37831DONE0,post91569DONE0,FULLmasterALLPASS. ALL25freshNPparents/
+50classifiers/528independenttraininguses/132INNERscores/proposals/counts/
+allthresholdcachedsubset checks/fivefull169jointgrids/33outer/alloldcells/
+newfullrawquant/freshmanualcomparisons/samegoldhash COMPLETE.2333sourceinput,
+935boundartifacts. Planned=finalcheckerSHAc98cfb5ca8ead18a0a4da59cf3c518dbb2d1f826d5b0cd97fe89e9b6ca5d59a0.
+No44jobsremain. Preservefrozen44pipeline/app/inputs/checker. All363numeric
+construction independentchecks alreadyPASS,all33outerpilotEXACT. No needredo.
+
+Full132targetscopeCHAT table%+n/N+TOTALextras+separatewrongmodetotals DELIVERED,
+full66BMPclass-specific CSV LINKED inchat. DoNOTrepeat. NoNPnegLysoIPtypo:
+260/339. Scopeall33/132,allclassesexceptX4,STDsand28unresolvedremainprimary.
+Actual44vsWHOLE041:82740 ->83012/92100 (89.83713355 ->90.13246471%),+272;
+E9270 ->9580(+310),W1604 ->1605(+1),583newcalls. ALLotherclasses/RP unchanged.
+BMPNPneg146 ->256/520=28.1 ->49.2%,E528 ->690(+162),W0same;
+BMPNPpos270 ->432/622=43.4 ->69.5%,E227 ->375(+148),W1 ->2.
+43/86priority/76of122alltarget stillbelow90. Global90.1%NOT90%EACHclass/mode.
+Endogenous81365 ->81637/90644 (89.76325 ->90.06332%),E8549 ->8859,W1577 ->1578.
+STDs1375/1456,E721,W27 unchanged. No oldcorrectloss/outsideNPBMPchanges.
+
+Fixedprospectivetradeoff evaluator COMPLETEPASS session20389DONE0:
+report_qe_bmp_context_tradeoff.py. WHOLE REJECT:310newE >272newTP;ALLotherfixed
+checks pass. UnsupportedotherNPcompositionextras30 (of310);280extras have
+compositionmanuallycuratedinOTHERNPpolarity. ThisisdiagnosticONLY,NOTproof or
+hiddenexemption/runtimefeature/polarityrule. All310STILLprimaryextras. 9580E
+beloworiginal9697doesNOToverrideprespecifiedrejection. RetainWHOLE041,not
+NPpositive-onlyheldoutsplice. DefaultsUNCHANGED. Userinformedwholefailure.
+
+Publicsafeaggregates/decision/protocol/master/completeBMP66/endo+STD companions
+published docs/validation/qe_20261025_044, pendingGitpushnext. Allsourcealready
+pushed89702cf. Needcommit/pushthesecompleteaggregates+thisstatus THEN45plan.
+No actual045source/plan/cuts/annotations yet. Usertold nexttest moreconservative
+TRAINING operatingpointselection with safetyheadroom, NOTrelaxingfinal1:1limit.
+
+NEXT45DIRECTION (IDEAonly,notyetfrozen): SAME44physical measurements and50
+models can be EXPLICITLYreused because only INNERjoint operatingpointpolicy
+changes, not newfits/candidates/targets/predictors/scopes. ComparatorWHOLE041
+(44rejected). Prespecify25%INNERheadroom(Enew<=.75TPnew), potentiallyleave-one-
+project-out INNER robustness (allremainingcohortsE<=TP) toavoidoneveryrichcohort
+offsettingmanyextrasonothers. FinalWHOLElimits EXACTsame44 (>=100TP,E<=TPand
+<=571,unsupportedE<=.1endoBMPN,wrong<=5and<=.005NperNP,nooldloss/nooutsidechange).
+NoNPpolaritysplicing; all5calibrations and33outer re-evaluated fromfrozen OOF
+scores/globalrule, no individualcutchosenfromouterlabels. Neednewprospective
+plan/purehelper/newrunner/preflight/fullverifier BEFORE045cuts/outputs. All132
+OOFscoresreplayedEXACT/proper041INNERoccupancy,all33disabledENTIRE041exports,
+all50expert provenance/scopes/support; full53?NO:still25reusedparents/50experts,
+no freshclassifierfits ifthispathchosen. Outer44models/scores not a heldout-
+winnerensemble. New full132chat/report/WHOLEdecision before046. No goalcomplete/
+deploymentclaims. Continueautonomously; doNOTstopmerelycheckpoint.
+
 ## CURRENT044 benchmark COMPLETE / FULL132CHAT DELIVERED / master running
 
 044producer session37831 DONE0, ALL25freshNPparents/50classifiers and33outer/
