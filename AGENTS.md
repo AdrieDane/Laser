@@ -1,5 +1,40 @@
 # Experiment reporting policy
 
+## CURRENT042 FINAL COMPLETE / REJECTED — optimization ACTIVE
+
+042ALL33/132benchmark +FULLmaster COMPLETEALLPASS,session8620DONE0. Full132
+targetscope chat table+wrongmode totals ALREADYDELIVERED;doNOTrepeat. All5
+classcalibrations disabledALLadditions. EXACT041metrics82740/92100,E9270,W1604,
+43/86prioritybelow90 unchanged. REJECT042noimprovement;041retained,defaults
+unchanged.25freshparents/200classifiers,528trainingqueries/132INNER/fivecurves,
+33outer/132rawstreams/alloldcells/candidateexports/samegoldhash checksPASS.
+1254source/input,328snapshot,580artifacts.439824availablecells/3827658inherited
+emptycache/195roundoff;93613legacyacceptedcandidateflags unchanged. Checker
+planned=final168aabf3acbc786b7caae1f59678e7f2e4df342c007b51590dc4ad293e8dd67b.
+FullcheckerfreshlyreplayedALL25, noearlyparentreceipt reuse. No42jobsremain.
+Publicdocs/validation/qe_20261025_042 ready/publishedaggregate. Pushnext.
+
+TRAININGONLYrankdiagnostic132cases COMPLETEALLPASS session25971DONE0,private
+feature_label_training_peak_rank_audit_v1. No newmodels/outercalls/annotations.
+Minrankgain0:487wrong->correct vs501correct->wrong; .05:337/337; .10:222/195;
+.20:87/79;.30:33/34;.50:3/5. These areREPEATEDTRAININGobservations(fourcontexts
+perdataset),ignoreglobaloccupancy/finalspikegates,NOTbenchmarkgains. Rejectblind
+reranking/favourableclasssplicing;noobviouslargecorrectionbenefitfrom042ranks.
+Publicqe_20261025_training_peak_ranks ready. Originalfeaturecorrectionstillneeded
+eventually for2LPE/LPI, butnotarbitraryweakerthresholds ontheseweakranks.
+
+NEXTdirection(notyetplanned/implemented043): genuinelynewphysicalevidence:
+raw OTHERpolarity counterpart search usingnativeadductchemistry, explicit
+validatedsamplepairs, queryindependentSTD-basedsamephaseRTrelation. DIFFERENT
+from019/020which usedstrong BASELINEAUTOassignedothermodeanchors, and032same-
+streamnativeadductfamilies. Needinspectexistinghelpers/measurements/metadata and
+predeclarescope/gates BEFOREprototype. No RP/NP RTtransfer, no querycuration/
+oldmodelself-label anchors. Possible valueforPE/PC/oldwrongpeakdiscrimination;
+notpromisedgains. No043actualfits/annchanges. Needsfull33/363featurepreparation,
+propernestedrefs/independentconstruction audits thenfullreportpolicy iftested.
+GoalNOTmet,activegoon;doNOTendmerelycheckpoint. Latestpushed1a4b7f8beforecurrent
+final042publication. Noappdefaults/deploymentclaim orfinalcolleaguebenchmarkyet.
+
 ## CURRENT042 ALL33OUTPUTS DONE / FULLREPORT+AUDIT RUNNING — ACTIVE
 
 042producer59644/PID27786 DONEexit0. ALL25freshparents/200stageclassifiers and

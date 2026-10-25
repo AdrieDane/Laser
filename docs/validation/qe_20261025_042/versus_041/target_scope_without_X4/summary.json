@@ -1,0 +1,25 @@
+{
+  "excluded_classes": [
+    "X4"
+  ],
+  "datasets": 33,
+  "dataset_modes": 132,
+  "all_manual_rows": 92102,
+  "excluded_manual_rows": 2,
+  "target_manual_rows": 92100,
+  "note": "Companion target-scope view,NOT an annotation improvement or reference relabeling. Historical all-manual reports/inputs unchanged. X4 was explicitly excluded by the user on24October2026. Unconfirmed extras,not false positives/FDR.",
+  "correct_before": 82740,
+  "percent_before": 89.8371335504886,
+  "extras_before": 9270,
+  "different_feature_before": 1604,
+  "unresolved_manual_before": 28,
+  "class_modes_with_manual_before": 122,
+  "class_modes_below_90_before": 76,
+  "correct_after": 82740,
+  "percent_after": 89.8371335504886,
+  "extras_after": 9270,
+  "different_feature_after": 1604,
+  "unresolved_manual_after": 28,
+  "class_modes_with_manual_after": 122,
+  "class_modes_below_90_after": 76
+}

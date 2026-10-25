@@ -1,0 +1,33 @@
+Training-only rank diagnosis, NOT another annotation experiment or gainedcoverage.
+
+Purpose: could042's freshly trained ranks repair existing wrongpeak choices,
+despite failing to add safe annotations? Check matching INNER-OOF queries in
+each outerTRAINING fold only. ALL132querycases/hashchecks complete, zeronewfits,
+zeroouterannotationchanges. Each dataset repeats underFOURoutertrainingcontexts;
+these counts are NOT independent datasets/samples or benchmarkimprovements.
+
+Identity-wise best-supported alternative beforeglobaloccupancy/finalspikegates:
+minimum rankgain0:487wrong-to-correct versus501correct-to-wrong (net-14).
+minimum rankgain.05:337versus337 (net0).
+minimum rankgain.10:222versus195 (net+27 repeatedtraining observations).
+minimum rankgain.20:87versus79 (net+8).
+minimum rankgain.30:33versus34 (net-1).
+minimum rankgain.50:3versus5 (net-2).
+Otherwrong-to-otherwrong switches remainseparatelyreported. Localalternatives
+mayconflict globally; numbersarenotacceptedmoves andignorefinalspikeprotection.
+Both old andcandidatefeature musthavesupportednewmodelranks; noassumedoldzero.
+
+Conclusion: these ranks show no convincing robust peak-correction improvement.
+Do NOT selectonly favourableclasses oruseoutertruth tochoose winningmoves.
+Do NOT blindly rerankthe old041annotations, and donotinterpret net+27 across
+repeated132trainingcases as27newcorrect benchmarkannotations. No043correction
+experiment wasstarted fromthis diagnostic. Prefer genuinelynewphysicalevidence
+over another small cutoff/ranking tweak as the next improvementdirection.
+
+The separateimmutable-call bound stillshows RPnegative2-acylLPE/LPI eventually
+needoldcall changes toreach90%. Thisdiagnosis doesnotremove thatrequirement;
+it rejects THESEnewranks asanobviousready solution. Needbetterfeatureevidence
+and a separately predeclared grouped/INNER-validated correction method later.
+
+Retained041unchanged:82740/92100correct,E9270,W1604;43/86prioritybelow90.
+Previously exposed groupeddevelopment evidence, not externalvalidation/FDR.

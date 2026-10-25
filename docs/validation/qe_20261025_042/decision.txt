@@ -1,0 +1,46 @@
+042 REJECTED AS AN IMPROVEMENT: zero new accepted calls. Retain whole041.
+No app defaults changed; no winner-class/fold splice or threshold relaxation.
+
+PERFORMANCE COMPLETE, all33datasets/132modes, exactsame manualreference:
+041 ->042 correct82,740 ->82,740 /92,100=89.8371335505%unchanged.
+Unconfirmed extras9,270 ->9,270; not proven false positives/FDR.
+Different-original-feature choices1,604 ->1,604.
+All28unresolved mappings remain in the full target denominator; onlyX4(two
+entries) target-excluded.76/122alltarget and43/86well-represented class/modes
+below90 unchanged. Priority81,907/90,871; sparse833/1,229unchanged.
+Every dataset/mode and every class/mode before/after count is identical.
+FULL132target-scope table and separatewrong-mode totals DELIVERED in chat.
+
+Method: fresh25nested parents/200classifiers, four independent featuredetectors
+and four conditional-label models perparent.315classblindnumeric featureinputs
+fromoriginal108candidate predictors; conditionalmodelusesoriginal108columns on
+knownpositive ambiguousfeatures. Unknown/unresolved remainunknown; standards
+excluded; actualsupervisedcontributors separate from fullreferencepermissions.
+No names/FIDs/datasetnames/curationpresenceflags oroldmodelpredictions ininputs.
+All041calls immutable. Unchanged native3ppm/10s/monoisotope/spike protections.
+Sameconservative041class acceptance guards; ALL5INNERcalibrations selected
+explicitdisabled cutoffs forEVERYclass. No outercuration chose those cutoffs.
+Freshscorepredictions changed; acceptedannotations/candidateexports didnot.
+The novel model didnot demonstrate safe additions under THIStestedprotocol.
+This doesnot prove everypossible factorized model or lipid identification is
+impossible. Do not loosen safeguards afterseeingheldoutresults for042.
+
+Construction gateALL330unique tables/528uses withindependenttarget/NumPyaggregate
+checks passed. FULLcurrent-source no-fitgateALL25preparations/528uses,constructor,
+class/project support andALL33disabledENTIRE041exports passed.847apptestsPASS,
+8skipped/83subtests;5newrawexport/scope/area-corruption testsPASS.
+
+FINAL INTEGRITY COMPLETE, MASTER ALLPASS. ALL25models/528traininguses,
+132INNERrankreplays/fivecompletegrids/cutoffs,33outer/132originalcoordinate
+checks,alloldcells/candidateparity/samegoldhashchecks reproduced.1254source/input
+hashes,328snapshot sources,580boundartifacts;200fresh classifiers verified.
+439824available measurement cells checked;3827658inheritedemptyoldcache cells
+separately recorded;195preexisting CSVroundoff cells.93613inheritedlegacy
+accepted+candidate provenance flags unchanged; zero new accepted rows.
+Planned/finalcheckerSHA168aabf3acbc786b7caae1f59678e7f2e4df342c007b51590dc4ad293e8dd67b.
+Earlyoneparentcheck wasnotreused asmaster; fullall25components freshlychecked.
+Completeengineeringreplay is NOT chemical/FDR/externalvalidation/deployment proof.
+
+Previously exposed saved-input groupeddevelopment replay, not untouchedexternal
+validation or freshintegratedapp deployment. Goal90%EACHclass/mode stillunmet.
+No finalpeakgroup deploymentbenchmark/colleagueapprovalreport yet.
