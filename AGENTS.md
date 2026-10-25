@@ -1,5 +1,103 @@
 # Experiment reporting policy
 
+## CURRENT047v2 COMPLETE / REJECTED WHOLE — optimization ACTIVE
+
+Producer15482DONE0,post14640DONE0,fullmasterALLPASS. Fixedreport19528DONE0:
+391TP/459E/3W failsE<=TP;ALLotherguardsPASS.351EotherNPcuratedcomposition,
+108unsupported,ALL459primary. RetainWHOLE041/defaultsunchanged.3369inputs/
+895artifacts;planned=finalmasterSHA63dfbe735534de593a350dcd9bf56c46afdee23a74bd85057a6be741d54a9bd5.
+All25/528/132/all22cuts/five484grids/33outer/oldcells/rawquant/freshgold complete.
+No47jobsremain. Original47v1zero-outputstartupfailurepreserved,notbenchmark.
+FULL132CHAT+wrongmode/endoSTD ALREADYDELIVERED;doNOTrepeat. Full66BMP nowready
+forlink+safe publication docs/validation/qe_20261026_047_v2;commit/pushclosure.
+
+NEXT read-only cross-phaseFA/FA-OH pilot plan+purehelper/tests nowWRITTEN,
+NOTannexperiment048 and NOrealdata run yet. Files next_cross_phase_candidate_
+pilot.txt,cross_phase_candidate_measurements.py,test_cross_phase_candidate_
+measurements.py. OnlyRPneg<->NPneg,unassigned same-nativeclass/actualnative-ion
+theory-neutralmatch .05ppm, BOTHendpoints ownmasked3ppm/10s/STDisotope guards,
+explicitBIOprofiles>=8,techmeansbeforelogs,NOcrossphaseRTtransfer/noprioraccept
+requirement/nocuration/modelscore.17continuousnumericfields,missingNaN,NOhard
+profileveto. SameFIDstringindifferentstreamsdifferentphysicalfeatures. Partner
+countdedup byphysicalfeature. Stable bestprofile ranking usesrawcorr12digits/
+theoryppm8digitsforrankkeysonly,reportedmeasurements/rawcoordsUNROUNDED.
+Synthetic6testsnowPASS after pre-pilot pandas-empty-assign expansionbugfixed
+(mustassignppm.loc[matching],notfullppm ontoemptyframe). AddedsourceI equality
+check too. Newhelperclass-ion membership enforced. Needrerunsynthetictestsafter
+lastclass-ion/roundingchanges and independent scalar graph/NumPychecker BEFORE
+all33pilot. No newclassifierfits/cutoffs/acceptedcalls frompilot. Needplanned
+producer/all33blindreceipt ->all33independentreceipt ->descriptive labels only.
+No producer/checker/diagnostic scripts yet;newpilotfilesNOTFROZEN/uncommitted.
+ExistingcoreceilingsFAOH NP263/29389.76/RP418/50283.27 meannewdiscoveryalso
+needed;pilotnotclaimitcanhit90alone. Old033STDdiscovery and027massalreadyexist.
+GoalACTIVE/NOTmet;do notendatcheckpoint. All47/46/44sourceFROZEN unchanged.
+
+## CURRENT047v2 benchmark COMPLETE / FULL132CHAT DELIVERED / master RUNNING
+
+Producer15482DONE0;post14640RUNNING /tmp/laser_047_v2_post.log. All33evaluation/
+primary/priority/endoSTD reportsDONE. Full132targetscopeCHAT %n/N+TOTALextras
+andwrongmodetotals ALREADYDELIVERED,doNOTrepeat. Full66BMP link pendingfixed
+report afterfullmasterPASS. No048actual beforewholeclosure/publication.
+
+WHOLE041 ->047v2:82740 ->83131/92100 (89.83713355 ->90.26167210%),+391;
+E9270 ->9729(+459);W1604 ->1607(+3). Alloldcalls/quantimmutable. Otherclasses/
+RPmodes unchanged. BMP NPneg146 ->265/520=28.1 ->51.0%,E528 ->697(+169),W0 ->1;
+BMP NPpos270 ->542/622=43.4 ->87.1%,E227 ->517(+290),W1 ->3.
+43/86priority and76/122alltargetclass/modes STILLbelow90;pooled90.26notgoalmet.
+Endogenous81365 ->81756/90644=89.76325 ->90.19461%,E8549 ->9008,W1577 ->1580.
+Spikesunchanged1375/1456,E721,W27. All28unresolvedremainprimarydenominator.
+WHOLEfixedguard FAILS459newE>391newTP; userinformednotadopting. Needcomplete
+master/fixedreport BEFOREfinalcloseddecision/publication. DoNOTrelaxguard or
+spliceouterwinners. v1startupfailure0annotations preserved;v2onlyvalid47method.
+Master47v2plannedSHA63dfbe735534de593a350dcd9bf56c46afdee23a74bd85057a6be741d54a9bd5.
+Allsource/model/plan/helper/master FROZEN. No sourceedits. Sourcepushc3739c0.
+Whenpost14640DONE0 manuallyreport_qe_bmp_extended_tradeoff_v2.py;publishsafe
+docs/validation/qe_20261026_047_v2 all132/66BMP/endoSTD/decision/pushCFMmain.
+ThennewPHYSICSevidence,NOTfurthercutoff-onlysweeps. No048actualmethodyet.
+
+## CURRENT047v2 producer COMPLETE / postprocess RUNNING — optimization ACTIVE
+
+Producer15482DONE0 all5new484grids+33outeroutputs. Postprocess_v2 NOWRUNNING
+/tmp/laser_047_v2_post.log,session inchat. Needall33eval/reports/fullmaster then
+fixedreport_v2 manually. No47performance summary/table yet. FULL132CHAT+wrong
+totals/66BMP/endoSTD/wholedecision/publicationpush BEFORE048actual. Noqueued
+tradeoffreport. Whole041 retained/defaultsunchanged;GoalNOTmet. DoNOTedit any
+bound47v1/v2/46/44source/helper/plan/checker. Sourcepushc3739c0,currentAGENTS
+statusonlypendingGit. Nootheractualjobs. Continueautonomously,notstopcheckpoint.
+
+## CURRENT047v2 ACTUAL RUNNING — optimization ACTIVE
+
+V2source/plan/startupregressions pushed CFMmain c3739c0. Preflight27474DONE0,
+70testsPASS,RuffPASS. Actualv2producer15482 RUNNING /tmp/laser_047_v2_run.log.
+Initialization nowSUCCESSFUL; own047_v2reference_data/methods receipt verified,
+no fallback/guardbypass.3369inputbindings/22levels. PlannedfullcheckerSHA
+63dfbe735534de593a350dcd9bf56c46afdee23a74bd85057a6be741d54a9bd5.
+All5new484grids COMPLETE beforefirstouteroutput:NPposcuts .6/.45/.15/.3/.4 for
+folds0/1/2/3/4;NPneg .8/.95/.9/.95/.95. New33outerruns underway. NOperformance
+evaluation yet. No47v1annotations existed;v1failure allpreserved. Do not mix
+oldv1/v2 artifacts. Allnewcuts chosenTRAININGonly,notouterlabels. Whole041retained.
+
+Waitproducer15482DONE0 thenMANUALLYpostprocess_qe_bmp_extended_v2.py (all33eval/
+primary/priority/endoSTD/fullmaster),then report_qe_bmp_extended_tradeoff_v2.py
+AFTERmasterPASS. Full132CHAT%+n/N+TOTALextras/wrongtotals,66BMP link/endoSTD/
+WHOLEdecision/publicationpush BEFORE048actual. Noqueuedpostprocessor.
+All047v1/v2/46/44 runtime/helper/plan/checker sourcesFROZEN DO NOT EDIT.
+
+Future IDEASONLY if47notbiggain: class-RT-valid UNASSIGNED CROSS-PHASE profile
+partners (RPneg<->NPneg) forFA-OH. Unlikeold043arbitraryOTHERPOLrawmass/019strong-
+AUTO-onlysamecanonicalpartners, newgraphrequirespartner'sOWNmaskedclassRT/mass/
+STDguards butnotprioracceptedcall. Existing108oldpairingneedsstrongAUTO;FA-OH
+hasnonativepositivepartner,soOTHERPOLfeatureslargelyunavailable. Needread-only
+all33pilot/independentcheckbefore363maskedfields/fits;unknownprofileNaNnotveto.
+LongertermPC-O/P needs NPcombinedfamily vsRPbranches and formulaequivalence;
+NPsignal maybem ixture ofbranches,NNLS/LOO+collinearitydiagnostic wouldsupport
+familyTOTAL notindividualisomer identity. Donotclaimnewfeaturewithoutchecking
+existingcode/pasttests. No048plan/code/thresholds yet. No moreendlesscut sweeps.
+033STD-alignedRT and027masscalibration ALREADYtested;old033/036poolunion340new
+correct OPTIONS audited,notgains. Neednewphysicalevidence/discovery forPC-P:
+immutablecore1594/1830<90. Sparseclasseslater,allremainreportdenominators.
+Goal ACTIVE/NOTmet;defaultsunchanged;keepworkingautonomously.
+
 ## CURRENT047v2 no-cut preflight COMPLETE — optimization ACTIVE
 
 Session27474DONE0 /tmp/laser_047_v2_preflight.log. Fresh25/50/132/fixed.5EXACT046/

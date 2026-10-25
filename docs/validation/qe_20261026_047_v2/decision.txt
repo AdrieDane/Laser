@@ -1,0 +1,54 @@
+Experiment047v2 — REJECTED WHOLE (26 October2026)
+
+Comparator:whole retained041,not rejected046. All33 QE folders/132 dataset-mode
+cases/30 project groups. Correct requires same lipid/adduct/mode/ORIGINAL peak.
+92100manual rows remain incl1456spikes/28unresolved;X4 alone excluded.
+
+Correct:82740/92100 (89.83713355%) ->83131/92100 (90.26167210%):+391.
+Unconfirmed extras:9270 ->9729 (+459). Wrong peaks:1604 ->1607 (+3).
+853new calls=391correct+459unconfirmed extras+3wrong peaks.
+BMP NPnegative:146 ->265/520 (28.08% ->50.96%);extras528 ->697;wrong0 ->1.
+BMP NPpositive:270 ->542/622 (43.41% ->87.14%);extras227 ->517;wrong1 ->3.
+Allold calls/quantities preserved. All other classes/RP modes unchanged.
+43/86priority and76/122all-target class/modes STILLbelow90%. Pooled90.26%
+does NOTmeet90% in every class/mode and does not establish deployment readiness.
+
+Fixed prospective whole guard rejects459new extras>391new correct. Allother
+conditions pass. Retain WHOLE041;no polarity/dataset winner splice or after-the-
+fact budget relaxation. 351/459extras have composition curated in the other NP
+polarity;108do not. ALL459 count PRIMARY. Manual absence is not established
+chemical false positivity/FDR;other-mode support is not chemical identity proof.
+
+Change relative to046: full native score domain .05,.10,...,.95,.975,.99,1disable
+(22levels/484jointpoints). SAME25parents/50classifiers/163fields/candidate pool/
+source-physical admission/raw3ppm/ownclassRT10s/.05ambiguity/global+identity-best/
+isotope/standard/occupancy safeguards. No score transforms,refits,new formulas,
+mass/RT/CDB widening or manual-query input. Original044INNER safety/objective
+unchanged,all5new choices before33outeroutputs. No more cutoff-only sweeps next.
+
+V1 startup incident and clean restart:
+Original047 passed full no-cut preflight,then aborted beforeprotocol/cuts/ANY
+outerannotations: premature native ASTcheck imported044resource constants
+before configuring047. Isolation guard correctly refused stale resources.
+V1 sources/plan/preflight/failedsnapshot/log/zero-outputreceipt preserved.
+Separate047_v2 fixes ONLYinitialization order: configure final own snapshot
+before annotation imports. No guard bypass/module-cache reset or scientific
+changes. ASTtests confirm algorithmic functions unchanged; fresh-process tests
+confirm correct root works and stale root stillfails. Fullpreflight repeated.
+
+Integrity master ALLPASS:25reusedparents/528independenttraininguses,132freshOOF
+scores/fixed.5parity with046/all22directcuts vs cache/per-case gold counts,
+all5independent484grids,33outer/oldcells/originalrawquant/freshmanualcomparisons/
+same references.3369inputbindings/895outputartifacts.70focusedtools tests,RuffPASS.
+Planned=final checkerSHA256:
+63dfbe735534de593a350dcd9bf56c46afdee23a74bd85057a6be741d54a9bd5
+No app source/default edits. This remains research,not deployment.
+
+Endogenous:81365 ->81756/90644 (89.76325% ->90.19461%);extras8549 ->9008;
+wrong1577 ->1580. Spikesunchanged1375/1456=94.43681%;extras721,wrong27.
+Companions do not replace primary denominators. Full132CHAT/wrongmodecounts
+already delivered;full66BMP and endo/spike companion tables included here.
+
+Cached saved-input grouped development with extensive prior exposure,notfresh
+integrated-app runs,untouched external validation or analytical FDR. No raw
+profiles,feature IDs,manual crosswalks,standard measurements or models inGit.
