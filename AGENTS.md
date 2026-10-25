@@ -2,6 +2,23 @@
 
 ## Current work status — RESUMED by user,25October2026
 
+034INPROGRESS: guarded class cutoffs on EXACT retained029 scores/models and
+standard_context_preparation_v1. New helper guarded_class_operating_point.py
+alongside UNCHANGED preexisting class_operating_point.py.725tests passed,
+8skipped,83subtests. Protocol frozen,ALL5INNER calibrations completed BEFORE
+outer outputs. Training gain109-155 per fold is NOT held-out accuracy. Every
+eligible class keeps its baseline training correct count; each mode wrong
+cannot rise; same9.5%training extras budget. EligibilityTRAININGonly>=100manual,
+3projects,20correct winners from3projects. Sparse/unsupported keep029cutoff.
+Rawscore positive-coverage quantiles can be<.05;ambiguitymargin still.05;
+fixed feature/identity winners never promoted.02925models/100experts reused
+deliberately,ALL132INNER+33outer scores reproduced BITEXACT,not alias fitcache.
+No classifier refits/newcandidates/ranges/rejected033scores. Same005cleanup,
+fixed027mass stage. Main runner run_qe_guarded_class_experiment.py; new integrity
+tool verify_qe_guarded_class_experiment.py. No production change. Mustfinish
+ALL33evaluation,full132table,integrity,retain/reject BEFORE any035annotation.
+029remains retained until decision. Old033checkpoint below remains valid.
+
 LATEST checkpoint:033COMPLETE,REJECTED;029retained. FULL132TARGETscope table
 plus separate wrong-feature totals DELIVERED in this chat;doNOTrepeat merely
 because another cycle starts.033target82729/92100=89.8251900% (NO net gain),
