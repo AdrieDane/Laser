@@ -1,5 +1,49 @@
 # Experiment reporting policy
 
+## CURRENT044 benchmark COMPLETE / FULL132CHAT DELIVERED / master running
+
+044producer session37831 DONE0, ALL25freshNPparents/50classifiers and33outer/
+132mode outputs COMPLETE. Full132target-scope before/after CHAT table with
+%+n/N+TOTALextras +separatewrongmodetotals ALREADYDELIVERED. DoNOTrepeat. LysoIP
+NPneg correctly260/339. All33saved-input groupeddevelopment,notfreshappdeploy.
+
+BenchmarkvsWHOLE041:82740 ->83012/92100,89.83713355 ->90.13246471%;E9270 ->9580
+(+310),W1604 ->1605(+1).583newcalls=272exactmanualmatches+310unconfirmedextras+
+1wrongpeak. NewcorrectALLBMP:NPneg146 ->256/520 (28.0769 ->49.2308%),E528 ->690
+(+162),W0same;NPpos270 ->432/622 (43.4084 ->69.4534%),E227 ->375(+148),W1 ->2.
+All otherclasses/modes unchanged. Global90.1% is NOT90%EACHclass/mode:43/86
+priority and76/122alltarget cells STILLbelow90. All28unresolved retained. Spikes
+unchanged;endogenousprimarycompanion also produced. RP allunchangedbydesign,
+re-evaluated actualimmutable outputs,not assumeduntestedzeroes.
+
+WHOLE044prospective budget FAILS Enew310>TPnew272. Usertold NOTadopting;retain
+WHOLE041,notNPpositive-onlysplice. Needfullmaster+explicitfixedtradeoffreport
+BEFORE finalcloseddecision/publication. DoNOTrelax1:1limit afterthese results.
+9580totalextras stillbeloworiginal9697, butdoesNOToverrideprespecifiedfailure.
+
+Postprocessor session91569 RUNNING /tmp/laser_044_post.log: all33eval/primary/
+priority/endo+STDreports DONE, FULLmaster nowexecuting. ALL25parent/528training/
+50classifier checks PASSED,132INNER/fivefullgrids running. EarlyFULLfold0INNER
+26case/allthreshold/proposal/count/cachedsubset/jointgrid checkPASS session67569
+DONE0, butmasterfreshlyrepeatsALL;noearlystdoutreuse. No wholeintegrityreceipt
+yet. Needfinishall132INNER/5grids/33outer/rawquant/samegoldchecks,then run
+report_qe_bmp_context_tradeoff.py manually; it requiresfullmasterPASS. Linkfull66
+BMPtable afterreport (class-specific complete table requirement remaining),
+publishsafeaggregatesdocs/validation/qe_20261025_044,decision/pushcfm/main.
+
+NO045annotationexperiment beforethisfullclosure/publication. NEXTIDEAS ONLY,
+notyetplanned/implemented: stricter INNER safety headroom (E<=.75TP whilekeeping
+WHOLEouter1:1 cap) and/or mechanistic PAformate explanation guard (curatorrule)
+instead of only continuous PA fields. Unknown-oppositeBMP TRAINING negatives
+are masked, so PA-interference examples there cannot teach a negative target.
+Needprospectivephysicsjustification, fixedall-cohort/mode rule/OOFcalibration,
+notposthockeepingpositivepolarity orrelaxingbudgets. Same50models maybe reused
+EXPLICITLY ifonlynewcut/physicalselector;mustreplayfull132INNER/all5grids and33
+outer/fullmaster. Newactualmethod comparesWHOLE041since044rejected. No045
+source/plan/cuts/outputs yet. Generalcrossphaseclass-RT-valid unassignedpartner
+graphs (not019strongAUTO-only) are another possiblelaterdirection;notimplemented.
+GoalNOTmet/defaultsUNCHANGED. Continueautonomously;notendmerelycheckpoint.
+
 ## CURRENT044 ACTUAL RUNNING — source frozen, goal ACTIVE
 
 Source/preflight/analysis guards pushed CFMmain7ec7bd3. Actual044runner session
