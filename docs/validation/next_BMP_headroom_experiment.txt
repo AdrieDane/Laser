@@ -1,0 +1,90 @@
+Prospective045: conservative, project-robust BMP operating points
+25 October 2026. Freeze BEFORE any045cut choices or outer annotation outputs.
+
+Status/comparator
+044 is COMPLETELY REJECTED:272newmanualmatches/310newunconfirmedextras/1wrong.
+Its full132chat table, full66BMP link and whole decision already delivered.
+Compare045 against WHOLE041, not044. All041oldcalls remain immutable.
+No favourablepolarity/class/dataset output splicing. Production unchanged.
+
+Single conceptual change
+Use stronger TRAINING headroom and project robustness for the two-mode joint
+operating point. The previous pooled training budget allowed the selected
+points to sit too close to the allowed extra/correct boundary. A held-out
+increase then exceeded it. Do NOT loosen the final acceptance limit. Instead
+require a25%surplus in training and stability when one training project is
+removed. Thresholds still come ONLY from permitted INNER predictions.
+
+Frozen evidence/model reuse, explicitly NO newclassifierfits
+Reuse EXACT044363sparse physical tables/original131+32=163predictors, candidate
+pools, labels, partial-BMP training policy and ALL25parent/50NPclassifiers.
+These models have complete source/input/construction/training integrity proof.
+No retraining, model blending, hyperparameter change or44outer-output splice.
+Every parent model/completion receipt/source/snapshot hash must match the full
+044integrity receipt. Reproduce ALL132 matching INNER and33outer scores EXACTLY
+and check every expert's scopes/support/parameters/actual contributors.
+Query/outer/inner projects remain excluded from fits/reference-derived graphs.
+Actual50reusedexperts are not50newfits. Cite prior development/outer exposure.
+
+Unchanged annotation mechanism
+NP BMP additions ONLY, global all-class competition and identity-best feature
+fixed before occupancy/physical filtering, no weaker fallback. Existing044
+profile gate unchanged: native3ppm/ownRT<=10s/isotope/STD protections for both
+candidate ends, >=8explicitBIO pairs, raw andnormalizedcorr>=.8,worst rawLOO>=.6.
+PA evidence remains continuous in the fixed model. No new hard PA veto or
+carbon/db/matrix/range window changes in this cycle. No RP classifier/outputs
+changed. No query/manual polarity/presence filter. Both NP polarities allowed.
+Whole proper041INNER occupancy reconstructed, not44outer annotation lists.
+
+New INNER operating point policy (fixed allfolds/modes)
+Same13score levels:.50,.55,...,.95,.975,.99,1.0(explicit disable), complete169
+two-mode Cartesian grid per outer training fold. Form a per-project table by
+combining related dataset folders (same existing30project IDs). Never count
+two same-project folders as two independent contributors.
+For a pair to be eligible:
+- All former044 INNER safety checks hold: each enabled mode>=20newexactmatches
+  from>=3actualprojects; newtotalE<=.5allmanualBMPN; unsupportedotherNPcomposition
+  E<=.1endogenousBMPN; newwrong<=.005endoBMPN pooled and perNP mode; alloldcalls
+  immutable. Unknown/unresolved manual entries keep their original semantics.
+- NEW: newtotalE<=.75newcorrect, not1.0. This is TRAINING headroom only.
+- NEW: remove EACH permitted training PROJECT in turn. For every remaining
+  set, newtotalE<=newcorrect. Report the worst remaining surplus and all leave-
+  one-project-out checks. No per-project favourable cut selection or runtime
+  label/presence filter. This prevents one highly productive project from
+  paying for too many extras elsewhere. It is not a chemical FDR guarantee.
+Select eligible pair with same frozen objective as044: highest summed capped90
+coverage for twoBMPmodes, then more newcorrect, fewer totalextras, fewer wrong,
+higher cuts (NP_Pos then NP_Neg). If none, disable BOTH. A mode can be disabled
+only by this common training rule, never by choosing its held-out result.
+All five complete joint grids/cuts finish BEFORE any045outer annotation output.
+
+FINAL WHOLE retention criteria UNCHANGED from044
+>=100newmanualsame-original-peak matches across all33; newTOTALunconfirmedE
+<=newcorrect AND<=571; unsupportedotherNPcompositionE<=.1endoBMPmanual;
+newwrong<=5total AND<=.005endoBMPmanual perNP mode; no lostoldcorrect matches,
+no outsideNPBMP/standards/quant changes; at least one NP BMP mode improves.
+ALL extras remain primary, even when manually listed in otherNPmode. Such
+support is an INNER/evaluation safety category ONLY, never runtime input or
+exemption. No final criterion relaxation after seeing045results. Whole reject
+means WHOLE041retained, no polarity/class/data splicing.
+
+Preflight and complete integrity
+Before operatingpoint selection: complete044masterPASS/currentallbindings;
+all25model/50expert scopes/provenance/support; ALL132INNER scores BITEXACT;
+authorizedcuration reads/project curves/scopes; ALL33disabled ENTIRE041CSV+
+candidates EXACT. No newcuts/outerannotations in preflight. Pure groupedcurve/
+headroom/LPO/disable/selector/export boundary tests. Full045verifier implemented
+and hashfrozen BEFORE cuts/output. Freeze current runtime/source/input hashes.
+Final: ALL25reusedparents/528traininguses independently checked against the
+unchanged044targets/matrices/weights/support,132INNERscores/per-project counts/
+all169grid+LPOchoices each5folds,33outerpredictions/rawquant/oldallcells/new
+acceptedexports/freshmanualcomparison/samegoldhash. Preserve complete receipts.
+
+Reporting/deployment
+Same33folders/132modes/30project groups; primary92100includes standards and28
+unresolved, X4only excluded; endogenous90644/spikes1456 companions separate.
+Full132CHAT%+n/N+TOTALextrasbefore/after, separatewrongmodetotals, linkedfull66
+BMPtable, wholedecision BEFORE046. Publishsafeaggregates/source and pushCFMmain,
+no rawprofiles/models/manualworkbooks. Previously exposed grouped saved-input
+development, notuntouchedexternalvalidation/freshappdeployment/FDR. No default
+change or colleague-ready deployment report until actual integrated app passes.

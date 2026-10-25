@@ -1,5 +1,54 @@
 # Experiment reporting policy
 
+## CURRENT045 IMPLEMENTED / no-cut preflight RUNNING — optimization ACTIVE
+
+044COMPLETE/REJECTED/published/pushed77f2cc7. FULL132%+n/N+TOTALextrasCHAT plus
+wrongmodetotals ALREADYDELIVERED; complete66BMPclassCSV LINKED. DoNOTrepeat.
+Whole041 retained82740/92100,E9270,W1604;43/86prioritybelow90. DefaultsUNCHANGED.
+044+272TP/+310E/+1W;280extrasotherNPcompositioncurated,30unsupported;ALLextras
+stillprimary;whole1:1guardfailed. No favourablepolaritysplice orbudgetrelaxation.
+
+NEW045plan docs/validation/next_BMP_headroom_experiment.txt written BEFORE any
+newcuts/outeroutputs. SAME44fixed25parents/50NPexperts/163inputs/363graphs and
+physical gate reused EXPLICITLY, NO newclassifierfits. ONLY change: INNERjoint
+operatingpoint safety: Enew<=.75TPnew plus EVERYleave-one-PROJECT remaining
+calibration-results E<=TP. Relatedfolders grouped (30projectIDs),notindependent
+datasets. Thisis a calibration-count influence/stabilitycheck, NOTretraining
+modelswithoutthatproject; usertoldexplicitly. ExistingfixedOOFmodelsalready
+excludeeachquery'swholeinnerfold. FinalWHOLElimits EXACT044unchanged andAST-
+identicaldecisionguardtestPASS. ComparatorWHOLE041,NOT44annotations; no new
+candidate/window/CDB/PAhardveto changes orwinner-model/class/polaritysplice.
+
+Allnew045runtime/preflight/FULLverifier/postprocessor/analysishelper implemented:
+bmp_project_headroom.py;run_qe_bmp_headroom_experiment.py;
+preflight_qe_bmp_headroom.py;verify_qe_bmp_headroom_experiment.py;
+postprocess_qe_bmp_headroom.py;report_qe_bmp_headroom_tradeoff.py.
+Pureindependent169grid/LPOwitness tests,missingproject/duplicatefolder/unknown/
+headroom/disable tests8newPASS; ALL51focusedtools testsPASS,RuffPASS. Noappedit.
+
+No-cut preflight session82131 RUNNING /tmp/laser_045_preflight.log. Target
+BMP_project_headroom_preflight_v1. ALL25reusedmodel/50expert metadata/scopes/
+support/params/matrixreceipts check implemented; ALL132scorecases+per-project
+curves havecompletedALL5folds atlastcheck (26/26/26/27/27),BITEXACT44scores and
+pooledcurves. ALL33disabledENTIRE041annotations/candidates andfinalsourcehash
+check stillneedreceipt. No045cut selection/OUTinitialize/outerannotations yet.
+CurrentALL45runtime/helper/plan/checker/postprocessor/reportsource andALL44
+source/artifacts now bound inrunninggate: DO NOT EDIT. No queuedlauncher.
+WaitfullpreflightDONE0/receipt/currentbindings,commit/pushnewsource,thenrun045.
+Source45source_inputs checkALL44master935artifacts+2333inputs (largehashreads).
+DoNOTreuseearlystdoutaswholegate orclaimnewfits. Current045filespendingGit.
+
+Final045master willfreshlyrecheckALL25sourceparents/528traininguses/50reused
+experts viafrozen44checker,132newscore/per-project independentcounts/five169
+grids/EACHremovedproject witness and33outer/rawquant/freshgold. No oldreceipt
+shortcut exceptunchangedfrozenphysical363construction bound by44master.
+All5newcutgrids BEFORE any045outeroutputs. WhennewrunnerDONE0, manuallyrun
+postprocess_qe_bmp_headroom.py thenreport_qe_bmp_headroom_tradeoff.py AFTER
+fullmaster; FULL132chat%+n/N+TOTALextras/wrongmodes +full66BMP link/endoSTD/
+WHOLEdecision/publication before046. No newcutchosenfromouterlabels. Extensive
+prior exposure acknowledged;notuntouchedexternalvalidation/deployment/FDR.
+GoalNOTmet; continueautonomously,doNOTendmerelycheckpoint. CFMmainonlypush.
+
 ## CURRENT044 COMPLETE / REJECTED WHOLE — optimization ACTIVE
 
 044producer37831DONE0,post91569DONE0,FULLmasterALLPASS. ALL25freshNPparents/
