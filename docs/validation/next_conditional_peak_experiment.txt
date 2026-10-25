@@ -38,6 +38,14 @@ totalpairweight1,thenactualcontributingproject totals equalized. Fullpermitted
 reference scope andactualsupervisedcontributors recordedSEPARATELY;neverinvent
 rows/groups toforceequality. Actualfit mustretain allquery/outer/inner exclusions.
 
+Implementation checkpoint:conditional_peak_model.py now provides the numerical
+fit/preference APIs,UNUSEDbyannotation. Synthetic-only8roundclassifier tests
+checkscopeguards/antisymmetry/unsupportedmodes;NOrealexample classifier fits.
+Pairbuilder batchedvectorization retains originalscalarreference(vectorized=False).
+ExactALL682pairrows/features/labels/weights/scopes matchedinone realquery(all4
+modes,outer0/inner1excluded);1.32sbatchedversus26.12sscalar inthatcheck,NOTa
+general runtime/annotation benchmark. No numericalpredictions orscope cached.
+
 Conservative runtime proposal
 Startfrom the WHOLEretainedreference AFTER037decision (029if037rejected,
 037onlyifWHOLE037retained),not a class/mode winner splice. FREEZEallaccepted
@@ -80,6 +88,17 @@ thenoverallcorrect,thenhighercutoff. Trainingguards: no commonclass/mode
 correctcount or totalmodecorrectcount maydecline; no increasewrongpeaks.
 Calibratedconfidence is NOTchemicalFDR. Finalexactcalibration/pipeline/source
 protocol and allinnerinputs mustbefrozen BEFOREouterannotation.
+
+IMPORTANTnestedcalibration boundary:old029/037INNERcutoffs werefitted oncore
+selection BEFORE005STD/fixed027massstages. ReconstructthatSAMEblindINNERcore
+acceptance for conditionalmove calibration; protectdeclaredactualspikes using
+matchingquery/outer/inner-excluded measurements/referencebundles. Never use
+OUTER-ONLY027masscandidate caches or005outerstandardfits as though these had
+inner-excludedreferences. They mayincludeexcludedgroups. OUTERrefinement uses
+theWHOLEvalidatedbasefinalannotations asfixedidentity/occupiedfeaturelist.
+This canconservatively block extra moves versusINNERcore-only occupancy;
+documentandtestthis boundary,doNOTinvent INNERfullpipeline/cachedinputs.
+No newmass/standard acceptance decisions,or outerlabels,selectmovecutoffs.
 
 Evaluation
 WHOLEalgorithm versus WHOLEreference,all33/132. Same92102historicalmanual,

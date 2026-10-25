@@ -36,6 +36,17 @@ authorizedTRAININGwithinidentitypairs;NOclassifierfits/scoring/annotations.
 Potentialidentity-preservingpeakrefinement plan (NOextraidentitycalls) saved
 docs/validation/next_conditional_peak_experiment.txt;NO038experiment before037
 FULLbenchmark/integrity/table/wholedecision. Allfutureplans not currentgains.
+Numericalconditional_peak_model.py prototype nowIMPLEMENTED,UNUSEDbyannotation:
+fixed4modes,conditionalTRAININGpairs,explicitactualcontributors/sparsefallback,
+antisymmetricpairpreferences;synthetic-onlyclassifiers.Noactualexamplefits.
+Pairbuildervectorization retains originalscalarmode;ALL682realquerypairrows/
+predictors/labels/weights/scopes EXACTall4modes(Zoemba,outer0/inner1excluded),
+1.32sversus26.12sscalarforTHISquery,notgeneralperformance/accuracy. Oldslow
+firstparentpair-construction-onlyprobe session25756stillrunning (no models):
+RPpos4730rows/RPneg1542rows,18actualprojects,320pairfeatures;latermodespending.
+Not used037;NONEofits hash-boundhelper/runner/preflight sources edited.
+Fullsource/syntheticQA inprogress. Followplan INNERcalibration boundary:
+doNOTborrowouter-only027masspools/005standardfits as inner-excluded inputs.
 
 ## USER-REQUESTED PAUSE — 25October2026,latest status
 

@@ -46,7 +46,9 @@ def pair_predictors(left, right):
     return pd.DataFrame(output)
 
 
-def conditional_training_pairs(data_by_dataset, *, training_groups, excluded_groups):
+def conditional_training_pairs(
+    data_by_dataset, *, training_groups, excluded_groups, vectorized=True
+):
     """Return balanced two-orientation pairs and equal-project weights.
 
     A training identity contributes only when its one mapped positive feature
@@ -86,7 +88,33 @@ def conditional_training_pairs(data_by_dataset, *, training_groups, excluded_gro
             raise ValueError("Explicit boolean supervision required")
         if (pool.training_positive & ~pool.training_label_known).any():
             raise ValueError("Positive training features cannot be unknown")
-        for _, group in pool.groupby(["stream", "name", "adduct"], sort=False):
+        keys = ["stream", "name", "adduct"]
+        eligible_pool = pool
+        if vectorized:
+            flags = pool.groupby(keys + ["feat_feature_id"])[
+                ["training_positive", "training_label_known"]
+            ].nunique()
+            if flags.gt(1).any().any():
+                raise ValueError(
+                    "Contradictory supervision for duplicate physical feature"
+                )
+            positive_features = (
+                pool[pool.training_positive].groupby(keys).feat_feature_id.nunique()
+            )
+            if positive_features.gt(1).any():
+                raise ValueError(
+                    "Contradictory multiple positive original features for one identity"
+                )
+            eligible = pool[keys].copy()
+            eligible["positive"] = pool.training_positive
+            eligible["negative"] = pool.training_label_known & ~pool.training_positive
+            grouped = eligible.groupby(keys, sort=False)
+            usable = grouped.positive.transform("any") & grouped.negative.transform(
+                "any"
+            )
+            eligible_pool = pool.loc[usable.fillna(False)]
+        left_indices, right_indices = [], []
+        for _, group in eligible_pool.groupby(keys, sort=False):
             flags = group.groupby("feat_feature_id")[
                 ["training_positive", "training_label_known"]
             ].nunique()
@@ -107,14 +135,28 @@ def conditional_training_pairs(data_by_dataset, *, training_groups, excluded_gro
                 continue
             pi = positive.index[0]
             ni = negative.index
-            left = evidence.loc[[pi] * len(negative)].reset_index(drop=True)
-            right = evidence.loc[ni].reset_index(drop=True)
-            frames.extend((pair_predictors(left, right), pair_predictors(right, left)))
+            if vectorized:
+                left_indices.extend([pi] * len(negative) + list(ni))
+                right_indices.extend(list(ni) + [pi] * len(negative))
+            else:
+                # Original scalar reference, retained for exact full-matrix QA.
+                left = evidence.loc[[pi] * len(negative)].reset_index(drop=True)
+                right = evidence.loc[ni].reset_index(drop=True)
+                frames.extend(
+                    (pair_predictors(left, right), pair_predictors(right, left))
+                )
             labels.extend([1] * len(negative) + [0] * len(negative))
             projects.extend([data["query_group"]] * (2 * len(negative)))
             identity_weights.extend([1 / (2 * len(negative))] * (2 * len(negative)))
             identities[data["query_group"]] += 1
             contributions[data["query_group"]] += 2 * len(negative)
+        if vectorized and left_indices:
+            frames.append(
+                pair_predictors(
+                    evidence.loc[left_indices].reset_index(drop=True),
+                    evidence.loc[right_indices].reset_index(drop=True),
+                )
+            )
     if not frames:
         raise ValueError("No permitted conditional peak-ranking pairs")
     matrix = pd.concat(frames, ignore_index=True)

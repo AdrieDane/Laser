@@ -137,3 +137,19 @@ def test_categorical_sides_swap_and_numeric_midpoints_are_symmetric():
         == -reverse["difference__error"].iloc[0]
         == -2
     )
+
+
+def test_batch_builder_matches_entire_original_scalar_matrix_labels_weights_and_scopes():
+    records = {"a": record("a"), "b": record("b")}
+    records["b"]["pool"].loc[2, "training_label_known"] = False
+    kwargs = dict(training_groups={"a", "b", "c"}, excluded_groups={"z"})
+    scalar = conditional_training_pairs(records, **kwargs, vectorized=False)
+    batch = conditional_training_pairs(records, **kwargs, vectorized=True)
+    assert scalar.keys() == batch.keys()
+    for key in scalar:
+        if isinstance(scalar[key], pd.DataFrame):
+            pd.testing.assert_frame_equal(scalar[key], batch[key], check_exact=True)
+        elif isinstance(scalar[key], np.ndarray):
+            np.testing.assert_array_equal(scalar[key], batch[key])
+        else:
+            assert scalar[key] == batch[key]
