@@ -19,7 +19,7 @@ from run_qe_atlas_experiment import species, adduct
 
 QE = ROOT / "outputs/qe_optimization_20261022"
 BASE = QE / "baseline"
-PREPARED = QE / "empirical_RT_candidate_preparation_v2"
+PREPARED = QE / "empirical_RT_candidate_preparation_v3"
 EMPIRICAL = QE / "nested_empirical_RT_references_v1"
 REFERENCES = QE / "nested_reference_development_v2"
 STD = QE / "experiment_005"
@@ -52,7 +52,7 @@ def initialize():
     )
     assert preflight["independent_standard_mask_measurement_reproductions"] == 11
     preflight_checker = Path(__file__).with_name(
-        "verify_qe_empirical_preparation_vectorized.py"
+        "verify_qe_empirical_preparation_fast.py"
     )
     assert sha(preflight_checker) == preflight["verifier_sha256"]
     assert (
@@ -63,15 +63,13 @@ def initialize():
         assert sha(Path(path)) == digest
     equivalence_path = PREPARED / "lookup_equivalence_receipt.json"
     equivalence = json.loads(equivalence_path.read_text())
-    assert (
-        equivalence["all_passed"]
-        and equivalence["exact_full_masked_table_comparisons"] >= 99
-    )
-    assert equivalence["completed_scalar_datasets"] == len(
-        list((QE / "empirical_RT_candidate_preparation_v1/checkpoints").glob("*.json"))
-    )
+    assert equivalence["all_passed"] and equivalence["unique_full_masked_tables"] >= 132
+    for name, count in equivalence[
+        "completed_datasets_by_original_implementation"
+    ].items():
+        assert count == len(list((QE / name / "checkpoints").glob("*.json")))
     equivalence_checker = Path(__file__).with_name(
-        "verify_qe_empirical_lookup_equivalence.py"
+        "verify_qe_empirical_fast_equivalence.py"
     )
     assert sha(equivalence_checker) == equivalence["verifier_sha256"]
     for path, digest in equivalence["inputs_sha256"].items():
@@ -185,7 +183,7 @@ def initialize():
             new_adduct_family_context_used=False,
             new_empirical_RT_discovery_used=True,
             new_numeric_features=8,
-            engineering_cache_policy="Existing deterministic normalization/range cache unchanged. No learnedmodel/RTprediction/label/score cache. Samecurrentfrozen composition module in preparation andfitting; all363physical/predictor reconstructions required.25empiricalrefs with5singlefold EXACTdiagnostic parity.",
+            engineering_cache_policy="Existing deterministic normalization/range cache unchanged. Vectorized exactRTlookup plus prefilterONLYprovably empty original-mass intervals;oldper-hit gates unchanged. ALLcompletedscalarv1/vectorv2fulltables mustmatchfastv3 EXACTLYbeforefits. No learnedmodel/RTprediction/label/score cache. All363physical/predictor/STD reconstructions required;25empiricalrefs with5singlefold EXACTdiagnostic parity.",
             research_retention_policy="Prefer whole-algorithm gains in correct original-feature matches with no increase versus029's9268unconfirmedextras or1604different-feature choices. Also inspect the86well-represented class/modes (>=100manual,>=3projectgroups), their capped90mean and per-mode regressions. Any trade-off must be quantified explicitly; no automatic production adoption,outer-winner class splicing or denominator exclusions. Sparse classes remain visible;onlyX4target exclusion authorized.",
             mass_discovery_policy="EXACT027fixed label-free physical proposal pools and same selection helper,applied AFTER newcore/005STD calls. Mass scope excludes query/outer. Novelty is relative to unchanged022physical pool. Existing current core calls immutable within mass stage. Changed core occupancy may change mass additions; full036algorithm evaluated versus029.",
             folds=5,

@@ -371,7 +371,7 @@ def main():
     assert receipt["independent_standard_mask_measurement_reproductions"] == 363
     assert receipt["numerical_reference_exact_reproductions"] == 25
     assert receipt["source_sha256"] == sha(
-        Path(__file__).with_name("verify_qe_empirical_preparation_vectorized.py")
+        Path(__file__).with_name("verify_qe_empirical_preparation_fast.py")
     )
     paths = list(OUT.glob("fold_*_nested_model.pkl")) + list(
         OUT.glob("calibration/fold_*/inner_block_*_model.pkl")

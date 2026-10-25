@@ -110,6 +110,25 @@ def test_unknown_target_evidence_is_missing_not_zero_error():
     assert np.isnan(evidence.iloc[0][PREFIX + "RT_error_seconds"])
 
 
+def test_provably_empty_mass_intervals_change_no_output_or_returned_targets():
+    values = inputs()
+    expected = call(values)[0]
+    extended = list(values)
+    extended[0] = pd.concat(
+        [
+            values[0],
+            *[
+                values[0].assign(name=f"unmatched_{i}", ref_mz=2000.0 + i)
+                for i in range(20)
+            ],
+        ],
+        ignore_index=True,
+    )
+    proposals, targets, predictions, parent = call(extended)
+    pd.testing.assert_frame_equal(proposals, expected, check_exact=True)
+    assert len(targets) == len(predictions) == len(parent) == 21
+
+
 def test_empirical_predictors_require_explicit_query_excluded_reference_scopes():
     records, groups, _ = score_fixture()
     query = score_data("z", sorted(groups), ["z"])

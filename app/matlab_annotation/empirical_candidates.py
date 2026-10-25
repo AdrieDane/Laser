@@ -125,7 +125,15 @@ def prepare_empirical_candidates(
     order = valid[np.argsort(mass[valid], kind="stable")]
     accepted_ions = set(matlab_annotation_adducts(stream[:2]))
     rows = []
-    for i, target in targets.iterrows():
+    # Provably empty original mass intervals cannot emit a physical pair.
+    # Precompute ONLY this necessary condition, preserving every target and
+    # predictor in the returned tables. The original exact per-hit mass/RT/
+    # chemistry checks below remain unchanged and determine final proposals.
+    _target_masses = targets.ref_mz.to_numpy(dtype=float)
+    _target_lo = np.searchsorted(mass[order], _target_masses * (1 - 3e-6))
+    _target_hi = np.searchsorted(mass[order], _target_masses * (1 + 3e-6), side="right")
+    _mass_possible = _target_hi > _target_lo
+    for i, target in targets.loc[_mass_possible].iterrows():
         predicted = float(predictions.loc[i, "atlas_rt_seconds"]) / 60
         mz = float(target.ref_mz)
         if (

@@ -17,7 +17,29 @@ currentlyrunning. Needfullannotationverifier+132INNERcutreplay stillimplement.
 Do NOTduplicate existingpreparer or startfits before363tables/earlyreplaypass.
 Source/aggregateworkcontinues;029retained;appdefaults unchanged.
 
-LATEST036engineering checkpoint supersedes preceding v1runningstatus:
+LATEST036engineering checkpoint V3 (supersedes ALLv1/v2runningstatus below):
+756app tests passed,8skipped,83subtests. Sourcepureoptimizations ONLY: vector
+RTlookup plus vector search forprovably EMPTY original-mass intervals before
+UNCHANGEDper-hit gates. Every theoretical target/prediction stillreturned.
+Scalarv1stopped after12complete datasets/132tables; vectorv2stopped after6/66;
+ALLfiles preserved,ZEROoldannotationfits. Fastv3preparer
+prepare_qe_empirical_candidates_fast.py RUNNING3workers to
+empirical_RT_candidate_preparation_v3; first6datasets/66tablescomplete atlastcheck.
+EarlySperm_cells ALL11fulltables match BOTHoldversions EXACTLY; independent
+freshSTD+ALL11full-table/predictor/meta replay V3PASSED,preflight_receipt saved.
+verify_qe_empirical_fast_equivalence.py mustcheck ALL12scalar+ALL6vector cases:
+198full comparisons/132UNIQUEquery-mask tables (overlapNOTindependent cases).
+ItprovesRTfitter/align/scope/scalarfallbackASTunchanged ANDentirephysicalgatebody
+ASTunchanged afterremovingonly4prefilterassignments/restoringolditerationdomain;
+allother runtime hashes unchanged. NeedwholegatebeforeANYscores.36runner now
+TARGETSv3,requires363summary+lookup_equivalence_receipt+v3preflight tiedchecker
+source/checkpoint/fulltablehashes. Fullrawpreparation verifier is
+verify_qe_empirical_preparation_fast.py (25refexactreplays,363freshSTDmaskchecks,
+363ALLphysical/predictor/meta tables),requiredforfinal36integrity. Fullannotation
+verifier verify_qe_empirical_experiment.py IMPLEMENTED butnotyetexecuted.
+No036classifier fits/annotationclaims yet. DoNOTstartduplicatepreparers.
+
+Earlier036engineering checkpoint (historicalv2):
 755app tests passed,8skipped,83subtests. RealSperm_cells independentALL11masked
 tables+freshSTDmeasurements EXACTreconstruction PASSED. Scalarv1preparer was
 SIGINTstopped intentionally after9complete receipts;runningworkers mayfinish
