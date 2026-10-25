@@ -1,5 +1,49 @@
 # Experiment reporting policy
 
+## CURRENT043 CLOSED / COMBINED PEAK DIAGNOSTIC COMPLETE — optimization ACTIVE
+
+43FULL132chat+wrongmodetotals DELIVERED (NPnegLysoIP260/339typo corrected),
+FULLmasterALLPASS;REJECTwhole43 (+5correct/+4unconfirmedE,0Wchange). Retain041
+82740/92100,E9270,W1604,43/86prioritybelow90. Source/results/public043report
+pushed4e56d22. Noappdefaults/deploymentchange;goalNOTmet. Noactual044started.
+
+Read-onlycombined_raw_model_peak_rank_audit_v1 COMPLETEALLPASS session92325
+DONE0. diagnose_qe_combined_peak_ranks.py +test_combined_peak_ranks.py (6PASS).
+ALL132query-excludedINNERscorings reverified;ALL132blindpotentialmoves frozen
+BEFORE context-authorizedtrainingtruthdecoded. GoldSETS handlemultiplecurated
+FIDs, unknownnotfalse, sameold41properINNERoccupancy. Originalcurrentchoice
+source musthaveknown43score;fixedbestBEFOREglobalclear/physical/free/profile
+screens, no fallback. Data repeatsfouroutertrainingcontexts;NOTbenchmarkgains.
+
+Atgap0:identity-only340manual-match gains/322correct-match losses;clearphysical
+freetarget328/305;+profile222/220. Atgap.1:112/98;108/92;84/70. Atgap.2:32/27;
+30/24;25/18. Atgap.3:11/2;11/1;9/1. Atgap.5none,onlyoneunconfirmedmove.
+Unknownmoves/wrong-to-other-wrong separate. Rejectblindjointscore peak swapping;
+strictrules yieldhandfulNOTlargeimprovement. Noannos/model/sourcechanges.
+Publicdocs/validation/qe_20261025_combined_peak_ranks prepared,pendingpush.
+
+NEXTREADONLY: sameORIGINALFEATURE butcompeting lipididentity/class/adduct
+diagnostic (notyetimplemented). Currentpeak-onlyaudit cannot see wrong-label
+onrightpeak corrections. Freezeproposals first, proper132INNERscope, no new
+fits/annotations. Needsource/pipelinebeforeanyactual044plan. Usertoldchecking
+wronglabelonrightpeak next. Ifweak, considernewBASELINE-RELATIVE action-benefit
+correctionmodel (notanothergeneralpresenceclassifier). Existingconditional
+withinidentity/pairwise/isomer models alreadytested; notnovelties. Genuine
+possible differences: new23physicalfields, explicitold-decision->alternative
+benefit/none-of-above target, SAMEFEATUREcross-class labelchanges. CRITICAL:
+trainingbaselinechoices mustbequery-independent (freshbaselineAUTOMATIC),
+NOTbaseclassifiertrainedonthatquery. Pairconstruction beforetruth, fullnested
+scope/support/prefit/auditbeforelearning. ThisisIDEAonly,noplan/fit yet.
+
+Avoidreinventing already-presentfeatures: original108alreadyhascarbon_odd,
+db_per_carbon,compositionprior/context. peak_evidence alreadycharge-aware and
+candidate_preparation passesactualadductcharge;donotclaimCL isotope-spacing
+bug. pairwise_peak_choice alreadyremovesbaseline-choice/confidencefeatures;
+conditional_peak_pairs alreadyhasdifference/midpoint/missingness features.
+Newfeatures/math mustreally differandbebenchmarked, notrenamingoldapproaches.
+Preserve43frozenpipeline/source/data;newdiagnostictools okay. Continue,doNOT
+stopmerelycheckpoint;goalACTIVE. Pushcfm/mainaftercurrentdiagnosticpublication.
+
 ## CURRENT043 FINAL COMPLETE / REJECTED — optimization ACTIVE
 
 043producer83785DONE0,postprocessor68374DONE0,fullmasterALLPASS. Actual25fresh

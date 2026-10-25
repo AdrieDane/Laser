@@ -1,0 +1,61 @@
+COMBINED043MODEL ORIGINAL-PEAK RANK DIAGNOSTIC — NO ANNOTATION CHANGES
+
+Result: do NOT blindly rerank041original-peak choices using043combined scores.
+Most ordinary preference thresholds fix about as many training-side manual
+matches as they lose. Very strict preferences leave only a handful of cases.
+This cannot provide the large improvement needed for the90%-each-class/mode goal.
+Retained research reference041; no model fits, annotation exports/default changes.
+
+Scope:132matchingINNER cases,33datasets/30project groups; each dataset appears
+under four different outer-training contexts. These are REPEATED diagnostic
+comparisons, NOT independent new observations or accepted benchmark gains.
+043models/131inputs are already fixed, and each query's scoring model/reference
+models exclude its own and matching outer/inner groups.041INNERoccupancy uses
+the existing outer-TRAINING operating rules; no outer-only005/027occupancy.
+
+ALL132potential-move tables were frozen before this diagnostic decoded the
+permitted case-specific training curation. Files were hashed beforehand, not
+used as predictors. Only context-authorized training references were compared;
+no matching outer-case truth used. Gold sets allow multiple curated original
+features per identity; no dictionary overwrite of a curated isomer.
+
+COMPARE MANUAL-MATCH GAINS / LOSSES OF PREVIOUSLY CORRECT MATCHES
+Minimum preference difference   Identity-only    Clear/physical/free    +newprofile
+0.00                            340 /322         328 /305               222 /220
+0.05                            186 /171         178 /162               130 /122
+0.10                            112 /98          108 /92                 84 /70
+0.20                             32 /27           30 /24                 25 /18
+0.30                             11 /2            11 /1                   9 /1
+0.50                              0 /0             0 /0                   0 /0
+
+Unconfirmed-identity moves and wrong-to-other-wrong choices are counted
+separately in the accompanying CSV; they are not counted as manual-match gains
+or proven chemical errors. At0.10, clear/physical/free also has17unconfirmed
+identity moves and4wrong-to-other-wrong choices. Adding new-profile availability
+leaves13unconfirmed and3wrong-to-other-wrong choices. No runtime manual-presence
+filter was introduced, and no annotation was actually moved.
+
+SCREEN DEFINITIONS
+Identity-only: strongest same lipid/adduct feature under the combined043model,
+compared with the old041INNERchoice only when that original feature has a
+score in the original candidate pool. Unknown old scores never get a fallback.
+Clear/physical/free: SAME fixed best feature must also win original global
+label competition with the fixed.05margin, pass unchanged3ppm/10s/native-
+adduct/standard/isotope protection and use an originally unoccupied target.
+No weaker second choice is promoted after filtering. New-profile screen also
+requires explicitly paired biological-profile measurements for the best peak.
+
+These are conditional local-choice diagnostics, not a validated correction
+policy, calibrated chemical-identity probabilities, FDR or deployment approval.
+The raw identity-only screen ignores global conflicts; filtering is not a
+substitute for a tested whole assignment policy and trained correction rules.
+Dataset cases repeat, so do NOT divide counts byfour and claim actual gains.
+
+Six synthetic guards passed: fixed winner/no fallback, free-target/standard
+constraints, unknown old scores, duplicate identities, supervision rejection,
+multiple gold features/unknown truth, and strict physical limits. All132blind
+tables plus source/input hashes were checked after comparison. No043pipeline
+source/model/input/annotation result was modified by this diagnostic.
+
+Next inspect SAME-PEAK competing lipid labels separately before designing any
+new correction model or annotation experiment. No044annotations started here.
