@@ -1,5 +1,33 @@
 # Experiment reporting policy
 
+## CURRENT042 RUNNING — ACTIVE, no outerresults yet
+
+Currentpushedsourceb6d7b7a. 042producer session59644/PID27786 RUNNING. 6/25fresh
+parents(48/upto200stageclassifiers) complete at latest, outer0/1/2calibrations
+stillinprogress. NOouterannotationoutputs/performanceyet. DoNOTduplicatefits,
+editfrozenapp/runner/helpers/preflight/plan, orstart043annotations beforefull042
+benchmark/FULL132chat/decision. FULLsourceinput1254 gatePASS;847app testsPASS.
+Earlysingleactualparent0/1 independentlyverifiedALL19trainingqueries/8stage
+models/support/categories/parameters/scopes PASS, session25535DONE0. Notfull
+integrity andmustNOTbe reusedas masterPASS. Full25/528/132INNER/33outer remains.
+Noqueuedpostprocessor;whenproducerDONE0 runpostprocess_qe_feature_label.py,
+thenfull132targetscopechat vs041/newwholemethoddecision/aggregatepublication.
+Sourceprotocol/snapshot exists;plannedcheckerhashfrozen. All5calibrations barrier
+BEFOREanyouterannotations remains. Whole041retained82740/92100,E9270,W1604.
+
+Read-onlyIMMUTABLE-call bound COMPLETEALL33/132, private
+immutable_call_ceiling_041_v2; v1sourcepreserved,v2cosmeticunusedimportcleanup,
+ALL33rerun/threeCSVsBYTEIDENTICAL. No model/annchanges. OnlyTWOpriorityclass/
+modes cannotreach90 ifEVERYoldcallfixed evenwithperfectfreefeaturediscovery:
+RPneg2-acylLPEcurrent378/448; idealimmutable ceiling398/448=88.8393%,need>=6
+manualmatchesrequiringoldcallchanges. RPnegLPI223/261; ceiling232/261=88.8889%,
+need>=3. Countsmanualentries NOTnumberofswaps; all122classesincldeferredsparse
+visible. OthersNOTruledout, notguaranteedgains. All28unresolvedremaindenominator.
+Publicdocs/validation/qe_20261025_immutable_ceiling readyforGitnext. ThisdoesNOT
+changefrozen042safeadditionprotocol; originalpeakcorrectionneededINLATERcycle
+withNEWpredeclaredINNERvalidation, notad hocouterfeaturemoves/cutoffrelaxation.
+No appdefaults/deploymentclaim;goalsNOTmet,optimizationACTIVE,usergoon.
+
 ## CURRENT042 FULL PREFLIGHT PASS / READY TO FIT — ACTIVE
 
 042runner/calibrator/FULLverifier/export helpers implemented; noactualfitsyet.

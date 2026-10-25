@@ -1,0 +1,40 @@
+Read-only bound for retaining EVERY041call unchanged, not annotation accuracy.
+ALL33datasets/132modes, target92,100manual rows (X4onlyexcluded),82,740correct.
+No classifier fits, annotation decisions, thresholds or appdefaults changed.
+
+For every manual entry, disjoint reasons: alreadycorrect; unresolvedmapping;
+oldsameidentitycalledelsewhere ANDcorrectpeakoccupied; identityblockedonly;
+featureblockedonly; freecorrectfeaturepresentCORE; freecorrectfeatureabsentCORE.
+All reasons sum to92,100. The optimistic immutablecall/discovery ceiling assumes
+PERFECT discovery/classification of every free mapped manual feature, even if
+currently absent from the candidate pool. It is an upperbound, not achievable
+performance, and does not prove unconfirmedextras are chemically wrong.
+Unresolved mappings stay in the full denominator and cannotbeconfirmedcorrect.
+
+Two well-represented class/modes cannotreach90% if all oldcalls stayunchanged:
+
+RPnegative2-acylLPE:378/448currentlycorrect=84.375%;20free mapped opportunities.
+Even perfectaddition reaches398/448=88.8393%. Atleast6manual matches needed
+for90% therefore require changing an existingcall. Not6necessarilydistinct
+swaps/actions; one reassignment may affect several manual entries.
+
+RPnegativeLPI:223/261currentlycorrect=85.4406%;9free mapped opportunities.
+Even perfectaddition reaches232/261=88.8889%. Atleast3manualmatches needed
+for90% require changing existingcalls.29sameidentity/wrongfeature callsblock
+other targets. A relaxed cutoff cannotfix those original-feature selections.
+
+The remaining well-represented class/modes are not ruledout by this optimistic
+bound; that does NOT guarantee enough candidates, discrimination or precision.
+Sparseclasses remain in the full detailed bound, dedicated optimization deferred.
+
+042is alreadytesting a SAFEadd-only feature/labelmodel. This bound does not
+change its predeclared protocol or justify outer-informed replacements. After
+its full33/132benchmark/report/decision, a NEW appropriately grouped/INNER-
+validated original-peak/label correction experiment will be needed for these
+blockedclasses.039conditional-label/038conditional-peak studies are historical;
+do not silently loosen or splice their favourable results.
+
+Sources/inputs hashchecked, privateimmutable_call_ceiling_041_v2;v1complete
+sourcepreserved andv2onlyremovesunusedimport/changesoutputfolder. ALL33v2checks
+rerun, allthree aggregate tables BYTEIDENTICALv1. No annotation experiment or
+new before/after table implied by this structural retrospective diagnostic.
