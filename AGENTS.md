@@ -1,5 +1,78 @@
 # Experiment reporting policy
 
+## CURRENT043 MASS/PROFILE PREPARATION RUNNING — optimization ACTIVE
+
+Usergoon; goalNOTmet. WHOLE041 retained82740/92100,E9270,W1604,
+43/86prioritybelow90.042rejected/FULL132chat ALREADYDELIVERED. Latestpushed
+54b4c1d(prototypes);newdiagnostic/preparation/docs pendingpush. No043actual
+classifiers/annotations/thresholds/default changes. NO deploymentclaim.
+
+ALL33raw32fieldpilot+independentNumPychecker COMPLETEALLPASS (210595options,
+6739040cells);777b0277...checkerSHA,441e22ab...blindreceiptSHA. RTavailability:
+RPglobal8/33datasets;NP18/33EXACTCer[d]only(notPE/PC). Newrawhelper stillunused
+byapp. FULL862app testsPASS/8skip/83subtests. Allapp/old32plan sourcesfrozen.
+
+ALL33retrospective diagnostic raw_counterpart_diagnostic_041_v2 COMPLETEPASS,
+session97168DONE0, /tmp/laser_raw_counterpart_diagnostic_v2.log. V1session40086
+failed endcounter: historicalprimary92100 INCLUDES1456spikedreferenceentries
+(1375matched). DiagnosticproperlyexcludesSTDs =>90644endogenous,81365correct
+(89.76%). Historical82740/92100 unchanged;doNOTreplaceprimarydenominator/call
+thisgain. Userinformedboth. V1source/logpreservedprivate;ALL33rerunv2,ALL33
+privateoptionPKLs BYTEIDENTICALv1. Addendogenouscompanion tofuturebenchmark.
+
+Newevidence NOTstandalonepeakpicker: missingmanualidentity comparisons raw
+500manualbetter/527rivalbetter/719unsupported;normalized504/522/720;within470/
+515/761;LOO499/528/719. These arediagnosticidentity-localcounts,ignorefinal
+occupancy/spikegates,NOTnewcorrectannotations/validatedswaps. DoNOTrerankold
+calls oncorrelationalone. BUTclassconditionalpresenceuseful e.g.RPposPE125/138
+missingtrueoptionsprofileavailable vs453/1103manualabsentunconfirmed. OldPE
+missingmedianraw.603 vswrongpeak.630 =>notcleanstandaloneselector. Fullpublic
+mode/classcategory+peakcomparisonCSV/report nowdocs/validation/
+qe_20261025_raw_counterpart_preparation. ExtrasunconfirmednotFP/FDR.
+
+NARROWEDprospectiveACTUAL043plan BEFOREnewfits:
+docs/validation/next_raw_counterpart_mass_profile_completion.txt. ONLYfirst23
+rawfields throughprofile_margin,EXCLUDElast9independentlymappedRTfields from
+thiscycle. RawRTdelta NOTconfirmedresidual. Original108+23=131predictors,
+originalpools EXACT; no candidates/windows/CDBchanges. Fouroriginal029binary
+modeexperts/same180roundparams/equalprojectweights;ALL041callsimmutable,
+same041INNERclasscutguards/wholetradeoff. No042stages/partialBMPmask. Need
+proper25parents/100freshclassifiers,132INNER/all5cuts BEFOREouter outputs.
+New23fields dependONLYonqueryrawtables+explicitmetadata+nativeiontemplates,
+NO fittedRT/reference membership/curation/oldranks asnewmeasurementinputs.
+Perdatasetunionofphysicaltuples acrossits11oldmasks memoizesmeasurements ONLY;
+exacttuplelookup backtooriginalpools doesNOTexpandquerycandidates. All363
+old108/refscopes unchanged. Thisavoids11identicalprofilecalculations perpair.
+
+RUNNINGpreparation raw_mass_profile_preparation_v2 session76805, log/tmp/
+laser_raw_mass_profile_preparation_v2.log,2workers;about7/33unions+77/363
+tablescompleteatlastcheck. Source prepare_qe_raw_mass_profile_tables.py.
+DoNOTedit boundapp/builder/new23plan/common/inputs whileactive. V1session72214
+DONE1 BEFOREmeasurements: too-strictper-FIDexactRTuniqueness; legacyRTbitdiff
+1.78e-15minutes/relative2.22e-16. V1source/log/planpreserved. V2retainsdifferent
+coordinate tuples DISTINCT (norounding/merge),constructorchecksEACHagainst
+originalraw atUNCHANGED8eps (notnewmass/RTwindows), allold108/poolcellsexact.
+ALL33/363restartv2; no partialreceipt reuse. Anunuseduncached32fielddriver was
+brieflydraftedthenremoved BEFOREeverrunning; NOT anexperiment/fit/preparation.
+
+IndependentALL33union/ALL363numeric/schema/lookup/scope checker IMPLEMENTED
+tools/qe_optimization/verify_qe_raw_mass_profile_tables.py, NOTYETexecutedwhole.
+UsesoriginalindependentNumPy profiles/comparison/centeredLOO primitives from
+777b0277...checker (UNCHANGED), independentnativecharge/masssearch, rawcoord
+8eps checks, MultiIndexlookup (notbuilderlookup),allold108/pools/scopes exact.
+Receipt target raw_mass_profile_independent_check_v1. Needfinishpreparation,
+THENrunthischecker full. Newsynthetictools tests13passed before2additional
+chargecases initiallycaughtverification-onlyion-normalizationbug; fixedby
+independention_key normalization, new15testssession33946DONE0ALLPASS. No
+realmodel/annotationoutput fromthatbug. Preparationbuilder/appunchanged.
+
+NO043runner/fullmaster/model/exportpreflight implementedyet. Mustcomplete
+construction +ALL25parent/528traininguses/33disabledENTIRE041exports/scope/
+constructor/fullrunner/verifier gates BEFOREactualfits. Thenfull33/132benchmark,
+primaryFULL132chat percent+n/N+extras +separatewrongmodetotals andendogenous
+companion before044. No newactualannexperimentsinthispreparation, nofull132
+repeatneedednow. Continueautonomously;doNOTendmerelycheckpoint. Pushcfm/main.
+
 ## CURRENT043 PHYSICAL PREPARATION — optimization ACTIVE, no new annotations
 
 Usergoon.041remains82740/92100correct,E9270,W1604,43/86prioritybelow90.
@@ -35,12 +108,16 @@ Somehistoricalmanualschemawasinspectedseparatelybeforepilot,notpredictorinput;
 doNOT claim blindexternaldata/no priorcurationexposure.
 
 NEWindependentNumPy ALL32field checker tools/qe_optimization/
-verify_qe_raw_counterpart_pilot.py implemented,NOWRUNNINGall33 (log/tmp/
-laser_raw_counterpart_independent.log). Separately
+verify_qe_raw_counterpart_pilot.py COMPLETEALLPASS session47841/PID30066DONE0,
+log/tmp/laser_raw_counterpart_independent.log. Separately
 reconstructscharge/profile/centeredLOO/RTapplication(no evidencehelper calls).
-Testsynthetic6casesPASS. Mustfinishthischecker ->
-raw_counterpart_feature_independent_check_v1/receipt.json BEFORE running
-diagnose_qe_raw_counterpart_pilot.py. DiagnosticrequiresbothcompleteALL33
+Testsynthetic6casesPASS. ALL210595options/6739040numericcells checked. Receipt
+raw_counterpart_feature_independent_check_v1/receipt.json ALLPASS;verifierSHA
+777b0277d896c090bf3e8d76a31abb5a34ecec028088a8390f607b636fc2fdec,blindreceipt
+441e22ab4f9dc146e902dc18129c6870ab343e391259c312e03199e6c3c4cd61. No
+evidence/RTmeasurementhelpercalls; independentcharge/profile/centeredLOO math.
+diagnose_qe_raw_counterpart_pilot.py NOWRUNNING session40086,log/tmp/
+laser_raw_counterpart_diagnostic.log. DiagnosticrequiresbothcompleteALL33
 receipts; disjointmanualcorrect/currentmissing/wrongpeak/alternativelabel
 unconfirmed/manualabsentunconfirmed/unresolvedcategories. No acceptedgains/
 FDR claims orchangedthresholds. Ifsignalpromising, stillneedall363nestedtables,
@@ -48,7 +125,8 @@ scope+old108parity+constructionaudit/fullpreflight/runner/checker BEFORE100fresh
 modebinaryclassifiers. Whole041oldcallsimmutable, same041INNERsafeguards. Full
 132chat percent+n/N+extras/wrongtotals beforeanynextannotationexperiment.
 No deploymentexports/report yet. GoalNOTmet. Continueautonomously, doNOTstop
-merelycheckpoint. New043filescurrentlyuncommitted;pushcfm/mainafterchecks.
+merelycheckpoint. New043prototypespushed54b4c1d; numericreceipts/reportupdate
+pendingpushafterdiagnostic. No043actualclassifierfits/annotationexperimentyet.
 
 ## CURRENT042 FINAL COMPLETE / REJECTED — optimization ACTIVE
 

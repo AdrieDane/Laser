@@ -1,0 +1,84 @@
+043 prospective ACTUAL fit hypothesis: mass/profile-only raw-counterpart
+conservative completion, compared with WHOLE041. No043fits/annotationsyet.
+This narrows the earlier next_raw_counterpart_evidence.txt preparation plan
+BEFORE any new example fits or annotation selections. Preserve original plan
+and32-field pilot; do not claim it already benchmarked annotation performance.
+
+ALL33/132 label-free numeric pilot completed; independent ALL32 reconstruction
+passed210595options/6739040cells. Retrospective diagnosticv2 ALL33passed; v1
+failed only an end-of-run counter assertion (wrongly expected all-manual counts
+after excluding standards),source/log preserved. ALL33reranv2,allprivateoption
+tables byteidenticalv1. No physical/source/annotation changes.
+
+Signal is limited: among missing identities with measurable manual/rival
+peaks, rawcorrelationfavoursmanual500vsrival527 (719unsupported). Normalized
+504vs522,withingroup470vs515,LOO499vs528. No stand-alone peak reranking or
+old-call swaps justified. But class-conditional presence can help: RPposPE
+missingtrue125/138profileavailable versus453/1103manual-absent options. These
+are exposed developmental diagnostic options,NOTaccepted gains/precision/FDR.
+No posthoc class-specific rule based on favourable held-out classes.
+
+New fitted inputs: ONLYfirst23 frozen raw-counterpart fields, through
+profile_margin. Exclude the nine independently-mappedRT fields this cycle:
+RPmapsavailable8/33 and NPmapsONLYCer[d]18/33. Never claim the retained RAW
+same-phase RTdelta is a confirmed residual. Any use of it is learned ONLYfrom
+authorized training projects; no explicitnewRTmap/anchor/acceptance rule.
+No RP/NP RTtransfer. Native review-only ions remain EVIDENCE ONLY.
+
+Original pools/108predictors unchanged; append23numeric fields (131total).
+No candidate/class/adduct/mass/RT/carbon/doublebond-range changes. All041calls
+immutable. Unassigned OTHERpolarity rawpeaks are searched at strict3ppm using
+actualnativeclass/phase iontemplates andcharge. ExplicitMS_metadata links only,
+>=8positivepairedBIOspecimens;technicalareasmeanbeforelog,QC/blanksnotBIO;
+withingrouprequires>=4residualDOF. Unsupportedpairing/chemistry staysunknown.
+
+All363nestedtables: new23 measurements are completely raw/mask-independent
+(no fittedRTlinks,reference models,manual labels,old agreement scores or group
+membership as measurement inputs). Perdataset make union of PHYSICAL tuples
+(stream,canonicalclass,nativeion,theoreticalmass,originalFID,originalRT) needed
+by its11existing query/mask pools, measure each once, then exact tuplelookup
+back to the ORIGINALpool. Union only memoizes measurements; NEVERexpands a
+querypool oruses other datasets/rawquant/curation. Identicalphysicaltuplemust
+haveidentical original coordinates. No tuples absent from the union allowed.
+Rawdataset/metadata/iontable andinput/source hashes bound before construction.
+All33outer-only first23 measurements must exactly reproduce priorpilot.
+IndependentNumPy ALLunionquery construction +ALL363lookup/old108/pool/scope
+checks beforefits. No unvalidatedcache,mask-specificRTcache orpartialreceipt
+reuse. Full25parent/528traininguses/132INNER/33disabledENTIRE041exports plus
+constructor/fullrunner/fullverifier preflight before fitting100freshclassifiers.
+
+Model original029fourfixed-mode binary HGBexperts,exact180roundparameters and
+equalprojectweights. NO042feature/conditional-label targets, no new labels or
+BMPpartialmask. Query/outer/inner reference exclusions remain for all original
+108 reference-derived fields. New23 fields use samequeryrawdata only. Each
+trainingquery uses originalownfold+outer(+inner)mask; no group names/FIDs as
+modelinputs. Labels only after scope authorization; no querylabels atpredict.
+
+Reconstruct041 INNER occupancy with matching frozen029INNER scores/cuts and
+041classcompletion cuts, not outer-only005/027output. Same041classcalibration:
+>=100manual/3projects,baseline<90%,newcorrect>=10/3projects,zero newwrongpeak,
+extras<=.2newcorrect AND<=.02manual,pooled/LOPO>=80%,substantialproject>=50%.
+Freeze strongestidentityfeature BEFORE ambiguity/occupancy/physical filters;
+no weaker-fallback promotion. Allfivecalibrations complete BEFOREoutercalls.
+No relaxations after held-out results.
+
+Whole-method retain: newcorrect>=4xnewunconfirmedextras,zeroaddedwrong/noold
+correctloss, improvebelow90prioritycells withoutworse cappedmean/count.
+Sameprimaryhistoricalscope92100,X4onlyexcluded; all28unresolvedremain. Sparse
+classes deferred/visible. Add ENDOGENOUS companion (90644manual/81365current
+correct), separatefrom1456spikedstandards/1375matched. Primaryoldcounts82740/
+92100 NOTreplaced; excludingstandards isNOTannotationgain. Additionalextras
+unconfirmed,notprovenfalsepositives/FDR. Report sameoriginalfeature ANDidentity/
+adduct/mode, full132chat primarypercent+n/N+extras +wrongmodetotals andwhole
+decision BEFOREany044annotationexperiment. Endogenouscompanionreportrequired.
+Productiondefaults unchanged; no deploymentclaim, freshapp benchmark/peakgroup
+exports/colleague report still later. Goal>=90%EACHclass/mode remainsunmet.
+
+Preparation engineering addendum BEFOREfits: first union-preparation attempt
+stopped at a too-strict bitwise per-FID RTuniqueness assertion, before new
+measurements. Existing masks differ by1.78e-15minutes for some RTs, m/zexact;
+source-relative maxerror2.22e-16 in the first checked dataset. Source/log/plan
+preservedv1. V2keeps such coordinate tuples DISTINCT (no rounding/merging or
+alteredold108cells). Every unioncoordinate must matchoriginalraw at existing
+8machine-eps tolerance, independentlyrechecked. No chemicalmass/RTwindow change.
+All33/363construction restarted; no oldpartialoutput/receipt reuse.

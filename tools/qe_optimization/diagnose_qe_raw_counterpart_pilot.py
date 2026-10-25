@@ -17,7 +17,7 @@ from frozen_resources import configure_frozen_resources
 import prepare_qe_raw_counterpart_pilot as prep
 import run_qe_add_only_class_experiment as common
 
-OUT = common.QE / "raw_counterpart_diagnostic_041_v1"
+OUT = common.QE / "raw_counterpart_diagnostic_041_v2"
 
 
 def option_categories(pool, manual, accepted):
@@ -115,6 +115,7 @@ def main():
         "best_RT_supported_correlation",
     ]
     total_manual = total_current = 0
+    historical_manual = historical_current = 0
     for d in datasets:
         pool = common.common.load_predictors(d, {folds[d]})["pool"]
         saved = pd.read_pickle(prep.OUT / "private" / (d + ".pkl"))
@@ -130,6 +131,9 @@ def main():
             keep_default_na=False,
         )
         relevant = manual.loc[~manual.internal_standard & ~manual.lipid_class.eq("X4")]
+        historical = manual.loc[~manual.lipid_class.eq("X4")]
+        historical_manual += len(historical)
+        historical_current += int(historical.same_manual_peak.sum())
         total_manual += len(relevant)
         total_current += int(relevant.same_manual_peak.sum())
         p = option_categories(pool, manual, accepted)
@@ -212,7 +216,8 @@ def main():
                     )
                 )
         print("RETROSPECTIVE RAW MEASUREMENT DIAGNOSTIC", d, len(combined), flush=True)
-    assert total_manual == 92100 and total_current == 82740
+    assert historical_manual == 92100 and historical_current == 82740
+    assert total_manual == 90644 and total_current == 81365
     table = pd.DataFrame(metrics)
     table.to_csv(OUT / "by_dataset_mode_class_category_measurement.csv", index=False)
     counts = pd.DataFrame(
@@ -267,12 +272,18 @@ def main():
             modes=132,
             annotation_changes=False,
             classifier_fits=0,
-            manual_entries_checked=total_manual,
-            retained_current_correct=total_current,
+            endogenous_manual_entries_checked=total_manual,
+            endogenous_retained_current_correct=total_current,
+            historical_all_manual_entries_checked=historical_manual,
+            historical_retained_current_correct=historical_current,
+            internal_standard_entries_excluded_from_THIS_diagnostic=historical_manual
+            - total_manual,
+            internal_standard_matches_excluded_from_THIS_diagnostic=historical_current
+            - total_current,
             blind_physical_receipt_sha256=common.sha(receipt_path),
             source_input_sha256=hashes,
             artifact_sha256=artifact_hashes,
-            note="Retrospective diagnostic ONLY, not selection validation/gains/precision/FDR. Unique original identity+adduct+feature options, no candidate-version inflation. Identity-local comparisons ignore occupancy/final gates. Manual-absent and alternative-label categories remain unconfirmed. No thresholds/calls/defaults changed; all33 measurements frozen before this diagnostic opens curation.",
+            note="Retrospective ENDOGENOUS measurement diagnostic ONLY, not selection validation/gains/precision/FDR. Historical all-manual target benchmark includes1456spiked reference entries(1375matched); it remains92100/82740 unchanged. This separate diagnostic excludes standards:90644/81365. NOT an annotation gain/primary-denominator replacement. Unique original identity+adduct+feature options, no candidate-version inflation. Identity-local comparisons ignore occupancy/final gates. Manual-absent and alternative-label categories remain unconfirmed. No thresholds/calls/defaults changed; all33 measurements frozen before this diagnostic opens curation. V1assertion wronglyexpectedall-manualtotals afterexcludingstandards; failedsource/log preserved,ALL33rerunv2.",
         ),
     )
     print("ALL33 RETROSPECTIVE MEASUREMENT CHECKS PASS", flush=True)

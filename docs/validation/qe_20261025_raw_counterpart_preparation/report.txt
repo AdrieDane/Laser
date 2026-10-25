@@ -33,7 +33,7 @@ offset MAD<=2s. Raw alternate-ion searches require<1.5ppm and unique hits in
 a coarse30s search seeded by an already trusted shared spike. No seed means
 no augmentation. Disagreeing/ambiguous aliases are withheld, not accumulated.
 
-PROFILE MEASUREMENTS — UNDER NUMERICAL VALIDATION
+PROFILE MEASUREMENTS — NUMERICAL VALIDATION COMPLETE
 The second prototype produces32 numeric fields. Opposite-polarity raw peaks
 must be within3ppm of native predicted masses. It uses explicitly validated
 MS_metadata specimen links only;30 datasets have supported pairing,3 do not.
@@ -51,17 +51,63 @@ ENGINEERING STATUS
 15 focused application tests passed; full application suite862 passed,
 8 skipped,83 subtests passed.6 synthetic diagnostic/independent-calculation
 checks passed. These are software checks, NOT annotation performance gains.
-All33 physical measurement tables are being frozen before the retrospective
-manual-reference diagnostic. An independent checker reconstructs all32 fields
+All33 physical measurement tables were frozen before the retrospective
+manual-reference diagnostic. An independent checker reconstructed all32 fields
 with separate charge algebra, NumPy profiles/correlations, centered-point
-leave-one-out calculations and RT-map application. Full receipts are required
-before the manual-reference diagnostic can execute.
+leave-one-out calculations and RT-map application. ALL33/132 checks passed:
+210595 candidate options and6739040 numeric cells checked. Complete blind and
+independent receipts were required before the manual diagnostic began.
+109735/210595 options (52.1%) have measured paired-biological profiles. This
+is evidence availability, NOT a count of correctly annotated lipids.
 
 No new classifier fits, selected annotations, cutoffs or app defaults here.
-If useful, these measurements still need full363 nested query/reference
-preparation, independent construction checks, a full fit/export preflight and
-a fresh100-classifier nested experiment. The user's full132-row before/after
+These measurements still need full363 nested query/reference preparation,
+independent construction checks, a full fit/export preflight and a fresh
+100-classifier nested experiment. The user's full132-row before/after
 annotation table will be supplied for any actual annotation-changing trial.
 Manual-absent extras are unconfirmed, not demonstrated false positives/FDR.
 This collection has been used for development; it is not a fresh external
 deployment validation. The >=90% EACH-class/EACH-mode goal is not met.
+
+RETROSPECTIVE DIAGNOSTIC — ALL33 COMPLETE
+The historical92100-row target includes1456 spiked reference lipid entries,
+of which1375 currently match the manual original peak. Keep that scope for
+continuity; do not silently replace old denominators. The sample's own lipids
+are a separate90644-entry view:81365 correct (89.76%). Neither this separation
+nor any number below is an annotation gain. Standards are excluded only from
+the following measurement-separation diagnostic.
+
+Raw correlation by itself favours the manual original peak in500 missing-
+annotation comparisons and a different peak in527;719 cannot be compared.
+Normalized correlation:504 versus522 (720unsupported). Within-group:470
+versus515 (761unsupported). Leave-one-out:499 versus528 (719unsupported).
+These identity-local diagnostic comparisons ignore global occupancy and final
+gates. They are NOT validated reassignment suggestions or expected gains.
+Conclusion: reject using raw correlation alone to swap existing peak choices.
+
+Availability can still add class-conditional information. For RP-positive PE,
+125/138 currently missing correct candidate options have measurable paired
+profiles, versus453/1103 manual-absent/unconfirmed options. However, raw
+correlation medians are0.603 for those missing correct PE options and0.630
+for different-peak PE options. This is supporting evidence, not a clean
+stand-alone classifier, chemical confirmation or a claim of high precision.
+All mode/class categories and peak-comparison counts accompany this report.
+
+Diagnostic v1 reached all33 but stopped at an assertion that incorrectly
+expected92100/82740 after excluding standards. Its source/log are preserved
+privately. V2 explicitly checks BOTH scopes; all33 were rerun and their
+private option tables are byte-identical. No physical fields or annotations
+were adjusted in response to the diagnostic.
+
+NEXT ACTUAL TRIAL — PROSPECTIVE, NO FITS YET
+See next_raw_counterpart_mass_profile_completion.txt. Narrow the fitting inputs
+to the23 raw mass/profile fields, excluding the nine independently mapped-RT
+fields with limited support. Original108 inputs remain exact:131 total.
+The raw same-phase RT difference is not a confirmed RT residual. Memoize
+physical measurements only within a dataset and exactly project them back to
+each of the original11 mask-specific pools; no query pool is enlarged. Full
+363-table construction is underway, independent audit/model/export preflight
+still required. No cached fitted RT maps, curated labels or reference-group
+membership enter the new raw measurements. Refit four binary mode experts
+with original fixed parameters; keep all041 annotations and acceptance rules.
+No posthoc favourable-class splicing or threshold relaxation.

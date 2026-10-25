@@ -1,0 +1,22 @@
+{
+  "scope": "Read-only raw counterpart measurement preparation; not annotation performance",
+  "datasets": 33,
+  "dataset_modes": 132,
+  "candidate_options": 210595,
+  "new_numeric_fields": 32,
+  "independently_checked_numeric_cells": 6739040,
+  "all33_physical_tables_frozen_before_retrospective_diagnostic": true,
+  "independent_numeric_check_all_passed": true,
+  "manual_files_opened_by_measurement_producer_and_numeric_checker": 0,
+  "classifier_fits": 0,
+  "annotation_changes": false,
+  "production_defaults_changed": false,
+  "full_app_tests_passed": 862,
+  "full_app_tests_skipped": 8,
+  "full_app_subtests_passed": 83,
+  "focused_diagnostic_tests_passed": 6,
+  "raw_union_memoization_and_independent_constructor_tests_passed": 9,
+  "independent_verifier_sha256": "777b0277d896c090bf3e8d76a31abb5a34ecec028088a8390f607b636fc2fdec",
+  "blind_physical_receipt_sha256": "441e22ab4f9dc146e902dc18129c6870ab343e391259c312e03199e6c3c4cd61",
+  "note": "Numeric correctness and availability only. Previously exposed grouped development collection, not external validation, proof of chemical identity, annotation gains or FDR. Full nested feature preparation and a new annotation benchmark are still required. Unconfirmed extras are not proven false positives."
+}
