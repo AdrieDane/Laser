@@ -1,5 +1,35 @@
 # Experiment reporting policy
 
+## CURRENT044 ACTUAL RUNNING — source frozen, goal ACTIVE
+
+Source/preflight/analysis guards pushed CFMmain7ec7bd3. Actual044runner session
+37831 RUNNING, /tmp/laser_044_run.log,3workers. Initialized2333source/input hashes,
+planned fullmaster SHA c98cfb5ca8ead18a0a4da59cf3c518dbb2d1f826d5b0cd97fe89e9b6ca5d59a0.
+Atlatest18/25parents (36/50NPclassifiers) completed and3/5INNERjointcalibrations
+done (folds0/1/2); folds3/4stillinprogress. NOouterannotationoutputs atlastcheck.
+Allfivecuts barrier BEFORE anyouterannotation remains. DoNOTduplicate runner,
+edit sourcebound runtime/helpers/plan/checker, relaxlimits, orstart045. Whole041
+retained untilWHOLE044actualbenchmark/decision. Defaultsunchanged/goalNOTmet.
+
+Early actualparent0/1 full independent19training-query +2expert matrices/
+targets/weights/support/parameters check PASS, session98619 DONE0. This is NOT
+wholeexperiment integrity/performance. Early FULLfold0 INNER score/proposal/
+count/allthreshold/cachedsubset/fulljointgrid check NOWRUNNING session from
+latesttoolcall, log/tmp/laser_044_early_calibration.log. It is diagnostic only;
+final master MUST freshly verifyALL25parents/132INNER/5grids/33outer/rawquant/
+samegold, notreuseearlystdoutasreceipt. No queued postprocessor/nextcycle.
+
+When37831DONE0: manually run postprocess_qe_bmp_context.py, then
+report_qe_bmp_context_tradeoff.py AFTER full master. FULL132target-scope CHAT
+table%+n/N+totalextrasbefore/after, separatewrongmodetotals, linkedfull66BMPtable,
+endo/STD companions andWHOLEretain/reject decision BEFORE045. Compare WHOLE041,
+notold029. Newprospective guardsfixed:>=100newcorrect,Enew<=TPnewand<=571,
+unsupportedotherNPcompositionE<=.1endoBMPN,newwrong<=5and<=.005NperNP; no old
+loss/nootherclasschange. ALL unconfirmed extras remainprimary, no manual query
+filter/exemptions/FDRclaim. Analysishelperhash0525d9c325942b99cee2fefb66e0ec2752969c7794863e59179fbff1628ffd54.
+DoNOTdeclaredeploymentready or90goalachieved fromtraininggrids/earlyaudits.
+Continueautonomously; doNOTendmerelycheckpoint.
+
 ## CURRENT044 READY TO FIT — complete current no-fit gate PASS
 
 FULL v2 preflight session1230 DONE0 ALLPASS. All330unique independent target/
