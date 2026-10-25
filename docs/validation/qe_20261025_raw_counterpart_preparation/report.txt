@@ -76,6 +76,10 @@ continuity; do not silently replace old denominators. The sample's own lipids
 are a separate90644-entry view:81365 correct (89.76%). Neither this separation
 nor any number below is an annotation gain. Standards are excluded only from
 the following measurement-separation diagnostic.
+The separate current sample-lipid view has8549unconfirmed extras and1577
+different-original-peak calls; spiked references account for721unconfirmed
+extra reference calls and27different-peak calls. These sum to the historical
+9270extras/1604different-peak total. No call has been removed or relabelled.
 
 Raw correlation by itself favours the manual original peak in500 missing-
 annotation comparisons and a different peak in527;719 cannot be compared.
