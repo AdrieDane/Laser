@@ -31,6 +31,19 @@ def test_private_inputs_and_absolute_paths_removed():
     }
 
 
+def test_complete_approved_aggregate_copies_without_altering_values(tmp_path):
+    source = tmp_path / "source.csv"
+    destination = tmp_path / "public.csv"
+    rows = [
+        {"dataset": f"dataset_{i}", "stream": stream, "manual_rows_before": i + 1}
+        for i in range(33)
+        for stream in ("RP_Pos", "RP_Neg", "NP_Pos", "NP_Neg")
+    ]
+    pd.DataFrame(rows).to_csv(source, index=False)
+    copy_aggregate(source, destination)
+    assert source.read_bytes() == destination.read_bytes()
+
+
 def test_no_publication_before_complete_integrity(tmp_path):
     experiment = tmp_path / "private"
     (experiment / "reports_v2").mkdir(parents=True)

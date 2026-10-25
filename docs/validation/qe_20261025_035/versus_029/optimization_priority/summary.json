@@ -1,0 +1,49 @@
+{
+  "minimum_manual_entries": 100,
+  "minimum_independent_project_groups": 3,
+  "purpose": "Optimization priority only,not revised success criteria or benchmark exclusions. Full all-class132row comparison remains authoritative; sparse classes stay visible. Only X4 is user-excluded from target scope. Extras are unconfirmed,not false positives/FDR.",
+  "groups": {
+    "defer_sparse": {
+      "class_modes": 36,
+      "manual_entries": 1229,
+      "correct_before": 833,
+      "percent_before": 67.77868185516681,
+      "unconfirmed_extras_before": 253,
+      "different_feature_before": 15,
+      "class_modes_below_90_before": 33,
+      "correct_after": 829,
+      "percent_after": 67.45321399511798,
+      "unconfirmed_extras_after": 237,
+      "different_feature_after": 13,
+      "class_modes_below_90_after": 32
+    },
+    "prioritize": {
+      "class_modes": 86,
+      "manual_entries": 90871,
+      "correct_before": 81896,
+      "percent_before": 90.1233616885475,
+      "unconfirmed_extras_before": 8387,
+      "different_feature_before": 1589,
+      "class_modes_below_90_before": 43,
+      "correct_after": 81706,
+      "percent_after": 89.91427408083987,
+      "unconfirmed_extras_after": 8302,
+      "different_feature_after": 1606,
+      "class_modes_below_90_after": 45
+    },
+    "user_excluded_X4": {
+      "class_modes": 1,
+      "manual_entries": 2,
+      "correct_before": 0,
+      "percent_before": 0.0,
+      "unconfirmed_extras_before": 0,
+      "different_feature_before": 0,
+      "class_modes_below_90_before": 1,
+      "correct_after": 0,
+      "percent_after": 0.0,
+      "unconfirmed_extras_after": 0,
+      "different_feature_after": 0,
+      "class_modes_below_90_after": 1
+    }
+  }
+}

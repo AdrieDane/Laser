@@ -2,7 +2,19 @@
 
 ## Current work status — RESUMED by user,25October2026
 
-035INPROGRESS after034full132table/rejection: fixed chemical family/mode scoring
+035COMPLETE,REJECTED. Full132TARGETscope chat table+wrongmode totals DELIVERED.
+029retained.82729 ->82535/92100 (-194correct),89.8251900 ->89.6145494%;extras
+9268 ->9167(-101);wrong1604 ->1619(+15). Priority81896 ->81706/90871(-190),
+43 ->45below90/86;capped90mean83.8606410 ->83.5910602. Sparse833 ->829/1229.
+Alltarget76 ->77below90/122. ALLintegrityPASS:298source/503input hashes,
+25freshparents/325fresh180roundfamilyexperts,25HASHBOUND029fallbackmodels;
+528ALLtraining-query label/scope/support reconstructions,132INNER+33outer
+scores,5fullcountgrids+cutchoices,132full005STD+027mass+rawcoord replays,
+33identicalmanualhashes.192preexistingroundoffcells,1STDaliasdemotion.
+Reports docs/validation/qe_20261025_035; actualdelta versus_029. No appdefault.
+Next: stronger RTprediction/discovery from029,not035familyoutputs or034cuts.
+
+035method after034full132table/rejection: fixed chemical family/mode scoring
 on EXACT029all363preparedpools/predictors/labels. Four predeclared families:
 glycerophospholipids,sphingolipids,glycerolipids,fatty_acid_ester; canonical
 ether/positional aliases normalized for routing ONLY,not merged as identities.

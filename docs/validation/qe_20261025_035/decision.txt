@@ -1,0 +1,79 @@
+Experiment035: predefined chemical-family scorers — REJECTED
+25October2026. Retained research reference029; NO app defaults changed.
+
+Actual comparison versus029 (versus_029/; root tables compare original baseline)
+Target82729/92100=89.8251900109% ->82535/92100=89.6145494028% (-194correct).
+Unconfirmed extras9268 ->9167 (-101); different-original-peak calls1604 ->1619
+(+15). Target class/modes below90%76 ->77of122. Historical92102denominator,
+same correct/extras/wrong counts; historical class/modes below90%77 ->78of123.
+Priority86class/modes:81896 ->81706/90871 (-190),90.1233616885 ->89.9142740808%;
+below90%43 ->45. Priority extras8387 ->8302; wrong1589 ->1606. Sparse36cells:
+833 ->829/1229,extras253 ->237,wrong15 ->13,below90%33 ->32. Sparse classes
+were not dedicated targets; remain in full reports. Priority extras omit zero-
+manual classes,so full9167is authoritative. Capped90priorityclassmean
+83.8606409894 ->83.5910601643 (diagnostic objective,NOT correct/manual coverage).
+
+Mode target counts
+RP_Pos40648 ->40574/45206;extras3391 ->3430;wrong932 ->953.
+RP_Neg12088 ->11989/13600;extras1995 ->1841;wrong408 ->392.
+NP_Pos17637 ->17697/19380;extras1944 ->1977;wrong163 ->171.
+NP_Neg12356 ->12275/13914;extras1938 ->1919;wrong101 ->103.
+PE: RP_Pos1953 ->1958/2209,RP_Neg2461 ->2462/2621,
+NP_Pos1973 ->1969/2158,NP_Neg2036/2251unchanged. Not90%eachstream.
+BMP: NP_Pos270 ->281/622 (+11correct,+18extras); NP_Neg146 ->143/520
+(-3correct,+44extras). Both polarities still permitted; no extras discounted.
+Largest priority losses: RP_Pos CE-66,RP_Neg FA-OH-44,NP_Neg FA-37,
+RP_Pos TG-O-31,DG-20. Gains include RP_Pos PC+36,PC-O+31,1-acylLPC+18,
+RP_Neg PI+16,NP_Pos HexCer-d+15. Do NOT splice successful class/mode outputs.
+
+What changed
+Fixed chemical-class routing to four broad families IN ALLfourmodes:
+glycerophospholipid,sphingolipid,glycerolipid,fatty_acid_ester. Canonical ether/
+positional aliases normalized for routing ONLY; original chemical identities
+remain separate. New family expert used only with TRAINING support>=200known
+rows,>=20positive and20negative,positive rows from>=3independent projects.
+Otherwise explicit unchanged HASHBOUND029modeexpert fallback. All25new parent
+models each fitted13eligible family/mode experts:325fresh180-round classifiers.
+No model chosen by outer performance. ALLclasses still compete globally for
+the same original peaks. Full allowed reference scope and actual supervised
+contributors recorded SEPARATELY,not invented rows or implicit dropped groups.
+Equal project weight within each family; SAMEknown029labels/predictors/pools
+and363prepared query/mask tables. No new descriptors, chemistry, mass/RTwindows,
+composition ranges or matrix identities. Fresh4INNERblock scores and SAME009
+MODE-level weakest-mode objective/.2..1grid/pooled9.5%endo-training extras budget
+/.05ambiguity. NOT rejected034class cutoffs. SAME005STDcleanup/fixed027massrule.
+Outer-only027masscache never enters INNERcalibration. No033newRTpools/scores.
+
+Decision
+Reject the WHOLEalgorithm: fewer correct matches,more wrong original peaks and
+more priority classes below90%; reduced extras do not justify this regression.
+029remains retained,including its disclosed prior regressions versus028:
+RPnegative-48,NPnegative-65 includingNPnegativeBMP-84. Goal NOT achieved and
+app NOT deployment-ready. Next investigate better RT prediction/discovery:
+changing scores alone cannot recover original peaks absent from candidate pool.
+
+Scope/limitations
+All33activefolders/132modes/30projectgroups. Correct requires SAME lipid,adduct,
+mode AND ORIGINAL FEATURE as manual. All manual rows incl28unresolved retained;
+zero duplicate mapped rows. User-excludedX4alone removes2rows in TARGETview,
+NOT an annotation gain. Extras are manual-absent,UNCONFIRMED,not proven false
+identities/FDR. Cached original-feature research replay,NOTfresh production
+raw-input annotation or untouched external validation; prior development and
+inherited vendor/baseline exposure remain. No fitted weights/raw profiles/
+feature-ID tables/crosswalks uploaded. Full132target-scope chat table and
+separate wrong-peak totals delivered BEFORE next annotation-changing cycle.
+
+Verification/publication
+744app tests passed,8skipped,83subtests;4aggregatepublication tests passed.
+Full integrity ALLPASSED:298source/503input hashes,528training-query label/
+scope/support reconstructions;325fresh180roundexperts in25parents,25hashbound
+unchanged029fallbackmodels.132INNER+33outer scores,5fullcountgrids/cutoffchoices,
+132fullpipeline/rawcoordinate checks,33identicalmanualreferencehashes.192legacy
+roundoff cells,1STDaliasdemotion reproduced. Integrity tool SHA256:
+208533d0b44126f3a2de1d73e74f098728c2bbf25bf1ede85fb13e6894f6b4be.
+The report publisher REQUIRES complete33dataset results AND a passing full
+integrity receipt. See integrity_receipt.json for exact counts/toolhash once
+published: all model training-label/scope/support reconstructions,all132INNER
+and33outer scores,all5countgrids/cutoffchoices,all132full005/027pipeline and
+raw-coordinate replays,33identical gold-reference hashes. Original coordinates
+allow machine roundoff ONLY (8*eps relative,zero absolute),not analytical shifts.

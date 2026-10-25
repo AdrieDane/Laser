@@ -1,0 +1,23 @@
+{
+  "all_passed": true,
+  "annotation_experiment": "035",
+  "integrity_tool_sha256": "208533d0b44126f3a2de1d73e74f098728c2bbf25bf1ede85fb13e6894f6b4be",
+  "source_file_hash_checks": 298,
+  "input_file_hash_checks": 503,
+  "new_parent_models": 25,
+  "new_fitted_family_mode_experts": 325,
+  "hash_bound_unchanged029fallback_models": 25,
+  "all_training_query_scope_and_label_reconstructions": 528,
+  "inner_score_reproductions": 132,
+  "full_training_grid_and_cutoff_reproductions": 5,
+  "heldout_score_reproductions": 33,
+  "full005standard027mass_pipeline_reproductions": 132,
+  "raw_coordinate_stream_checks": 132,
+  "identical_manual_reference_hash_checks": 33,
+  "raw_coordinate_rtol": 1.7763568394002505e-15,
+  "raw_coordinate_atol": 0,
+  "preexisting_roundoff_cells": 192,
+  "standard_alias_demotions": 1,
+  "production_enabled": false,
+  "note": "Engineering integrity,NOT untouched external validation/FDR. Fixed chemical family architecture,training-only supportfallback. Exact029prepared inputs/labels;all classes compete globally. Samemodecalibration,005STD/fixed027massstage. Sourceinput hashes/private profiles and models stay local."
+}
