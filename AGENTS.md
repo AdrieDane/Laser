@@ -1,5 +1,32 @@
 # Experiment reporting policy
 
+## CURRENT042 ALL33OUTPUTS DONE / FULLREPORT+AUDIT RUNNING — ACTIVE
+
+042producer59644/PID27786 DONEexit0. ALL25freshparents/200stageclassifiers and
+ALL33/132outerannotationoutputs COMPLETE. ALL5INNERclasscalibrations chose
+ZEROenabledclasses: alladditionswithheldunderfixedguards. Noactual annotation
+changesvs041 expected, but DO NOTsubstituteexpectedidenticalcounts for full
+evaluation/report. No threshold/budgetrelaxation ornew043annotations.
+Postprocessor session8620 RUNNING /tmp/laser_042_post.log: evaluatesALL33samev2
+reference, baseline+versus041reports,targetX4/priority,andFULLmaster042verifier.
+Needfinish25/528/132INNER/fivecurves/33outer/rawquant/acceptedexports/goldhash
+checks; NOmasterPASSyet. Early0/1parent check wasONLYonecase, not reusablefull
+masterreceipt. Plannedchecker/source_snapshot/models/inputs remainfrozen.
+FULL132chat042 table NOTYETDELIVERED. Required beforeanyactual043experiment.
+041retained82740/92100,E9270,W1604,43/86prioritybelow90;42likelyrejectnochange.
+
+Read-onlyTRAINING-ONLY identitypeak-rank diagnostic session25971 RUNNING:
+diagnose_qe_training_peak_ranks.py ->feature_label_training_peak_rank_audit_v1.
+Onlystable132INNERscores/authorizedouterTRAININGlabels, no newpredictor/models/
+outerannotationchanges. Diagnosticignoresglobaloccupancy/finalspikegates and
+repeatsdatasetsunderfouroutertrainingcontexts; countsNOTacceptedmoves/gains.
+Purposedecide whethernew42ranks couldjustifyFUTUREfixedidentityglobalmatching
+vsneednewphysicalevidence. No043plan/code/annotationsyet. Needsfullreceipt.
+Sourcefile notpartof042frozenpipeline and pendingGit. Latestpusheda521824.
+Fullimmutablecallboundpublicreportpushed; two priorityclasses needoldcall
+changes eventually (RPneg2acylLPE>=6manualmatches;LPI>=3),notcutoffrelaxation.
+No appdefaults/deploymentapproval;goalNOTmet,optimizationACTIVE,usergoon.
+
 ## CURRENT042 RUNNING — ACTIVE, no outerresults yet
 
 Currentpushedsourceb6d7b7a. 042producer session59644/PID27786 RUNNING. 6/25fresh
