@@ -1,5 +1,19 @@
 # Experiment reporting policy
 
+## RESUMED — latest user said "go on",25October2026
+
+Userrevokedpause. Continueautonomous optimization;029retained,defaults unchanged.
+New verify_qe_empirical_preparation_resumable.py wraps UNCHANGEDoriginalchecker
+functions;FULL33/363reconstruction restarted (NOoldstdout/partialreuse). It saves
+case receipts ONLYAFTERfull11table/freshSTD checks,hashbound ALLsource/input/
+expectedtables/measurements pluswrapper/checker. Inputchanges invalidateALL.
+Original036preflight/runner/checker/hashbindings unchanged. Unitresume2testsPASS.
+Session19926RUNNING; session72180full036annotationverifierRUNNING inparallel,
+willwaitforfullpreparationreceipt. DoNOTduplicate either or changehashbound
+wrappersources. Allprevious18cases mustberecomputed (no validatedoldreceipts).
+No037fitsyet; its330tablepreflightreceipt stillbindscurrentsources. Finish036
+master/publicaggregates thenrun037asplanned. Pauseparagraphsbelowhistorical.
+
 ## USER-REQUESTED PAUSE — 25October2026,latest status
 
 User said "pauze when you can". PAUSED; doNOTcontinue optimization unless
