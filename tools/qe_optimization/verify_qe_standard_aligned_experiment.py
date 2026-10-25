@@ -54,7 +54,12 @@ def verify_raw_preparation(dataset):
     coords = [
         "stream",
         "name",
+        "class",
         "adduct",
+        "carbon",
+        "db",
+        "ref_mz",
+        "ref_rt",
         "feat_feature_id",
         "feat_mz",
         "feat_rt",
@@ -280,6 +285,8 @@ def verify_heldout_dataset(dataset):
 
 
 def main():
+    import run_qe_standard_aligned_experiment as runner
+
     protocol = json.loads((OUT / "protocol.json").read_text())
     assert (
         configure_frozen_resources(OUT / "source_snapshot")
@@ -343,6 +350,7 @@ def main():
             assert expert["columns"] == model["columns"]
             assert set(expert["categories"]["stream"]) == {mode}
             assert "sample_weight_policy" not in expert
+        training_counts = {s: [0, 0] for s in model["experts"]}
         for dataset, mask in model["training_feature_masks"].items():
             query_group = dataset[:7]
             assert dataset[:7] in training and dataset[:7] not in excluded
@@ -364,7 +372,22 @@ def main():
             bundle = json.loads(reference.read_text())
             assert set(bundle["training_groups"]) == set(scope["training"])
             assert set(bundle["excluded_groups"]) == set(scope["excluded"])
+            data = runner.load_predictors(dataset, mask)
+            labeled, _, _ = runner.with_training_labels(
+                data, permitted_groups=training, excluded_groups=excluded
+            )
+            for stream, part in labeled["pool"].groupby("stream", sort=False):
+                known = part.training_label_known.astype(bool)
+                training_counts[stream][0] += int(known.sum())
+                training_counts[stream][1] += int(
+                    part.loc[known, "training_positive"].sum()
+                )
             training_queries += 1
+        for stream, expert in model["experts"].items():
+            assert training_counts[stream] == [
+                expert["training_pairs"],
+                expert["positives"],
+            ]
         audits.append(
             dict(
                 model=path.relative_to(OUT).as_posix(),

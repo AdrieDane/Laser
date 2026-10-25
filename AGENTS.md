@@ -11,6 +11,19 @@ RT alignment from retained029; no production defaults change. Handoff and
 next implementation notes:docs/validation/next_common_RT_experiment.txt;
 verified results:docs/validation/qe_20261024_032/versus_029/.
 
+25October033implementation:standard_aligned_candidates.py adds STRICT original-
+feature discovery and8numeric independent-standard RTdescriptors. ALLold029
+physical competitors retained;competition evidence recomputed. New scope guard
+recognizes q_standard_aligned_ even without oldSTDcolumns.713app/tests passed,
+8skipped,83subtests. Label-free preparationv1 is running across363query/masks;
+first Sperm_cells dataset independently reconstructed all11masks including raw
+spike detection/all predictors. This is integrity,NOT annotation accuracy.
+Runner waits for complete preparation before fresh25nested/100expert033fits,
+then samev2evaluation/full132report/integrity. NO033performance claim yet.
+Do not start a duplicate033runner or a next experiment before its fulltable.
+Sources:prepare/run/verify_qe_standard_aligned*_experiment.py in tools (prepare
+file is prepare_qe_standard_aligned_candidates.py).029remains retained.
+
 ## Active example collection — user decision, 22 October 2026
 
 The ONLY active example collection for future optimization and performance

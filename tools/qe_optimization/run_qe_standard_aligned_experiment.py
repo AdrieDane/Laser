@@ -264,7 +264,12 @@ def with_training_labels(data, *, permitted_groups, excluded_groups):
     coords = [
         "stream",
         "name",
+        "class",
         "adduct",
+        "carbon",
+        "db",
+        "ref_mz",
+        "ref_rt",
         "feat_feature_id",
         "feat_mz",
         "feat_rt",

@@ -4,6 +4,16 @@ Prospective next optimization cycle after032 — implementation notes
 RESUMED by explicit user request25October2026 after032complete verification.
 Implement independent-standard RT discovery from029, not rejected032.
 
+25October progress: implementation complete,713app/tests passed/8skipped/
+83subtests. Label-free standard_aligned_candidate_preparation_v1 is running.
+One realdataset(Sperm_cells) independently reconstructed all11masks,including
+freshrawspikedetection and ALLpredictors. NOannotation performance claim yet.
+033orchestrator waits for363complete tables before fresh fits/evaluation/
+fullreports/integrity. Do not launch duplicates. Newrunner/preparer/verifier:
+tools/qe_optimization/{prepare_qe_standard_aligned_candidates,
+run_qe_standard_aligned_experiment,verify_qe_standard_aligned_experiment}.py.
+Below notes remain the prospective protocol,not evidence of measured gains.
+
 Reference and prerequisites (032integrity nowALLPASSED):
 Use retained029,NOTrejected032/031/030outputs. Full032TARGETscope132table has
 been delivered. Wait for032complete integrity receipt before next annotation
