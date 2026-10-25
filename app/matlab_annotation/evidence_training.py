@@ -21,6 +21,7 @@ FORBIDDEN = {
     "query_group",
     "training_positive",
     "training_label_known",
+    "training_review_uncertain",
     "manual_feature_id",
     "same_manual_peak",
 }
@@ -133,13 +134,13 @@ def fit_grouped_evidence_model(
     """Same fixed HGB/cohort-balanced weighting as007, genuinely excluded inputs."""
     from sklearn.ensemble import HistGradientBoostingClassifier
 
-    if weight_policy not in (None, "tempered_class_mode"):
+    if weight_policy not in (None, "tempered_class_mode", "review_aware_negative"):
         raise ValueError("Unknown research sample-weight policy")
     if parameters.get("early_stopping") is not False:
         raise ValueError(
             "Disable implicit row-wise validation/early stopping for grouped research fits"
         )
-    xs, ys, groups = [], [], []
+    xs, ys, groups, uncertain = [], [], [], []
     schema = None
     for data in data_by_dataset.values():
         validate_feature_scope(
@@ -160,6 +161,15 @@ def fit_grouped_evidence_model(
                 "Predictor schemas must be identical across training queries"
             )
         known = pool.training_label_known.astype(bool)
+        if weight_policy == "review_aware_negative":
+            if (
+                "training_review_uncertain" not in pool
+                or not pool.training_review_uncertain.isin([True, False]).all()
+            ):
+                raise ValueError(
+                    "Separate explicit review-uncertain training flags required"
+                )
+            uncertain.extend(pool.loc[known, "training_review_uncertain"].astype(bool))
         xs.append(evidence.loc[known, schema])
         ys.extend(pool.loc[known, "training_positive"].astype(int))
         groups.extend([data["query_group"]] * int(known.sum()))
@@ -203,6 +213,26 @@ def fit_grouped_evidence_model(
             maximum_factor=4.0,
             minimum_weight=float(weights.min()),
             maximum_weight=float(weights.max()),
+            cohort_total_target=float(target_weight),
+            cohort_total_max_abs_error=float(
+                max(abs(v - target_weight) for v in totals.values())
+            ),
+        )
+    elif weight_policy == "review_aware_negative":
+        from .review_aware_supervision import review_tempered_weights
+
+        weights = review_tempered_weights(groups, ys, uncertain)
+        totals = Counter()
+        for cohort, weight in zip(groups, weights):
+            totals[cohort] += float(weight)
+        target_weight = len(groups) / len(counts)
+        model["sample_weight_policy"] = dict(
+            kind=weight_policy,
+            uncertain_negative_factor=0.25,
+            uncertain_negative_rows=int(sum(uncertain)),
+            uncertain_negative_by_project=dict(
+                Counter(g for g, flag in zip(groups, uncertain) if flag)
+            ),
             cohort_total_target=float(target_weight),
             cohort_total_max_abs_error=float(
                 max(abs(v - target_weight) for v in totals.values())

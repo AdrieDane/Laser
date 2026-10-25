@@ -1,0 +1,80 @@
+Experiment037: review-aware negative training evidence
+Predeclared25October2026, BEFORE any037classifier fit/outer annotation.
+
+Reference: retain WHOLE029,not rejected036RTunion or selected winners from
+024/030/033/034/035. All33activefolders/132modes/30groupedprojects. Research
+replay,not fresh production runs or untouched external validation.
+
+Hypothesis
+Current training assigns a negative to each manual-absent physical candidate.
+A missing manual class/mode is not established chemical absence, particularly
+when the same class is curated in another mode. This may teach review choices
+instead of only chemical evidence. It may ALSO represent genuine absence;
+this experiment must count every resulting manual-absent call as an extra.
+
+Read-only029outer-candidate audit,210595rows (not actualfit pooledrowcounts):
+87080correct-original-peak positives;39already-unknown unresolvedidentities;
+8061otherpeaks forcuratedidentities;5978otherlabels oncuratedpeaks;
+37351absentidentities in reviewedclass/modes;51280class absentTHISmanualmode
+but presentOTHERmanualmode;20806class absentallfourmanualmodes. No inferred
+positives, no evidence these51280are true or falseidentifications. The v2audit
+repeated all66inputhashchecks after formatting; both aggregate tables are
+byte-identical to v1. All classes incl X4 remain visible in this diagnostic.
+
+One controlled change
+All original known/positive flags and fitting rows stay unchanged. A known
+negative gets factor0.25 ONLY if its canonical class is absent from THIS
+training dataset's manual mode but present in another endogenous manual mode,
+AND its lipid/adduct identity is absent from thismode's manual list,
+AND its original feature is not occupied by another mapped endogenous manual
+annotation. Standards do not establish endogenous review. Unresolved identities
+stay unknown. Ether/plasmalogen/positional classes are not merged.
+
+All other factors1.0. Renormalize equal total weight perproject WITHIN each
+measurement-mode expert. Quarterweight is FIXED in advance, not fitted or
+selected using outer scores. No rows deleted, no unknown-label policy, no
+pseudo positives, no inverseclassweighting. Never add this training-only flag
+to predictors. Caller checks permittedproject BEFORE opening a manual file;
+helper checks permissions again before using the passed manual table.
+
+Unchanged
+EXACT029all363label-free physical/predictor tables,15independentSTDfields,
+candidate chemistry/3ppm/10s gates,composition envelopes,reference scopes,
+all baseline/spike/mass inputs. All4modeexperts freshly180rounds in25parents
+(100classifiers),no fitcache. Same5groupedouterblocks and4innerblocks.
+Calibrate with ORIGINAL known/positive/manual-identity truth,NOT review flags:
+same009mode objective,pooled9.5%endogenousmanual extra budget,.2..1grid and
+.05ambiguity margin. Same005STD cleanup/fixed027mass selection. All classes
+compete together; changed core occupancy can change final mass additions.
+No ownquery/manualworkbook/savedfit/FID/name/matrix predictors.
+
+Integrity gates
+Finish036full independent363physical/STD and25reference reconstruction,
+plus25model/528trainingquery/132INNER/33outer/132pipeline checks. Full036table
+and rejection already reported. No037fit before036masterreceipt.
+037preflight checks330UNIQUE trainingquery/mask tables across all25parents
+and528queryuses: positive/known counts unchanged versus029for all100experts;
+all oldphysical/predictor/label columns exact; independent retrospective
+category counts match reviewflags byclass/mode. Bindsource/input hashes.
+Whole037verifier repeats528scopes/labels/reviewflags/weights,all132INNERscores,
+fivefullgrids/cutoff choices,33outerscores,132fullpipelines/rawcoords,
+33acceptedcandidate/export parity and33identicalmanualreference hashes.
+
+Decision and reporting BEFORE next experiment
+Evaluate WHOLE037versusWHOLE029 on all33/132. Full132user-facing before/after
+table with percent(n/N),extrasbefore/after,and separatewrong-feature totals.
+All92102historicalmanual entries incl28unresolved remain; companion target
+92100excludes user-excludedX4only. 86priorityclass/modes (90871manual) plus
+36sparsecells remain visible. Extra means absentmanual,NOT provenfalse/FDR.
+No curatorreference/denominator or oppositeNPBMPpreferred-polarity changes.
+
+Prudent research-retention guards set BEFORE037results: more totalcorrect,
+no increase in9268totalextras or1604wrongpeaks, improved prioritycapped90mean,
+no increase in43prioritycellsbelow90, and no measurementstream losing more
+than0.5percentagepoint correct/manual. Otherwise reject WHOLEalgorithm;
+do not splice successful testclasses into029. Even a small retained gain is
+NOT deployment readiness or completion of90%perclass/permode goal.
+
+Once integrated app genuinely ready: fresh33end-to-end annotated original
+peakgroup exports and one colleague-ready report,per deployment_benchmark_plan.
+No current researchweights/rawprofiles/manualcrosswalks/FIDs in publicGit.

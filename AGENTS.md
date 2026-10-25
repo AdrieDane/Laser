@@ -2,6 +2,44 @@
 
 ## Current work status — RESUMED by user,25October2026
 
+LATEST CHECKPOINT (supersedes all earlier036in-progress paragraphs): ALL036
+fits/annotations/evaluation COMPLETE,33datasets/132modes. FULL132TARGETscope
+user-facing table plus wrong-feature mode totals DELIVERED.036 REJECTED:
+82729 ->82546/92100,89.8251900 ->89.6264929%,extras9268 ->9202,wrong1604 ->1589.
+Priority81896 ->81713/90871,43 ->44below90/86,capped90mean83.8606410 ->83.5970788.
+Sparse833/1229unchanged;alltarget76 ->77below90/122. NPposBMP-44correct;
+NPnegBMP+24correct/+65extras,NOTa posthoc class splice.029retained,no defaults.
+V3preparation ALL33/363complete;100fresh036modeclassifiers in25parents and33
+outer outputs complete. Full fastpreparation reconstruction still RUNNING
+session19873;fullannotation integrity RUNNING session86734. Verifier now
+computes model/inner/outer checks while prep runs,waits forFULL363receipt
+BEFOREmasterPASS. DoNOTduplicate either. Needfinalreceipt thenaggregatepublish
+docs/validation/qe_20261025_036,decision/push before next annotation experiment.
+
+Read-only negative-supervision audit ALL33/132 COMPLETE:
+negative_supervision_diagnostic_029_v1.210595outercandidate rows:87080positive,
+39alreadyunknown,8061wrongpeak-for-curatedidentity,5978otherlabel-on-curatedpeak,
+37351manual-absentidentity in reviewedclass/mode,51280classabsentTHISmodebut
+presentOTHERmode,20806classabsentallmodes. NOTactualfitpooledcounts/accuracy;
+absence may be truechemicalabsence ORunreviewed,not proven mislabels.
+Source diagnose_qe_negative_supervision.py;66inputhashes,read-only. V2 repeats
+allhashchecks after formatting;bothaggregatetables BYTEIDENTICALv1.
+Next037prototype:review_aware_supervision.py plusOPT-INfitweight policy,
+ALLlabels/rows/positives retained. ONLYnegative classabsentTHISmode butpresent
+OTHERmanualmode,withNOcuratedidentity/peakconflict,gets factor0.25;project
+totalsrenormalized equal. No query-curation predictors,manualinputsTRAINING
+onlyafterpermissions. Not024unknownBMPsplicing;ALL4expertsfresh,029pool/features
+unchanged,009calibration/evaluationEXACToriginalknownlabels,005/027unchanged.
+DoNOTfit037before036fullintegrity/decision.763app testsPASS/8skipped/83subtests.
+037runner/verifier IMPLEMENTED:run/verify_qe_review_tempered_experiment.py.
+Preflight_qe_review_supervision.py RUNNING session22880,all330UNIQUEtraining
+tables/528queryuses/25parents;independentcategory/flagcounts,alloldlabels/coords/
+predictors andall100expertknown/positivecounts. RunnerREQUIRESthatreceipt and
+ALLits source/inputhashes BEFOREsnapshot/fits. DoNOTeditrunner/helper/preflight
+while that audit runs (hash-bound). Old009calibrator ASTEXACT except explicit
+apply_review=False for calibrationtruth. Plan/retentionguards predeclared in
+docs/validation/next_review_tempered_experiment.txt. No037annotations/fitlaunch.
+
 036IMPLEMENTATION/PREPARATION RUNNING (NO036annotation fits yet):754app tests
 passed,8skipped,83subtests. ALL25nested_empirical_RT_references_v1 complete;
 5singlefold references EXACTnumericdiagnostic. empirical_RT_candidate_preparation_v1

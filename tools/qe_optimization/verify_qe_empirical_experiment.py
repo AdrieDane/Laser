@@ -4,6 +4,7 @@ from collections import Counter
 from concurrent.futures import ProcessPoolExecutor
 import json
 from pathlib import Path
+import time
 
 import numpy as np
 import pandas as pd
@@ -359,6 +360,7 @@ def verify_model(path):
 
 
 def main():
+    verifier_hash = sha(Path(__file__))
     protocol, _ = runner.initialize()
     projects, _ = inventory()
     assert (
@@ -366,13 +368,6 @@ def main():
         and json.loads((OUT / "reports_v2/summary.json").read_text())["complete"]
     )
     prep = runner.PREPARED
-    receipt = json.loads((prep / "integrity_receipt.json").read_text())
-    assert receipt["all_passed"] and receipt["full_masked_table_reproductions"] == 363
-    assert receipt["independent_standard_mask_measurement_reproductions"] == 363
-    assert receipt["numerical_reference_exact_reproductions"] == 25
-    assert receipt["source_sha256"] == sha(
-        Path(__file__).with_name("verify_qe_empirical_preparation_fast.py")
-    )
     paths = list(OUT.glob("fold_*_nested_model.pkl")) + list(
         OUT.glob("calibration/fold_*/inner_block_*_model.pkl")
     )
@@ -384,6 +379,23 @@ def main():
         outer = list(executor.map(verify_dataset, projects))
     assert sum(r["blind_dataset_score_checks"] for r in inner) == 132
     assert sum(r[0] for r in outer) == 132
+    # Independent annotation checks can run while the much slower physical
+    # reconstruction finishes. Never issue a master PASS without both checks.
+    deadline = time.monotonic() + 4 * 60 * 60
+    receipt_path = prep / "integrity_receipt.json"
+    while not receipt_path.exists():
+        assert time.monotonic() < deadline, "Preparation verification timed out"
+        assert sha(Path(__file__)) == verifier_hash, "Verifier changed during run"
+        print("ANNOTATION CHECKS COMPLETE; waiting for FULL preparation replay", flush=True)
+        time.sleep(60)
+    receipt = json.loads(receipt_path.read_text())
+    assert receipt["all_passed"] and receipt["full_masked_table_reproductions"] == 363
+    assert receipt["independent_standard_mask_measurement_reproductions"] == 363
+    assert receipt["numerical_reference_exact_reproductions"] == 25
+    assert receipt["source_sha256"] == sha(
+        Path(__file__).with_name("verify_qe_empirical_preparation_fast.py")
+    )
+    assert sha(Path(__file__)) == verifier_hash, "Verifier changed during run"
     result = dict(
         all_passed=True,
         annotation_experiment="036",

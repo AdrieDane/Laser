@@ -31,7 +31,7 @@ def _subset(data, mode):
 
 
 def fit_mode_evidence_experts(
-    data_by_dataset, *, training_groups, excluded_groups, parameters
+    data_by_dataset, *, training_groups, excluded_groups, parameters, weight_policy=None
 ):
     """Fit ALL four experts with fixed180-round family, no class/mode cherry-pick."""
     for data in data_by_dataset.values():
@@ -51,6 +51,7 @@ def fit_mode_evidence_experts(
             training_groups=training_groups,
             excluded_groups=excluded_groups,
             parameters=parameters,
+            weight_policy=weight_policy,
         )
     columns = next(iter(experts.values()))["columns"]
     assert all(m["columns"] == columns for m in experts.values())
