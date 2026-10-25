@@ -103,15 +103,21 @@ privately. V2 explicitly checks BOTH scopes; all33 were rerun and their
 private option tables are byte-identical. No physical fields or annotations
 were adjusted in response to the diagnostic.
 
-NEXT ACTUAL TRIAL — PROSPECTIVE, NO FITS YET
+ACTUAL TRIAL043 — NOW RUNNING, NO PERFORMANCE RESULTS YET
 See next_raw_counterpart_mass_profile_completion.txt. Narrow the fitting inputs
 to the23 raw mass/profile fields, excluding the nine independently mapped-RT
 fields with limited support. Original108 inputs remain exact:131 total.
 The raw same-phase RT difference is not a confirmed RT residual. Memoize
 physical measurements only within a dataset and exactly project them back to
 each of the original11 mask-specific pools; no query pool is enlarged. Full
-363-table construction is underway, independent audit/model/export preflight
-still required. No cached fitted RT maps, curated labels or reference-group
+363-table construction and the independent audit are complete:222082physical
+queries,5107886independent raw-field cells and2296075table-lookup rows checked.
+All25parent preparations/528training-query uses and33disabled-full exports
+passed the pre-run checks (1834source/inputhashes). No cached fitted RT maps,
+curated labels or reference-group
 membership enter the new raw measurements. Refit four binary mode experts
 with original fixed parameters; keep all041 annotations and acceptance rules.
 No posthoc favourable-class splicing or threshold relaxation.
+The actual100-classifier trial is running. Full33-dataset annotation
+performance and full final model/export checks are not yet available. Do not
+interpret numerical/pre-run checks as a completed annotation benchmark.

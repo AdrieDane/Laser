@@ -1,5 +1,57 @@
 # Experiment reporting policy
 
+## CURRENT043 ACTUAL EXPERIMENT RUNNING — optimization ACTIVE
+
+Latestpushedadf7080. Usergoon,goalNOTmet;WHOLE041 stillretained82740/92100,
+E9270,W1604,43/86prioritybelow90.042rejected/FULL132chatALREADYDELIVERED.
+Actual043producer session83785/PID32259RUNNING, /tmp/laser_043_run.log,
+3workers. Atlastcheck6/25freshparents(24/100binarymodeclassifiers)DONE;
+0/5calibrations/0outeroutputs. DoNOTstart044orclaimgain. ALLfivecalibrations
+finish BEFOREouterannotations. No postprocessorqueued: afterproducerDONE0,
+run postprocess_qe_raw_mass_profile.py withusual2envvars/CPUthreadlimits.
+Then FULL132primarychatpercent+n/N+extras/wrongmodetotals+endogenouscompanion
+andwholemethoddecision BEFOREnextannotationexperiment. Evenzeroadditions
+stillneedcompletebenchmark/fullmaster/report;doNOTsubstituteexpectedcounts.
+
+FullconstructionCOMPLETEALLPASS: raw_mass_profile_preparation_v2 session76805
+DONE0; raw_mass_profile_independent_check_v1 session1516DONE0. ALL33unions,
+222082physicalqueries/5107886independent23fieldcells,ALL363tablelookups/
+2296075rows/old108/pools/reference-scopes exact. CheckerSHAe2c154d87718785bd43
+e7d877642ee4f979b876e88d23248d48acf2372514c13;prep.receiptSHAa5d11c3303b40146
+bfc2d15a4aec952263d6bf5a77d7d0dfb52f209e21af464e. Rawonlyexacttuples,
+nofittedRTcache/labels, all33outer23fieldsbitexactprior32pilot. Existing1-bit
+RTaliaseskeptDISTINCT;rawcoordinates8eps/originalold108unchanged.
+
+FullNOFITgate raw_mass_profile_model_preflight_v1 COMPLETEALLPASS session21035
+DONE0:25actualparentpreps/528traininguses,all4modeknown/positive/category/schema
+counts match029,balancedprojects/unfittedconstructor,ALL33disabledENTIRE041
+CSV/candidatesexact.1834source/inputhashes;supportSHAaba0bf62388d63aa94c68d8fb09
+fafd5b38b7928bc1a90a4d17f1eeb4e8d3808. Early0/1parentwasONLYdiagnostic notgate.
+19synthetictools testsPASS (4orchestration/export/cut-schema,9rawconstruction,
+6diagnostic);fullapp862PASS/8skip/83subtests (appcodeUNCHANGEDthroughthisstage).
+
+FULLrunner/master/preflight/postprocessor/endogenousreport IMPLEMENTED:
+run_qe_raw_mass_profile_experiment.py,verify_qe_raw_mass_profile_experiment.py,
+preflight_qe_raw_mass_profile_models.py,postprocess_qe_raw_mass_profile.py,
+report_qe_endogenous_companion.py. source_snapshot/protocolINITIALIZED.
+Masterplanned=currentSHA02f2b3f908aa405b6ae2cfdf5d4e96b68ce3974f535584627e00299a
+3b8f7933. ALLcode/app/helpers/plans/inputs nowFROZEN;doNOTedituntilactualrun+
+fullmastercomplete. FullmasterhasNOTYETexecutedactual25/100models/132INNER/
+fivecuts/33outer/132rawquant/goldchecks. Needcompleteall,notearlypartialreceipt.
+Original41INNERoccupancy helper from042 reusedONLYforcorrectprioroccupancy;
+NO042ranks/models/outputs asnewscoring. Fresh4binarymodeexperts/parent,131inputs
+(original108+first23raw fields).Nooriginalpeakreassignment/newcandidate/window/
+CDBchanges;ALL041callsimmutable;original041classguards/wholetradeoff unchanged.
+
+EndogenouscompanionSELFREPORT041->041 COMPLETEPASS session56970DONE0,
+endogenous_companion_self_check_041_v1:samplelipids81365/90644=89.7632496%,
+E8549,W1577,28unresolved. Spikedrefs1375/1456=94.4368%,E721,W27. SUMSgive
+historical82740/92100,E9270,W1604. NevercountremovingSTDsasgain;primaryhistory
+unchanged;futurebenchmarkreportsBOTHscopes. Publiccurrent041scopeJSON/full132
+companionCSVunder qe_20261025_raw_counterpart_preparation. Noannotationchange
+inthisselfreport. ExtrasunconfirmednotFP/FDR. No deployment/defaultchange or
+finalcolleaguebenchmarkyet. Keepworkingautonomously,doNOTendmerelycheckpoint.
+
 ## CURRENT043 MASS/PROFILE PREPARATION RUNNING — optimization ACTIVE
 
 Usergoon; goalNOTmet. WHOLE041 retained82740/92100,E9270,W1604,
