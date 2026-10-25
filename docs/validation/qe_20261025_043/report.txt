@@ -1,0 +1,97 @@
+EXPERIMENT043 — REJECTED; RETAIN WHOLE041
+
+RESULT
+Across all33datasets and132dataset/mode combinations, the trial added nine
+annotations: five match manual curation on the SAME original peak, four are
+unconfirmed additions absent from that dataset/mode manual list. Existing
+wrong-peak calls did not increase. No existing annotation was removed/changed.
+The improvement is tiny and fails the predeclared minimum4newmanualmatches
+per added unconfirmed extra (5 versus the required16 for4extras).
+Reject the WHOLE trial; do not cherry-pick favourable classes/datasets.
+Retain041, no production default changes, no deployment-readiness claim.
+
+HISTORICAL PRIMARY SCOPE, EXCLUDING USER-EXCLUDED X4 ONLY
+Same manually curated identity/adduct/mode AND original feature:
+82740/92100 (89.8371%) ->82745/92100 (89.8426%).
+Unconfirmed extras:9270 ->9274. Different-original-peak calls:1604 ->1604.
+All28unresolved manual mappings remain in the primary denominator.
+43/86priority class/modes remain below90%; all122target class/modes include
+76below90 before and after. Sparse classes remain visible, optimization deferred.
+Pooled90% does NOT establish90% in each class and each measurement mode.
+
+SAMPLE LIPIDS SEPARATE FROM SPIKED REFERENCE LIPIDS
+The historical92100-row primary includes1456spiked reference entries. Keep
+that history unchanged; this separation is not an annotation gain.
+Sample's own lipids:81365/90644 (89.7632%) ->81370/90644 (89.7688%).
+Sample-lipid extras:8549 ->8553; different-original-peak calls:1577 ->1577.
+Spiked references unchanged:1375/1456correct,721extra reference calls,27
+different-peak calls. Both scope views and complete132-row tables accompany
+this report. No call was dropped merely to improve a denominator.
+
+MODE TOTALS — PRIMARY HISTORICAL SCOPE
+RPpositive:40655 ->40659 /45206; extras3391 ->3392; wrongpeak932unchanged.
+RPnegative:12088 ->12088 /13600; extras1995unchanged; wrongpeak408unchanged.
+NPpositive:17641 ->17641 /19380; extras1946 ->1947; wrongpeak163unchanged.
+NPnegative:12356 ->12357 /13914; extras1938 ->1940; wrongpeak101unchanged.
+
+CHANGED CLASS/MODES
+RPpositivePC-P:1483 ->1485 /1830 (81.0383% ->81.1475%); extras189unchanged.
+RPpositiveHexCer-t:242 ->244 /288 (84.0278% ->84.7222%); extras51 ->52.
+NPnegativePE-O+P:1965 ->1966 /2135 (92.0375% ->92.0843%); extras74 ->76.
+NPpositiveBMP:270 /622 (43.4084%) unchanged; extras227 ->228.
+All other class/mode counts unchanged. Diacyl PE unchanged in every stream;
+the single NPnegativePE-O+P improvement is reported separately above.
+The BMP extra may be physically supported in an uncurated polarity; absent
+manual curation is not proof of a false identification. The benchmark still
+reports it as unconfirmed. No runtime manual-presence/polarity filter was used.
+
+WHAT WAS TESTED
+Search original OTHERpolarity raw peaks, including unassigned peaks, using
+native class/phase ion templates/actual adduct and charge at strict3ppm.
+Only sameRP or sameNP; no RP-to-NP RT transfer. Review-only native ions provide
+evidence, never new full-annotation channels. Explicit MS_metadata biological
+specimen links; technical replicate areas averaged before logs;>=8paired
+positive biological specimens, within-group comparisons also>=4residualDOF.
+Raw global sample normalization, correlations, Spearman, leave-one-specimen-
+out robustness, log-ratio location/MAD and ambiguity supply23numeric fields.
+Unsupported chemistry/pairing stays unknown. Excluded the nine independently
+mapped-RT fields because support was limited; raw RTdelta is not a confirmed
+residual. All original108predictors/pools retained exactly:131total inputs.
+
+Fresh25four-mode binary model parents/100classifiers use the original fixed
+180-round parameters/equal project weights, not042factorized targets. Proper
+query/outer/inner reference exclusion, same original labels, same041INNER
+class cutoffs/physical guards. Allfive training calibrations completed before
+any outer selection. Strongest identity/feature choice fixed before ambiguity/
+occupancy filtering; no weaker-fallback promotion. ALL041annotations immutable.
+
+FULL ENGINEERING CHECKS — COMPLETE ALLPASS
+Raw construction:33dataset unions,222082physicalqueries,5107886independent
+numeric cells; all363nested tables/2296075lookup rows; old108/pools/refscopes
+and raw quantification unchanged. Pre-run:all25parents/528trainingqueries,
+allmode labels/categories/balance,33disabledENTIRE041CSV/candidate exports.
+Full final master:25freshparents/100classifiers,528trainingqueries,132INNER
+score replays,five full class grids/cutoffs,33outer datasets/132raw streams,
+alloldcells/newquant/accepted candidate exports/samev2manual hash checks.
+1834source/input hashes,332snapshot hashes,580final artifacts checked.
+440271available measurement cells checked;3827658inheritedempty cache cells,
+93613legacy accepted-candidate flags and195pre-existing rounding cells kept.
+Planned=final verifier SHA256:
+02f2b3f908aa405b6ae2cfdf5d4e96b68ce3974f535584627e00299a3b8f7933
+Full application tests862passed/8skipped/83subtests;19focused tool tests passed.
+
+LIMITATIONS / NEXT DIRECTION
+Previously exposed saved-input grouped development, not a fresh end-to-end
+production run or untouched external validation. Extras are unconfirmed, not
+demonstrated false positives/FDR; scores estimate curator agreement, not
+chemical-identity probabilities. Software integrity is not chemical validation.
+Repeated conservative additions have very little impact. At least two priority
+class/modes cannot reach90% while every old choice is immutable (RPnegative
+2-acylLPE and LPI, as documented in the earlier structural bound). Next inspect
+whether the combined NEW model scores, not raw correlation alone, reliably
+improve original-peak choices in authorized INNER training predictions. This
+is a read-only diagnostic first; no automatic swaps, no new annotation trial
+or threshold relaxation until it supports a predeclared grouped test.
+
+All original input/peakgroup files untouched. Final deployment benchmark,
+annotated peakgroup exports and colleague deployment report are still pending.

@@ -1,5 +1,51 @@
 # Experiment reporting policy
 
+## CURRENT043 FINAL COMPLETE / REJECTED — optimization ACTIVE
+
+043producer83785DONE0,postprocessor68374DONE0,fullmasterALLPASS. Actual25fresh
+parents/100binaryclassifiers,528traininguses/132INNER/full5curves/33outer/132
+rawstreams/alloldcells/newquant/acceptedexports/samev2goldhash COMPLETE.1834
+source/input,332snapshot,580artifact checks. Planned=finalmasterSHA02f2b3f908a
+a405b6ae2cfdf5d4e96b68ce3974f535584627e00299a3b8f7933.440271availablecells,
+3827658inheritedemptycache,93613legacyacceptedcandidateflags,195oldroundoff
+cells preserved. No43jobsremain. Preservefrozenpipeline sources/inputs/checker.
+
+ResultvsWHOLE041:82740 ->82745/92100 (89.83713355 ->89.84256243%),E9270 ->9274,
+W1604unchanged. NINEnewcalls=5manualsame-original-peak matches+4unconfirmed
+extras. REJECTWHOLE043:5newcorrect<4x4extras=16required. Noheldoutclass/data
+splicing;doNOTkeepPC-P-onlyimprovements. Retained04182740/92100,E9270,W1604,
+43/86prioritybelow90 unchanged. DefaultsUNCHANGED/notdeployment. DiacylPEall
+4streamsUNCHANGED; gainsRPposPC-P+2/E0,RPposHexCer-t+2/E1,NPnegPE-O+P+1/E2,
+NPposBMP0/E1. BothNPBMPwhenphysicallysupporteduserallowed;EunconfirmednotFP.
+
+FULL132datasetmodechat table ALREADYDELIVERED +separatewrongmodetotals. One
+chattypoNPnegLysoIPdenominator correctedimmediatelyto260/339=76.70%(not340),
+savedCSVcorrectallalong. DoNOTrepeatwhole132table. Publiccompleteprimary/
+allclass/endo+STDtables/report/decision/fullintegrity docs/validation/
+qe_20261025_043 ready,pendingpush. Latestpushed d116da3 (codepreviousadf7080).
+Endogenouscompanion:81365 ->81370/90644 (89.76325 ->89.76877%),E8549 ->8553,
+W1577same;spikes1375/1456,E721,W27allunchanged. RemovingSTDsNOTgain;historical
+92100primarymaintained. All28unresolved remain. 76/122alltarget/43of86priority
+below90still. Fullreportnotfreshend-to-end/externalvalidation/chemicalFDR.
+
+NEXT: READONLYTRAINING-OOF originalpeak diagnostic withNEWcombined043binary
+scores, NOTrawcorrelation-only (rawalone500manualvs527rival inmissingcases,
+doesnotjustifyblindreranking). Existing042diagnostic tool is
+diagnose_qe_training_peak_ranks.py, butmustuseNEWmodule/OUT/Series scores131
+andWHOLE041properINNERoccupancy. No newpredictor/model/annotationsyet. Need
+checkwhetherjoint43ranks genuinelyimproveoldwrongfeaturechoices before any
+044correctionplan/actualannotations. AtleastRPNeg2acylLPE/LPIstructuralbound
+needsoldcallchanges;repeatedsafeadditionsplateau. Diagnosticmustuseonly132
+matchingINNERtrainingcontexts/query+outer+inner-excludedscores; eachdataset
+repeatsfourcontexts, NOTindependentgains/acceptedmoves. Authorizelabelspercase
+beforeopen,excludeitsoutergroups. GoldSETperidentity(notoneFIDdict ifduplicate
+manualisomers). Considerreportedrawrank-only vsfixedglobalclearwinner/physical/
+free-target constraints +profileavailability, freezewinnerBEFOREfilters/no
+fallback. Countpotentialcorrect->wrong aswellaswrong->correct andunconfirmed
+moves;occupancy/finalgate omissions explicit. Noouterlabel-basedclasssplicing.
+Newdiagnosticnotyetimplemented/run. Noactual044started. GoalACTIVE,NOTmet;
+continueautonomously,doNOTendmerelycheckpoint. Publish043thenread-onlyaudit.
+
 ## CURRENT043 ACTUAL EXPERIMENT RUNNING — optimization ACTIVE
 
 Latestpushedadf7080. Usergoon,goalNOTmet;WHOLE041 stillretained82740/92100,
