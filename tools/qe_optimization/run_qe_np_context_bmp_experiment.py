@@ -18,7 +18,7 @@ QE = WORKSPACE / "outputs/qe_optimization_20261022"
 BASE = QE / "baseline"
 PREVIOUS = QE / "experiment_029"
 PREPARED = QE / "standard_context_preparation_v1"
-OUT = QE / "experiment_040"
+OUT = QE / "experiment_040_v2"
 
 
 def sha(path):
@@ -28,6 +28,16 @@ def sha(path):
 
 def dump(path, value):
     path.write_text(json.dumps(value, indent=2, allow_nan=False), encoding="utf-8")
+
+
+def estimator_parameters(configuration):
+    """Keep reported estimator type separate from actual sklearn kwargs."""
+    if (
+        configuration.get("kind", "HistGradientBoostingClassifier")
+        != "HistGradientBoostingClassifier"
+    ):
+        raise ValueError("Only the predeclared HGB estimator is supported")
+    return {k: v for k, v in configuration.items() if k != "kind"}
 
 
 def prepared_path(dataset, mask):
@@ -283,7 +293,7 @@ def assemble_exports(dataset, previous, added):
 
 def initialize():
     verifier_path = Path(__file__).with_name("verify_qe_np_context_bmp_experiment.py")
-    preflight_path = QE / "np_context_BMP_preflight_v1/receipt.json"
+    preflight_path = QE / "np_context_BMP_preflight_v2/receipt.json"
     preflight = json.loads(preflight_path.read_text())
     assert preflight["all_passed"] and preflight["classifier_fits"] == 0
     assert preflight["unique_training_tables"] == 330
@@ -359,6 +369,7 @@ def initialize():
             OUT / "protocol.json",
             dict(
                 name="040-NP-wide-context-global-competition-BMP-completion",
+                engineering_revision="v2: v1failed at constructor beforeANYmodel.fit/outputs,because descriptivekindmetadata was passed as sklearnkwarg. Preservev1source/artifacts;filterONLYkindasoriginal029does. No scientifichyperparameter/label/candidate/budgetchange. FULLnewprefit330/528/33audit required.",
                 baseline=str(BASE),
                 previous=str(PREVIOUS),
                 production_enabled=False,
@@ -449,7 +460,7 @@ def fit_score(datasets, training, excluded, parameters, path):
         fitting,
         training_groups=training,
         excluded_groups=excluded,
-        parameters=parameters,
+        parameters=estimator_parameters(parameters),
     )
     model["training_feature_masks"] = {
         d: data["excluded_folds"] for d, data in fitting.items()

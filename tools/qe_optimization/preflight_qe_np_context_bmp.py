@@ -15,7 +15,7 @@ from context import REPO
 from frozen_resources import configure_frozen_resources
 import run_qe_np_context_bmp_experiment as runner
 
-OUT = runner.QE / "np_context_BMP_preflight_v1"
+OUT = runner.QE / "np_context_BMP_preflight_v2"
 
 
 def independent_case(dataset, mask, projects, folds):
@@ -99,6 +99,17 @@ def main():
     folds_path = runner.QE / "rt_atlas_development/fold_assignment.json"
     folds = json.loads(folds_path.read_text())
     assert len(projects) == 33 and len({d[:7] for d in projects}) == 30
+    from sklearn.ensemble import HistGradientBoostingClassifier
+
+    configuration = json.loads((runner.PREVIOUS / "protocol.json").read_text())[
+        "classifier"
+    ]
+    parameters = runner.estimator_parameters(configuration)
+    constructor = HistGradientBoostingClassifier(**parameters)
+    assert configuration["kind"] == "HistGradientBoostingClassifier"
+    assert "kind" not in parameters
+    for k, v in parameters.items():
+        assert constructor.get_params()[k] == v
     if OUT.exists():
         raise RuntimeError(
             "Existing preflight artifacts must be preserved;use its complete verified receipt or explicitly version a new audit"
@@ -199,6 +210,8 @@ def main():
                 if values["BMP_positives"]:
                     bmp_projects.add(d[:7])
             expert = model["experts"][mode]
+            for k, v in parameters.items():
+                assert expert["estimator"].get_params()[k] == v
             assert expert["training_pairs"] == totals["original_known"]
             assert expert["positives"] == totals["positives"]
             assert contributors == allowed

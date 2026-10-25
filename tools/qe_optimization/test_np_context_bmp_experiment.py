@@ -133,3 +133,28 @@ def test_runner_requires_preflight_and_authorization_before_any_truth_or_fit(
             dict(query_group="heldout"), {"training"}, {"heldout"}, partial=True
         )
     assert accesses == []
+
+
+def test_descriptive_classifier_kind_is_not_an_estimator_keyword_or_parameter_change():
+    from sklearn.ensemble import HistGradientBoostingClassifier
+
+    config = dict(
+        kind="HistGradientBoostingClassifier",
+        max_iter=180,
+        max_leaf_nodes=31,
+        min_samples_leaf=50,
+        l2_regularization=2,
+        learning_rate=0.08,
+        early_stopping=False,
+        random_state=20261022,
+    )
+    before = config.copy()
+    params = runner.estimator_parameters(config)
+    assert config == before and params == {
+        k: v for k, v in config.items() if k != "kind"
+    }
+    constructor = HistGradientBoostingClassifier(**params)
+    for k, v in params.items():
+        assert constructor.get_params()[k] == v
+    with pytest.raises(ValueError):
+        runner.estimator_parameters(dict(kind="unapproved_model", max_iter=180))

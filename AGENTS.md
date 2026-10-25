@@ -1,5 +1,32 @@
 # Experiment reporting policy
 
+## CURRENT040 ENGINEERING v2 — preflightPASS, readyfreshfits (supersedes readyv1)
+
+Initial040producer15252/PID25165 STOPPEDexit1 atFIRSTHGBconstructor: old029
+reportedclassifierdict includes descriptivekind,original029filtersitbefore
+sklearn. Newadapterhadpassedthatmetadataasakwarg. ZEROactualclassifier.fit,
+NOmodel.pkl/queryscores/annotationcompleteoutputs. All5initialworkersfailed
+beforefitting. OldOUTexperiment_040 plus exactsource/plan archived under
+engineering_failure_sources,Git2f3ecaf. Oldpostqueue failedcorrectly whenproducer
+gonebefore33outputs. NOperformanceclaim/tableforunfittedattempt.
+
+Correct ONLYAPIhandoff:estimator_parameters removeskind,validatesHGBtype.
+No scientifichyperparameter/label/pool/predictor/window/budgetchange. Old029
+actualparams180rounds/maxleaf31/minleaf50/L2=2/lr.08/noearlystop/seed20261022.
+FreshOUTexperiment_040_v2. Prefitnp_context_BMP_preflight_v2 COMPLETEALLPASS,
+session70175DONE0:330unique/528uses/33disabledexport+entirecandidateframes
+EXACT029 again. Now ALSOinstantiatesUNFITTEDconstructorandcomparesALLkwargs
+withALL25oldNPexpertpairs. All50newNPclassifierssupported. ZEROexamplefits.
+5runnerengineeringtestsPASS(inclkindadapter);824app testsPASSunchanged.
+Currentapp/runner/preflight/plan source+inputs hashboundbyv2preflight;doNOTedit.
+Masterchecker updatedv2paths/dynamicOUT.name andkwargsfilter;plannedhashwill
+freezeatv2initialize. Noactualv2initialize/models/outputs yet. Newpostprocessor
+postprocess_qe_np_context_bmp.py OUTv2,requirescurrentproducerPID;oldqueue dead.
+Needcommit/pushcurrentcorrection+status,thenrunfresh040v2runner. DoNOTresume
+old040unfittedfolderor reusev1preflightreceiptasv2. Old029retainedallmetrics
+unchanged;FULL132040actualtable+BMP132linkedreport/decision requiredbefore041.
+WorkACTIVE,goalNOTmet;notapause. Latestpushed2f3ecaf beforecurrentcorrection.
+
 ## CURRENT040 READY TO FIT — 25 October 2026 (supersedes NOdriver statuses below)
 
 040preflight COMPLETEALLPASS session83919DONE0. All330unique trainingtables/

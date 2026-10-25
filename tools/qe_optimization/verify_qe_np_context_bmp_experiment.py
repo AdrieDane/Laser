@@ -97,7 +97,7 @@ def verify_parent(job):
                     categorical_values[s].setdefault(c, set()).update(
                         raw["evidence"].loc[rows, c].astype(str)
                     )
-    preflight = QE / "np_context_BMP_preflight_v1"
+    preflight = QE / "np_context_BMP_preflight_v2"
     receipt = json.loads((preflight / "receipt.json").read_text())
     assert (
         runner.sha(preflight / "parent_training_counts.json")
@@ -144,7 +144,7 @@ def verify_parent(job):
             c: {v: i for i, v in enumerate(sorted(values))}
             for c, values in categorical_values[s].items()
         }
-        for key, value in protocol["classifier"].items():
+        for key, value in runner.estimator_parameters(protocol["classifier"]).items():
             assert expert["estimator"].get_params()[key] == value
         assert expert["estimator"].n_iter_ == protocol["classifier"]["max_iter"] == 180
     assert model["fresh_mode_classifier_fits"] == fresh
@@ -454,7 +454,7 @@ def verify_dataset(job):
                 QE / v / "evaluation_v2" / dataset / "evaluation_identity.json"
             ).read_text()
         )
-        for v in ("baseline", "experiment_029", "experiment_040")
+        for v in ("baseline", "experiment_029", OUT.name)
     ]
     assert len({i["manual_sha256"] for i in identities}) == 1
     assert identities[-1]["selected_sha256"] == runner.sha(
@@ -491,8 +491,8 @@ def main():
         OUT / "protocol.json",
         OUT / "runner_source.py",
         Path(__file__),
-        QE / "np_context_BMP_preflight_v1/receipt.json",
-        QE / "np_context_BMP_preflight_v1/parent_training_counts.json",
+        QE / "np_context_BMP_preflight_v2/receipt.json",
+        QE / "np_context_BMP_preflight_v2/parent_training_counts.json",
     }
     files.update(OUT.glob("fold_*_nested_model.pkl"))
     for name in ("calibration", "runs", "evaluation_v2", "reports_v2"):

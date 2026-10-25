@@ -1,6 +1,19 @@
 Experiment040 proposal: NP-wide contextual scoring, add-only BMP completion
 Predeclared BEFORE fits/annotation changes. Retained WHOLE029 is the comparator.
 
+Engineering startup revision(v2),not a new scientific variant
+The first040initialization/preflight passed label/export checks,but the first
+estimator constructor rejected the descriptive "kind" field from029's reported
+classifier configuration. ZEROexample classifiers fitted,no model pickles,
+no query scores/annotation outputs. All old attempt artifacts/exact source and
+plan preserved under experiment_040/engineering_failure_sources andGit2f3ecaf.
+Correct ONLY the API handoff by excluding the descriptivekindfield,exactly as
+the original029runner does. All declared scientific HGBparameters unchanged:
+180rounds,maxleaf31,minleaf50,L2=2,learningrate.08,noearlystop,seed20261022.
+Fresh FULLpreflight330/528/33 rerun in np_context_BMP_preflight_v2,now ALSO
+instantiate the unfitted estimator and compare ALLkwargs with old029experts.
+New output experiment_040_v2;no reused model/annotation artifacts from failedv1.
+
 Why this step
 The43priorityclass/modes below90 need2346morecorrect original-peak matches.
 Only18of the new coherentRT mechanicallyfree candidates address these cells;
