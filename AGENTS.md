@@ -1,5 +1,42 @@
 # Experiment reporting policy
 
+## CURRENT040 READY TO FIT — 25 October 2026 (supersedes NOdriver statuses below)
+
+040preflight COMPLETEALLPASS session83919DONE0. All330unique trainingtables/
+528uses,independentpartialBMPflags,unchangedpositives/108predictors,actualall-
+classNPcontextsupport andold029expertcountparity. ALL33disabledALL4modeexports
+andentirecandidateframes EXACT029,includingallmetadata/measurementcells.
+All50NPclassifiers supportedby>=20BMPpositivepairs/3actualprojects. Receipt
+np_context_BMP_preflight_v1/receipt.json hashbinds currentapp/runner/preflight/
+plan andallinputs. DoNOTeditthese now. Fullchecker exists, plannedhashseparate.
+040initialize completed session32628DONE0:33datasets/1096inputs frozen;
+OUTexperiment_040 protocol/source_snapshot/run_manifest exist,NOmodels/outputs
+yet. Sourceformats/RuffPASS;6appprototype+4runner synthetic testsPASS;
+824app testsPASS/8skip/83subtestsafterfinalnative/isotopeguards;24othertoolsPASS.
+
+NEW implemented040runner/calibrator/export helpers:
+tools/qe_optimization/run_qe_np_context_bmp_experiment.py,preflight_qe_np_context_bmp.py,
+verify_qe_np_context_bmp_experiment.py,test_np_context_bmp_experiment.py.
+ModelsNPwide ALLclassescontrast,up to50freshNPmodeHGBexperts/25parents,EXACT029
+parameters. SAME030partialBMPunknownpolicy,budgets(.10endoBMPmanualextras,
+.02endoBMPmanualwrongEACHNP),.5..1grid,1explicitdisable. GLOBALALLLABELcompetition
+beforeBMPfilter,identitywinnerbeforeambiguity/occupancy. Allold029calls
+immutable,alloldCSVtextcells preserved(literalNA/empty strings),candidateold
+flagsneverdemoted. ALLnew rawsample/boundary/quantfields copied fromoriginal
+features into annotation ANDpromotedcandidate. dtypeobjectstorage preserves
+oldint/float/textcellvalues. Rawnative/monoisotope3ppm/10s,spikemass5.01ppm+
+independent/namedSTDfeaturesprotected. No coherentRTfields/rejectedmodelreuse.
+Models/calibration/query/outer/inner scopes remain those ofwhole029. Newquery
+scoringrefusessupervision;onlypermittedtraining/calibcurationreads.
+
+Needcommit/pushcurrentuncommittedsource+thisstatus THENlaunch040runner.
+No currentlyrunningannotation/QAjobs. AfterALL33outputs, evaluatewith
+QE/manual_reference_v2;buildreports_v2/baselinecomparison,versus_029,targetX4,
+priorityviews,fullmaster040audit. ALL132chatbefore-after+wrongtotals mandatory,
+pluslinkedBMP132table BEFORE041.029stillretained82729/92100,9268E,1604wrong;
+goalNOTmet,workACTIVE;doNOTendmerelycheckpoint. Latestpushed85ae328 (verify
+lastpushsession25557ifneeded). FullRTdiagnostics/publiccounts alreadyin85ae328.
+
 ## LATEST — RT pilots finished; target-selection040 prototype,NOactual040fits
 
 Both NUMERICAL RT pilots COMPLETE with ALL33/132fresh exactscratch replays and

@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 
 from annotator.composition_ranges import canonical_lipid_class
+from .automatic import matlab_annotation_adducts
 from .coherent_retention import _protected_mass
 from .evidence_training import (
     fit_grouped_evidence_model,
@@ -261,6 +262,17 @@ def select_context_bmp_additions(
     keep &= ~selected.name.astype(str).str.endswith(" (IS)") & ~selected.name.astype(
         str
     ).str.startswith("IS: ")
+    allowed_ions = {ion_key(i) for i in matlab_annotation_adducts("NP")}
+    keep &= selected.adduct.map(ion_key).isin(allowed_ions)
+    keep &= selected.adduct.map(ion_key).str.endswith(
+        "+" if stream.endswith("Pos") else "-"
+    )
+    keep &= (
+        selected.get("isotopologue", pd.Series("", index=selected.index))
+        .fillna("")
+        .astype(str)
+        .eq("")
+    )
     masses = np.asarray(list(declared_masses), float)
     if not np.isfinite(masses).all() or (masses <= 0).any():
         raise ValueError("Finite positive declared spike masses required")
