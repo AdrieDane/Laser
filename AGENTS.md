@@ -1,12 +1,13 @@
 # Experiment reporting policy
 
-## Current work status — PAUSED by user,24October2026
+## Current work status — RESUMED by user,25October2026
 
 The user requested a pause at the next safe stopping point. Experiment032and
 its complete integrity replay are finished;032was rejected and029remains the
 retained research reference. Full132-row032table was delivered. No033annotation
 fits started,no annotation jobs remain running,no production defaults changed.
-Do not start another optimization cycle until the user resumes. Handoff and
+User explicitly resumed on25October. Next cycle tests independent-standard
+RT alignment from retained029; no production defaults change. Handoff and
 next implementation notes:docs/validation/next_common_RT_experiment.txt;
 verified results:docs/validation/qe_20261024_032/versus_029/.
 

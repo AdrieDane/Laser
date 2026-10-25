@@ -66,7 +66,8 @@ def validate_feature_scope(
         "standard_reference_excluded_groups",
     }
     has_standard_context = any(
-        str(c).startswith("q_declared_standard_") for c in data["evidence"]
+        str(c).startswith(("q_declared_standard_", "q_standard_aligned_"))
+        for c in data["evidence"]
     )
     if has_standard_context or standard_keys & set(data):
         if not standard_keys.issubset(data):

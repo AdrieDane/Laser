@@ -84,9 +84,10 @@ def test_identifier_predictors_and_implicit_row_validation_rejected():
         )
 
 
-def test_new_standard_context_requires_its_own_query_excluded_scope():
+@pytest.mark.parametrize("prefix", ["q_declared_standard_", "q_standard_aligned_"])
+def test_new_standard_context_requires_its_own_query_excluded_scope(prefix):
     query = data("a", ["b", "c"], ["a", "z"])
-    query["evidence"]["q_declared_standard_RT_difference_seconds"] = 1.0
+    query["evidence"][prefix + "RT_difference_seconds"] = 1.0
     with pytest.raises(ValueError, match="standard-context reference scope"):
         validate_feature_scope(query, {"a", "b", "c"}, {"z"}, query_is_training=True)
     query["standard_reference_training_groups"] = ["b", "c"]

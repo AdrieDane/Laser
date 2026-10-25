@@ -1,8 +1,8 @@
 Prospective next optimization cycle after032 — implementation notes
 24October2026; NO033annotation fits or performance claims yet.
 
-PAUSED by explicit user request after032complete verification. No annotation
-jobs running. Do not begin this next cycle until the user resumes.
+RESUMED by explicit user request25October2026 after032complete verification.
+Implement independent-standard RT discovery from029, not rejected032.
 
 Reference and prerequisites (032integrity nowALLPASSED):
 Use retained029,NOTrejected032/031/030outputs. Full032TARGETscope132table has
