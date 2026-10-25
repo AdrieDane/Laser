@@ -97,6 +97,27 @@ def test_implicit_validation_and_misaligned_mode_metadata_rejected():
             excluded_groups={"z"},
             parameters=params,
         )
+
+
+def test_no_peak_preference_for_a_class_without_three_training_projects():
+    records, params, query = fixture()
+    records["c"]["pool"]["class"] = "PC"
+    records["c"]["evidence"]["class"] = "PC"
+    model = fit_conditional_peak_model(
+        records,
+        training_groups={"a", "b", "c"},
+        excluded_groups={"z"},
+        parameters=params,
+        minimum_pair_rows=2,
+        minimum_contributing_projects=2,
+    )
+    assert model["experts"]["RP_Pos"]["supported"]
+    assert model["experts"]["RP_Pos"]["conditional_class_projects"]["PE"] == ["a", "b"]
+    assert np.isnan(predict_peak_preferences(query, model, [0], [1])).all()
+
+
+def test_physical_mode_metadata_cannot_disagree_with_predictor_mode():
+    records, params, _ = fixture()
     params["early_stopping"] = False
     records["a"]["pool"].loc[0, "stream"] = "NP_Pos"
     with pytest.raises(ValueError, match="modes disagree"):

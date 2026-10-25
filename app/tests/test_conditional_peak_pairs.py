@@ -14,6 +14,7 @@ def record(project="a"):
     pool = pd.DataFrame(
         dict(
             stream=["RP_Pos"] * 6,
+            **{"class": ["PE"] * 3 + ["PC"] * 3},
             name=["PE(36:2)"] * 3 + ["PC(36:2)"] * 3,
             adduct=["H"] * 6,
             feat_feature_id=["1", "2", "3", "4", "5", "6"],
@@ -24,7 +25,7 @@ def record(project="a"):
     evidence = pd.DataFrame(
         dict(
             stream=["RP_Pos"] * 6,
-            klass=["PE"] * 3 + ["PC"] * 3,
+            **{"class": ["PE"] * 3 + ["PC"] * 3},
             rt_error=[1.0, 2.0, np.nan, 4.0, 5.0, 6.0],
         )
     )

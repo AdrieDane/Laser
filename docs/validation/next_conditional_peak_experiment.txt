@@ -59,6 +59,10 @@ spike mass/feature. No new candidates,ranges,RTmodels or masscalibration.
 Freshmode-specific conditionalpairrankers,25nestedparents/100experts ifsupported,
 samefixed180roundHGBfamily. Explicitminimum100pairrows from>=3actualsupervised
 projects permode; unsupportedmodes keeporiginalpeaks. No rowwiseearlystopping.
+Also qualify EACHchemicalclass/mode byconditionalpairs from>=3actualtraining
+projects; otherwise keep its original peaks. No unsupported-class preference
+is invented byborrowinganotherclass's model output. This is TRAININGsupport,
+not anouter-tested class winner selector orbenchmarkexclusion. Fixedbeforefits.
 Allowedreferencepermissions remainallallowedgroups; actualsupervisedcontributors
 separate,as in the pair builder. Model categories/numerics contain no names,
 FIDs,manualflags orcohort identifiers. Antisymmetric preference:
@@ -108,5 +112,10 @@ percent(n/N)+extrascounts andseparatewrongpeaks beforeanotherexperiment.
 Allidentity/annotationcounts/extras mustmatchreferenceEXACTLY; reportevery
 featuremove andgain/loss inprivateaudits; onlyaggregatespublic. Verifyoriginal
 rawcoords andannotation/candidateacceptedflag/export parity forALLoutputs.
+Moved rows mustcopy ALLoriginal rawsamplevalues/peakbounds bynewFID,not retain
+oldpeakquantification. Clear oldpeak-onlyconfidence/assessment fields unless
+repopulated fromactualcandidate/rawsources. Keepoldidentityacceptancescore/cutoff
+separately; doNOTpresent it asconfidence innewpeak. Alltheoreticalidentities,
+adducts,classes,standardflags stayEXACT. Standardrows nevermove.
 No ownquery manualpeak/name/FID modelprediction,or test-class winner splicing.
 Researchprototype,NOTdeploymentoruntouchedexternalvalidation.

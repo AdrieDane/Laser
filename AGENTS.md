@@ -1,5 +1,21 @@
 # Experiment reporting policy
 
+## LATEST CURRENT STATUS — 038 implementation, 25 October 2026
+
+User said go on; optimization ACTIVE. All older RUNNING/PAUSED paragraphs below
+are historical. 036 and 037 COMPLETE, integrity ALL PASS, REJECTED. Their full
+132-row tables and wrong-peak mode totals ALREADY DELIVERED. Public aggregates
+pushed CFMmain, latest fb48bc9. No jobs remain from those experiments.
+029 remains retained:82729/92100correct=89.825190%,9268extras,1604wrong;
+43/86priority class/modes below90;goal NOT achieved;production defaults unchanged.
+038 source under implementation: conditional within-identity original-peak
+refinement; WHOLE029accepted identity/standard list stays fixed, hence extras
+must remain EXACT. No 038 actual fits/annotations yet. Runner now requires
+hash-bound no-fit preflight. Final full25parent/528training/132INNER/33OUTER
+independent integrity and full132chat table mandatory before039. Plan/source:
+docs/validation/next_conditional_peak_experiment.txt;
+tools/qe_optimization/run_qe_conditional_peak_experiment.py.
+
 ## RESUMED — latest user said "go on",25October2026
 
 LATEST:036FULLintegrity COMPLETEALLPASS;doNOTre-runany036verification/fits.
