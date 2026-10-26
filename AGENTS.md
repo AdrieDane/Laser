@@ -1,5 +1,35 @@
 # Experiment reporting policy
 
+## CURRENT paired-isomer gap READ-ONLY pilot READY — goal ACTIVE
+
+048whole rejection/public closure pushed7fb2424;full132CHAT already delivered.
+RetainedWHOLE04182740/92100,E9270,W1604; app/defaults unchanged, goal NOTmet.
+New paired RPgap pilot is NOT049annotation experiment and changes NO calls.
+Plan next_paired_isomer_gap_pilot.txt; purepaired_retention_gap plus explicit
+data/producer/scalarindependent/checker/diagnostic and16tests allPASS/RuffPASS.
+Real outer3 training reconstruction EXACT (27datasets/8805rows/2408pairs/
+150supportedexactgaps); separate scalarfit/pred/fullgraph Sperm smoke PASS.
+Query own curated data NEVER used for predictions; authorized OTHERPROJECT
+curation selects ORIGINAL feature RTs, not saved fits. One project/one vote.
+Native existing RPorder/constant-shift anchors reviewed; new hypothesis is
+OTHERPROJECT paired exactC/DB gap plus measured strong041partner RT. Four
+PRIMARY RPfamilies LPC/LPE1/2 andPC/PEO/P; NPnotapplicable/unchanged.
+
+Next commit/push source BEFORE actualpilot. Then prepare_qe_paired_gap_pilot.py
+(2numericworkers;5refs/132authorizedTRAINuses/33blindqueries), MANUALLY verify
+ALL33 with verify_qe_paired_gap_pilot.py. ONLYafter ALLPASS MANUALLY diagnose
+with diagnose_qe_paired_gap_pilot.py. Noqueued query-gold diagnostics. FinalOWN
+snapshot configured FIRST before any app imports in ALLscientificprocesses.
+Sources/plan/tests freeze when producer starts; preserve/version failures.
+No fullpilot OUTyet. Output QE/paired_isomer_gap_pilot_v1; independentcheck
+paired_isomer_gap_independent_check_v1; diagnostic paired_isomer_gap_diagnostic_041_v1.
+Graph complete BEFORE occupancy; raw original MZ/RT/I exact; graph MULTISETS
+retain duplicate multiplicity and alternatives. Correct-feature opportunities
+are NOT accepted gains. Source partner mustbe frozen041call, nevernewproposal.
+Outer-onlypilot cannotfeedfutureINNERpredictors. Actual049needs NEWplan,
+matching nestedmasks/calibration/fullverification andfull132CHATpolicy.
+Continue autonomously, no checkpointstop, no new cutoff-only sweep/subagents.
+
 ## CURRENT048 COMPLETE / REJECTED / FULL132CHAT DELIVERED — goal ACTIVE
 
 048sourcefdcdc9b producer64857DONE0 all25freshparents/100800treeexperts,

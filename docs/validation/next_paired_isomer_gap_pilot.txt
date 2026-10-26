@@ -1,0 +1,54 @@
+Prospective read-only RP paired-isomer gap pilot — not049annotation experiment
+
+048closed/rejected;full132CHATdelivered. RetainWHOLE04182740/92100,E9270,W1604.
+No new classifier,cutoff,annotation/default/export changes in this pilot.
+
+Native code already has RTDB-based pair ordering,30sseed/10sfinal windows and
+same-family leave-composition-out CONSTANT shifts. Empirical036corrected each
+class separately.039competed SAMEfeature isomer labels,not new original-peak
+discovery. Do not describe those existing capabilities as new.
+
+New hypothesis: learn JOINT within-project RT gaps between chemically matched
+isomers from OTHERPROJECTS,then predict the absent partner directly beside a
+strong automatic partner in the query. Its RT origin comes from the current
+partner,not a stale absolute RTDB/atlas. No query curator RT or saved fits.
+Initial probe uses exact CDB-specific gaps,not new gradient rescaling or a
+regression/padding/window sweep. LPC/LPE2earlier than1 for this RPmethod;
+ether ordering learned from other-project pairs,not assumed universally.
+
+Scope four primary RPfamilies only:1/2acylLPC RPH+,1/2acylLPE RPH-,PCO/P RPH+,
+PEO/P RPH-. O-C:D pairs P-C:(D-1),native chemical masses must match1e-6Da.
+NP unchanged/not applicable; never import RPisomer rules into NP. Both members
+need>=100manual rows and>=3TRAININGprojects (standards excluded),sparseclasses
+not targeted. Each dataset must have exactly one distinct ORIGINAL feature
+per side/primary ion. Training RTs are ORIGINAL feature measurements selected
+by permitted-training manual crosswalks,NOT saved curator RT fits. Each endpoint
+must be<3ppm from its native theoretical mass. Ambiguous/duplicate pairs skip.
+One project votes once (related tissue datasets median). Exactfamily/C/totalDB
+gap needs>=3projects,MAD<=3s,p90deviation<=6s,>=80%signagreement,abs gap3..60s.
+Explicit allowed/excluded/contributing groups stored; query project excluded.
+
+Query partner is frozen041automatic acceptance,score>=.95,rawabsppm<1.5,nonSTD,
+one unambiguous endpoint per family/CDB/primary ion. No newly proposed partner
+can become an anchor. Explicit positive-quantity declared actual isotope masses
+protected at3ppm. Native chemical reference columns ONLY:drop every reference/
+fitted RT column before predicting. Prediction = measured partner RT + signed
+other-project gap. No weaker peak fallback or query identity/FID predictors.
+
+Enumerate COMPLETE raw3ppm/10s graph before occupancy; retain source-partner
+FID itself and already-called targets as descriptive rows,then mark distinct-
+feature/observed-RP-order>=3s and separate freeidentity/freeFID flags. Never drop
+competitors merely because inconvenient. Distinct new partner FID required.
+Freeze all33numeric outputs/models/graphs BEFORE query-gold diagnostic analysis.
+Authorized OTHERPROJECT RT-training tables necessarily opened beforehand; do
+NOT claim zero total manual-file reads. No heldout query table in its own model.
+
+Separate independent reconstruction: training role/source-coordinate/mass/parity,
+project-median gaps/quality/support/scope,allquery partner predictions and full
+raw physical graph MULTISETS with duplicate multiplicity. No tolerance loosening.
+Only AFTERall33PASS decode query manual comparison to report missing correct-
+feature candidate coverage,newversusold029physicalpool,free/occupied/ambiguous
+options,paired true-versus-best-wrong gaps and all class/mode/dataset availability.
+These are candidate opportunities,NOT accepted annotation gains or chemical FDR.
+Any actual049annotation method needs a NEWpredeclared fullpipeline/calibration/
+extras+wrong guards and full132CHATreport; this pilot authorizes none.
