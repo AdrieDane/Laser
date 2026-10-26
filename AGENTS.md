@@ -1,5 +1,44 @@
 # Experiment reporting policy
 
+## CURRENT049 COMPLETE IMPLEMENTATION READY / final preflight NEXT — goal ACTIVE
+
+Nested7351DONE0 ALL25/363independentPASS,receiptSHA
+f5bbb17234df25da706d8abdfc2021f71e4d547d3a05b0a9787d83dc1d3b77aa.
+StageA source2b17ed0,78841DONE0 ALL528labeluses/100nativeconsumer matrices/
+165oldBITEXACTscores/33WHOLE041recomputed+originalsamplecell/offcontrolsPASS.
+ReceiptSHA c3080e5a63ecac7d9f59cbea8145d13721b717bfe3689f6e91220f1c9b1e1572,
+actual049_fit_permissionFalse. ALL2bprotohelpers/plan/tests NOWFROZEN.
+
+New actualdriver/bindings/operatingpoints/fullindependentmaster/finalpreflight/
+decision/postprocess+2controltests COMPLETE readyuncommitted. 64selectedtests
+PASS; latest4actualsoftwarefiles20testsPASS/RuffPASS. Independentmaster own
+scalarfeature/identity selector+modeobjective/completionlevels/counts/guards
+syntheticparityPASS; realZoembaoldwhole0411904callsmokePASS. Freshimport of
+driver/master doesNOTinitialize resource_paths; everyworker configFINALOWN
+snapshotfirst. Bindings donotimportStageA/scientificassembly beforeOWNroot;
+validateStageAledgerdirectly. All22sourcefilesexist/full3324inputhash smokePASS
+includingSOURCEoriginal5files+MSmeta/v2crosswalk/auditproofs. NativeOMP/BLAS1.
+
+NEXT commit/push actualsource BEFOREpreflight. Freshprocess
+preflight_qe_matrix_context_models.py -> checksallsource+stageA+20softwaretests
+and33newmasterINDEPENDENToldWHOLE041controls; ONLYALLPASS grants actual049.
+OUT QE/matrix_context_model_preflight_v1. Oncepreflightstarts allactualsources/
+plannedmaster/tests/sourcebindings FROZEN; preserve/versionanyfailure, no edits.
+AfterpreflightDONE0 freshprocess run_qe_matrix_context_experiment.py,OWNOUT
+QE/experiment_049,2boundedworkers/1BLASthread each. ALL25freshnativeHGB180parents
+(100experts) ->ALL5newINNERmode+041completioncalibrations/hashfreeze ->33blind
+wholeoutputs. Exact02917modecutgrid/.05margin/9.5%budget,005STD/027mass/fresh041
+completionpolicy; not034classMIP/048CatBoost oroldoutercompletioncalls.
+NoactualQEfits/scores/cuts/ANNyet; retained04182740/92100,E9270,W1604 unchanged.
+
+Afterall33producerDONE0 inspectthenMANUALLYpostprocess_qe_matrix_context_experiment.py
+->evalsamev2/targetX4only/priority/endoSTD ->completeplannedmaster ->wholedecision.
+FULL132CHAT beforeanynextactualexperiment. Strictprospectiveguardsmin100netTP,
+noTOTALextra/wrongincrease,priority+STDguards; rejectWHOLEifanyfail/no posthoc
+splice. SourcepushCFMmainonly. GoalACTIVE,continue no checkpointstop. Explicit
+humanpauseonly: createOWN049/pause_requested, letcurrent2atomicboundariesfinish,
+thenupdategoalpaused/report/push. No queuedgoldanalysis/automation/subagents.
+
 ## CURRENT049 PROTOTYPES/STAGEA READY / fullnested verifier RUNNING — goal ACTIVE
 
 LastCFMmainpush7e0c324 (matrixpilotclosure+actual049plan); no actual049fits.
