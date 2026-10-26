@@ -1,0 +1,88 @@
+Prospective049: OTHER-family sample-context composition features, whole pipeline
+
+STATUS design, not authorized to fit until complete code/preflight gates below.
+Retained WHOLE04182740/92100=89.8371336%,TOTAL E9270,wrongpeak1604. Source
+b1d792b matrixpilot complete/all33independentPASS; per-project exploratory
+composition-presence loss improves modestly in all4modes, NOT accepted gains.
+Fullnested numeric sourcebebfcee:25references/462authorizedTRAINtableuses and
+363querylayers complete; separate independent check still required. Native
+baseline profiles and8descriptor settings MUST remain unchanged from pilot.
+
+Only scientific model-input change: add8numeric sample-context descriptors to
+old029108predictors, using matching own/outer/inner exclusions for EVERY query.
+Same physical old029pools, chemistry, raw feature IDs/MZ/RT/intensity/sample
+areas, windows, default composition ranges, explicit specimen links, labels
+and unresolved-label handling. No hard range, matrix-name/name/FID predictor,
+new candidates, isotope/fragment hypothesis, class weights or partial labels.
+Never use outer-only diagnostic layers for INNER fitting/calibration.
+
+Fresh ALL25parentmodels/100fixed-mode HGB experts,180iterations EACH; exact
+original029classifier parameters from its frozen protocol, early_stoppingFalse,
+same categorical encoding/equalprojectweights withinmode. No CatBoost, warm
+start, old-model aliasing, class/mode fit selection or hyperparameter sweep.
+Known labels/rowcounts/weights must reproduce029 after new8columns removed.
+Model provenance must record matching matrixreference scopes/hashes perquery.
+Matrix-scope validator runs before EVERY fitting/prediction call, alongside
+unchanged native scope checks, refusing own/outer/inner reference contributors.
+
+Fit ALL25models first, then132INNERpredictions from matching new inner experts.
+Use exact02917point .20..1.00/.05 global-mode thresholdgrid/.05ambiguity,
+same weakest-mode capped90 objective and9.5%endogenous-TRAINextras budget.
+Not034class-MIP or048cutgrid. No budget relaxation if calibration infeasible.
+
+Retain ENTIRE041algorithm, not just its core and not a splice of old outputs:
+1.new029-style core scoring+same global-mode calibration;
+2.same005declared-STD handling from matching frozen outer standard models;
+3.same027fixed label-free mass discovery AFTER newcore/std occupancy;
+4.same041conservative free-class completion policy, RECOMPUTED from new INNER
+  scores/thresholds/occupancy using unchanged original helper/eligibility/
+  precision/extra/wrong/leaveproject guards. No old outer-only completion calls
+  copied into new outputs. Calibration occupancy, as041, is INNER core plus
+  native blindSTD rows, not outer-only mass/std adjudication caches.
+ALL5mode+completion calibrations hashfrozen BEFORE ANY33outer output. Final
+completion rechecks new whole-core/std/mass occupancy. No weaker peak promotion
+after failed physical/ambiguity/freefeature tests. Preservecompletecompetition.
+
+No-fit gate BEFORE actual permission:
+- full363numeric-layer independent PASS plus current source/input/runtime hashes;
+- all528authorized training-query label parity against original029,116column
+  schema/exactold108/pools and independent modewise rowlabels/weights/categories;
+- all132INNER+33OUT old029score controls BITEXACT when newcolumns removed;
+- all33old029core/std/mass and whole041completion scientific calls/full original
+  coordinates/samplequantities reproduced with original scores/calibrations;
+- explicit WHOLE off-switch reproduces041, never class/mode winner selection;
+- actual fit/calibration/assembly/checker/decision implementations+tests COMPLETE
+  and sourcebound; no newclassifier until this gate allPASS. No hidden monkey
+  patch of frozen runners or modification of old failed experiments/checkers.
+
+Actual verifier must independently reproduce all25parent/100expert parameters,
+training matrices/labels/weights/scopes,132INNER+33OUT scores,5complete global
+mode curves/choices and5completion curves/choices/guards,all33whole selection
+assemblies/fulloriginal coordinates/sampleareas,all old/new source hashes and
+fresh comparisons against same v2manual references. Version/preserve failures;
+no source/tolerance edits after results. Scalar numeric layer tolerance1e-12;
+new score/annotation selection must exactly reproduce saved outputs. Native
+classifier internals have no implicit row-random validation or early stopping.
+
+Prospective WHOLE retain guards (before ANY049annotation outputs): >=100NET
+new correct original-feature matches; no increase in TOTALunconfirmed E9270;
+no increase in wrongpeak1604; prioritycapped90mean improves; prioritybelow90
+count not increased; no already90prioritycell dropsbelow90; no priorityclass
+loses>1percentagepoint; standards no correct loss/extra or wrongpeak increase.
+Reject WHOLE if anyguard fails; don't relax/splice winners retrospectively.
+No assertion that these guards alone establish deployment readiness or target.
+
+Primary target scope unchanged92100incl1456STD/28unresolved; X4two rows excluded.
+All33datasets/132cases/30projectgroups; sparse classes deferred only for tuning,
+still in all denominators/reports. Complete user-facing132before/after CHAT
+correct% n/N and TOTAL E, separate wrongpeaks, class/mode+endoSTD companions,
+integrity andwholedecision required BEFORE another annotation experiment.
+Cached original-feature research replay, not fresh integrated-app annotation,
+untouched external validation or analytical FDR. BMP bothNPwhen supported;
+no runtime manual-presence filter. Original data/appdefaults remain unchanged.
+
+Two numericworkers/oneBLASthread each, bounded task dispatch. Explicit user
+pause marker:finish current atomic model/case boundaries, don't dispatch new
+work, preserve all partial artifacts and report incomplete status; resume only
+with identical source/protocol/input hashes. Don't pause at checkpoints unless
+human asks. Goal remainsACTIVE until genuine outcome or explicit user pause.

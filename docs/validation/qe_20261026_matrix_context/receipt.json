@@ -1,0 +1,21 @@
+{
+  "all_pilot_checks_passed": true,
+  "datasets": 33,
+  "dataset_modes": 132,
+  "project_groups": 30,
+  "authorized_training_table_uses": 132,
+  "independent_numeric_tolerance": 1e-12,
+  "independent_receipt_sha256": "a325defb98d900ddb3ff487c5639d010fb5060580ce1e7983d514339cbdd487d",
+  "new_numeric_descriptors": 8,
+  "exploratory_presence_cases": 2185,
+  "annotation_changes": false,
+  "classifier_fits": 0,
+  "thresholds_selected": false,
+  "decision": "prepare_fresh_whole_method_feature_experiment_after_all_nested_checks",
+  "retained_reference": "041",
+  "retained_correct": 82740,
+  "retained_manual": 92100,
+  "retained_total_unconfirmed_extras": 9270,
+  "retained_wrong_peak_choices": 1604,
+  "note": "Safe aggregate diagnostic publication only. Native sample signatures, per-project reference composition lists and per-feature outputs remain private. Exploratory composition-presence loss is not same-peak coverage, accepted gains or chemical FDR. Original inputs/app/defaults unchanged."
+}

@@ -1,0 +1,52 @@
+Sample-context composition pilot — diagnostic complete; annotation test pending
+
+All33datasets/132mode cases/30project groups, same active QE inventory. Native
+automatic profiles from OTHER lipid families choose similar OTHERPROJECT
+curated composition references. Target root excluded across ALLstreams;
+same-project tissues count once. No matrix names, own-project curation, saved
+curator RT fits, hard carbon/DB limits or new accepted annotations.
+
+All33blind numeric outputs and5masked references were frozen BEFORE separate
+scalar reconstruction of all signatures/raw coordinates/reference composition
+rows/weights/peer choices/descriptors. ALLPASS at1e-12numeric tolerance;
+independent receipt a325defb98d900ddb3ff487c5639d010fb5060580ce1e7983d514339cbdd487d.
+AuthorizedOTHERPROJECT training curation necessarily read before this gate;
+own heldout validation curation opened only AFTER all33numericchecks.
+
+Descriptive distributions alone do NOT support a simple acceptance cutoff:
+missing correct options often have LOWER composition frequency than currently
+accepted unconfirmed extras. Same-class original-peak alternatives receive
+IDENTICAL prior evidence. This cannot select the correct original peak alone.
+
+An EXPLORATORY secondary comparison, added AFTER the initial distributions,
+compared conditional versus global OTHERPROJECT composition-presence priors.
+No thresholds,feature settings or original annotations changed. Within each
+project/class/mode with query class curation, unique raw-pool compositions
+were compared with manual composition presence, NOT original-peak matches.
+Both losses checked independently using scalar arithmetic. Class cases average
+withinproject, then projects count equally (related tissues not extra votes).
+
+Mode    Global loss  Context loss  Context minus global  Projects better/worse
+NPneg   .520781      .509035       -.011746              17/13
+NPpos   .455905      .437421       -.018485              22/8
+RPneg   .531361      .520558       -.010803              16/14
+RPpos   .438195      .422579       -.015616              24/6
+Lower loss is better agreement with curated COMPOSITION presence. This is NOT
+same-peak annotation coverage, chemical identification probability/FDR or
+untouched external validation. 2185 eligible dataset/class/mode cases; classes
+without query curation unavailable ONLY for this conditional diagnostic. No
+primary denominator/runtime/manual-presence filter changes, including BMP.
+
+Decision: investigate these8SOFTdescriptors in a fresh whole-method scoring
+experiment AFTER complete nested controls, not a standalone filter. ALL25
+matching nested reference masks and363numeric delta layers have been prepared;
+their separate independent reconstruction remains required before actualfits.
+Outer-only pilot descriptors MUST NOT feed INNER training/calibration. No
+classifier fit or new annotation yet. No posthoc winning-class/mode splice.
+
+Retained WHOLE041 unchanged:82740/92100=89.8371% correct same-original-feature
+matches,9270TOTAL unconfirmed extras,1604wrong-peak choices. X4only excluded;
+standards and28unresolved mappings stay in primary denominator. Goal NOTmet.
+All-class actual annotation experiment still needs full132before/after report,
+class/mode and endogenous/standard companions,integrity and wholedecision.
+No production defaults or original data modified; no deployment exports.

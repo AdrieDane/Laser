@@ -1,5 +1,36 @@
 # Experiment reporting policy
 
+## CURRENT matrix pilot CLOSED positive-softsignal / ALL363 complete / verifier RUNNING
+
+Pilotb1d792b:11192DONE0;65347DONE0 ALL33PASS/5refs/132TRAINuses at1e-12,
+receipt a325defb98d900ddb3ff487c5639d010fb5060580ce1e7983d514339cbdd487d.
+Diagnostic14962DONE0 AFTERall33gates. NewseparateEXPLORATORYpresenceanalysis
+2694DONE0 source diagnose_qe_matrix_peer_presence.py nowFROZEN;2185reviewed
+dataset/class/mode cases,scalar/vectorlossparity. Equalproject macroconditional
+minusglobal logloss NPneg-.011746,NPpos-.018485,RPneg-.010803,RPpos-.015616;
+projectsbetter17/22/16/24of30. This is COMPOSITIONpresence,NOTsamepeakcoverage,
+acceptedgains/FDR. No standalonefilter: missingtrue oftenlowerprior thanextras;
+sameclasswrongpeakgetsidenticalprior. Publicsafeclosure
+docs/validation/qe_20261026_matrix_context readyuncommitted; no signatures/
+perprojectCDBlists/rawfeatureoutputsprivate. Noactualannotationchanges.
+
+Nestedsourcebebfcee:53631DONE0 ALL25refs/462authorizedTRAINtableuses,
+ALL363layers(33x11),33singlefoldBITEXACTpilotparities;356MBdeltaonly,old108
+predictors/pools unchanged,116TOTALcolumns incl oldcategories. StageFROZEN.
+Independent7351ACTIVE /tmp/laser_matrix_nested_check.log;ALL25scalarrefsPASS,
+now363scalarquerylayers(2workers). DoNOTstartactualfitsuntilall363PASS.
+Newactual049 DESIGN plan next_matrix_context_annotation_experiment.txt ready;
+no actualmodel/backend/assembly/preflight/master codeyet. New8only+fresh100
+HGB180experts,EXACT029modecutpolicy (not034/048),ENTIRE041pipeline including
+RECOMPUTED041completioncalibration,005STD/027mass unchanged. Prospectivewhole
+guards as048(min100netcorrect,noTOTALextra/wrongincrease,priority/STDguards).
+Needcompleteallimplementation+no-fit label/weight/165oldscore/33whole041
+controls BEFOREfitpermission. Actualinputbindings MUSTincludeall363newlayer/
+25model artifacthashes andreceipt,notjustoldsourceinputs;verifylayerSHAonread.
+Retained04182740/92100,E9270,W1604,goalACTIVE/notmet;noappdefaultchanges.
+Continueautonomously,notcheckpointstop. Full132CHAT alreadydone048;notneeded
+fornumericpilots,but mandatoryAFTERactual049BEFOREanotherANNexperiment.
+
 ## CURRENT matrix blind COMPLETE / independent near complete / fullnested READY
 
 Matrixpilot sourceb1d792b pushedCFMmain;producer11192DONE0 all33blind numeric
