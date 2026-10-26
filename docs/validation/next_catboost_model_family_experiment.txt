@@ -63,8 +63,23 @@ Predeclare FULL0..1domain in.025increments,with1explicitlyDISABLED. SAME.05
 one-feature label-ambiguity and oneidentity/ion winner policy; no weaker peak
 fallback. Copy-native selector parity on oldvaliddomain is mandatory; only
 domain/disabled semantics differ. This is not an extra chemical evidence gate.
-Same pooled9.5%endogenous manual trainingextrasbudget and weakestmode coverage
-capped90 objective,then totalcorrect,then wrong/extras,then higherthreshold.
+First use the same pooled9.5%endogenous manual trainingextrasbudget and weakest
+mode coverage capped90 objective,then totalcorrect,then wrong/extras,then higher
+threshold. Then apply the already implemented034 class-aware TRAINING optimizer
+to these NEW INNER scores,not029scores or034outerwinners: >=100manual rows,
+>=3projects,>=20correct fixed winners from>=3projects for eligibleclass/modes;
+sparse/unsupported keep this newlearner's mode baseline. Native034positive
+coverage levels5%..100% plus88/89/90/91/92%,exactmode-baseline recallboundary,
+with1explicitlyDISABLED. Same fixed winners/.05ambiguity, no losing-label or
+weaker-peak promotion. Classcorrect counts cannot decline versus the newmode
+baseline in any eligible TRAININGclass;wrong counts cannot increase in any
+TRAININGmode. Pooled9.5%budget includes fixed/sparse/zero-manual extras costs.
+Lexicographic maximize meanclass coverage capped90,then correct,then wrong/
+extras/cutoff stability. Solver120s perstage; uncertified optimum returns the
+WHOLE newmode baseline,not a partial favorable solution. This goal-aligned
+class calibration is part of the prospective WHOLE newmodel-family method,
+NOT a later cutoff-only sweep or an outer-class splice. Both model family and
+this newly applied calibration are reported as changes relative to041.
 No extra-budget discounts for crosspolarity or manualabsence. Native scores
 are curator-agreement ranks,not analytical identity confidence orFDR.
 
@@ -72,10 +87,14 @@ Whole-method reconstruction: samefixed005standard adjudication and027mass
 candidate/protection references,not outer-only mass data inINNERcalibration.
 Newcore occupancy can legitimately change final mass-stage admissions; doNOT
 splice oldaccepted calls onto newones using outertruth. Same041conservative
-class-completion policy musteitherbe reproduced from matching newINNERscores
-or explicitly omitted for this whole-newcore experiment and the omission
-reported. Implement/fix that reconstruction prospectively before finalprotocol;
-this design file is not permission to run an underspecified wholepipeline.
+class-completion add-on is EXPLICITLY OMITTED for048: this whole newmethod uses
+newclass-calibrated core+fixed005standard adjudication+027massstage. It doesnot
+append041's11correct/2extra incrementalcalls after observing outerresults.
+That omission is included in the before/after comparison versusWHOLE041 and
+mustbe stated. App/defaults remainunchanged. Preflight mustreproduce the ENTIRE
+029pipeline fromits oldscores/cutoffs using the newassembly implementation,
+and disabled-newmethod mustreproduce WHOLE041 exactly. This file remains a
+design until fullrunner/verifier/preflight sources are implemented/frozen.
 
 Mandatory reporting/decision
 
@@ -86,7 +105,7 @@ ANDregressions. No posthoc threshold budget/guard relaxation or winningmode
 splice. A pooled90% doesnotmeet perclass/mode90% goal. Sameoriginalfeature
 validation,allrawcoordinates/quantification andspike treatment audited.
 
-Provisional whole-method acceptance guards to finalize BEFORE actualrun:
+Prospective whole-method acceptance guards fixed BEFORE actualrun:
 >=100netnewcorrect manual matches;totalextras<=041;wrongpeaks<=041;priority
 capped90classmean improves;numberpriorityclass/modesbelow90doesnotincrease;
 no priorityclass already>=90 dropsbelow90;no priorityclass loses>1percentage

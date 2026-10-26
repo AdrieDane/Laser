@@ -1,5 +1,51 @@
 # Experiment reporting policy
 
+## CURRENT048 BUILD / no-fit stageA READY; no actualQEclassifierfits
+
+Lastcompletedclosure/backendsource136c0dcpushedCFMmain;allpriorpilotjobsDONE.
+NewCatBoostsoftware5testsPASS; native-domain/class-selector10testsPASS (15total),
+RuffPASS. No realQEfit, scorecalibration ornewannotations;goalACTIVE/NOTmet,
+whole041retained82740/92100,E9270,W1604;appdefaultsunchanged.
+
+048DESIGN updated BEFORE anyactualQEfit: new800treeCatBoost108originalinputs,
+fullnative41modecutgrid0..1step.025 with1DISABLED,.05ambiguity;THENexisting034
+class-aware TRAINING optimizer onNEWINNERscores,>=100manual/3projects/20correct
+fixedwinnersfrom3projects. Sparsefallback ownnewmodecut. Same9.5%pooledbudget,
+no eligibletrainclasscorrectloss/wrongmodeincrease,certifiedsolverorwholemode
+fallback;notlatercutoff-onlysweep. FinalcompareWHOLE041,notouterwinnerclasses.
+04111correct/2extra add-on EXPLICITLYOMITTED:048wholepipeline newclasscore+
+same005standard adjudication+027fixedmassreferences;omissionincludedincomparison.
+Changedcoreoccupancymaylegitimatelychangemassadmissions. Finalprospectiveguard
+>=100netTP/noEorWinc/prioritycapped90meanup/noincreasebelow90count/noalready90
+priorityclassfallsbelow90/no prioritydrop>1pp/STDnotregress. Full132CHATafteractual.
+
+NEW sources(uncommitted):catboost_experiment_data.py(paths,old108scope/authorized
+labels/25parents/indepmatrix);catboost_operating_points.py(nativefixedwinners/
+explicit1disabled/native034curves);test_catboost_operating_points.py10tests;
+catboost_pipeline_assembly.py(newcore+005/027/no041;originalcoordschecked);
+audit_qe_catboost_inputs.py(stageAinputcompatibility ONLY,notfinalfitpermission).
+Sourceplanmodifieddesignnotyetfinalruntimeprotocol. Noactualrunner/master/final
+preflight yet. Backendmfilealreadycommitted136c0dc unchangedfromits5softwaretests.
+
+REALDATA compatibilitysmokes(NOnewfitting/performanceexperiment):parentouter0/
+inner1all19trainingqueries/fourmodes EXACTold029rows+positives+categories and
+independentreconstructedX/y/groupsPASS. Weights differed1ULPonlywhen independent
+scalarusedONEdivision;changedindependenthelper tooriginalTWO successive divisions
+BEFOREstageA soactualarrayswillmatchbitexact. Nativebackendweightformula unchanged.
+OneWHOLE029legacyassemblyreplay21P0116_Zoemba1904calls EXACTsame canonicalkeys,
+alloriginalMZ/RT/I8eps pass. No hand-curatedmatchingperformancecounts calculated.
+
+Nextcommit/pushnewbuildsources/DESIGNthenrun audit_qe_catboost_inputs.py in
+isolatedRUNTIME/bin/python freshprocess. ItmustcheckALL363blind table hashes/
+scope/schema beforeauthorized25parent/100mode matrix checks/528traininguses;
+132INNER+33OUTcontexts. Writes QE/catboost_input_compatibility_v1,NOactual048
+directory/fits/cutoffs/annotations. Sourcebound datahelper/backend/plan/auditor
+freezeonstart;don'teditthese whileaudit runs. OtherNEWrunner/master files may
+beimplementedafterward butmustbindstageA andneedsseparatecomplete finalmodel/
+exportpreflight+independentactualverifier BEFORE anyrealQEfit. StageAreceipt
+actual_training_fit_authorized=False explicitly. Useisolatedwork/qe_catboost_
+runtime_v1/bin/python (systemPythonhasnoCatBoost). No source-inputdata edits.
+
 ## CURRENT competing-ion pilot CLOSED / CatBoost-family DESIGN+software READY
 
 Competing-ion originalproducer18859DONE0;v1checker63857DONE1orderonlyfailure
