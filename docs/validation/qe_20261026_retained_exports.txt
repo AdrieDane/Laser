@@ -1,0 +1,78 @@
+User-requested annotated peakgroup exports — retained research method 041
+26 October 2026
+
+Scope and status
+
+All 33 active QE datasets /132 dataset-mode cases exported. This is an explicit
+user-requested export of the saved, validated RETAINED041 calls, NOT a new
+annotation experiment, new model, acceptance change or deployment claim.
+Rejected049 calls are not used. Optimization remains paused. The research
+code and reports are on CFM main; no new installer/default promotion is implied.
+
+Private output folder, beside (NOT inside) QE_example_datasets:
+LASER_annotated_QE_041_20261026
+
+Each original dataset folder contains four mode subfolders, each with its own
+peakgrouplist_{RP,NP}_{Pos,Neg}_annotated.txt. Only laser_annotation and adduct
+are inserted as columns 2 and 3. Accepted calls only; other rows have blanks.
+Original row order, values, numeric text, headers, line endings and final
+newline state are retained. No original peak list or workbook is modified.
+
+Each dataset also contains:
+  annotation_scores.txt — four modes, correct percentage AND exact n/N, total
+  extras, wrong-peak choices, unmatched manual entries, unresolved mappings
+  and total accepted LASER annotations.
+  annotation_scores_by_class.txt — the same statistics by class and mode.
+
+Top-level score files:
+  annotation_scores_by_mode.txt — pooled totals in each of the four modes.
+  annotation_scores_all_datasets.txt — all 132 dataset/mode results.
+  annotation_scores_by_class_and_mode.txt — pooled class/mode results.
+  README.txt and export_verification.json — definitions, scope and verification.
+
+Scores from actual exported identities, freshly compared with curation
+
+Mode        Correct/manual             Percent  TOTAL extras  Wrong peaks
+RP positive 40,655/45,206                89.9%     3,391          932
+RP negative 12,088/13,600                88.9%     1,995          408
+NP positive 17,641/19,380                91.0%     1,946          163
+NP negative 12,356/13,914                88.8%     1,938          101
+TOTAL       82,740/92,100                89.8%     9,270        1,604
+
+Unrounded total correct percentage: 89.8371335505%.
+Correct requires the SAME lipid, adduct, mode AND ORIGINAL feature as manual.
+The denominator includes internal standards and all 28 unresolved manual peak
+mappings. Only X4 (two entries) is excluded from scores, as instructed. No raw
+rows/classes are removed from the peakgroup exports. Extras are unconfirmed
+manual-absent calls, not proven chemical false positives or analytical FDR.
+Wrong peaks and unresolved cases are separate, not additional correct matches.
+The requested 90% in every class/mode is NOT achieved by these saved results.
+
+Verification
+
+14 tests passed: 11 export-check/score cases plus three native writer tests.
+Actual exporter uses the frozen041 app byte-preserving writer. Before curation
+is read, it independently reverses the insertion and checks every selected
+feature/identity/adduct, source fingerprints, annotation evaluation hash and
+actual saved output. Scoring then uses the same verified v2 manual crosswalk;
+all 132 dataset/mode metric sets exactly reproduce the retained041 benchmark.
+Curation is evaluation-only and cannot affect the exported identities.
+
+A separate process (not the producer's check helper) streamed every original
+and exported line, checked original-field byte equality after dropping only
+the two inserted columns, independently read the accepted CSV identities and
+verified every source/output/annotation hash and expected row/annotation count.
+ALL132 PASS: 8,379,018 original feature rows, 93,626 annotated rows,
+5,695,757,319 output peakgroup bytes. One accepted identity per feature/mode.
+All 33 per-dataset mode and class score files are present. No original data
+are replaced by internal candidate caches or rescaled/imputed measurements.
+
+Files remain private in the user's iCloud work folder, outside the repository.
+The adjacent LASER_annotated_QE_041_20261026.zip is complete: 2,502,753,718
+bytes. The producer's full ZIP CRC test passed; an additional archive check
+confirmed all 203 file names/sizes and the exact embedded verification manifest.
+Producer12612 and separate stream verifier35634 both finished with exit zero.
+Do NOT put raw exports, ZIP, sample data, feature IDs or private crosswalks in
+the public Git repository. Only this aggregate note and reusable export/test
+code belong in Git. The full fresh integrated-app deployment benchmark and
+colleague-ready deployment report remain a separate, unfinished requirement.

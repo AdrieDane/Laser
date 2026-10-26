@@ -1,5 +1,24 @@
 # Experiment reporting policy
 
+## CURRENT user-requested041 EXPORTS COMPLETE — optimization remains PAUSED
+
+Producer12612DONE0;separateindependentstreamverifier35634DONE0. ALL33/132
+original lists exported accepted041calls ONLY. ALL8,379,018rawrows byteexact
+afterdroppingONLYnewcols2/3,all93,626acceptedfeature/name/adductpairs exact,
+alloriginal/selected/outputhashes checked. 5,695,757,319peakgroupbytes.
+Freshactual-export evaluation ALL132matchesretained041counts exactly:
+82740/92100correct,E9270,W1604,28unresolved. No ANNchange ornewbenchmarkgain.
+Eachdataset2scoreTXT files; rootpooledmode/combined132/classmodeTXT;README+
+privateverificationJSON. OutputsSOURCE.parent/LASER_annotated_QE_041_20261026.
+AdjacentZIP2,502,753,718bytes;nativeALLCRCtestPASS;independent203fileinventory/
+sizes/embeddedmanifest/sourceSHA PASS. 14testsPASS. Exportsource8e90cbc is
+unchanged fromactualrun;minorunusedimports remainexplicitlynonfunctional.
+Safeaggregate note docs/validation/qe_20261026_retained_exports.txt;pushnote+
+README/handoffCFMmain. RawTXT/ZIP/privateJSON outsideGit. No process/queueleft.
+This was a scoped human export request,NOT permissiontoresume optimization,
+enableappdefaults/promoteinstaller/deploymentclaim oruse049. GoalstillPAUSED,
+targetNOTachieved;no050/newpilots/fits pending. Continueonlyifhumanresumes.
+
 ## CURRENT user-requested041 peakgroup EXPORTS / optimization stays PAUSED
 
 Newhumanrequest:generateannotated peakgroup lists forALL33datasets plus per-

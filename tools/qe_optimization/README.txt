@@ -1,5 +1,18 @@
 QE collection research runners — 22 October 2026
 
+User-requested retained-result exports (26 October; NOT new annotations):
+  python tools/qe_optimization/export_qe_retained_peakgroups.py --output <NEW-folder-outside-SOURCE> --zip
+Use the explicit environment variables documented below. Requires the verified
+whole041 experiment and EXACT active33inventory/originalinput/selected hashes.
+Exports accepted041identities ONLY via the frozen app byte-preserving writer;
+independently reverses the insertion and matches every identity/adduct/FID.
+Only added cols2/3;132 *_annotated.txt in dataset/mode folders, no other edits.
+Fresh same-manual-feature scoring AFTER export must exactly reproduce041.
+Eachdataset has annotation_scores.txt and annotation_scores_by_class.txt;
+the root has combined132case, pooledmode and pooledclass/mode score TXT files.
+Raw data/ZIP/privateverificationJSON stay OUTSIDE Git. This does NOT resume
+optimization, change app defaults, or establish deployment readiness.
+
 26 October current checkpoint: PAUSE requested after049;049 DONE0/full original
 independent master ALLPASS;wholemethod REJECTED(-25correct,-27extras,+17wrong
 versus041). FULL132CHAT delivered. Retained04182740/92100,E9270,W1604;
