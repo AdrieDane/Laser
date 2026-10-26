@@ -1,0 +1,45 @@
+RP paired-isomer RT-gap diagnostic — complete; defer standalone rule
+
+All33 active QE datasets,132mode cases,30project groups. No annotations,
+acceptance thresholds, classifiers or app defaults changed. Retained research
+reference WHOLE041:82740/92100=89.8371% correct original-feature matches,
+9270TOTAL unconfirmed extras,1604different-peak choices. Goal NOTmet.
+
+OTHERPROJECT curated identities selected ORIGINAL measured feature RTs for
+paired LPC/LPE1/2 andPC/PEO/P gaps. One project/one median vote. No heldout query
+curation, saved RT fits or NP transfer in its own prediction. Five reference
+models/132authorized TRAINING table uses; all33numeric outputs frozen before
+independent checks. Independent scalar gap/reference,scope,rawcoordinate and
+complete candidate MULTISET reconstruction ALLPASS. Query manual comparisons
+opened ONLY AFTER all33checks. Numeric tolerance1e-10s; original MZ/RT/I exact.
+
+3073 numeric target predictions yielded2405raw candidate rows. Only21 missing
+manual same-original-feature targets appeared as distinct correctly ordered
+physical partners. Eight have BOTH free identity and original peak; only3of8
+are outside the old029core candidate pool. None are accepted gains. Other13
+are blocked by current identity/feature occupancy. No old calls were changed.
+
+Missing correct-target coverage/free/free-and-new:
+RPpositive 1-acylLPC 2/0/0;2-acylLPC3/1/0;PC-O4/2/2;PC-P9/4/1.
+RPnegative 1-acylLPE0/0/0;2-acylLPE0/0/0;PE-O2/1/0;PE-P1/0/0.
+NPnotapplicable, unchanged. All8class/stream rows remain in detailed tables.
+
+Among14 currently missing targets with BOTH the correct original peak and a
+wrong physical alternative in the graph, the learned gap prefers the correct
+peak5times and the wrong peak9times. Among26already-correct such targets,
+correct16/wrong10. These are conditional candidate comparisons, not global
+annotation performance, analytical FDR, independent biological replicates or
+evidence that every unconfirmed extra is chemically false.
+
+Decision: DEFER this standalone rule. Small conditional coverage and weak
+true-versus-wrong peak discrimination do not support an annotation-changing
+experiment. Do not tune cutoffs against these heldout diagnostics or splice
+isolated class winners. Original annotations/data and041reference unchanged.
+
+Next separate hypothesis: OTHER-family native automatic sample signatures
+select OTHERPROJECT peers for soft conditional carbon/DB composition priors.
+This is not tissue identification or a hard whitelist and cannot choose an
+original feature on its own. New pilot plan records prospective controls.
+
+Research/development exposure remains; not untouched external validation or
+fresh integrated-app raw-input benchmark. No deployment peakgroup exports.

@@ -1,5 +1,29 @@
 # Experiment reporting policy
 
+## CURRENT paired-isomer gap CLOSED / matrix-context prototype BUILD — goal ACTIVE
+
+Pairedgap source937ea17,producer33531DONE0 all33blind/5refs/132TRAINuses;
+checker99485DONE0 ALL33PASS;diag8628DONE0 onlyafter fullcheck. No ANNchanges.
+3073predictions/2405rawgraphrows;21missing correctoriginal targets in graph,
+8identity+FIDfree,3free-and-novelto029core. Missingpaired truegapcloser5 vs
+wrongcloser9/14;alreadycorrect16vs10/26. DEFERstandalonerule,not acceptedgains.
+Receipt969b14cd2ef277e96ba2a7adde7d9e1a21817e7e56b8e04ff95b85fd7d07653b.
+Pairedsources/plan/tests NOWFROZEN; originalcoords exact/all graphmultisets
+reconstructed,OTHERPROJECTpermittedtrainingonly/no querygold before gates.
+Publicsafeaggregateclosure docs/validation/qe_20261026_paired_isomer_gap.
+
+New matrix_peer_composition/independent/test prototype +prospective
+next_matrix_peer_composition_pilot.txt;7synthetic testsPASS. NOTfrozen/running
+or actual049 yet. Own targetfamily omitted acrossALLstreams fromnative
+BASELINEautomatic histograms;OTHERfamilies choose up-to5otherPROJECT peers,
+alltiesincluded,8softCDBpresence descriptors/2globalpseudovotes,not hardlimits,
+names or tissue diagnosis. Nativebaselineonly avoids041outer-cache leaking
+into future INNER features. Independent scalar implementation remainsseparate.
+New producer/data implemented but verifier/diagnostic stillneedcompletebefore
+sourcecommit/run. All33blind+independent BEFOREquerygold descriptiveanalysis.
+No newannotations/scorefits/cuts;retained04182740/92100,E9270,W1604 unchanged.
+Continueautonomously;full132CHAT alreadydelivered048,don'trepeatforread-only.
+
 ## CURRENT paired-isomer gap READ-ONLY pilot READY — goal ACTIVE
 
 048whole rejection/public closure pushed7fb2424;full132CHAT already delivered.

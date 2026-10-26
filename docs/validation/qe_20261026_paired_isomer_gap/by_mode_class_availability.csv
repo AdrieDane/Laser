@@ -1,0 +1,9 @@
+stream,family,lipid_class,all_channel_manual_endogenous_rows,primary_channel_manual_rows,current_primary_correct,numeric_predictions,unique_mapped_target_predictions,manual_matching_source_partners,missing_correct_targets_in_graph,missing_correct_targets_free,missing_correct_targets_free_and_new_to_core
+RP_Neg,LPE,1-acyl LPE,694,694,621,132,128,126,0,0,0
+RP_Neg,LPE,2-acyl LPE,448,448,378,248,174,240,0,0,0
+RP_Neg,PE_ether,PE[O],771,771,677,461,215,455,2,1,0
+RP_Neg,PE_ether,PE[P],2092,2092,1924,213,195,205,1,0,0
+RP_Pos,LPC,1-acyl LPC,1407,1407,1235,415,412,408,2,0,0
+RP_Pos,LPC,2-acyl LPC,900,900,795,603,459,595,3,1,0
+RP_Pos,PC_ether,PC[O],2629,2629,2305,382,339,372,4,2,2
+RP_Pos,PC_ether,PC[P],1830,1830,1483,619,424,610,9,4,1
