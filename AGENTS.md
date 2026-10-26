@@ -1,5 +1,36 @@
 # Experiment reporting policy
 
+## CURRENT competing-ion BLIND COMPLETE / v1 checker order failure / v2 READY
+
+Sourceb04b36fpushedCFMmain. Producer18859DONE0 all33tables/17fields/privatelinks
+frozen. Originalchecker63857DONE1: firstreportedcase numericPASS then directed
+link ROWORDERdifferent(groupedfeature vsoriginalrowenumeration). NOall33receipt,
+NOlabelanalysis,NOannotation/fits/cuts/defaultchanges. Preserveoriginalsources
+andfailurefolder; failure.log+failure_receipt.json in QE/competing_ion_family_
+independent_check_v1. DoNOTclaimall33numericPASS untilv2complete.
+
+NEW v2checker source+plan/test written: verify_qe_competing_ion_family_pilot_v2.py
+sameALLnumeric/physicalchecks(ASThelpersparitytested),ONLYcomparesfull directed
+edgeMULTISETS sortedsource/alternativeindices. Exactvalues/dtypes/rowcounts/
+duplicatemultiplicity; NOsets/dropduplicates/tolerancerelaxation. SeparateOUT
+competing_ion_family_independent_check_v2. Originalblind131inputs/measurements/
+graphneverregenerated/edited. New plan next_competing_ion_family_check_v2.txt.
+v2extensionsbindnewchecker/diagnostic/tests/plan+preservedfailurelogs/receipt.
+diagnose..._v2.py exactoldanalysisEXCEPTnewreceiptpath+newOUT;testbyteparityPASS.
+8focusednewtestsPASS/RuffPASS. Noactualv2checker runyet; nojobsremain.
+
+Supplemental review_qe_competing_ion_labels.py addedAFTERblindpilotstarted,
+explicitposthoc/exploratory. MayrunONLYafteroriginal-analysis_v2receiptpasses.
+Classlabels onSAMEfeature vsalternativeunconfirmedclass; actualrawindices/
+duplicateconstructionversions resolvedcanonicalkeys. Currentotherlabel/free
+identity descriptiveopportunities,NOTnewannotations/thresholds. Notinitialplan.
+Ownsource+alloriginalinputs bound; no model/fitting code yet.
+
+Nextcommit/pushnewchecks,runverify..._v2 ALL33 ->ONLYTHENdiagnose..._v2 ->ONLY
+AFTERthatreview_qe_competing_ion_labels.py. ManualGoldanalysisNOTqueued.
+Alloldfrozenpilot/runtime/plan/indep/v1checker/diag unchanged. Whole041retained
+82740/92100,E9270,W1604,goalACTIVE/NOTmet. Continueautonomouslynotcheckpointstop.
+
 ## CURRENT occupancy audit COMPLETE / competing-ion pilot READY — ACTIVE
 
 7a94150pushedCFMmain isotopeclosure+occupancysource. Occupancy95516DONE0,

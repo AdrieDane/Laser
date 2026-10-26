@@ -1,0 +1,35 @@
+Competing-ion independent check v2 — order-only checker correction
+
+Original blind producer completed all33 descriptors; source/runtime untouched.
+Original checker v1 failed before its all33 receipt on saved directed-link ROW
+ORDER, after numeric comparison in that case passed. Producer groups by source
+physical feature; independent implementation enumerates original row order.
+The directed edge collection is semantically unordered. Preserve original v1
+source, failed output directory, failure log and zero-label-read receipt.
+
+New verify_qe_competing_ion_family_pilot_v2.py repeats ALL33 numeric/physical/
+native-ion checks from unchanged inputs; ONLY link comparison sorts BOTH full
+DataFrames by source_index/alternative_index and resets the presentation index.
+Keep exact values, endpoints, dtypes, row count and DUPLICATE multiplicity. Do
+NOT convert to sets, discard duplicates or relax any numerical tolerance.
+Synthetic test accepts order permutations but rejects changed/missing/duplicated
+edges. Output to SEPARATE competing_ion_family_independent_check_v2 directory.
+Bind v2 checker, v2 diagnostic, tests, this plan and preserved v1 failure records.
+Recheck original blind input hashes and all33 output hashes; no regeneration or
+alteration of frozen measurements, graph topology, rankings or source data.
+
+New diagnose_qe_competing_ion_family_pilot_v2.py is byte-identical to original
+diagnostic EXCEPT independent receipt path v1->v2 and own output path v1->v2.
+This preserves all original prespecified comparisons/denominators/directions.
+No diagnostic has run or opened labels in this pilot yet. Both completed all33
+blind and independent v2 receipts MUST exist before any gold analysis. No queued
+analysis, classification, cutoff learning, accepted calls or app changes.
+
+Supplementary review_qe_competing_ion_labels.py was added AFTER blind pilot
+started and is explicitly exploratory/posthoc, not original prespecified
+inference. It may run ONLY after original-analysis v2 receipt passes. It compares
+curated and alternative LABELS on the SAME original feature, using frozen17
+fields and graph only. Alternatives are unconfirmed labels, not chemical false
+positives. Counts current other-labelled-feature/free-identity opportunities
+without choosing thresholds, fitting models or making annotations. All source
+hashes and private diagnostic tables remain bound. This is not experiment048.
