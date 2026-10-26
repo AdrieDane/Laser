@@ -1,0 +1,60 @@
+Native formula/isotope compatibility: prospective read-only measurement pilot
+
+Not annotation experiment 048. No annotations, classifier fits, learned cuts,
+app defaults, candidate coordinates, original intensities or exports change.
+Sole active 33 QE datasets; all four measurement streams. X4 remains excluded
+only from evaluation, standards remain in all original benchmark denominators.
+
+Question: do formula-aware descriptions of existing raw isotope-neighbour
+intensity ratios provide usable correct-original-peak discrimination beyond
+the generic raw evidence already present? PE already has a rough carbon-only
+envelope descriptor; this pilot must not claim isotope evidence is new.
+
+For each single outer-excluded candidate pool, derive an ion atom formula from
+the BUNDLED native catalogue chemistry/R-group increments and the actual native
+phase-specific adduct. Match reported species and class; NP O+P-d corresponds
+to O-d / P-(d-1). Require a UNIQUE atom formula and agreement with native target
+m/z within 0.00002 Da. Never infer chemistry from a mass alone or query manual
+labels. Unsupported/labelled/spiked/ambiguous formula rows remain UNKNOWN.
+This is a formula-description eligibility check, not a new mass matching gate.
+Same-formula isomers MUST receive identical theoretical isotope predictions.
+
+Use bundled stable_isotopes.tsv abundances; ion mass accounts for signed charge
+and electron mass. Compute carbon-only M1/M2 ratios and nominal full-element
+M1/M2 totals analytically. Existing raw features searched C13 upper/lower and
+lower2 at charge-aware spacing, NOT upper2. Fine isotope mass components and
+instrument resolving power are unknown: nominal totals are descriptive upper
+compatibility bounds, NOT measured envelopes. Do not claim Cl37/S34 was seen
+at a C13-squared location. No hard ratio/profile gate is introduced.
+
+Invert existing log1p intensity differences using the original log1p median to
+obtain exact positive median ratios. Zero, absent or invalid intensities remain
+NaN. Descriptive log distance to carbon-only prediction and carbon-to-nominal
+intervals for upper and inverse lower/lower2 ratios. Lower matches describe
+possible isotope contamination, not definitive parent/identity assignments.
+All 14 fields frozen for ALL33 before any manual-label analysis.
+
+Independent checker: separate raw TSV catalogue parser/formula construction,
+native affine mass arithmetic, isotope polynomial convolution rather than the
+producer's analytic moments, and direct expm1 intensity ratio inversion. Check
+all rows/formulas/fields/unknowns, input and output hashes, original-pool
+immutability and source outer-exclusion provenance. Synthetic tests include
+12 native adducts, multiply charged targets, NP O/P equivalence, standards,
+missing/zero channels, low intensity log1p inversion and unsupported formulas.
+
+Only AFTER all33 blind outputs and all33 independent checks pass, descriptive
+manual analysis may report per-dataset/mode/class measurement coverage and
+within-identity correct-peak versus known-wrong-peak contrasts. Predeclared
+contrast fields: upper_carbon_error and upper_interval_error, lower is better;
+lower_inverse_interval_error and lower2_inverse_interval_error, larger is
+less isotope-like (not required for correct annotations). Require both true
+and alternative wrong candidates measurable; compare true to the BEST wrong
+value in that direction, report ties and project counts. Exactly one mapped
+manual feature per identity; deduplicate candidate-construction versions.
+Both true and wrong options must pass the pre-existing independent physical
+3ppm/10second/standard/isotope protections for that query-excluded pool. Report
+current-correct and currently-missing comparisons separately, not just winners.
+Also report formula-coverage/unknown statuses without labels. No per-class
+cutoff selection, accepted-gain claims or promotion based on these exposed
+development data. Any later annotation method needs a new prospective plan,
+full nested masked training and the mandatory full132 before/after report.

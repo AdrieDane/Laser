@@ -1,5 +1,36 @@
 # Experiment reporting policy
 
+## CURRENT formula/isotope read-only pilot IMPLEMENTED / READY — ACTIVE
+
+Cross-phase pilot closure/safe reports pushed CFMmain58e228e; no jobs remain.
+Standalone correlation peak rule DEFERRED; no new accepted calls. Whole041
+retained82740/92100,E9270,W1604;appdefaults unchanged; goalNOTmet.
+
+New read-only formula/isotope pilot source+plan written, NOT048experiment:
+next_formula_isotope_pilot.txt;formula_isotope_measurements.py;
+formula_isotope_independent.py;prepare/verify/diagnose_qe_formula_isotope_pilot.py;
+test_formula_isotope_measurements.py. All20new testsPASS inclALLnativecatalogue
+definitions/adducts,12adduct atomdeltas/charge/native mass parity,O/P equivalence,
+nominal polynomial vsanalytic moments,low-intensity exactlog1p inversion.
+Full focused suite running inchat. No actualdatasetpilot run yet.
+
+14descriptive fields ALLclass/fourmode singleouterexcluded pools. Nativechem
+atomcounts/headgroup/adduct,UNIQUEformula+targetmass2e-5Da parity,NP O/P DBshift.
+Standards/labels/unsupported remainunknown; no call orcandidate changes.
+Existing13C upper/lower/lower2 only:NOupper2,nominaltotal intervals NOTmeasured
+fullenvelopes; cannotdistinguishsameformulaO/P. PEhasroughcarboncheckalready.
+Independent rawTSV parser/nativeaffinemass/ionexpression/polynomialconvolution/
+directexpm1 ratios doesNOTcallproducer helpers. Native decoder O+P template's
+literalclassOquirk accounted independently; empty-phasecatalogue skipped before
+phase_composition. Both fixed in synthetic tests BEFORE realdata/gold.
+
+Next commit/push sourceplanCFMmain,runprepare_qe_formula_isotope_pilot.py in
+freshprocess ->all33blindreceipt ->MANUALLYverify_qe_formula_isotope_pilot.py
+all33 ->ONLYTHENdiagnose_qe_formula_isotope_pilot.py. Allsources frozen once
+producerstarts; preserve onfailure/versionrestart. Predeclared pairedpeak
+contrasts/correct-vs-missing split/projectcounts,notselectedcutoffs/gainclaims.
+No048model/cuts yet; no morecutoff-onlysweeps. GoalACTIVEcontinueautonomously.
+
 ## CURRENT cross-phase pilot COMPLETE / DEFER standalone peak rule — ACTIVE
 
 Pilot59810DONE0;independent80579DONE0 ALL33PASS;diagnostic8862DONE0;posthocpaired
