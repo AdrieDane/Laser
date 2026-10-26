@@ -1,0 +1,91 @@
+Experiment 049 REJECTED — keep whole 041 research reference
+26 October 2026
+
+All 33 active QE datasets, four modes, 132 dataset/mode cases, 30 project groups.
+Correct requires the SAME lipid, adduct, mode AND ORIGINAL feature as curation.
+The primary denominator is 92,100 manual entries, including 1,456 standards
+and 28 unresolved feature mappings. Only user-excluded X4 (two rows) is omitted.
+Sparse classes remain in the complete reports. Extras are unconfirmed calls
+absent from the manual list, not proven chemical false positives or FDR.
+
+Whole 041 before -> whole 049 after:
+Correct: 82,740/92,100 (89.83713355%) -> 82,715/92,100 (89.80998914%): -25.
+TOTAL extras: 9,270 -> 9,243: -27.
+Wrong-peak choices: 1,604 -> 1,621: +17.
+Priority correct: 81,907 -> 81,866 /90,871: -41.
+Priority class/modes below 90%: 43 -> 43 of 86.
+Priority capped-90 class mean: 83.89026528 -> 83.82754362%.
+All target class/modes below 90%: 76 -> 75 of 122, due to sparse-class changes;
+this does not compensate for the priority-class losses and wrong-peak increase.
+
+Mode: correct/manual before -> after; TOTAL extras; wrong peaks
+RP positive: 40,655/45,206 -> 40,598/45,206; 3,391 -> 3,321; 932 -> 933.
+RP negative: 12,088/13,600 -> 12,121/13,600; 1,995 -> 1,960; 408 -> 418.
+NP positive: 17,641/19,380 -> 17,636/19,380; 1,946 -> 2,069; 163 -> 178.
+NP negative: 12,356/13,914 -> 12,360/13,914; 1,938 -> 1,893; 101 -> 92.
+
+Endogenous: 81,365 -> 81,340 /90,644; extras 8,549 -> 8,522;
+wrong peaks 1,577 -> 1,594. All 28 unresolved entries retained.
+Standards unchanged: 1,375/1,456 (94.43681319%); 721 extras, 27 wrong peaks.
+
+Decision
+
+Reject the ENTIRE method. It fails the predeclared minimum correct gain,
+no-wrong-increase, priority capped-mean, already-90 protection and maximum
+priority-class-loss safeguards. No post-hoc class/mode winner splicing or
+guard relaxation. The best retained research reference remains whole 041:
+82,740/92,100, 9,270 extras, 1,604 wrong peaks. It is NOT a production default
+and does NOT meet the requested 90% in each class/mode.
+
+What was tested
+
+Eight soft carbon/double-bond sample-context descriptors from other projects
+with similar OTHER-family native automatic lipid profiles. The target family
+and related lyso family are excluded from the profile comparison. No dataset
+names, query curation, saved curator RT fits or hard-coded original features
+are predictors. Reference scopes exclude the query/outer/inner project groups.
+All 363 matching numeric layers were independently checked before fitting.
+
+Fresh 25 parent fits /100 native HGB mode experts, 180 iterations each, with
+the old 108 inputs plus eight new descriptors (116 columns). Same physical
+pools, fitting labels, project weights and exact 029 mode-cutoff policy.
+The entire 005 standard/027 mass/041 completion policy is retained, with fresh
+INNER calibration of completion rather than copied old outer calls. All five
+calibrations were frozen before any of the 33 blind outputs were generated.
+
+Integrity
+
+Producer and postprocessor both completed with exit code zero. The ORIGINAL
+planned independent verifier passed without source, tolerance or method edits:
+25 parents/100 expert parameters, all matrices/labels/weights/reference scopes,
+528 training-query uses, 132 INNER score cases, all five complete mode and
+completion calibration curves, 33 outer scores and complete output assembly,
+fresh identical-reference manual comparisons, and 3,328,802 original sample
+cells checked exactly. Ordinary dataframe fragmentation warnings only.
+Verifier SHA256:
+704471339e367ead3173118806d596d092ba93c3954f56813be7de92ad0cb7f4
+Complete private integrity receipt SHA256:
+aa927b68fb72f491de2cb6462d801c0105b48f5a7f900c6ac08efe0c959ed8bf
+
+The internal-output sample-cell restoration copies original raw cells AFTER
+checking the chosen feature and coordinates. It does not change annotations,
+rescale/impute measurements or count as an annotation-performance gain.
+Original source peak lists and curation are unchanged.
+
+Files and limitations
+
+versus_041/target_scope_without_X4 contains the full 132-case primary and
+class/mode comparisons. versus_041/endogenous_and_spiked_companion reports
+sample lipids and standards separately without changing the primary metric.
+decision_and_full132_table.txt includes per-dataset wrong-peak counts too.
+All 132 before/after percentage(n/N)/TOTAL-extra rows and separate wrong-mode
+totals were delivered in chat after full integrity verification.
+
+Cached original-feature grouped DEVELOPMENT replay, not a fresh integrated-app
+benchmark, untouched external validation or chemical identification probability.
+Repeated development and inherited/vendor exposure remain limitations.
+Public files are safe aggregates only; no raw profiles, feature IDs, private
+curation/crosswalks, reference composition lists or fitted models are published.
+
+The user requested a pause after this experiment and a reflection on progress.
+No experiment 050, new pilot, fits or annotation changes are started.

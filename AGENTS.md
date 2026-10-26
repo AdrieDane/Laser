@@ -1,5 +1,37 @@
 # Experiment reporting policy
 
+## CURRENT049 CLOSED / REJECTED / HUMAN PAUSE — no further optimization
+
+049producer34314DONE0 andpostprocess39017DONE0. ORIGINALplanned master ALLPASS:
+ALL25parents/100nativeHGB180experts/528traininguses/132INNERscores/fivecomplete
+mode+completioncurves/33OUTwholeassemblies/freshsamegold/3,328,802originalsample
+cells exact. No source/tolerance changes. ReceiptSHA
+aa927b68fb72f491de2cb6462d801c0105b48f5a7f900c6ac08efe0c959ed8bf.
+Whole049 REJECTED:82740 ->82715/92100,E9270 ->9243,W1604 ->1621.
+Priority81907 ->81866/90871;43/86below90same,cappedmean83.89026528 ->83.82754362.
+All76 ->75/122below90due sparsechanges;STD1375/1456,E721,W27unchanged.
+FULL132CHAT correct%n/N+TOTALextras and separatewrongmodetotals DELIVERED.
+No class/mode winner splice,guard relaxation/default change. All049sources/
+plan/checkers/artifacts remainfrozen. ResearchWHOLE041retained82740/E9270/W1604.
+
+Latesthuman explicitlyrequested PAUSE AFTER049 andreflection. Current work
+finished; safeaggregateclosure docs/validation/qe_20261026_049 plus reflection
+docs/validation/optimization_reflection_20261026.txt; publisher4testsPASS.
+Handoff+README updated. PushCFMmain then update_goal(status="paused"),reportstop.
+No research processes live;no queuedjobs/050/newpilots/fits. GoalNOTachieved.
+Do NOTcontinue optimization unless human explicitlyresumes. Historical earlier
+"continue/no checkpointstop" paragraphs below do NOToverride thishumanpause.
+
+## HUMAN REQUESTED PAUSE AFTER049 — finish current checks/report, then STOP
+
+Latesthuman: "pauze after this experiment and reflect on the optimization
+cycles ... what has been implemented and how much progress ... gained".
+Finishalready-runningpostprocess39017/fullmaster/wholedecision and FULL132CHAT,
+publishsafe049aggregates plus candidcumulativereflection,pushCFMmain; THEN
+update_goal(status="paused") andstop. NO050/newpilots/fits/cutoffexperiments.
+This supersedes older autonomous-continue instructions once049isclosed.
+Do not prematurelyclaimpause/complete whilecurrentchecksremainrunning.
+
 ## CURRENT049 ALL33 COMPLETE / evaluation and full master RUNNING — goal ACTIVE
 
 Producer34314 DONE0: ALL25freshparents/100nativeHGB180experts, ALL5INNER

@@ -1,0 +1,162 @@
+049 whole-method decision: REJECT whole method
+Correct means SAME lipid,adduct,mode AND original peak as manual curation. Percentages use ALL manual entries,including unresolved; X4onlyexcluded,standardsincluded. Extras are TOTAL calls absent from manual list,not proven false identities. Wrongpeaks separate.
+All33datasets/132modes/30projects. Cached grouped development replay,not fresh integrated-app or external validation. New8context descriptors/freshHGB;old029modepolicy/005STD/027mass/041completionpolicy retained. Output rawsamplecells copied fromoriginal,notrescaled/imputed;notannotationgains.
+App defaults unchanged; target not yet established for deployment.
+
+RP_Pos
+Dataset | Correct/manual before | Correct/manual after | TOTAL extras before | TOTAL extras after | Wrong peak before | Wrong peak after
+21P0116_Zoemba__fff844b15f6b | 47.8% (594/1242) | 47.1% (585/1242) | 84 | 78 | 149 | 130
+24P0010_Sperm_cells__cdbcff21ab9b | 92.3% (717/777) | 92.5% (719/777) | 49 | 52 | 15 | 15
+24P0023_HCM_T2D__a77e2e80c25e | 91.3% (1090/1194) | 91.3% (1090/1194) | 186 | 177 | 28 | 32
+24P0024_ALD_Scenic_HMC3__689f34b4c3b2 | 86.3% (1247/1445) | 86.0% (1242/1445) | 130 | 136 | 18 | 20
+24P0026_Heart_tissue_slices_ALI__2a2940653c8b | 89.7% (1162/1295) | 89.0% (1152/1295) | 52 | 49 | 8 | 7
+24P0027_SCENIC_Retina__11eefafa8b6d | 94.2% (1279/1358) | 94.0% (1276/1358) | 110 | 108 | 14 | 12
+24P0037_Manidipine_sulfatide__8a8b747e903d | 86.5% (982/1135) | 86.3% (980/1135) | 81 | 83 | 59 | 63
+24P0041_Cardiomyopathy__c49fa55d16a4 | 90.8% (1499/1651) | 89.7% (1481/1651) | 91 | 70 | 16 | 16
+24P0044_Zebrafish3month_QE3__087e9205555d | 87.8% (967/1101) | 87.6% (965/1101) | 34 | 30 | 34 | 34
+24P0044_Zebrafish3months__7b3ec9a95f03 | 91.8% (1228/1338) | 92.2% (1234/1338) | 85 | 83 | 24 | 26
+24P0064_SIMONE_heart__f0ecb2aa1df3 | 95.5% (1618/1694) | 96.0% (1627/1694) | 156 | 157 | 19 | 20
+24P0069_Zebrafish_Florit__1ed23b56b087 | 93.0% (1419/1525) | 93.0% (1418/1525) | 128 | 134 | 20 | 22
+24P0089_Fruitflies_UK__902b8cc95359 | 69.2% (749/1082) | 67.9% (735/1082) | 73 | 63 | 41 | 42
+24P0098_SIMONE__04b325ef57c6 | 96.0% (1684/1755) | 95.6% (1677/1755) | 99 | 95 | 26 | 25
+24P0101_LysoIP__41b7ced29d7a | 83.7% (1034/1235) | 83.2% (1027/1235) | 81 | 82 | 78 | 84
+24P0107_KHK_Inhibitor_Muscle__71475f572034 | 94.3% (1086/1152) | 93.9% (1082/1152) | 101 | 93 | 26 | 28
+24P0110_Zebrafish__6f661810a5c7 | 83.4% (1822/2184) | 84.2% (1838/2184) | 76 | 85 | 74 | 83
+24P0118_ALI__0f22e224ae70 | 93.7% (1044/1114) | 94.1% (1048/1114) | 42 | 45 | 13 | 13
+24P0119_NAD_Liver__91da2f8db0d9 | 94.3% (1353/1435) | 93.7% (1345/1435) | 215 | 200 | 20 | 18
+24P0119_NAD_Muscle__1e49eb13550c | 94.4% (1273/1349) | 94.4% (1273/1349) | 274 | 286 | 22 | 22
+24P1000_Project__364bfe73db43 | 83.2% (1117/1343) | 82.8% (1112/1343) | 42 | 39 | 66 | 65
+25P0003_heart__34c00f9a75c3 | 93.2% (1533/1645) | 92.4% (1520/1645) | 89 | 71 | 29 | 31
+25P0015_PM_KidneySummer__ca4b60d7cc9e | 92.6% (1404/1516) | 93.8% (1422/1516) | 103 | 102 | 21 | 18
+25P0072_VLC_PUFA_cuprizoneBrain__8baf66eeef84 | 93.9% (1225/1304) | 93.8% (1223/1304) | 87 | 89 | 10 | 9
+25P0075_Zebrafish__a301fc17e125 | 95.2% (1492/1568) | 95.3% (1495/1568) | 89 | 85 | 10 | 9
+25P0092_Plasma__f555969960fe | 96.5% (862/893) | 96.3% (860/893) | 103 | 106 | 9 | 10
+25P0096_Astrocytes_in_ferroptosis__e3339c41ef18 | 94.0% (1527/1624) | 93.9% (1525/1624) | 80 | 83 | 13 | 11
+25P0096_MicroGlia_in_ferroptosis__cabc596817d1 | 94.1% (1240/1318) | 94.4% (1244/1318) | 229 | 217 | 12 | 11
+25P0100_ScenicBrains__6ce8e42ee3e8 | 94.6% (1279/1352) | 94.7% (1280/1352) | 108 | 106 | 13 | 14
+26P0012_LSD__4cf1e1ff3653 | 90.9% (945/1040) | 91.2% (949/1040) | 85 | 89 | 9 | 7
+26P0026_ALD_rat_brain__62ffe2995e66 | 95.6% (1619/1694) | 94.9% (1608/1694) | 99 | 96 | 7 | 8
+26P0033_EHTs_MAVA__6107b3d71890 | 87.4% (1484/1697) | 87.7% (1489/1697) | 91 | 98 | 18 | 17
+26P0038_MLC_Pex5_mouse__5ceeaf865709 | 93.9% (1081/1151) | 93.6% (1077/1151) | 39 | 34 | 11 | 11
+
+RP_Neg
+Dataset | Correct/manual before | Correct/manual after | TOTAL extras before | TOTAL extras after | Wrong peak before | Wrong peak after
+21P0116_Zoemba__fff844b15f6b | 84.6% (241/285) | 83.9% (239/285) | 44 | 48 | 14 | 15
+24P0010_Sperm_cells__cdbcff21ab9b | 98.2% (109/111) | 98.2% (109/111) | 6 | 9 | 0 | 0
+24P0023_HCM_T2D__a77e2e80c25e | 89.6% (293/327) | 91.7% (300/327) | 55 | 56 | 12 | 14
+24P0024_ALD_Scenic_HMC3__689f34b4c3b2 | 90.4% (639/707) | 90.4% (639/707) | 87 | 69 | 30 | 31
+24P0026_Heart_tissue_slices_ALI__2a2940653c8b | 94.9% (243/256) | 97.3% (249/256) | 33 | 31 | 5 | 3
+24P0027_SCENIC_Retina__11eefafa8b6d | 88.7% (432/487) | 88.7% (432/487) | 55 | 51 | 23 | 22
+24P0037_Manidipine_sulfatide__8a8b747e903d | 90.5% (342/378) | 92.9% (351/378) | 24 | 27 | 11 | 10
+24P0041_Cardiomyopathy__c49fa55d16a4 | 81.8% (363/444) | 83.1% (369/444) | 36 | 28 | 10 | 7
+24P0044_Zebrafish3month_QE3__087e9205555d | 39.2% (58/148) | 37.8% (56/148) | 30 | 31 | 2 | 6
+24P0044_Zebrafish3months__7b3ec9a95f03 | 86.7% (326/376) | 87.0% (327/376) | 67 | 57 | 11 | 14
+24P0064_SIMONE_heart__f0ecb2aa1df3 | 91.3% (569/623) | 90.7% (565/623) | 58 | 53 | 13 | 17
+24P0069_Zebrafish_Florit__1ed23b56b087 | 93.8% (346/369) | 94.3% (348/369) | 74 | 87 | 9 | 8
+24P0089_Fruitflies_UK__902b8cc95359 | 74.3% (272/366) | 73.8% (270/366) | 25 | 26 | 6 | 5
+24P0098_SIMONE__04b325ef57c6 | 88.4% (573/648) | 88.6% (574/648) | 49 | 49 | 32 | 38
+24P0101_LysoIP__41b7ced29d7a | 81.6% (297/364) | 81.9% (298/364) | 81 | 85 | 11 | 11
+24P0107_KHK_Inhibitor_Muscle__71475f572034 | 91.2% (373/409) | 91.7% (375/409) | 76 | 71 | 18 | 16
+24P0110_Zebrafish__6f661810a5c7 | 78.1% (528/676) | 78.6% (531/676) | 165 | 156 | 39 | 36
+24P0118_ALI__0f22e224ae70 | 86.0% (141/164) | 87.8% (144/164) | 32 | 31 | 7 | 7
+24P0119_NAD_Liver__91da2f8db0d9 | 90.2% (340/377) | 90.2% (340/377) | 45 | 43 | 9 | 9
+24P0119_NAD_Muscle__1e49eb13550c | 94.5% (308/326) | 94.2% (307/326) | 124 | 128 | 4 | 3
+24P1000_Project__364bfe73db43 | 91.3% (347/380) | 90.5% (344/380) | 64 | 60 | 13 | 13
+25P0003_heart__34c00f9a75c3 | 88.1% (399/453) | 88.7% (402/453) | 45 | 46 | 16 | 16
+25P0015_PM_KidneySummer__ca4b60d7cc9e | 89.0% (422/474) | 88.8% (421/474) | 47 | 43 | 18 | 17
+25P0072_VLC_PUFA_cuprizoneBrain__8baf66eeef84 | 89.5% (424/474) | 89.9% (426/474) | 62 | 65 | 5 | 7
+25P0075_Zebrafish__a301fc17e125 | 92.8% (361/389) | 93.1% (362/389) | 84 | 88 | 10 | 10
+25P0092_Plasma__f555969960fe | 89.1% (163/183) | 88.5% (162/183) | 26 | 25 | 4 | 4
+25P0096_Astrocytes_in_ferroptosis__e3339c41ef18 | 93.1% (664/713) | 94.0% (670/713) | 66 | 67 | 19 | 19
+25P0096_MicroGlia_in_ferroptosis__cabc596817d1 | 94.1% (462/491) | 94.7% (465/491) | 140 | 140 | 14 | 14
+25P0100_ScenicBrains__6ce8e42ee3e8 | 94.3% (428/454) | 93.4% (424/454) | 71 | 69 | 12 | 11
+26P0012_LSD__4cf1e1ff3653 | 96.0% (241/251) | 94.8% (238/251) | 64 | 65 | 5 | 8
+26P0026_ALD_rat_brain__62ffe2995e66 | 89.8% (610/679) | 89.7% (609/679) | 46 | 46 | 16 | 20
+26P0033_EHTs_MAVA__6107b3d71890 | 95.9% (355/370) | 95.1% (352/370) | 62 | 57 | 3 | 2
+26P0038_MLC_Pex5_mouse__5ceeaf865709 | 93.5% (419/448) | 94.4% (423/448) | 52 | 53 | 7 | 5
+
+NP_Pos
+Dataset | Correct/manual before | Correct/manual after | TOTAL extras before | TOTAL extras after | Wrong peak before | Wrong peak after
+21P0116_Zoemba__fff844b15f6b | 88.8% (502/565) | 88.7% (501/565) | 46 | 43 | 4 | 4
+24P0010_Sperm_cells__cdbcff21ab9b | 92.9% (286/308) | 92.9% (286/308) | 31 | 35 | 0 | 0
+24P0023_HCM_T2D__a77e2e80c25e | 84.3% (424/503) | 88.7% (446/503) | 72 | 104 | 9 | 13
+24P0024_ALD_Scenic_HMC3__689f34b4c3b2 | 90.2% (770/854) | 90.4% (772/854) | 62 | 68 | 8 | 9
+24P0026_Heart_tissue_slices_ALI__2a2940653c8b | 98.5% (471/478) | 98.5% (471/478) | 44 | 83 | 0 | 0
+24P0027_SCENIC_Retina__11eefafa8b6d | 96.8% (456/471) | 96.6% (455/471) | 102 | 102 | 4 | 4
+24P0037_Manidipine_sulfatide__8a8b747e903d | 75.1% (368/490) | 73.7% (361/490) | 50 | 52 | 19 | 20
+24P0041_Cardiomyopathy__c49fa55d16a4 | 98.9% (528/534) | 96.8% (517/534) | 66 | 64 | 0 | 0
+24P0044_Zebrafish3month_QE3__087e9205555d | 93.7% (477/509) | 93.1% (474/509) | 23 | 24 | 2 | 2
+24P0044_Zebrafish3months__7b3ec9a95f03 | 96.7% (497/514) | 98.2% (505/514) | 87 | 93 | 0 | 0
+24P0064_SIMONE_heart__f0ecb2aa1df3 | 87.6% (680/776) | 87.1% (676/776) | 22 | 23 | 0 | 0
+24P0069_Zebrafish_Florit__1ed23b56b087 | 94.1% (622/661) | 93.2% (616/661) | 77 | 63 | 0 | 0
+24P0089_Fruitflies_UK__902b8cc95359 | 75.3% (256/340) | 75.6% (257/340) | 32 | 35 | 13 | 15
+24P0098_SIMONE__04b325ef57c6 | 97.3% (688/707) | 98.2% (694/707) | 130 | 129 | 2 | 2
+24P0101_LysoIP__41b7ced29d7a | 85.3% (424/497) | 86.5% (430/497) | 56 | 68 | 29 | 32
+24P0107_KHK_Inhibitor_Muscle__71475f572034 | 92.4% (472/511) | 92.8% (474/511) | 56 | 69 | 5 | 4
+24P0110_Zebrafish__6f661810a5c7 | 84.7% (817/965) | 87.2% (841/965) | 106 | 121 | 12 | 13
+24P0118_ALI__0f22e224ae70 | 97.5% (503/516) | 96.9% (500/516) | 32 | 36 | 2 | 2
+24P0119_NAD_Liver__91da2f8db0d9 | 90.9% (601/661) | 90.6% (599/661) | 129 | 132 | 7 | 8
+24P0119_NAD_Muscle__1e49eb13550c | 94.9% (617/650) | 95.1% (618/650) | 105 | 101 | 5 | 5
+24P1000_Project__364bfe73db43 | 85.5% (596/697) | 83.8% (584/697) | 85 | 86 | 19 | 20
+25P0003_heart__34c00f9a75c3 | 94.6% (610/645) | 94.3% (608/645) | 49 | 36 | 3 | 4
+25P0015_PM_KidneySummer__ca4b60d7cc9e | 86.8% (539/621) | 90.2% (560/621) | 86 | 90 | 4 | 4
+25P0072_VLC_PUFA_cuprizoneBrain__8baf66eeef84 | 93.3% (645/691) | 93.1% (643/691) | 69 | 77 | 1 | 1
+25P0075_Zebrafish__a301fc17e125 | 93.7% (742/792) | 91.9% (728/792) | 38 | 36 | 1 | 1
+25P0092_Plasma__f555969960fe | 95.8% (366/382) | 96.1% (367/382) | 12 | 16 | 1 | 1
+25P0096_Astrocytes_in_ferroptosis__e3339c41ef18 | 89.4% (532/595) | 89.1% (530/595) | 24 | 28 | 0 | 0
+25P0096_MicroGlia_in_ferroptosis__cabc596817d1 | 87.3% (467/535) | 85.0% (455/535) | 26 | 27 | 1 | 1
+25P0100_ScenicBrains__6ce8e42ee3e8 | 93.4% (598/640) | 90.2% (577/640) | 61 | 46 | 7 | 9
+26P0012_LSD__4cf1e1ff3653 | 88.7% (449/506) | 91.1% (461/506) | 23 | 26 | 0 | 0
+26P0026_ALD_rat_brain__62ffe2995e66 | 92.7% (702/757) | 93.9% (711/757) | 82 | 91 | 4 | 4
+26P0033_EHTs_MAVA__6107b3d71890 | 88.6% (567/640) | 85.9% (550/640) | 24 | 25 | 1 | 0
+26P0038_MLC_Pex5_mouse__5ceeaf865709 | 100.0% (369/369) | 100.0% (369/369) | 39 | 40 | 0 | 0
+
+NP_Neg
+Dataset | Correct/manual before | Correct/manual after | TOTAL extras before | TOTAL extras after | Wrong peak before | Wrong peak after
+21P0116_Zoemba__fff844b15f6b | 63.1% (169/268) | 62.3% (167/268) | 55 | 46 | 2 | 2
+24P0010_Sperm_cells__cdbcff21ab9b | 67.2% (154/229) | 69.0% (158/229) | 21 | 21 | 1 | 1
+24P0023_HCM_T2D__a77e2e80c25e | 89.6% (276/308) | 80.5% (248/308) | 48 | 47 | 1 | 1
+24P0024_ALD_Scenic_HMC3__689f34b4c3b2 | 87.4% (619/708) | 91.5% (648/708) | 91 | 91 | 4 | 2
+24P0026_Heart_tissue_slices_ALI__2a2940653c8b | 82.8% (222/268) | 82.8% (222/268) | 27 | 26 | 0 | 0
+24P0027_SCENIC_Retina__11eefafa8b6d | 93.7% (462/493) | 93.9% (463/493) | 74 | 68 | 0 | 0
+24P0037_Manidipine_sulfatide__8a8b747e903d | 62.5% (334/534) | 62.4% (333/534) | 41 | 41 | 19 | 19
+24P0041_Cardiomyopathy__c49fa55d16a4 | 92.0% (358/389) | 92.3% (359/389) | 46 | 44 | 1 | 1
+24P0044_Zebrafish3month_QE3__087e9205555d | 88.1% (245/278) | 87.4% (243/278) | 32 | 31 | 0 | 0
+24P0044_Zebrafish3months__7b3ec9a95f03 | 97.2% (308/317) | 97.5% (309/317) | 76 | 76 | 1 | 1
+24P0064_SIMONE_heart__f0ecb2aa1df3 | 95.3% (522/548) | 95.6% (524/548) | 104 | 66 | 0 | 0
+24P0069_Zebrafish_Florit__1ed23b56b087 | 91.4% (374/409) | 92.7% (379/409) | 47 | 44 | 0 | 0
+24P0089_Fruitflies_UK__902b8cc95359 | 78.6% (239/304) | 78.3% (238/304) | 65 | 56 | 12 | 11
+24P0098_SIMONE__04b325ef57c6 | 79.7% (559/701) | 84.6% (593/701) | 33 | 37 | 7 | 7
+24P0101_LysoIP__41b7ced29d7a | 76.7% (260/339) | 76.1% (258/339) | 20 | 19 | 0 | 0
+24P0107_KHK_Inhibitor_Muscle__71475f572034 | 84.8% (319/376) | 85.4% (321/376) | 38 | 44 | 3 | 3
+24P0110_Zebrafish__6f661810a5c7 | 96.0% (714/744) | 95.0% (707/744) | 85 | 98 | 1 | 1
+24P0118_ALI__0f22e224ae70 | 99.6% (229/230) | 98.3% (226/230) | 39 | 36 | 0 | 0
+24P0119_NAD_Liver__91da2f8db0d9 | 97.9% (419/428) | 98.1% (420/428) | 96 | 95 | 1 | 1
+24P0119_NAD_Muscle__1e49eb13550c | 99.5% (441/443) | 98.6% (437/443) | 80 | 70 | 0 | 0
+24P1000_Project__364bfe73db43 | 58.8% (291/495) | 59.0% (292/495) | 73 | 82 | 14 | 14
+25P0003_heart__34c00f9a75c3 | 78.8% (378/480) | 77.7% (373/480) | 47 | 47 | 18 | 13
+25P0015_PM_KidneySummer__ca4b60d7cc9e | 97.6% (451/462) | 96.8% (447/462) | 56 | 115 | 4 | 3
+25P0072_VLC_PUFA_cuprizoneBrain__8baf66eeef84 | 98.1% (460/469) | 98.1% (460/469) | 91 | 82 | 2 | 2
+25P0075_Zebrafish__a301fc17e125 | 98.0% (451/460) | 98.0% (451/460) | 34 | 34 | 0 | 0
+25P0092_Plasma__f555969960fe | 86.0% (153/178) | 86.0% (153/178) | 18 | 20 | 0 | 0
+25P0096_Astrocytes_in_ferroptosis__e3339c41ef18 | 98.8% (505/511) | 98.4% (503/511) | 100 | 70 | 0 | 0
+25P0096_MicroGlia_in_ferroptosis__cabc596817d1 | 97.6% (372/381) | 97.1% (370/381) | 116 | 124 | 0 | 0
+25P0100_ScenicBrains__6ce8e42ee3e8 | 94.6% (424/448) | 94.6% (424/448) | 33 | 30 | 2 | 2
+26P0012_LSD__4cf1e1ff3653 | 94.2% (307/326) | 91.7% (299/326) | 51 | 45 | 0 | 0
+26P0026_ALD_rat_brain__62ffe2995e66 | 97.8% (526/538) | 97.6% (525/538) | 47 | 66 | 0 | 0
+26P0033_EHTs_MAVA__6107b3d71890 | 95.3% (446/468) | 93.8% (439/468) | 106 | 88 | 7 | 7
+26P0038_MLC_Pex5_mouse__5ceeaf865709 | 96.1% (369/384) | 96.6% (371/384) | 48 | 34 | 1 | 1
+
+Prospective guards:
+at_least_100_net_correct: False
+no_total_extra_increase: True
+no_wrong_peak_increase: False
+priority_capped90_mean_improves: False
+priority_below90_count_not_increased: True
+no_already90_priority_class_falls_below: False
+no_priority_class_loses_over_one_percentage_point: False
+standards_no_correct_loss: True
+standards_no_extra_increase: True
+standards_no_wrong_peak_increase: True
+
+WHOLE049 versus WHOLE041;8new nested sample-context descriptors/freshnativeHGB180experts. ENTIREoriginal029/005/027/041policy,includingrecomputedcompletion. No posthocclass/modewinner splice,guardrelaxation orappdefaults. Researchcachedreplay,notdeployment/externalvalidation/chemicalFDR.

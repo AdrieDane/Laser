@@ -1,3 +1,38 @@
+LATEST CHECKPOINT — 26October2026, PAUSE AFTER049, WHOLE041 RETAINED
+
+The human requested a pause AFTER the current experiment and a reflection.
+049 producer34314 and postprocess39017 both DONE0. ORIGINAL planned master
+ALLPASS:25parents/100freshHGB180experts/528TRAINuses/132INNER/5complete mode+
+completion calibrations/33wholeOUT/freshsamegold/3,328,802rawsamplecells exact.
+Receipt SHA aa927b68fb72f491de2cb6462d801c0105b48f5a7f900c6ac08efe0c959ed8bf.
+No scientific source/tolerance changes during049. No live research processes.
+
+049 REJECTED WHOLE:82740 ->82715 /92100; E9270 ->9243; W1604 ->1621.
+Priority correct81907 ->81866/90871;43/86below90 unchanged;cappedmean worse.
+Alltarget76 ->75/122below90 only due sparse changes,not priority success.
+STD unchanged1375/1456,E721,W27. No class/mode splice,retune or deployment.
+FULL132CHAT before/after %n/N/TOTALextras and separatewrongmodetotals delivered.
+Safe reports docs/validation/qe_20261026_049; reflection
+docs/validation/optimization_reflection_20261026.txt. No050/newpilots started.
+
+Retained041 research ONLY:82740/92100=89.83713355%,9270extras,1604wrongpeaks;
+43/86priority and76/122alltarget cells below90. App defaults unchanged.
+Originalbaseline70270/92100,E9697,W1373: net+12470correct,-427extras,+231wrong.
+Since029,20numberedcycles through049 yielded only041retained(+11TP,+2E,0W).
+Pause until explicit human resume. Goal not achieved. See current AGENTS top.
+On resume do NOT rerun completed049 or prior audits; read reflection first,
+then propose a materially different physical discovery/peak-correction method,
+not another cutoff-only sweep or outer-tested winning-class ensemble.
+
+Current Python ROOT/work/qe_catboost_runtime_v1/bin/python (system-site-packages
+venv), OMP+BLAS1. ROOT/QE/source paths remain as below. Push ONLY cfm main.
+Only safe aggregates in Git; raw data/weights/signatures/reference composition
+lists/private crosswalks remain outside repo. Original input files unchanged.
+Deployment still requires fresh integrated-app33runs, lossless peakgroup exports
+with ONLY added columns2/3 and *_annotated.txt names, one colleague-ready report.
+
+ALL CHECKPOINTS BELOW ARE HISTORICAL — do not resume their queued instructions.
+
 LATEST CHECKPOINT — 25October2026,USER-REQUESTED PAUSE,029RETAINED
 
 User: "pauze when you can". Alljobs STOPPED; no037fits. DoNOTcontinue until

@@ -1,0 +1,15 @@
+{
+  "all_passed": true,
+  "datasets": 33,
+  "dataset_modes": 132,
+  "parent_models": 25,
+  "experts": 100,
+  "training_query_uses": 528,
+  "inner_score_checks": 132,
+  "outer_score_checks": 33,
+  "original_sample_cells_exact": 3328802,
+  "mode_and_completion_calibrations": 5,
+  "whole_original_assignments_reconstructed": 33,
+  "actual_verifier_sha256": "704471339e367ead3173118806d596d092ba93c3954f56813be7de92ad0cb7f4",
+  "note": "Full049 source/matrix/labels/weights/scopes/nativeHGB/INNERcurves/wholeouter/rawsample/freshsamegold checks. No source/tolerance/default changes. Accuracy/wholedecision separate;notdeployment/FDR."
+}

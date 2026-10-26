@@ -1,0 +1,195 @@
+LASER optimization reflection — pause after experiment 049
+26 October 2026
+
+Bottom line
+
+There has been substantial cumulative improvement, but recent cycles have
+largely plateaued. The best retained research method is still experiment 041.
+Experiment 049 is fully checked and rejected. No new cycle starts at this pause.
+The requested 90% in EACH curated class/mode is not achieved. The current
+installed app has NOT been upgraded to use these research models by default.
+
+Scope and definitions
+
+The sole active collection has 33 distinct four-peak-list sets /132 mode cases,
+with related acquisitions grouped into 30 project groups. User-requested
+exclusions remain excluded; archived datasets have not been reintroduced.
+Correct = same lipid, adduct, measurement mode AND ORIGINAL feature as manual.
+Primary denominator 92,100 includes standards and 28 unresolved manual mappings;
+only X4 (two manual entries) is user-excluded. Sparse classes are deferred for
+dedicated tuning, NOT dropped from evaluation. Extras are TOTAL calls absent
+from the corresponding manual list, not proven false chemical identities/FDR.
+Percentages pool counts first; they are not averages of dataset percentages.
+
+1. How much progress has actually been retained?
+
+Metric                              Original baseline       Retained 041
+Correct manual-peak matches         70,270/92,100            82,740/92,100
+Correct percentage                  76.29750271%             89.83713355%
+TOTAL unconfirmed extras             9,697                    9,270
+Wrong-peak choices                    1,373                    1,604
+
+Net: 12,470 more correct manual-peak matches (+13.53963084 percentage points),
+427 fewer extras, BUT 231 MORE wrong-peak choices. That last cost matters: the
+research method finds more curated identities but has not solved peak choice.
+Manual entries not correctly matched fall from 21,830 to 9,360 (57.1% fewer).
+Those unmatched entries have multiple possible causes; do not treat all as
+wrong peaks, or add overlapping error categories together.
+
+Same-scope baseline -> retained 041, by mode:
+Mode     Correct/manual before -> after             Extras       Wrong peaks
+RP pos   34,411/45,206 -> 40,655/45,206              2,802->3,391  739->932
+RP neg    9,543/13,600 -> 12,088/13,600              1,434->1,995  356->408
+NP pos   15,948/19,380 -> 17,641/19,380              3,320->1,946  192->163
+NP neg   10,368/13,914 -> 12,356/13,914              2,141->1,938   86->101
+
+Retained correct percentages: RPpos89.93%, RPneg88.88%, NPpos91.03%, NPneg88.80%.
+The pooled reduction in extras hides increases in BOTH RP modes. These are
+real trade-offs, not improvements in every mode or every class.
+
+Selected milestones (all percentages below use the SAME 92,100 target scope):
+Stage                                Correct matches      Extras  Wrong peaks
+Original baseline                    70,270 (76.30%)       9,697   1,373
+009 balanced mode acceptance          82,003 (89.04%)       9,316   1,619
+022 query-excluded nested training    82,385 (89.45%)       9,238   1,588
+027 conservative calibrated mass      82,408 (89.48%)       9,243   1,589
+028 four mode experts                 82,688 (89.78%)       9,346   1,628
+029 independent standard context      82,729 (89.83%)       9,268   1,604
+041 conservative class completion     82,740 (89.84%)       9,270   1,604
+049 sample-context experiment         82,715 (89.81%)       9,243   1,621 REJECT
+
+Milestones are whole-method cumulative results, NOT isolated causal effects
+of one feature. Historical all-manual files retain 92,102; omitting X4 here
+does not change correct counts or count as an annotation gain. Standard alias
+crosswalk corrections were applied identically to baseline and experiments;
+these evaluation repairs are not counted as gains either.
+
+2. What has been implemented and kept in the research method?
+
+- Learned class/composition RT references and chemical target/range coverage,
+  alongside existing reference/automatic RT information, rather than blanket
+  conversion of candidate labels into confident annotations.
+- Combined scoring of RT, mass error, isotopes, composition/competition and
+  run context; strongest-feature and competing-label selection safeguards.
+- Four separately fitted measurement-mode experts with project-balanced
+  training and training-only acceptance calibration.
+- Query/outer/inner-project exclusions in learned references and predictors;
+  related acquisition folders are not treated as independent validation sets.
+- Dedicated declared-internal-standard handling and independently measured
+  standard context. Conservative fixed mass-calibrated discovery is retained.
+- A small, guarded completion stage for free, clear class-specific matches.
+  Its measured 029->041 contribution is only 11 correct matches and two extras.
+- Reproducible all-dataset reporting, same-original-feature comparisons,
+  separate extras/wrong peaks/unresolved mappings, source/input binding,
+  independently reconstructed selections/calibrations and original-data checks.
+
+These are implemented research components and saved validated experiments,
+NOT an assertion that the installed app currently runs the retained pipeline.
+The final integrated-app benchmark and requested deployment exports remain due.
+
+3. What have we tested but NOT kept?
+
+The repository contains many opt-in prototypes/rejected experiments. Their
+existence is not evidence that all their changes are active in the best method.
+Tested families include class/family weighting and specialists; alternative
+negative-label treatment; more/redistributed acceptance cutoffs; pairwise peak
+and same-feature isomer-label models; additional RT/mass/standard discovery;
+raw cross-polarity, adduct-family and sample-profile evidence; BMP-specific
+completion strategies; and a different machine-learning family (CatBoost).
+Read-only pilots also examined isotope-formula compatibility, competing-ion
+families, occupancy, paired RP isomer RT gaps and sample-context priors.
+Read-only physical candidate opportunities are NOT accepted annotation gains.
+
+Examples of why rejection matters:
+- 047 BMP completion gained 391 correct but added 459 extras and three wrong
+  peaks. It exceeded its prospectively stated trade-off: not retained.
+- 048 alternative learner/calibration lost 1,706 correct and added 18 extras,
+  despite 42 fewer wrong peaks. Not retained; favorable modes were not spliced.
+- 049 sample context lost 25 correct and added 17 wrong peaks while reducing
+  extras by 27. Not retained. All five calibration and all 33 output checks pass;
+  correct implementation does not imply better annotation performance.
+
+The 20 numbered experiments after 029 (030 through 049) produced only ONE
+retained improvement: 041, +11 correct /+2 extras /no wrong-peak change.
+That is +0.01194354 percentage points, NOT a large recent accuracy improvement.
+Most cumulative gains came earlier. The recent pace has not been adequate.
+
+4. What is still missing?
+
+Retained 041 has 43/86 well-represented class/mode combinations below 90%, and
+76/122 overall below 90%. The well-represented combinations pool to 90.14%,
+but that pooled result is NOT the requested 90% in each combination.
+
+Examples, current retained method (standards included in each class scope):
+PE RPpos 1,953/2,209=88.41%; RPneg2,461/2,621=93.90%;
+PE NPpos 1,973/2,158=91.43%; NPneg2,036/2,251=90.45%.
+BMP NPpos270/622=43.41%; NPneg146/520=28.08%.
+FA-OH NPneg152/293=51.88%; RPneg350/502=69.72%.
+RPnegative LPI223/261=85.44% and 2-acylLPE378/448=84.38% need better peak choice
+as well as discovery. BMP must remain allowed in both NP polarities when
+supported; opposite-polarity manual support does not exempt an extra call.
+
+The completed 029 candidate audit (historical snapshot, not a new 041 audit)
+found 6,215 missing manual matches with a correct candidate already available,
+3,128 mapped missing matches without one, and 28 unresolved mappings. Even
+optimistic row-wise candidate availability could not reach 90% for 31/122
+class/modes; it ignores competing assignments and is not attainable accuracy.
+The 041 gain is too small to dismiss that fundamental discovery/selection gap.
+
+Locking every existing call also has structural limits: even perfect free
+discovery could not bring RPnegative 2-acylLPE or LPI to 90% in the independent
+immutable-call audit. Some original peak choices eventually must change safely.
+More permissive cutoffs alone cannot create an absent correct candidate or
+reliably separate same-formula isomers. Mass/profile agreement alone was not
+a consistently reliable original-peak discriminator in the completed pilots.
+
+5. My assessment and recommendation for resuming
+
+We have a materially improved, well-instrumented RESEARCH prototype and a much
+better picture of its failure modes. We do NOT have a demonstrated deployable
+solution to the class/mode target. More implementation and more audit code
+should not be presented as more measured annotation accuracy.
+
+The next phase should prioritize a materially different class-specific physical
+strategy for the dominant gaps, rather than more near-equivalent classifier or
+cutoff variants. In particular, evaluate joint RT relationships across a lipid
+series and competing original features, with separate RP isomer treatment and
+NP class behavior. New discovery and safe correction of existing peak choices
+must both be allowed; retaining all calls forever cannot meet the target.
+This is a proposed direction, NOT implemented/tested here or a promised gain.
+Review existing local-plane/constant-shift/paired-gap work first to avoid
+repackaging rejected methods. Start with a prospectively defined numeric pilot
+that can distinguish true candidates from rivals, then a fully grouped actual
+experiment with the same full reporting and explicit extras/wrong-peak guards.
+
+The validation process itself also needs more efficiency: reuse unchanged,
+hash-verified physical constructions and controls where scientifically valid,
+while keeping genuinely new model/calibration/output checks complete. Do not
+repeat unchanged work simply to add another cycle or weaken independent checks
+to make an experiment look successful. Never select outer-tested class winners
+from rejected runs as a disguised deployment ensemble.
+
+Repeated optimization on these 33 datasets creates development-selection bias.
+Grouped checks reduce direct leakage, but these are not untouched external
+data and inherited/vendor exposure remains. Future independent acquisitions
+would be useful when available; no unavailable new collection is substituted
+for the current objective. An extra call is unconfirmed, not automatically
+chemically wrong; agreement against curation is not analytical FDR.
+
+Before deployment, integrate a defensible retained method into the actual app,
+run fresh end-to-end original-input annotations on all 33 datasets, verify
+peakgroup exports add ONLY columns 2/3 laser_annotation/adduct with original
+cells/rows intact, and produce the requested single colleague-ready report.
+None of that is claimed complete at this pause. No deployment-ready exports
+are generated from the rejected 049 experiment.
+
+Evidence
+
+Retained method: qe_20261025_041/decision.txt and class/mode tables.
+Original-baseline comparison: qe_20261025_041/by_mode_before_after.csv.
+Actual 049 result, whole-method decision and full 132-case table:
+qe_20261026_049/decision.txt; decision_audit.json; decision_and_full132_table.txt;
+versus_041/target_scope_without_X4 and endogenous_and_spiked_companion.
+Earlier sources: qe_20261022_001 through qe_20261026_048 aggregate reports;
+qe_20261024_candidate_gaps_029; qe_20261025_immutable_ceiling;
+deployment_benchmark_plan.txt. No private raw data/models are included here.
