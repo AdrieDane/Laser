@@ -1,0 +1,25 @@
+048 independent checker v2 — memory ownership only, not a new annotation method
+
+Original planned checker passed all25parents/100modeexpert matrix,scope,parameter
+and800tree checks, then failed before completing calibration replay:
+ValueError: assignment destination is read-only in native_scores.
+Pandas3 copy-on-write returned a read-only numeric view. No numeric score
+disagreement, physical failure or all-calibration/outer PASS is claimed.
+Original checker and failure log/receipt preserved. Producer and allfrozen048
+sources, models, thresholds, candidate pools, annotations and reports unchanged.
+
+Clone original checker. Sole numerical helper change: to_numpy(float,copy=True)
+instead of to_numpy(float), so missing-value replacement owns writable memory.
+No tolerance relaxation, dtype/score change, endpoint/label/rule normalization,
+new model fitting, new cutoff choice or annotation rewriting. AST-parity tests
+for all helpers/counts/assembly/guards; explicit CoW failure reproduction and
+native-prediction parity on a synthetic fixture. Freeze extension sources/tests/
+plan/preservedfailure inputs before running v2.
+
+Keep original planned verifier SHA matched to the original unchanged file;
+separately bind v2 extension sources. Rerun ALL25models/132INNERscores/all5
+calibration grids/solverguards/33OUTscores/132original-coordinate and freshgold
+comparisons. Only on complete success write the048integrity receipt, recording
+both original failure and memory-only v2 verifier. No retrospective method or
+acceptance guard changes. Complete132CHATtable still mandatory after this SAME
+048experiment, before any next annotation-changing experiment.

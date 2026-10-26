@@ -1,5 +1,34 @@
 # Experiment reporting policy
 
+## CURRENT048 evaluation COMPLETE / original master FAILED memory-only / v2 READY
+
+Producer64857DONE0 all100fresh800treeexperts/5certifiedcalibrations/33outputs.
+Postprocess75948 DONE1: evaluation/comparisons/target/priority/endoSTD COMPLETE,
+then originalplanned master passed ALL25parent/100expert/matrix/scopes/params,
+failed firstcalibration replay BEFORE fullscorecheck: Pandas3 read-only numeric
+view in native_scores assignment. Originalplannedchecker unchangedSHA
+d6c50b6dd0c81145bfba612746012d6e596b5e401c17bf85fb258673d63b4e18.
+Privatefailurelog+receipt preserved OUT/verification_memory_copy_v1_failure.
+DoNOTclaim originalmasterallPASS. No producer/models/cuts/annotations changed.
+
+V2source verify_qe_catboost_experiment_v2.py ismechanicalcopy(originalhelpers
+ASTequal)EXCEPTto_numpy(float,copy=True), owningwritablememory. Mainstillchecks
+originalplannedverifierSHA+ALL1235originalbindings; separateextensionledger
+bindsv2/tests/plan/failure. No tolerancerelaxation/scoring/candidate/gold changes.
+test_catboost_checker_v2.py2PASS: exactallhelperASTparity exceptsinglecopykw,
+reproducesoriginalCoWerror andfixednative/backendpredictbitexact/inputimmutable.
+Realv2smoke80911DONE0: fold0ALL26INNERscores/164modecurves/classcurves/MIPguard
+andonewholeouteroriginalcoords/freshgold PASS. No fullv2ledger/runyet.
+Plan next_catboost_checker_v2.txt. Commit/pushthenrunfullv2 -> ONLYAFTERPASS
+MANUALLYreport_qe_catboost_decision.py. DoNOTrerunoriginalpostprocess (companion
+destalreadyexists;plannedv1stillfails). Newv2sourcesfreezeonstart.
+
+PRELIMINARYunverifiedtarget04881034/92100=87.9848%,E9288,W1562 vsWHOLE041
+82740/E9270/W1604: -1706correct/+18extras/-42wrong. Pri43->49below90;all76->82.
+STD1375/E721/W27unchanged. WillrejectWHOLEbyfixedguardsafterfullintegrity;
+doNOTretune/posthocsplice winners. NeedFULL132CHATbeforeanynextactualmethod.
+GoalACTIVE/latestGOON, retained041/defaultsunchanged. LastCFMmainpusha39c07c.
+
 ## CURRENT048 ALL BLIND OUTPUTS COMPLETE / evaluation+master RUNNING
 
 Actualproducer64857 DONE0: ALL25freshparents/100CatBoost800treeexperts,
