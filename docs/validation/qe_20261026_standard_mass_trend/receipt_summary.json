@@ -1,0 +1,15 @@
+{
+  "all_passed": true,
+  "datasets": 33,
+  "dataset_modes": 132,
+  "known_spike_leave_neutral_out_predictions": 1364,
+  "original_feature_mass_and_actual_declared_mass_checked": true,
+  "scalar_vector_all_fits_and_predictions_checked": true,
+  "manual_comparison_tables_opened": 0,
+  "endogenous_annotation_outputs": 0,
+  "annotation_classifier_fits": 0,
+  "annotation_changes": false,
+  "annotation_thresholds_selected": false,
+  "original_private_receipt_sha256": "5e01ccac0d7964efd2596eaa9583a47b071e6a342acf8400bdcc386a0b105e8b",
+  "decision": "Defer standalone annotation rule; conditional known-standard residual changes are small and inconsistent, not annotation gains. Active048unchanged."
+}

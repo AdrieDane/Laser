@@ -1,0 +1,5 @@
+stream,dataset_mode_cases,independent_project_groups,qualified_neutral_standards,all_LOO_cases,all_LOO_trend_better_cases,all_LOO_constant_better_cases,all_LOO_ties,all_LOO_median_case_improvement_ppm,interior_LOO_cases,interior_LOO_trend_better_cases,interior_LOO_constant_better_cases,interior_LOO_ties,interior_LOO_median_case_improvement_ppm
+RP_Pos,33,30,425,32,16,16,0,0.00513667451216393,32,19,13,0,0.030703060393885262
+RP_Neg,33,30,236,31,21,10,0,0.14457836194333185,31,18,13,0,0.02312492535854893
+NP_Pos,33,30,370,32,27,5,0,0.11134157290088798,32,25,7,0,0.051405164738568376
+NP_Neg,33,30,353,31,13,18,0,-0.016710857901844456,31,12,19,0,-0.011810297650543422

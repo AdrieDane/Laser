@@ -1,5 +1,29 @@
 # Experiment reporting policy
 
+## CURRENT048 RUNNING / standard-only mass probe COMPLETE, defer standalone rule
+
+048runner64857 stillACTIVE, /tmp/laser_catboost_experiment_048.log;10parents
+completed lastcheck, allouter0/1. No new048calibration/outeroutputs/performance
+yet. All048sources/PLAN1235inputs FROZEN unchanged; appdefaults unchanged.
+RetainedWHOLE04182740/92100,E9270,W1604;goalACTIVE/latestGOON. Continue until
+actual048producer/postprocess/master/full132CHAT/wholedecision,notcheckpointstop.
+
+Separate read-only STDmassprobe sourcebbe7000 pushedCFMmain.62127 DONE0:
+ALL33originalfeatureppm/actualdeclaredisotopemass checks,allscalar/vector LOO
+fits/predictions PASS;1364other-neutral predictions,0manualcomparisonreads,
+0annotation/classifier/cut/window changes. Probe/helper/tests/plan NOWFROZEN.
+PrivateOUT QE/standard_mass_trend_diagnostic_v1. ReceiptSHA5e01ccac0d7964ef
+d2596eaa9583a47b071e6a342acf8400bdcc386a0b105e8b. No extraactualexperiment.
+Interior-mass-span trendbetter vsconstantcases:RPpos19/32,RPneg18/31,NPpos25/32,
+NPneg12/31. MedianCASE other-standard error improvement .0307/.0231/.0514/
+-.0118ppm respectively. Small/inconsistent,NPnegativeworse; DEFERstandalone
+annotationrule. No modewinner splice,curatedmissing analysis or mass widening.
+Anchorsalreadycensored<3ppm/RTqualified;endpointLOOextrapolation NOTauthorized;
+RT/adductconfounding andgrouped-ionapproximation. Future actualmassproposal
+mustuseall363matchingnestedmasks,neverouter-only027cache inINNERfeatures.
+Safepublicclosure docs/validation/qe_20261026_standard_mass_trend ready;
+copyONLY2aggregateCSVsthere,commit/pushclosure/status. No per-neutraltable.
+
 ## CURRENT048 RUNNING / 10of25 modelparents complete; separate read-only mass probe READY
 
 Actual048runner64857 ACTIVE, /tmp/laser_catboost_experiment_048.log.
