@@ -1,0 +1,63 @@
+Prospective READ-ONLY sample-context composition pilot; not049annotations
+
+Retained WHOLE04182740/92100,E9270,W1604. 048rejected/full132CHATdelivered.
+No app, annotation, candidate, score, threshold or hard-range changes here.
+Current run_context_evidence already includes same-class top15 carbon/DB
+medians/p90 and global learned composition frequencies. Do not rename those
+as new. New hypothesis: conditional OTHERPROJECT composition frequencies,
+with peers selected by OTHER lipid families in the query's native automatic
+profile. This is not an inferred/explicit tissue diagnosis and uses no names.
+
+Native blind BASELINE automatic results supply signatures, NOT041 model
+acceptances or curator tables. Require nonSTD,confidence>=.9,rawabsppm<1.5,
+positive intensity and original-feature coordinates. Deduplicate class/C/DB
+within stream; repeated adducts don't multiply votes. Per stream/class-root
+(ether/positional/hydroxyl variants combined ONLY for context), floor(C/2),DB histogram
+is L1 normalized. Query target root and related lyso/diacyl variants are
+withheld ACROSS ALL streams before similarity. BMP/PG excluded together.
+One project signature = mean member histograms, then normalized. Root-level
+histograms need>=5different native canonical compositions. Similarity is mean
+Hellinger affinity over>=3 shared OTHER root families, each root/stream vote
+equal; no total intensity, dataset name, sample identifier or saved RT used.
+
+For each stream/exact canonical target class, authorized TRAINING curation
+provides carbon/DB compositions only (endogenous,nonX4), using native catalogue
+naming including d/t/m and O/P/O+P prefixes. Class must have>=100
+manual rows and>=3projects. No manual rows for a class in a project means
+unavailable class curation, NOT negative species evidence. Per project, a
+composition present in any related tissue counts once; no tissue vote boost.
+Select at most5most-similar class-reviewed projects, with>=3 supported peers.
+Weights exp(5*(similarity-1)), no similarity cutoff search. Ties stable by
+provenance key only. EXACT ties at the fifth peer boundary include all ties
+with equal weights, so project identifiers cannot decide a numerical result.
+
+Numerical descriptors only: posterior exact composition frequency, nearby
+composition kernel frequency, conditional-versus-global logodds, mean peer
+similarity, effective peer count, support count and weighted fraction outside
+each peer carbon/DB range. Nearby kernel max exp(-.5*((dC/2)^2+dDB^2)). Global
+exact frequency Jeffreys .5/(N+1); conditional shrinks by2global pseudovotes.
+Global nearby uses mean project kernel; conditional same2vote shrinkage.
+No zero hard whitelist, no new composition bounds or annotations. Standards
+and unsupported/unknown remain unavailable, not fabricated zero evidence.
+All same-class/identity original peaks get IDENTICAL prior evidence; this
+cannot by itself distinguish a correct feature from a wrong peak.
+
+Five outer diagnostic reference models exclude the query project group and
+all other projects in its fold. Scope checked BEFORE each permitted manual
+training table opens. Native signatures may be decoded label-free for all33,
+but reference peer signatures MUST come only from authorized projects.
+Freeze ALL33numeric candidate descriptors BEFORE querying validation curation.
+Separate scalar reconstruction checks signature bins/raw coordinates,
+project weights/nearest peers/quality/support/scopes, all numeric columns,
+unchanged old029physical pools/predictors and same-identity peak invariance.
+Only after ALL33PASS run descriptive held-out curator-agreement comparisons:
+missing correct options, current correct options, wrong-peak options and
+unconfirmed manual-absent options, by class/mode/dataset. No cutoff selection,
+no acceptance gain/FDR claims. This diagnostic uses primary benchmark roles
+unchanged; held-out references do not erase prior development exposure.
+
+Any actual049method requires NEW plan, matching ALL363 nested feature masks,
+fresh25/100 classifiers and INNER-only operating points, complete independent
+verification and full132 before/after CHAT. Outer-only pilot descriptors must
+NEVER be reused for INNER model training or calibration. Hard ranges and
+matrix names remain unused. Preserve/version all failures after sourcefreeze.

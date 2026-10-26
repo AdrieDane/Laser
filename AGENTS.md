@@ -1,5 +1,26 @@
 # Experiment reporting policy
 
+## CURRENT matrix-context READ-ONLY pilot READY — goal ACTIVE
+
+Pairedgap CLOSED/DEFER,publicclosure pushedb90cece; pairedsources STILLFROZEN.
+Matrix-source/data/producer/scalaroracle/checker/diagnostic/plan ALLimplemented;
+13newtestsPASS,36combinedselectedresearchtestsPASS,RuffPASS. Realotherproject
+smoke Zoemba outer2:72788authorizedcompositionrows/26TRAINdatasets/78classmode
+references;ALL27nativeprofile rawcoords+scalarhistograms exact; independent
+trainingloader/scalarreference+4666chemicalquerydescriptors parity1e-12 PASS,
+3125supported;all513source/inputpaths available. Prefix d/t/m/O+P parsing fixed
+BEFOREpilot and covered by6tests;no annotations or querygoldcomparison used.
+
+Next commit/pushsource then prepare_qe_matrix_peer_pilot.py,OUT
+QE/matrix_peer_composition_pilot_v1,one numericworker,5references/132authorized
+trainingtableuses/33blind descriptors. Source/plan/tests freeze onstart.
+MANUALLY verify_qe_matrix_peer_pilot.py ->ALL33PASS -> ONLYTHEN MANUALLY
+diagnose_qe_matrix_peer_pilot.py. Noqueuedgoldanalysis. OWNscientificsnapshot
+configuredbeforeanyappimports; signaturesnativeBASELINEonly, not041scores.
+No actual049fits/cutoffs/annotations; goalACTIVE retained04182740/92100,
+E9270,W1604. Next actualmethodneedsnewpreflight+all363nestedmasks/fresh25parent
+fits/100experts/full132CHAT;outeronlypilotNEVERfeedINNERfeatures. Continue.
+
 ## CURRENT paired-isomer gap CLOSED / matrix-context prototype BUILD — goal ACTIVE
 
 Pairedgap source937ea17,producer33531DONE0 all33blind/5refs/132TRAINuses;
