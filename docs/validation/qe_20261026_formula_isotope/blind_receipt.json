@@ -1,0 +1,17 @@
+{
+  "all_passed": true,
+  "datasets": 33,
+  "measurement_streams": [
+    "RP_Pos",
+    "RP_Neg",
+    "NP_Pos",
+    "NP_Neg"
+  ],
+  "fields": 14,
+  "all33_tables_frozen": true,
+  "manual_files_opened": 0,
+  "classifier_fits": 0,
+  "thresholds_selected": false,
+  "annotation_changes": false,
+  "note": "Single outer-excluded read-only measurement pilot; NOT363 nested construction or annotation benchmark."
+}

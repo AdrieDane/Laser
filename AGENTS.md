@@ -1,5 +1,36 @@
 # Experiment reporting policy
 
+## CURRENT isotope pilot COMPLETE / no standalone rule; occupancy audit READY
+
+Formula pilot source1b2604d pushedCFMmain. Producer49960DONE0,independent6105
+DONE0 ALL33PASS,diagnostic94303DONE0;logs /tmp/laser_formula_isotope_{pilot,
+check,diagnostic}.log. ALL210595options/2948330cells/33tables frozen BEFORE
+manualreads,14fields;ALLformulasavailable/139642upperratios. All93focusedtests
+PASS/RuffPASS. New4occupancy tests alsoPASS. Noactual048annmethod/fits/cuts/calls.
+Formula runtime/helper/checker/diagnostic/plan NOWFROZEN DO NOT EDIT.
+
+Sameidentity correct-vsBESTwrong isotope contrast forcurrentlyMISSING:
+uppercarbon403manualbetter/498wrongbetter=901;interval373/479/49ties.
+Alreadycorrect1690/1063 (2753) carbon;interval1623/1001/129ties. Lowerchannels
+veryfewcomparisons. RPposPEinterval12manual/29wrong/5ties46cases. Noisotope-only
+peakselector/hardgate warranted;FAOH RP10/4 only14cases notbasisforrules.
+Safe publicreports docs/validation/qe_20261026_formula_isotope (uncommitted),
+allcoverage/pairedcontrasts/distributions/redactedreceipts. Whole041retained
+82740/92100,E9270,W1604;appdefaultsunchanged;targetNOTmet. Nojobsremain.
+
+NEXT NEW read-only source+plan READY (not048annotationexperiment):
+next_occupancy_competition_diagnostic.txt;occupancy_competition_audit.py;
+diagnose_qe_occupancy_competition.py;test_occupancy_competition_audit.py.
+ALL33old029outer scores MUSTreproducebitexact;041calls areoccupancy ONLY.
+Freeze11numeric/booleanmasks all33+independent scalargraphchecks BEFORElabels.
+Investigate currentfeature winnerB alreadycalled onOTHERpeakwithscore>=.05
+better;A identityfree/featurefree,ownORIGINALbest,physical,residualclear.05/
+score>=.05. No weakerpeakfallback/callswaps/newcalls. Relaxedmask isDIAGNOSTIC,
+notauthorizedacceptedlabelpromotion. Unusedfeature couldbetrueisomerofB.
+Opportunitycounts NOTgains. Source/masks frozenonceauditstarts;preservefailures.
+Nextcommit/pushclosure+occupancysource,run diagnose_qe_occupancy_competition.py
+freshprocess. No classifier/cutoff learning yet. GoalACTIVEcontinueautonomously.
+
 ## CURRENT formula/isotope read-only pilot IMPLEMENTED / READY — ACTIVE
 
 Cross-phase pilot closure/safe reports pushed CFMmain58e228e; no jobs remain.

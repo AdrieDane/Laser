@@ -1,0 +1,46 @@
+Read-only occupied-identity competition bottleneck audit
+26October2026. Not annotation experiment048; no calls/candidates/models/cuts change.
+
+Motivation: original029 selector takes a clear best label on each feature, then
+keeps one feature per lipid/adduct. A label winning on two features can occupy
+one and leave the other unused, while blocking another lipid's best peak. Old
+041 intentionally fixes feature/identity winners BEFORE removing occupied
+labels; do NOT silently change this rule in the app or claim a bug in chemistry.
+An unused peak can also be another true isomer of the called lipid; removing
+that competing label is NOT proof that the weaker label is correct.
+
+Freeze full all33 single-outer-excluded pools/scores/masks BEFORE gold analysis.
+Reproduce ALL33 original029 outer scores from their actual native models,
+bitexact. Whole041 accepted calls supply ONLY current occupancy, not truth.
+Same existing raw3ppm/10second/nativeion/isotope/standard physical protections.
+No new raw search, RT/mass correction, formula or matrix parameter, model fitting,
+probability calibration or intensity changes. Separate scalar enumeration must
+reproduce every mask on all33 before labels. Source/input/artifact hash receipts.
+
+Canonical identity = stream/species/adduct, physical feature=stream/originalFID.
+Stable score/intensity ranking, deduplicate repeated physical hypotheses. Freeze
+11 descriptors: physical, identity_free, feature_free, identity_best,
+feature_top, feature_clear, residual_top, residual_clear,
+blocked_by_called_other_peak, blocker_score_advantage, relaxed_opportunity.
+Residual ranking excludes identities already called in041, but this is ONLY a
+diagnostic, NOT an authorized accepted-call algorithm. Fixed existing .05
+ambiguity is measured, not tuned.
+
+The conservative relaxed_opportunity mask requires:
+- endogenous physical, uncalled identity and unoccupied original feature;
+- candidate remains its identity's ORIGINAL best feature (no weaker-peak fallback);
+- it is clear .05 winner among remaining uncalled labels, with native score>=.05;
+- original top label is DIFFERENT and already called on exactly one OTHERpeak;
+- that called label's current peak exists in the SAME core pool and scores at
+  least .05 ABOVE its score on the unused peak. Unknown scores never certify it.
+All old calls/standards remain fixed; no chain, swap or vacated-feature reuse.
+
+After ALL33 tables plus scalar checks complete, attach saved041 manual categories
+and report bydataset/mode/class: total candidates, all free-physical opportunities,
+original clear identity winners and relaxed_opportunity options, plus missing
+manual entries reached by each mask. Retain ALL manual denominators (standards,
+unresolved; exclude X4 only). Also report categories of relaxed options: manual
+correct-currently-missing, knownwrongpeak, manual-absentidentity-unconfirmed etc.
+No threshold search or annotation-gain claims. Counts of options are NOT gains;
+later actual method requires separate INNER-only calibration/full132 comparison.
+Repeated development-data exposure explicitly acknowledged; no FDR inference.

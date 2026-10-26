@@ -1,0 +1,77 @@
+Native-formula isotope pilot — completed 26 October 2026
+
+Decision: do not use isotope-pattern agreement as a standalone peak-selection
+rule or hard acceptance gate. No annotation-changing experiment 048, new
+classifier, cutoff, candidate or production change was made. Whole041 remains
+the research reference: 82,740/92,100 = 89.83713% correct original-peak matches,
+9,270 unconfirmed extra annotations and 1,604 wrong-peak choices. The target of
+90% per class and mode remains unmet. No peak lists were altered.
+
+All 33 QE datasets / 30 project groups / four modes were measured before this
+pilot opened manual labels. All 210,595 physical candidate hypotheses received
+a unique native atom formula matching their theoretical mass within 0.00002Da.
+All 2,948,330 numerical cells and formulas then passed independent calculation.
+This is descriptor coverage, NOT chemical confirmation of those candidates.
+
+Mode       Candidate options   Measurable upper isotope ratio
+NPnegative       50,088               33,148
+NPpositive       45,503               29,326
+RPnegative       27,811               18,186
+RPpositive       87,193               58,982
+Total           210,595              139,642 (66.3%)
+
+Prespecified comparison: same dataset/lipid/adduct, exactly one mapped manual
+peak, with at least one known wrong alternative. Both peaks must pass existing
+physical protections and have the relevant measurement. Compare the manual
+peak with the BEST wrong alternative, not an average or handpicked alternative.
+
+Currently MISSED manual annotations, 901 comparable identities:
+- Carbon-only M+1 agreement: manual peak better403, wrong peak better498.
+- Carbon-to-nominal compatibility interval: manual373, wrong479, ties49.
+
+Already CORRECT manual annotations, 2,753 comparable identities:
+- Carbon-only M+1 agreement: manual1690, wrong1063.
+- Compatibility interval: manual1623, wrong1001, ties129.
+
+These descriptive comparisons are NOT annotation accuracies, proposed gains,
+or external validation. They condition on available alternatives; more wrong
+alternatives increase the chance that at least one fits well. Selecting the
+peak with the best isotope ratio would be unsafe. In the currently missing
+RPpositive PE subset the interval favoured manual12/wrong29/tie5 (46 cases),
+so this does not justify an isotope-only PE recovery rule. Some small subsets
+look better, e.g. RPnegative FA-OH10/4, but that is only14 cases and is not a
+basis for class-specific thresholds or claims of a large performance gain.
+Full class/mode/project counts and correct/missing splits are in the CSV files.
+
+Technical limits
+
+Existing generic models already use raw isotope-neighbour evidence; PE has a
+rough carbon-only envelope check. This pilot adds headgroup/adduct-aware atom
+counts and exact inversion of log1p intensity differences. It does NOT discover
+new isotope peaks. Existing channels are upper13C, lower13C and lower2x13C,
+charge-aware; there is NO upper-M+2 measurement in these descriptors.
+Nominal full-element M+1/M+2 totals bound descriptive compatibility only:
+fine isotope components and resolving power are unknown. Cl37 or S34 must not
+be claimed observed merely because a 2x13C neighbour exists. Same-formula
+isomers have identical predicted ratios and cannot be separated by this test.
+
+Unsupported/labelled/spiked formulas remain unknown by design; the endogenous
+core candidate pools happened to have full formula coverage. Original full
+manual denominators include all standards and unresolved rows, excluding X4
+only. Coverage of a manual peak is not a new annotation and may be absent if
+that correct peak was never generated as a candidate.
+
+Independent checker uses a separate raw TSV parser, native affine target-mass
+arithmetic, parsed adduct expressions, isotope polynomial convolution and direct
+expm1 ratio inversion. All33 passed; 93 focused tool tests and formatting/lint
+checks passed. Sources were frozen before pilot execution. No query manual
+labels, saved curator RT fits or original feature identifiers were numerical
+predictors. All source quantification and accepted calls remained unchanged.
+These repeatedly exposed development datasets are not untouched validation;
+manual absence means unconfirmed, not proven false positive or analytical FDR.
+
+Next: inspect assignment/competition bottlenecks without altering calls. In
+particular, a label already assigned confidently on another peak can block an
+otherwise unused peak under the current one-pass competition. First quantify
+the available correct-original-peak opportunities and unconfirmed/wrong options;
+do not assume joint assignment will help or silently promote weaker labels.
