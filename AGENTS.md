@@ -1,5 +1,31 @@
 # Experiment reporting policy
 
+## CURRENT048 ACTUAL RUN STARTED / final preflight ALLPASS
+
+Sourcefdcdc9b pushedCFMmain. Finalpreflight83009 DONE0:
+ALL528 original029 rowlabel parity uses,132INNER+33OUT oldscores BITEXACT,
+ALL33 whole029 scientific calls/rawcoords and disabledWHOLE041 EXACTPASS.
+Receipt QE/catboost_model_preflight_v1/receipt.json authorizes actualfits;
+all1235source/input hashes bound. ALL048sources/plan/runtime NOW FROZEN.
+DoNOTedit sources while experiment runs or retrospectively change guards.
+22newsoftware/controltestsPASS; app862PASS/8skip/83subtests. Noappchanges.
+
+Actualrunner64857 STARTED, /tmp/laser_catboost_experiment_048.log.
+OUT QE/experiment_048; isolatedwork/qe_catboost_runtime_v1/bin/python.
+25freshparents/100CatBoost800treeCPUexperts(two numericalworkers),thenALL5
+INNERmode+classcalibrations/hashfreeze BEFORE33blindwholepipelineoutputs.
+No actualnewscore/cut/performance claim yet; retainWHOLE04182740/92100,
+E9270/W1604/defaultsunchanged. GoalACTIVE, latestGOON; don'tpauseautonomously.
+
+When producer DONE0, inspectproducer_complete then MANUALLY run
+postprocess_qe_catboost_experiment.py (sameisolatedenv):evaluate33allclass,
+v2reference/targetX4excluded/priority/endoSTD/independentmaster/strictdecision.
+Noqueuedgoldanalysis. Full132CHAT correct%+n/N/TOTALextras andwrongpeakcounts
+BEFORE nextactualexperiment. Publicsafeaggregatepublisher only,notprivate
+models/candidates/curation/paths. IfhumanasksPAUSE, createOWNOUT/pause_requested
+marker andletcurrentworkersfinishsafecompletedboundaries;onlythen goalpaused.
+No stopatcheckpoint unlessexplicitpause. LastpushedCFMmainfdcdc9b.
+
 ## CURRENT048 BUILD / stageA COMPLETE / final no-fit gate being prepared
 
 Latest human GO ON; goal ACTIVE/NOTmet, no pause. StageA58351 DONE0:
