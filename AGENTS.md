@@ -2,8 +2,8 @@
 
 ## CURRENT048 RUNNING / standard-only mass probe COMPLETE, defer standalone rule
 
-048runner64857 stillACTIVE, /tmp/laser_catboost_experiment_048.log;15parents
-completed lastcheck, allouter0/1/2 (60fresh800treeexperts). No new048calibration/outeroutputs/performance
+048runner64857 stillACTIVE, /tmp/laser_catboost_experiment_048.log;20parents
+completed lastcheck, allouter0/1/2/3 (80fresh800treeexperts). No new048calibration/outeroutputs/performance
 yet. All048sources/PLAN1235inputs FROZEN unchanged; appdefaults unchanged.
 RetainedWHOLE04182740/92100,E9270,W1604;goalACTIVE/latestGOON. Continue until
 actual048producer/postprocess/master/full132CHAT/wholedecision,notcheckpointstop.
