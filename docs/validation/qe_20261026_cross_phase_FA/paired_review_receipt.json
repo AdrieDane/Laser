@@ -1,0 +1,9 @@
+{
+  "all_passed": true,
+  "datasets": 33,
+  "posthoc_descriptive_analysis": true,
+  "annotation_changes": false,
+  "classifier_fits": 0,
+  "thresholds_selected": false,
+  "note": "Within-identity peak comparisons are small exploratory counts,NOT annotation accuracy/gains or independent validation. Both raw measurements/labels alreadyfrozen; no predictor or accepted call changed. Wrong-peak options distinct from unconfirmed identities."
+}

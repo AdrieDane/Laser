@@ -1,0 +1,5 @@
+stream,lipid_class,manual_rows,current_correct,candidate_options,missing_free_physical_manual_rows,missing_free_profile_measurable_manual_rows
+NP_Neg,FA,434,350,1086,51,21
+NP_Neg,FA-OH,293,152,1566,111,64
+RP_Neg,FA,807,710,1299,48,22
+RP_Neg,FA-OH,502,350,1268,68,38

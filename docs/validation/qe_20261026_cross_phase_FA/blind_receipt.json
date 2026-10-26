@@ -1,0 +1,19 @@
+{
+  "all_passed": true,
+  "datasets": 33,
+  "measurement_streams": [
+    "RP_Neg",
+    "NP_Neg"
+  ],
+  "lipid_classes": [
+    "FA",
+    "FA-OH"
+  ],
+  "availability_rows": 132,
+  "all33_tables_frozen": true,
+  "manual_files_opened": 0,
+  "classifier_fits": 0,
+  "thresholds_selected": false,
+  "annotation_changes": false,
+  "note": "Single outer-excluded measurement pilot,NOT363trainingconstruction or annotation experiment. 132availability rows are33datasets*2negative modes*2classes,NOT132four-mode performance cases."
+}

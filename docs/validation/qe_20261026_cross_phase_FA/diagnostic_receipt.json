@@ -1,0 +1,8 @@
+{
+  "all_passed": true,
+  "datasets": 33,
+  "annotation_changes": false,
+  "classifier_fits": 0,
+  "thresholds_selected": false,
+  "note": "Descriptive availability and candidate-option distributions,NOT accepted annotations/gains. Bothall33blind+independentgates beforequerylabels. Fullmanualclassdenominators remaininclspikes/unresolved. Onlytwo negative modes/twoclasses;132contextrows isNOT132four-modebenchmark. Extensively exposed developmentdata,notuntouchedvalidation/FDR."
+}

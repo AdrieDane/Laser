@@ -1,5 +1,73 @@
 # Experiment reporting policy
 
+## CURRENT cross-phase pilot COMPLETE / DEFER standalone peak rule — ACTIVE
+
+Pilot59810DONE0;independent80579DONE0 ALL33PASS;diagnostic8862DONE0;posthocpaired
+review84189DONE0. Source42cdc96.517inputs/33blindartifacts;5219options/88723
+numericcells/3260directedphysicallinks. All33fields+indep checks BEFORElabels.
+No48actualannotationexperiment/fits/cuts/calls. All79tooltestsPASS/RuffPASS.
+Whole041stillretained82740/92100,E9270,W1604;appdefaultsunchanged. GoalNOTmet.
+
+Availability missing FREE physical manualrows/profilemeasurable:
+NPFA51/21,NPFAOH111/64,RPFA48/22,RPFAOH68/38. Total145profileopportunities,
+NOTgains. FAOH102,FA43. Denoms/currentcorrect NPFA350/434,NPFAOH152/293,
+RPFA710/807,RPFAOH350/502. CoreceilingsFAOH89.76NP/83.27RP stillneeddiscovery.
+FreeFAOHmissingmedianrawcorr NP.659 vsunconfirmed.390;RP.334 vs.227. But
+sameidentity pairedpeak check rawcorr manual>worstwrong7/20NP(13wrong),4/9RP
+(5wrong);FA1/3NP,1/2RP. NOhardpositivecorrelationgate/peakselector justified.
+All5inspectedfields+projectcounts savedpairedCSV. Posthoc reviewexplicitly
+AFTERexposure,notprespecifiedinference orannotationbenchmark. Canconsider
+presence-onlyuseslaterwithoutlettinghighcorrchoosewrongoriginalfeature.
+
+Publicsafe reports docs/validation/qe_20261026_cross_phase_FA nowbeingpublished.
+Newreport_qe_cross_phase_pilot.py(uncommitted) reproduciblymakesfreecandidate
+distributions/pairedcontrasts,readsdiagnosticprivateoutputs,NOTnewpredictors.
+Do noteditfrozenproducer/helper/independent/checker/diagnostic/plan. Nojobsremain.
+Needcommit/pushreport/safeaggregates/status;thennewphysicalaudit (notcut sweeps).
+
+NEXT IDEA auditstarted(notisotopeplan/code yet): genericold108alreadyhasraw
+q_raw_isotope_upper/lower/lower2_log_ratio,PE-onlyexperimental_pe.py hasrough
+upper/lowertheoretical13C envelope(carbon+5)*.0107/.9893. Generalclass_evidence
+hasnoexplicitexpected-envelopeerrorfield (searchchecked). Candidate-specific
+headgroup/adduct-aware atomcounts/M1+M2 compatibility couldbeNEW;doNOTclaim
+noisotopeevidenceexists. Existingrawratios use log1p(medianIso)-log1p(medianMono),
+canrecoveractualpositive medianratios usingq_raw_log_median (no newrawsearch)
+thencomparetheory. Mustfirstauditnativeformula/electron/charge/massparity and
+coverage,notblindlyfitnewmodels. ExpectedsameformulaO/PisomersMUSTidentical;
+isotopescannotidentifythosebranches. No048annmethodyet.
+Native table reference_data/matlab_pipeline/DataBase/stable_isotopes.tsv read:
+atom,mass,abundance% includesH/C/N/O/P/S/Na/K/Cl (incl40K);no needinventabundances.
+Nativechem/rgroup source app/matlab_annotation/vendor/composition_initializer.py
+readcomplete. FA/FAfull counts addC-nR,H2C-2DB-nR;ST addsC,H2C-2DB-6nR;
+isoprene addsC5units,H8units. Adductformula counts includeproton/electroncharge;
+mustverify againstnative reference masses. _MASS6decimals native,_ADDUCTS
+addition/integercharge;formulaRignoredinbase+Rgroupincrements. Catalogavailable
+via load_bundled_compound_catalog(...).legacy_fields['chem','nR','R_group'].
+Canonicalclass/species reporting viaCodeDecoder/phase_composition mustberead
+BEFOREderivingaffineformula especiallyNPcombinedO/P;mass-paritygateunknownwhen
+unsupported,neverguessatomformulas. rawgraph code/formula inventory notwritten.
+GoalACTIVE;continueautonomously,notendcheckpoint. CFMmainonlypush.
+
+## CURRENT cross-phase read-only pilot ALL33BLIND COMPLETE / independent RUNNING
+
+Newsourceplan pushedCFMmain42cdc96. Pilotproducer59810DONE0 /tmp/laser_cross_phase_
+pilot.log: all33singleouter-only negativeFA/FA-OH numericfields+privatecomplete
+graphs frozen,blind_receipt.json ALLPASS;manualfilesopened0,newfits0,thresholds
+selectedFalse,annotationchangesFalse. SourceMZ/RT/I equalitypassedALL33.
+All79focusedtools testsPASS,RuffPASS. Allnewpilot producer/helper/independent/
+checker/diagnostic/plan sources NOWFROZEN DO NOT EDIT. Actualmodel047closed,
+notpartthispilot. Whole041stillretained/defaultsunchanged;no048annmethodyet.
+
+verify_qe_cross_phase_candidate_pilot.py RUNNING /tmp/laser_cross_phase_check.log
+(sessionreturnedactivechat). MustcompleteALL33independent scalarphysics/graph/
+charge/original-areaNumPyprofiles+inputhashreceipt BEFORE manuallyrunning
+diagnose_qe_cross_phase_candidate_pilot.py. Noqueuedlabelanalysis. Availability
+rows132=33*2negative modes*2classes,NOT132four-modeperformancecases. Diagnostic
+willreportcandidateavailability/distributions/optimisticfreeopportunities,NOT
+annotationgains. New actualannotationexperiment needsseparateprospectiveplan/
+all363maskedtables/newfits/full132comparison. No thresholdselectedfrompilotlabels.
+GoalACTIVE/NOTmet,continueautonomously,notendcheckpoint.
+
 ## CURRENT cross-phase FA/FA-OH read-only pilot IMPLEMENTED / READY
 
 047v2 COMPLETE/REJECTED/ALLPASS/publicsafe reports pushedCFMmain d5176b8.

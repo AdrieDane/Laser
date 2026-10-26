@@ -1,0 +1,74 @@
+Cross-phase FA/FA-OH evidence pilot — completed26October2026
+
+Decision: do NOT use positive cross-phase profile correlation as a standalone
+peak-selection rule or mandatory admission gate. No annotation-changing048
+experiment or new classifier was run. Whole041 remains the retained research
+reference:82740/92100=89.83713% correct,9270unconfirmed extras,1604wrong peaks.
+The per-class/per-mode90% goal is not met; app defaults unchanged.
+
+Scope and availability
+
+All33 QE folders/30 project groups;onlyRPnegative andNPnegative;FA andFA-OH.
+This is a measurement pilot,not a four-mode annotation benchmark. The132
+availability rows are33datasets*2negative modes*2classes. All5219 candidate
+options/88723 numerical cells/3260 directed physical links were frozen BEFORE
+manual labels were decoded,then independently checked on all33datasets.
+
+Current manual agreement and missing FREE original-feature candidates:
+Mode     Class  Current correct/manual  Missing physical  With cross-phase profile
+NPneg    FA     350/434=80.65%           51                21
+NPneg    FA-OH  152/293=51.88%           111               64
+RPneg    FA     710/807=87.98%           48                22
+RPneg    FA-OH  350/502=69.72%           68                38
+
+These are candidate opportunities,NOT newly correct annotations. The manual
+denominators include standards/unresolved entries,as before. Existing identity/
+feature occupancy limits the available opportunities. Even perfect scoring of
+the existing core cannot reach90% forFA-OH:NP263/293=89.76%,RP418/502=83.27%.
+Validated discovery or old-call corrections will also be needed.
+
+Why correlation alone is not enough
+
+Among free,physical,profile-measurableFA-OH options,median rawcorrelation is
+.659 for missing manualNP peaks vs .390 for unconfirmedNP options;inRP it is
+.334 vs .227. That is some presence/consistency information,NOT proof of identity.
+Known wrong-peak alternatives can correlate even more strongly.
+
+A retrospective paired check compares the ONE manually chosen original peak
+with the strongest wrong-peak option for the SAME dataset/lipid/adduct:
+FA-OH NPneg:correlation favours manualpeak7times,wrongpeak13times(20identities,
+5projectgroups). FA-OH RPneg:manual4,wrong5(9identities;seeCSV forgroupcount).
+FA NPneg:manual1,wrong2(3identities);FA RPneg:manual1,wrong1(2identities).
+Samples are small and exploratory;these counts are NOT annotation accuracy,
+accepted-call gains or external validation. This paired check was added AFTER
+pilot exposure and is explicitly posthoc,not a prespecified statistical test.
+Allfive inspected profile fields/counts are in paired_peak_contrasts.csv.
+
+Implication: do not make a more-correlated wrong peak into a full annotation.
+Defer profile-only peak selection;possible presence-only use would require a
+new prospective strategy that keeps independent peak ranking/physical checks.
+No new cutoff,model or annotation has been selected from these distributions.
+
+Physics,provenance and limits
+
+Only unassigned or assigned SAME native class candidates,actual native ion/
+charge,and theoretical-neutral match within.05ppm. Both ends independently
+pass OWN masked classRT<=10s/rawmass<3ppm/nativeion/isotope/declaredstandard
+guards. No RP/NP RT equality or transfer,formula guesses or O/P class merging.
+Explicit matchingBIOIDs,>=8positive pairedBIOvalues,technical-area means BEFORE
+logs;unknown profiles remainNaN. EqualFIDstrings in different acquisitions are
+different physical features. Duplicated hypotheses do not inflate partnercounts.
+Raw m/z/RT/intensity preserved;candidate coordinates checked against originals.
+
+Independent scalar graph/ion-charge/physical eligibility and original-areaNumPy
+profile reconstruction passed all33. All79focusedtools tests andRuff passed.
+No query curation/saved manualfits/scorepredictions used to construct fields.
+No source-data edits,classifierfits,thresholdselection,accepted annotations or
+production changes. These repeatedly exposed data are NOT untouched external
+validation;manual absence is unconfirmed,not established false positivity/FDR.
+
+Next physical audit: existing generic models already contain raw isotope-neighbour
+measurements. PE has a separate rough theoreticalM+1 check. Investigate broader
+candidate-specific,headgroup/adduct-aware isotope compatibility,not a claim that
+LASER currently has no isotope evidence. No new isotope experiment specified
+or performance improvement established here.
