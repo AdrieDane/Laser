@@ -1,5 +1,35 @@
 # Experiment reporting policy
 
+## CURRENT048 BUILD / stageA COMPLETE / final no-fit gate being prepared
+
+Latest human GO ON; goal ACTIVE/NOTmet, no pause. StageA58351 DONE0:
+ALL363 blind tables,25parents/100mode matrices/528training uses EXACTPASS;
+132INNER+33OUTcontexts checked. Receipt actual_training_fit_authorized=False.
+Its backend/datahelper/plan/auditor sources FROZEN; do NOT edit them.
+Retained WHOLE041 still82740/92100,E9270,W1604. App/defaults unchanged.
+
+NEW048runner,bindings,finalpreflight,independentverifier,postprocess,decision,
+7controltests implemented (not yet realQEfit). Existing15softwaretests plus
+7new unittestcontrols PASS22 combinedpytest. Assembly finalaccepted/candidate
+flags normalized ONLY; scientific calls/rawcoords control parity required.
+Newrunner ALL25freshparents -> ALL5calibrations/FROZENhashbarrier ->33outputs;
+human pause marker only at completed boundaries; producer_complete separate
+from evaluation/integrity/decision. Master separate scalarwinner/counts/native
+estimator prediction/whole005+027assembly. SharedCatBoostnative/034MIP/005027
+chemistry explicitly disclosed, not independent chemical confirmation.
+
+Next smoke finalpreflight original029row-label parity and5oldpredictions+
+whole029/disabled041onecase,complete sourcebinding ->commit/push ->final
+preflight ALL528row-labelparity/165oldpredictions/33whole029+disabled041.
+No actual048directory/fits/cuts/annotations until finalreceipt authorizes.
+Finalsourcebindings include actualverifier+allcurrentmethod sources before
+fits; no queued performance/goldpostprocessing before producercompletion.
+Use isolatedwork/qe_catboost_runtime_v1/bin/python, notglobalPython.
+All scientific snapshots mustconfigure FINALroot before anyappimport.
+Afteractual048 require full132CHAT correct%+n/N/TOTALextras pluswrongpeaks,
+class/mode andendoSTDreports,strictpredeclaredWHOLEretain/reject. No next
+actualexperiment until tabledelivered. No stopatcheckpoint whilegoonactive.
+
 ## CURRENT048 BUILD / no-fit stageA READY; no actualQEclassifierfits
 
 Lastcompletedclosure/backendsource136c0dcpushedCFMmain;allpriorpilotjobsDONE.

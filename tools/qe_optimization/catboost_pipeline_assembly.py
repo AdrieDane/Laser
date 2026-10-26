@@ -159,6 +159,10 @@ def assemble(
             ]
         )
     annotations = pd.concat(parts, ignore_index=True)
+    # These are the final accepted rows, not the remaining review candidates.
+    # Normalize output flags only; never alter raw inputs or scientific calls.
+    annotations["automatic_accepted"] = True
+    annotations["automatic_candidate"] = False
     candidate = pd.concat(candidates, ignore_index=True)
     keys = ["stream", "name", "adduct", "feat_feature_id", "is_is"]
     candidate = candidate.drop_duplicates(keys, keep="last").reset_index(drop=True)
@@ -166,6 +170,7 @@ def assemble(
     candidate["automatic_accepted"] = [
         k in accepted for k in candidate[keys].itertuples(index=False, name=None)
     ]
+    candidate["automatic_candidate"] = ~candidate.automatic_accepted
     assert accepted == set(
         candidate.loc[candidate.automatic_accepted, keys].itertuples(
             index=False, name=None
