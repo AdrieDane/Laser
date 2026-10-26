@@ -1,5 +1,31 @@
 # Experiment reporting policy
 
+## CURRENT048 RUNNING / 10of25 modelparents complete; separate read-only mass probe READY
+
+Actual048runner64857 ACTIVE, /tmp/laser_catboost_experiment_048.log.
+10parents complete (allouter0/outer1),40fresh800treeexperts, no newcalibration/
+outeroutputs/accuracy claims. Firstactualparent(0,1) independentmatrix/scope/
+nativeparameter/treecount check PASS. All0481235boundinputs UNCHANGED verified
+after adding separate newtool files. Sourcea4ef848 lastpushedCFMmain before
+thisprobe. GoalACTIVE/latestGOON; don'tpause/stopatcheckpoint autonomously.
+
+Whiletraining, NEW separate READ-ONLY standard mass-trend diagnostic source
+READY, not049annotationexperiment: standard_mass_trend_pilot.py;
+diagnose_qe_standard_mass_trend.py; test_standard_mass_trend_pilot.py5PASS;
+next_standard_mass_trend_diagnostic.txt. No annotation/score/window/default
+changes or manual/endogenous comparison reads. Existing027independent raw
+spikeanchors only; groupedneutralmedians,LOOwithholdWHOLEneutral,constantppm
+vsfixedTheilSenppm/mzline,pairspacing50Da,n>=6. Allscalar/vectorfitparity,
+originalfeatureppm+actualdeclaredlabelledmass checks. Both all/interior mass-
+span stats; no correction/admission gates. Anchorscensoredabsppm<3; RT/adduct
+confounding; endpointLOOextrapolations NOTauthorized. Outer-onlycachedprobe
+mustNEVER enter futureINNERscores. Two dataset smoke originalmass/declared/
+scalarchecks PASS; no fullpilot/OUTyet. Commit/pushsourcebeforefullrun.
+OUT QE/standard_mass_trend_diagnostic_v1; no048source modified. Newprobe
+sourcesfreezeonceproducerstarts. PaperprimaryWenger2010PMC2871411 favoured
+proportionalvslinearDa; notproofthatppm/mztrendwillhelpourdata. No next
+actualannotationexperiment until048full132CHAT+wholedecision.
+
 ## CURRENT048 ACTUAL RUN STARTED / final preflight ALLPASS
 
 Sourcefdcdc9b pushedCFMmain. Finalpreflight83009 DONE0:

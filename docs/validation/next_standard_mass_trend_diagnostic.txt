@@ -1,0 +1,43 @@
+Read-only declared-standard mass-trend diagnostic — NOT annotation experiment049
+
+048 is actively fitting; its frozen sources/settings/predictors are untouched.
+This probe cannot add candidates, change scores/windows/calls, choose annotation
+cutoffs or read manual/endogenous annotation tables. No actual next annotation
+experiment may start before the complete048132-row table and whole decision.
+
+Existing027 uses a constant proportional mass offset. Review whether qualified
+independently measured declared spikes support a mass-dependent residual trend.
+Use all33active datasets/four modes and their existing query/outer-excluded027
+spike measurements. Freeze all input hashes before numerical diagnostics.
+Verify existing027anchor errors against ORIGINAL feature masses and actual
+declared theoretical masses; independent scalar versus vector construction.
+
+Each neutral chemical votes once: median admitted ion mass and median ppm.
+>=6neutrals required for diagnostic LOO; hold out ALL ions of one neutral, not
+individual adduct rows. Compare unconditional other-neutral median ppm with a
+fixed Theil-Sen line of ppm versus reference m/z, using pair spacing>=50Da.
+Median slope and median centered intercept; no hyperparameter search, polynomial
+order sweep or endogenous-label tuning. Separate scalar reconstruction of all
+fits/predictions. Report all-case and INTERIOR-heldout-mass-span results; endpoints
+are diagnostic extrapolations, not authorized corrections. Unsupported staysNaN.
+Constant comparison is descriptive, NOT the existing027enabled/disabled policy.
+
+Important limitations: these qualified anchors are ALREADY censored to absppm<3
+and were detected inside reference-RT windows; do not infer unrestricted mass
+accuracy, correction at missing lipids, identification precision or annotation
+gains. One-mass median per neutral approximates multiple adduct channels. Spikes
+elute at different times; mass trends may be confounded by RT/adduct effects.
+Any future candidate experiment needs its OWN prospective physical policy and
+all363matching nested-reference masks, not this outer-only cache in INNER fits.
+
+Primary physical motivation (not validation of the proposed line): Wenger etal
+2010 compared proportional with linear internal calibration on Orbitrap data:
+https://pmc.ncbi.nlm.nih.gov/articles/PMC2871411/
+Their single-lock-mass proteomics implementation favoured proportional correction;
+this is NOT proof that adding a ppm/mass slope improves our aggregate lipid lists.
+Whether a slope helps is an empirical inference tested on OTHER declared spikes
+here, never assumed from that paper or from in-sample fit quality.
+
+Output: private per-neutral LOO table, all132dataset/mode case availability and
+aggregate mode summaries, source/input hashes and explicit zero-annotation-change
+receipt. No curated missing/extras analysis until048 reporting is complete.
