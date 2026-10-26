@@ -1,5 +1,37 @@
 # Experiment reporting policy
 
+## CURRENT049 ACTUAL RUNNING / final preflight ALLPASS — goal ACTIVE
+
+Actualsource4c29327 pushedCFMmain; ALLactualsources/plan/tests/plannedmaster/
+bindings NOWFROZEN unchanged. Finalpreflight20621DONE0:20softwaretestsPASS,
+ALL33masterindependentWHOLE041controls plusboundStageA528labels/100matrices/
+165oldscorecontrols/full363,all3324currentinputhashes. ReceiptSHA
+1f999bba493e479d6a2cd946bbd331238247f8bb706ea20b828be372369ebdd5,
+actual049_fit_permissionTrue. Harmlessdataframefragmentation warnings only;
+doNOTeditfrozenchecker/helper forspeed/warnings.
+
+Producer34314ACTIVE /tmp/laser_matrix_experiment_049.log, OWNOUTQE/experiment_049.
+ProtocolSHA1f081c131b0d368ac84edc7fd646934d1fdded39fe0ca6445053d5506854666b.
+17of25freshnativeHGBparents/68experts complete lastcheck. 2boundedworkers,
+180iterations each/OMP+BLAS1;no oldmodelaliasing. AfterALL25->ALL5newINNER
+mode+041completioncalibrations/hashfreeze ->33blindwholeoutputs. No actualnew
+outeraccuracy/cutoffs/annotation claims yet,appdefaultsunchanged/041retained.
+Earlycheck58859DONE0 plannedmaster.check_parent((0,None)):ALL4fresh native
+parameter/180tree/116column/matrix/labels/weights/scopes checksPASS,26queryuses.
+This is partialintegrity NOT full049master or accuracy. Log
+/tmp/laser_matrix_first_parent_check.log. Noqueuedgoldanalysis.
+
+WhenproducerDONE0,inspectproducer_complete all33thenMANUALLY
+postprocess_qe_matrix_context_experiment.py ->samev2evaluation/all132reports/
+targetX4only/priority/endoSTD ->FULLplannedmaster ->prospectivewholedecision.
+Beforeanynextactualexperiment FULL132CHAT correct%+n/N/TOTALextras,wrongpeaks,
+class/mode+endoSTDlinks andwholedecision required. Noouterclass/mode splice,
+cutoff-onlysweeps or guardrelaxation. No sourceeditswhileactualexperiment runs.
+Ifanyfailure preserve/version explicitly,not hiddenrepair. Onlymetadata/AGENTS
+mayupdate/push while sourceledgerfrozen. Retained04182740/92100,E9270,W1604;
+goalACTIVE/notmet,continue no checkpointstop. Pause onlyifhumanasks:OWN049
+pause_requested marker,finishcurrent2atomicboundaries,thenupdategoalpaused.
+
 ## CURRENT049 COMPLETE IMPLEMENTATION READY / final preflight NEXT — goal ACTIVE
 
 Nested7351DONE0 ALL25/363independentPASS,receiptSHA
