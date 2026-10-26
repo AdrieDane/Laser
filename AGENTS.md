@@ -1,5 +1,24 @@
 # Experiment reporting policy
 
+## CURRENT048 ALL BLIND OUTPUTS COMPLETE / evaluation+master RUNNING
+
+Actualproducer64857 DONE0: ALL25freshparents/100CatBoost800treeexperts,
+ALL5INNERmode+classcalibrations certified (solverfallbackFalse), thenALL33
+wholepipelineoutputs. Frozen all_calibrations_frozen.json/prod_complete33
+hashes. ProtocolSHA3caf94771d92732575c2d204816b478f3147710b14acfc9cdd5df3135ce9262a.
+No source/setting changes; all048sources/datahelper/backend/plan STILLFROZEN.
+App/defaults unchanged, whole041 retainedpendingWHOLEdecision.
+
+MANUALLY startedpostprocess75948 ACTIVE, /tmp/laser_catboost_postprocess_048.log:
+evaluateall33samev2refs ->originalbaseline+041comparisons ->targetX4excluded,
+priority/endoSTD ->verify_qe_catboost_experiment.py ->strictdecision.
+DoNOTstartduplicatepostprocess/newannotationcycle. MustfinishALLchecks+132
+CHATbeforeanynewactualexperiment. Originalplannedverifierbytes/sourcegate
+mustnoteditafterseeingresults;preservefailure/versionnewcheckerifnecessary.
+Do notclaimaccuracyuntilcomplete/integritypasses. GoalACTIVE/latestGOON,
+continue notcheckpointstop. LastCFMmainpushde139da (metadataonly;scientific
+048sourcefdcdc9b); separateSTDmassprobeclosuref43d907 unchanged/deferred.
+
 ## CURRENT048 RUNNING / standard-only mass probe COMPLETE, defer standalone rule
 
 048runner64857 stillACTIVE, /tmp/laser_catboost_experiment_048.log;20parents
