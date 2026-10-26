@@ -1,0 +1,38 @@
+Prospective matrix-context full nested NUMERIC preparation; not049annotations
+
+Same8descriptors/scientific source as b1d792b read-only pilot, unchanged.
+Only AFTER its all33independent PASS receipt may this preparation run. Pilot
+outer-only descriptor tables MUST NOT feed model training or INNER calibration.
+Native BASELINE signatures are label-free and may be reused after their full
+independent raw-coordinate/bin checks; they are not learned041scores.
+
+Rebuild ALL25 unique exclusion masks (5single/10double/10triple), checking
+allowed/excluded projects BEFORE each curated composition TRAINING table open.
+Fit references with the EXACT frozen matrix_peer_composition.fit_reference
+settings. Every query's own project AND relevant outer/inner projects excluded.
+All33queries/11masks each =363tables. Singlefold models/descriptor layers must
+reproduce pilot numerical results, not retune parameters after diagnostics.
+
+Write ONLY8column numeric delta layers with source old-pool hash, reference
+model hash and explicit matching scope, not another3.8GB old-pool copy. Loader
+checks both hashes/scopes and joins on full exact original row index, preserving
+ALL108old predictors/physical candidate rows/raw coordinates/standard flags.
+New schema116columns. No new targets,RT/mass windows,hard limits,supervised
+labels,classifiers,acceptance cuts or annotations. Query gold validation tables
+not opened. AuthorizedOTHERPROJECT composition presence is reference fitting,
+not label-free model training; do not claim zero total manual reads.
+
+Separate scalar independent reconstruction of ALL25authorized composition
+loaders/models/projectweights,ALL363descriptor tables and full old/new index/
+predictor/physical parity; SAME1e-12numerical tolerance. Missing staysNaN,STD
+unavailable, all samechemical original-peak alternatives sameprior. References
+may be reconstructed once per unique mask, never relaxed to a broader scope.
+Receipt binds complete helpers/plan/test/source/input/runtime hashes. Numerical
+workers2,oneBLASthread each. Sources freeze when producer starts. Preserve any
+failure; no retroactive source or tolerance edits.
+
+Actual049annotation method remains separate, requires NEWprospective complete
+fit/calibration/assembly/verification/wholedecision plan and full132CHATpolicy.
+This stage alone does not establish new correct annotations/extras/FDR or
+authorize replacement of041/appdefaults. Continue with conservative wholemethod
+retain/reject, no posthoc class/mode winner splice or outer-guided cutoffs.

@@ -1,5 +1,33 @@
 # Experiment reporting policy
 
+## CURRENT matrix blind COMPLETE / independent near complete / fullnested READY
+
+Matrixpilot sourceb1d792b pushedCFMmain;producer11192DONE0 all33blind numeric
+layers/5references/132authorizedTRAINuses. Pilot/plan/tests FROZEN unchanged.
+Independent65347ACTIVE /tmp/laser_matrix_peer_check.log, last31of33queries
+PASS plusALL5scalarreferences. No querydiagnosticstarted andno newANNresults.
+When independent DONE0 MANUALLY diagnose_qe_matrix_peer_pilot.py,then assess
+softprior separation;not acceptedgains/chemicalFDR. No queuedgoldanalysis.
+
+Inparallel newfullnested numeric source+plan READY,NOTyetfrozen/running:
+matrix_nested_data.py;prepare_qe_matrix_nested.py;verify_qe_matrix_nested.py;
+test_matrix_nested_data.py8PASS +13pilot=21PASS,RuffPASS. Triple-exclusion012
+realindependent trainloader/reference/descriptor parity1e-12 PASS:12authorized
+datasets/30492CDBrows/62eligibleclassmodes/4544chemicalqueries/2817supported.
+Scope/index/hash-tamper/inputimmutability controls tested. Plan
+next_matrix_nested_preparation.txt. Needcommit/push BEFOREFULLRUN.
+
+Stage gates onpilotALL33independentPASS; rebuildALL25matchingmaskreferences,
+462authorized compositionTRAINtableuses,363querylayers/33x11masks,2workers.
+Only8column delta layers+sourceoldpool/refhashes, no extra3.8GBoldpoolcopy.
+Loaders enforce matchingmaskedreference scope and preserveall108oldpredictors/
+pool/exactindex,116totalnumericinputcolumns. ALL33singlefoldoutputs MUSTmatch
+pilotBITEXACT. All363needs separate scalarchecker AFTERcompleteproducer;
+newstage doesNOTauthorizeactual049fit/cut/ANN. Neverreuseouter-only descriptors
+inINNERfeatures. Pure native BASELINE signatures allowed afterall33pilotcheck.
+No changed oldpilot/048sources/app/defaults;retained04182740/92100,E9270,W1604.
+GoalACTIVE continueautonomously, no checkpointstop/full132repeatforread-only.
+
 ## CURRENT matrix-context READ-ONLY pilot READY — goal ACTIVE
 
 Pairedgap CLOSED/DEFER,publicclosure pushedb90cece; pairedsources STILLFROZEN.
