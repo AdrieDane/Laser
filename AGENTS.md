@@ -1,5 +1,20 @@
 # Experiment reporting policy
 
+## CURRENT049 ALL33 COMPLETE / evaluation and full master RUNNING — goal ACTIVE
+
+Producer34314 DONE0: ALL25freshparents/100nativeHGB180experts, ALL5INNER
+mode+041completioncalibrations frozen, ALL33blindwholeoutputs complete.
+Earlycalibration62014 DONE0: independentfullfold0mode/completioncurves26cases
+PASS; earlyparent58859 DONE0 remainspartialonly. No source/guard changes.
+Manuallylaunched postprocess39017 ACTIVE, /tmp/laser_matrix_postprocess_049.log:
+samev2evaluation ->baseline+041comparison/targetX4/priority/endoSTD ->FULL
+plannedmaster ->prospectivewholedecision. DoNOTduplicate orstartanother
+annotationexperiment beforeALLPASS/wholedecision/FULL132CHAT. All049sources,
+plan/tests/bindings/plannedmaster FROZEN. No final049accuracyclaim yet.
+Retained04182740/92100,E9270,W1604;appdefaultsunchanged/notdeploymentready.
+Latesthumanrequestedprogressupdate, NOTpause. GoalACTIVE;continue tofull
+verification/report/wholeclosure then nextmeaningfulimprovement,notcheckpointstop.
+
 ## CURRENT049 ACTUAL RUNNING / final preflight ALLPASS — goal ACTIVE
 
 Actualsource4c29327 pushedCFMmain; ALLactualsources/plan/tests/plannedmaster/
