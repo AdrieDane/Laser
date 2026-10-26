@@ -1,0 +1,45 @@
+Occupied-identity competition audit — completed 26 October 2026
+
+Decision: defer this conservative assignment relaxation as a major improvement
+strategy. It exposes only14 currently missing manual annotations in38 candidate
+options across all33 datasets, including6 knownwrong-peak options and18
+unconfirmed identities. These are optimistic candidate opportunities, NOT
+accepted annotations or gains. No algorithm/default/call/cutoff/model changed.
+
+Mode       Relaxed options    Missing manual rows reached
+NPnegative       1                       1
+NPpositive       0                       0
+RPnegative      16                       5
+RPpositive      21                       8
+Total           38                      14
+
+The current one-pass selector can let a label win on multiple features before
+retaining one feature per identity. A discarded feature can remain blocked for
+another lipid. The diagnostic checks a conservative certificate: original top
+label already called on another peak with native agreement rank>=.05higher;
+alternative remains its own ORIGINAL best peak, is physical, unoccupied, an
+uncalled identity and a clear.05 residual winner. No swaps, weaker-peak fallback
+or changes to existing calls. The discarded signal might still be another true
+isomer of the already-called lipid; this is NOT a demonstrated annotation bug.
+
+All33 original029 outer scores were recomputed bitexact from their actual
+models. All33 masks were frozen and independently checked by scalar enumeration
+BEFORE manual labels were opened. All210595 candidate options audited. Current
+041 annotations were used ONLY as current occupancy, never as gold predictors.
+Independent existing raw3ppm/10second/nativeion/isotope/standard protections
+remained in place. Four new synthetic tests passed, including unknown/weaker
+blocker, ambiguity, duplicate-hypothesis, identity winner and occupancy checks.
+
+Full manual denominators remain92100 (X4only excluded), including standards and
+unresolved rows. Current reference remains82740/92100=89.83713%correct,9270
+unconfirmed extras,1604wrong peaks. At least90% per class/mode is NOT achieved.
+No new full132 annotation benchmark is claimed because no annotations changed.
+These are exposed development data, not untouched validation or analytical FDR.
+
+Next direction: compare evidence for COMPETING chemical classes on the same
+original feature. Existing raw opposite-polarity features describe each
+candidate's own native ion family but do not explicitly contrast it with a
+different class's disjoint ion family. Such comparative evidence may help with
+mass-equivalent PC/PE hypotheses; identical ion families cannot distinguish
+same-formula isomers. Start with a blinded coverage/paired-peak pilot, not an
+unvalidated acceptance rule or another cutoff-only sweep.

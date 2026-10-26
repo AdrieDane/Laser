@@ -1,5 +1,40 @@
 # Experiment reporting policy
 
+## CURRENT occupancy audit COMPLETE / competing-ion pilot READY — ACTIVE
+
+7a94150pushedCFMmain isotopeclosure+occupancysource. Occupancy95516DONE0,
+ALL33old029scores reproducedbitexact/ALL210595maskrows scalarcheckedbeforegold.
+38conservative residualoptions:14missingmanual,6knownwrongpeak,18unconfirmed.
+NPneg1option/1correctopportunity;NPpos0/0;RPneg16/5;RPpos21/8. NOTacceptedgains.
+Too few forbiggain;defer actualrelaxation. Oldcalls/defaultsunchanged,whole041
+82740/92100,E9270,W1604;goalNOTmet. No jobs remain. Occupancy source/plan
+FROZEN DO NOT EDIT. Publicsafe aggregateclosure docs/validation/qe_20261026_
+occupancy ready/uncommitted. Isotopeclosure alreadypushed7a94150.
+
+NEW read-only competing-ion-family pilot implemented, NOT048annmethod:
+next_competing_ion_family_pilot.txt;competing_ion_family_measurements.py;
+competing_ion_family_independent.py;prepare/verify/diagnose_qe_competing_ion_
+family_pilot.py;test_competing_ion_family_measurements.py. New5testsPASS,
+combined29testsPASS/RuffPASS; no realdescriptorpilot runyet. Compare existing
+raw43own-class opposite-ion metrics with OTHERcanonicalclass onSAMEsourceFID,
+bothphysical andDISJOINT nonempty otherpolarity expectednative-masssets. Shared/
+identicalion sets cannotdiscriminate(BMP/PG,O/P).17fields/privatelinks,NOTnewraw
+search/MSMS/fragmentconfirmation. Same23rawphysicalfields fromindependently
+checkedraw_mass_profile_preparation_v2,not43models/rejectedannotations.
+RawprofilessearchunconstrainedRT;deltaonlydescriptive,NOTclaimedcoelution.
+
+Primaryliterature read/search: https://pmc.ncbi.nlm.nih.gov/articles/PMC6297073/
+Gathungu2018 ESI sourceoptimization shows negativePC/LPC ISFcanmimicPE/LPE,
+crosspolaritypresence/absence/coelutionnotdefinitive. Citeforphysicalmotivation
+only;comparativepilot isnot thatpaper'sfragmentalgorithm. SourcefamilyPCvsPE
+positiveisobarCoffset3formsdisjointnegativeions;testnativefullmassesparityPASS.
+
+Nextcommit/pushoccupancyclosure+newpilotsourceplan,runprepare_qe_competing_ion_
+family_pilot.py freshprocess ->ALL33blindreceipt ->MANUALLYverify... ALL33 ->
+ONLYTHENdiagnose... . FROZENonceproducerstarts; preservefailures/versionnewfiles.
+Noactual048model/cuts/annexperimentyet. GoalACTIVEcontinueautonomously; no more
+cutoff-onlysweeps. Allold45/46/47 etc source unchanged;CFMmainonlypush.
+
 ## CURRENT isotope pilot COMPLETE / no standalone rule; occupancy audit READY
 
 Formula pilot source1b2604d pushedCFMmain. Producer49960DONE0,independent6105

@@ -1,0 +1,10 @@
+{
+  "all_passed": true,
+  "datasets": 33,
+  "all33_tables_frozen": true,
+  "independent_scalar_checks": true,
+  "manual_files_opened": 0,
+  "annotation_changes": false,
+  "classifier_fits": 0,
+  "thresholds_selected": false
+}

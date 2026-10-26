@@ -1,0 +1,13 @@
+stream,mask,manual_annotations,current_correct,candidate_options,missing_manual_rows_reached
+NP_Neg,free_physical,13914,12356,7319,703
+NP_Neg,original_clear_identity_winner,13914,12356,5876,586
+NP_Neg,relaxed_opportunity,13914,12356,1,1
+NP_Pos,free_physical,19380,17641,10250,1283
+NP_Pos,original_clear_identity_winner,19380,17641,8624,1238
+NP_Pos,relaxed_opportunity,19380,17641,0,0
+RP_Neg,free_physical,13600,12088,3197,502
+RP_Neg,original_clear_identity_winner,13600,12088,2793,437
+RP_Neg,relaxed_opportunity,13600,12088,16,5
+RP_Pos,free_physical,45206,40655,15654,2006
+RP_Pos,original_clear_identity_winner,45206,40655,12892,1733
+RP_Pos,relaxed_opportunity,45206,40655,21,8

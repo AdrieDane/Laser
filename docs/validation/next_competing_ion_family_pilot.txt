@@ -1,0 +1,64 @@
+Competing native-ion family contrast: prospective read-only pilot
+26October2026. No annotation experiment048, fitting, cutoffs or call changes.
+
+Motivation: existing043raw23 features measure the candidate's OWN native
+opposite-polarity family. They do not explicitly describe a competing class's
+different family on the SAME original feature. PC/PE can be mass-equivalent;
+same-formula isomers cannot be separated by isotope checks. Literature also
+documents PC/LPC negative in-source fragments mimicking PE/LPE and warns that
+coelution or opposite-polarity absence alone is not conclusive confirmation.
+Primary reference: Gathungu etal, Optimization of Electrospray Ionization Source
+Parameters for Lipidomics To Reduce Misannotation of In-Source Fragments as
+Precursor Ions, https://pmc.ncbi.nlm.nih.gov/articles/PMC6297073/ . This motivates
+chemical interference awareness; the pilot below measures ion-family contrasts,
+NOT fragmentation spectra or a proven in-source fragment identity.
+
+No new raw search: use the already independently checked raw_mass_profile_
+preparation_v2 candidate pools/108old+23rawnumeric fields. Bind the original
+all363 construction and independent receipts plus outer-only33 table hashes.
+All4modes/all33datasets, single outer-query-excluded masks. No rejected043
+classifiers/outputs, query labels, savedcuratorRTfits or score ranks as inputs.
+
+For each candidate, compute expected OTHERpolarity ion m/z set from its actual
+native phase/class/adduct/charge and theoretical mass. Same-source-feature
+competitors must BOTH pass existing masked3ppm/10s/nativeion/isotope/STDphysical
+protections and have a DIFFERENT canonical class. Both expected other-polarity
+mass sets must be nonempty and DISJOINT within.05ppm. Shared ions cannot count
+as discriminatory support; identical families such as O/P or BMP/PG do not
+create artificial contrasts. No sourceclass/adduct merging or new annotation
+channels. No mass-only chemical assignment is claimed.
+
+Deduplicate alternative expected-mass sets using8decimal ranking keys ONLY;
+original masses/coordinates/measurements remain untouched. Alternative families
+are counted once per query. Pick strongest measured alternative using original
+rawcorrelation12decimals,normalizedcorrelation12,thenlowestppm8 for ranking ONLY.
+Unknown profile metrics remainNaN; no hard correlation, intensity or RTgate.
+Raw43 retains its strict3ppm searches and explicit >=8pairedBIOIDs,technical
+area means beforelogs. Its raw profile search is NOT RT-gated; the recorded
+RTdelta is descriptive, not claimed coelution/fragmentation or RP/NPtransfer.
+
+Freeze17 numeric descriptors: source_configured,alternative_families,
+measured_alternative_families;9strongest-alternative originalraw measurements
+(raw/normalized/within/LOO/normalizedLOOcorrelation,ratioMAD,ppm,rawRTdelta,n);
+5own-minus-alternative correlation contrasts. Private source/alternative row
+links preserved for audit, NEVER numerical identifiers. Bothraw131inputs and
+allaccepted calls/quantification remain EXACT. No learning/annotation decisions.
+
+ALL33 descriptors/links frozen and independent scalar expectedmass/disjointness/
+dedup/ranking/contrast checks passed BEFORE manual label analysis. Independent
+implementation must NOT call producer signature/overlap/measure helpers.
+Synthetic checks: native positivePEvsPC mass-equivalence and disjoint negative
+ions; identical O/P and BMP/PG families unknown/notdiscriminated; no guessed
+support from absent/flat profiles, source protection, repeated hypotheses,
+differentstreamFIDnamespaces. Expected sign/arithmetic uses native constants.
+
+After all33 blind+independent receipts: same saved041 manual diagnostic
+categories and all original manual denominators (X4onlyexcluded). Report
+perdataset/mode/class coverage, including MISSING manual rows with measurable
+relative evidence. Predeclared within-identity comparisons: own-minus-foreign
+raw/normalized/LOOcorrelation, higher is better; correct vs BEST known wrong
+alternative, exactlyONE mappedmanualFID per identity; bothphysicallyeligible
+and measured. Separate currentlycorrect/missing and projectcounts. Counts are
+opportunities/contrasts,NOT accepted gains, FDR or independent external evidence.
+No class-specific threshold selection. A later actual model needs separate
+prospective nested363 construction/fresh fits and full132 before-after report.

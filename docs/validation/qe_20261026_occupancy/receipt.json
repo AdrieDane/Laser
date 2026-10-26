@@ -1,0 +1,11 @@
+{
+  "all_passed": true,
+  "datasets": 33,
+  "primary_manual_annotations": 92100,
+  "primary_current_correct": 82740,
+  "all33_blind_and_scalar_checked_before_gold": true,
+  "annotation_changes": false,
+  "classifier_fits": 0,
+  "thresholds_selected": false,
+  "note": "Read-only optimistic candidate opportunity audit, NOT accepted gains, joint assignment performance or FDR. Original029 scores reproduced ALL33 bitexact; ALL041 calls fixed. Exposed development data, not external validation."
+}
