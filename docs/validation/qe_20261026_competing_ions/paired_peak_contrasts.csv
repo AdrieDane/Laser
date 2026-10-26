@@ -1,0 +1,10 @@
+stream,lipid_class,field,currently_missing,comparable_identities,manual_peak_better,wrong_peak_better,ties,contributing_project_groups
+NP_Pos,Hex2Cer-d,own_minus_alternative_best_leave_one_out_correlation,True,1,0,1,0,1
+NP_Pos,Hex2Cer-d,own_minus_alternative_best_normalized_correlation,True,1,0,1,0,1
+NP_Pos,Hex2Cer-d,own_minus_alternative_best_raw_correlation,True,1,0,1,0,1
+RP_Pos,PC-P,own_minus_alternative_best_leave_one_out_correlation,False,1,1,0,0,1
+RP_Pos,PC-P,own_minus_alternative_best_leave_one_out_correlation,True,1,1,0,0,1
+RP_Pos,PC-P,own_minus_alternative_best_normalized_correlation,False,1,1,0,0,1
+RP_Pos,PC-P,own_minus_alternative_best_normalized_correlation,True,1,1,0,0,1
+RP_Pos,PC-P,own_minus_alternative_best_raw_correlation,False,1,1,0,0,1
+RP_Pos,PC-P,own_minus_alternative_best_raw_correlation,True,1,1,0,0,1

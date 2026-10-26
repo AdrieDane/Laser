@@ -1,0 +1,2 @@
+# Optional isolated RESEARCH runtime only; not an app/production dependency.
+catboost==1.2.10

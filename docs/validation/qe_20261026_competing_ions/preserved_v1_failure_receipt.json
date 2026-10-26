@@ -1,0 +1,13 @@
+{
+  "all_passed": false,
+  "failure_stage": "independent_directed_link_presentation_order",
+  "blind_receipt_sha256": "cf22ed15d608fd84bba2eeff6564b6703fff036334c20e3257e159c60908d127",
+  "failed_checker_sha256": "1c49c027a67944d2aaceee5b4e51edf8d7510e742f4d34d94d0d768b1a9319a7",
+  "log_sha256": "477db0393f4f37d5a88a26432e42fabfb4b487615779ac7f2c5c64e8629ea8ce",
+  "manual_files_opened": 0,
+  "annotation_changes": false,
+  "classifier_fits": 0,
+  "thresholds_selected": false,
+  "completed_all33_receipt": false,
+  "notes": "Original v1 checker failed link row ordering after numeric check in reported case; do not claim all33 numeric pass. V2 repeats all checks and exact directed edge multiset including duplicate multiplicity. Original sources and failed artifacts preserved."
+}

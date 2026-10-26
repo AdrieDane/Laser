@@ -1,0 +1,9 @@
+{
+  "all_passed": true,
+  "datasets": 33,
+  "posthoc_descriptive_analysis": true,
+  "annotation_changes": false,
+  "classifier_fits": 0,
+  "thresholds_selected": false,
+  "note": "Supplementary same-feature curated-vs-alternative-label comparison; added after blind pilot began. Not original prospective inference, accepted annotations/gains, chemical false-positive proof or external validation. Current occupancy used for descriptive free-identity counts only."
+}

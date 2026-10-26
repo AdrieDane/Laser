@@ -1,5 +1,59 @@
 # Experiment reporting policy
 
+## CURRENT competing-ion pilot CLOSED / CatBoost-family DESIGN+software READY
+
+Competing-ion originalproducer18859DONE0;v1checker63857DONE1orderonlyfailure
+preserved;sourcec4883f1pushedCFMmain;v2checker50653DONE0 ALL33PASS/3580115cells/
+9472directedlinks exactMULTISET incldupes. V2diag86445DONE0;posthoclabelreview
+8256DONE0. Frozenallnumeric/runtime/checkers/diags/plans/review sources DO NOT
+EDIT. Noactual048annotchangingrun/models/cuts/newcalls. ALLjobsfinished.
+
+Disjointfamilies9356options,4954rawcontrasts. AtMANUALoriginalfeatures572
+measurable entries:NPpos488(21missing),RPpos84(5missing),NPneg/RPneg0. Only26
+missing measurable ->deferstandalone scoremethod. Originalwithinidentitypeak
+comparisons tiny2missing(1truebetter/1wrong),1alreadycorrect. Exploratorysame-
+featurelabelcontrast missingraw19curated/6alternative/1tie26;alreadycorrect
+482/59/5=546. Alternativeclasses UNCONFIRMED notchemicalFPs. Only3missing
+currentotherlabel+desiredidentityfree graphopportunities (allRPpos),notgains.
+Publicsafeclosure docs/validation/qe_20261026_competing_ions READY/uncommitted.
+
+NEW biggerdirection designphase: alternativelearneronEXISTINGretained029108
+validatedpredictors/363maskedtables,NOTnew17family/raw43/isotopefields. Fixed
+CatBoost1.2.10 OrderedCPU800trees/depth6/.05rate/L2=3/seed20261026/thread1,
+noevalset/earlystop/learningfilewrites. Fourmodeexperts,25parentnestedfits planned,
+notstarted. Equalprojectweights/knownlabels/corepools unchanged. Sourcehelper
+catboost_evidence_model.py,5synthetic softwaretestsPASS (repeatfit/pickleexact,
+scope/schema/forbiddenfields/weights/NaN/unseencats),RuffPASS. These areSOFTWARE
+fits only,NOTQEtraining/performanceexperiment. No preflight/runner/master yet.
+ProspectiveDESIGN next_catboost_model_family_experiment.txt (notfinalprotocol;
+explicitlyblocksactualrununtilreconstructiondetails/fullpreflight/masterfixed).
+Optionalrequirements-catboost.txt researchonly,notappdependency. NewfilesNOT
+yetfrozen(no actualQEfits started),maydevelopsource/plan beforepreflight.
+
+Isolatedruntime CREATEDROOT/work/qe_catboost_runtime_v1 (OUTSIDErepo),venv
+--system-site-packages,CatBoost1.2.10+graphviz0.21 installedONLYthere. Global
+Python/app untouched. CPUmacuniversal2cp313binary. Inherit numpy2.4.4,pandas3.0.2,
+scipy1.17.1;helperenvironment() hashesnativeextension andrecordsversions. Use
+RUNTIME/bin/python fornewbackendtests/futurefit;commonoldPython lacksCatBoost.
+Sourceplanpinpackageofficialdocs read. No private QEdatauploaded. Free disk41GiB.
+
+Next finishsourceplan forwhole048reconstruction,newno-fitALL363/25parents/528
+traininguses/132calibration+33outer contexts andactualindependentmaster BEFORE
+QEfits. Newnativecutdomain0..1step.025 with1disabled planned(.05ambiguitysame),
+freshALL5INNERcalibrations beforeANYouteroutputs. No morecutoff-onlysweeps.
+Needdecideprospectively whether041classcompletion isrecalibratedfromnewINNER
+scores orOMITTEDandreportthatwholemethoddifference;DONOTappendold11callsby
+outerwinnerselection. Same005STD+fixed027massstage references,changedcore
+occupancy legitimatelychangesmassadmissions. Source029runner fullcode readfrom
+QE/experiment_029/runner_source.py;masteroldsourceparams etcmayreuseexplicitly
+butMUSTNOTmonkeypatcholdmoduleglobals/mutatefrozenfiles/reusefittedHGBasnew.
+All5calibrationsfirst differsold029whichranfoldswithoutputsinterleaved.
+
+GoalACTIVE/NOTmet;whole041retained82740/92100,E9270,W1604/defaultsunchanged.
+Commit/pushcompletedpilotreport+newbackend/sourceDESIGN+statusCFMmain then
+continueimplementation,notstopatcheckpoint. Full132CHATmandatoryAFTERactual
+annotationexperiment; none ofthese read-only/softwarepilots changes annotations.
+
 ## CURRENT competing-ion BLIND COMPLETE / v1 checker order failure / v2 READY
 
 Sourceb04b36fpushedCFMmain. Producer18859DONE0 all33tables/17fields/privatelinks

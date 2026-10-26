@@ -1,0 +1,81 @@
+Competing native-ion family pilot — completed 26 October 2026
+
+Decision: defer a standalone annotation-changing experiment with these fields.
+The comparative signal looks useful for some class choices but reaches too few
+currently missing curated annotations to close the main gap. No new accepted
+annotations, cutoffs, score fits, candidates, raw searches or app changes.
+Whole041 remains82740/92100=89.83713%correct original-feature matches,9270
+unconfirmed extras,1604wrong peaks. At least90% per class/mode remains unmet.
+
+All33 QE datasets/four modes/210595 candidates measured before gold analysis.
+17numeric fields=3580115cells;9472private directed comparison links. Both
+source and competing class hypotheses use the SAME original feature and pass
+existing masked raw3ppm/10s/nativeion/isotope/declaredstandard protections.
+Only DIFFERENT classes with nonempty DISJOINT opposite-polarity native-ion mass
+sets can be compared. Shared/identical families do not invent discrimination
+between O/P isomers or BMP/PG. Original131inputs/quantification unchanged.
+
+Mode       Options with alternative family   With measured relative correlation
+NPnegative            5494                              3174
+NPpositive            2884                              1359
+RPnegative               0                                 0
+RPpositive             978                               421
+Total                  9356                              4954
+
+Measurable relative evidence at MANUAL original peaks:
+NPnegative0;NPpositive488 (21currentlymissing);RPnegative0;RPpositive84
+(5currentlymissing). Total572manual entries,only26currentlymissing. Most NPneg
+alternative PC/PS options are NOT manual original-feature/adduct matches; do
+not interpret thousands of candidate measurements as thousands of gains.
+Full original denominators,including standards/unresolved and excluding X4
+only,remain in every coverage table.
+
+Original prespecified SAME-IDENTITY peak comparisons were too small: only
+2currentlymissing comparisons (manual1/wrong1) and1alreadycorrect comparison
+(manual1),for each of raw/normalized/LOO relative correlations. No peak-selection
+accuracy or generalization can be established from those counts.
+
+Supplementary SAME-FEATURE class-label review was added AFTER the pilot began,
+explicitly exploratory/posthoc rather than original prespecified inference:
+- Alreadycorrect: raw contrast favours curatedlabel482/alternative59/tie5,
+  546comparable features;normalized481/60/5;LOO478/63/5.
+- Currentlymissing: raw19curated/6alternative/1tie in26features;
+  normalized19/6/1;LOO17/8/1.
+Alternative labels are UNCONFIRMED,not chemically proven false positives.
+Only3missing entries have a competing-family graph AND an existing other label
+on that feature with the desired identity still free(plus69other graph cases
+without that exact occupancy configuration). These are mechanical opportunities,
+not accepted gains. Two measurable currently-other-labelled comparisons come
+from onlyone project; do not optimize a rule on that small subset.
+
+Limits and verification
+
+Reuses the independently checked raw43 OTHERpolarity measurements/native ion
+chemistry,not rejected043models or calls. Raw profile searches span the opposite
+acquisition and are NOT RT-gated. RTdelta is descriptive,not proof of coelution.
+No MS/MS or in-source fragment identity is inferred. Explicit >=8positive paired
+BIOIDs,technical-area means beforelogs;unknown values remainNaN,not absence
+proof. Mass-equivalent PC/PE and published PC/LPC fragmentation issues motivate
+interference awareness,not a claim that this test detects those fragments.
+Primary study: https://pmc.ncbi.nlm.nih.gov/articles/PMC6297073/
+
+Original independent check v1 stopped on link-list ROWORDER after its numeric
+comparison in the reported case passed;no all33pass/label analysis was claimed.
+Originalsource,failedfolder,log andzero-label-read receipt preserved privately.
+V2repeated ALL33 numeric/physical/native-ion checks and compared EXACT directed
+edge MULTISETS after sorting both lists. Endpoints,dtypes,rowcounts andduplicate
+multiplicity remain exact;no sets,discardedduplicates or tolerance relaxation.
+V2PASSall33; original blind measurements/graph unchanged. Regression tests prove
+order permutations allowed but changed/missing/duplicated edges rejected. V2gold
+analysis is identical to original except receipt/output paths. Alllabel analysis
+occurred onlyAFTER both all33blind and all33independentv2receipts.
+
+Eightnew competing-ion/checker tests passed,plus the preceding combined tool
+tests and lint checks. Exposed development datasets,not untouched validation;
+manualabsence is unconfirmed,not established chemical FDR. Appdefaults unchanged.
+
+Next: test a different supervised learning family on the EXISTING validated108
+predictors and same grouped splits/physical pools,not another narrow rule or
+cutoff-only sweep. All previous main score experiments retained the fixed HGB
+family. Newmodel-family sources/parameters/independent preflight must be fixed
+before annotation-changing execution. No performance gain is asserted here.
