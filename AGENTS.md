@@ -1,5 +1,24 @@
 # Experiment reporting policy
 
+## CURRENT user-requested041 peakgroup EXPORTS / optimization stays PAUSED
+
+Newhumanrequest:generateannotated peakgroup lists forALL33datasets plus per-
+dataset/per-mode correct percentages/counts and TOTALextras,wrongpeaks,etc.
+This authorizesPRIVATEexports ofretained041, NOTresumingoptimization/default
+integration/deploymentreadiness orusingrejected049. Newformatting-only helper
+tools/qe_optimization/export_qe_retained_peakgroups.py plus11newchecks/native3
+tests PASS14. Usesfrozen041appwriter;independentremove-columns BYTEexact,
+allaccepted feature/name/adduct equality,unchangedoriginalhashes;freshscores
+ONLYAFTERexports,verifiedsamev2manual,exact041permode counts. No newANNdecisions.
+OutputsSOURCE.parent/LASER_annotated_QE_041_20261026 plusZIP,NOTwithinactive33.
+33datasetfolders/4modeseach,132 *_annotated.txt; ONLYinsertcols2/3; separate
+scoresTXT bydataset/mode/class andpooledoverview; privateverificationJSON.
+Producer12612 ACTIVE /tmp/laser_retained_peakgroup_export_20261026.log.
+KeepnewexportsourceUNCHANGEDwhileproducer runs. Two unusedimports lintF401
+only;14behavior testsPASS. Nooptimizer/newfit/cutoff/modelchange or050queued.
+AfterDONE0 independentlycheckall132actualfiles/ZIP andscores, safeaggregate
+exportnote/source/handoffpushCFMmainonly. Rawexports/ZIP mustNEVERGit.
+
 ## CURRENT049 CLOSED / REJECTED / HUMAN PAUSE — no further optimization
 
 049producer34314DONE0 andpostprocess39017DONE0. ORIGINALplanned master ALLPASS:
