@@ -1,0 +1,23 @@
+{
+  "all_passed": true,
+  "new_parents": 25,
+  "new_classifiers": 100,
+  "training_query_uses": 528,
+  "inner_score_reproductions": 132,
+  "outer_score_reproductions": 33,
+  "dataset_modes": 132,
+  "original_coordinates_checked": true,
+  "same_manual_reference": true,
+  "verifier_sha256": "f09faa5f9e618c29d0b309855e38e036b3f87f20fd74604acf83b4a2243e7413",
+  "original_planned_verifier_sha256": "d6c50b6dd0c81145bfba612746012d6e596b5e401c17bf85fb258673d63b4e18",
+  "original_planned_verifier_completed": false,
+  "verification_extension_files_sha256": {
+    "verify_qe_catboost_experiment_v2.py": "f09faa5f9e618c29d0b309855e38e036b3f87f20fd74604acf83b4a2243e7413",
+    "test_catboost_checker_v2.py": "ce6861fb6bbd06beda89144d4829dd8e7ad256020cfda7b79a9b474231e64149",
+    "next_catboost_checker_v2.txt": "6cbd9a088b550c3202988397b067a9a6fbbe85a78349048574ecc37e3a6b145a",
+    "failure.log": "f6a60cd4091a342905416b701053510b7d26961f96cd0a96777e88da774832fa",
+    "failure_receipt.json": "62dbc93ba4265a8bf4594b785aa7d29d7efc8a3c77322fc945027ca3d7cb7be2"
+  },
+  "memory_copy_v2_only": true,
+  "note": "Original planned verifier passed25modelparents,then hit Pandas3read-only view assignment. Original source/failure preserved; v2 ONLY owns a numeric copy before identical normalization. Alloriginal sources/producer/models/cuts/annotations unchanged. Separate scalar competition/counts/whole-assembly and direct native prediction. Shared CatBoost native library,005/027chemistry,034MIPsolver; not independent chemical confirmation,fresh deployment or external validation."
+}

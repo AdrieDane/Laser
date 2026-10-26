@@ -1,0 +1,72 @@
+Experiment048 REJECTED — keep WHOLE041 research reference, app unchanged
+
+All33active QE datasets,132dataset/mode cases,30project groups. Correct means
+the SAME original feature,lipid,adduct and mode as manual curation. Primary
+denominator92100includes1456internal standards and28unresolved mappings;
+only user-excluded X4(two rows) is omitted. Sparse classes remain in reports.
+
+WHOLE041 before -> WHOLE048 after:
+Correct/manual:82740/92100(89.8371336%) ->81034/92100(87.9847991%):1706fewer.
+TOTAL unconfirmed extras:9270 ->9288(+18).
+Wrong-peak choices:1604 ->1562(-42). These are NOT correct matches.
+All target class/modes below90:76 ->82 of122.
+Well-represented priority class/modes below90:43 ->49 of86.
+Priority capped90class mean:83.8902653 ->82.8744381.
+Internal standards unchanged:1375/1456(94.4368132%),721extras,27wrong peaks.
+
+Reject the entire new method. Do not splice favorable outer-tested classes or
+modes into041; do not relax the prospective guards after seeing this result.
+Research reference stays041:82740/92100,9270extras,1604wrong peaks. It still
+does NOT meet90% in every class/mode. No app default or source dataset changed;
+no deployment peakgroup exports are justified by this failed experiment.
+
+What was tested
+
+Fresh fixed CatBoost1.2.10 Ordered CPU800tree classifiers for all four modes:
+25nested parents,100actual new expert fits. EXACT retained029108predictors/
+363physical candidate tables/known fitting labels/equalproject weights. Native
+categorical/missing-value handling is intentionally part of the new learner.
+New native0..1mode calibration grid then existing034class-aware training
+calibration; all5calibrations completed/frozen before any outer output.
+Same005standard adjudication and fixed027mass stage. Tiny041completion add-on
+(11correct/2extra versus029) deliberately OMITTED prospectively; its omission
+is included in this WHOLE-method comparison, not silently restored afterward.
+Thus this is not an isolated causal test of learner family alone.
+
+Groups are kept together and the evaluated project's annotations are excluded
+from model/RT-reference/cutoff training. Cached ORIGINAL-feature replay,NOT a
+fresh installed-app raw-input benchmark. Repeated development exposure remains;
+these examples are not untouched external validation. Manual-absent calls are
+unconfirmed extras,not proven chemical false positives or analytical FDR.
+
+Integrity
+
+Final no-fit controls passed before actual fits:all363blind input tables,
+100mode training matrices/528training query uses,165old score reproductions,
+all33WHOLE029scientific call/rawcoordinate replays and disabledWHOLE041parity.
+Actual verification:all25parent scopes/matrices/100expert parameters+800trees,
+132INNERscore reproductions/all5complete calibration curves and solverguards,
+33OUTscore reproductions/132original-coordinate streams,whole005+027assembly,
+same gold hashes and fresh manual comparisons ALLPASS.
+
+The original planned verifier passed its25model checks then hit a Pandas3
+read-only view assignment. Original source/failure log/receipt preserved.
+Version2only requests an owned numeric copy before identical missing-value
+normalization; AST-parity tests and an explicit failure reproduction pass.
+No producer/model/threshold/score/annotation/report or numerical tolerance
+changed. The complete verification was then rerun successfully. Shared native
+CatBoost,005/027chemistry and034MIPsolver dependencies are explicit; this is
+not independent chemical confirmation. Original planned verifier hash remains
+bound to the unchanged original file,with the v2extension separately bound.
+Complete private integrity receipt SHA256:
+32f7edecaf74d4d47e17a011773037325e13f641805897413a33b664fcc8b251
+
+Files
+
+versus_041/target_scope_without_X4 contains the primary132case and class/mode
+tables. versus_041/endogenous_and_spiked_companion separates endogenous lipids
+and internal standards without changing the primary history/denominator.
+The full target132case text table and strict guard audit accompany this file.
+Public files are aggregate reports only,not models,curation,raw feature IDs or
+private input paths. Full132CHATdelivery is still required before another
+annotation-changing experiment.

@@ -1,0 +1,13 @@
+{
+  "manual_entries": 90644,
+  "correct_before": 81365,
+  "correct_percent_before": 89.7632496359384,
+  "extras_before": 8549,
+  "different_feature_before": 1577,
+  "unresolved_manual_before": 28,
+  "correct_after": 79659,
+  "correct_percent_after": 87.8811614668373,
+  "extras_after": 8567,
+  "different_feature_after": 1535,
+  "unresolved_manual_after": 28
+}

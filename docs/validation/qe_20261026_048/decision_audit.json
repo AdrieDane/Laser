@@ -1,0 +1,49 @@
+{
+  "retain_whole_method": false,
+  "guards": {
+    "at_least_100_net_correct": false,
+    "no_total_extra_increase": false,
+    "no_wrong_peak_increase": true,
+    "priority_capped90_mean_improves": false,
+    "priority_below90_count_not_increased": false,
+    "no_already90_priority_class_falls_below": false,
+    "no_priority_class_loses_over_one_percentage_point": false,
+    "standards_no_correct_loss": true,
+    "standards_no_extra_increase": true,
+    "standards_no_wrong_peak_increase": true
+  },
+  "priority_class_modes": 86,
+  "priority_capped90_mean_before": 83.8902652833695,
+  "priority_capped90_mean_after": 82.87443808694691,
+  "priority_below90_before": 43,
+  "priority_below90_after": 49,
+  "production_enabled": false,
+  "target_achieved": false,
+  "note": "WHOLE048 versus WHOLE041; no winning-class/mode splice or guard relaxation. New learner+INNERclass calibration;041 completion add-on omitted. Retention,ifguards pass,is research only. Not chemical FDR, untouched external validation or production readiness.",
+  "primary": {
+    "excluded_classes": [
+      "X4"
+    ],
+    "datasets": 33,
+    "dataset_modes": 132,
+    "all_manual_rows": 92102,
+    "excluded_manual_rows": 2,
+    "target_manual_rows": 92100,
+    "note": "Companion target-scope view,NOT an annotation improvement or reference relabeling. Historical all-manual reports/inputs unchanged. X4 was explicitly excluded by the user on24October2026. Unconfirmed extras,not false positives/FDR.",
+    "correct_before": 82740,
+    "percent_before": 89.8371335504886,
+    "extras_before": 9270,
+    "different_feature_before": 1604,
+    "unresolved_manual_before": 28,
+    "class_modes_with_manual_before": 122,
+    "class_modes_below_90_before": 76,
+    "correct_after": 81034,
+    "percent_after": 87.98479913137894,
+    "extras_after": 9288,
+    "different_feature_after": 1562,
+    "unresolved_manual_after": 28,
+    "class_modes_with_manual_after": 122,
+    "class_modes_below_90_after": 82
+  },
+  "integrity_receipt_sha256": "32f7edecaf74d4d47e17a011773037325e13f641805897413a33b664fcc8b251"
+}

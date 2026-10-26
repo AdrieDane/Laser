@@ -1,5 +1,40 @@
 # Experiment reporting policy
 
+## CURRENT048 COMPLETE / REJECTED / FULL132CHAT DELIVERED — goal ACTIVE
+
+048sourcefdcdc9b producer64857DONE0 all25freshparents/100800treeexperts,
+5certifiedmode+classcalibrations,33wholeoutputs. Originalpostprocess75948DONE1
+afterevaluationreports becauseplannedv1checkerread-only-array bug; original
+source/failure preserved. Memory-onlyv2source dd11d8d;8103DONE0 ALLCHECKSPASS:
+25parents/100matrices+scopes+nativeparams/528traininguses,132INNERscores/all5
+mode+classcurves/solverguards,33OUTscores,132originalcoordinate streams,
+whole005+027assembly andfreshsamegoldcomparisons. No producer/model/score/
+threshold/annotation/tolerance changes. OriginalplannedverifierSHAunchanged;
+ASTproofonlycopy=True inallscientifichelpers. FullreceiptSHA
+32f7edecaf74d4d47e17a011773037325e13f641805897413a33b664fcc8b251.
+
+WHOLE048 REJECTED byoriginalguards:81034/92100=87.9847991%,E9288,W1562 versus
+WHOLE04182740/92100=89.8371336%,E9270,W1604: -1706correct/+18extras/-42wrong.
+Priority80250/90871 vs81907;43->49below90/86;capmean83.8902653->82.8744381.
+Sparse833->784/1229;all76->82below90/122. STD1375/1456,E721,W27UNCHANGED.
+BigRPposloss NADLiver1353->617/1435,Muscle1273->558/1349 (sameproject group),
+NOTdatasetexclusions. RestRPposhasmanysmallgainswithmoreextras;doNOTsplice.
+041tiny11TP/2Ecompletionomittedprospectivelyin048comparison asplanned.
+
+FULL132user-facing CHAT tables all4modes correct%+n/N/TOTALextras plusseparate
+wrong-peakmodecounts/class+endoSTDlinks DELIVERED AFTERallintegritypasses.
+DoNOTrepeatmerelyfornextcycle. All048sources/checkers/plan/data FROZEN.
+Publicsafeaggregateclosure docs/validation/qe_20261026_048 READYuncommitted;
+commit/pushwithstatus next. Noappdefaults changed; WHOLE041RETAINED. Target
+NOTmet,goalACTIVE/latestGOON; continue newmeaningfulphysics/feature step,
+notcutoff-onlysweeps orcheckpointstop. No nextactualexperimentstartedyet.
+Beforeany049 read-onlyreviewexisitingpositional/etherRPanchor methods toavoid
+reinventingoldfeatures;prioritize correct-feature discovery/RT alignment gaps.
+Onlysparseclassesdeferred,X4excluded;sole33QEdatasetsremain unchanged.
+
+NOTE publicendoSTDroot fileis summary.json (verifyactualpath beforelinking).
+Privateoutputsno Git; onlysafeaggregates/preserveoriginalfailurelogsprivate.
+
 ## CURRENT048 evaluation COMPLETE / original master FAILED memory-only / v2 READY
 
 Producer64857DONE0 all100fresh800treeexperts/5certifiedcalibrations/33outputs.
