@@ -1,5 +1,37 @@
 # Experiment reporting policy
 
+## CURRENT049 PROTOTYPES/STAGEA READY / fullnested verifier RUNNING — goal ACTIVE
+
+LastCFMmainpush7e0c324 (matrixpilotclosure+actual049plan); no actual049fits.
+Nestedindependent7351ACTIVE, /tmp/laser_matrix_nested_check.log;ALL25refsPASS,
+24of33datasets/11layers each lastcheck PASS. MustfinishALL363beforeStageAmain.
+Allpilot/nestedproduction/checker sources remainFROZEN unchanged.
+
+New049prototype files (NOTyetfrozen/committed):matrix_experiment_data.py,
+matrix_mode_model.py,matrix_pipeline_assembly.py,2tests,audit_qe_matrix_model_inputs.py.
+NativeHGB wrappers enforce116columnschema/referencegroup+layer/model SHA on
+EVERYload; exact029params/180iters/weights,original mode selector/005/027 and
+RECOMPUTED041completion. Nativeconsumer matrix/label/weight ledger. 3toy-only
+mode tests plus7pureassemblytests PASS, no actualQEclassifierfit. Original
+old029score/core/whole041control Zoemba1904calls andoneparent(0,1)19datasets/
+18groups knownlabels/4native matrices/weights PASS inREALengineeringSMOKE v2.
+Log /tmp/laser_matrix_stage_a_smoke_v2.log. Initialsmokelog originalpreserved:
+/tmp/laser_matrix_stage_a_smoke.log, caught inherited INTERNALsampleareaNaNs.
+Newoutput-onlyrestore copies originalrawsamplecells AFTERindependentFID/MZ/RT/I
+validation, no rescaling/imputation/identity/peak change; preserveexactFIDtext.
+Allsamplecolumns exactincludingQCblankSTD; oldfrozenruns/userfiles untouched.
+Plan amended BEFOREactualstagefreeze, this is NOTannotationaccuracygain.
+
+StageA auditready:waitnestedALLPASS,sourcecommit/push, thenrun
+audit_qe_matrix_model_inputs.py -> QE/matrix_context_stage_a_v1. 528oldlabeluses,
+25x4native matrices/weights/categories,165BITEXACTold scores,33oldWHOLE041
+scientificandoriginalsamplecell/off-switchcontrols. Zeroactualfits/newoutputs;
+receipt actual049_fit_permission=False. Helpers/plan/tests freeze onStageAstart.
+Fullactualdriver/operatingcurve/master/decision/finalsourcebinding stillneed
+implementation; StageA NEVERauthorizesrealfits byitself. Needseparatecomplete
+finalpreflight with actualmaster sourcebound BEFOREactual049. KeepWHOLE041
+82740/92100,E9270,W1604,goalACTIVE/notmet. Continue,notcheckpointstop.
+
 ## CURRENT matrix pilot CLOSED positive-softsignal / ALL363 complete / verifier RUNNING
 
 Pilotb1d792b:11192DONE0;65347DONE0 ALL33PASS/5refs/132TRAINuses at1e-12,

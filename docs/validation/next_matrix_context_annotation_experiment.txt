@@ -16,6 +16,18 @@ and unresolved-label handling. No hard range, matrix-name/name/FID predictor,
 new candidates, isotope/fragment hypothesis, class weights or partial labels.
 Never use outer-only diagnostic layers for INNER fitting/calibration.
 
+Engineering before actualfit: accepted rows in old INTERNAL candidate-derived
+tables can lack per-sample area cells. New assembly FIRST independently checks
+original FID/MZ/RT/intensity, then copies original raw cells into accepted export
+rows, preserving exact annotation-ID representation. All declared sample columns
+(BIO/QC/blank/STD/unknown) checked against ORIGINAL features exactly, no scaling
+or imputation. This output-only repair does not feed scores/RT/cutoffs or change
+identities/peaks and is NOT an annotation-performance gain. Old frozen runs and
+user input files remain unchanged. StageA oldWHOLE041 identity/coordinate
+controls must still match; raw sample-cell controls compare original source,
+not perpetuate old missing INTERNAL cells. User peakgroup export remains ONLY
+two inserted columns, with original file cells/order unchanged.
+
 Fresh ALL25parentmodels/100fixed-mode HGB experts,180iterations EACH; exact
 original029classifier parameters from its frozen protocol, early_stoppingFalse,
 same categorical encoding/equalprojectweights withinmode. No CatBoost, warm
