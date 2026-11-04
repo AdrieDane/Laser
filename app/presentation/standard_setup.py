@@ -253,6 +253,10 @@ def _run_matlab_form(
     status.empty()
     st.session_state.standard_annotation_result = result
     st.session_state.standard_results_page = "menu"
+    st.session_state.standard_loaded_workflow = "annotation"
+    st.session_state.pop("standard-results-enable-untargeted", None)
+    st.session_state.standard_auto_save_annotation_pending = True
+    st.session_state.standard_auto_save_untargeted_pending = True
     st.session_state.standard_project_directory = str(project.resolve())
     st.session_state.standard_input_sources = dict(sources)
     for key in ("standard_report_html", "standard_report_signature",
@@ -446,6 +450,10 @@ def _store_laser_result(
                if state.input_directory else None)
     st.session_state.standard_annotation_result = result
     st.session_state.standard_results_page = "menu"
+    st.session_state.standard_loaded_workflow = "annotation"
+    st.session_state.pop("standard-results-enable-untargeted", None)
+    st.session_state.standard_auto_save_annotation_pending = True
+    st.session_state.standard_auto_save_untargeted_pending = True
     st.session_state.standard_project_directory = project
     st.session_state.standard_input_sources = dict(sources)
     for key in ("standard_report_html", "standard_report_signature",

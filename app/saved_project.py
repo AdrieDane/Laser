@@ -42,6 +42,12 @@ def _plain(value: Any) -> Any:
         return value
     if isinstance(value, np.generic):
         return value.item()
+    if isinstance(value, np.ndarray):
+        return [_plain(item) for item in value]
+    if isinstance(value, datetime):
+        return value.isoformat()
+    if value is pd.NA:
+        return None
     if isinstance(value, Path):
         return str(value)
     if isinstance(value, Mapping):
@@ -49,6 +55,16 @@ def _plain(value: Any) -> Any:
     if isinstance(value, (list, tuple, set)):
         return [_plain(item) for item in value]
     raise TypeError(type(value).__name__)
+
+
+def _plain_attrs(attrs: Mapping[str, Any]) -> dict[str, Any]:
+    output: dict[str, Any] = {}
+    for key, value in attrs.items():
+        try:
+            output[str(key)] = _plain(value)
+        except TypeError:
+            continue
+    return output
 
 
 def _slug(value: str) -> str:
@@ -277,6 +293,7 @@ def save_standard_project(
                 paths[role] = atomic_write_csv(
                     tables_dir / "streams" / slug / f"{_slug(key)}.csv", value
                 )
+                metadata[f"{key}__attrs"] = _plain_attrs(value.attrs)
             else:
                 try:
                     metadata[str(key)] = _plain(value)
@@ -284,24 +301,27 @@ def save_standard_project(
                     continue
         stream_metadata[str(stream)] = {"slug": slug, "values": metadata}
     if stream_metadata:
+        result_values: dict[str, Any] = {}
+        for key, value in result.items():
+            if key == "streams" or isinstance(value, pd.DataFrame):
+                continue
+            try:
+                result_values[str(key)] = _plain(value)
+            except TypeError:
+                continue
         paths["standard_stream_metadata"] = atomic_write_json(
             root / "standard_stream_metadata.json",
             {
                 "engine": str(result.get("engine", "unknown")),
                 "anchor_settings": _plain(result.get("anchor_settings", {})),
+                "result_values": result_values,
                 "streams": stream_metadata,
             },
         )
-    untargeted = result.get("untargeted_analysis")
-    if isinstance(untargeted, Mapping):
-        for key, value in untargeted.items():
-            if isinstance(value, pd.DataFrame):
-                role = f"untargeted_{key}"
-                paths[role] = atomic_write_csv(tables_dir / f"{role}.csv", value)
     if annotated_inputs:
-        input_dir = root / "annotated_input_files"
+        input_dir = root / "annotated_peaklists"
         for stream, content in annotated_inputs.items():
-            path = input_dir / f"peakgrouplist_{stream}.txt"
+            path = input_dir / f"peakgrouplist_{stream}_annotated.txt"
             paths[f"annotated_input_{stream}"] = atomic_write_bytes(path, content)
     if html_report is not None:
         paths["standard_lipidomics_report"] = atomic_write_bytes(
@@ -323,7 +343,7 @@ def save_standard_project(
             "counts": counts,
             "settings": dict(settings or {}),
             "inputs": dict(inputs or {}),
-            "outputs": {key: str(value) for key, value in paths.items()},
+            "outputs": {key: str(value.relative_to(root)) for key, value in paths.items()},
         },
     )
     paths["project_manifest"] = create_saved_project_from_run(

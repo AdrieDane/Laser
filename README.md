@@ -16,7 +16,7 @@ targeted-extraction, or dataset-specific workflows.
 - LASER reference-matcher annotation.
 - Composition-range and grid-coherence policies.
 - Interactive annotation review, reports, exports, saved projects, and
-  post-annotation untargeted comparison.
+  optional untargeted comparison (off by default).
 - A small headless CLI for either annotation engine.
 
 ## Run the app
@@ -38,6 +38,38 @@ Hub launcher. Set `LASER_STANDARD_HOST` or `LASER_STANDARD_PORT` before launch
 to override those defaults.
 
 Set `LASER_STANDARD_PROJECT` to prefill the XCMS project folder.
+
+### Project results
+
+The GUI can run annotation and untargeted analysis together or run untargeted
+analysis from XCMS peak-group lists alone. Untargeted analysis is off by default.
+Completed runs are saved automatically in the XCMS project folder. Both result
+pages also have a **Save** button that remakes exports from the current result
+without rerunning annotation. The default is to archive the previous export;
+**Overwrite previous export** is also available.
+
+```text
+project folder/
+  metadata/                 # XCMS peak-group lists and sample metadata
+  LASER/
+    Annotation/
+      LASER_PROJECT.json
+      annotated_peaklists/
+      tables/
+    Untargeted/
+      LASER_PROJECT.json
+      tables/
+    Archive/
+      Annotation/<timestamp>/
+      Untargeted/<timestamp>/
+```
+
+Existing XCMS layouts with `Processing/Annotation` remain supported. On the
+first save, LASER copies discovered XCMS peak lists, sample workbooks, and
+`internal_standards.tsv` into `metadata/` while leaving source files in place. On the
+start screen, enter the project folder and choose **Open saved annotation** or
+**Open saved untargeted analysis** to restore the saved GUI workspace without
+rerunning annotation or untargeted statistics.
 
 ## Windows dataset scanner — ready-to-run download
 

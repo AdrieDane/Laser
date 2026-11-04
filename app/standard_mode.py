@@ -1,6 +1,5 @@
 """Streamlit presentation layer for conventional XCMS lipidomics."""
 from __future__ import annotations
-from datetime import datetime
 import os
 from pathlib import Path
 import pandas as pd
@@ -17,7 +16,16 @@ from matlab_annotation.configuration import (
 from standard_lipidomics.grid_browser import render_standard_grid_browser
 from standard_lipidomics.report import render_standard_lipidomics_report
 from scientific_defaults import SCIENTIFIC_DEFAULTS
-from saved_project import save_standard_project
+from standard_lipidomics.project_store import (
+    load_annotation_workflow,
+    load_untargeted_workflow,
+    save_annotation_workflow,
+    save_untargeted_workflow,
+    stage_project_metadata,
+    workflow_folder,
+    xcms_project_root,
+)
+from standard_lipidomics.workflow import load_standard_feature_list
 from application.standard_workflow import (
     LASER_STANDARD_ENGINE,
     MATLAB_STANDARD_ENGINE,
@@ -30,6 +38,10 @@ from presentation.standard_workspace import (
 )
 from presentation.standard_setup import render_laser_engine, render_matlab_engine
 from presentation.standard_calibration import render_standard_pipeline_entry
+from presentation.standard_calibration import (
+    STANDARD_PIPELINE_PAGE_KEY,
+    selected_standard_stages,
+)
 from presentation.standard_composition import (
     render_composition_range_settings as _render_composition_range_settings_presenter,
 )
@@ -210,6 +222,11 @@ def render_standard_lipidomics_mode(default_reference: Path) -> None:
         back_action=lambda: None,
     )
     if annotation_project is None:
+        if st.session_state.get(STANDARD_PIPELINE_PAGE_KEY) == "select":
+            _render_saved_workflow_open()
+        return
+    if st.session_state.get(STANDARD_PIPELINE_PAGE_KEY) == "untargeted":
+        _render_untargeted_input(annotation_project)
         return
     engine = st.radio(
         "Annotation engine",
@@ -234,6 +251,113 @@ def render_standard_lipidomics_mode(default_reference: Path) -> None:
             run_cached=_run_standard_cached,
         )
     _render_standard_results()
+
+
+def _render_saved_workflow_open() -> None:
+    st.divider()
+    st.subheader("Open saved LASER results")
+    project = st.text_input(
+        "XCMS project folder",
+        value=DEFAULT_MATLAB_XCMS_PROJECT,
+        key="standard-open-project-folder",
+    )
+    annotation_col, untargeted_col = st.columns(2)
+    open_annotation = annotation_col.button(
+        "Open saved annotation", disabled=not bool(project), width="stretch"
+    )
+    open_untargeted = untargeted_col.button(
+        "Open saved untargeted analysis", disabled=not bool(project), width="stretch"
+    )
+    if not (open_annotation or open_untargeted):
+        return
+    try:
+        root = xcms_project_root(project)
+        if open_annotation:
+            result, saved = load_annotation_workflow(root)
+            page = "menu"
+            workflow = "annotation"
+        else:
+            result, saved = load_untargeted_workflow(root)
+            page = "untargeted"
+            workflow = "untargeted"
+        st.session_state.standard_annotation_result = result
+        st.session_state.standard_results_page = page
+        st.session_state.standard_loaded_workflow = workflow
+        st.session_state["standard-results-enable-untargeted"] = False
+        st.session_state.standard_auto_save_annotation_pending = False
+        st.session_state.standard_auto_save_untargeted_pending = False
+        st.session_state.standard_project_directory = str(root)
+        st.session_state.standard_headless_config = {
+            "workflow": "standard", "engine": result.get("engine", "untargeted"),
+            "inputs": dict(saved.get("inputs") or {"project": str(root)}),
+            "annotation": dict(saved.get("settings") or {}),
+        }
+        try:
+            source_folder = saved.get("inputs", {}).get("xcms_source") or saved.get(
+                "inputs", {}
+            ).get("project") or root
+            st.session_state.standard_input_sources = discover_standard_streams(
+                source_folder
+            ) or discover_standard_streams(root)
+        except ValueError:
+            st.session_state.standard_input_sources = discover_standard_streams(root)
+        if workflow == "untargeted":
+            analysis = result["untargeted_analysis"]
+            criteria = analysis.get("criteria", {})
+            for key in (
+                "standard_untargeted_p_value",
+                "standard_untargeted_fold_change",
+                "standard_untargeted_detection",
+            ):
+                st.session_state.pop(key, None)
+            for field, key in (
+                ("group_a", "standard_untargeted_group_a"),
+                ("group_b", "standard_untargeted_group_b"),
+            ):
+                if field in criteria:
+                    st.session_state[key] = criteria[field]
+            st.session_state.standard_untargeted_analysis = analysis
+        st.rerun()
+    except (OSError, ValueError, KeyError) as exc:
+        st.error(str(exc))
+
+
+def _render_untargeted_input(default_project: str) -> None:
+    project = st.text_input(
+        "XCMS project folder", value=default_project,
+        key="standard-untargeted-input-project",
+    )
+    if not st.button("Load XCMS features for untargeted analysis", type="primary"):
+        return
+    try:
+        sources = discover_standard_streams(project)
+        if not sources:
+            raise ValueError("No XCMS peak-group lists were found in this project.")
+        streams = {
+            name: {"features": load_standard_feature_list(path)}
+            for name, path in sources.items()
+        }
+        result = {
+            "engine": "untargeted", "streams": streams,
+            "automatic_annotations": pd.DataFrame(),
+            "xcms_input_dir": str(xcms_project_root(project)),
+        }
+        st.session_state.standard_annotation_result = result
+        st.session_state.standard_results_page = "untargeted"
+        st.session_state.standard_loaded_workflow = "untargeted"
+        st.session_state.standard_auto_save_annotation_pending = False
+        st.session_state.standard_auto_save_untargeted_pending = True
+        st.session_state.standard_project_directory = str(xcms_project_root(project))
+        st.session_state.standard_input_sources = sources
+        st.session_state.standard_headless_config = {
+            "workflow": "standard", "engine": "untargeted",
+            "inputs": {"project": str(xcms_project_root(project)),
+                       "xcms_source": str(Path(project).expanduser().resolve())},
+            "annotation": {},
+        }
+        st.rerun()
+    except (OSError, ValueError) as exc:
+        st.error(str(exc))
 
 
 def _stream_summary(result: dict) -> pd.DataFrame:
@@ -356,6 +480,18 @@ def _render_standard_exports(
 
 def _render_standard_results_menu(result: dict) -> None:
     """Landing page separating annotation review from untargeted follow-up."""
+    if st.session_state.get("standard_loaded_workflow") == "untargeted":
+        st.header("Untargeted results")
+        if st.button("Open untargeted analysis", type="primary", width="stretch"):
+            st.session_state.standard_results_page = "untargeted"
+            st.rerun()
+        if st.button("Start another workflow", width="stretch"):
+            st.session_state.pop("standard_annotation_result", None)
+            st.session_state.pop("standard_results_page", None)
+            st.session_state.pop("standard_loaded_workflow", None)
+            st.session_state[STANDARD_PIPELINE_PAGE_KEY] = "select"
+            st.rerun()
+        return
     st.header("Standard lipidomics results")
     identified = result.get("identified_lipids", pd.DataFrame())
     equivalents = result.get("equivalent_lipids", pd.DataFrame())
@@ -365,11 +501,7 @@ def _render_standard_results_menu(result: dict) -> None:
     metrics[1].metric("Primary lipids", len(identified))
     metrics[2].metric("Equivalent features", len(equivalents))
     metrics[3].metric("Candidate identities", len(candidates))
-    st.caption(
-        "The annotation result is complete. Open annotation review for the "
-        "live viewer and every report section, save the project for later, or "
-        "continue with untargeted analysis. Switching pages does not rerun annotation."
-    )
+    st.caption("The annotation result is complete and can be saved or reviewed without rerunning it.")
     annotation_col, save_col, untargeted_col = st.columns(3)
     if annotation_col.button(
         "Open annotation review",
@@ -386,10 +518,19 @@ def _render_standard_results_menu(result: dict) -> None:
     ):
         st.session_state.standard_results_page = "save"
         st.rerun()
+    enable_untargeted = st.checkbox(
+        "Enable untargeted analysis",
+        value=selected_standard_stages().run_untargeted,
+        key="standard-results-enable-untargeted",
+        help="Off by default. Uses the XCMS features already in this result.",
+    )
+    if enable_untargeted and not result.get("untargeted_analysis"):
+        st.session_state.standard_auto_save_untargeted_pending = True
     if untargeted_col.button(
         "Open untargeted analysis",
         width="stretch",
         key="standard-open-untargeted-analysis",
+        disabled=not enable_untargeted,
     ):
         st.session_state.standard_results_page = "untargeted"
         st.rerun()
@@ -406,26 +547,30 @@ def _render_standard_results_menu(result: dict) -> None:
 def _render_standard_project_save(result: dict) -> None:
     """Save the completed in-memory result without hiding it in an expander."""
     _standard_results_page_header("Save LASER project")
-    st.caption(
-        "Saving is optional for review. It creates a durable project that can "
-        "be reopened later without rerunning annotation."
-    )
+    st.caption("Save the current annotation and remake its exports without rerunning annotation.")
     config = st.session_state.get("standard_headless_config", {})
-    source_project = Path(
-        config.get("inputs", {}).get("project")
+    source_project = (
+        st.session_state.get("standard_project_directory")
         or result.get("xcms_input_dir")
-        or Path.cwd()
-    ).expanduser()
-    default_parent = source_project.parent / "LASER_projects"
-    output_parent = st.text_input(
-        "Project output folder",
-        value=str(default_parent),
-        key="standard-project-output-parent",
+        or config.get("inputs", {}).get("project")
     )
-    project_name = st.text_input(
-        "Project name",
-        value=f"LASER_STANDARD_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
-        key="standard-project-name",
+    if source_project == "REPLACE_WITH_XCMS_PROJECT":
+        source_project = None
+    if not source_project:
+        source_project = st.text_input(
+            "XCMS project folder for LASER results",
+            key="standard-project-save-folder",
+        )
+        if not source_project:
+            st.info("Enter a project folder to save this annotation.")
+            return
+        st.session_state.standard_project_directory = source_project
+    destination = workflow_folder(source_project, "Annotation")
+    st.code(str(destination))
+    existing = st.radio(
+        "When an export already exists",
+        ("Archive previous export", "Overwrite previous export"),
+        horizontal=True, key="standard-annotation-existing",
     )
     include_html = st.checkbox(
         "Also create an HTML export",
@@ -444,38 +589,109 @@ def _render_standard_project_save(result: dict) -> None:
     ):
         return
     try:
-        destination = Path(output_parent).expanduser().resolve() / project_name.strip()
-        if not project_name.strip():
-            raise ValueError("Enter a project name.")
-        input_sources = st.session_state.get("standard_input_sources", {})
-        annotated_inputs = {
-            stream: append_standard_annotations(
-                source,
-                result.get("automatic_annotations", pd.DataFrame()),
-                stream=stream,
-            )
-            for stream, source in input_sources.items()
-        }
-        html_report = None
-        if include_html:
-            html_report = render_standard_lipidomics_report(
-                result,
-                settings=config.get("annotation", {}),
-                project=config.get("inputs", {}).get("project"),
-            )
-        paths = save_standard_project(
-            destination,
-            result,
-            settings=config.get("annotation", {}),
-            inputs=config.get("inputs", {}),
-            annotated_inputs=annotated_inputs,
-            html_report=html_report,
+        paths, archive = _save_current_annotation(
+            result, include_html=include_html,
+            existing="archive" if existing.startswith("Archive") else "overwrite",
         )
         st.session_state.standard_saved_project = str(destination)
         st.success(f"Project saved: {destination}")
+        if archive:
+            st.caption(f"Previous export archived at {archive}")
         st.caption(f"Manifest: {paths['project_manifest']}")
     except Exception as exc:
         st.error(f"Project could not be saved: {exc}")
+
+
+def _save_current_annotation(
+    result: dict, *, include_html: bool, existing: str,
+) -> tuple[dict[str, Path], Path | None]:
+    config = st.session_state.get("standard_headless_config", {})
+    source_project = st.session_state.get("standard_project_directory")
+    if not source_project:
+        raise ValueError("Choose an XCMS project folder before saving.")
+    input_sources = st.session_state.get("standard_input_sources", {})
+    if not input_sources:
+        raise ValueError(
+            "The original XCMS peak-group lists are unavailable; annotated "
+            "peak lists cannot be regenerated. Restore them in the project folder."
+        )
+    stage_project_metadata(source_project, input_sources)
+    input_settings = dict(config.get("inputs", {}))
+    if input_settings.get("project") in (None, "REPLACE_WITH_XCMS_PROJECT"):
+        input_settings["project"] = str(xcms_project_root(source_project))
+    annotated_inputs = {
+        stream: append_standard_annotations(
+            source, result.get("automatic_annotations", pd.DataFrame()),
+            stream=stream,
+        )
+        for stream, source in input_sources.items()
+    }
+    html_report = (
+        render_standard_lipidomics_report(
+            result, settings=config.get("annotation", {}),
+            project=input_settings.get("project"),
+        ) if include_html else None
+    )
+    return save_annotation_workflow(
+        source_project, result,
+        settings=config.get("annotation", {}),
+        inputs=input_settings,
+        annotated_inputs=annotated_inputs, html_report=html_report,
+        existing=existing,
+    )
+
+
+def _render_untargeted_save(result: dict, analysis: dict) -> None:
+    source_project = st.session_state.get("standard_project_directory")
+    if not source_project:
+        st.error("Choose an XCMS project folder before saving.")
+        return
+    destination = workflow_folder(source_project, "Untargeted")
+    with st.expander("Save untargeted analysis", expanded=True):
+        st.caption("Remake the untargeted exports from the current result and review decisions.")
+        st.code(str(destination))
+        existing = st.radio(
+            "When an export already exists",
+            ("Archive previous export", "Overwrite previous export"),
+            horizontal=True, key="standard-untargeted-existing",
+        )
+        if not st.button("Save untargeted analysis", type="primary", width="stretch"):
+            return
+        try:
+            paths, archive = _save_current_untargeted(
+                result, analysis,
+                existing="archive" if existing.startswith("Archive") else "overwrite",
+            )
+            st.success(f"Untargeted analysis saved: {destination}")
+            if archive:
+                st.caption(f"Previous export archived at {archive}")
+            st.caption(f"Manifest: {paths['project_manifest']}")
+        except Exception as exc:
+            st.error(f"Untargeted analysis could not be saved: {exc}")
+
+
+def _save_current_untargeted(
+    result: dict, analysis: dict, *, existing: str,
+) -> tuple[dict[str, Path], Path | None]:
+    source_project = st.session_state.get("standard_project_directory")
+    if not source_project:
+        raise ValueError("Choose an XCMS project folder before saving.")
+    stage_project_metadata(
+        source_project, st.session_state.get("standard_input_sources", {})
+    )
+    return save_untargeted_workflow(
+        source_project, result, analysis,
+        inputs={
+            "project": str(xcms_project_root(source_project)),
+            "xcms_source": st.session_state.get(
+                "standard_headless_config", {}
+            ).get("inputs", {}).get("xcms_source")
+            or st.session_state.get("standard_headless_config", {}).get(
+                "inputs", {}
+            ).get("project"),
+        },
+        existing=existing,
+    )
 
 
 def _standard_results_page_header(title: str) -> None:
@@ -533,7 +749,33 @@ def _render_standard_results() -> None:
     result = st.session_state.get("standard_annotation_result")
     if not result:
         return
-    default_page = "annotation" if result.get("benchmark_context") else "menu"
+    if st.session_state.get("standard_auto_save_annotation_pending"):
+        st.session_state.standard_auto_save_annotation_pending = False
+        try:
+            paths, archive = _save_current_annotation(
+                result, include_html=False, existing="archive"
+            )
+            st.session_state.standard_saved_project = str(paths["project_manifest"].parent)
+            if archive:
+                st.session_state.standard_auto_save_notice = (
+                    f"Annotation saved; previous export archived at {archive}."
+                )
+            else:
+                st.session_state.standard_auto_save_notice = (
+                    f"Annotation saved in {paths['project_manifest'].parent}."
+                )
+        except Exception as exc:
+            st.session_state.standard_auto_save_notice = (
+                f"Automatic annotation save failed: {exc}. Use Save annotation to retry."
+            )
+    notice = st.session_state.pop("standard_auto_save_notice", None)
+    if notice:
+        if notice.startswith("Automatic"):
+            st.warning(notice)
+        else:
+            st.success(notice)
+    standalone = st.session_state.get("standard_loaded_workflow") == "untargeted"
+    default_page = "untargeted" if standalone else "annotation" if result.get("benchmark_context") else "menu"
     page = st.session_state.setdefault("standard_results_page", default_page)
     if page == "menu":
         _render_standard_results_menu(result)
@@ -542,11 +784,30 @@ def _render_standard_results() -> None:
         _standard_results_page_header("Untargeted analysis")
         untargeted = render_untargeted_workspace(result)
         if untargeted:
-            with st.expander("Reports and exports", expanded=False):
-                _render_standard_exports(result, show_annotation_table=False)
+            if st.session_state.get("standard_auto_save_untargeted_pending"):
+                st.session_state.standard_auto_save_untargeted_pending = False
+                try:
+                    _, archive = _save_current_untargeted(
+                        result, untargeted, existing="archive",
+                    )
+                    st.success(
+                        "Untargeted analysis saved in "
+                        f"{workflow_folder(st.session_state.standard_project_directory, 'Untargeted')}."
+                    )
+                    if archive:
+                        st.caption(f"Previous export archived at {archive}")
+                except Exception as exc:
+                    st.warning(f"Automatic untargeted save failed: {exc}. Use Save untargeted analysis to retry.")
+            _render_untargeted_save(result, untargeted)
+            if not standalone:
+                with st.expander("Reports and exports", expanded=False):
+                    _render_standard_exports(result, show_annotation_table=False)
         return
     if page == "save":
         _render_standard_project_save(result)
         return
     _standard_results_page_header("Annotation review")
+    if st.button("Save annotation", key="standard-save-from-annotation"):
+        st.session_state.standard_results_page = "save"
+        st.rerun()
     _render_standard_annotation_workspace(result)

@@ -119,8 +119,12 @@ def discover_standard_streams(directory: str | Path) -> dict[str, Path]:
     if not root.is_dir():
         raise ValueError(f"Standard-lipidomics input folder not found: {root}")
 
-    search_directories = [root]
+    metadata_root = root / "metadata"
+    search_directories = [metadata_root, root] if metadata_root.is_dir() else [root]
     for candidate_root in (root, *root.parents):
+        metadata = candidate_root / "metadata"
+        if metadata.is_dir() and metadata not in search_directories:
+            search_directories.append(metadata)
         candidate = candidate_root / "Processing" / "Annotation"
         if candidate.is_dir() and candidate not in search_directories:
             search_directories.append(candidate)

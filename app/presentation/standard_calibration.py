@@ -54,10 +54,11 @@ class StandardPipelineStageSelection:
 
     run_calibration: bool = True
     run_annotation: bool = True
+    run_untargeted: bool = False
 
     @property
     def any_selected(self) -> bool:
-        return self.run_calibration or self.run_annotation
+        return self.run_calibration or self.run_annotation or self.run_untargeted
 
 
 def selected_standard_stages() -> StandardPipelineStageSelection:
@@ -109,8 +110,15 @@ def render_standard_stage_selection(*, back_action: Callable[[], object]) -> Non
             "calibrated XCMS peak-group lists."
         ),
     )
+    untargeted = st.toggle(
+        "Untargeted analysis",
+        value=previous.run_untargeted,
+        key="standard-pipeline-run-untargeted",
+        help="Compare XCMS features between biological groups. Off by default.",
+    )
     selection = StandardPipelineStageSelection(
-        run_calibration=bool(calibration), run_annotation=bool(annotation)
+        run_calibration=bool(calibration), run_annotation=bool(annotation),
+        run_untargeted=bool(untargeted),
     )
     st.session_state[STANDARD_PIPELINE_SELECTION_KEY] = selection
     back_col, continue_col = st.columns(2, gap="medium")
@@ -128,7 +136,8 @@ def render_standard_stage_selection(*, back_action: Callable[[], object]) -> Non
     ):
         _clear_calibration_run(keep_paths=True)
         st.session_state[STANDARD_PIPELINE_PAGE_KEY] = (
-            "calibration" if selection.run_calibration else "annotation"
+            "calibration" if selection.run_calibration else
+            "annotation" if selection.run_annotation else "untargeted"
         )
         st.rerun()
 
@@ -147,13 +156,15 @@ def render_standard_pipeline_entry(
         render_standard_calibration(default_project=default_project)
         return None
     title_col, back_col = st.columns([5, 1])
-    title_col.title("Standard lipidomics · Annotation")
+    title_col.title(
+        "Standard lipidomics · Annotation" if page == "annotation"
+        else "Standard lipidomics · Untargeted analysis"
+    )
     if back_col.button("Back to modules", width="stretch"):
         st.session_state[STANDARD_PIPELINE_PAGE_KEY] = "select"
         st.rerun()
     st.caption(
-        "Annotation reads existing XCMS peak-group lists. To calibrate first, "
-        "return to modules and run XCMS m/z calibration."
+        "The selected analysis reads existing XCMS peak-group lists."
     )
     return str(
         st.session_state.get(STANDARD_ANNOTATION_PROJECT_KEY, default_project)
@@ -322,7 +333,11 @@ def _render_finished() -> None:
     ):
         _clear_calibration_run(keep_paths=False)
         st.rerun()
-    next_label = "Continue to annotation" if selection.run_annotation else "Choose modules"
+    next_label = (
+        "Continue to annotation" if selection.run_annotation else
+        "Continue to untargeted analysis" if selection.run_untargeted else
+        "Choose modules"
+    )
     if right.button(
         next_label,
         type="primary",
@@ -331,7 +346,8 @@ def _render_finished() -> None:
     ):
         st.session_state.pop(_FINISHED_KEY, None)
         st.session_state[STANDARD_PIPELINE_PAGE_KEY] = (
-            "annotation" if selection.run_annotation else "select"
+            "annotation" if selection.run_annotation else
+            "untargeted" if selection.run_untargeted else "select"
         )
         st.rerun()
 

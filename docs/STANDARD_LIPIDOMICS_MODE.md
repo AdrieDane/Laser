@@ -364,11 +364,11 @@ CSV in the output directory.
 
 ## Saved standard project, optional report, and annotated input copies
 
-Every completed standard workflow writes a canonical `LASER_PROJECT.json`
-alongside the machine-readable result tables. In the GUI, use **Save LASER
-project** after annotation. Reopening that folder restores the full standard
-grid browser, retained annotations, candidates, audits, settings and untargeted
-tables as native LASER tabs without rerunning annotation.
+Every completed GUI annotation run writes `LASER/Annotation/LASER_PROJECT.json`
+alongside machine-readable result tables. **Save LASER project** regenerates
+these files. Opening the saved annotation restores the standard grid browser,
+retained annotations, candidates, audits, and settings without rerunning
+annotation. Untargeted results are saved separately.
 
 `standard_lipidomics_report.html` remains available as an optional convenience
 export. It is not required to reopen the project. The report follows the main
@@ -383,7 +383,7 @@ feature-linked MS/MS, or MZmine shape metrics. The report marks those evidence
 types as unavailable rather than inferring them or displaying empty negative
 results.
 
-The workflow also creates `annotated_input_files/`, containing one copy of
+The workflow also creates `LASER/Annotation/annotated_peaklists/`, containing one copy of
 each discovered `peakgrouplist_<phase>_<polarity>.txt`. Each output preserves
 the input filename with `_annotated` inserted before `.txt` (in both the GUI
 and CLI), so it is distinguishable from the original. It preserves
@@ -401,18 +401,20 @@ semicolon-separated in both columns. The GUI exposes the same four files under
 The direct CLI writes both output types by default. Their locations can be
 changed with `--report-output` and `--annotated-input-directory`.
 
-## Post-annotation untargeted comparison
+## Optional untargeted comparison
 
-The standard workflow includes a second, deliberately separate stage for
-features that were not identified by the annotation engine. LASER first
+The GUI offers untargeted analysis as a separate option, off by default. It
+can run from XCMS peak-group lists alone or after annotation. When run after
+annotation, LASER first
 removes every XCMS feature present in the accepted automatic-annotation table,
 including the selected primary feature and accepted equivalent features. It
 then compares the remaining features between two biological groups. Review-only
 lipid candidates remain eligible because they were not accepted annotations.
 
 After annotation finishes, LASER opens a **Standard lipidomics results** page
-instead of leaving the annotation-input form above the results. Two buttons
-open independent workspaces:
+instead of leaving the annotation-input form above the results. It provides
+separate review workspaces and an annotation Save control. When untargeted
+analysis is enabled:
 
 - **Open annotation review** opens the lipid grid, anchor review, annotation
   audits and annotation exports;
@@ -425,6 +427,17 @@ open independent workspaces:
 Both pages use the same completed annotation result. **Back to results** moves
 between them without repeating annotation, while **Start a new annotation**
 explicitly clears the completed result and returns to the input form.
+
+Both workflows save automatically under the XCMS project folder:
+`LASER/Annotation` and `LASER/Untargeted`. Annotation includes the annotated
+peak-group lists in `LASER/Annotation/annotated_peaklists`; untargeted includes
+its statistical tables in `LASER/Untargeted/tables`. The start screen opens
+either saved workflow in the GUI without recomputing it. Each workspace has a
+Save control that regenerates the exports from the loaded result. By default,
+the previous export moves to `LASER/Archive/<workflow>/<timestamp>`; the user
+can choose to overwrite it instead. LASER copies discovered XCMS lists, sample
+workbooks and `internal_standards.tsv` to `metadata/` on save while leaving
+their original source files in place.
 
 ### Authoritative sample groups
 

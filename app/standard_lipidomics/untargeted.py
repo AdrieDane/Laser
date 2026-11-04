@@ -126,10 +126,14 @@ def is_biological_group(group: str) -> bool:
 
 def _metadata_workbooks(project: str | Path) -> list[Path]:
     root = Path(project).expanduser().resolve()
-    directories = [root]
+    metadata_root = root / "metadata"
+    directories = [metadata_root, root] if metadata_root.is_dir() else [root]
     if root.is_dir():
-        directories.extend([root / "Processing" / "Annotation"])
+        directories.append(root / "Processing" / "Annotation")
     for parent in root.parents:
+        metadata = parent / "metadata"
+        if metadata not in directories:
+            directories.append(metadata)
         candidate = parent / "Processing" / "Annotation"
         if candidate not in directories:
             directories.append(candidate)

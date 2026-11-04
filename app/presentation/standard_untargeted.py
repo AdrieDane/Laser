@@ -77,6 +77,7 @@ def _untargeted_result_signature(result: dict, criteria) -> tuple:
 def _untargeted_criteria(
     result: dict,
 ) -> tuple[UntargetedComparisonCriteria, dict[str, str]] | None:
+    saved_criteria = result.get("untargeted_analysis", {}).get("criteria", {})
     catalog = group_catalog(result)
     defaults = default_biological_groups(result)
     if not catalog.empty:
@@ -122,18 +123,26 @@ def _untargeted_criteria(
         threshold_col, fold_col, detection_col = st.columns(3)
         p_value = threshold_col.number_input(
             "Raw p-value must be below", min_value=0.000001, max_value=1.0,
-            value=SCIENTIFIC_DEFAULTS.untargeted_p_value_threshold, step=0.001,
+            value=float(saved_criteria.get(
+                "p_value_threshold", SCIENTIFIC_DEFAULTS.untargeted_p_value_threshold
+            )), step=0.001,
             format="%.6f", key="standard_untargeted_p_value",
             help="Unadjusted two-sided Welch-test p-value; no multiple-testing correction.",
         )
         fold = fold_col.number_input(
             "Minimum |log2 fold change|", min_value=0.0, max_value=20.0,
-            value=SCIENTIFIC_DEFAULTS.untargeted_min_abs_log2_fold_change,
+            value=float(saved_criteria.get(
+                "min_abs_log2_fold_change",
+                SCIENTIFIC_DEFAULTS.untargeted_min_abs_log2_fold_change,
+            )),
             step=0.25, key="standard_untargeted_fold_change",
         )
         detection = detection_col.number_input(
             "Minimum detection in either group (%)", min_value=1.0, max_value=100.0,
-            value=SCIENTIFIC_DEFAULTS.untargeted_min_detection_percent,
+            value=float(saved_criteria.get(
+                "min_detection_percent",
+                SCIENTIFIC_DEFAULTS.untargeted_min_detection_percent,
+            )),
             step=5.0, key="standard_untargeted_detection",
             help="At least this percentage of samples in group A or B must carry a non-zero feature intensity.",
         )
@@ -169,10 +178,14 @@ def _calculate_untargeted_analysis(
 ) -> dict:
     signature = _untargeted_result_signature(result, criteria)
     if st.session_state.get("standard_untargeted_signature") != signature:
-        with st.spinner("Comparing unannotated features between groups…"):
-            st.session_state.standard_untargeted_analysis = (
-                analyse_standard_untargeted(result, criteria)
-            )
+        saved = result.get("untargeted_analysis")
+        if isinstance(saved, dict) and saved.get("criteria") == vars(criteria):
+            st.session_state.standard_untargeted_analysis = saved
+        else:
+            with st.spinner("Comparing unannotated features between groups…"):
+                st.session_state.standard_untargeted_analysis = (
+                    analyse_standard_untargeted(result, criteria)
+                )
         st.session_state.standard_untargeted_signature = signature
         st.session_state.pop("standard_report_signature", None)
     return st.session_state.get("standard_untargeted_analysis", {})
