@@ -15,6 +15,26 @@ accuracy. Personal project defaults belong to user settings, never source code.
 
 ## Current untargeted evidence follow-up
 
+Stage 4 software/internal comparison COMPLETE, producer81e8aa2. Defaults CURRENT.
+IsoSpecPy2.6.1 full-ion compositions, resolution-aware centroid approximation,
+per-sample/QC ratios, missingness/saturation/interference flags; ADDITIVE only.
+Current251431 original feature/statistical rows and all compound fields identical;
+Stage1 current assignments reproduce. All94prepared copies/68raw/IS/method unchanged,
+new project outputs empty. Full1059passed8skipped91subtests,20focused cases.
+Complete overlay1.92s for762queries/1426candidates. Runtime default not promoted.
+SAME common formula queries27: RPpos17,RPneg1,NPpos9,NPneg0 (not all-manualaccuracy).
+Formula-pool recall22/27->27/27; jointtop1 3/27->6/27; top5 26/27. Jointtop1 gains5,
+loses2 BOTH losses RPpositive; RPpos3/17->2/17,RPNeg0/1->1/1,NPpos0/9->3/9;
+NPnegative unavailable0queries. Pool expansion+reranking/library exposure confounded.
+All3668reference conditional readouts retained,255ineligible+4mass-incompatible;
+all252 class/modecells/private transitions published. All12 raw QCfiles yield53218
+conditional snapshot rows, NOT verified isotope-member truth or precision/recall.
+No independent isotope gold exists: Stage4 NOT fully validated; this remains OPEN.
+Private report outputs/untargeted_stage_4/report.html; safe aggregate docs/validation/
+untargeted_stage4/README.md. Source frozen before actual comparison, no retuning.
+Browser-model only median3.2/max20.0ms, not fullrenderlatency. Binner stillpending.
+STOP before Stage5; historical annotation optimization remainsPAUSED.
+
 The user explicitly authorized Stage 4 with "do it" after its explanation.
 This supersedes the older stop-before-Stage4 text for this stage only. Add an
 experimental complete-ion isotope model; preserve defaults, statistical values,
