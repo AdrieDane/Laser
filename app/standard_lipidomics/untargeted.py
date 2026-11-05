@@ -1732,7 +1732,7 @@ def analyse_standard_untargeted(
     }
     if progress:
         progress(.94, "Assigning tentative compound IDs")
-    return assign_compound_ids(output)
+    return assign_compound_ids(output, result=result)
 
 
 __all__ = [

@@ -166,14 +166,25 @@ Related cluster and adduct detections are always shown, including non-hits.
 Selected features and a representative possible counterpart per other mode
 are bright green and slightly larger; significant increases are red and decreases blue (B versus A), cluster members purple, and
 additional adduct candidates yellow. Significant cluster neighbours have an orange
-fill and purple border. Hover shows original feature, compound and cluster IDs, plus accepted lipid identities when available. The table can select detections and filter by compound,
-feature, mode or m/z. **Review selected feature** opens the saved review controls.
+fill and purple border. **Colour intensity by p-value** optionally makes smaller raw p-values stronger red/blue; selected, cluster and adduct colours stay unchanged. Hover shows original feature, compound and cluster IDs, plus accepted lipid identities when available. The table can select detections and filter by compound,
+feature, mode, predicted formula or m/z. **Review selected feature** opens the saved review controls. Volcano plots are omitted from this viewer.
 Purple highlights follow a connected carbon/double-bond grid when a coherent two-dimensional family is supported. Occupied neighbouring cells, an RT trend and a maximum per-edge RT gap are required. Sparse cases retain direct-neighbour evidence. Arbitrary transitive mass-link components are not highlighted; selecting another feature replaces the family.
 
 Tentative ion groups receive shared `compound_0001` IDs across adducts and modes;
 each table row retains its original feature ID, m/z, RT, likely adduct and mode.
 Grouping uses one consistent neutral-mass hypothesis and a co-eluting ion family
 within each chromatography; equal-mass RT isomers are not collapsed together.
+Compound grouping v5 ranks candidate families using paired biological sample
+profiles and mass errors. When at least six unique specimens are evaluable,
+discordant abundance profiles are retained as candidate evidence but excluded
+from selected groups. QC and blank injections never support this ranking.
+Water-loss assignments require a coeluting intact parent in the same mode;
+singleton adducts remain unresolved. Existing projects update these tentative
+groups when opened, without rerunning statistics or changing accepted lipids.
+The detection and evidence tables include predicted neutral chemical formulas
+from the existing isotope-supported candidates, conditional on the assigned
+adduct. A linked ion inherits a formula only when its compound has one consistent
+candidate; unavailable or conflicting predictions remain marked as such.
 Ambiguous adduct alternatives remain available as evidence. These display IDs
 are not structural identifications. Homologous relationships between distinct
 compounds receive separate `cluster_0001` IDs, propagated to their adducts and

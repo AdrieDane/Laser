@@ -114,7 +114,10 @@ export class ModeViewerModel {
     if(this.contextCache.has(key)) return this.contextCache.get(key);
     if(!key) return {key:null,focus:new Set(),cluster:new Set(),adducts:new Set(),matches:[]};
     const focus=new Set([key]), cluster=new Set(), adducts=new Set(), clusterOrigins=new Map();
-    const selected=this.point(key), matches=this.matches(key), byMode=new Map(), phaseAnchors=new Map();
+    const selected=this.point(key), selectedRow=this.rows.get(key), matches=this.matches(key).filter(link=>{
+      const target=this.rows.get(link.target);
+      return (!selectedRow?.adduct||link.sourceAdduct===selectedRow.adduct)&&(!target?.adduct||link.targetAdduct===target.adduct);
+    }), byMode=new Map(), phaseAnchors=new Map();
     if(selected) phaseAnchors.set(selected.phase,selected);
     const compound=this.rows.get(key)?.compound_id;
     const rank=new Map(this.data.adducts.map((item,index)=>[item.name,index]));
@@ -129,7 +132,8 @@ export class ModeViewerModel {
     // One representative ion per other mode is red. Further ion/adduct
     // candidates stay yellow; all original alternatives remain in evidence.
     for(const [,links] of [...byMode.entries()].sort(([a],[b])=>a.localeCompare(b))) {
-      links.sort((a,b)=>(rank.get(a.targetAdduct)??99)-(rank.get(b.targetAdduct)??99)||Math.abs(a.ppm)-Math.abs(b.ppm));
+      links.sort((a,b)=>Number(!!this.rows.get(b.target)?.mode_representative)-Number(!!this.rows.get(a.target)?.mode_representative)||
+        (rank.get(a.targetAdduct)??99)-(rank.get(b.targetAdduct)??99)||Math.abs(a.ppm)-Math.abs(b.ppm));
       const chosen=links.find(link=>{const target=this.point(link.target),anchor=phaseAnchors.get(target.phase);return !anchor||this.coelutes(anchor,target);});
       if(chosen) {const target=this.point(chosen.target);focus.add(chosen.target);if(!phaseAnchors.has(target.phase)) phaseAnchors.set(target.phase,target);}
     }
@@ -198,7 +202,7 @@ export class ModeViewerModel {
   tableRows(view, search='') {
     const modes=new Set(this.visibleStreams(view).map(stream=>stream.name)), query=search.toLowerCase();
     return [...this.rows.entries()].filter(([,row])=>modes.has(row.stream) &&
-      (!query||[row.compound_id,row.stream,row.feature_id,row.adduct,row.mz].join(' ').toLowerCase().includes(query)));
+      (!query||[row.compound_id,row.stream,row.feature_id,row.adduct,row.predicted_chemical_formula,row.mz].join(' ').toLowerCase().includes(query)));
   }
   bars(key) {
     const point=this.point(key); if(!point) return null;

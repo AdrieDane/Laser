@@ -12,6 +12,11 @@ const panelFrame=state=>{
 const traceOrder=['background','significantDown','significantUp','adduct','cluster','annotatedCluster','significantCluster','focus'];
 const legendNames={background:'Not significant',significantDown:'Significantly lower (B vs A)',significantUp:'Significantly higher (B vs A)',adduct:'Other adduct candidate',
   cluster:'Cluster member',annotatedCluster:'Annotated lipid in cluster',significantCluster:'Significant cluster member',focus:'Selected / possible counterpart'};
+const pValueOpacity=(p,threshold)=>{
+  if(p==null||!Number.isFinite(Number(p))||Number(p)<0) return 1;
+  const evidence=Math.max(0,-Math.log10(Math.max(Number(p),1e-300))+Math.log10(threshold||.05));
+  return .25+.75*evidence/(evidence+1);
+};
 
 export function modeFigure(state) {
   const {model}=state, context=model.context(state.selected), visible=model.visibleStreams(state.view);
@@ -48,7 +53,9 @@ export function modeFigure(state) {
           showlegend:column===0&&!negative,x:points.map(p=>p.rt),y:points.map(p=>negative?-p.mz:p.mz),
           customdata:points.map(p=>[p.key,p.stream,p.id,p.mz,p.compoundId||model.point(context.clusterOrigins?.get(p.key))?.compoundId||'unassigned',
             model.rows.get(p.key)?.adduct??'',model.rows.get(p.key)?.p_value??null,p.clusterId||model.point(context.clusterOrigins?.get(p.key))?.clusterId||'unassigned',p.lipidId?'Lipid: '+p.lipidId:'']),
-          marker:{color:colour,opacity:role==='background'?.32:1,size:role==='focus'?12:8,symbol:'circle',line:{color:role==='annotatedCluster'?'#2dbd64':role==='significantCluster'?MODE_COLOURS.cluster:colour,width:role==='annotatedCluster'?3:role==='significantCluster'?2:0}},
+          marker:{color:colour,opacity:role==='background'?.32:state.pValueIntensity&&['significantUp','significantDown'].includes(role)?
+            points.map(point=>pValueOpacity(model.rows.get(point.key)?.p_value,model.data.criteria.p_value_threshold)):1,
+            size:role==='focus'?12:8,symbol:'circle',line:{color:role==='annotatedCluster'?'#2dbd64':role==='significantCluster'?MODE_COLOURS.cluster:colour,width:role==='annotatedCluster'?3:role==='significantCluster'?2:0}},
           hovertemplate:'Compound: %{customdata[4]}<br>Cluster: %{customdata[7]}<br>%{customdata[1]} · feature %{customdata[2]}<br>'+
             '%{customdata[8]}<br>'+
             'm/z %{customdata[3]:.5f} · RT %{x:.3f} min<br>%{customdata[5]}<br>raw p %{customdata[6]:.3g}<extra>'+legendNames[role]+'</extra>'});
@@ -137,7 +144,8 @@ export function sampleFigures(state) {
   const {model}=state,compound=model.rows.get(state.selected)?.compound_id;
   const rank=new Map(model.data.adducts.map((item,index)=>[item.name,index]));
   const remaining=[...model.rows].filter(([,row])=>compound&&row.compound_id===compound)
-    .sort(([a,ra],[b,rb])=>(rank.get(ra.adduct)??99)-(rank.get(rb.adduct)??99)||a.localeCompare(b)).map(([key])=>key);
+    .sort(([a,ra],[b,rb])=>Number(!!rb.mode_representative)-Number(!!ra.mode_representative)||
+      (rank.get(ra.adduct)??99)-(rank.get(rb.adduct)??99)||a.localeCompare(b)).map(([key])=>key);
   const keys=[state.selected,...[...model.context(state.selected).focus].filter(key=>key!==state.selected).sort(),...remaining];
   const seen=new Set(),figures=[],anchors=new Map();
   const selected=model.point(state.selected);if(selected) anchors.set(selected.phase,selected);
@@ -206,16 +214,16 @@ function renderEvidence(state) {
   }
   smallTable(state.isotopes,['Isotope','Feature','m/z','Intensity %','Δ RT (s)'],isotope);
   const detections=[...model.rows.values()].filter(item=>item.compound_id===row?.compound_id).map(item=>[
-    item.feature_id,item.compound_id,item.cluster_id||'—',numberText(item.mz,5),numberText(item.rt,3),item.adduct||'unresolved',item.stream,
+    item.feature_id,item.compound_id,item.cluster_id||'—',numberText(item.mz,5),numberText(item.rt,3),item.adduct||'unresolved',item.predicted_chemical_formula||'unresolved',item.stream,
     item.raw_p_significant?'yes':'no',item.association_status]);
-  smallTable(state.detections,['Feature','Compound','Cluster','m/z','RT','Likely adduct','Mode','Raw-p hit','Assignment'],detections);
+  smallTable(state.detections,['Feature','Compound','Cluster','m/z','RT','Likely adduct','Predicted chemical formula','Mode','Raw-p hit','Assignment'],detections);
   const clusterId=row?.cluster_id||[...context.focus].map(key=>model.clusterIds.get(key)).find(Boolean)||'';
   const clusters=[...context.cluster].map(key=>{const p=model.point(key);return p?[model.clusterIds.get(key)||clusterId||'candidate',p.stream,p.id,numberText(p.mz,5),numberText(p.rt,3),
-    model.hits.has(key)?'yes':'no']:null;}).filter(Boolean);
-  smallTable(state.clusters,['Cluster','Mode','Cluster feature','m/z','RT','Raw-p hit'],clusters);
+    model.rows.get(key)?.predicted_chemical_formula||'unresolved',model.hits.has(key)?'yes':'no']:null;}).filter(Boolean);
+  smallTable(state.clusters,['Cluster','Mode','Cluster feature','m/z','RT','Predicted chemical formula','Raw-p hit'],clusters);
   const matches=context.matches.map(link=>{const target=model.point(link.target);return target?[
-    link.sourceAdduct,target.stream,target.id,link.targetAdduct,numberText(link.ppm,2),link.compared?numberText(link.rt,2):'not compared']:null;}).filter(Boolean);
-  smallTable(state.adducts,['Source adduct','Target mode','Feature','Target adduct','Δ mass (ppm)','Δ RT (s)'],matches);
+    link.sourceAdduct,target.stream,target.id,link.targetAdduct,model.rows.get(link.target)?.predicted_chemical_formula||'unresolved',numberText(link.ppm,2),link.compared?numberText(link.rt,2):'not compared']:null;}).filter(Boolean);
+  smallTable(state.adducts,['Source adduct','Target mode','Feature','Target adduct','Predicted chemical formula','Δ mass (ppm)','Δ RT (s)'],matches);
 }
 
 function renderRows(state, ensureSelected=false) {
@@ -232,9 +240,9 @@ function renderRows(state, ensureSelected=false) {
     const [key,row]=state.filtered[index],item=node('div','','feature-row');
     item.setAttribute('role','row'); item.tabIndex=0;item.style.top=(index*height)+'px';
     item.setAttribute('aria-selected',String(key===state.selected));item.dataset.feature=key.replace('\u0000','::');
-    const values=[row.feature_id,row.compound_id,row.cluster_id||'—',numberText(row.mz,4),numberText(row.rt,3),row.adduct||'unresolved',row.stream,
+    const values=[row.feature_id,row.compound_id,row.cluster_id||'—',numberText(row.mz,4),numberText(row.rt,3),row.adduct||'unresolved',row.predicted_chemical_formula||'unresolved',row.stream,
       row.p_value==null?'—':Number(row.p_value).toExponential(2),row.raw_p_significant?'yes':'linked'];
-    for(const value of values) {const cell=node('div',String(value),'feature-cell');cell.setAttribute('role','gridcell');cell.title=String(value);item.appendChild(cell);}
+    for(const [column,value] of values.entries()) {const cell=node('div',String(value),'feature-cell');cell.setAttribute('role','gridcell');cell.title=String(value)+(column===6?' · '+(row.formula_status||'unresolved'):'');item.appendChild(cell);}
     item.addEventListener('click',()=>state.select(key,false));
     item.addEventListener('keydown',event=>{
       if(event.key==='Enter'||event.key===' ') {event.preventDefault();state.select(key,false);}
@@ -255,6 +263,9 @@ function createWorkspace(parent, data) {
   const greyLabel=node('label','','grey-switch'),grey=node('input');grey.type='checkbox';grey.checked=false;
   greyLabel.title='Up to 20,000 background points. Related detections are always shown.';
   greyLabel.append(grey,document.createTextNode('Show non-significant grey points'));controls.append(modes,greyLabel);
+  const intensityLabel=node('label','','grey-switch'),intensity=node('input');intensity.type='checkbox';intensity.checked=false;
+  intensityLabel.title='Smaller raw p-values give stronger red/blue colours; other marker colours stay unchanged.';
+  intensityLabel.append(intensity,document.createTextNode('Colour intensity by p-value'));controls.appendChild(intensityLabel);
   const top=node('div','','mode-top'),main=node('div','','mode-main'),plot=node('div','','mode-plot'),side=node('aside','','mode-side'),barStack=node('div','','sample-bar-stack');
   const resets=new Map();
   for(const phase of ['RP','NP']) {const button=node('button','Reset '+phase);button.type='button';controls.appendChild(button);resets.set(phase,button);}
@@ -265,7 +276,7 @@ function createWorkspace(parent, data) {
   const tableCount=node('span');tableTools.append(filter,tableCount);
   const table=node('div','','feature-grid');table.setAttribute('role','grid');table.setAttribute('aria-label','Significant features and linked detections');
   const header=node('div','','feature-header');header.setAttribute('role','row');
-  for(const text of ['Feature','Compound','Cluster','m/z','RT (min)','Likely adduct','Mode','Raw p','Significant']) {const cell=node('div',text);cell.setAttribute('role','columnheader');header.appendChild(cell);}
+  for(const text of ['Feature','Compound','Cluster','m/z','RT (min)','Likely adduct','Predicted chemical formula','Mode','Raw p','Significant']) {const cell=node('div',text);cell.setAttribute('role','columnheader');header.appendChild(cell);}
   const tableViewport=node('div','','feature-viewport'),tableBody=node('div','','feature-body');tableViewport.appendChild(tableBody);table.append(header,tableViewport);
   const details=node('div','','mode-evidence'),detailTitle=node('h3');details.appendChild(detailTitle);
   const evidence={};
@@ -274,9 +285,9 @@ function createWorkspace(parent, data) {
   }
   const detailFormula=node('p');evidence.isotopes.parentElement.appendChild(detailFormula);
   const review=node('button','Review selected feature','review-feature');review.type='button';details.appendChild(review);
-  main.append(tableTitle,tableTools,table);root.append(controls,top,details);parent.appendChild(root);
+  root.append(controls,top,tableTitle,tableTools,table,details);parent.appendChild(root);
   const state={root,model:new ModeViewerModel(data),buttons,resets,plot,barStack,barCharts:new Map(),filter,tableViewport,tableBody,tableCount,detailTitle,detailFormula,details,...evidence,
-    version:0,busy:false,grey:false,zoomByPhase:{},axisRevisions:{},view:Object.keys(data.streams).some(s=>s.startsWith('RP'))?'RP POS and NEG':'NP POS and NEG',timings:[]};
+    version:0,busy:false,grey:false,pValueIntensity:false,zoomByPhase:{},axisRevisions:{},view:Object.keys(data.streams).some(s=>s.startsWith('RP'))?'RP POS and NEG':'NP POS and NEG',timings:[]};
   state.canvas=data.theme==='Midnight'?'#20313f':'#fff';state.ink=data.theme==='Midnight'?'#e7edf2':'#1d1d1f';state.grid=data.theme==='Midnight'?'#3b5262':'#e1e6ef';
   state.selected=null;
   state.select=(key,scroll=true)=>{if(!state.model.rows.has(key)) return;state.selected=key;renderRows(state,scroll);state.requestedAt=performance.now();state.version++;updateWorkspace(state);};
@@ -287,6 +298,7 @@ function createWorkspace(parent, data) {
     state.zoomByPhase[phase]={rt:[...pair.defaultRT],mz:[...pair.defaultMZ]};state.requestedAt=performance.now();state.version++;updateWorkspace(state);
   });
   grey.addEventListener('change',()=>{state.grey=grey.checked;state.requestedAt=performance.now();state.version++;updateWorkspace(state);});
+  intensity.addEventListener('change',()=>{state.pValueIntensity=intensity.checked;state.requestedAt=performance.now();state.version++;updateWorkspace(state);});
   filter.addEventListener('input',()=>{tableViewport.scrollTop=0;renderRows(state,false);});
   tableViewport.addEventListener('scroll',()=>renderRows(state,false));
   review.addEventListener('click',()=>{if(state.selected) state.emit?.('review',state.selected.split('\u0000'));});

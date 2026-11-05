@@ -15,6 +15,19 @@ accuracy. Personal project defaults belong to user settings, never source code.
 
 ## Current untargeted evidence follow-up
 
+The user subsequently authorized improving the observed PC grouping failures.
+Compound grouping v5 uses paired biological abundance profiles, mass error,
+coeluting families, and same-mode intact-parent support for water loss. A saved
+ALD development replay improves exact positive counterpart recovery from 5/14
+to 10/14 on the same 15 selected PC species; this is not identification accuracy
+or external validation. All four mode slots and all-manual adduct-agreement
+tables for both tested candidates are private in the workspace outputs. Some
+reference-adduct coverage falls as weak links are excluded; do not hide it.
+Formula/isotope/statistical/grid searches and accepted annotations are unchanged.
+Formula columns display existing conditional candidates, with uncertainty.
+Private feature IDs, study files, crosswalks and detailed evaluation tables must
+stay outside Git. This does not resume the historical optimization below.
+
 Evidence v4 excludes [M+2H]2+ and [M+Na-2H]- by explicit user request;
 [M-2H]2- remains supported. Connected lipid-grid v1 subsequently added CH2/H2
 families with occupied-cell, fitted-RT and RT-gap guards. All-four-mode blind

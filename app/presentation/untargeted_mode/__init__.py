@@ -60,7 +60,7 @@ def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
         analysis['lipid_grid_version'] = GRID_VERSION
         analysis['compound_version'] = None
     if analysis.get('compound_version') != COMPOUND_VERSION:
-        analysis.update(assign_compound_ids(analysis))
+        analysis.update(assign_compound_ids(analysis, result=result))
     compounds = analysis.get('compound_features', pd.DataFrame())
     raw = analysis.get('raw_p_features', analysis.get('significant_features', pd.DataFrame()))
     detail_columns = ['isotope_charge_hypothesis', 'chemical_composition_hypothesis']
@@ -142,7 +142,7 @@ def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
 
 def render_mode_view(result, analysis):
     theme = current_theme()
-    signature = (id(result), id(analysis), theme)
+    signature = (id(result), id(analysis), theme, COMPOUND_VERSION)
     cached = st.session_state.get('standard_untargeted_mode_payload')
     if cached is None or cached[0] != signature:
         payload = build_mode_payload(result, analysis, token='::'.join(map(str, signature)), theme=theme)

@@ -161,7 +161,8 @@ def test_completed_untargeted_viewer_never_recalculates(tmp_path):
     with patch('standard_lipidomics.untargeted.analyse_standard_untargeted', side_effect=AssertionError('Viewer must not run pipeline')):
         next(b for b in app.button if b.label == 'Open completed untargeted analysis').click().run()
     assert not app.exception
-    assert app.get('plotly_chart')
+    assert not app.get('plotly_chart')  # Plots live in the persistent browser component.
+    assert not any(expander.label == 'Volcano plots' for expander in app.expander)
     assert app.session_state['standard_untargeted_mode_payload'][1]['statistics']
     assert not any(b.label == 'Run untargeted analysis' for b in app.button)
 

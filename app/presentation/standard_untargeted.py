@@ -299,7 +299,6 @@ def _render_standard_untargeted(result: dict) -> dict:
         return {}
     if analysis.get("evidence_version", 0) < EVIDENCE_VERSION:
         st.info("This project contains the previously saved evidence. Run Untargeted analysis again to generate the expanded adduct and CH₂-series searches.")
-    criteria = UntargetedComparisonCriteria(**analysis["criteria"])
     all_features = analysis.get("features", pd.DataFrame())
     significant = analysis.get("significant_features", pd.DataFrame())
     raw_p = analysis.get("raw_p_features", significant)
@@ -320,8 +319,6 @@ def _render_standard_untargeted(result: dict) -> dict:
         if not selected.empty:
             st.subheader(f"Review: {review_focus[0]} · feature {review_focus[1]}")
             _render_untargeted_review_controls(result, selected.iloc[0])
-    with st.expander("Volcano plots", expanded=False):
-        _render_untargeted_volcano(analysis, criteria)
     return analysis
 
 
