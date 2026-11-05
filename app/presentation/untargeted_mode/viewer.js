@@ -284,15 +284,24 @@ async function updateWorkspace(state) {
       }
       await Promise.all(updates);state.root.dataset.barModes=JSON.stringify([...modes]);
       if(!state.bound) {
-        state.plot.addEventListener('dblclick',event=>{
+        const resetAxisFromPointer=event=>{
           const classes=event.composedPath().flatMap(element=>(element.getAttribute?.('class')??'').split(/\s+/));
-          const reset=axisResetZoom(axisFromClasses(classes),state.plot.layout);if(!reset) return;
+          const axis=axisFromClasses(classes),reset=axisResetZoom(axis,state.plot.layout);if(!reset) return;
+          if(event.type==='mousedown') {
+            const previous=state.axisClick,now=performance.now();
+            state.axisClick={axis,time:now,x:event.clientX,y:event.clientY};
+            if(event.detail<2&&!(previous?.axis===axis&&now-previous.time<400&&Math.hypot(event.clientX-previous.x,event.clientY-previous.y)<8)) return;
+          }
           event.preventDefault();event.stopImmediatePropagation();
           const pair=state.plot.layout.meta.pairs.find(pair=>pair.phase===reset.phase);
           const current=state.zoomByPhase[reset.phase]??{rt:[...state.plot.layout[pair.positive.x].range],mz:[...state.plot.layout[pair.positive.y].range]};
           state.zoomByPhase[reset.phase]={...current,[reset.dimension]:reset.range};
           state.requestedAt=performance.now();state.version++;updateWorkspace(state);
-        },true);
+        };
+        // Plotly's axis drag layer consumes clicks; intercept the second
+        // mouse-down before its drag handler, with dblclick as a fallback.
+        state.plot.addEventListener('mousedown',resetAxisFromPointer,true);
+        state.plot.addEventListener('dblclick',resetAxisFromPointer,true);
         state.plot.on('plotly_click',event=>{const key=event.points?.[0]?.customdata?.[0];if(key&&state.model.rows.has(key)) state.select(key,true);});
         state.plot.on('plotly_relayout',async event=>{
           if(['pan','zoom'].includes(event.dragmode)) state.dragMode=event.dragmode;
