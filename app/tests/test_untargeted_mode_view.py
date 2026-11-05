@@ -196,6 +196,11 @@ model.contextCache.clear();
 const strict=model.context(selected);
 check(!strict.adducts.has(key('RP_Pos','na')),'distant same-mode adduct hidden');
 check(!strict.cluster.has(key('RP_Pos','c')),'distant cluster neighbour hidden');
+model.contextCache.clear();
+model.familyAdjacency.set(selected,new Set([key('RP_Pos','c'),key('RP_Pos','u')]));
+const coherent=model.context(selected);
+check(coherent.cluster.has(key('RP_Pos','u')),'validated connected grid extends beyond first ring');
+check(!coherent.cluster.has(key('RP_Pos','cs')),'coherent family replaces unrelated direct mass-only neighbours');
 console.log('browser model checks passed');
 '''
     completed=subprocess.run([node,'--input-type=module'],input=script,cwd=tmp_path,capture_output=True,text=True,check=False)

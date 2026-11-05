@@ -168,9 +168,7 @@ are bright green and slightly larger; significant increases are red and decrease
 additional adduct candidates yellow. Significant cluster neighbours have an orange
 fill and purple border. Hover shows original feature, compound and cluster IDs, plus accepted lipid identities when available. The table can select detections and filter by compound,
 feature, mode or m/z. **Review selected feature** opens the saved review controls.
-Purple highlights are restricted to direct neighbours of the selected
-significant feature and their possible mode counterparts. They do not expand
-through the entire connected cluster; selecting another feature replaces them.
+Purple highlights follow a connected carbon/double-bond grid when a coherent two-dimensional family is supported. Occupied neighbouring cells, an RT trend and a maximum per-edge RT gap are required. Sparse cases retain direct-neighbour evidence. Arbitrary transitive mass-link components are not highlighted; selecting another feature replaces the family.
 
 Tentative ion groups receive shared `compound_0001` IDs across adducts and modes;
 each table row retains its original feature ID, m/z, RT, likely adduct and mode.
@@ -310,3 +308,12 @@ Current untargeted ion forms (evidence version 4): positive `[M+H]+`,
 `[M+HCOO]-`, `[M+CH3COO]-`, `[M+Cl]-`, `[M-H-H2O]-`, `[M-2H]2-`.
 Water-loss forms are marked as possible in-source fragments. Unsupported ion
 forms are filtered out when regrouping older saved evidence for display.
+
+
+Sample abundances use a fixed 2 × 2 panel: RP POS/NEG above NP POS/NEG, with a
+single shared group legend below. Missing modes retain an empty slot. Each
+panel header includes m/z, RT, tentative adduct, compound ID and feature ID.
+Connected lipid-grid version 1 adds H2/double-bond differences and mixed CH2/H2
+steps to local family discovery. It requires a two-axis seed, a fitted RT trend,
+occupied adjacent grid cells and no RT-gap jumping. No manual identities enter
+the search. Formula and adduct predictors are unchanged by this grid extension.

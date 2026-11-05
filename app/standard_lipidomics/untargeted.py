@@ -24,6 +24,7 @@ from standard_lipidomics.untargeted_adducts import (
     EVIDENCE_VERSION, adduct_options, search_adduct_evidence, attach_adduct_summaries, SearchProgress,
 )
 from standard_lipidomics.untargeted_series import attach_lipid_series
+from standard_lipidomics.untargeted_grid import search_lipid_grids, GRID_VERSION
 from standard_lipidomics.untargeted_compounds import assign_compound_ids
 
 
@@ -1694,6 +1695,9 @@ def analyse_standard_untargeted(
         progress(.85, "Finding local CH2 homologous series")
     by_stream, homologous_matches = attach_lipid_series(by_stream, _coordinate_sources(result),
         {stream: _accepted_neighbour_frame(result, stream) for stream in by_stream}, criteria)
+    if progress:
+        progress(.90, "Finding connected carbon and double-bond lipid grids")
+    lipid_grid_matches = search_lipid_grids(by_stream, _coordinate_sources(result), criteria)
     combined = (
         pd.concat(by_stream.values(), ignore_index=True, sort=False)
         if by_stream
@@ -1704,6 +1708,8 @@ def analyse_standard_untargeted(
         "evidence_version": EVIDENCE_VERSION,
         "adduct_matches": adduct_matches,
         "homologous_matches": homologous_matches,
+        "lipid_grid_matches": lipid_grid_matches,
+        "lipid_grid_version": GRID_VERSION,
         "by_stream": by_stream,
         "features": combined,
         "significant_features": (

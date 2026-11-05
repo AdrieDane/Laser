@@ -16,7 +16,7 @@ export class ModeViewerModel {
   constructor(data) {
     this.data=data; this.streams=new Map(); this.points=new Map(); this.rows=new Map();
     this.hits=new Set(); this.links=new Map(); this.adjacency=new Map(); this.queryCache=new Map();
-    this.componentCache=new Map(); this.contextCache=new Map();
+    this.familyAdjacency=new Map(); this.componentCache=new Map(); this.contextCache=new Map();
     this.clusterCompounds=new Map(); this.clusterIds=new Map(); this.namedClusters=new Map();
     for(const [name, source] of Object.entries(data.streams)) {
       const stream={...source, name, mz:decode64(source.mz), rt:decode64(source.rt), levels:decode64(source.levels)};
@@ -44,6 +44,10 @@ export class ModeViewerModel {
         this.links.get(link.source).push(link);
       }
     }
+    for(const [stream,source,target] of data.familyClusters??[]) {
+      const key=featureKey(stream,source);if(!this.familyAdjacency.has(key)) this.familyAdjacency.set(key,new Set());
+      this.familyAdjacency.get(key).add(featureKey(stream,target));
+    }
     for(const [stream,source,target] of data.clusters) {
       const a=featureKey(stream,source), b=featureKey(stream,target);
       if(this.rows.get(a)?.compound_id && this.rows.get(a)?.compound_id===this.rows.get(b)?.compound_id) continue;
@@ -58,14 +62,15 @@ export class ModeViewerModel {
       mz:point.stream.mz[point.index],rt:point.stream.rt[point.index],negative:point.stream.negative,phase:point.stream.phase,lipidId:point.stream.lipidIds?.[point.stream.ids[point.index]]??'',
       compoundId:this.rows.get(key)?.compound_id??this.clusterCompounds.get(key)??'',clusterId:this.rows.get(key)?.cluster_id??this.clusterIds.get(key)??''};
   }
-  matches(key) {
-    if(this.queryCache.has(key)) return this.queryCache.get(key);
+  matches(key, chargeOverride=null) {
+    const cacheKey=key+'\u0001'+(chargeOverride??'');
+    if(this.queryCache.has(cacheKey)) return this.queryCache.get(cacheKey);
     const saved=this.links.get(key)??[];
     // Saved searches cover raw-p hits. Non-significant cluster neighbours need
     // a small display-only mass/RT lookup against already-loaded coordinates.
-    if(this.hits.has(key)) {this.queryCache.set(key,saved); return saved;}
+    if(this.hits.has(key)) {this.queryCache.set(cacheKey,saved); return saved;}
     const point=this.point(key); if(!point) return saved;
-    const row=this.rows.get(key), observedCharge=row?.isotope_charge_hypothesis;
+    const row=this.rows.get(key), observedCharge=chargeOverride??row?.isotope_charge_hypothesis;
     const sources=this.data.adducts.filter(a=>a.polarity===(point.negative?'neg':'pos') && (!observedCharge || a.charge===observedCharge));
     const ppm=this.data.criteria.cross_mode_ppm_tolerance??3;
     const rtTolerance=this.data.criteria.opposite_polarity_rt_tolerance_min??.1;
@@ -91,7 +96,7 @@ export class ModeViewerModel {
         }
       }
     }
-    this.queryCache.set(key,matches); return matches;
+    this.queryCache.set(cacheKey,matches); return matches;
   }
   cluster(key) {
     if(this.clusterIds.has(key)) return this.namedClusters.get(this.clusterIds.get(key));
@@ -133,23 +138,34 @@ export class ModeViewerModel {
       const anchor=phaseAnchors.get(target.phase);if(anchor&&this.coelutes(anchor,target)) adducts.add(link.target);
     }
     const localCluster=target=>{const point=this.point(target),anchor=point&&phaseAnchors.get(point.phase);return point&&(!anchor||Math.abs(point.rt-anchor.rt)<=(this.data.criteria.ch2_rt_tolerance_min??.5)+1e-12);};
+    const familyAllowed=new Set();
+    for(const root of focus) for(const member of this.familyAdjacency.get(root)??[]) familyAllowed.add(member);
+    const familyPhases=new Set([...familyAllowed].map(key=>this.point(key)?.phase));
+    const inFamily=(target,member,coherent)=>{
+      if(!coherent) return localCluster(target);
+      const point=this.point(target),origin=this.point(member);if(!point||!origin) return false;
+      if(point.phase===origin.phase) return this.coelutes(origin,point);
+      if(familyPhases.has(point.phase)) return familyAllowed.has(target)||[...familyAllowed].some(other=>this.rows.get(other)?.compound_id&&this.rows.get(other)?.compound_id===this.rows.get(target)?.compound_id);
+      return localCluster(target);
+    };
     for(const root of this.hits.has(key)?[...focus]:[]) {
       // Selection highlights direct saved neighbours, not the full transitive
       // component used for cluster numbering. Never grow neighbours of neighbours.
-      for(const member of this.adjacency.get(root)??[]) {
+      const family=this.familyAdjacency.get(root),coherent=!!family?.size;
+      for(const member of coherent?family:(this.adjacency.get(root)??[])) {
         if(focus.has(member)) continue;
         if(compound && this.rows.get(member)?.compound_id===compound) continue;
-        if(!localCluster(member)) continue;
+        if(!coherent&&!localCluster(member)) continue;
         cluster.add(member);clusterOrigins.set(member,member);
         const memberCompound=this.rows.get(member)?.compound_id;
         if(memberCompound) {
-          for(const [target,row] of this.rows) if(row.compound_id===memberCompound && !focus.has(target)&&localCluster(target)&&
+          for(const [target,row] of this.rows) if(row.compound_id===memberCompound && !focus.has(target)&&inFamily(target,member,coherent)&&
             this.coelutes(this.point(member),this.point(target))) {cluster.add(target);clusterOrigins.set(target,member);}
         } else {
           const representatives=new Map(),memberPoint=this.point(member);
-          for(const link of this.matches(member)) {
+          for(const link of this.matches(member,coherent?(this.rows.get(root)?.isotope_charge_hypothesis??1):null)) {
             const target=this.point(link.target);if(!target||target.stream===memberPoint?.stream||focus.has(link.target)) continue;
-            if(!localCluster(link.target)||!this.coelutes(memberPoint,target)) continue;
+            if(!inFamily(link.target,member,coherent)||!this.coelutes(memberPoint,target)) continue;
             const prior=representatives.get(target.stream);
             if(!prior || (rank.get(link.targetAdduct)??99)<(rank.get(prior.targetAdduct)??99) ||
               ((rank.get(link.targetAdduct)??99)===(rank.get(prior.targetAdduct)??99) && Math.abs(link.ppm)<Math.abs(prior.ppm))) representatives.set(target.stream,link);

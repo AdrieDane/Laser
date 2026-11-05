@@ -9,7 +9,7 @@ import pandas as pd
 
 from standard_lipidomics.untargeted_adducts import ADDUCTS
 
-COMPOUND_VERSION = 3
+COMPOUND_VERSION = 4
 LABEL_COLUMNS = ('compound_id', 'adduct', 'adduct_alternatives', 'detected_modes', 'association_status', 'cluster_id')
 
 
@@ -76,7 +76,17 @@ def assign_compound_ids(analysis):
                 'adduct_alternatives': '; '.join(sorted(alternatives.get(key, ()), key=lambda value: priorities.get(value, 99))),
                 'association_status': 'tentative mass/RT association' if len(members) > 1 else 'adduct unresolved'})
     compounds = pd.DataFrame(records)
-    compounds, cluster_members = _assign_cluster_ids(compounds, analysis.get('homologous_matches', pd.DataFrame()))
+    pair_links = analysis.get('homologous_matches', pd.DataFrame())
+    grid_links = analysis.get('lipid_grid_matches', pd.DataFrame())
+    if not grid_links.empty and not pair_links.empty:
+        grid_roots = set(zip(grid_links.stream.astype(str), grid_links.source_feature_id.astype(str)))
+        pair_links = pair_links[[
+            (str(row.stream), str(row.source_feature_id)) not in grid_roots
+            and (str(row.stream), str(row.target_feature_id)) not in grid_roots
+            for row in pair_links.itertuples(index=False)
+        ]]
+    cluster_links = pd.concat([pair_links, grid_links], ignore_index=True, sort=False)
+    compounds, cluster_members = _assign_cluster_ids(compounds, cluster_links)
     labels = compounds[['stream', 'feature_id', *LABEL_COLUMNS]]
     output = {**analysis, 'compound_version': COMPOUND_VERSION, 'compound_features': compounds, 'cluster_members': cluster_members}
     for name in ('features', 'raw_p_features', 'significant_features'):

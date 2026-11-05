@@ -53,6 +53,12 @@ def _lipid_labels(result):
 
 def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
     """One compact load; all subsequent selection work stays in the browser."""
+    from standard_lipidomics.untargeted_grid import search_lipid_grids, GRID_VERSION
+    if analysis.get('lipid_grid_version') != GRID_VERSION:
+        from standard_lipidomics.untargeted import _coordinate_sources, UntargetedComparisonCriteria
+        analysis['lipid_grid_matches'] = search_lipid_grids(analysis.get('by_stream', {}), _coordinate_sources(result), UntargetedComparisonCriteria(**analysis['criteria']))
+        analysis['lipid_grid_version'] = GRID_VERSION
+        analysis['compound_version'] = None
     if analysis.get('compound_version') != COMPOUND_VERSION:
         analysis.update(assign_compound_ids(analysis))
     compounds = analysis.get('compound_features', pd.DataFrame())
@@ -129,6 +135,7 @@ def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
             row['compound_id'] = f'compound_{next_compound:04d}'
     return {'token': token, 'theme': theme, 'streams': streams, 'statistics': statistics,
             'links': link_rows, 'clusters': cluster_rows, 'palette': palette,
+            'familyClusters': [[str(row.stream), str(row.source_feature_id), str(row.target_feature_id)] for row in analysis.get('lipid_grid_matches', pd.DataFrame()).itertuples(index=False)],
             'clusterMembers': cluster_members,
             'adducts': [asdict(adduct) for adduct in ADDUCTS], 'criteria': dict(analysis.get('criteria', {}))}
 
