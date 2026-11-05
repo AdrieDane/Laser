@@ -12,6 +12,7 @@ from annotator.matching import (highest_abundance_internal_standard_indices,
 from annotator.rt_calibration import (RT_CALIBRATION_MODELS, apply_internal_standard_rt_calibration,
     fit_confirmed_internal_standard_rt_calibration, is_rt_calibration_model)
 from presentation.viewer_theme import viewer_plotly_chart
+from standard_lipidomics.internal_standards import project_is_definitions, project_is_reference, project_is_signature
 
 
 @dataclass(frozen=True)
@@ -72,11 +73,15 @@ def _render_rt_result(calibration: dict) -> None:
 
 
 def render_rt_calibration(features: pd.DataFrame, reference: pd.DataFrame, *, stream: str,
-                          prefix: str) -> RtCalibrationDecision:
+                          prefix: str, project: str | None = None) -> RtCalibrationDecision:
     st.subheader(f"{stream} · RT calibration")
     st.caption("Confirm internal standards, review the fitted model and its validation, then apply or skip.")
+    is_path, _ = project_is_definitions(project) if project else (None, ())
+    panels = ("Project internal standards",) if is_path else ("Unlabelled IS", "Labelled IS")
+    if st.session_state.get(f"{prefix}-rt-panel") not in panels:
+        st.session_state[f"{prefix}-rt-panel"] = panels[0]
     with st.form(f"{prefix}-rt-search", border=True):
-        panel = st.selectbox("Reference RT-calibration list", ("Unlabelled IS", "Labelled IS"),
+        panel = st.selectbox("Reference RT-calibration list", panels,
                              key=f"{prefix}-rt-panel")
         columns = st.columns(2)
         ppm = columns[0].number_input("RT-search m/z tolerance (ppm)", min_value=0.1,
@@ -85,13 +90,14 @@ def render_rt_calibration(features: pd.DataFrame, reference: pd.DataFrame, *, st
                                     max_value=10.0, value=1.0, step=0.05)
         submitted = st.form_submit_button("Search RT calibration masses", type="primary", width="stretch")
     payload = pd.util.hash_pandas_object(features[["feature_id", "mz", "rt"]], index=False).values.tobytes()
-    signature = hashlib.sha256(payload + repr((stream, panel, ppm, rt)).encode()).hexdigest()
+    signature = hashlib.sha256(payload + repr((stream, panel, ppm, rt, project_is_signature(project) if project else ())).encode()).hexdigest()
     cache_key = f"{prefix}-rt-search-result"
     if submitted:
         polarity = "pos" if stream.endswith("Pos") else "neg"
         standards = POSITIVE_CCS_INTERNAL_STANDARDS if polarity == "pos" else NEGATIVE_CCS_INTERNAL_STANDARDS
-        references = build_mass_reference_panel(reference, polarity=polarity, panel_name=panel,
-            unlabelled_standards=standards, chromatography=stream.split("_")[0])
+        references = (project_is_reference(project, reference, stream=stream) if is_path else
+            build_mass_reference_panel(reference, polarity=polarity, panel_name=panel,
+                unlabelled_standards=standards, chromatography=stream.split("_")[0]))
         # Like the 4D search, only standards with measured library RTs are eligible.
         references = references.loc[pd.to_numeric(references["ref_rt"], errors="coerce").notna()]
         result = detect_mass_calibration_candidates(features, references, ppm_tol=ppm, rt_tol=rt)
@@ -117,7 +123,7 @@ def render_rt_calibration(features: pd.DataFrame, reference: pd.DataFrame, *, st
             edited = st.data_editor(editor, key=f"{prefix}-rt-candidates-{signature}",
                 width="stretch", hide_index=True,
                 disabled=[column for column in editor.columns if column != "Confirm"],
-                column_order=["Confirm", "standard", "source", "feat_feature_id", "feat_intensity",
+                column_order=["Confirm", "standard", "source", "internal_standard_concentration", "internal_standard_unit", "feat_feature_id", "feat_intensity",
                               "feat_mz", "ref_mz", "ppm_error", "feat_rt", "ref_rt", "rt_error"],
                 column_config={"Confirm": st.column_config.CheckboxColumn("Confirm", default=False)})
             selected = edited.loc[edited["Confirm"]].copy()

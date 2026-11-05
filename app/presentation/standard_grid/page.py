@@ -7,7 +7,7 @@ from typing import Callable
 
 import pandas as pd
 import streamlit as st
-from presentation.viewer_theme import viewer_plotly_chart
+from presentation.standard_grid.persistent_plot import persistent_review_plot
 
 from scientific_defaults import SCIENTIFIC_DEFAULTS
 from standard_adducts import preferred_standard_adduct, primary_adduct_rows
@@ -112,7 +112,13 @@ class StandardGridPage:
             anchors.get("grid_coherence_threshold", SCIENTIFIC_DEFAULTS.grid_coherence_threshold),
         ))
         self.services.render_np_alignment_status(self.stream, self.stream_result)
-        self.reference, self.candidates = self.services.prepare_standard_grid_data(self.stream_result)
+        prepare_key = (id(self.result), self.stream, id(self.stream_result.get("reference")),
+                       id(self.stream_result.get("annotations")), id(self.stream_result.get("all_pairs")))
+        cached = st.session_state.get("standard_prepared_grid_cache")
+        if cached is None or cached[0] != prepare_key:
+            cached = (prepare_key, self.services.prepare_standard_grid_data(self.stream_result))
+            st.session_state.standard_prepared_grid_cache = cached
+        self.reference, self.candidates = cached[1]
         if self.reference.empty:
             st.info("The selected stream has no policy-compatible reference grid.")
             return False
@@ -167,6 +173,13 @@ class StandardGridPage:
             f"standard-grid::{self.stream}::{selection['focus_class']}::{selection['adduct']}"
         )
         confirmed = st.session_state.setdefault(self.services.anchor_state, {}).get(chart_key, set())
+        cache_key = (id(self.result), self.stream, selection["focus_class"], selection["adduct"],
+                     tuple(sorted(confirmed)), repr(self.services.primary_feature_overrides()),
+                     tuple((key, repr(value)) for key,value in controls.items() if key not in {"x_dimension", "y_dimension", "show_mesh", "show_labels", "show_cloud"}),
+                     tuple(sorted(st.session_state.get(self.services.deleted_state, set()))))
+        cached = st.session_state.get("standard_class_grid_state_cache")
+        if cached is not None and cached[0] == cache_key:
+            return cached[1]
         state = self.services.build_class_grid_state(
             self.reference, self.candidates,
             lipid_class=selection["focus_class"], adduct=selection["adduct"],
@@ -190,6 +203,7 @@ class StandardGridPage:
         state["plot_df"] = self.services.benchmark_visible_plot_candidates(
             state["plot_df"], show_unbenchmarked=controls["show_unbenchmarked"],
         )
+        st.session_state.standard_class_grid_state_cache = (cache_key, state)
         return state
 
     def projection(self, state: dict) -> tuple[pd.DataFrame, pd.DataFrame, set[str]]:
@@ -214,37 +228,32 @@ class StandardGridPage:
         view_key = f"{self.stream}::{state['chart_key']}::{controls['x_dimension']}::{controls['y_dimension']}"
         if ranges is not None:
             ranges = st.session_state.setdefault(self.services.view_range_state, {}).setdefault(view_key, ranges)
-        figure = self.services.build_standard_grid_figure(
-            state, self.features,
-            x_dimension=controls["x_dimension"], y_dimension=controls["y_dimension"],
-            show_mesh=controls["show_mesh"], show_labels=controls["show_labels"],
-            show_cloud=controls["show_cloud"], selected_keys=prior_keys,
-            projected_alternatives=alternatives, projected_best=best,
-            axis_ranges=ranges,
-            saved_view=st.session_state.setdefault(self.services.plot_view_state, {}).get(view_key, {}),
-            uirevision=view_key, show_unbenchmarked=controls["show_unbenchmarked"],
-        )
+        figure_key = (id(state), controls["x_dimension"], controls["y_dimension"], controls["show_mesh"],
+                      controls["show_labels"], controls["show_cloud"], tuple(alternatives.get("key", [])), tuple(best.get("key", [])))
+        cached_figure = st.session_state.get("standard_main_figure_cache")
+        if cached_figure is not None and cached_figure[0] == figure_key:
+            figure = cached_figure[1]
+        else:
+            figure = self.services.build_standard_grid_figure(
+                state, self.features,
+                x_dimension=controls["x_dimension"], y_dimension=controls["y_dimension"],
+                show_mesh=controls["show_mesh"], show_labels=controls["show_labels"],
+                show_cloud=controls["show_cloud"], selected_keys=set(),
+                projected_alternatives=alternatives, projected_best=best,
+                axis_ranges=ranges,
+                saved_view=st.session_state.setdefault(self.services.plot_view_state, {}).get(view_key, {}),
+                uirevision=view_key, show_unbenchmarked=controls["show_unbenchmarked"],
+            )
+            st.session_state.standard_main_figure_cache = (figure_key, figure)
         valid = set(state["plot_df"]["key"]) | set(alternatives["key"]) | set(best["key"])
         with plot_col:
-            viewer_plotly_chart(
-                figure, width="stretch", key="standard-grid-viewer", on_select="ignore",
-                config={"scrollZoom": True, "displaylogo": False,
-                        "doubleClick": "reset+autosize", "responsive": True,
-                        "modeBarButtonsToAdd": ["select2d", "lasso2d"]},
-            )
             component_key = "standard_2d_interaction::grid-viewer"
-            self.services.plotly_click_bridge()(
-                key=component_key,
-                data={"captureClicks": True, "captureSelections": True,
-                      "chartKey": state["chart_key"]},
-                default={}, height=0,
-                on_point_change=lambda: self.services.sync_component_selection(
-                    component_key, state["chart_key"], valid, view_key
-                ),
-                on_selection_change=lambda: self.services.sync_component_multi_selection(
-                    component_key, state["chart_key"], valid, view_key
-                ),
-            )
+            ordered = state["plot_df"].sort_values(["carbon", "db", "name", "adduct", "absresid"])["key"].tolist()
+            persistent_review_plot(figure, key=component_key, channel=state["chart_key"],
+                ordered_keys=ordered, selected_keys=prior_keys, valid_keys=valid,
+                on_point_change=lambda: self.services.sync_component_selection(component_key, state["chart_key"], valid, view_key),
+                config={"scrollZoom": True, "displaylogo": False, "doubleClick": "reset+autosize", "responsive": True,
+                        "modeBarButtonsToAdd": ["select2d", "lasso2d"]})
             if state["mesh"] is None and controls["show_mesh"]:
                 st.caption("No predicted grid: fewer than three reference RT nodes.")
             st.caption(state["correction"]["label"])
@@ -254,7 +263,9 @@ class StandardGridPage:
         store = st.session_state.setdefault(self.services.selection_state, {})
         selected_keys = [key for key in store.get(state["chart_key"], []) if key in valid]
         selected = state["candidates"][state["candidates"]["key"].isin(selected_keys)]
-        active = selected.iloc[0] if not selected.empty else None
+        active_key = st.session_state.get("standard_active_grid_keys", {}).get(state["chart_key"])
+        active_rows = selected[selected["key"].eq(active_key)] if not selected.empty else selected
+        active = active_rows.iloc[0] if not active_rows.empty else selected.iloc[-1] if not selected.empty else None
         if active is None and not state["plot_df"].empty:
             active = state["plot_df"].sort_values(
                 ["confirmed", "anchor", "absresid"], ascending=[False, False, True]
@@ -298,7 +309,8 @@ class StandardGridPage:
 
     def render_panel(self, panel_col, state: dict, selection: dict, controls: dict, selected, active) -> None:
         with panel_col:
-            self.services.render_statistics(active, self.sample_cols)
+            self.services.render_statistics(active, self.sample_cols,
+                self.features.attrs.get("sample_group_map", {}), self.features.attrs.get("sample_group_name_map", {}))
             with st.container(border=True, key="standard-ms-viewer-lipid-selector"):
                 st.markdown("**Grid lipid selection**")
                 class_col, adduct_col = st.columns(2, gap="small")
@@ -310,6 +322,12 @@ class StandardGridPage:
                     ),
                 )
                 adduct_col.selectbox("Adduct", selection["adducts"], key=selection["adduct_key"])
+                index = selection["options"].index(selection["focus_class"])
+                previous, following = st.columns(2, gap="small")
+                previous.button("Previous class", key="standard-previous-class", width="stretch", disabled=index == 0,
+                    on_click=_move_class, args=(selection["class_key"], selection["options"], -1))
+                following.button("Next class", key="standard-next-class", width="stretch", disabled=index == len(selection["options"]) - 1,
+                    on_click=_move_class, args=(selection["class_key"], selection["options"], 1))
             active_keys = set(selected["key"]) if not selected.empty else set()
             if active is not None:
                 active_keys.add(active["key"])
@@ -352,3 +370,8 @@ def render_standard_grid_browser(
 ) -> None:
     """Render the standard grid page through its focused coordinator."""
     StandardGridPage(result, services).render()
+
+
+def _move_class(key: str, options: list[str], direction: int) -> None:
+    index = options.index(st.session_state[key])
+    st.session_state[key] = options[max(0, min(index + direction, len(options) - 1))]

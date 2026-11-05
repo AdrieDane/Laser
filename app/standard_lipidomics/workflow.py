@@ -18,6 +18,7 @@ import pandas as pd
 
 from scientific_defaults import SCIENTIFIC_DEFAULTS
 from standard_lipidomics.rt_calibration import restore_rt_provenance
+from standard_lipidomics.internal_standards import project_is_definitions, project_is_reference
 
 from annotator.export import build_annotated_features_export
 from annotator.features import load_feature_list, read_raw
@@ -927,6 +928,13 @@ def annotate_standard_stream(
         ref = combine_np_ether_plasmalogen_labels(ref)
         if not ref.empty:
             ref = ref.drop_duplicates(["name", "adduct"], keep="first")
+    if "standard" in ref:
+        lookup = ref.dropna(subset=["standard"]).drop_duplicates(["name", "adduct"])
+        metadata_columns = {"standard": "internal_standard_name", "concentration": "internal_standard_quantity",
+                            "unit": "internal_standard_unit", "is_file": "internal_standard_source"}
+        metadata = lookup[["name", "adduct", *metadata_columns]].rename(columns=metadata_columns)
+        annotations = annotations.merge(metadata, on=["name", "adduct"], how="left", validate="many_to_one")
+        baseline["all_pairs"] = baseline["all_pairs"].merge(metadata, on=["name", "adduct"], how="left", validate="many_to_one")
     annotations["standard_stream"] = stream.name
     annotations["chromatography"] = stream.chromatography
     annotations["ion_mode"] = stream.reference_polarity
@@ -1057,6 +1065,9 @@ def _standard_export(result: dict) -> pd.DataFrame:
             ].to_numpy(),
         }
     )
+    for column in ("internal_standard_name", "internal_standard_quantity", "internal_standard_unit", "internal_standard_source"):
+        if column in aligned:
+            leading[column] = aligned[column].to_numpy()
     return pd.concat([leading, exported.reset_index(drop=True)], axis=1)
 
 
@@ -1076,11 +1087,13 @@ def annotate_standard_batch(
     grid_coherence_threshold: float = DEFAULT_GRID_COHERENCE_THRESHOLD,
     grid_coherence_version: str = "v1",
     mass_calibrations: Mapping[str, object] | None = None,
+    internal_standard_project: str | Path | None = None,
 ) -> dict:
     """Annotate all supplied conventional streams and combine stable exports."""
     if not sources:
         raise ValueError("Supply at least one standard-lipidomics XCMS stream.")
     results: dict[str, dict] = {}
+    is_path, is_definitions = project_is_definitions(internal_standard_project) if internal_standard_project else (None, ())
     exports: list[pd.DataFrame] = []
     policy_audits: list[pd.DataFrame] = []
     np_rt_audits: list[pd.DataFrame] = []
@@ -1088,10 +1101,17 @@ def annotate_standard_batch(
         if name not in sources:
             continue
         stream = parse_standard_stream(name)
+        stream_reference = reference
+        if is_path is not None:
+            declared = project_is_reference(internal_standard_project, reference, stream=name)
+            declared = declared.loc[declared["ref_mz"].notna()].copy()
+            stream_reference = pd.concat([
+                reference.loc[~reference["is_is"].fillna(False).astype(bool)], declared,
+            ], ignore_index=True)
         result = annotate_standard_stream(
             sources[name],
             stream,
-            reference,
+            stream_reference,
             ppm_tolerance=ppm_tolerance,
             rp_rt_tolerance_min=rp_rt_tolerance_min,
             align_rp_rt=align_rp_rt,
@@ -1170,6 +1190,8 @@ def annotate_standard_batch(
         ),
         "matlab_policy_applied": matlab_policy is not None,
         "np_rt_reference_applied": np_rt_reference is not None,
+        "internal_standard_source": str(is_path) if is_path else None,
+        "internal_standards_expected": [{"name": item.name, "quantity": item.concentration, "unit": item.unit} for item in is_definitions],
         "grid_coherence_enabled": bool(use_grid_coherence),
         "grid_coherence_threshold": float(grid_coherence_threshold),
         "grid_coherence_version": grid_coherence_version,

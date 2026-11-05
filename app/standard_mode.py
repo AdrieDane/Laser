@@ -28,7 +28,7 @@ from standard_lipidomics.project_store import (
     xcms_project_root,
 )
 from standard_lipidomics.project_layout import available_calibrations
-from standard_lipidomics.workflow import load_standard_feature_list
+from standard_lipidomics.internal_standards import project_is_definitions, project_is_signature
 from application.standard_workflow import (
     LASER_STANDARD_ENGINE,
     MATLAB_STANDARD_ENGINE,
@@ -36,14 +36,15 @@ from application.standard_workflow import (
 )
 from composition import standard_annotation_service
 from presentation.standard_workspace import (
-    render_standard_annotation_workspace,
     streamlit_safe_report_frame as _streamlit_safe_report_frame,  # noqa: F401
 )
 from presentation.standard_setup import render_laser_engine, render_matlab_engine
+from application.annotation_jobs import active_annotation_job, read_annotation_job
+from application.untargeted_jobs import active_untargeted_job, load_untargeted_inputs, start_untargeted_job
+from presentation.app_theme import page_header
 from presentation.standard_calibration import render_standard_pipeline_entry
 from presentation.standard_calibration import (
     STANDARD_PIPELINE_PAGE_KEY,
-    selected_standard_stages,
 )
 from presentation.standard_composition import (
     render_composition_range_settings as _render_composition_range_settings_presenter,
@@ -60,6 +61,8 @@ from presentation.standard_untargeted import (
     _untargeted_group_summary,  # noqa: F401
     _untargeted_map_families,  # noqa: F401
     render_untargeted_workspace,
+    _restore_group_metadata_from_inputs,
+    _untargeted_criteria,
 )
 
 LASER_ENGINE = "LASER reference matcher"
@@ -102,11 +105,13 @@ def _run_standard_cached(
     _sources: dict[str, bytes],
     source_signature: tuple = (),
     grid_coherence_version: str = "v1",
+    input_project_path: str = "",
+    internal_standards_signature: tuple = (),
 ) -> dict:
     return standard_annotation_service.run(
         StandardAnnotationRequest(
             engine=LASER_STANDARD_ENGINE,
-            project=Path(policy_path).expanduser().parent,
+            project=Path(input_project_path) if input_project_path else Path(policy_path).expanduser().parent,
             sources=_sources,
             reference_path=Path(reference_path),
             matlab_policy_path=Path(policy_path),
@@ -191,6 +196,9 @@ def _project_signature(
         for name, path in sorted(sources.items())
         if any(name.startswith(f"{phase}_") for phase in phases)
     ]
+    csv_signature = project_is_signature(input_directory)
+    if csv_signature[0]:
+        signature.append(("internal_standards.csv", *csv_signature))
     standard_candidates = [input_directory / "internal_standards.tsv"]
     standard_candidates.extend(
         path.parent / "internal_standards.tsv" for path in sources.values()
@@ -222,6 +230,9 @@ def _render_matlab_engine(default_project: str) -> None:
 
 def render_standard_lipidomics_mode(default_reference: Path) -> None:
     """Render the standalone standard-lipidomics workflow."""
+    if st.session_state.get("standard_pipeline_page") in {"annotation_job", "untargeted_job"}:
+        _render_annotation_job()
+        return
     if st.session_state.get("standard_annotation_result"):
         _render_standard_results()
         return
@@ -241,6 +252,8 @@ def render_standard_lipidomics_mode(default_reference: Path) -> None:
     annotation_project = _render_annotation_input(annotation_project)
     if annotation_project is None:
         return
+    st.radio("When an old project exists", ("Archive old project", "Overwrite old project"),
+             horizontal=True, key="standard-annotation-existing")
     engine = st.radio(
         "Annotation engine",
         [MATLAB_ENGINE, LASER_ENGINE],
@@ -274,6 +287,14 @@ def _render_annotation_input(default_project: str) -> str | None:
         st.info("Enter the project folder to detect its XCMS inputs.")
         return None
     root = xcms_project_root(project)
+    running = active_annotation_job(root)
+    if running is not None:
+        st.info("Annotation is running for this project.")
+        if st.button("View annotation progress", type="primary"):
+            st.session_state.standard_annotation_job_path = str(running)
+            st.session_state[STANDARD_PIPELINE_PAGE_KEY] = "annotation_job"
+            st.rerun()
+        return None
     try:
         if kind == "Raw XCMS data":
             sources = discover_standard_streams(root)
@@ -299,7 +320,8 @@ def _render_annotation_input(default_project: str) -> str | None:
             sources = discover_standard_streams(source)
             if not sources:
                 raise ValueError("The selected calibration contains no XCMS peak-group lists.")
-        st.caption(f"Detected {', '.join(sources)} · {source}")
+        project_is_definitions(source)
+        st.session_state.standard_selected_input_directory = str(source)
         return str(source)
     except (OSError, ValueError) as exc:
         st.error(str(exc))
@@ -321,7 +343,7 @@ def _render_saved_workflow_open(workflow: str) -> None:
         root = xcms_project_root(project)
         if open_annotation:
             result, saved = load_annotation_workflow(project)
-            page = "menu"
+            page = "annotation"
             workflow = "annotation"
         else:
             result, saved = load_untargeted_workflow(project)
@@ -384,37 +406,45 @@ def _render_untargeted_input(default_project: str) -> None:
         "Project folder", value=default_project,
         key="standard-untargeted-input-project",
     )
-    if not st.button("Load XCMS features for untargeted analysis", type="primary"):
+    if not project.strip() or not Path(project).expanduser().is_dir():
         return
     try:
-        sources = discover_standard_streams(project)
-        if not sources:
-            raise ValueError("No XCMS peak-group lists were found in this project.")
-        streams = {
-            name: {"features": load_standard_feature_list(path)}
-            for name, path in sources.items()
-        }
-        result = {
-            "engine": "untargeted", "streams": streams,
-            "automatic_annotations": pd.DataFrame(),
-            "xcms_input_dir": str(xcms_project_root(project)),
-        }
-        for key in ("standard_untargeted_analysis", "standard_untargeted_signature",
-                    "standard_untargeted_review_basket", "standard_report_html", "standard_report_signature"):
-            st.session_state.pop(key, None)
-        st.session_state.standard_annotation_result = result
-        st.session_state.standard_results_page = "untargeted"
-        st.session_state.standard_loaded_workflow = "untargeted"
-        st.session_state.standard_auto_save_annotation_pending = False
-        st.session_state.standard_auto_save_untargeted_pending = True
-        st.session_state.standard_project_directory = str(xcms_project_root(project))
-        st.session_state.standard_input_sources = sources
-        st.session_state.standard_headless_config = {
-            "workflow": "standard", "engine": "untargeted",
-            "inputs": {"project": str(xcms_project_root(project)),
-                       "xcms_source": str(Path(project).expanduser().resolve())},
-            "annotation": {},
-        }
+        if active_annotation_job(project):
+            st.info("Wait for this project's annotation to finish before starting untargeted analysis.")
+            return
+        running = active_untargeted_job(project)
+        if running:
+            if st.button("View untargeted progress", type="primary"):
+                st.session_state.standard_untargeted_job_path = str(running)
+                st.session_state[STANDARD_PIPELINE_PAGE_KEY] = "untargeted_job"
+                st.rerun()
+            return
+        root = xcms_project_root(project)
+        manifest = root / "LASER" / "LASER_PROJECT.json"
+        watched = [manifest, root / "LASER" / "Annotation" / "LASER_PROJECT.json"]
+        watched.extend(discover_standard_streams(root).values())
+        watched.extend((root / "metadata").glob("*.xls*"))
+        signature = (str(root), tuple((str(path), path.stat().st_size, path.stat().st_mtime_ns)
+                                      for path in watched if path.is_file()))
+        cached = st.session_state.get("standard_untargeted_launch_inputs")
+        if cached is None or cached[0] != signature:
+            cached = (signature, *load_untargeted_inputs(project))
+            st.session_state.standard_untargeted_launch_inputs = cached
+        _, result, provenance = cached
+        if provenance.startswith("raw XCMS"):
+            st.info("No completed annotation found. This run will include all XCMS features.")
+        configured = _untargeted_criteria(result)
+        if configured is None:
+            return
+        criteria, _ = configured
+        existing = st.radio("When an old project exists", ("Archive old project", "Overwrite old project"),
+            horizontal=True, key="standard-untargeted-launch-existing")
+        if not st.button("Run untargeted analysis", type="primary", width="stretch"):
+            return
+        job = start_untargeted_job(project, criteria, result=result, provenance=provenance,
+            existing="archive" if existing.startswith("Archive") else "overwrite")
+        st.session_state.standard_untargeted_job_path = str(job)
+        st.session_state[STANDARD_PIPELINE_PAGE_KEY] = "untargeted_job"
         st.rerun()
     except (OSError, ValueError) as exc:
         st.error(str(exc))
@@ -541,7 +571,7 @@ def _render_standard_exports(
 def _render_standard_results_menu(result: dict) -> None:
     """Landing page separating annotation review from untargeted follow-up."""
     if st.session_state.get("standard_loaded_workflow") == "untargeted":
-        st.header("Untargeted results")
+        _standard_results_page_header("Untargeted results")
         if st.button("Open untargeted analysis", type="primary", width="stretch"):
             st.session_state.standard_results_page = "untargeted"
             st.rerun()
@@ -552,7 +582,7 @@ def _render_standard_results_menu(result: dict) -> None:
             st.session_state[STANDARD_PIPELINE_PAGE_KEY] = "select"
             st.rerun()
         return
-    st.header("Standard lipidomics results")
+    _standard_results_page_header("Standard lipidomics results")
     identified = result.get("identified_lipids", pd.DataFrame())
     equivalents = result.get("equivalent_lipids", pd.DataFrame())
     candidates = result.get("all_candidates", pd.DataFrame())
@@ -562,7 +592,7 @@ def _render_standard_results_menu(result: dict) -> None:
     metrics[2].metric("Equivalent features", len(equivalents))
     metrics[3].metric("Candidate identities", len(candidates))
     st.caption("The annotation result is complete and can be saved or reviewed without rerunning it.")
-    annotation_col, save_col, untargeted_col = st.columns(3)
+    annotation_col, save_col = st.columns(2)
     if annotation_col.button(
         "Open annotation review",
         type="primary",
@@ -577,22 +607,6 @@ def _render_standard_results_menu(result: dict) -> None:
         key="standard-open-save-project",
     ):
         st.session_state.standard_results_page = "save"
-        st.rerun()
-    enable_untargeted = st.checkbox(
-        "Enable untargeted analysis",
-        value=selected_standard_stages().run_untargeted,
-        key="standard-results-enable-untargeted",
-        help="Off by default. Uses the XCMS features already in this result.",
-    )
-    if enable_untargeted and not result.get("untargeted_analysis"):
-        st.session_state.standard_auto_save_untargeted_pending = True
-    if untargeted_col.button(
-        "Open untargeted analysis",
-        width="stretch",
-        key="standard-open-untargeted-analysis",
-        disabled=not enable_untargeted,
-    ):
-        st.session_state.standard_results_page = "untargeted"
         st.rerun()
     if st.button(
         "Start a new annotation",
@@ -711,7 +725,6 @@ def _render_untargeted_save(result: dict, analysis: dict) -> None:
     destination = workflow_folder(source_project, "Untargeted")
     with st.container(border=True):
         st.subheader("Save untargeted analysis")
-        st.caption("Remake the untargeted exports from the current result and review decisions.")
         st.code(str(destination))
         existing = st.radio(
             "When an old project exists",
@@ -721,14 +734,11 @@ def _render_untargeted_save(result: dict, analysis: dict) -> None:
         if not st.button("Save untargeted analysis", type="primary", width="stretch"):
             return
         try:
-            paths, archive = _save_current_untargeted(
+            _save_current_untargeted(
                 result, analysis,
                 existing="archive" if existing.startswith("Archive") else "overwrite",
             )
             st.success(f"Untargeted analysis saved: {destination}")
-            if archive:
-                st.caption(f"Previous export archived at {archive}")
-            st.caption(f"Manifest: {paths['project_manifest']}")
         except Exception as exc:
             st.error(f"Untargeted analysis could not be saved: {exc}")
 
@@ -758,14 +768,10 @@ def _save_current_untargeted(
 
 
 def _standard_results_page_header(title: str) -> None:
-    heading_col, back_col = st.columns([5, 1])
-    heading_col.header(title)
-    if back_col.button(
-        "Back to results",
-        width="stretch",
-        key=f"standard-back-to-results-{title}",
-    ):
-        st.session_state.standard_results_page = "menu"
+    if page_header(title, key=f"standard-back-to-start-{title}"):
+        st.session_state.pop("standard_annotation_result", None)
+        st.session_state.pop("standard_results_page", None)
+        st.session_state[STANDARD_PIPELINE_PAGE_KEY] = "select"
         st.rerun()
 
 
@@ -793,18 +799,9 @@ def _render_standard_annotation_audit_body(result: dict) -> None:
 
 
 def _render_standard_annotation_workspace(result: dict) -> None:
-    """Native, immediately available counterpart of the standard HTML report."""
-    config = st.session_state.get("standard_headless_config", {})
-    render_standard_annotation_workspace(
-        result,
-        config=config,
-        render_annotation=lambda: _render_standard_annotation_review_body(result),
-        render_audit=lambda: _render_standard_annotation_audit_body(result),
-        render_exports=lambda: _render_standard_exports(
-            result,
-            show_annotation_table=False,
-        ),
-    )
+    """Show only the annotation reviewer; no report tabs."""
+    _restore_group_metadata_from_inputs(result)
+    _render_standard_annotation_review_body(result)
 
 
 def _render_standard_results() -> None:
@@ -874,3 +871,38 @@ def _render_standard_results() -> None:
         st.session_state.standard_results_page = "save"
         st.rerun()
     _render_standard_annotation_workspace(result)
+
+
+@st.fragment(run_every="2s")
+def _render_annotation_job() -> None:
+    untargeted = st.session_state.get(STANDARD_PIPELINE_PAGE_KEY) == "untargeted_job"
+    title = "Untargeted analysis" if untargeted else "Annotation"
+    path_key = "standard_untargeted_job_path" if untargeted else "standard_annotation_job_path"
+    if page_header(title, key="standard-job-back-to-start"):
+        st.session_state[STANDARD_PIPELINE_PAGE_KEY] = "select"
+        st.session_state.pop(path_key, None)
+        st.rerun()
+    directory = st.session_state.get(path_key)
+    if not directory:
+        st.error("No run was selected.")
+        return
+    try:
+        state = read_annotation_job(directory)
+    except (OSError, ValueError) as exc:
+        st.error(str(exc))
+        return
+    if state["status"] == "complete":
+        st.success(f"{title} complete")
+        return
+    elif state["status"] == "failed":
+        st.error(f"{title} failed: {state['message']}")
+    else:
+        st.progress(float(state.get("progress", 0.0)), text=state.get("message", "Running annotation"))
+        st.info(f"{title} continues if you close the browser.")
+    with st.expander("Process log", expanded=False):
+        log = Path(directory) / ("untargeted.log" if untargeted else "annotation.log")
+        st.code(str(log), language=None)
+        if log.is_file():
+            with log.open("rb") as handle:
+                handle.seek(max(log.stat().st_size - 12000, 0))
+                st.code(handle.read().decode("utf-8", errors="replace"), language=None)

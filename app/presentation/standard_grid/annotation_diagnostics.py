@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 from presentation.viewer_theme import viewer_plotly_chart
+from presentation.standard_grid.persistent_plot import persistent_review_plot
 
 from presentation.standard_grid.diagnostics import build_standard_diagnostic_figures
 
@@ -115,17 +116,10 @@ def _render_figures(
             config=config,
         )
         with st.container(height=470, border=False):
-            viewer_plotly_chart(
-                body, width="stretch", key="standard-detail::viewer",
-                config=config,
-            )
-            services.plotly_click_bridge()(
-                key=component_key, data={"chartKey": chart_key}, default={},
-                height=0,
-                on_point_change=lambda: services.sync_component_selection(
-                    component_key, chart_key, set(detail["key"])
-                ),
-            )
+            persistent_review_plot(body, key=component_key, channel=chart_key,
+                ordered_keys=detail["key"].tolist(), selected_keys=st.session_state.get("standard_selected_grid_keys", {}).get(chart_key, []),
+                row_ids=detail["row_id"].tolist(), role="diagnostic", config=config,
+                on_point_change=lambda: services.sync_component_selection(component_key, chart_key, set(detail["key"])))
 
 
 def _render_annotation_diagnostics(
@@ -145,5 +139,14 @@ def _render_annotation_diagnostics(
     if not sample_cols or detail.empty:
         st.caption("Sample-level intensity columns were not found for this stream.")
         return
-    figures = _diagnostic_figures(detail, sample_cols, active_keys, services)
+    detail["row_id"] = [
+        f"{index:04d}|{name}|{adduct}"
+        for index, (name, adduct) in enumerate(zip(detail["name"], detail["adduct"]))
+    ]
+    cache_key = (id(plot_df), chart_key, tuple(sample_cols))
+    cached = st.session_state.get("standard_diagnostic_figures_cache")
+    if cached is None or cached[0] != cache_key:
+        cached = (cache_key, _diagnostic_figures(detail, sample_cols, set(), services))
+        st.session_state.standard_diagnostic_figures_cache = cached
+    figures = cached[1]
     _render_figures(figures, detail, chart_key, services)

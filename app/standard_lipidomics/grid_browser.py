@@ -25,6 +25,7 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+from presentation.standard_grid.dimensions import DIMENSION_TITLES, dimension_values
 from presentation.viewer_theme import viewer_plotly_chart
 
 from annotator.grid_coherence import GRID_COHERENCE_COLUMNS
@@ -125,7 +126,7 @@ _HOVER = (
     "automatic status: %{customdata[7]}<extra></extra>"
 )
 
-_DIMENSION_TITLES = {"RT": "Retention time (min)", "m/z": "m/z"}
+_DIMENSION_TITLES = DIMENSION_TITLES
 
 # Four diagnostic strips instead of the 4D viewer's five: conventional data has
 # no CCS deviation, while MATLAB-engine m/z/RT coherence remains diagnostic.
@@ -429,7 +430,9 @@ def _sync_component_selection(component_key, grid_key, valid_keys, view_key=None
     point = component_state.get("point") if component_state else None
     clicked_key = _point_key_from_component(component_key)
     if clicked_key in valid_keys:
-        st.session_state.setdefault(_SELECTION_STATE, {})[grid_key] = [clicked_key]
+        keys = [key for key in point.get("selectedKeys", [clicked_key]) if key in valid_keys]
+        st.session_state.setdefault(_SELECTION_STATE, {})[grid_key] = keys
+        st.session_state.setdefault("standard_active_grid_keys", {})[grid_key] = clicked_key
     _store_component_view(point, view_key)
 
 
@@ -496,15 +499,15 @@ def _delete_annotations(chart_key: str, deletion_keys):
 # Figures
 # --------------------------------------------------------------------------- #
 def _observed_dimension(data, dimension):
-    return {"RT": data["feat_rt"], "m/z": data["feat_mz"]}[dimension]
+    return dimension_values(data["feat_rt"], data["feat_mz"], dimension)
 
 
 def _node_dimension(data, dimension):
-    return {"RT": data["node_rt"], "m/z": data["node_mz"]}[dimension]
+    return dimension_values(data["node_rt"], data["node_mz"], dimension)
 
 
 def _cloud_dimension(data, dimension):
-    return {"RT": data["rt"], "m/z": data["mz"]}[dimension]
+    return dimension_values(data["rt"], data["mz"], dimension)
 
 
 def _marker_groups(plot_df: pd.DataFrame):
@@ -610,59 +613,39 @@ def _axis_ranges(grid_state: dict, features: pd.DataFrame):
     return x0 - xpad, x1 + xpad, y0 - ypad, y1 + ypad
 
 
-def _render_statistics(active_row, sample_cols: list[str]):
-    """Per-sample intensities for the selected lipid."""
-    label = active_row["name"] if active_row is not None else "no selection"
-    st.markdown(
-        f'<div class="matlab-title">Statistics: {label}</div>',
-        unsafe_allow_html=True,
-    )
-    if active_row is None or not sample_cols:
-        st.caption("Select a lipid to show per-sample intensities.")
-        return
+def _sample_intensity_figure(active_row, sample_cols: list[str], group_map=None, group_names=None):
+    """Hide sample-axis labels and use only the metadata's declared groups."""
+    from plotly.colors import qualitative
+    group_map, group_names = group_map or {}, group_names or {}
     values = row_sample_values(active_row, sample_cols)
-    stat_df = pd.DataFrame({"sample": sample_cols, "value": values})
-    stat_df = stat_df[np.isfinite(stat_df["value"])]
-    fig = go.Figure()
-    # XCMS peak-group lists carry no sample metadata, so every sample is drawn
-    # under its own column name in one series rather than invented groups.
-    fig.add_trace(
-        go.Bar(
-            x=stat_df["sample"],
-            y=stat_df["value"],
-            name="sample",
-            marker_color="#636366",
-            hovertemplate="<b>%{x}</b><br>%{y:.3g}<extra></extra>",
-        )
-    )
-    fig.update_layout(
-        height=245,
-        margin=dict(l=54, r=118, t=36, b=64),
-        title=dict(
-            text=f"{active_row['name']} {active_row['adduct']}",
-            x=0.5,
-            xanchor="center",
-        ),
-        template="plotly_white",
-        paper_bgcolor="#ffffff",
-        plot_bgcolor="#ffffff",
-        font=MATLAB_FONT,
-        title_font=dict(family=MATLAB_FONT["family"], size=12, color="#1d1d1f"),
-        xaxis=matlab_axis_config(tickangle=-45),
-        yaxis=matlab_axis_config(
-            title=dict(text="intensity"),
-            rangemode="tozero",
-            tickformat=".2s",
-        ),
-        showlegend=False,
-        bargap=0.12,
-    )
-    viewer_plotly_chart(
-        fig,
-        width="stretch",
-        key="standard-stats::viewer",
-        config={"displayModeBar": False},
-    )
+    data = pd.DataFrame({"sample": sample_cols, "value": values, "position": range(len(sample_cols))})
+    data = data[np.isfinite(data["value"])]
+    data["group"] = data["sample"].map(group_map).fillna("Unassigned")
+    groups = sorted(data["group"].unique())
+    colours = dict(zip(groups, (qualitative.Safe * (len(groups) + 1))[:len(groups)]))
+    figure = go.Figure()
+    for group in groups:
+        sub = data[data["group"].eq(group)]
+        label = str(group_names.get(sub.iloc[0]["sample"], group))
+        lowered = (str(group) + " " + label).casefold()
+        colour = "#c7c7cc" if any(word in lowered for word in ("blank", "blanco")) else "#8e8e93" if any(word in lowered for word in ("qc", "pool")) or group == "Unassigned" else colours[group]
+        figure.add_trace(go.Bar(x=sub["position"], y=sub["value"], name=label,
+            marker_color=colour, customdata=sub["sample"].to_numpy(),
+            hovertemplate="<b>%{customdata}</b><br>%{y:.3g}<extra>%{fullData.name}</extra>"))
+    figure.update_layout(height=280, margin=dict(l=54, r=20, t=38, b=45),
+        title=dict(text=f"{active_row['name']} {active_row['adduct']}", x=.5, xanchor="center"),
+        template="plotly_white", font=MATLAB_FONT,
+        xaxis=matlab_axis_config(showticklabels=False, ticks="", title=None),
+        yaxis=matlab_axis_config(title=dict(text="intensity"), rangemode="tozero", tickformat=".2s"),
+        legend=dict(orientation="h", y=-.08, x=0), showlegend=True, bargap=.12, barmode="overlay")
+    return figure
+
+
+def _render_statistics(active_row, sample_cols: list[str], group_map=None, group_names=None):
+    if active_row is None or not sample_cols:
+        return
+    viewer_plotly_chart(_sample_intensity_figure(active_row, sample_cols, group_map, group_names),
+        width="stretch", key="standard-stats::viewer", config={"displayModeBar": False})
 
 
 def _diagnostic_services() -> StandardGridDiagnosticServices:
@@ -1087,6 +1070,8 @@ def _page_services() -> StandardGridPageServices:
     )
 
 
+@st.fragment
 def render_standard_grid_browser(result: dict) -> None:
     """Render the standard browser through its focused page coordinator."""
+    st.session_state.standard_review_run_token = id(result)
     _render_standard_grid_page(result, services=_page_services())

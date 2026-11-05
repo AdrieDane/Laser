@@ -10,6 +10,8 @@ from pathlib import Path
 from time import perf_counter
 from typing import Any
 
+from standard_lipidomics.internal_standards import read_internal_standards_csv
+
 from .reference import (
     ProjectInternalStandard,
     ReferenceData,
@@ -57,7 +59,8 @@ def load_reference_data(
     files = [roots["code"] / "param.json"]
     files.extend(roots["database"] / name for name in DATABASE_FILES)
     files.extend(sorted(roots["rtdb"].glob("lipidomics_*.tsv")))
-    files.append(roots["project"] / "internal_standards.tsv")
+    csv_path = roots["project"] / "internal_standards.csv"
+    files.append(csv_path if csv_path.is_file() else roots["project"] / "internal_standards.tsv")
     missing = [str(path) for path in files if not path.is_file()]
     if missing:
         raise ReferenceDataError(f"missing reference files: {', '.join(missing)}")
@@ -158,6 +161,12 @@ def _load_retention_times(paths: list[Path]) -> tuple[tuple[RetentionTimeObserva
 
 
 def _load_project_internal_standards(path: Path) -> tuple[ProjectInternalStandard, ...]:
+    if path.suffix.casefold() == ".csv":
+        try:
+            return tuple(ProjectInternalStandard(item.name, item.concentration, item.unit)
+                         for item in read_internal_standards_csv(path))
+        except ValueError as exc:
+            raise ReferenceDataError(str(exc)) from exc
     table = _load_table(path)
     if len(table.headers) != 2 or not table.headers[1]:
         raise ReferenceDataError("internal_standards.tsv must have name and unit columns")

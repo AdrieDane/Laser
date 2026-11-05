@@ -54,6 +54,7 @@ from standard_lipidomics.mass_calibration import (
     normalize_mass_calibrations,
 )
 from annotator.grid_coherence import score_grid_coherence
+from standard_lipidomics.internal_standards import project_is_definitions
 
 from .composition_filter import filter_compound_set_targets
 from .confidence import (
@@ -1062,6 +1063,7 @@ def _trusted_reference_anchors(
     result = annotate_standard_batch(
         sources,
         load_reference(DEFAULT_LASER_CHEMICAL_REFERENCE),
+        internal_standard_project=project_dir,
         ppm_tolerance=3.0,
         rp_rt_tolerance_min=SCIENTIFIC_DEFAULTS.rt_tolerance_min,
         align_rp_rt=False,
@@ -1128,6 +1130,9 @@ def _internal_standard_project_dir(
 ) -> Path:
     """Use study-specific spike metadata, falling back to the bundled panel."""
     source = Path(project_dir).expanduser().resolve()
+    csv_path, _ = project_is_definitions(source)
+    if csv_path is not None:
+        return csv_path.parent
     candidates = [source if source.is_dir() else source.parent]
     candidates.append(source / "Processing" / "Annotation")
     for path in discover_standard_streams(source).values():
@@ -2155,7 +2160,7 @@ def _assemble_automatic_phase_result(
     }
     result["composition_range_settings"] = composition_ranges.to_dict()
     result["internal_standard_source"] = str(
-        internal_standard_dir / "internal_standards.tsv"
+        internal_standard_dir / ("internal_standards.csv" if (internal_standard_dir / "internal_standards.csv").is_file() else "internal_standards.tsv")
     )
     result["internal_standards_expected"] = [
         {

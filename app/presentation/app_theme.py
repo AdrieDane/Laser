@@ -920,6 +920,12 @@ __PAGE_LOADING_MONITOR_SUPPRESSION__
         background: transparent !important;
         border-color: var(--app-divider) !important;
       }
+      /* Annotation forms share the same content edge as the module controls. */
+      [data-testid="stForm"][aria-label="matlab-engine-inputs"],
+      [data-testid="stForm"][aria-label="standard-lipidomics-inputs"] {
+        padding: 0 !important;
+        border: 0 !important;
+      }
       /* A form may contain several titled groups without one enclosing card. */
       [data-testid="stForm"]:has(.criteria-section-heading) {
         background: transparent !important;

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import numpy as np
 import streamlit as st
+from presentation.standard_grid.dimensions import DIMENSIONS
 
 
 CONTROLS_STATE = "standard_review_controls_visible"
@@ -177,11 +178,11 @@ def render_review_controls(
             st.button("‹", help="Hide review controls", on_click=_set_visible, args=(False,))
         st.markdown("**View**")
         x_dimension = st.selectbox(
-            "X dimension", ["RT", "m/z"], index=0,
+            "X dimension", DIMENSIONS, index=0,
             key="standard_viewer_x_dimension",
         )
-        y_dimension = "m/z" if x_dimension == "RT" else "RT"
-        st.caption(f"Y dimension: {y_dimension}")
+        y_dimension = st.selectbox("Y dimension", DIMENSIONS, index=1,
+            key="standard_viewer_y_dimension")
         st.divider()
         st.markdown("**Live review criteria**")
         st.caption(

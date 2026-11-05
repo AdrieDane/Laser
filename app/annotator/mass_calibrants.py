@@ -479,6 +479,9 @@ def detect_mass_calibration_candidates(
             rt_error = observed_rt - expected_rt if np.isfinite(expected_rt) else np.nan
             rows.append({
                 "standard": str(ref_row.standard),
+                "internal_standard_concentration": getattr(ref_row, "concentration", np.nan),
+                "internal_standard_unit": getattr(ref_row, "unit", ""),
+                "internal_standard_file": getattr(ref_row, "is_file", ""),
                 "name": str(ref_row.name),
                 "adduct": str(ref_row.adduct),
                 "source": str(ref_row.source),

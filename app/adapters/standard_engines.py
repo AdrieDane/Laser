@@ -278,6 +278,7 @@ class LaserReferenceEngine:
         payload = annotate_standard_batch(
             request.resolved_sources(),
             load_reference(reference_path),
+            internal_standard_project=request.project,
             ppm_tolerance=_float_setting(values.get(
                 "ppm", SCIENTIFIC_DEFAULTS.standard_ppm_tolerance,
             )),

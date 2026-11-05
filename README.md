@@ -63,7 +63,7 @@ project folder/
     Calibration/<timestamp>/
     LASER/<timestamp>/
     Untargeted/<timestamp>/
-  metadata/                 # portable copies of original inputs and metadata
+  metadata/                 # sample-group workbooks and internal_standards.csv
 ```
 
 **Calibration** supports independent m/z and RT calibration, or both, for each
@@ -72,6 +72,79 @@ available RP/NP and positive/negative stream. Review the standards and click
 data**. For calibrated data, choose the current export or an archived version
 from **Calibration version**; dates and available streams identify each version.
 The selected files are recorded with the saved annotation.
+
+Place sample-group workbooks and **internal_standards.csv** in `metadata/`.
+The CSV has `name,concentration,unit` columns. When present, it supplies the
+project's internal-standard list and quantities for calibration and both
+annotation engines. Names must match the bundled standard catalogue; malformed
+or unknown entries produce an error. Saved calibrations retain their own copy,
+so selecting an archived calibration also selects its original standard list.
+Projects without a CSV retain the legacy internal-standard behaviour.
+
+Annotation runs in a separate background Python process and saves its outputs
+automatically. Closing the browser does not stop it; keep the computer and
+worker process running. Reopen Annotation for the same project to view progress.
+Logs and run status are stored in `.laser/jobs/annotation/`. Completion shows
+**Annotation complete** and **Back to start**; open the saved project from the
+start page when ready to review it.
+
+The annotation workspace contains the reviewer with a top-right **Back to
+start** button. Both axes offer RT, m/z and CH₂ Kendrick mass defect. Sample
+intensity bars use metadata groups, with sample names available on hover.
+**Previous class** and **Next class** follow the class dropdown order. Mounted
+plots and local linked selection follow the approach in
+[LASER-4D `be478d6`](https://github.com/YRJJaspers/LASER-4D-lipidomics/tree/be478d6):
+click to select, Ctrl/Command-click to toggle, and Shift-click to select a range.
+Selected points and diagnostic rows highlight immediately while the reviewer
+updates without rerunning the surrounding page.
+
+**Untargeted analysis** is a pipeline launcher. Choose the sample groups and
+criteria, then run it in an independent background process. It uses the saved
+annotation when available and excludes accepted lipid features from testing.
+Without a completed annotation it explicitly offers analysis of all raw XCMS
+features. Inputs, sample groups and accepted-feature exclusions are frozen at
+launch. Results save in `Untargeted/`; logs and status are under
+`.laser/jobs/untargeted/`. Completion shows a message and **Back to start**.
+**Open completed untargeted analysis** is the separate viewer and never reruns
+statistics or chemical searches. Its Save button preserves review changes with
+the archive/overwrite choice.
+
+The viewer lists all unannotated features below the selected **unadjusted raw
+p-value** threshold. A separate column shows whether each also passes the
+fold-change and detection filters used by the volcano/map. Select a list row
+to see sample bars with metadata group colours, isotope partners, candidate
+formulas, adduct links, and CH₂-series neighbours. Non-significant and annotated
+features remain searchable as supporting counterparts.
+
+Adduct searches infer neutral masses under H, NH₄, Na, K and water-loss positive
+ions, plus deprotonated, formate, acetate, chloride, Na−2H and water-loss negative
+ions. Doubly protonated/deprotonated ions are also considered; isotope spacing
+constrains charge when available. Matches require mass tolerance and co-elution
+within the same chromatography. RP↔NP links compare mass without equating their
+retention times. Every compatible source/target adduct hypothesis is retained;
+none is silently converted to an identification. The common ion families follow
+[LIPID MAPS](https://www.lipidmaps.org/tools/ms/gp_ox_form.php).
+
+Isotope evidence searches co-eluting M+1 and M+2 carbon-13 spacings at charge one
+or two. Candidate neutral CHNOPS formulas use isotope-derived carbon counts
+(rounded estimate ±3), exact mass, charge, and a closed-shell DBE screen,
+including phosphorus. The bounded search uses N=0–3, O=1–14, P=0–2 and S=0–2;
+the five highest-ranked candidates are displayed with total candidate count.
+Approximate carbon-13 M+1/M+2 ratios rank candidates and account for adduct
+carbon. Heteroatom isotope fine structure is not modelled. These are hypotheses;
+mixed peaks, other isotope contributions,
+labelled compounds and formulas outside the search bounds can remain unresolved.
+Carbon isotope spacing follows [CIAAW](https://ciaaw.org/carbon.htm).
+
+Local homologous-series evidence searches ±1–4 CH₂ increments (including C₂H₄),
+scaled by isotope-supported charge or an assumed single charge. Links require
+both the configured ppm/absolute mass limits and RT neighbourhood. Connected
+components of three or more features are candidate series; isolated pairs are
+labelled as pairs. Annotated neighbours supply class context without assigning
+the unknown feature to that class. Full adduct links, homologous links, raw-p
+hits and statistics are saved as project tables and restored in the viewer.
+Older projects open with their stored evidence; rerun the pipeline to generate
+the expanded searches.
 
 RT calibration brings over the four models and standard-review diagnostics from
 [LASER-4D `a188f72`](https://github.com/YRJJaspers/LASER-4D-lipidomics/tree/a188f72a4366055238b474ab0826964430f33ee5):
@@ -105,7 +178,7 @@ untargeted result, enter its timestamped result folder in the corresponding
 input, so resaving cannot silently substitute a newer calibration.
 
 The **Minimal** and **Midnight** appearances, controls and page headers follow
-the same newest LASER-4D branch (`codex/annotation-viewer-performance`, commit
+the LASER-4D branch (`codex/annotation-viewer-performance`, theme snapshot
 `a188f72`, 4 November 2026). Change appearance using **Theme** on the start page.
 
 These changes have software and synthetic-data validation. They do not establish

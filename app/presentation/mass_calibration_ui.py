@@ -36,6 +36,7 @@ class MassCalibrationViewInput:
     title: str = "Mass calibration"
     validate_lipids: bool = True
     use_lipid_rt: bool = True
+    reference_panels: tuple[str, ...] = MASS_REFERENCE_PANELS
 
 
 @dataclass(frozen=True)
@@ -64,7 +65,7 @@ def _render_search_form(view: MassCalibrationViewInput) -> dict | None:
     with st.form(_key(view, "reference_search"), border=True):
         st.selectbox(
             "Reference m/z calibration list",
-            MASS_REFERENCE_PANELS,
+            view.reference_panels,
             key=_key(view, "reference_panel"),
             help=(
                 "Labelled panels use exact isotope-labelled masses. Unlabelled "
@@ -146,13 +147,14 @@ def _render_candidate_editor(
         width="stretch", hide_index=True,
         disabled=[column for column in editor.columns if column != "Confirm"],
         column_order=[
-            "Confirm", "standard", "source", "feat_feature_id",
+            "Confirm", "standard", "source", "internal_standard_concentration", "internal_standard_unit", "feat_feature_id",
             "feat_intensity", "feat_mz", "ref_mz", "ppm_error",
             "feat_rt", "ref_rt", "rt_error",
         ],
         column_config={
             "Confirm": st.column_config.CheckboxColumn("Confirm", default=False),
             "standard": "Calibration standard", "source": "Reference source",
+            "internal_standard_concentration": "IS concentration", "internal_standard_unit": "IS unit",
             "feat_feature_id": "Feature",
             "feat_intensity": st.column_config.NumberColumn("Intensity", format="%.3g"),
             "feat_mz": st.column_config.NumberColumn("Observed m/z", format="%.6f"),

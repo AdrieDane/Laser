@@ -12,7 +12,11 @@ import streamlit as st
 
 from presentation.app_theme import page_header
 from presentation.standard_rt_calibration import render_rt_calibration
+from standard_lipidomics.internal_standards import (
+    PROJECT_IS_PANELS, project_is_definitions, project_is_reference, project_is_signature,
+)
 from annotator.mass_calibrants import (
+    MASS_REFERENCE_PANELS,
     build_mass_reference_panel,
     detect_mass_calibration_candidates,
 )
@@ -133,9 +137,6 @@ def render_standard_pipeline_entry(
     if page_header(titles.get(page, "LASER Standard Lipidomics"), key="standard-module-back"):
         st.session_state[STANDARD_PIPELINE_PAGE_KEY] = "select"
         st.rerun()
-    st.caption(
-        "The selected analysis reads existing XCMS peak-group lists."
-    )
     return str(
         st.session_state.get(STANDARD_ANNOTATION_PROJECT_KEY, default_project)
     )
@@ -145,7 +146,7 @@ def _prefix(stream: str) -> str:
     return f"standard_export_{stream.casefold()}_mass"
 
 
-def _initialize_controls(prefix: str) -> None:
+def _initialize_controls(prefix: str, panels: tuple[str, ...] = MASS_REFERENCE_PANELS) -> None:
     defaults = {
         f"{prefix}_reference_panel": "Unlabelled IS + Agilent tune mix",
         f"{prefix}_search_ppm_tol": SCIENTIFIC_DEFAULTS.calibration_ppm_tolerance,
@@ -155,12 +156,15 @@ def _initialize_controls(prefix: str) -> None:
     }
     for key, value in defaults.items():
         st.session_state.setdefault(key, value)
+    if st.session_state[f"{prefix}_reference_panel"] not in panels:
+        st.session_state[f"{prefix}_reference_panel"] = panels[0]
 
 
 def _search_signature(stream: str, source: Path, prefix: str) -> str:
     stat = source.stat()
     payload = (
         stream,
+        project_is_signature(st.session_state.get(_INPUT_KEY, source.parent)),
         str(source.resolve()),
         stat.st_size,
         stat.st_mtime_ns,
@@ -179,13 +183,21 @@ def _search_calibrants(features: pd.DataFrame, *, stream: str, prefix: str) -> d
         if polarity == "pos"
         else NEGATIVE_CCS_INTERNAL_STANDARDS
     )
-    references = build_mass_reference_panel(
-        load_reference(_REFERENCE),
-        polarity=polarity,
-        panel_name=str(st.session_state[f"{prefix}_reference_panel"]),
-        unlabelled_standards=standards,
-        chromatography=stream.split("_", 1)[0],
-    )
+    project = st.session_state.get(_INPUT_KEY)
+    path, _ = project_is_definitions(project) if project else (None, ())
+    panel = str(st.session_state[f"{prefix}_reference_panel"])
+    if path is not None:
+        references = project_is_reference(project, load_reference(_REFERENCE), stream=stream)
+        if panel == "Agilent tune mix":
+            references = references.iloc[:0]
+        if "Agilent tune mix" in panel:
+            tune = build_mass_reference_panel(load_reference(_REFERENCE), polarity=polarity,
+                panel_name="Agilent tune mix", unlabelled_standards={}, chromatography=stream.split("_")[0])
+            references = pd.concat([references, tune], ignore_index=True)
+    else:
+        references = build_mass_reference_panel(
+            load_reference(_REFERENCE), polarity=polarity, panel_name=panel,
+            unlabelled_standards=standards, chromatography=stream.split("_", 1)[0])
     return detect_mass_calibration_candidates(
         features,
         references,
@@ -363,10 +375,17 @@ def render_standard_calibration(*, default_project: str) -> None:
     source = discover_standard_streams(st.session_state[_INPUT_KEY])[stream]
     features = load_standard_feature_list(source)
     prefix = _prefix(stream)
+    try:
+        is_path, _ = project_is_definitions(st.session_state[_INPUT_KEY])
+    except ValueError as exc:
+        st.error(str(exc))
+        return
+    panels = PROJECT_IS_PANELS if is_path is not None else MASS_REFERENCE_PANELS
     mass_enabled, rt_enabled = st.session_state.get(_KINDS_KEY, (True, False))
     if st.session_state.get(_STAGE_KEY) == "rt":
         features = apply_standard_mass_calibration(features, st.session_state.get(_MODELS_KEY, {}).get(stream))
-        rt_decision = render_rt_calibration(features, load_reference(_REFERENCE), stream=stream, prefix=prefix)
+        rt_decision = render_rt_calibration(features, load_reference(_REFERENCE), stream=stream, prefix=prefix,
+            project=st.session_state[_INPUT_KEY])
         if rt_decision.action == "none":
             return
         if rt_decision.action == "back":
@@ -386,7 +405,7 @@ def render_standard_calibration(*, default_project: str) -> None:
             st.session_state[_INDEX_KEY] = index + 1
             st.session_state[_STAGE_KEY] = "mass" if mass_enabled else "rt"
         st.rerun()
-    _initialize_controls(prefix)
+    _initialize_controls(prefix, panels)
     phase, polarity = stream.split("_", 1)
     st.caption(
         f"Calibration {index + 1} of {len(streams)} · {phase} "
@@ -411,6 +430,7 @@ def render_standard_calibration(*, default_project: str) -> None:
         title=f"{phase} {polarity} m/z calibration",
         validate_lipids=phase == "RP",
         use_lipid_rt=True,
+        reference_panels=panels,
     ))
     if decision.action == "none":
         return

@@ -19,6 +19,10 @@ from scipy.spatial import cKDTree
 from scipy.stats import spearmanr, ttest_ind
 
 from scientific_defaults import SCIENTIFIC_DEFAULTS
+from standard_lipidomics.untargeted_adducts import (
+    EVIDENCE_VERSION, adduct_options, search_adduct_evidence, attach_adduct_summaries,
+)
+from standard_lipidomics.untargeted_series import attach_lipid_series
 
 
 _NON_BIOLOGICAL_GROUP_TOKENS = {
@@ -508,6 +512,7 @@ def _differential_table(
             "detection_b_percent": detection_b,
             "log2_fold_change_b_vs_a": log2_fc,
             "p_value": p_value,
+            "raw_p_significant": p_value < float(criteria.p_value_threshold),
             "significant": significant,
             "already_identified": False,
             "detection_evidence": detection_evidence,
@@ -952,14 +957,8 @@ def _mass_candidates(
 
 
 def _neutral_mass_options(mz: float, polarity: str) -> list[tuple[str, float]]:
-    if polarity == "pos":
-        return [
-            (adduct, mz - offset)
-            for adduct, offset in _POSITIVE_ADDUCT_OFFSETS
-            if mz > offset
-        ]
-    adduct, offset = _NEGATIVE_ADDUCT
-    return [(adduct, mz - offset)]
+    return [(adduct.name, adduct.neutral(mz)) for adduct in adduct_options(polarity)
+            if adduct.neutral(mz) > 0]
 
 
 def _neutral_mass_hypotheses(mz: float, polarity: str) -> str:
@@ -975,20 +974,29 @@ def _elemental_formula_candidates(
     carbon_estimate: float,
     ppm_tolerance: float,
     maximum_candidates: int = 5,
+    charge: int = 1,
+    m_plus_2_percent: float = np.nan,
 ) -> tuple[str, int]:
     """Enumerate coarse CHNOPS formulas constrained by isotope-derived C.
 
     The search is intentionally narrow and returns hypotheses, not an identity.
-    It assumes a singly charged adduct and a closed-shell neutral formula.
+    Neutral CHNOPS candidates use the isotope charge and ion carbon correction.
+    M+2, when measured, ranks candidates without forcing an exact isotope fit.
     """
     if not np.isfinite(carbon_estimate) or carbon_estimate < 4.0:
         return "", 0
     carbon_centre = int(round(carbon_estimate))
     carbon_values = range(max(4, carbon_centre - 3), carbon_centre + 4)
     candidates: list[tuple[float, str]] = []
-    for adduct, neutral_mass in _neutral_mass_options(mz, polarity):
+    for ion in adduct_options(polarity, charge):
+        adduct, neutral_mass = ion.name, ion.neutral(mz)
+        if neutral_mass <= 0:
+            continue
         allowed_error = neutral_mass * float(ppm_tolerance) * 1e-6
-        for carbon in carbon_values:
+        for ion_carbon in carbon_values:
+            carbon = ion_carbon - ion.carbon
+            if carbon < 1:
+                continue
             carbon_mass = float(carbon) * 12.0
             for nitrogen in range(0, 4):
                 for oxygen in range(1, 15):
@@ -1004,10 +1012,10 @@ def _elemental_formula_candidates(
                             hydrogen = int(
                                 round((neutral_mass - heavy_mass) / _ATOMIC_MASS["H"])
                             )
-                            if hydrogen < 0 or hydrogen > 2 * carbon + nitrogen + 2:
+                            if hydrogen < 0 or hydrogen > 2 * carbon + nitrogen + phosphorus + 2:
                                 continue
                             double_bond_equivalents = (
-                                carbon - hydrogen / 2.0 + nitrogen / 2.0 + 1.0
+                                carbon - hydrogen / 2.0 + (nitrogen + phosphorus) / 2.0 + 1.0
                             )
                             if (
                                 double_bond_equivalents < 0.0
@@ -1037,7 +1045,17 @@ def _elemental_formula_candidates(
                                 f"({error_ppm:+.2f} ppm; "
                                 f"DBE {double_bond_equivalents:.0f})"
                             )
-                            candidates.append((abs(error_ppm), label))
+                            # Search targets specifically use C13 spacings, not
+                            # an integrated nominal envelope. Do not add Cl37,
+                            # S34 or O18 intensities that may be resolved apart.
+                            ion_carbon_count = carbon + ion.carbon
+                            r1 = ion_carbon_count * .0107
+                            r2 = ion_carbon_count * (ion_carbon_count - 1) / 2. * .0107**2
+                            isotope_error = abs((r1 * 100.) - carbon_estimate * 1.07) / max(3., carbon_estimate * .15)
+                            if np.isfinite(m_plus_2_percent):
+                                isotope_error += abs(r2 * 100. - m_plus_2_percent) / max(3., m_plus_2_percent * .25)
+                            label += f"; predicted C13 M+1 {r1*100.:.1f}%, M+2 {r2*100.:.1f}%"
+                            candidates.append((isotope_error + abs(error_ppm) / ppm_tolerance, label))
     candidates.sort(key=lambda item: (item[0], item[1]))
     unique: list[str] = []
     for _, label in candidates:
@@ -1118,7 +1136,7 @@ def _attach_isotope_evidence(
         source["rt"] = pd.to_numeric(source["rt"], errors="coerce")
         source = source.dropna(subset=["mz", "rt"])
         source = source.sort_values("mz").reset_index(drop=True)
-        hit_mask = table["significant"].fillna(False).astype(bool)
+        hit_mask = table.get("raw_p_significant", table["significant"]).fillna(False).astype(bool)
         for row_index, row in table[hit_mask].iterrows():
             mz = float(row["mz"])
             rt = float(row["rt"])
@@ -1287,6 +1305,7 @@ def _attach_isotope_evidence(
                 polarity,
                 carbon_estimate,
                 criteria.cross_mode_ppm_tolerance,
+                charge=charge, m_plus_2_percent=m2_percent,
             )
             table.at[row_index, "elemental_formula_candidates"] = formula_candidates
             table.at[row_index, "elemental_formula_candidate_count"] = formula_count
@@ -1549,10 +1568,13 @@ def _attach_cross_acquisition_evidence(
 def analyse_standard_untargeted(
     result: dict,
     criteria: UntargetedComparisonCriteria,
+    progress=None,
 ) -> dict:
     """Compare two groups for every unannotated feature in every stream."""
     by_stream: dict[str, pd.DataFrame] = {}
     skipped: list[dict] = []
+    if progress:
+        progress(.05, "Comparing sample groups")
     for stream, stream_result in result.get("streams", {}).items():
         features = stream_result.get("features", pd.DataFrame())
         mapping = (
@@ -1572,11 +1594,14 @@ def analyse_standard_untargeted(
             criteria,
             _accepted_feature_ids(result, str(stream)),
         )
+        if table.empty:
+            skipped.append({"stream": stream, "reason": "no unannotated features available"})
+            continue
         # Neighbour interpretation is needed only for points that can light up
         # in the viewer. Keeping the full test vectorized and clustering this
         # small subset keeps large XCMS projects responsive.
         significant = (
-            table[table["significant"]].copy() if not table.empty else table.copy()
+            table[table["raw_p_significant"]].copy() if not table.empty else table.copy()
         )
         enriched = _attach_cluster_hypotheses(
             significant,
@@ -1653,8 +1678,20 @@ def analyse_standard_untargeted(
                 else ""
             )
         by_stream[str(stream)] = table
+    if progress:
+        progress(.45, "Searching isotope envelopes and candidate formulas")
     by_stream = _attach_isotope_evidence(result, by_stream, criteria)
+    if progress:
+        progress(.65, "Searching adducts across acquisition modes")
     by_stream = _attach_cross_acquisition_evidence(result, by_stream, criteria)
+    adduct_matches = search_adduct_evidence(_coordinate_sources(result), by_stream,
+        ppm=criteria.cross_mode_ppm_tolerance,
+        rt_tolerance=criteria.opposite_polarity_rt_tolerance_min)
+    by_stream = attach_adduct_summaries(by_stream, adduct_matches)
+    if progress:
+        progress(.85, "Finding local CH2 homologous series")
+    by_stream, homologous_matches = attach_lipid_series(by_stream, _coordinate_sources(result),
+        {stream: _accepted_neighbour_frame(result, stream) for stream in by_stream}, criteria)
     combined = (
         pd.concat(by_stream.values(), ignore_index=True, sort=False)
         if by_stream
@@ -1662,6 +1699,9 @@ def analyse_standard_untargeted(
     )
     return {
         "criteria": asdict(criteria),
+        "evidence_version": EVIDENCE_VERSION,
+        "adduct_matches": adduct_matches,
+        "homologous_matches": homologous_matches,
         "by_stream": by_stream,
         "features": combined,
         "significant_features": (
@@ -1669,6 +1709,7 @@ def analyse_standard_untargeted(
             if not combined.empty
             else combined.copy()
         ),
+        "raw_p_features": combined[combined["raw_p_significant"]].copy() if not combined.empty else combined.copy(),
         "group_catalog": group_catalog(result),
         "skipped_streams": pd.DataFrame(skipped),
         "method": (

@@ -13,10 +13,10 @@ import streamlit as st
 from presentation.viewer_theme import viewer_plotly_chart
 
 from standard_lipidomics.workflow import load_standard_feature_list
+from standard_lipidomics.untargeted_adducts import EVIDENCE_VERSION
 from scientific_defaults import SCIENTIFIC_DEFAULTS
 from standard_lipidomics.untargeted import (
     UntargetedComparisonCriteria,
-    analyse_standard_untargeted,
     attach_excel_sample_metadata,
     default_biological_groups,
     group_catalog,
@@ -57,22 +57,6 @@ def _restore_group_metadata_from_inputs(result: dict) -> None:
                 features.attrs[key] = metadata_source.attrs[key]
 
 
-def _untargeted_result_signature(result: dict, criteria) -> tuple:
-    accepted = result.get("automatic_annotations", pd.DataFrame())
-    stream_signature = tuple(
-        (
-            str(stream), len(stream_result.get("features", pd.DataFrame())),
-            tuple(sorted(
-                stream_result.get("features", pd.DataFrame()).attrs
-                .get("sample_group_map", {}).items()
-            )),
-        )
-        for stream, stream_result in result.get("streams", {}).items()
-    )
-    return (
-        str(result.get("engine", "laser")), len(accepted), stream_signature,
-        criteria,
-    )
 
 
 def _untargeted_criteria(
@@ -83,14 +67,9 @@ def _untargeted_criteria(
     defaults = default_biological_groups(result)
     if not catalog.empty:
         with st.expander("Sample-group mapping", expanded=False):
-            st.caption(
-                "Project Excel metadata is authoritative. The table records "
-                "which groups are eligible biological groups for comparison."
-            )
             st.dataframe(catalog, hide_index=True, width="stretch")
             audit = result.get("untargeted_sample_metadata_audit", pd.DataFrame())
             if isinstance(audit, pd.DataFrame) and not audit.empty:
-                st.caption("Exact File Name + Mode join audit")
                 st.dataframe(audit, hide_index=True, width="stretch")
     if defaults is None:
         st.info(
@@ -147,6 +126,19 @@ def _untargeted_criteria(
             step=5.0, key="standard_untargeted_detection",
             help="At least this percentage of samples in group A or B must carry a non-zero feature intensity.",
         )
+    with st.expander("Feature-evidence search settings", expanded=False):
+        ppm = st.number_input("Mass tolerance (ppm)", min_value=.1, max_value=100.,
+            value=float(saved_criteria.get("cross_mode_ppm_tolerance", SCIENTIFIC_DEFAULTS.standard_ppm_tolerance)),
+            key="standard-untargeted-evidence-ppm")
+        coelution = st.number_input("Adduct co-elution tolerance (min)", min_value=.001, max_value=5.,
+            value=float(saved_criteria.get("opposite_polarity_rt_tolerance_min", SCIENTIFIC_DEFAULTS.untargeted_opposite_polarity_rt_tolerance_min)),
+            key="standard-untargeted-evidence-rt")
+        isotope_rt = st.number_input("Isotope co-elution tolerance (min)", min_value=.001, max_value=5.,
+            value=float(saved_criteria.get("isotope_rt_tolerance_min", SCIENTIFIC_DEFAULTS.untargeted_isotope_rt_tolerance_min)),
+            key="standard-untargeted-isotope-rt")
+        series_rt = st.number_input("CH₂-series RT neighbourhood (min)", min_value=.001, max_value=10.,
+            value=float(saved_criteria.get("ch2_rt_tolerance_min", SCIENTIFIC_DEFAULTS.untargeted_ch2_rt_tolerance_min)),
+            key="standard-untargeted-series-rt")
     if group_a == group_b:
         st.warning("Choose two different biological groups.")
         return None
@@ -154,42 +146,13 @@ def _untargeted_criteria(
         group_a=str(group_a), group_b=str(group_b),
         p_value_threshold=float(p_value), min_abs_log2_fold_change=float(fold),
         min_detection_percent=float(detection),
+        cross_mode_ppm_tolerance=float(ppm), opposite_polarity_rt_tolerance_min=float(coelution),
+        isotope_rt_tolerance_min=float(isotope_rt), ch2_rt_tolerance_min=float(series_rt),
     ), labels
 
 
-def _store_untargeted_settings(criteria: UntargetedComparisonCriteria) -> None:
-    config = st.session_state.get("standard_headless_config")
-    if not isinstance(config, dict):
-        return
-    config.setdefault("annotation", {})["untargeted"] = {
-        "enabled": True, "group_a": criteria.group_a, "group_b": criteria.group_b,
-        "p_value_threshold": criteria.p_value_threshold,
-        "min_abs_log2_fold_change": criteria.min_abs_log2_fold_change,
-        "min_detection_percent": criteria.min_detection_percent,
-        "ch2_mass_tolerance_da": criteria.ch2_mass_tolerance_da,
-        "ch2_rt_tolerance_min": criteria.ch2_rt_tolerance_min,
-        "cross_mode_ppm_tolerance": criteria.cross_mode_ppm_tolerance,
-        "opposite_polarity_rt_tolerance_min": criteria.opposite_polarity_rt_tolerance_min,
-        "isotope_rt_tolerance_min": criteria.isotope_rt_tolerance_min,
-    }
 
 
-def _calculate_untargeted_analysis(
-    result: dict, criteria: UntargetedComparisonCriteria,
-) -> dict:
-    signature = _untargeted_result_signature(result, criteria)
-    if st.session_state.get("standard_untargeted_signature") != signature:
-        saved = result.get("untargeted_analysis")
-        if isinstance(saved, dict) and saved.get("criteria") == vars(criteria):
-            st.session_state.standard_untargeted_analysis = saved
-        else:
-            with st.spinner("Comparing unannotated features between groups…"):
-                st.session_state.standard_untargeted_analysis = (
-                    analyse_standard_untargeted(result, criteria)
-                )
-        st.session_state.standard_untargeted_signature = signature
-        st.session_state.pop("standard_report_signature", None)
-    return st.session_state.get("standard_untargeted_analysis", {})
 
 
 def _render_untargeted_volcano(
@@ -201,15 +164,9 @@ def _render_untargeted_volcano(
         rows=2, cols=2, subplot_titles=modes, shared_xaxes=True, shared_yaxes=True,
         horizontal_spacing=0.08, vertical_spacing=0.13,
     )
-    total_background = sum(
-        int((~table["significant"].fillna(False).astype(bool)).sum())
-        for table in by_stream.values()
-        if isinstance(table, pd.DataFrame) and not table.empty
-    )
     populated = sum(isinstance(by_stream.get(mode), pd.DataFrame)
                     and not by_stream.get(mode).empty for mode in modes)
     per_mode_limit = max(1_000, 12_000 // max(populated, 1))
-    plotted_background = 0
     for index, mode in enumerate(modes):
         row, column = divmod(index, 2)
         table = by_stream.get(mode, pd.DataFrame())
@@ -220,7 +177,6 @@ def _render_untargeted_volcano(
         if len(background) > per_mode_limit:
             background = background.sample(
                 n=per_mode_limit, random_state=20260814 + index)
-        plotted_background += len(background)
         volcano = pd.concat([background, table[mask]], ignore_index=True, sort=False).copy()
         volcano["minus_log10_p"] = -np.log10(
             pd.to_numeric(volcano["p_value"], errors="coerce").clip(lower=1e-12))
@@ -246,11 +202,6 @@ def _render_untargeted_volcano(
                          criteria.min_abs_log2_fold_change):
             figure.add_vline(x=boundary, line_dash="dot", line_color="#8b5cf6",
                              line_width=1, row=row + 1, col=column + 1)
-    if plotted_background < total_background:
-        st.caption(f"The four volcano panels show a fixed sample of "
-                   f"{plotted_background:,} of {total_background:,} non-significant "
-                   "background features for interactive performance. Every raw-p hit "
-                   "and every statistical result remain included.")
     figure.update_layout(height=670, margin=dict(l=55, r=25, t=45, b=55),
                          hovermode="closest")
     figure.update_xaxes(title_text="log2 fold change (B vs A)", row=2)
@@ -258,10 +209,10 @@ def _render_untargeted_volcano(
     viewer_plotly_chart(figure, width="stretch", config={"displaylogo": False})
 
 
-def _render_significant_features(significant: pd.DataFrame) -> None:
+def _render_significant_features(significant: pd.DataFrame):
     columns = [
         "stream", "feature_id", "mz", "rt", "mobility", "mobility_unit", "ccs",
-        "log2_fold_change_b_vs_a", "p_value", "detection_a_percent",
+        "log2_fold_change_b_vs_a", "p_value", "significant", "detection_a_percent",
         "detection_b_percent", "detection_evidence", "cluster_class",
         "cluster_hypothesis", "homologous_series_neighbor_count",
         "homologous_series_hypothesis", "significant_ch2_series_id",
@@ -278,50 +229,96 @@ def _render_significant_features(significant: pd.DataFrame) -> None:
         "opposite_polarity_rule", "opposite_polarity_mass_error_ppm",
         "opposite_polarity_rt_delta_seconds", "opposite_polarity_abundance_spearman",
         "opposite_polarity_abundance_pairs", "opposite_polarity_abundance_pairing",
-        "cross_acquisition_evidence",
+        "cross_acquisition_evidence", "same_mode_adduct_candidate_count", "all_mode_adduct_candidate_count",
+        "lipid_series_id", "lipid_series_size", "lipid_series_class_context", "lipid_series_evidence",
     ]
-    st.dataframe(significant[[column for column in columns if column in significant]],
-                 hide_index=True, width="stretch")
-    st.download_button(
-        "Download differential unannotated features CSV",
-        significant.to_csv(index=False).encode(),
-        file_name="LASER_standard_differential_unannotated_features.csv",
-        mime="text/csv", width="stretch",
-    )
+    ordered = significant.sort_values(["p_value", "stream", "feature_id"]).reset_index(drop=True)
+    event = st.dataframe(ordered[[column for column in columns if column in ordered]],
+        hide_index=True, width="stretch", key="standard-untargeted-raw-p-list",
+        on_select="rerun", selection_mode="single-row",
+        column_config={"significant": st.column_config.CheckboxColumn("Passes extra filters")})
+    selected = event.selection.rows
+    return ordered.iloc[selected[0] if selected and selected[0] < len(ordered) else 0]
+
+
+def _untargeted_sample_bar_figure(result, row):
+    from standard_lipidomics.grid_browser import _sample_intensity_figure, standard_sample_columns
+    features = result.get("streams", {}).get(row["stream"], {}).get("features", pd.DataFrame())
+    selected = features[features.feature_id.astype(str).eq(str(row["feature_id"]))] if not features.empty else features
+    if selected.empty:
+        return None
+    samples = standard_sample_columns(features)
+    values = pd.Series({"name": f"Feature {row['feature_id']}", "adduct": "",
+                        **{f"feat_{sample}": selected.iloc[0][sample] for sample in samples}})
+    return _sample_intensity_figure(values, samples, features.attrs.get("sample_group_map", {}),
+        features.attrs.get("sample_group_name_map", {}))
+
+
+def _render_feature_chemical_evidence(row, analysis):
+    st.subheader(f"Feature evidence: {row['stream']} · {row['feature_id']} · m/z {row['mz']:.4f}")
+    with st.expander("Isotopes and candidate formulas", expanded=True):
+        isotope_rows = []
+        for number in (1, 2):
+            prefix = f"isotope_m_plus_{number}"
+            feature = row.get(prefix + "_feature_id", "")
+            if pd.notna(feature) and str(feature):
+                isotope_rows.append({"Isotope": f"M+{number}", "Feature": feature,
+                    "m/z": row.get(prefix + "_mz"), "Relative intensity (%)": row.get(prefix + "_intensity_percent"),
+                    "RT difference (s)": row.get(prefix + "_rt_delta_seconds")})
+        if isotope_rows:
+            st.dataframe(pd.DataFrame(isotope_rows), hide_index=True, width="stretch")
+        else:
+            st.write("No co-eluting isotope partner found.")
+        st.write(row.get("chemical_composition_hypothesis", "Formula evidence unavailable."))
+    for key, title in (("adduct_matches", "Adduct and cross-mode candidates"),
+                       ("homologous_matches", "CH₂ / C₂H₄ series neighbours")):
+        with st.expander(title, expanded=True):
+            matches = analysis.get(key, pd.DataFrame())
+            stream_col = "source_stream" if key == "adduct_matches" else "stream"
+            if not matches.empty:
+                matches = matches[matches[stream_col].eq(row["stream"]) & matches.source_feature_id.astype(str).eq(str(row["feature_id"]))]
+            if matches.empty:
+                st.write("No candidates within the search tolerances.")
+            else:
+                st.dataframe(matches, hide_index=True, width="stretch")
+            if key == "homologous_matches":
+                st.write(row.get("lipid_series_evidence", "No local series evidence."))
 
 
 def _render_standard_untargeted(result: dict) -> dict:
-    """Render and calculate the unannotated differential feature follow-up."""
-    _restore_group_metadata_from_inputs(result)
+    """View saved statistics only; the pipeline runs in its own module."""
     st.subheader("Untargeted differential features")
-    st.caption(
-        "This stage runs after annotation and excludes every feature accepted "
-        "as a lipid (primary or equivalent). QC, pooled QC, blanks and "
-        "internal-standard injections are not eligible comparison groups."
-    )
-    configured = _untargeted_criteria(result)
-    if configured is None:
+    analysis = result.get("untargeted_analysis", {})
+    if not analysis:
+        st.info("Run Untargeted analysis from the start page, then open its completed project here.")
         return {}
-    criteria, labels = configured
-    _store_untargeted_settings(criteria)
-    analysis = _calculate_untargeted_analysis(result, criteria)
+    if analysis.get("evidence_version", 0) < EVIDENCE_VERSION:
+        st.info("This project contains the previously saved evidence. Run Untargeted analysis again to generate the expanded adduct and CH₂-series searches.")
+    criteria = UntargetedComparisonCriteria(**analysis["criteria"])
     all_features = analysis.get("features", pd.DataFrame())
     significant = analysis.get("significant_features", pd.DataFrame())
+    raw_p = analysis.get("raw_p_features", significant)
     metrics = st.columns(3)
     metrics[0].metric("Unannotated features tested", f"{len(all_features):,}")
-    metrics[1].metric("Raw-p hits", f"{len(significant):,}")
-    cluster_supported = (int(significant.get(
-        "cluster_class", pd.Series(dtype=str)).astype(str).ne("").sum())
-        if not significant.empty else 0)
+    metrics[1].metric("Raw-p hits", f"{len(raw_p):,}")
+    cluster_supported = (int(raw_p.get(
+        "cluster_class", pd.Series(dtype=str)).fillna("").astype(str).ne("").sum())
+        if not raw_p.empty else 0)
     metrics[2].metric("With local class context", f"{cluster_supported:,}")
-    st.caption(f"{analysis.get('method', '')}. Positive log2 fold change means "
-               f"higher in {labels.get(criteria.group_b, criteria.group_b)}. "
-               f"{analysis.get('interpretation_boundary', '')}")
-    if significant.empty:
-        st.info("No unannotated feature passes the current raw-p, fold-change "
-                "and detection gates.")
+    if raw_p.empty:
+        st.info("No unannotated feature passes the saved raw-p-value threshold.")
+        return analysis
+    feature_list, sample_plot = st.columns([6.6, 4.15], gap="small")
+    with feature_list:
+        st.subheader("Features with significant raw p-value")
+        selected = _render_significant_features(raw_p)
+    with sample_plot:
+        figure = _untargeted_sample_bar_figure(result, selected)
+        if figure is not None:
+            viewer_plotly_chart(figure, width="stretch", key="standard-untargeted-selected-samples",
+                config={"displayModeBar": False})
+    _render_feature_chemical_evidence(selected, analysis)
     _render_untargeted_volcano(analysis, criteria)
-    _render_significant_features(significant)
     return analysis
 
 
@@ -640,12 +637,6 @@ def _render_cross_mode_abundance_correlation(
     if not comparisons:
         return
     with st.expander("Cross-mode abundance correlation", expanded=True):
-        st.caption(
-            "Only uniquely paired biological samples are compared. LASER uses an "
-            "Excel specimen identifier where available, then exact sample names, "
-            "and finally a conservative normalized acquisition name. Correlation "
-            "supports a relationship but does not establish identity."
-        )
         for label, target_stream, target_feature, pairs, method, rho in comparisons:
             plot = pairs.copy()
             plot["log2_source"] = np.log2(
@@ -796,9 +787,6 @@ def _prepare_untargeted_map_table(
     significant = table[table["significant"].fillna(False).astype(bool)].copy()
     background = table[~table.index.isin(significant.index)]
     if len(background) > 20_000:
-        st.caption(f"Showing a fixed background sample of 20,000 of "
-                   f"{len(background):,} non-significant features in this map. "
-                   "Every raw-p hit remains visible and exports are unchanged.")
         background = background.sample(n=20_000, random_state=20260814)
     threshold = float(analysis.get("criteria", {}).get(
         "p_value_threshold", SCIENTIFIC_DEFAULTS.untargeted_p_value_threshold))
@@ -918,15 +906,11 @@ def _render_selected_map_feature(
     significant: pd.DataFrame,
 ) -> None:
     if result is None or not selection:
-        st.caption("Select a coloured significant feature to show its sample-level "
-                   "abundance pattern.")
         return
     stream, feature = selection
     mask = (significant["source_stream"].astype(str).eq(str(stream))
             & significant["feature_id"].astype(str).eq(str(feature)))
     if not mask.any():
-        st.caption("Select a coloured significant feature to show its sample-level "
-                   "abundance pattern.")
         return
     _render_selected_untargeted_abundance(
         result, stream, feature, significant[mask].iloc[0])
@@ -943,12 +927,6 @@ def _render_standard_untargeted_feature_map(
     if not available:
         return
     st.subheader("Untargeted MS feature map")
-    st.caption(
-        "Only features not accepted by the lipid annotation engine are shown. Grey "
-        "points did not pass the current screening gates; coloured diamonds are "
-        "raw-p hits. Positive ions are above zero and negative ions are mirrored "
-        "below zero. Colour saturation increases as p-values become smaller."
-    )
     families = _untargeted_map_families(available)
     family = st.selectbox(
         "Chromatography", list(families), key="standard_untargeted_map_chromatography",
@@ -981,10 +959,6 @@ def _render_untargeted_review_basket(result: dict) -> None:
     review, reacquisition = _untargeted_review_outputs(result)
     st.subheader("Feature review basket")
     if review.empty:
-        st.caption(
-            "Select a significant feature on the RT–m/z map, assign keep, reject, "
-            "or follow up, and save it to build a review list."
-        )
         return
     counts = review["decision"].value_counts()
     columns = st.columns(3)

@@ -112,7 +112,7 @@ def test_gui_selects_current_or_archived_calibration(tmp_path):
     assert len(choice.options) == 2
     choice.select_index(1).run()
     assert not app.exception
-    assert any(str(archive) in c.value for c in app.caption)
+    assert app.session_state["standard_selected_input_directory"] == str(archive)
 
 
 def test_calibration_has_save_archive_and_overwrite_controls(tmp_path):

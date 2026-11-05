@@ -13,6 +13,7 @@ import numpy as np
 
 from completed_project import load_completed_project
 from standard_lipidomics.project_layout import workflow_folder, xcms_project_root
+from standard_lipidomics.internal_standards import find_project_is_file, project_is_definitions, project_is_signature
 from standard_lipidomics.mass_calibration import write_calibrated_xcms_files
 from standard_lipidomics.rt_calibration import calibrate_standard_rt_bytes, freeze_rt_calibration
 from output_io import atomic_write_csv, atomic_write_json
@@ -74,12 +75,14 @@ def stage_project_metadata(
             continue
         metadata_files = (
             list(folder.glob("*.xlsx")) + list(folder.glob("*.xls"))
-            + list(folder.glob("internal_standards.tsv"))
+            + list(folder.glob("internal_standards.tsv")) + list(folder.glob("internal_standards.csv"))
         )
         for source in metadata_files:
             if source.name.startswith("~$"):
                 continue
             target = destination / source.name
+            if source.name == "internal_standards.csv" and target.is_file():
+                continue
             if source.resolve() != target.resolve():
                 shutil.copy2(source, target)
     return copied
@@ -201,7 +204,7 @@ def _write_untargeted_project(
         role = f"stream__{slug}__features"
         paths[role] = atomic_write_csv(tables / "streams" / slug / "features.csv", frame)
         streams[str(name)] = {"slug": slug, "features_attrs": _json_attrs(frame.attrs)}
-    for key in ("features", "significant_features", "group_catalog", "skipped_streams"):
+    for key in ("features", "significant_features", "raw_p_features", "adduct_matches", "homologous_matches", "group_catalog", "skipped_streams"):
         frame = analysis.get(key)
         if isinstance(frame, pd.DataFrame):
             role = f"untargeted_{key}"
@@ -225,6 +228,7 @@ def _write_untargeted_project(
         "workflow": "untargeted",
         "criteria": dict(analysis.get("criteria") or {}),
         "method": str(analysis.get("method", "")),
+        "evidence_version": analysis.get("evidence_version", 0),
         "interpretation_boundary": str(analysis.get("interpretation_boundary", "")),
         "inputs": dict(inputs or {}),
     })
@@ -280,12 +284,15 @@ def load_untargeted_workflow(project: str | Path) -> tuple[dict, dict]:
     analysis: dict[str, Any] = {
         "criteria": run.get("criteria", {}),
         "method": run.get("method", ""),
+        "evidence_version": run.get("evidence_version", 0),
         "interpretation_boundary": run.get("interpretation_boundary", ""),
     }
-    for key in ("features", "significant_features", "group_catalog", "skipped_streams"):
+    for key in ("features", "significant_features", "raw_p_features", "adduct_matches", "homologous_matches", "group_catalog", "skipped_streams"):
         analysis[key] = load_project_table(saved, f"untargeted_{key}")
     by_stream = {}
     features = analysis["features"]
+    if "raw_p_significant" not in features:
+        analysis["raw_p_features"] = analysis["significant_features"].copy()
     if "stream" in features:
         for name, frame in features.groupby("stream", sort=False):
             by_stream[str(name)] = frame.copy()
@@ -314,10 +321,15 @@ def save_calibration_workflow(
     folders = [root, root / "metadata"]
     folders.extend(Path(value).parent for value in sources.values() if not isinstance(value, bytes))
     for folder in folders:
-        for pattern in ("*.xlsx", "*.xls", "internal_standards.tsv"):
+        for pattern in ("*.xlsx", "*.xls", "internal_standards.tsv", "internal_standards.csv"):
             for path in folder.glob(pattern):
                 if not path.name.startswith("~$"):
                     metadata[path.name] = path.read_bytes()
+
+    selected_is = find_project_is_file(project)
+    if selected_is is not None:
+        metadata["internal_standards.csv"] = selected_is.read_bytes()
+    is_path, is_definitions = project_is_definitions(project)
 
     def write(destination: Path) -> dict[str, Path]:
         paths = write_calibrated_xcms_files(payloads, calibrations, destination)
@@ -326,6 +338,11 @@ def save_calibration_workflow(
         manifest["project"] = str(root)
         manifest["saved_at"] = datetime.now(timezone.utc).isoformat()
         manifest["rt_calibration_source"] = "LASER-4D a188f72"
+        manifest["internal_standard_source"] = str(is_path) if is_path else None
+        manifest["internal_standard_signature"] = project_is_signature(project)
+        manifest["internal_standards_expected"] = [
+            {"name": item.name, "concentration": item.concentration, "unit": item.unit}
+            for item in is_definitions]
         for name, path in paths.items():
             rt_model = (rt_calibrations or {}).get(name)
             if rt_model is not None:

@@ -10,6 +10,7 @@ import pandas as pd
 import plotly.graph_objects as go
 
 from viewer_common import apply_matlab_plot_style
+from presentation.standard_grid.dimensions import projected_grid_line
 
 
 @dataclass(frozen=True)
@@ -133,12 +134,13 @@ def _add_feature_layers(
 
 def _add_grid_layers(
     figure: go.Figure, grid_state: dict, plot_df: pd.DataFrame,
-    show_mesh: bool, services: StandardGridFigureServices,
+    show_mesh: bool, services: StandardGridFigureServices, x_dimension: str = "RT", y_dimension: str = "m/z",
 ) -> None:
     for family in ("db_lines", "c_lines"):
         line = grid_state["mesh_lines"].get(family) if show_mesh else None
         figure.add_trace(go.Scattergl(
-            x=line[0] if line else [], y=line[1] if line else [], mode="lines",
+            x=projected_grid_line(line, x_dimension, y_dimension)[0],
+            y=projected_grid_line(line, x_dimension, y_dimension)[1], mode="lines",
             line=dict(color="rgba(150,110,220,0.55)", width=1),
             hoverinfo="skip", showlegend=False,
         ))
@@ -148,8 +150,8 @@ def _add_grid_layers(
     dec_xs: list[float | None] = []
     dec_ys: list[float | None] = []
     for _, row in conn.iterrows():
-        xs = [services.observed_dimension(row, "RT"), services.node_dimension(row, "RT"), None]
-        ys = [services.observed_dimension(row, "m/z"), services.node_dimension(row, "m/z"), None]
+        xs = [services.observed_dimension(row, x_dimension), services.node_dimension(row, x_dimension), None]
+        ys = [services.observed_dimension(row, y_dimension), services.node_dimension(row, y_dimension), None]
         target = (inc_xs, inc_ys) if row["feat_rt"] >= row["node_rt"] else (dec_xs, dec_ys)
         target[0].extend(xs)
         target[1].extend(ys)
@@ -162,7 +164,7 @@ def _add_grid_layers(
             hoverinfo="skip", showlegend=False, name=name,
         ))
     figure.add_trace(go.Scatter(
-        x=services.node_dimension(conn, "RT"), y=services.node_dimension(conn, "m/z"),
+        x=services.node_dimension(conn, x_dimension), y=services.node_dimension(conn, y_dimension),
         mode="markers", marker=dict(color="rgba(150,110,220,0.8)", size=4, symbol="x"),
         hoverinfo="skip", showlegend=False, name="grid nodes",
     ))
@@ -267,7 +269,7 @@ def build_standard_grid_figure(
         x_dimension=x_dimension, y_dimension=y_dimension, axis_ranges=axis_ranges,
         services=services,
     )
-    _add_grid_layers(figure, grid_state, plot_df, show_mesh, services)
+    _add_grid_layers(figure, grid_state, plot_df, show_mesh, services, x_dimension, y_dimension)
     _add_species_layers(
         figure, plot_df, x_dimension=x_dimension, y_dimension=y_dimension,
         show_labels=show_labels, selected_keys=selected_keys,

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass
-import hashlib
 from pathlib import Path
 from typing import Any
 
@@ -18,6 +17,7 @@ from standard_lipidomics.workflow import (
     discover_standard_streams,
 )
 from standard_lipidomics.project_layout import xcms_project_root
+from application.annotation_jobs import start_annotation_job
 from standard_lipidomics.policy import (
     DEFAULT_MATLAB_POLICY_PATH,
     discover_matlab_fa_ranges,
@@ -30,7 +30,6 @@ from matlab_annotation.configuration import (
     POST_REGRESSION_POSITIONAL_RESOLUTION,
     UNIFIED_EVIDENCE_ANCHORS,
 )
-from matlab_annotation.execution import MatlabAnnotationError
 from scientific_defaults import SCIENTIFIC_DEFAULTS
 
 
@@ -79,7 +78,7 @@ def _matlab_form(
     *, default_project: str, default_reference: Path,
     render_composition_ranges: Callable[[str], Any],
 ) -> MatlabFormState:
-    with st.form("matlab-engine-inputs", border=True):
+    with st.form("matlab-engine-inputs", border=False):
         phase_choice = st.radio(
             "Chromatography", ("Both", "RP", "NP"), horizontal=True,
             help=("Both runs RP and NP automatically but keeps their RT models and "
@@ -223,50 +222,10 @@ def _run_matlab_form(
     project_signature: Callable[[Path, tuple[str, ...]], tuple],
     run_cached: Callable[..., dict],
 ) -> None:
-    """Run annotation directly from original or pre-calibrated XCMS files."""
+    """Launch an independent process; the browser only monitors its status."""
     project = Path(state.input_directory).expanduser()
     sources = discover_standard_streams(project)
-    status, bar = st.empty(), st.progress(0.0)
-
-    def report(fraction: float, message: str) -> None:
-        bar.progress(min(max(fraction, 0.0), 1.0))
-        status.caption(message)
-
-    try:
-        result = run_cached(
-            str(project.resolve()), project_signature(project, state.phases),
-            str(Path(state.reference_directory).expanduser()), cache_version,
-            state.phases, state.anchor_selection_mode,
-            state.positional_workflow_mode, state.anchor_ppm,
-            state.anchor_rt_seconds, state.anchor_score_margin,
-            state.minimum_anchors, state.use_grid_coherence,
-            state.grid_coherence_threshold, state.composition_ranges,
-            report,
-            use_pe_rebuild=state.use_pe_rebuild,
-            pe_rebuild_score_threshold=state.pe_rebuild_score_threshold,
-            use_experimental_pe_selector=state.use_experimental_pe_selector,
-            grid_coherence_version=state.grid_coherence_version,
-        )
-    except MatlabAnnotationError as error:
-        bar.empty()
-        status.empty()
-        st.error(str(error))
-        return
-    bar.empty()
-    status.empty()
-    st.session_state.standard_annotation_result = result
-    st.session_state.standard_results_page = "menu"
-    st.session_state.standard_loaded_workflow = "annotation"
-    st.session_state.pop("standard-results-enable-untargeted", None)
-    st.session_state.standard_auto_save_annotation_pending = True
-    st.session_state.standard_auto_save_untargeted_pending = True
-    st.session_state.standard_project_directory = str(xcms_project_root(project))
-    st.session_state.standard_input_sources = {name: path.read_bytes() for name, path in sources.items()}
-    for key in ("standard_report_html", "standard_report_signature",
-                "standard_untargeted_review_basket", "standard_untargeted_analysis",
-                "standard_untargeted_signature"):
-        st.session_state.pop(key, None)
-    st.session_state.standard_headless_config = {
+    config = {
         "workflow": "standard", "engine": "matlab",
         "inputs": {"project": str(xcms_project_root(project)),
                    "xcms_source": str(project.resolve()),
@@ -299,6 +258,8 @@ def _run_matlab_form(
         },
         "output": {"directory": "results/standard_matlab", "overwrite": False},
     }
+
+    _launch_annotation(config, sources)
 
 
 def render_matlab_engine(
@@ -391,7 +352,7 @@ def _laser_form(
     *, default_project: str, default_reference: Path,
     render_composition_ranges: Callable[[str], Any],
 ) -> LaserFormState:
-    with st.form("standard-lipidomics-inputs", border=True):
+    with st.form("standard-lipidomics-inputs", border=False):
         project = default_project
         use_np_rt = st.checkbox(
             "Use anchored NP retention-time grid", value=True,
@@ -447,25 +408,10 @@ def _resolve_laser_inputs(
     return reference, policy, np_reference, sources, error
 
 
-def _store_laser_result(
-    result: dict, state: LaserFormState, reference: Path, policy: Path,
-    np_reference: Path | None, sources: dict[str, bytes],
-) -> None:
-    project = (str(xcms_project_root(state.input_directory))
-               if state.input_directory else None)
-    st.session_state.standard_annotation_result = result
-    st.session_state.standard_results_page = "menu"
-    st.session_state.standard_loaded_workflow = "annotation"
-    st.session_state.pop("standard-results-enable-untargeted", None)
-    st.session_state.standard_auto_save_annotation_pending = True
-    st.session_state.standard_auto_save_untargeted_pending = True
-    st.session_state.standard_project_directory = project
-    st.session_state.standard_input_sources = dict(sources)
-    for key in ("standard_report_html", "standard_report_signature",
-                "standard_untargeted_review_basket", "standard_untargeted_analysis",
-                "standard_untargeted_signature"):
-        st.session_state.pop(key, None)
-    st.session_state.standard_headless_config = {
+def _laser_job_config(state: LaserFormState, reference: Path, policy: Path,
+                      np_reference: Path | None) -> dict:
+    project = str(xcms_project_root(state.input_directory))
+    return {
         "workflow": "standard", "engine": "laser",
         "inputs": {
             "project": project or "REPLACE_WITH_XCMS_PROJECT",
@@ -503,24 +449,24 @@ def _execute_laser_form(state: LaserFormState, run_cached: Callable[..., dict]) 
         st.success(f"Detected {len(sources)} stream(s): {', '.join(sources)}. "
                    f"Using {source}: {policy.name}.")
         return
-    search_root = state.input_directory or policy.parent
-    carbon_range, db_range, range_path = discover_matlab_fa_ranges(search_root)
-    with st.spinner("Annotating conventional lipidomics streams…"):
-        result = run_cached(
-            str(reference), reference.stat().st_size, reference.stat().st_mtime_ns,
-            state.ppm, state.rt_tolerance, state.adapt_class_rt, str(policy),
-            policy.stat().st_size, policy.stat().st_mtime_ns,
-            str(np_reference) if np_reference else "",
-            np_reference.stat().st_size if np_reference else 0,
-            np_reference.stat().st_mtime_ns if np_reference else 0,
-            state.np_rt_tolerance, state.use_grid_coherence,
-            state.grid_coherence_threshold, carbon_range, db_range,
-            str(range_path) if range_path else "", state.composition_ranges, sources,
-            grid_coherence_version=state.grid_coherence_version,
-            source_signature=tuple((name, hashlib.sha256(data).hexdigest())
-                                   for name, data in sorted(sources.items())),
-        )
-    _store_laser_result(result, state, reference, policy, np_reference, sources)
+    config = _laser_job_config(state, reference, policy, np_reference)
+    carbon_range, db_range, range_path = discover_matlab_fa_ranges(state.input_directory or policy.parent)
+    config["annotation"].update(fa_carbon_range=carbon_range, fa_db_range=db_range,
+                                range_source=str(range_path) if range_path else None)
+    _launch_annotation(config, sources)
+
+
+def _launch_annotation(config: dict, sources: dict) -> None:
+    config["existing"] = ("overwrite" if st.session_state.get("standard-annotation-existing", "").startswith("Overwrite") else "archive")
+    try:
+        directory = start_annotation_job(config, sources)
+    except (OSError, ValueError) as exc:
+        st.error(f"Annotation could not be started: {exc}")
+        return
+    st.session_state.standard_annotation_job_path = str(directory)
+    st.session_state.standard_pipeline_page = "annotation_job"
+    st.session_state.pop("standard_annotation_result", None)
+    st.rerun()
 
 
 def render_laser_engine(
