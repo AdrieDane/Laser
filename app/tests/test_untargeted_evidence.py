@@ -121,7 +121,7 @@ def test_detached_untargeted_job_freezes_inputs_and_exports_all_evidence(tmp_pat
     assert state['status'] == 'complete', (job/'untargeted.log').read_text()
     reopened, _ = load_untargeted_workflow(tmp_path)
     analysis = reopened['untargeted_analysis']
-    assert analysis['evidence_version'] == 2
+    assert analysis['evidence_version'] == 3
     assert not analysis['adduct_matches'].empty
     assert not analysis['raw_p_features'].empty
     assert analysis['features'].query("stream == 'RP_Pos' and feature_id == 'diff'").iloc[0].mz == 721.
@@ -198,3 +198,36 @@ def test_empty_analysis_saves_and_reopens_without_hits(tmp_path):
     next(b for b in app.button if b.label == 'Open completed untargeted analysis').click().run()
     assert not app.exception
     assert any('No unannotated feature' in i.value for i in app.info)
+
+
+@pytest.mark.parametrize('charge', [1,2])
+def test_isotope_charge_uses_complete_envelope_and_rejects_impossible_ratio(charge):
+    from standard_lipidomics.untargeted import _attach_isotope_evidence
+    mz=(677.49955528+charge*1.007276466621)/charge
+    ratio=.0107/.9893
+    rows=[]
+    for name,mass,intensity,rt in [('mono',mz,1e5,5.),('m1',mz+1.00335483507/charge,1e5*36*ratio,5.),
+        ('m2',mz+2*1.00335483507/charge,1e5*36*35/2*ratio**2,5.),
+        ('decoy_parent',mz,1e5,10.),('decoy',mz+1.00335483507/charge,1e6,10.)]:
+        rows.append({'feature_id':name,'mz':mass,'rt':rt,**{s:intensity for s in ['a1','a2','b1','b2']}})
+    features=pd.DataFrame(rows)
+    features.attrs['sample_group_map']={'a1':'A','a2':'A','b1':'B','b2':'B'}
+    hits=features[features.feature_id.isin(['mono','decoy_parent'])][['feature_id','mz','rt']].copy()
+    hits['significant']=True
+    hits['raw_p_significant']=True
+    hits['mean_intensity_a']=1e5
+    hits['mean_intensity_b']=1e5
+    output=_attach_isotope_evidence({'streams':{'RP_Pos':{'features':features}}},{'RP_Pos':hits},UntargetedComparisonCriteria('A','B'))['RP_Pos'].set_index('feature_id')
+    assert output.loc['mono','isotope_charge_hypothesis']==charge
+    assert output.loc['mono','isotope_m_plus_1_feature_id']=='m1'
+    assert output.loc['mono','estimated_carbon_count_from_m_plus_1']==pytest.approx(36.)
+    assert output.loc['decoy_parent','isotope_m_plus_1_feature_id']==''
+
+
+def test_same_mode_adducts_require_tighter_coelution_than_opposite_polarity():
+    mz=678.5068
+    sodium=mz-1.007276466621+22.989220702
+    source=pd.DataFrame({'feature_id':['near','far'],'mz':[sodium,sodium], 'rt':[5.02,5.15], 'already_annotated':[False,False]})
+    query=pd.DataFrame({'feature_id':['hit'],'mz':[mz],'rt':[5.], 'raw_p_significant':[True], 'isotope_charge_hypothesis':[1]})
+    result=search_adduct_evidence({'RP_Pos':source},{'RP_Pos':query},ppm=3.,rt_tolerance=.2)
+    assert set(result.query("source_adduct == '[M+H]+' and target_adduct == '[M+Na]+'").target_feature_id)=={'near'}

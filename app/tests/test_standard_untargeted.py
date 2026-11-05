@@ -191,7 +191,7 @@ class StandardUntargetedTests(unittest.TestCase):
         self.assertIn("M+2", tested.loc["diff", "isotope_pattern"])
         self.assertAlmostEqual(
             tested.loc["diff", "estimated_carbon_count_from_m_plus_1"],
-            10.0 / 1.07,
+            10.0 / (100. * .0107 / .9893),
             places=2,
         )
         self.assertIn(

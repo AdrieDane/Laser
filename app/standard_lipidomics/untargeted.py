@@ -19,6 +19,7 @@ from scipy.spatial import cKDTree
 from scipy.stats import spearmanr, ttest_ind
 
 from scientific_defaults import SCIENTIFIC_DEFAULTS
+from standard_lipidomics.sample_groups import biological_label, biological_group
 from standard_lipidomics.untargeted_adducts import (
     EVIDENCE_VERSION, adduct_options, search_adduct_evidence, attach_adduct_summaries, SearchProgress,
 )
@@ -26,17 +27,6 @@ from standard_lipidomics.untargeted_series import attach_lipid_series
 from standard_lipidomics.untargeted_compounds import assign_compound_ids
 
 
-_NON_BIOLOGICAL_GROUP_TOKENS = {
-    "blank",
-    "blanco",
-    "qc",
-    "pool",
-    "is",
-    "standard",
-    "calibrant",
-    "calibration",
-    "reference",
-}
 _CH2_MASS = 14.015650064
 _C13_C12_MASS_DIFFERENCE = 1.00335483507
 _PROTON_MASS = 1.007276466621
@@ -85,6 +75,7 @@ class UntargetedComparisonCriteria:
     opposite_polarity_rt_tolerance_min: float = (
         SCIENTIFIC_DEFAULTS.untargeted_opposite_polarity_rt_tolerance_min
     )
+    same_mode_adduct_rt_tolerance_min: float = .05
     isotope_rt_tolerance_min: float = (
         SCIENTIFIC_DEFAULTS.untargeted_isotope_rt_tolerance_min
     )
@@ -114,6 +105,8 @@ class UntargetedComparisonCriteria:
             raise ValueError("CH2 RT tolerance must be positive.")
         if float(self.opposite_polarity_rt_tolerance_min) <= 0.0:
             raise ValueError("Opposite-polarity RT tolerance must be positive.")
+        if float(self.same_mode_adduct_rt_tolerance_min) <= 0.0:
+            raise ValueError("Same-mode adduct RT tolerance must be positive.")
         if float(self.isotope_rt_tolerance_min) <= 0.0:
             raise ValueError("Isotope RT tolerance must be positive.")
 
@@ -125,8 +118,7 @@ def _group_label(group: str) -> str:
 
 def is_biological_group(group: str) -> bool:
     """Return False for QC, blank, pool, IS and calibration groups."""
-    tokens = set(re.findall(r"[a-z0-9]+", _group_label(group).casefold()))
-    return not bool(tokens & _NON_BIOLOGICAL_GROUP_TOKENS)
+    return biological_label(group)
 
 
 def _metadata_workbooks(project: str | Path) -> list[Path]:
@@ -267,11 +259,6 @@ def group_catalog(result: dict) -> pd.DataFrame:
             if isinstance(features, pd.DataFrame)
             else {}
         )
-        type_map = (
-            features.attrs.get("sample_type_map", {})
-            if isinstance(features, pd.DataFrame)
-            else {}
-        )
         name_map = (
             features.attrs.get("sample_group_name_map", {})
             if isinstance(features, pd.DataFrame)
@@ -281,24 +268,12 @@ def group_catalog(result: dict) -> pd.DataFrame:
             group_samples = [
                 sample for sample, value in mapping.items() if str(value) == str(group)
             ]
-            sample_types = {
-                str(type_map.get(sample, "")).strip().casefold()
-                for sample in group_samples
-                if str(type_map.get(sample, "")).strip()
-            }
             group_names = [
                 str(name_map.get(sample, "")).strip()
                 for sample in group_samples
                 if str(name_map.get(sample, "")).strip()
             ]
-            biological = (
-                (
-                    bool(sample_types)
-                    and sample_types.issubset({"study", "sample", "biological"})
-                )
-                if sample_types
-                else is_biological_group(str(group))
-            )
+            biological = biological_group(features, group)
             rows.append(
                 {
                     "stream": str(stream),
@@ -970,100 +945,101 @@ def _neutral_mass_hypotheses(mz: float, polarity: str) -> str:
 
 
 def _elemental_formula_candidates(
-    mz: float,
-    polarity: str,
-    carbon_estimate: float,
-    ppm_tolerance: float,
-    maximum_candidates: int = 5,
-    charge: int = 1,
-    m_plus_2_percent: float = np.nan,
-) -> tuple[str, int]:
-    """Enumerate coarse CHNOPS formulas constrained by isotope-derived C.
+    mz,
+    polarity,
+    carbon_estimate,
+    ppm_tolerance,
+    maximum_candidates=5,
+    charge=1,
+    m_plus_2_percent=np.nan,
+):
+    """Rank tentative CHNOPS compositions; isotope areas are noisy constraints.
 
-    The search is intentionally narrow and returns hypotheses, not an identity.
-    Neutral CHNOPS candidates use the isotope charge and ion carbon correction.
-    M+2, when measured, ranks candidates without forcing an exact isotope fit.
+    Uses no curated identities, reference formulas or study-specific fitting.
+    The headgroup prior is deliberately broad; candidates remain ambiguous.
     """
-    if not np.isfinite(carbon_estimate) or carbon_estimate < 4.0:
+    if not np.isfinite(carbon_estimate) or carbon_estimate < 4:
         return "", 0
-    carbon_centre = int(round(carbon_estimate))
-    carbon_values = range(max(4, carbon_centre - 3), carbon_centre + 4)
-    candidates: list[tuple[float, str]] = []
+    centre = int(round(carbon_estimate))
+    radius = max(3, int(np.ceil(carbon_estimate * 0.15)))
+    # Vectorized heteroatom enumeration avoids millions of Python loop objects.
+    n, o, p, s = np.indices((6, 33, 3, 3)).reshape(4, -1)
+    valid = o >= 1
+    n, o, p, s = (v[valid] for v in (n, o, p, s))
+    hetero = (
+        n * _ATOMIC_MASS["N"]
+        + o * _ATOMIC_MASS["O"]
+        + p * _ATOMIC_MASS["P"]
+        + s * _ATOMIC_MASS["S"]
+    )
+    # Common neutral lipid, phospholipid, sphingolipid and glycolipid headgroups.
+    common = (
+        ((n == 0) & (p == 0) & (s == 0) & np.isin(o, [2, 3, 4, 5, 6]))
+        | (
+            (p == 1)
+            & (s == 0)
+            & (n <= 1)
+            & np.isin(o, [6, 7, 8, 9, 10, 11, 12, 13, 14])
+        )
+        | ((p == 2) & (n == 0) & (s == 0) & np.isin(o, [13, 14, 15, 16, 17]))
+        | ((n == 1) & (p == 0) & (s <= 1) & (o >= 2))
+        | ((n >= 2) & (p == 0) & (s == 0) & (o >= 12))
+    )
+    prior = np.where(common, 0.0, 1.0) + 0.15 * s + 0.05 * n
+    ratio = 0.0107 / 0.9893
+    candidates = []
     for ion in adduct_options(polarity, charge):
-        adduct, neutral_mass = ion.name, ion.neutral(mz)
-        if neutral_mass <= 0:
+        neutral = ion.neutral(mz)
+        if neutral <= 0:
             continue
-        allowed_error = neutral_mass * float(ppm_tolerance) * 1e-6
-        for ion_carbon in carbon_values:
-            carbon = ion_carbon - ion.carbon
-            if carbon < 1:
+        allowed = neutral * ppm_tolerance * 1e-6
+        for ion_carbon in range(max(4, centre - radius), centre + radius + 1):
+            c = ion_carbon - ion.carbon
+            if c < 1:
                 continue
-            carbon_mass = float(carbon) * 12.0
-            for nitrogen in range(0, 4):
-                for oxygen in range(1, 15):
-                    for phosphorus in range(0, 3):
-                        for sulphur in range(0, 3):
-                            heavy_mass = (
-                                carbon_mass
-                                + nitrogen * _ATOMIC_MASS["N"]
-                                + oxygen * _ATOMIC_MASS["O"]
-                                + phosphorus * _ATOMIC_MASS["P"]
-                                + sulphur * _ATOMIC_MASS["S"]
-                            )
-                            hydrogen = int(
-                                round((neutral_mass - heavy_mass) / _ATOMIC_MASS["H"])
-                            )
-                            if hydrogen < 0 or hydrogen > 2 * carbon + nitrogen + phosphorus + 2:
-                                continue
-                            double_bond_equivalents = (
-                                carbon - hydrogen / 2.0 + (nitrogen + phosphorus) / 2.0 + 1.0
-                            )
-                            if (
-                                double_bond_equivalents < 0.0
-                                or abs(
-                                    double_bond_equivalents
-                                    - round(double_bond_equivalents)
-                                )
-                                > 1e-6
-                            ):
-                                continue
-                            calculated = heavy_mass + hydrogen * _ATOMIC_MASS["H"]
-                            error = calculated - neutral_mass
-                            if abs(error) > allowed_error:
-                                continue
-                            formula = f"C{carbon}H{hydrogen}"
-                            for element, count in (
-                                ("N", nitrogen),
-                                ("O", oxygen),
-                                ("P", phosphorus),
-                                ("S", sulphur),
-                            ):
-                                if count:
-                                    formula += f"{element}{count}"
-                            error_ppm = error / neutral_mass * 1e6
-                            label = (
-                                f"{adduct} {formula} "
-                                f"({error_ppm:+.2f} ppm; "
-                                f"DBE {double_bond_equivalents:.0f})"
-                            )
-                            # Search targets specifically use C13 spacings, not
-                            # an integrated nominal envelope. Do not add Cl37,
-                            # S34 or O18 intensities that may be resolved apart.
-                            ion_carbon_count = carbon + ion.carbon
-                            r1 = ion_carbon_count * .0107
-                            r2 = ion_carbon_count * (ion_carbon_count - 1) / 2. * .0107**2
-                            isotope_error = abs((r1 * 100.) - carbon_estimate * 1.07) / max(3., carbon_estimate * .15)
-                            if np.isfinite(m_plus_2_percent):
-                                isotope_error += abs(r2 * 100. - m_plus_2_percent) / max(3., m_plus_2_percent * .25)
-                            label += f"; predicted C13 M+1 {r1*100.:.1f}%, M+2 {r2*100.:.1f}%"
-                            candidates.append((isotope_error + abs(error_ppm) / ppm_tolerance, label))
+            heavy = c * 12.0 + hetero
+            h = np.rint((neutral - heavy) / _ATOMIC_MASS["H"]).astype(int)
+            dbe = c - h / 2.0 + (n + p) / 2.0 + 1.0
+            errors = heavy + h * _ATOMIC_MASS["H"] - neutral
+            mask = (
+                (h >= c * 0.7)
+                & (h <= 2 * c + n + p + 2)
+                & (dbe >= 0)
+                & (np.abs(dbe - np.rint(dbe)) < 1e-6)
+                & (np.abs(errors) <= allowed)
+            )
+            for idx in np.flatnonzero(mask):
+                ppm = errors[idx] / neutral * 1e6
+                r1 = ion_carbon * ratio * 100
+                r2 = ion_carbon * (ion_carbon - 1) / 2 * ratio**2 * 100
+                # The corrected M+1/M ratio estimates carbon directly.
+                isotope = abs(ion_carbon - carbon_estimate) / max(
+                    2.0, carbon_estimate * 0.10
+                )
+                if np.isfinite(m_plus_2_percent):
+                    isotope += abs(r2 - m_plus_2_percent) / max(
+                        3.0, m_plus_2_percent * 0.25
+                    )
+                score = (
+                    isotope
+                    + abs(ppm) / ppm_tolerance
+                    + prior[idx]
+                    + (0.4 if ion.fragment else 0.0)
+                )
+                formula = f"C{c}H{h[idx]}"
+                for element, count in [
+                    ("N", n[idx]),
+                    ("O", o[idx]),
+                    ("P", p[idx]),
+                    ("S", s[idx]),
+                ]:
+                    if count:
+                        formula += f"{element}{count}"
+                label = f"{ion.name} {formula} ({ppm:+.2f} ppm; DBE {dbe[idx]:.0f}); predicted C13 M+1 {r1:.1f}%, M+2 {r2:.1f}%"
+                candidates.append((score, label))
     candidates.sort(key=lambda item: (item[0], item[1]))
-    unique: list[str] = []
-    for _, label in candidates:
-        if label not in unique:
-            unique.append(label)
+    unique = list(dict.fromkeys(label for _, label in candidates))
     return "; ".join(unique[:maximum_candidates]), len(unique)
-
 
 def _attach_isotope_evidence(
     result: dict,
@@ -1203,6 +1179,10 @@ def _attach_isotope_evidence(
                     .abs()
                     .le(criteria.isotope_rt_tolerance_min * 60.0)
                 ].copy()
+                if np.isfinite(mono_intensity) and mono_intensity > 0:
+                    inferred_carbon = m1_candidates.representative_intensity / mono_intensity / (.0107/.9893)
+                    maximum_carbon = (mz * charge + 20.) / 12.
+                    m1_candidates = m1_candidates[(inferred_carbon >= 1.) & (inferred_carbon <= maximum_carbon + 2.)].copy()
                 if m1_candidates.empty:
                     continue
                 m1_candidates["match_score"] = m1_candidates[
@@ -1232,7 +1212,16 @@ def _attach_isotope_evidence(
                             "rt_delta_seconds"
                         ].abs() / (criteria.isotope_rt_tolerance_min * 60.0)
                         m2 = m2_candidates.iloc[m2_candidates["match_score"].argmin()]
-                candidate_pattern = (float(m1["match_score"]), charge, m1, m2)
+                pattern_score = float(m1['match_score'])
+                if m2 is None:
+                    pattern_score += .5
+                elif np.isfinite(mono_intensity) and mono_intensity > 0:
+                    r1 = float(m1.representative_intensity) / mono_intensity
+                    carbon = r1 / (.0107/.9893)
+                    expected_r2 = max(0., carbon*(carbon-1)/2*(.0107/.9893)**2)
+                    observed_r2 = float(m2.representative_intensity) / mono_intensity
+                    pattern_score += abs(observed_r2-expected_r2)/max(.03,expected_r2*.3)
+                candidate_pattern = (pattern_score, charge, m1, m2)
                 if best_pattern is None or candidate_pattern[0] < best_pattern[0]:
                     best_pattern = candidate_pattern
             if best_pattern is None:
@@ -1254,7 +1243,7 @@ def _attach_isotope_evidence(
                 and mono_intensity > 0.0
                 else np.nan
             )
-            carbon_estimate = m1_percent / 1.07 if np.isfinite(m1_percent) else np.nan
+            carbon_estimate = m1_percent / (100. * .0107 / .9893) if np.isfinite(m1_percent) else np.nan
             table.at[row_index, "isotope_m_plus_1_feature_id"] = str(m1["feature_id"])
             table.at[row_index, "isotope_m_plus_1_mz"] = float(m1["mz"])
             table.at[row_index, "isotope_m_plus_1_rt_delta_seconds"] = float(
@@ -1288,7 +1277,7 @@ def _attach_isotope_evidence(
             if np.isfinite(m2_percent) and np.isfinite(carbon_estimate):
                 carbon_integer = max(1, int(round(carbon_estimate)))
                 expected_m2_c13 = (
-                    carbon_integer * (carbon_integer - 1) / 2.0 * (0.0107**2) * 100.0
+                    carbon_integer * (carbon_integer - 1) / 2.0 * ((.0107/.9893)**2) * 100.0
                 )
                 assessment = (
                     "M+1 and M+2 partners support an isotope envelope; "
@@ -1576,6 +1565,11 @@ def analyse_standard_untargeted(
     progress=None,
 ) -> dict:
     """Compare two groups for every unannotated feature in every stream."""
+    catalog = group_catalog(result)
+    for group in (criteria.group_a, criteria.group_b):
+        rows = catalog[catalog['group'].eq(group)]
+        if not biological_label(group) or (not rows.empty and not rows.biological.all()):
+            raise ValueError('Significance comparisons require biological groups; QC, blanks and standards are excluded.')
     by_stream: dict[str, pd.DataFrame] = {}
     skipped: list[dict] = []
     if progress:
@@ -1693,6 +1687,7 @@ def analyse_standard_untargeted(
     adduct_matches = search_adduct_evidence(_coordinate_sources(result), by_stream,
         ppm=criteria.cross_mode_ppm_tolerance,
         rt_tolerance=criteria.opposite_polarity_rt_tolerance_min,
+        same_mode_rt_tolerance=criteria.same_mode_adduct_rt_tolerance_min,
         progress=(lambda count, total, message: progress(.73 + .12 * (count - 1) / max(total, 1), message)) if progress else None)
     by_stream = attach_adduct_summaries(by_stream, adduct_matches)
     if progress:

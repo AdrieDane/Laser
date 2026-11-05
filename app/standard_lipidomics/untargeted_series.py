@@ -30,6 +30,9 @@ def attach_lipid_series(by_stream, sources, annotations, criteria):
         class_map = (classes.groupby('feature_id').lipid_class.agg(lambda values: ', '.join(sorted(set(values.astype(str)))))
                      .to_dict() if not classes.empty else {})
         masses = source.mz.to_numpy(float)
+        retention = source.rt.to_numpy(float)
+        ids = source.feature_id.astype(str).to_numpy()
+        annotated = source.already_annotated.to_numpy(bool)
         adjacency, links = {}, []
         hits = table[table.raw_p_significant.fillna(False)]
         known_charges = table.set_index('feature_id').get('isotope_charge_hypothesis', pd.Series(dtype=float)).to_dict()
@@ -41,20 +44,23 @@ def attach_lipid_series(by_stream, sources, annotations, criteria):
                 delta = min(criteria.ch2_mass_tolerance_da, expected * criteria.cross_mode_ppm_tolerance * 1e-6)
                 left = np.searchsorted(masses, expected - delta, side='left')
                 right = np.searchsorted(masses, expected + delta, side='right')
-                for target in source.iloc[left:right].itertuples(index=False):
-                    rt_delta = (target.rt - hit.rt) * 60.
-                    other_charge = known_charges.get(str(target.feature_id), np.nan)
+                for target_index in range(left, right):
+                    target_id = ids[target_index]
+                    target_mz = masses[target_index]
+                    target_rt = retention[target_index]
+                    rt_delta = (target_rt - hit.rt) * 60.
+                    other_charge = known_charges.get(target_id, np.nan)
                     if abs(rt_delta) > criteria.ch2_rt_tolerance_min * 60. or (pd.notna(other_charge) and int(other_charge) != charge):
                         continue
-                    a, b = str(hit.feature_id), str(target.feature_id)
+                    a, b = str(hit.feature_id), target_id
                     if a == b:
                         continue
                     adjacency.setdefault(a, set()).add(b)
                     adjacency.setdefault(b, set()).add(a)
                     links.append(dict(zip(LINK_COLUMNS, (stream, a, b, step,
                         f'{"+" if step > 0 else "−"}C{abs(step)}H{2*abs(step)}', charge,
-                        target.mz - expected, (target.mz - expected) / expected * 1e6,
-                        rt_delta, bool(target.already_annotated), class_map.get(b, '')))))
+                        target_mz - expected, (target_mz - expected) / expected * 1e6,
+                        rt_delta, bool(annotated[target_index]), class_map.get(b, '')))))
         components, visited = {}, set()
         number = 0
         for start in sorted(adjacency):

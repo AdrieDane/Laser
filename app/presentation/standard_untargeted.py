@@ -131,9 +131,12 @@ def _untargeted_criteria(
         ppm = st.number_input("Mass tolerance (ppm)", min_value=.1, max_value=100.,
             value=float(saved_criteria.get("cross_mode_ppm_tolerance", SCIENTIFIC_DEFAULTS.standard_ppm_tolerance)),
             key="standard-untargeted-evidence-ppm")
-        coelution = st.number_input("Adduct co-elution tolerance (min)", min_value=.001, max_value=5.,
+        coelution = st.number_input("Opposite-polarity adduct co-elution tolerance (min)", min_value=.001, max_value=5.,
             value=float(saved_criteria.get("opposite_polarity_rt_tolerance_min", SCIENTIFIC_DEFAULTS.untargeted_opposite_polarity_rt_tolerance_min)),
             key="standard-untargeted-evidence-rt")
+        same_mode_rt = st.number_input("Same-mode adduct co-elution tolerance (min)", min_value=.001, max_value=5.,
+            value=float(saved_criteria.get("same_mode_adduct_rt_tolerance_min", .05)),
+            key="standard-untargeted-same-mode-rt")
         isotope_rt = st.number_input("Isotope co-elution tolerance (min)", min_value=.001, max_value=5.,
             value=float(saved_criteria.get("isotope_rt_tolerance_min", SCIENTIFIC_DEFAULTS.untargeted_isotope_rt_tolerance_min)),
             key="standard-untargeted-isotope-rt")
@@ -149,6 +152,7 @@ def _untargeted_criteria(
         min_detection_percent=float(detection),
         cross_mode_ppm_tolerance=float(ppm), opposite_polarity_rt_tolerance_min=float(coelution),
         isotope_rt_tolerance_min=float(isotope_rt), ch2_rt_tolerance_min=float(series_rt),
+        same_mode_adduct_rt_tolerance_min=float(same_mode_rt),
     ), labels
 
 

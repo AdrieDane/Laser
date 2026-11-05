@@ -43,7 +43,7 @@ ADDUCTS = (
     Adduct('[M-H-H2O]-', 'neg', 1, -PROTON - 18.010564684, fragment=True),
     Adduct('[M-2H]2-', 'neg', 2, -2 * PROTON),
 )
-EVIDENCE_VERSION = 2
+EVIDENCE_VERSION = 3
 MATCH_COLUMNS = ('source_stream', 'source_feature_id', 'source_mz', 'source_rt',
     'source_adduct', 'neutral_mass', 'target_stream', 'target_feature_id',
     'target_mz', 'expected_mz', 'target_rt', 'target_adduct', 'mass_error_ppm',
@@ -79,7 +79,7 @@ class SearchProgress:
         self.stream = stream
 
 
-def search_adduct_evidence(sources, by_stream, *, ppm, rt_tolerance, progress=None):
+def search_adduct_evidence(sources, by_stream, *, ppm, rt_tolerance, progress=None, same_mode_rt_tolerance=.05):
     """All mass-compatible links, requiring co-elution only within one phase.
 
     Searches include non-significant and already annotated counterparts. A
@@ -92,6 +92,7 @@ def search_adduct_evidence(sources, by_stream, *, ppm, rt_tolerance, progress=No
                       for stream, table in by_stream.items()
                       if 'isotope_charge_hypothesis' in table
                       for row in table.itertuples(index=False)}
+    targets = {name: (frame.mz.to_numpy(float), frame.rt.to_numpy(float), frame.feature_id.astype(str).to_numpy(), frame.already_annotated.to_numpy(bool)) for name, frame in sources.items()}
     rows = []
     reporter = SearchProgress(progress, sum(len(ids) for ids in raw_hits.values()), 'Adduct search')
     for stream, table in by_stream.items():
@@ -103,7 +104,7 @@ def search_adduct_evidence(sources, by_stream, *, ppm, rt_tolerance, progress=No
                 neutral = source_adduct.neutral(float(feature.mz))
                 if neutral <= 0:
                     continue
-                for target_stream, target in sources.items():
+                for target_stream, (masses, retention, feature_ids, annotated) in targets.items():
                     same_phase = stream.split('_')[0] == target_stream.split('_')[0]
                     for target_adduct in adduct_options(_polarity(target_stream)):
                         if target_stream == stream and target_adduct == source_adduct:
@@ -111,18 +112,21 @@ def search_adduct_evidence(sources, by_stream, *, ppm, rt_tolerance, progress=No
                         expected = target_adduct.mz(neutral)
                         if expected <= 0:
                             continue
-                        masses = target.mz.to_numpy(float)
                         delta = expected * ppm * 1e-6
                         left = np.searchsorted(masses, expected - delta, side='left')
                         right = np.searchsorted(masses, expected + delta, side='right')
-                        for candidate in target.iloc[left:right].itertuples(index=False):
-                            known_charge = target_charges.get((target_stream, str(candidate.feature_id)), np.nan)
+                        for candidate_index in range(left, right):
+                            candidate_id = feature_ids[candidate_index]
+                            candidate_mz = masses[candidate_index]
+                            candidate_rt = retention[candidate_index]
+                            known_charge = target_charges.get((target_stream, candidate_id), np.nan)
                             if pd.notna(known_charge) and int(known_charge) != target_adduct.charge:
                                 continue
-                            if target_stream == stream and str(candidate.feature_id) == str(feature.feature_id):
+                            if target_stream == stream and candidate_id == str(feature.feature_id):
                                 continue
-                            rt_delta = (candidate.rt - feature.rt) * 60.
-                            if same_phase and abs(rt_delta) > rt_tolerance * 60.:
+                            rt_delta = (candidate_rt - feature.rt) * 60.
+                            tolerance = min(rt_tolerance, same_mode_rt_tolerance) if target_stream == stream else rt_tolerance
+                            if same_phase and abs(rt_delta) > tolerance * 60.:
                                 continue
                             relation = ('same mode' if target_stream == stream else
                                         'opposite polarity' if same_phase else
@@ -130,15 +134,14 @@ def search_adduct_evidence(sources, by_stream, *, ppm, rt_tolerance, progress=No
                                         'other chromatography, opposite polarity')
                             rows.append(dict(zip(MATCH_COLUMNS, (
                                 stream, str(feature.feature_id), feature.mz, feature.rt,
-                                source_adduct.name, neutral, target_stream, str(candidate.feature_id),
-                                candidate.mz, expected, candidate.rt, target_adduct.name,
-                                (candidate.mz - expected) / expected * 1e6,
+                                source_adduct.name, neutral, target_stream, candidate_id,
+                                candidate_mz, expected, candidate_rt, target_adduct.name,
+                                (candidate_mz - expected) / expected * 1e6,
                                 rt_delta, same_phase, relation,
                                 source_adduct.fragment or target_adduct.fragment,
-                                bool(candidate.already_annotated), str(candidate.feature_id) in raw_hits.get(target_stream, set()),
+                                bool(annotated[candidate_index]), candidate_id in raw_hits.get(target_stream, set()),
                             ))))
     return pd.DataFrame(rows, columns=MATCH_COLUMNS)
-
 
 def attach_adduct_summaries(by_stream, matches):
     groups = {key: group for key, group in matches.groupby(['source_stream', 'source_feature_id'])}
