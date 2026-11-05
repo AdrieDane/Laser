@@ -133,6 +133,14 @@ def _untargeted_criteria(
             format_func=lambda value: {'current': 'Current isotope evidence',
                                       'complete': 'Complete ion isotope patterns (experimental)'}[value],
             key='standard-untargeted-isotope-model')
+        formula_model = st.selectbox('Formula candidates', ('current', 'lipid_aware'),
+            index=('current', 'lipid_aware').index(saved_criteria.get('formula_model', 'current')) if isotope_model == 'complete' else 0,
+            format_func=lambda value: {'current': 'Current candidates', 'lipid_aware': 'Lipid backbones and de novo formulas (experimental)'}[value],
+            disabled=isotope_model != 'complete', key='standard-untargeted-formula-model')
+        formula_model = formula_model if isotope_model == 'complete' else 'current'
+        formula_limit = st.number_input('Maximum candidates scored with isotope evidence', min_value=1, max_value=256,
+            value=int(saved_criteria.get('formula_scoring_limit', 32)), disabled=formula_model != 'lipid_aware',
+            key='standard-untargeted-formula-limit')
         grouping = st.selectbox('Ion grouping', ('current', 'full_feature_hard', 'full_feature_soft'),
             index=('current', 'full_feature_hard', 'full_feature_soft').index(saved_criteria.get('ion_grouping_mode', 'current')),
             format_func=lambda value: {'current': 'Current grouping', 'full_feature_hard': 'Full feature list — strict profiles (experimental)',
@@ -165,6 +173,7 @@ def _untargeted_criteria(
         same_mode_adduct_rt_tolerance_min=float(same_mode_rt),
         ion_grouping_mode=grouping,
         isotope_model=isotope_model,
+        formula_model=formula_model, formula_scoring_limit=int(formula_limit),
     ), labels
 
 

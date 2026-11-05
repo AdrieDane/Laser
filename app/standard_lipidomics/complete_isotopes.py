@@ -57,7 +57,7 @@ def apply_complete_isotopes(result, analysis, criteria, progress=None):
     if criteria.isotope_model == 'current':
         return analysis
     method = analysis['acquisition_method']
-    scores, peaks, summaries = [], [], []
+    scores, peaks, summaries, audits = [], [], [], []
     queries = analysis['raw_p_features']
     indexes = {m: IsotopeIndex(m, item['features']) for m, item in result['streams'].items()}
     labelled = set()
@@ -74,7 +74,14 @@ def apply_complete_isotopes(result, analysis, criteria, progress=None):
             summary['full_isotope_status'] = 'labelled/internal standard excluded from natural-abundance inference'
             summaries.append(summary)
             continue
-        for formula, adduct, origin in candidate_hypotheses(row, stream, criteria, method):
+        hypotheses = candidate_hypotheses(row, stream, criteria, method) if criteria.formula_model == 'current' else []
+        if criteria.formula_model == 'lipid_aware':
+            from standard_lipidomics.lipid_formulas import predict_formulas
+            predicted, observations, audit = predict_formulas(indexes[stream], row, stream, criteria, method)
+            scores.extend(predicted)
+            peaks.extend(observations)
+            audits.append(audit)
+        for formula, adduct, origin in hypotheses:
             try:
                 score, observations = score_envelope(indexes[stream], fid, formula, adduct, criteria,
                     method['methods'][stream[:2]]['instrument'])
@@ -96,6 +103,9 @@ def apply_complete_isotopes(result, analysis, criteria, progress=None):
             summary.update(full_isotope_formula=best['formula'], full_isotope_adduct=best['adduct'],
                            full_isotope_status=best['status'], full_isotope_quality=best['quality_flags'],
                            full_isotope_score=best['score'])
+        if criteria.formula_model == 'lipid_aware' and audit['scoring_budget_exhausted']:
+            summary['full_isotope_quality'] += ('; ' if summary['full_isotope_quality'] else '') + (
+                f"Isotope-scoring budget: {audit['scored_candidates']} of {audit['generated_candidates']} candidates scored; all retained")
         summaries.append(summary)
         if progress and (number % 25 == 0 or number+1 == len(queries)):
             progress((number+1)/max(1, len(queries)), f'Complete isotope evidence: {number+1:,}/{len(queries):,} features')
@@ -103,6 +113,14 @@ def apply_complete_isotopes(result, analysis, criteria, progress=None):
                'full_isotope_quality', 'full_isotope_score', 'full_isotope_candidate_count']
     labels = pd.DataFrame(summaries, columns=columns)
     output = {**analysis, 'isotope_candidate_scores': pd.DataFrame(scores), 'isotope_peak_evidence': pd.DataFrame(peaks)}
+    if criteria.formula_model == 'lipid_aware':
+        from standard_lipidomics.lipid_formulas import templates, MAX_COUNTS, FORMULA_MODEL_VERSION
+        output['formula_search_audit'] = pd.DataFrame(audits)
+        output['formula_model_provenance'] = {'version': FORMULA_MODEL_VERSION, 'model': 'lipid_aware',
+            **templates()[1], 'maximum_atom_counts_CHNOPS': list(MAX_COUNTS), 'scoring_limit': criteria.formula_scoring_limit,
+            'generation': 'bundled backbones +O0..4, existing library, broader de novo CHNOPS',
+            'ranking': 'complete isotope cost plus fixed backbone/oxidation prior; no study fitting',
+            'budget_policy': 'all generated candidates retained; non-isotope-scored candidates explicitly labelled'}
     for name in ('features', 'raw_p_features', 'significant_features', 'compound_features'):
         frame = analysis.get(name)
         if isinstance(frame, pd.DataFrame) and not frame.empty:

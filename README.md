@@ -40,6 +40,10 @@ the default. The native Binner benchmark is still pending a trusted executable.
 isotope evidence using IsoSpec, per-sample/QC ratios and explicit quality flags.
 It preserves existing statistics, compound assignments and legacy formula labels;
 the current isotope model remains the default.
+[Stage 5](docs/validation/untargeted_stage5/README.md) adds experimental lipid
+backbone and broader de-novo candidates with an explicit isotope-scoring budget.
+The comparison includes all formula-bearing reference queries, with native external
+tool availability reported separately. Current defaults are unchanged.
 
 ## Run the app
 

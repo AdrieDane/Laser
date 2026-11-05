@@ -206,7 +206,7 @@ def _write_untargeted_project(
         role = f"stream__{slug}__features"
         paths[role] = atomic_write_csv(tables / "streams" / slug / "features.csv", frame)
         streams[str(name)] = {"slug": slug, "features_attrs": _json_attrs(frame.attrs)}
-    for key in ("features", "significant_features", "raw_p_features", "compound_features", "cluster_members", "adduct_matches", "homologous_matches", "lipid_grid_matches", "group_catalog", "skipped_streams", "ion_feature_ledger", "ion_relationships", "ion_isotope_candidates", "isotope_candidate_scores", "isotope_peak_evidence"):
+    for key in ("features", "significant_features", "raw_p_features", "compound_features", "cluster_members", "adduct_matches", "homologous_matches", "lipid_grid_matches", "group_catalog", "skipped_streams", "ion_feature_ledger", "ion_relationships", "ion_isotope_candidates", "isotope_candidate_scores", "isotope_peak_evidence", "formula_search_audit"):
         frame = analysis.get(key)
         if isinstance(frame, pd.DataFrame):
             role = f"untargeted_{key}"
@@ -236,6 +236,7 @@ def _write_untargeted_project(
         "ion_group_version": analysis.get("ion_group_version", 0),
         "ion_grouping_mode": analysis.get("ion_grouping_mode", "current"),
         "isotope_model_provenance": analysis.get("isotope_model_provenance"),
+        "formula_model_provenance": analysis.get("formula_model_provenance"),
         "ion_group_settings": analysis.get("ion_group_settings"),
         "ion_group_source_signature": analysis.get("ion_group_source_signature"),
         "lipid_grid_version": analysis.get("lipid_grid_version", 0),
@@ -302,6 +303,7 @@ def load_untargeted_workflow(project: str | Path) -> tuple[dict, dict]:
         "ion_group_version": run.get("ion_group_version", 0),
         "ion_grouping_mode": run.get("ion_grouping_mode", "current"),
         "isotope_model_provenance": run.get("isotope_model_provenance"),
+        "formula_model_provenance": run.get("formula_model_provenance"),
         "ion_group_settings": run.get("ion_group_settings"),
         "ion_group_source_signature": run.get("ion_group_source_signature"),
         "lipid_grid_version": run.get("lipid_grid_version", 0),
@@ -309,7 +311,7 @@ def load_untargeted_workflow(project: str | Path) -> tuple[dict, dict]:
         "acquisition_method": normalize_acquisition_method(run.get("acquisition_method")),
         "interpretation_boundary": run.get("interpretation_boundary", ""),
     }
-    for key in ("features", "significant_features", "raw_p_features", "compound_features", "cluster_members", "adduct_matches", "homologous_matches", "lipid_grid_matches", "group_catalog", "skipped_streams", "ion_feature_ledger", "ion_relationships", "ion_isotope_candidates", "isotope_candidate_scores", "isotope_peak_evidence"):
+    for key in ("features", "significant_features", "raw_p_features", "compound_features", "cluster_members", "adduct_matches", "homologous_matches", "lipid_grid_matches", "group_catalog", "skipped_streams", "ion_feature_ledger", "ion_relationships", "ion_isotope_candidates", "isotope_candidate_scores", "isotope_peak_evidence", "formula_search_audit"):
         analysis[key] = load_project_table(saved, f"untargeted_{key}")
         if key in {"ion_feature_ledger", "ion_relationships", "ion_isotope_candidates"}:
             text = set(analysis[key].select_dtypes(include=['object', 'str', 'string']))

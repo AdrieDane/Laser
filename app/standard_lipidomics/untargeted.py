@@ -82,8 +82,16 @@ class UntargetedComparisonCriteria:
     )
     ion_grouping_mode: str = 'current'
     isotope_model: str = 'current'
+    formula_model: str = 'current'
+    formula_scoring_limit: int = 32
 
     def __post_init__(self) -> None:
+        if self.formula_model not in {'current', 'lipid_aware'}:
+            raise ValueError('Unknown formula model.')
+        if self.formula_model == 'lipid_aware' and self.isotope_model != 'complete':
+            raise ValueError('Lipid-aware formulas require complete isotope evidence.')
+        if type(self.formula_scoring_limit) is not int or not 1 <= self.formula_scoring_limit <= 256:
+            raise ValueError('Formula isotope-scoring limit must be an integer from 1 to 256.')
         if self.isotope_model not in {'current', 'complete'}:
             raise ValueError('Unknown isotope model.')
         if self.ion_grouping_mode not in {'current', 'full_feature_hard', 'full_feature_soft'}:

@@ -15,6 +15,20 @@ accuracy. Personal project defaults belong to user settings, never source code.
 
 ## Current untargeted evidence follow-up
 
+User explicitly authorized Stage 5 with "do it" after its description.
+Supersedes the older stop-before-Stage5 text for this stage only. Implement
+lipid-aware structured candidates with a broader de-novo route, then compare
+current / Stage4 / new / native external engines on identical MS1-only inputs.
+Retain all predefined formula queries and all four modes/classes; separate known-
+adduct formula prediction from joint blind adduct ranking. Unsupported charges,
+timeouts and truncation remain visible in primary denominators. Freeze source,
+protocol, external releases/environments/database hashes before real scoring.
+No post-hoc weights/threshold tuning or class/mode winner splicing. Preserve
+all statistics, annotations, defaults and private inputs. Push implementation
+before evaluation, report gains/losses/extras, publish only safe aggregates.
+Stage3 Binner and Stage4 verified isotope gold remain open. Do not auto-start
+Stage6 or resume historical annotation optimization.
+
 Stage 4 software/internal comparison COMPLETE, producer81e8aa2. Defaults CURRENT.
 IsoSpecPy2.6.1 full-ion compositions, resolution-aware centroid approximation,
 per-sample/QC ratios, missingness/saturation/interference flags; ADDITIVE only.
