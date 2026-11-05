@@ -52,7 +52,7 @@ def project_files(project):
     for item in sorted(Path(project).iterdir()):
         if item.name.startswith(".") or item.name == "Archive":
             continue
-        if item.is_file() or item.name in ("LASER", "Untargeted", "metadata", "Calibration"):
+        if item.is_file() or item.name in ("XCMS", "Raw", "LASER", "Untargeted", "metadata", "Calibration"):
             files = [item] if item.is_file() else sorted(item.rglob("*"))
             for path in files:
                 if path.is_symlink():

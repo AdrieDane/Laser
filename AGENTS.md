@@ -24,7 +24,13 @@ development data; 46 mappings remain unresolved, and independent validation is
 explicitly empty. Current project has no raw traces/MS/MS or verified isotope
 gold set. No runtime algorithm/default changes or external engine benchmark were
 made. External versions are pinned, with compatibility gaps recorded. Stage 2 has
-NOT started. Start a stage when
+NOT started. The user then supplied the full archive of the SAME acquisition and
+requested an inputs-only new project. Preparation is complete privately: canonical
+XCMS/metadata/Raw directories, 68 verified centroided mzXML injections (65,990 MS1
+scans, no MS2), all 68 sample mappings and 26 IS validated. No saved results copied,
+no default path change, no new independent acquisition. The original frozen
+checkpoint remains intact; scan-level MS1 is now available for a later trace stage.
+The freeze utility includes XCMS/Raw; 15 focused tests pass. Start a stage when
 the user requests it or explicitly asks to continue, finish its validation and
 checkpoint summary, then stop before the next stage. Do not interpret the plan
 as resuming historical annotation optimization. Keep conditional adduct accuracy,

@@ -81,6 +81,16 @@ def test_producing_job_paths_relocate_into_frozen_project(tmp_path):
     assert ".laser/jobs/untargeted/run/request.json" in first
 
 
+def test_canonical_inputs_and_raw_scans_are_frozen_but_old_archives_are_not(tmp_path):
+    for relative in ("XCMS/peakgrouplist_RP_Pos.txt", "Raw/RP_Pos/sample.mzXML",
+                     "Archive/LASER/old/table.csv", "evaluation/reference/gold.xlsx"):
+        file = tmp_path / relative
+        file.parent.mkdir(parents=True, exist_ok=True)
+        file.write_text("synthetic")
+    paths = {str(p.relative_to(tmp_path)) for p in TOOL["project_files"](tmp_path)}
+    assert paths == {"XCMS/peakgrouplist_RP_Pos.txt", "Raw/RP_Pos/sample.mzXML"}
+
+
 def test_query_order_mismatch_cannot_produce_silent_scores():
     with pytest.raises(ValueError, match="order/key"):
         TOOL["score_representatives"](

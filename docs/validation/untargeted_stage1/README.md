@@ -193,3 +193,31 @@ application-suite run or a new browser-latency measurement.
 
 Stage 1 is complete. Review this checkpoint before starting Stage 2's acquisition
 settings and adduct-chemistry changes.
+
+## User-authorized scan-data supplement
+
+After the checkpoint was pushed, the user supplied the full archive of the same
+ALD acquisition and requested a new, inputs-only test project. Its four original
+peak lists are byte-identical to the frozen acquisition. This expands available
+evidence without adding an independent dataset or changing the original checkpoint.
+
+The new project follows `XCMS/`, `metadata/`, `Raw/`, `Calibration/`, `LASER/`,
+`Untargeted/` and `Archive/`. All output folders remain empty; no saved results or
+annotation holdout were copied. Reference workbooks/libraries for evaluation are
+kept separately under `evaluation/reference/`, outside runtime input discovery.
+The previous project preference was not changed.
+
+All 68 converted mzXML injections were copied, SHA256-verified and streamed through
+an XML parser: 17 files per mode, 65,990 centroided MS1 scans, correct polarities,
+and **no MS2 scans**. The source vendor-raw folder contains only a placeholder.
+Thus scan-level MS1 traces/isotope evidence are now available for the optional
+trace stage; MS/MS evaluation remains unavailable. No peak-shape extraction or
+isotope/formula benchmark was run as part of copying these inputs.
+
+LASER's own readers validate all four peak lists, all 17 sample metadata mappings
+per mode, all matching acquisition files and the 26-standard CSV. Method settings,
+source documentation and file-level provenance accompany the private project.
+The freeze utility now includes canonical `XCMS/` and `Raw/` directories; a
+synthetic regression protects these inputs while excluding old archives and gold
+reference folders. Fifteen focused evaluation/profile tests pass after this
+extension. Stage 2 remains unstarted.
