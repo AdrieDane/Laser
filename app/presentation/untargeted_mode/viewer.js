@@ -4,6 +4,11 @@ const node = (tag, text='', className='') => {
 };
 const numberText = (value, digits=3) => value==null || !Number.isFinite(Number(value))?'—':Number(value).toFixed(digits);
 const plotFont = {family:'Arial, sans-serif',size:12};
+const panelRows={positive:[.56,1],negative:[0,.44]};
+const panelFrame=state=>{
+  const width=state.plot?.clientWidth??700;
+  return {height:state.view==='All 4 modes'?540:510,margin:{t:width<500?140:width<700?100:70,b:52,autoexpand:false}};
+};
 const traceOrder=['background','significantDown','significantUp','adduct','cluster','annotatedCluster','significantCluster','focus'];
 const legendNames={background:'Not significant',significantDown:'Significantly lower (B vs A)',significantUp:'Significantly higher (B vs A)',adduct:'Other adduct candidate',
   cluster:'Cluster member',annotatedCluster:'Annotated lipid in cluster',significantCluster:'Significant cluster member',focus:'Selected / possible counterpart'};
@@ -16,9 +21,10 @@ export function modeFigure(state) {
   for(const key of model.hits) if(visible.some(stream=>key.startsWith(stream.name+'\u0000'))) visibleKeys.add(key);
   for(const group of [context.focus,context.cluster,context.adducts]) for(const key of group) visibleKeys.add(key);
   if(state.grey) for(const stream of visible) for(const index of stream.background) visibleKeys.add(featureKey(stream.name,stream.ids[index]));
-  const layout={height:phases.length>1?630:590, margin:{l:62,r:15,t:70,b:52},
+  const frame=panelFrame(state);
+  const layout={...frame,margin:{...frame.margin,l:62,r:15},
     paper_bgcolor:state.canvas,plot_bgcolor:state.canvas,font:{...plotFont,color:state.ink},
-    showlegend:true,legend:{orientation:'h',x:0,y:1.14,font:{size:10}},hovermode:'closest',
+    showlegend:true,legend:{orientation:'h',x:0,y:1+(frame.margin.t-8)/(frame.height-frame.margin.t-frame.margin.b),yanchor:'top',font:{size:10}},hovermode:'closest',
     uirevision:state.view,dragmode:state.dragMode??'pan',shapes,annotations,meta:{pairs:[]}};
   phases.forEach((phase,column)=>{
     let maxRT=1,maxMZ=100;
@@ -53,7 +59,7 @@ export function modeFigure(state) {
         showticklabels:!negative,ticks:negative?'':undefined,matches:negative?axes[0].x.replace('axis',''):undefined,
         title:{text:negative?'Retention time (min)':'',standoff:12},range:rt};
       layout['yaxis'+suffix]={...common,anchor:xaxis,uirevision:phase+':mz:'+(state.axisRevisions?.[phase]?.mz??0),title:{text:negative?'m/z (NEG)':'m/z (POS)'},
-        domain:negative?[0,.44]:[.56,1],range:negative?[-mass[1],-mass[0]]:mass};
+        domain:negative?panelRows.negative:panelRows.positive,range:negative?[-mass[1],-mass[0]]:mass};
       annotations.push({xref:'paper',yref:'paper',x:domain[0],y:negative?-.045:1.03,text:phase+(negative?' NEG':' POS'),
         showarrow:false,xanchor:'left',yanchor:negative?'top':'auto',font:{size:12,color:state.ink}});
     }
@@ -147,7 +153,8 @@ export function sampleFigures(state) {
 export function samplePanelFigure(state) {
   const found=new Map(sampleFigures(state).filter(item=>item.mode!=='empty').map(item=>[item.mode,item]));
   const modes=['RP_Pos','NP_Pos','RP_Neg','NP_Neg'],traces=[],annotations=[],legendGroups=new Set();
-  const layout={height:520,margin:{l:44,r:8,t:50,b:38},paper_bgcolor:state.canvas,plot_bgcolor:state.canvas,
+  const frame=panelFrame(state);
+  const layout={...frame,margin:{...frame.margin,l:44,r:8},paper_bgcolor:state.canvas,plot_bgcolor:state.canvas,
     font:{...plotFont,color:state.ink},showlegend:true,barmode:'overlay',bargap:.12,
     legend:{orientation:'h',x:.5,xanchor:'center',y:-.035,font:{size:10}},annotations};
   modes.forEach((mode,index)=>{
@@ -157,10 +164,10 @@ export function samplePanelFigure(state) {
     const header=point?'<b>'+mode.replace('_',' ').toUpperCase()+'</b><br>m/z '+numberText(point.mz,5)+' · RT '+numberText(point.rt,3)+' min · '+
       (detail?.adduct||'adduct unresolved')+'<br>'+(detail?.compound_id||'compound unassigned')+' · Feature '+point.id:
       '<b>'+mode.replace('_',' ').toUpperCase()+'</b><br>m/z — · RT — · Adduct —<br>Compound — · Feature —';
-    annotations.push({xref:'paper',yref:'paper',x:(domain[0]+domain[1])/2,y:row===0?1.10:.53,
+    annotations.push({xref:'paper',yref:'paper',x:(domain[0]+domain[1])/2,y:row===0?1.10:.54,
       xanchor:'center',yanchor:'top',showarrow:false,text:header,font:{size:10,color:state.ink}});
     layout['xaxis'+suffix]={domain,anchor:yaxis,showticklabels:false,ticks:'',gridcolor:state.grid,visible:!!point};
-    layout['yaxis'+suffix]={domain:row===0?[.57,1]:[0,.43],anchor:xaxis,title:{text:column===0?'intensity':''},
+    layout['yaxis'+suffix]={domain:row===0?panelRows.positive:panelRows.negative,anchor:xaxis,title:{text:column===0?'intensity':''},
       gridcolor:state.grid,rangemode:'tozero',tickformat:'.2s',visible:!!point};
     if(item) for(const trace of item.figure.data) {
       const showlegend=!legendGroups.has(trace.name);legendGroups.add(trace.name);
@@ -251,7 +258,7 @@ function createWorkspace(parent, data) {
   const top=node('div','','mode-top'),main=node('div','','mode-main'),plot=node('div','','mode-plot'),side=node('aside','','mode-side'),barStack=node('div','','sample-bar-stack');
   const resets=new Map();
   for(const phase of ['RP','NP']) {const button=node('button','Reset '+phase);button.type='button';controls.appendChild(button);resets.set(phase,button);}
-  main.append(controls,plot);side.appendChild(barStack);
+  main.appendChild(plot);side.appendChild(barStack);
   top.append(main,side);
   const tableTitle=node('h3','Significant compounds and linked detections'),tableTools=node('div','','table-tools'),filter=node('input');
   filter.type='search';filter.placeholder='Find compound, feature, m/z or mode';filter.setAttribute('aria-label','Find feature');
@@ -267,7 +274,7 @@ function createWorkspace(parent, data) {
   }
   const detailFormula=node('p');evidence.isotopes.parentElement.appendChild(detailFormula);
   const review=node('button','Review selected feature','review-feature');review.type='button';details.appendChild(review);
-  main.append(tableTitle,tableTools,table);root.append(top,details);parent.appendChild(root);
+  main.append(tableTitle,tableTools,table);root.append(controls,top,details);parent.appendChild(root);
   const state={root,model:new ModeViewerModel(data),buttons,resets,plot,barStack,barCharts:new Map(),filter,tableViewport,tableBody,tableCount,detailTitle,detailFormula,details,...evidence,
     version:0,busy:false,grey:false,zoomByPhase:{},axisRevisions:{},view:Object.keys(data.streams).some(s=>s.startsWith('RP'))?'RP POS and NEG':'NP POS and NEG',timings:[]};
   state.canvas=data.theme==='Midnight'?'#20313f':'#fff';state.ink=data.theme==='Midnight'?'#e7edf2':'#1d1d1f';state.grid=data.theme==='Midnight'?'#3b5262':'#e1e6ef';
@@ -283,7 +290,11 @@ function createWorkspace(parent, data) {
   filter.addEventListener('input',()=>{tableViewport.scrollTop=0;renderRows(state,false);});
   tableViewport.addEventListener('scroll',()=>renderRows(state,false));
   review.addEventListener('click',()=>{if(state.selected) state.emit?.('review',state.selected.split('\u0000'));});
-  state.observer=new ResizeObserver(()=>{if(state.plot._fullLayout) {window.__laserStandardPlotly.Plots.resize(state.plot);for(const chart of state.barCharts.values()) window.__laserStandardPlotly.Plots.resize(chart);}});
+  state.observer=new ResizeObserver(()=>{if(state.plot._fullLayout) {
+    const width=state.plot.clientWidth;
+    if(width!==state.plotWidth) {state.plotWidth=width;state.version++;updateWorkspace(state);}
+    window.__laserStandardPlotly.Plots.resize(state.plot);for(const chart of state.barCharts.values()) window.__laserStandardPlotly.Plots.resize(chart);
+  }});
   state.observer.observe(top);
   return state;
 }

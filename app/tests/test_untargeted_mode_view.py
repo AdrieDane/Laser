@@ -180,6 +180,8 @@ check(new Set(bars.map(item=>item.mode)).size===4,'one plot per mode');
 check(bars.every(item=>item.figure.layout.height===280),'all sample plots same height');
 check(bars.every(item=>item.figure.layout.title.text.includes(item.mode.replace('_',' '))),'mode in each title');
 const panel=samplePanelFigure(state);
+check(panel.layout.height===figure.layout.height&&panel.layout.margin.t===figure.layout.margin.t&&panel.layout.margin.b===figure.layout.margin.b,'scatter and abundance panels share vertical frame');
+check(JSON.stringify(panel.layout.yaxis.domain)===JSON.stringify(figure.layout.yaxis.domain)&&JSON.stringify(panel.layout.yaxis3.domain)===JSON.stringify(figure.layout.yaxis2.domain),'positive and negative row edges align across scatter and abundance plots');
 check(panel.layout.yaxis4&&panel.layout.xaxis4,'fixed 2 by 2 sample panels');
 check(JSON.stringify(panel.layout.annotations.slice(0,4).map(a=>a.text.match(/<b>(.*?)<\/b>/)[1]))===JSON.stringify(['RP POS','NP POS','RP NEG','NP NEG']),'positive modes above negative modes, RP left and NP right');
 check(panel.data.filter(t=>t.showlegend&&t.name==='Case').length===1,'shared sample legend');
