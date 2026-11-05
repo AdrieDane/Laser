@@ -13,6 +13,7 @@ from presentation.standard_grid.persistent_plot import _runtime
 from presentation.viewer_theme import current_theme
 from standard_lipidomics.untargeted_adducts import ADDUCTS
 from standard_lipidomics.untargeted_compounds import assign_compound_ids, COMPOUND_VERSION
+from standard_lipidomics.acquisition_method import normalize_acquisition_method, ion_state, method_id
 
 HERE = Path(__file__).parent
 
@@ -54,9 +55,10 @@ def _lipid_labels(result):
 def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
     """One compact load; all subsequent selection work stays in the browser."""
     from standard_lipidomics.untargeted_grid import search_lipid_grids, GRID_VERSION
+    method = normalize_acquisition_method(analysis.get('acquisition_method', result.get('acquisition_method')))
     if analysis.get('lipid_grid_version') != GRID_VERSION:
         from standard_lipidomics.untargeted import _coordinate_sources, UntargetedComparisonCriteria
-        analysis['lipid_grid_matches'] = search_lipid_grids(analysis.get('by_stream', {}), _coordinate_sources(result), UntargetedComparisonCriteria(**analysis['criteria']))
+        analysis['lipid_grid_matches'] = search_lipid_grids(analysis.get('by_stream', {}), _coordinate_sources(result), UntargetedComparisonCriteria(**analysis['criteria']), method=method)
         analysis['lipid_grid_version'] = GRID_VERSION
         analysis['compound_version'] = None
     if analysis.get('compound_version') != COMPOUND_VERSION:
@@ -121,6 +123,12 @@ def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
                 str(row.source_adduct), str(row.target_adduct), float(row.mass_error_ppm),
                 float(row.rt_delta_seconds), bool(row.rt_compared), float(row.neutral_mass)])
     homologous = analysis.get('homologous_matches', pd.DataFrame())
+    grid_links = analysis.get('lipid_grid_matches', pd.DataFrame())
+    if method['adduct_scoring'] == 'method_aware':
+        if 'adduct_alias_ambiguous' in homologous:
+            homologous = homologous[~homologous.adduct_alias_ambiguous.fillna(False)]
+        if 'adduct_alias_ambiguous' in grid_links:
+            grid_links = grid_links[~grid_links.adduct_alias_ambiguous.fillna(False)]
     cluster_rows = [[str(row.stream), str(row.source_feature_id), str(row.target_feature_id),
                      int(row.ch2_steps), float(row.mass_error_ppm), float(row.rt_delta_seconds),
                      str(row.target_lipid_classes) if pd.notna(row.target_lipid_classes) else '']
@@ -135,9 +143,11 @@ def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
             row['compound_id'] = f'compound_{next_compound:04d}'
     return {'token': token, 'theme': theme, 'streams': streams, 'statistics': statistics,
             'links': link_rows, 'clusters': cluster_rows, 'palette': palette,
-            'familyClusters': [[str(row.stream), str(row.source_feature_id), str(row.target_feature_id)] for row in analysis.get('lipid_grid_matches', pd.DataFrame()).itertuples(index=False)],
+            'familyClusters': [[str(row.stream), str(row.source_feature_id), str(row.target_feature_id)] for row in grid_links.itertuples(index=False)],
             'clusterMembers': cluster_members,
-            'adducts': [asdict(adduct) for adduct in ADDUCTS], 'criteria': dict(analysis.get('criteria', {}))}
+            'adducts': [asdict(adduct) for adduct in ADDUCTS], 'criteria': dict(analysis.get('criteria', {})),
+            'acquisitionMethodId': method_id(method),
+            'adductPolicies': {stream: [ion.name for ion in ADDUCTS if ion_state(method, stream, ion.name) != 'disabled'] for stream in streams}}
 
 
 def render_mode_view(result, analysis):

@@ -422,6 +422,7 @@ def _render_untargeted_input(default_project: str) -> None:
         watched = [manifest, root / "LASER" / "Annotation" / "LASER_PROJECT.json"]
         watched.extend(discover_standard_streams(root).values())
         watched.extend((root / "metadata").glob("*.xls*"))
+        watched.append(root / "metadata" / "acquisition_method.json")
         signature = (str(root), tuple((str(path), path.stat().st_size, path.stat().st_mtime_ns)
                                       for path in watched if path.is_file()))
         cached = st.session_state.get("standard_untargeted_launch_inputs")
@@ -429,6 +430,11 @@ def _render_untargeted_input(default_project: str) -> None:
             cached = (signature, *load_untargeted_inputs(project))
             st.session_state.standard_untargeted_launch_inputs = cached
         _, result, provenance = cached
+        from presentation.acquisition_settings import render_acquisition_settings
+        acquisition = render_acquisition_settings(result, project)
+        if acquisition is None:
+            return
+        result = {**result, "acquisition_method": acquisition}
         if provenance.startswith("raw XCMS"):
             st.info("No completed annotation found. This run will include all XCMS features.")
         configured = _untargeted_criteria(result)

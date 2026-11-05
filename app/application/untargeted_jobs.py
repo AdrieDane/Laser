@@ -13,6 +13,7 @@ import pandas as pd
 from application.annotation_jobs import launch_worker, read_annotation_job, _now
 from output_io import atomic_write_json
 from standard_lipidomics.project_layout import xcms_project_root
+from standard_lipidomics.acquisition_method import load_acquisition_method, normalize_acquisition_method
 from standard_lipidomics.project_store import (
     load_annotation_workflow, load_untargeted_workflow, save_untargeted_workflow,
 )
@@ -37,6 +38,7 @@ def load_untargeted_inputs(project):
             'automatic_annotations': pd.DataFrame(), 'xcms_input_dir': str(root)}
         provenance = 'raw XCMS features; no completed annotation'
     result['untargeted_sample_metadata_audit'] = attach_excel_sample_metadata(result, root)
+    result['acquisition_method'] = load_acquisition_method(root)
     return result, provenance
 
 
@@ -65,6 +67,8 @@ def start_untargeted_job(project, criteria, *, result=None, provenance='', exist
             return active
         if result is None:
             result, provenance = load_untargeted_inputs(root)
+        result = {**result, 'acquisition_method': normalize_acquisition_method(
+            result.get('acquisition_method') or load_acquisition_method(root))}
         directory = jobs / (datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S') + '-' + uuid4().hex[:10])
         directory.mkdir()
         # Portable project tables freeze coordinates, sample levels, group maps,

@@ -1,0 +1,447 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Core-Facility-Metabolomics-AUMC/LASER-standard-lipidomics/acquisition-method-v1",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "adduct_scoring": {
+      "enum": [
+        "legacy",
+        "method_aware"
+      ]
+    },
+    "provenance": {
+      "type": "string"
+    },
+    "methods": {
+      "type": "object",
+      "properties": {
+        "RP": {
+          "$ref": "#/$defs/method"
+        },
+        "NP": {
+          "$ref": "#/$defs/method"
+        }
+      },
+      "required": [
+        "RP",
+        "NP"
+      ],
+      "additionalProperties": false
+    },
+    "lc_system": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "adduct_scoring",
+    "provenance",
+    "methods",
+    "lc_system"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "method": {
+      "type": "object",
+      "properties": {
+        "polarities": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "pos",
+              "neg"
+            ]
+          },
+          "minItems": 1
+        },
+        "solvents": {
+          "type": "object",
+          "properties": {
+            "A": {
+              "type": "object",
+              "properties": {
+                "composition": {
+                  "type": "string"
+                },
+                "additives": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "enum": [
+                          "formic acid",
+                          "ammonia",
+                          "ammonium formate",
+                          "ammonium acetate",
+                          "acetic acid",
+                          "other"
+                        ]
+                      },
+                      "concentration": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "exclusiveMinimum": 0
+                      },
+                      "unit": {
+                        "enum": [
+                          "mM",
+                          "\u00b5M",
+                          "M",
+                          "%",
+                          "% v/v",
+                          "% w/v",
+                          "unknown"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "concentration",
+                      "unit"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "composition",
+                "additives"
+              ],
+              "additionalProperties": false
+            },
+            "B": {
+              "type": "object",
+              "properties": {
+                "composition": {
+                  "type": "string"
+                },
+                "additives": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "enum": [
+                          "formic acid",
+                          "ammonia",
+                          "ammonium formate",
+                          "ammonium acetate",
+                          "acetic acid",
+                          "other"
+                        ]
+                      },
+                      "concentration": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "exclusiveMinimum": 0
+                      },
+                      "unit": {
+                        "enum": [
+                          "mM",
+                          "\u00b5M",
+                          "M",
+                          "%",
+                          "% v/v",
+                          "% w/v",
+                          "unknown"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "concentration",
+                      "unit"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "composition",
+                "additives"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "A",
+            "B"
+          ],
+          "additionalProperties": false
+        },
+        "gradient": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "time_min": {
+                "type": "number",
+                "minimum": 0
+              },
+              "percent_a": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              }
+            },
+            "required": [
+              "time_min",
+              "percent_a"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "temperature_c": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "flow_ml_min": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "instrument": {
+          "type": "object",
+          "properties": {
+            "model": {
+              "type": "string"
+            },
+            "resolution": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "exclusiveMinimum": 0
+            },
+            "spray_voltage_v": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "exclusiveMinimum": 0
+            },
+            "resolution_reference_mz": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "exclusiveMinimum": 0
+            },
+            "mass_range_mz": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              ]
+            }
+          },
+          "required": [
+            "model",
+            "resolution",
+            "spray_voltage_v",
+            "resolution_reference_mz",
+            "mass_range_mz"
+          ],
+          "additionalProperties": false
+        },
+        "calibration": {
+          "type": "object",
+          "properties": {
+            "pos": {
+              "type": "object",
+              "properties": {
+                "mz": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "rt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "mz",
+                "rt"
+              ],
+              "additionalProperties": false
+            },
+            "neg": {
+              "type": "object",
+              "properties": {
+                "mz": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "rt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "mz",
+                "rt"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "pos",
+            "neg"
+          ],
+          "additionalProperties": false
+        },
+        "adducts": {
+          "type": "object",
+          "properties": {
+            "pos": {
+              "type": "object",
+              "properties": {
+                "[M+H]+": {
+                  "enum": [
+                    "common",
+                    "possible",
+                    "disabled"
+                  ]
+                },
+                "[M+NH4]+": {
+                  "enum": [
+                    "common",
+                    "possible",
+                    "disabled"
+                  ]
+                },
+                "[M+Na]+": {
+                  "enum": [
+                    "common",
+                    "possible",
+                    "disabled"
+                  ]
+                },
+                "[M+K]+": {
+                  "enum": [
+                    "common",
+                    "possible",
+                    "disabled"
+                  ]
+                },
+                "[M+H-H2O]+": {
+                  "enum": [
+                    "common",
+                    "possible",
+                    "disabled"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "neg": {
+              "type": "object",
+              "properties": {
+                "[M-H]-": {
+                  "enum": [
+                    "common",
+                    "possible",
+                    "disabled"
+                  ]
+                },
+                "[M+HCOO]-": {
+                  "enum": [
+                    "common",
+                    "possible",
+                    "disabled"
+                  ]
+                },
+                "[M+CH3COO]-": {
+                  "enum": [
+                    "common",
+                    "possible",
+                    "disabled"
+                  ]
+                },
+                "[M+Cl]-": {
+                  "enum": [
+                    "common",
+                    "possible",
+                    "disabled"
+                  ]
+                },
+                "[M-H-H2O]-": {
+                  "enum": [
+                    "common",
+                    "possible",
+                    "disabled"
+                  ]
+                },
+                "[M-2H]2-": {
+                  "enum": [
+                    "common",
+                    "possible",
+                    "disabled"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "pos",
+            "neg"
+          ],
+          "additionalProperties": false
+        },
+        "column": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "polarities",
+        "solvents",
+        "gradient",
+        "temperature_c",
+        "flow_ml_min",
+        "instrument",
+        "calibration",
+        "adducts",
+        "column"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$comment": "Runtime also checks strictly increasing gradient times, ordered m/z bounds, and percentage concentrations <=100."
+}

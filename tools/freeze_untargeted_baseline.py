@@ -146,7 +146,7 @@ def score_representatives(queries, representatives, reference):
     return rows, ratio(sum(r["status"] == "correct_feature_and_adduct" for r in eligible), len(eligible))
 
 
-def worker(source, project, keys, output, node):
+def worker(source, project, keys, output, node, method_file=None):
     """Runs in a fresh process: no reference CSV or identity labels are loaded."""
     sys.path.insert(0, str(source / "app"))
     import pandas as pd
@@ -155,13 +155,26 @@ def worker(source, project, keys, output, node):
     from presentation.untargeted_mode import build_mode_payload
     result, saved = load_untargeted_workflow(project)
     analysis = result["untargeted_analysis"]
+    if method_file is not None:
+        from standard_lipidomics.acquisition_method import normalize_acquisition_method
+        method = normalize_acquisition_method(json.loads(method_file.read_text()))
+        result["acquisition_method"] = method
+        analysis["acquisition_method"] = method
+    original_features = analysis["features"].copy()
     write_json(output / "saved_settings.json", {"criteria": analysis["criteria"], "settings": saved["settings"],
         "saved_versions": {k: analysis[k] for k in ("compound_version", "evidence_version", "lipid_grid_version")}})
     start = time.monotonic()
     analysis = assign_compound_ids(analysis, result=result)
     elapsed = time.monotonic() - start
     payload = build_mode_payload(result, analysis)
-    for name in ("compound_features", "adduct_matches"):
+    from standard_lipidomics.untargeted_compounds import LABEL_COLUMNS
+    original_columns = [c for c in original_features if c not in LABEL_COLUMNS]
+    pd.testing.assert_frame_equal(original_features[original_columns], analysis["features"][original_columns])
+    write_json(output / "unchanged_statistics.json", {"all_original_non_label_columns_equal": True,
+        "tested_feature_count": len(original_features), "columns": original_columns})
+    for name in ("compound_features", "adduct_matches", "homologous_matches", "lipid_grid_matches", "cluster_members"):
+        if name not in analysis:
+            continue
         analysis[name].to_csv(output / f"{name}.csv", index=False)
     write_json(output / "payload.json", payload)
     assets = source / "app/presentation/untargeted_mode"

@@ -28,7 +28,9 @@ the baseline and evaluation definitions are frozen, and the selected-PC 10/14
 counterpart result was reproduced in two identical replays. Later
 stages cover acquisition-specific adduct chemistry, full-feature ion grouping,
 complete isotope patterns, external formula engines, joint inference and optional
-raw chromatogram/MS/MS evidence. Stage 2 has not started.
+raw chromatogram/MS/MS evidence. [Stage 2](docs/validation/untargeted_stage2/README.md)
+adds project method settings and experimental method-aware adduct scoring;
+its development comparison is in progress. Current scoring remains the default.
 
 ## Run the app
 

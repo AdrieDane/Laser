@@ -15,6 +15,16 @@ accuracy. Personal project defaults belong to user settings, never source code.
 
 ## Current untargeted evidence follow-up
 
+Stage 2 is now explicitly authorized. Implementation adds a project method schema,
+launcher editor, frozen saved/worker settings, selectable soft chemistry/class
+priors and a formate/acetate CH2 ambiguity guard. User supplied RP/NP protocol;
+new inputs-only project metadata records it, preserving the existing IS CSV and
+current-scoring default. Historical Stage 1 text below describes its frozen state.
+See docs/validation/untargeted_stage2/README.md. Stage 2 source-bound comparison is
+pending; freeze/push implementation before evaluating both fixed arms, report all
+four modes/all classes plus PC, gains AND losses, then stop before Stage 3. No
+new dataset, full-feature grouping, formula-model replacement or default promotion.
+
 The user requested a staged implementation plan on 5 November 2026. Follow
 [the untargeted formula and adduct plan](docs/UNTARGETED_FORMULA_ADDUCT_PLAN.md).
 Stage 1 is complete: see docs/validation/untargeted_stage1/README.md. The private

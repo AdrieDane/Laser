@@ -13,6 +13,7 @@ import numpy as np
 
 from completed_project import load_completed_project
 from standard_lipidomics.project_layout import workflow_folder, xcms_project_root
+from standard_lipidomics.acquisition_method import normalize_acquisition_method, method_id
 from standard_lipidomics.internal_standards import find_project_is_file, project_is_definitions, project_is_signature
 from standard_lipidomics.mass_calibration import write_calibrated_xcms_files
 from standard_lipidomics.rt_calibration import calibrate_standard_rt_bytes, freeze_rt_calibration
@@ -193,6 +194,7 @@ def _write_untargeted_project(
     inputs: Mapping[str, Any] | None,
 ) -> dict[str, Path]:
     root.mkdir(parents=True, exist_ok=True)
+    method = normalize_acquisition_method(analysis.get("acquisition_method", result.get("acquisition_method")))
     tables = root / "tables"
     paths: dict[str, Path] = {}
     streams: dict[str, Any] = {}
@@ -223,6 +225,7 @@ def _write_untargeted_project(
         root / "standard_stream_metadata.json",
         {"engine": "untargeted", "streams": streams},
     )
+    paths["acquisition_method"] = atomic_write_json(root / "acquisition_method.json", method)
     manifest = atomic_write_json(root / "run_manifest.json", {
         "format_version": 1,
         "workflow": "untargeted",
@@ -231,6 +234,9 @@ def _write_untargeted_project(
         "evidence_version": analysis.get("evidence_version", 0),
         "compound_version": analysis.get("compound_version", 0),
         "lipid_grid_version": analysis.get("lipid_grid_version", 0),
+        "lipid_grid_method_id": analysis.get("lipid_grid_method_id"),
+        "acquisition_method": method,
+        "acquisition_method_id": method_id(method),
         "interpretation_boundary": str(analysis.get("interpretation_boundary", "")),
         "inputs": dict(inputs or {}),
     })
@@ -289,6 +295,8 @@ def load_untargeted_workflow(project: str | Path) -> tuple[dict, dict]:
         "evidence_version": run.get("evidence_version", 0),
         "compound_version": run.get("compound_version", 0),
         "lipid_grid_version": run.get("lipid_grid_version", 0),
+        "lipid_grid_method_id": run.get("lipid_grid_method_id"),
+        "acquisition_method": normalize_acquisition_method(run.get("acquisition_method")),
         "interpretation_boundary": run.get("interpretation_boundary", ""),
     }
     for key in ("features", "significant_features", "raw_p_features", "compound_features", "cluster_members", "adduct_matches", "homologous_matches", "lipid_grid_matches", "group_catalog", "skipped_streams"):
@@ -302,6 +310,7 @@ def load_untargeted_workflow(project: str | Path) -> tuple[dict, dict]:
             by_stream[str(name)] = frame.copy()
     analysis["by_stream"] = by_stream
     result = {"engine": "untargeted", "streams": streams,
+              "acquisition_method": analysis["acquisition_method"],
               "automatic_annotations": load_project_table(saved, "automatic_annotations"),
               "untargeted_analysis": analysis,
               "xcms_input_dir": saved["inputs"].get("project")}

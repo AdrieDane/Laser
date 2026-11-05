@@ -33,12 +33,19 @@ GRID_COLUMNS = (
 
 
 class LipidGridIndex:
-    def __init__(self, features, ppm=4.0, edge_rt=0.5):
+    def __init__(self, features, ppm=4.0, edge_rt=0.5, adduct_alias_rt=None):
         self.mz = features.mz.to_numpy(float)
         self.rt = features.rt.to_numpy(float)
         self.ids = features.feature_id.astype(str).to_numpy()
         self.lookup = {fid: i for i, fid in enumerate(self.ids)}
         self.ppm, self.edge_rt = float(ppm), float(edge_rt)
+        self.adduct_alias_rt = adduct_alias_rt
+
+    def ambiguous(self, left, right, charge):
+        return (self.adduct_alias_rt is not None and charge == 1
+                and abs(self.rt[left] - self.rt[right]) <= self.adduct_alias_rt + 1e-10
+                and abs(abs(self.mz[left] - self.mz[right]) - CH2)
+                <= max(self.mz[left], self.mz[right]) * self.ppm * 1e-6)
 
     def candidates(self, mass):
         tolerance = mass * self.ppm * 1e-6
@@ -60,6 +67,7 @@ class LipidGridIndex:
                     i
                     for i in self.candidates(expected)
                     if abs(self.rt[i] - rt) <= self.edge_rt
+                    and not self.ambiguous(root, i, charge)
                 ]
                 if phase == "RP":
                     choices = [
@@ -122,6 +130,8 @@ class LipidGridIndex:
                     continue
                 if abs(self.rt[cells[neighbour][0]] - self.rt[current]) > self.edge_rt:
                     continue
+                if self.ambiguous(current, cells[neighbour][0], charge):
+                    continue
                 visited.add(neighbour)
                 queue.append(neighbour)
         if (
@@ -155,15 +165,19 @@ class LipidGridIndex:
         return records
 
 
-def search_lipid_grids(by_stream, sources, criteria):
+def search_lipid_grids(by_stream, sources, criteria, method=None):
+    from standard_lipidomics.acquisition_method import ion_state
     records = []
     for stream, table in by_stream.items():
         source = sources.get(stream, pd.DataFrame())
         if source.empty or table.empty:
             continue
-        index = LipidGridIndex(
-            source, criteria.cross_mode_ppm_tolerance, criteria.ch2_rt_tolerance_min
-        )
+        alias_rt = None
+        if (method is not None and method['adduct_scoring'] == 'method_aware' and stream.endswith('Neg')
+                and all(ion_state(method, stream, ion) != 'disabled' for ion in ('[M+HCOO]-', '[M+CH3COO]-'))):
+            alias_rt = criteria.same_mode_adduct_rt_tolerance_min
+        index = LipidGridIndex(source, criteria.cross_mode_ppm_tolerance,
+                               criteria.ch2_rt_tolerance_min, alias_rt)
         mask = table.get(
             "raw_p_significant",
             table.get("significant", pd.Series(False, index=table.index)),

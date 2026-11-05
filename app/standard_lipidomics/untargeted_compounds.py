@@ -8,8 +8,12 @@ from collections import defaultdict
 import pandas as pd
 
 from standard_lipidomics.untargeted_adducts import ADDUCTS
+from standard_lipidomics.acquisition_method import (
+    normalize_acquisition_method, configure_adduct_matches, guard_homologous_edges,
+    record_method_on_analysis, ion_state,
+)
 
-COMPOUND_VERSION = 5
+COMPOUND_VERSION = 6
 LABEL_COLUMNS = ('compound_id', 'adduct', 'adduct_alternatives', 'detected_modes', 'association_status', 'cluster_id',
                  'predicted_chemical_formula', 'formula_status')
 
@@ -19,9 +23,10 @@ def _key(stream, feature):
 
 
 def assign_compound_ids(analysis, result=None):
+    method = normalize_acquisition_method(analysis.get('acquisition_method', (result or {}).get('acquisition_method')))
     raw = analysis.get('raw_p_features', analysis.get('significant_features', pd.DataFrame()))
     if raw.empty:
-        return {**analysis, 'compound_version': COMPOUND_VERSION, 'compound_features': pd.DataFrame()}
+        return record_method_on_analysis({**analysis, 'compound_version': COMPOUND_VERSION, 'compound_features': pd.DataFrame()}, method)
     hits = {_key(row.stream, row.feature_id): row._asdict() for row in raw.itertuples(index=False)}
     tested = analysis.get('features', raw)
     statistics = {_key(row.stream, row.feature_id): (row.p_value, row.log2_fold_change_b_vs_a)
@@ -30,7 +35,7 @@ def assign_compound_ids(analysis, result=None):
     candidates, alternatives = [], {}
     coelution = float(analysis.get('criteria', {}).get('opposite_polarity_rt_tolerance_min', .1))
     same_mode = float(analysis.get('criteria', {}).get('same_mode_adduct_rt_tolerance_min', .05))
-    links = analysis.get('adduct_matches', pd.DataFrame())
+    links = configure_adduct_matches(analysis.get('adduct_matches', pd.DataFrame()), method, result)
     if result is not None and not links.empty:
         from standard_lipidomics.untargeted_profiles import link_profile_evidence
         links = link_profile_evidence(result, analysis, links)
@@ -46,7 +51,7 @@ def assign_compound_ids(analysis, result=None):
                 continue
             first = group[0]
             members = {anchor: {'stream': anchor[0], 'feature_id': anchor[1], 'mz': float(first.source_mz),
-                'rt': float(first.source_rt), 'adduct': adduct, 'neutral_mass': float(first.neutral_mass), 'already_annotated': False, '_error': 0., '_quality': 1.}}
+                'rt': float(first.source_rt), 'adduct': adduct, 'neutral_mass': float(first.neutral_mass), 'already_annotated': False, '_error': 0., '_quality': 1., '_chemistry': float(first.source_chemistry_penalty), 'adduct_class_hint': str(first.source_class_hint)}}
             alternatives.setdefault(anchor, set()).add(str(adduct))
             # One neutral mass and one adduct per measured feature within a group.
             for row in sorted(group, key=lambda row: abs(row.mass_error_ppm)):
@@ -60,6 +65,7 @@ def assign_compound_ids(analysis, result=None):
                 members.setdefault(target, {'stream': target[0], 'feature_id': target[1], 'mz': float(row.target_mz),
                     'rt': float(row.target_rt), 'adduct': str(row.target_adduct), 'neutral_mass': float(first.neutral_mass),
                     'already_annotated': bool(row.target_is_annotated), '_error': abs(float(row.mass_error_ppm)), '_quality': quality,
+                    '_chemistry': float(row.target_chemistry_penalty), 'adduct_class_hint': str(row.target_class_hint),
                     'profile_status': getattr(row, 'profile_status', 'not evaluable'),
                     'abundance_spearman': getattr(row, 'abundance_spearman', None),
                     'within_group_correlation': getattr(row, 'within_group_correlation', None)})
@@ -118,27 +124,20 @@ def assign_compound_ids(analysis, result=None):
             member = dict(member)
             if len(members) == 1:
                 member.update(adduct='', neutral_mass=None)
+            member['ion_state'] = ion_state(method, key[0], member['adduct']) if member['adduct'] else 'unresolved'
+            member['chemistry_prior_penalty'] = member.get('_chemistry', 0.)
             records.append({**{key: value for key, value in member.items() if not key.startswith('_')}, 'compound_id': name, 'detected_modes': modes,
                 'mode_representative': representatives[key[0]] == key,
                 'raw_p_significant': key in hits, 'p_value': p_value, 'log2_fold_change_b_vs_a': fold,
                 'adduct_alternatives': '; '.join(sorted(alternatives.get(key, ()), key=lambda value: priorities.get(value, 99))),
                 'association_status': 'tentative mass/RT association' if len(members) > 1 else 'adduct unresolved'})
     compounds = pd.DataFrame(records)
-    pair_links = analysis.get('homologous_matches', pd.DataFrame())
-    grid_links = analysis.get('lipid_grid_matches', pd.DataFrame())
-    if not grid_links.empty and not pair_links.empty:
-        grid_roots = set(zip(grid_links.stream.astype(str), grid_links.source_feature_id.astype(str)))
-        pair_links = pair_links[[
-            (str(row.stream), str(row.source_feature_id)) not in grid_roots
-            and (str(row.stream), str(row.target_feature_id)) not in grid_roots
-            for row in pair_links.itertuples(index=False)
-        ]]
-    cluster_links = pd.concat([pair_links, grid_links], ignore_index=True, sort=False)
+    cluster_links, evidence = _cluster_evidence(analysis, result, method, same_mode)
     compounds, cluster_members = _assign_cluster_ids(compounds, cluster_links)
     from standard_lipidomics.untargeted_formula_labels import add_formula_labels
     compounds = add_formula_labels(compounds, raw)
     labels = compounds[['stream', 'feature_id', *LABEL_COLUMNS]]
-    output = {**analysis, 'adduct_matches': links, 'compound_version': COMPOUND_VERSION, 'compound_features': compounds, 'cluster_members': cluster_members}
+    output = {**analysis, **evidence, 'adduct_matches': links, 'compound_version': COMPOUND_VERSION, 'compound_features': compounds, 'cluster_members': cluster_members}
     for name in ('features', 'raw_p_features', 'significant_features'):
         frame = analysis.get(name)
         if isinstance(frame, pd.DataFrame) and not frame.empty:
@@ -147,7 +146,33 @@ def assign_compound_ids(analysis, result=None):
             output[name] = frame.merge(labels, on=['stream', 'feature_id'], how='left', validate='one_to_one', sort=False)
     if 'by_stream' in output and not output.get('features', pd.DataFrame()).empty:
         output['by_stream'] = {str(name): frame.copy() for name, frame in output['features'].groupby('stream', sort=False)}
-    return output
+    return record_method_on_analysis(output, method)
+
+
+
+def _cluster_evidence(analysis, result, method, same_mode):
+    from standard_lipidomics.acquisition_method import method_id
+    from standard_lipidomics.untargeted_grid import search_lipid_grids
+    pair_links = guard_homologous_edges(analysis.get('homologous_matches', pd.DataFrame()), method, same_mode)
+    grid_links = analysis.get('lipid_grid_matches', pd.DataFrame())
+    aware = method['adduct_scoring'] == 'method_aware'
+    if aware and result is not None and analysis.get('lipid_grid_method_id') != method_id(method):
+        from standard_lipidomics.untargeted import _coordinate_sources, UntargetedComparisonCriteria
+        grid_links = search_lipid_grids(analysis.get('by_stream', {}), _coordinate_sources(result),
+                                      UntargetedComparisonCriteria(**analysis['criteria']), method=method)
+    grid_links = guard_homologous_edges(grid_links, method, same_mode)
+    evidence = {'homologous_matches': pair_links, 'lipid_grid_matches': grid_links,
+                'lipid_grid_method_id': method_id(method) if aware else None}
+    if aware:
+        pair_links = pair_links[~pair_links.adduct_alias_ambiguous].copy()
+        grid_links = grid_links[~grid_links.adduct_alias_ambiguous].copy()
+    if not grid_links.empty and not pair_links.empty:
+        grid_roots = set(zip(grid_links.stream.astype(str), grid_links.source_feature_id.astype(str)))
+        pair_links = pair_links[[
+            (str(row.stream), str(row.source_feature_id)) not in grid_roots
+            and (str(row.stream), str(row.target_feature_id)) not in grid_roots
+            for row in pair_links.itertuples(index=False)]]
+    return pd.concat([pair_links, grid_links], ignore_index=True, sort=False), evidence
 
 
 def _group_rank(members, anchor, priorities):
@@ -158,6 +183,8 @@ def _group_rank(members, anchor, priorities):
     adduct = members[anchor]['adduct']
     local_ions = {value['adduct'] for key, value in members.items() if key[0] == anchor[0]}
     support = sum(supported.values()) + .15 * max(0, len(local_ions)-1) - .06 * priorities.get(adduct, 99)
+    support -= .10 * members[anchor].get('_chemistry', 0.)
+    support -= .025 * sum(value.get('_chemistry', 0.) for key, value in members.items() if key != anchor)
     return (-support, -len(supported), priorities.get(adduct, 99), anchor)
 
 

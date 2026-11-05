@@ -49,9 +49,11 @@ MATCH_COLUMNS = ('source_stream', 'source_feature_id', 'source_mz', 'source_rt',
     'target_is_annotated', 'target_is_raw_p_hit')
 
 
-def adduct_options(polarity, charge=None):
+def adduct_options(polarity, charge=None, *, method=None, stream=None):
+    from standard_lipidomics.acquisition_method import ion_state
     return tuple(a for a in ADDUCTS if a.polarity == polarity
-                 and (charge is None or a.charge == charge))
+                 and (charge is None or a.charge == charge)
+                 and (method is None or ion_state(method, stream, a.name) != 'disabled'))
 
 
 def _polarity(stream):
@@ -77,7 +79,7 @@ class SearchProgress:
         self.stream = stream
 
 
-def search_adduct_evidence(sources, by_stream, *, ppm, rt_tolerance, progress=None, same_mode_rt_tolerance=.05):
+def search_adduct_evidence(sources, by_stream, *, ppm, rt_tolerance, progress=None, same_mode_rt_tolerance=.05, method=None):
     """All mass-compatible links, requiring co-elution only within one phase.
 
     Searches include non-significant and already annotated counterparts. A
@@ -98,13 +100,13 @@ def search_adduct_evidence(sources, by_stream, *, ppm, rt_tolerance, progress=No
             reporter.step(stream)
             observed_charge = feature.get('isotope_charge_hypothesis', np.nan)
             charge = int(observed_charge) if pd.notna(observed_charge) else None
-            for source_adduct in adduct_options(_polarity(stream), charge):
+            for source_adduct in adduct_options(_polarity(stream), charge, method=method, stream=stream):
                 neutral = source_adduct.neutral(float(feature.mz))
                 if neutral <= 0:
                     continue
                 for target_stream, (masses, retention, feature_ids, annotated) in targets.items():
                     same_phase = stream.split('_')[0] == target_stream.split('_')[0]
-                    for target_adduct in adduct_options(_polarity(target_stream)):
+                    for target_adduct in adduct_options(_polarity(target_stream), method=method, stream=target_stream):
                         if target_stream == stream and target_adduct == source_adduct:
                             continue
                         expected = target_adduct.mz(neutral)

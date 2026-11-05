@@ -15,6 +15,7 @@ const lowerBound = (values, target) => {
 export class ModeViewerModel {
   constructor(data) {
     this.data=data; this.streams=new Map(); this.points=new Map(); this.rows=new Map();
+    this.allowedIons=new Map(Object.entries(data.adductPolicies??{}).map(([stream,names])=>[stream,new Set(names)]));
     this.hits=new Set(); this.links=new Map(); this.adjacency=new Map(); this.queryCache=new Map();
     this.familyAdjacency=new Map(); this.componentCache=new Map(); this.contextCache=new Map();
     this.clusterCompounds=new Map(); this.clusterIds=new Map(); this.namedClusters=new Map();
@@ -36,6 +37,7 @@ export class ModeViewerModel {
     }
     for(const item of data.links) {
       const [ss,si,ts,ti,sa,ta,ppm,rt,compared,neutral]=item;
+      if((this.allowedIons.has(ss)&&!this.allowedIons.get(ss).has(sa)) || (this.allowedIons.has(ts)&&!this.allowedIons.get(ts).has(ta))) continue;
       const source=featureKey(ss,si), target=featureKey(ts,ti);
       const forward={source,target,sourceAdduct:sa,targetAdduct:ta,ppm,rt,compared,neutral};
       const reverse={source:target,target:source,sourceAdduct:ta,targetAdduct:sa,ppm:-ppm,rt:-rt,compared,neutral};
@@ -71,7 +73,7 @@ export class ModeViewerModel {
     if(this.hits.has(key)) {this.queryCache.set(cacheKey,saved); return saved;}
     const point=this.point(key); if(!point) return saved;
     const row=this.rows.get(key), observedCharge=chargeOverride??row?.isotope_charge_hypothesis;
-    const sources=this.data.adducts.filter(a=>a.polarity===(point.negative?'neg':'pos') && (!observedCharge || a.charge===observedCharge));
+    const sources=this.data.adducts.filter(a=>a.polarity===(point.negative?'neg':'pos') && (!observedCharge || a.charge===observedCharge) && (!this.allowedIons.has(point.stream)||this.allowedIons.get(point.stream).has(a.name)));
     const ppm=this.data.criteria.cross_mode_ppm_tolerance??3;
     const rtTolerance=this.data.criteria.opposite_polarity_rt_tolerance_min??.1;
     const matches=[...saved];
@@ -80,6 +82,7 @@ export class ModeViewerModel {
       for(const stream of this.streams.values()) {
         const samePhase=point.phase===stream.phase;
         for(const target of this.data.adducts) {
+          if(this.allowedIons.has(stream.name)&&!this.allowedIons.get(stream.name).has(target.name)) continue;
           if(target.polarity!==(stream.negative?'neg':'pos')) continue;
           if(stream.name===point.stream && target.name===source.name) continue;
           const expected=(neutral+target.offset)/target.charge; if(expected<=0) continue;

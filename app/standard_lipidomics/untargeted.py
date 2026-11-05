@@ -933,15 +933,15 @@ def _mass_candidates(
     return candidates
 
 
-def _neutral_mass_options(mz: float, polarity: str) -> list[tuple[str, float]]:
-    return [(adduct.name, adduct.neutral(mz)) for adduct in adduct_options(polarity)
+def _neutral_mass_options(mz: float, polarity: str, method=None, stream=None) -> list[tuple[str, float]]:
+    return [(adduct.name, adduct.neutral(mz)) for adduct in adduct_options(polarity, method=method, stream=stream)
             if adduct.neutral(mz) > 0]
 
 
-def _neutral_mass_hypotheses(mz: float, polarity: str) -> str:
+def _neutral_mass_hypotheses(mz: float, polarity: str, method=None, stream=None) -> str:
     return "; ".join(
         f"{adduct}: neutral {neutral_mass:.5f} Da"
-        for adduct, neutral_mass in _neutral_mass_options(mz, polarity)
+        for adduct, neutral_mass in _neutral_mass_options(mz, polarity, method, stream)
     )
 
 
@@ -953,6 +953,7 @@ def _elemental_formula_candidates(
     maximum_candidates=5,
     charge=1,
     m_plus_2_percent=np.nan,
+    method=None, stream=None,
 ):
     """Rank tentative CHNOPS compositions; isotope areas are noisy constraints.
 
@@ -989,7 +990,7 @@ def _elemental_formula_candidates(
     prior = np.where(common, 0.0, 1.0) + 0.15 * s + 0.05 * n
     ratio = 0.0107 / 0.9893
     candidates = []
-    for ion in adduct_options(polarity, charge):
+    for ion in adduct_options(polarity, charge, method=method, stream=stream):
         neutral = ion.neutral(mz)
         if neutral <= 0:
             continue
@@ -1048,6 +1049,7 @@ def _attach_isotope_evidence(
     criteria: UntargetedComparisonCriteria,
 ) -> dict[str, pd.DataFrame]:
     """Find co-eluting C13 partners across the complete feature table."""
+    method = result.get('acquisition_method')
     output: dict[str, pd.DataFrame] = {}
     defaults: dict[str, object] = {
         "isotope_m_plus_1_feature_id": "",
@@ -1126,7 +1128,7 @@ def _attach_isotope_evidence(
                     ]
                 )
             )
-            neutral_hypotheses = _neutral_mass_hypotheses(mz, polarity)
+            neutral_hypotheses = _neutral_mass_hypotheses(mz, polarity, method, stream)
             table.at[row_index, "neutral_mass_hypotheses"] = neutral_hypotheses
             first_neutral = (
                 mz - _POSITIVE_ADDUCT_OFFSETS[0][1]
@@ -1296,7 +1298,7 @@ def _attach_isotope_evidence(
                 polarity,
                 carbon_estimate,
                 criteria.cross_mode_ppm_tolerance,
-                charge=charge, m_plus_2_percent=m2_percent,
+                charge=charge, m_plus_2_percent=m2_percent, method=method, stream=stream,
             )
             table.at[row_index, "elemental_formula_candidates"] = formula_candidates
             table.at[row_index, "elemental_formula_candidate_count"] = formula_count
@@ -1566,6 +1568,9 @@ def analyse_standard_untargeted(
     progress=None,
 ) -> dict:
     """Compare two groups for every unannotated feature in every stream."""
+    from standard_lipidomics.acquisition_method import normalize_acquisition_method, method_id
+    method = normalize_acquisition_method(result.get('acquisition_method'))
+    result = {**result, 'acquisition_method': method}
     catalog = group_catalog(result)
     for group in (criteria.group_a, criteria.group_b):
         rows = catalog[catalog['group'].eq(group)]
@@ -1683,12 +1688,16 @@ def analyse_standard_untargeted(
     by_stream = _attach_isotope_evidence(result, by_stream, criteria)
     if progress:
         progress(.65, "Searching adducts across acquisition modes")
-    by_stream = _attach_cross_acquisition_evidence(result, by_stream, criteria,
-        progress=(lambda count, total, message: progress(.65 + .08 * (count - 1) / max(total, 1), message)) if progress else None)
+    restricted = any(state == 'disabled' for settings in method['methods'].values()
+                     for ions in settings['adducts'].values() for state in ions.values())
+    restricted = restricted or any(set(settings['polarities']) != {'pos', 'neg'} for settings in method['methods'].values())
+    if method['adduct_scoring'] == 'legacy' and not restricted:
+        by_stream = _attach_cross_acquisition_evidence(result, by_stream, criteria,
+            progress=(lambda count, total, message: progress(.65 + .08 * (count - 1) / max(total, 1), message)) if progress else None)
     adduct_matches = search_adduct_evidence(_coordinate_sources(result), by_stream,
         ppm=criteria.cross_mode_ppm_tolerance,
         rt_tolerance=criteria.opposite_polarity_rt_tolerance_min,
-        same_mode_rt_tolerance=criteria.same_mode_adduct_rt_tolerance_min,
+        same_mode_rt_tolerance=criteria.same_mode_adduct_rt_tolerance_min, method=method,
         progress=(lambda count, total, message: progress(.73 + .12 * (count - 1) / max(total, 1), message)) if progress else None)
     by_stream = attach_adduct_summaries(by_stream, adduct_matches)
     if progress:
@@ -1697,7 +1706,7 @@ def analyse_standard_untargeted(
         {stream: _accepted_neighbour_frame(result, stream) for stream in by_stream}, criteria)
     if progress:
         progress(.90, "Finding connected carbon and double-bond lipid grids")
-    lipid_grid_matches = search_lipid_grids(by_stream, _coordinate_sources(result), criteria)
+    lipid_grid_matches = search_lipid_grids(by_stream, _coordinate_sources(result), criteria, method=method)
     combined = (
         pd.concat(by_stream.values(), ignore_index=True, sort=False)
         if by_stream
@@ -1705,6 +1714,8 @@ def analyse_standard_untargeted(
     )
     output = {
         "criteria": asdict(criteria),
+        "acquisition_method": method,
+        "lipid_grid_method_id": method_id(method) if method["adduct_scoring"] == "method_aware" else None,
         "evidence_version": EVIDENCE_VERSION,
         "adduct_matches": adduct_matches,
         "homologous_matches": homologous_matches,
