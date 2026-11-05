@@ -137,9 +137,37 @@ export function sampleFigures(state) {
     const point=state.model.point(key);if(!point||seen.has(point.stream)||!state.model.bars(key)) continue;
     const anchor=anchors.get(point.phase);if(anchor&&!model.coelutes(anchor,point)) continue;
     if(!anchor) anchors.set(point.phase,point);
-    seen.add(point.stream);figures.push({mode:point.stream,figure:sampleFigure({...state,selected:key})});
+    seen.add(point.stream);figures.push({mode:point.stream,key,figure:sampleFigure({...state,selected:key})});
   }
   return figures;
+}
+
+export function samplePanelFigure(state) {
+  const found=new Map(sampleFigures(state).filter(item=>item.mode!=='empty').map(item=>[item.mode,item]));
+  const modes=['RP_Pos','RP_Neg','NP_Pos','NP_Neg'],traces=[],annotations=[],legendGroups=new Set();
+  const layout={height:640,margin:{l:48,r:12,t:66,b:65},paper_bgcolor:state.canvas,plot_bgcolor:state.canvas,
+    font:{...plotFont,color:state.ink},showlegend:true,barmode:'overlay',bargap:.12,
+    legend:{orientation:'h',x:.5,xanchor:'center',y:-.06,font:{size:10}},annotations};
+  modes.forEach((mode,index)=>{
+    const suffix=index===0?'':String(index+1),xaxis='x'+suffix,yaxis='y'+suffix;
+    const column=index%2,row=Math.floor(index/2),domain=column===0?[0,.43]:[.57,1];
+    const item=found.get(mode),point=item&&state.model.point(item.key),detail=item&&state.model.rows.get(item.key);
+    const header=point?'<b>'+mode.replace('_',' ').toUpperCase()+'</b><br>m/z '+numberText(point.mz,5)+' · RT '+numberText(point.rt,3)+' min<br>'+
+      (detail?.adduct||'adduct unresolved')+' · '+(detail?.compound_id||'compound unassigned')+'<br>Feature '+point.id:
+      '<b>'+mode.replace('_',' ').toUpperCase()+'</b><br>m/z — · RT —<br>Adduct — · Compound —<br>Feature —';
+    annotations.push({xref:'paper',yref:'paper',x:(domain[0]+domain[1])/2,y:row===0?1.09:.50,
+      xanchor:'center',yanchor:'top',showarrow:false,text:header,font:{size:10,color:state.ink}});
+    layout['xaxis'+suffix]={domain,anchor:yaxis,showticklabels:false,ticks:'',gridcolor:state.grid,visible:!!point};
+    layout['yaxis'+suffix]={domain:row===0?[.61,.93]:[.03,.35],anchor:xaxis,title:{text:column===0?'intensity':''},
+      gridcolor:state.grid,rangemode:'tozero',tickformat:'.2s',visible:!!point};
+    if(item) for(const trace of item.figure.data) {
+      const showlegend=!legendGroups.has(trace.name);legendGroups.add(trace.name);
+      traces.push({...trace,xaxis,yaxis,legendgroup:trace.name,showlegend});
+    }
+    if(!point) annotations.push({xref:'paper',yref:'paper',x:(domain[0]+domain[1])/2,y:row===0?.77:.19,
+      text:state.selected?'Not detected':'Select a feature',showarrow:false,font:{size:12,color:state.ink}});
+  });
+  return {data:traces,layout,modes:[...found.keys()]};
 }
 
 function smallTable(parent, headers, rows) {
@@ -228,7 +256,7 @@ function createWorkspace(parent, data) {
     if(role==='significantCluster') swatch.style.border='2px solid '+MODE_COLOURS.cluster;
     line.append(swatch,document.createTextNode(label));legend.appendChild(line);
   }
-  side.appendChild(legend);top.append(main,side);
+  top.append(main,side);
   const tableTitle=node('h3','Significant compounds and linked detections'),tableTools=node('div','','table-tools'),filter=node('input');
   filter.type='search';filter.placeholder='Find compound, feature, m/z or mode';filter.setAttribute('aria-label','Find feature');
   const tableCount=node('span');tableTools.append(filter,tableCount);
@@ -273,17 +301,17 @@ async function updateWorkspace(state) {
       for(const [view,button] of state.buttons) button.setAttribute('aria-pressed',String(view===state.view));
       for(const [phase,button] of state.resets) button.hidden=!state.model.visibleStreams(state.view).some(stream=>stream.phase===phase);
       renderEvidence(state);
-      const figure=modeFigure(state),bars=sampleFigures(state),Plotly=window.__laserStandardPlotly;
-      const modes=new Set(bars.map(item=>item.mode));
+      const figure=modeFigure(state),panel=samplePanelFigure(state),bars=[{mode:'panel',figure:panel}],Plotly=window.__laserStandardPlotly;
+      const modes=new Set(['panel']);
       for(const [mode,chart] of state.barCharts) if(!modes.has(mode)) {Plotly.purge(chart);chart.remove();state.barCharts.delete(mode);}
       const updates=[Plotly.react(state.plot,figure.data,figure.layout,{displaylogo:false,scrollZoom:true,responsive:true,doubleClick:false,modeBarButtonsToRemove:['zoomIn2d','zoomOut2d','autoScale2d','resetScale2d','select2d','lasso2d']})];
       for(const item of bars) {
         let chart=state.barCharts.get(item.mode);
-        if(!chart) {chart=node('div','','sample-bars');chart.dataset.mode=item.mode;state.barCharts.set(item.mode,chart);}
+        if(!chart) {chart=node('div','','sample-panel');chart.dataset.mode=item.mode;state.barCharts.set(item.mode,chart);}
         state.barStack.appendChild(chart);
         updates.push(Plotly.react(chart,item.figure.data,item.figure.layout,{displayModeBar:false,responsive:true}));
       }
-      await Promise.all(updates);state.root.dataset.zoomRanges=JSON.stringify(state.zoomByPhase);state.root.dataset.barModes=JSON.stringify([...modes]);
+      await Promise.all(updates);state.root.dataset.zoomRanges=JSON.stringify(state.zoomByPhase);state.root.dataset.barModes=JSON.stringify(panel.modes);
       if(!state.bound) {
         const resetAxisFromPointer=event=>{
           const classes=event.composedPath().flatMap(element=>(element.getAttribute?.('class')??'').split(/\s+/));

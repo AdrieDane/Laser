@@ -5,7 +5,7 @@ button,input { font:inherit; color:var(--ink); }
 button { border:1px solid var(--border); border-radius:6px; background:var(--canvas); padding:7px 10px; cursor:pointer; }
 button:hover { border-color:#2677c9; } button:focus-visible,input:focus-visible { outline:2px solid #2677c9; outline-offset:2px; }
 .mode-top { display:grid; grid-template-columns:6.6fr 4.15fr; gap:16px; align-items:start; }
-.mode-main { min-width:0; }.mode-side { min-width:0; padding-top:44px; }.sample-bars { height:280px; }
+.mode-main { min-width:0; }.mode-side { min-width:0; padding-top:44px; }.sample-bars { height:280px; }.sample-panel { height:640px; width:100%; }
 .mode-controls { display:flex; flex-wrap:wrap; align-items:center; gap:10px; min-height:42px; }
 .mode-buttons { display:flex; gap:4px; flex-wrap:wrap; }
 .mode-buttons button { font-size:12px; padding:6px 8px; }.mode-buttons button[aria-pressed="true"] { background:#0068d9; border-color:#0068d9; color:white; }

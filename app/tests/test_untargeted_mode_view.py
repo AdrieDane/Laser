@@ -126,7 +126,7 @@ def test_browser_model_colours_modes_background_and_sample_levels(tmp_path):
     (tmp_path/'viewer.mjs').write_text((source/'model.js').read_text()+'\n'+(source/'viewer.js').read_text())
     script=r'''
 import {readFileSync} from 'node:fs';
-import {ModeViewerModel,featureKey,modeFigure,sampleFigure,sampleFigures,linkedModeZoom,axisResetZoom,axisFromClasses} from './viewer.mjs';
+import {ModeViewerModel,featureKey,modeFigure,sampleFigure,sampleFigures,linkedModeZoom,axisResetZoom,axisFromClasses,samplePanelFigure} from './viewer.mjs';
 const data=JSON.parse(readFileSync('./payload.json'));
 const model=new ModeViewerModel(data), key=(s,id)=>featureKey(s,id), selected=key('RP_Pos','a'), context=model.context(selected);
 const check=(condition,message)=>{if(!condition) throw Error(message);};
@@ -170,6 +170,12 @@ check(bars.length===4,'automatic sample plot per detected mode');
 check(new Set(bars.map(item=>item.mode)).size===4,'one plot per mode');
 check(bars.every(item=>item.figure.layout.height===280),'all sample plots same height');
 check(bars.every(item=>item.figure.layout.title.text.includes(item.mode.replace('_',' '))),'mode in each title');
+const panel=samplePanelFigure(state);
+check(panel.layout.yaxis4&&panel.layout.xaxis4,'fixed 2 by 2 sample panels');
+check(panel.data.filter(t=>t.showlegend&&t.name==='Case').length===1,'shared sample legend');
+check(panel.layout.annotations.some(a=>a.text.includes('m/z ')&&a.text.includes('RT ')&&a.text.includes('Feature a')&&a.text.includes('compound_')),'complete per-panel detection header');
+const emptyPanel=samplePanelFigure({...state,selected:null});
+check(emptyPanel.data.length===0&&emptyPanel.layout.annotations.length===8,'empty slots retained when not detected');
 const zoom=linkedModeZoom({'xaxis.range[0]':9,'xaxis.range[1]':11,'yaxis.range[0]':600,'yaxis.range[1]':800},figure.layout);
 check(JSON.stringify(zoom['xaxis2.range'])==='[9,11]','RT linked within RP');
 check(JSON.stringify(zoom['yaxis2.range'])==='[-800,-600]','mirrored RP mass zoom');
