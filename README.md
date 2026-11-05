@@ -19,6 +19,15 @@ targeted-extraction, or dataset-specific workflows.
   optional untargeted comparison (off by default).
 - A small headless CLI for either annotation engine.
 
+## Planned untargeted improvements
+
+The [staged formula prediction and adduct annotation plan](docs/UNTARGETED_FORMULA_ADDUCT_PLAN.md)
+defines nine implementation stages, their validation requirements and review
+checkpoints. Stage 1 freezes the baseline and evaluation definitions. Later
+stages cover acquisition-specific adduct chemistry, full-feature ion grouping,
+complete isotope patterns, external formula engines, joint inference and optional
+raw chromatogram/MS/MS evidence. Implementation stages have not started.
+
 ## Run the app
 
 Python 3.10–3.14 is supported. Windows with Python 3.14 is tested in CI.

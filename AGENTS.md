@@ -15,6 +15,15 @@ accuracy. Personal project defaults belong to user settings, never source code.
 
 ## Current untargeted evidence follow-up
 
+The user requested a staged implementation plan on 5 November 2026. Follow
+[the untargeted formula and adduct plan](docs/UNTARGETED_FORMULA_ADDUCT_PLAN.md).
+The plan is published; no implementation stage has started. Start a stage when
+the user requests it or explicitly asks to continue, finish its validation and
+checkpoint summary, then stop before the next stage. Do not interpret the plan
+as resuming historical annotation optimization. Keep conditional adduct accuracy,
+coverage and all-manual reference recovery distinct; the earlier roughly 3%
+all-reference coverage diagnostic was not an adduct-accuracy estimate.
+
 The user subsequently authorized improving the observed PC grouping failures.
 Compound grouping v5 uses paired biological abundance profiles, mass error,
 coeluting families, and same-mode intact-parent support for water loss. A saved
