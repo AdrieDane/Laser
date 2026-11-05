@@ -134,7 +134,8 @@ def test_detached_untargeted_job_freezes_inputs_and_exports_all_evidence(tmp_pat
 def test_duplicate_untargeted_start_and_completion_page(tmp_path):
     result = fixtures.StandardUntargetedTests()._result()
     criteria = UntargetedComparisonCriteria('Group_01_control', 'Group_02_disease')
-    with patch('application.annotation_jobs.subprocess.Popen') as process:
+    with (patch('application.annotation_jobs.subprocess.Popen') as process,
+          patch('application.annotation_jobs.process_activity', return_value={'alive': True, 'cpu_seconds': 0.})):
         process.return_value.pid = os.getpid()
         first = start_untargeted_job(tmp_path, criteria, result=result)
         assert start_untargeted_job(tmp_path, criteria, result=result) == first

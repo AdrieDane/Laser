@@ -93,7 +93,7 @@ def run_untargeted_job(directory):
     request = json.loads((directory / 'request.json').read_text())
 
     def progress(fraction, message):
-        print(message, flush=True)
+        print(f"[{_now()}] {message}", flush=True)
         atomic_write_json(directory / 'status.json', {'status': 'running', 'progress': fraction,
             'message': message, 'updated_at': _now()})
 

@@ -65,7 +65,8 @@ def test_worker_failure_has_log_and_never_claims_completion(tmp_path):
 
 def test_duplicate_start_reattaches_to_the_active_job(tmp_path):
     config=setup(tmp_path)
-    with patch('application.annotation_jobs.subprocess.Popen') as process:
+    with (patch('application.annotation_jobs.subprocess.Popen') as process,
+          patch('application.annotation_jobs.process_activity', return_value={'alive': True, 'cpu_seconds': 0.})):
         process.return_value.pid=os.getpid()
         first=start_annotation_job(config)
         second=start_annotation_job(config)

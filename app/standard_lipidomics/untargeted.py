@@ -20,7 +20,7 @@ from scipy.stats import spearmanr, ttest_ind
 
 from scientific_defaults import SCIENTIFIC_DEFAULTS
 from standard_lipidomics.untargeted_adducts import (
-    EVIDENCE_VERSION, adduct_options, search_adduct_evidence, attach_adduct_summaries,
+    EVIDENCE_VERSION, adduct_options, search_adduct_evidence, attach_adduct_summaries, SearchProgress,
 )
 from standard_lipidomics.untargeted_series import attach_lipid_series
 
@@ -1326,9 +1326,12 @@ def _attach_cross_acquisition_evidence(
     result: dict,
     by_stream: dict[str, pd.DataFrame],
     criteria: UntargetedComparisonCriteria,
+    progress=None,
 ) -> dict[str, pd.DataFrame]:
     """Attach cross-phase and opposite-polarity hypotheses to raw-p hits."""
     sources = _coordinate_sources(result)
+    reporter = SearchProgress(progress, sum(int(table["significant"].fillna(False).sum())
+        for table in by_stream.values()), 'Cross-mode abundance search')
     stream_lookup = {stream.casefold(): stream for stream in sources}
     hit_ids = {
         stream: set(
@@ -1386,6 +1389,7 @@ def _attach_cross_acquisition_evidence(
         )
         hit_mask = table["significant"].fillna(False).astype(bool)
         for row_index, row in table[hit_mask].iterrows():
+            reporter.step(stream)
             evidence: list[str] = []
             mz = float(row["mz"])
             rt = float(row["rt"])
@@ -1683,10 +1687,12 @@ def analyse_standard_untargeted(
     by_stream = _attach_isotope_evidence(result, by_stream, criteria)
     if progress:
         progress(.65, "Searching adducts across acquisition modes")
-    by_stream = _attach_cross_acquisition_evidence(result, by_stream, criteria)
+    by_stream = _attach_cross_acquisition_evidence(result, by_stream, criteria,
+        progress=(lambda count, total, message: progress(.65 + .08 * (count - 1) / max(total, 1), message)) if progress else None)
     adduct_matches = search_adduct_evidence(_coordinate_sources(result), by_stream,
         ppm=criteria.cross_mode_ppm_tolerance,
-        rt_tolerance=criteria.opposite_polarity_rt_tolerance_min)
+        rt_tolerance=criteria.opposite_polarity_rt_tolerance_min,
+        progress=(lambda count, total, message: progress(.73 + .12 * (count - 1) / max(total, 1), message)) if progress else None)
     by_stream = attach_adduct_summaries(by_stream, adduct_matches)
     if progress:
         progress(.85, "Finding local CH2 homologous series")

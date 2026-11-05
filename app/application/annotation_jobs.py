@@ -12,6 +12,7 @@ import traceback
 from uuid import uuid4
 
 from output_io import atomic_write_json
+from application.job_monitor import process_activity
 from standard_lipidomics.internal_standards import find_project_is_file, project_is_definitions
 from standard_lipidomics.project_layout import xcms_project_root
 
@@ -26,35 +27,13 @@ def read_annotation_job(directory: str | Path) -> dict:
     pid_path = root / "process.json"
     if state["status"] in {"queued", "running"} and pid_path.is_file():
         pid = json.loads(pid_path.read_text())["pid"]
-        if not _process_alive(pid):
+        activity = process_activity(pid)
+        if not activity["alive"]:
             state = json.loads((root / "status.json").read_text(encoding="utf-8"))
             if state["status"] in {"queued", "running"}:
                 state = {**state, "status": "failed", "message": "The process stopped before completion."}
+        state = {**state, "activity": {**activity, "pid": pid}}
     return state
-
-
-def _process_alive(pid: int) -> bool:
-    if os.name == "nt":
-        import ctypes
-        from ctypes import wintypes
-        kernel = ctypes.WinDLL("kernel32", use_last_error=True)
-        kernel.OpenProcess.argtypes = (wintypes.DWORD, wintypes.BOOL, wintypes.DWORD)
-        kernel.OpenProcess.restype = wintypes.HANDLE
-        kernel.GetExitCodeProcess.argtypes = (wintypes.HANDLE, ctypes.POINTER(wintypes.DWORD))
-        kernel.CloseHandle.argtypes = (wintypes.HANDLE,)
-        handle = kernel.OpenProcess(0x1000, False, pid)
-        if not handle:
-            return False
-        code = wintypes.DWORD()
-        try:
-            return bool(kernel.GetExitCodeProcess(handle, ctypes.byref(code))) and code.value == 259
-        finally:
-            kernel.CloseHandle(handle)
-    try:
-        os.kill(pid, 0)
-        return True
-    except ProcessLookupError:
-        return False
 
 
 def active_annotation_job(project: str | Path) -> Path | None:
@@ -152,7 +131,7 @@ def run_annotation_job(directory: str | Path) -> int:
     project = Path(config["project_directory"])
 
     def progress(fraction: float, message: str) -> None:
-        print(message, flush=True)
+        print(f"[{_now()}] {message}", flush=True)
         atomic_write_json(directory / "status.json", {"status": "running",
             "progress": min(max(float(fraction), 0.0), 1.0), "message": message,
             "updated_at": _now(), "pid": os.getpid()})

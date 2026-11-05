@@ -88,6 +88,12 @@ Logs and run status are stored in `.laser/jobs/annotation/`. Completion shows
 **Annotation complete** and **Back to start**; open the saved project from the
 start page when ready to review it.
 
+Annotation and untargeted progress pages have an always-visible **Live terminal**
+below the progress bar. It refreshes every two seconds, shows the latest worker
+output, CPU time and time since the last log message, and detects stopped
+processes. Logs remain visible on completion or failure. Future untargeted runs
+also report feature counters during the longer cross-mode and adduct searches.
+
 The annotation workspace contains the reviewer with a top-right **Back to
 start** button. Both axes offer RT, m/z and CH₂ Kendrick mass defect. Sample
 intensity bars use metadata groups, with sample names available on hover.

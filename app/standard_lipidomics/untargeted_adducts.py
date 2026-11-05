@@ -5,6 +5,7 @@ Additive-dependent ions are hypotheses;
 their presence is searched rather than assumed. Masses include electron charge.
 """
 from dataclasses import dataclass
+import time
 
 import numpy as np
 import pandas as pd
@@ -63,7 +64,22 @@ def _hits(table):
     return table.get('raw_p_significant', table.get('significant', pd.Series(False, index=table.index))).fillna(False).astype(bool)
 
 
-def search_adduct_evidence(sources, by_stream, *, ppm, rt_tolerance):
+class SearchProgress:
+    """Throttle log updates without changing search order or results."""
+    def __init__(self, callback, total, label):
+        self.callback, self.total, self.label = callback, total, label
+        self.count, self.last, self.stream = 0, 0., None
+
+    def step(self, stream):
+        self.count += 1
+        now = time.monotonic()
+        if self.callback and (self.count in {1, self.total} or stream != self.stream or now - self.last >= 5.):
+            self.callback(self.count, self.total, f'{self.label}: {stream}, feature {self.count:,}/{self.total:,}')
+            self.last = now
+        self.stream = stream
+
+
+def search_adduct_evidence(sources, by_stream, *, ppm, rt_tolerance, progress=None):
     """All mass-compatible links, requiring co-elution only within one phase.
 
     Searches include non-significant and already annotated counterparts. A
@@ -77,8 +93,10 @@ def search_adduct_evidence(sources, by_stream, *, ppm, rt_tolerance):
                       if 'isotope_charge_hypothesis' in table
                       for row in table.itertuples(index=False)}
     rows = []
+    reporter = SearchProgress(progress, sum(len(ids) for ids in raw_hits.values()), 'Adduct search')
     for stream, table in by_stream.items():
         for _, feature in table[_hits(table)].iterrows():
+            reporter.step(stream)
             observed_charge = feature.get('isotope_charge_hypothesis', np.nan)
             charge = int(observed_charge) if pd.notna(observed_charge) else None
             for source_adduct in adduct_options(_polarity(stream), charge):

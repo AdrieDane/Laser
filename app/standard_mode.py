@@ -41,6 +41,7 @@ from presentation.standard_workspace import (
 from presentation.standard_setup import render_laser_engine, render_matlab_engine
 from application.annotation_jobs import active_annotation_job, read_annotation_job
 from application.untargeted_jobs import active_untargeted_job, load_untargeted_inputs, start_untargeted_job
+from presentation.job_terminal import render_job_terminal
 from presentation.app_theme import page_header
 from presentation.standard_calibration import render_standard_pipeline_entry
 from presentation.standard_calibration import (
@@ -893,16 +894,10 @@ def _render_annotation_job() -> None:
         return
     if state["status"] == "complete":
         st.success(f"{title} complete")
-        return
     elif state["status"] == "failed":
         st.error(f"{title} failed: {state['message']}")
     else:
         st.progress(float(state.get("progress", 0.0)), text=state.get("message", "Running annotation"))
+    render_job_terminal(directory, state, "untargeted.log" if untargeted else "annotation.log")
+    if state["status"] in {"queued", "running"}:
         st.info(f"{title} continues if you close the browser.")
-    with st.expander("Process log", expanded=False):
-        log = Path(directory) / ("untargeted.log" if untargeted else "annotation.log")
-        st.code(str(log), language=None)
-        if log.is_file():
-            with log.open("rb") as handle:
-                handle.seek(max(log.stat().st_size - 12000, 0))
-                st.code(handle.read().decode("utf-8", errors="replace"), language=None)
