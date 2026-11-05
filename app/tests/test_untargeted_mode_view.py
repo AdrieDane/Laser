@@ -125,7 +125,7 @@ def test_browser_model_colours_modes_background_and_sample_levels(tmp_path):
     (tmp_path/'viewer.mjs').write_text((source/'model.js').read_text()+'\n'+(source/'viewer.js').read_text())
     script=r'''
 import {readFileSync} from 'node:fs';
-import {ModeViewerModel,featureKey,modeFigure,sampleFigure} from './viewer.mjs';
+import {ModeViewerModel,featureKey,modeFigure,sampleFigure,sampleFigures,linkedModeZoom} from './viewer.mjs';
 const data=JSON.parse(readFileSync('./payload.json'));
 const model=new ModeViewerModel(data), key=(s,id)=>featureKey(s,id), selected=key('RP_Pos','a'), context=model.context(selected);
 const check=(condition,message)=>{if(!condition) throw Error(message);};
@@ -146,11 +146,31 @@ check(!figure.data.flatMap(t=>t.customdata).some(row=>row[1].startsWith('NP')),'
 state.grey=true;figure=modeFigure(state);
 check(figure.data.find(t=>t.name==='Not significant').x.length>0,'grey toggle on');
 state.view='All 4 modes';figure=modeFigure(state);
-check(figure.layout.yaxis2,'all modes use separate chromatography panels');
-check(figure.data.some(t=>t.yaxis==='y2'&&t.customdata.some(row=>row[1]==='NP_Neg')),'NP negative is present');
+check(figure.layout.yaxis4,'all four modes have separate panels');
+check(figure.data.some(t=>t.yaxis==='y4'&&t.customdata.some(row=>row[1]==='NP_Neg')),'NP negative is present');
 const sample=sampleFigure(state);
 check(sample.layout.height===280,'same bar height');
 check(sample.data.flatMap(t=>t.y).includes(100),'original sample values');
+const bars=sampleFigures(state);
+check(bars.length===4,'automatic sample plot per detected mode');
+check(new Set(bars.map(item=>item.mode)).size===4,'one plot per mode');
+check(bars.every(item=>item.figure.layout.height===280),'all sample plots same height');
+check(bars.every(item=>item.figure.layout.title.text.includes(item.mode.replace('_',' '))),'mode in each title');
+const zoom=linkedModeZoom({'xaxis.range[0]':9,'xaxis.range[1]':11,'yaxis.range[0]':600,'yaxis.range[1]':800},figure.layout);
+check(JSON.stringify(zoom['xaxis2.range'])==='[9,11]','RT linked within RP');
+check(JSON.stringify(zoom['yaxis2.range'])==='[-800,-600]','mirrored RP mass zoom');
+check(!Object.keys(zoom).some(key=>/axis[34]/.test(key)),'RP zoom leaves NP independent');
+const reverse=linkedModeZoom({'yaxis4.range':[-900,-500]},figure.layout);
+check(JSON.stringify(reverse['yaxis3.range'])==='[500,900]','NP negative zoom mirrors into NP positive');
+check(!Object.keys(reverse).some(key=>/^.[a-z]*axis2?\./.test(key)),'NP zoom leaves RP independent');
+// Stale saved evidence cannot highlight remote RT isomers as adducts or cluster members.
+const rp=model.streams.get('RP_Pos');
+const naIndex=rp.ids.indexOf('na'),cIndex=rp.ids.indexOf('c');
+rp.rt[naIndex]=11.5;rp.rt[cIndex]=9.;
+model.contextCache.clear();
+const strict=model.context(selected);
+check(!strict.adducts.has(key('RP_Pos','na')),'distant same-mode adduct hidden');
+check(!strict.cluster.has(key('RP_Pos','c')),'distant cluster neighbour hidden');
 console.log('browser model checks passed');
 '''
     completed=subprocess.run([node,'--input-type=module'],input=script,cwd=tmp_path,capture_output=True,text=True,check=False)

@@ -160,7 +160,7 @@ The completed untargeted viewer links a mirrored RT/m/z plot, the sample bars,
 and a detection table in the browser. Selection, mode switches and highlights
 do not rerun Streamlit. Initially only significant points are shown, with no
 automatic selection. Choose **RP POS and NEG**, **NP POS and NEG**, or
-**All 4 modes** (separate RP/NP panels). Grey non-significant background points
+**All 4 modes** (separate RP/NP panels). POS and NEG zoom together within each chromatography, with mirrored mass ranges; RP and NP zoom independently. Each pair has its own reset button. Grey non-significant background points
 are off by default; enabling them shows a fixed sample of up to 20,000 points.
 Related cluster and adduct detections are always shown, including non-hits.
 Selected features and a representative possible counterpart per other mode
@@ -277,3 +277,5 @@ ruff check app
 
 The source repository is not modified by this extraction. Future changes can
 be developed and released independently in this repository.
+
+Selecting a compound automatically shows one sample abundance plot for each detected mode, using that mode's original sample values and group colours. The significant-feature table stays immediately below the mode plots. Saved evidence with distant same-mode RT values is excluded from coloured adduct highlights.

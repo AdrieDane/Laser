@@ -109,37 +109,47 @@ export class ModeViewerModel {
     if(this.contextCache.has(key)) return this.contextCache.get(key);
     if(!key) return {key:null,focus:new Set(),cluster:new Set(),adducts:new Set(),matches:[]};
     const focus=new Set([key]), cluster=new Set(), adducts=new Set();
-    const selected=this.point(key), matches=this.matches(key), byMode=new Map();
+    const selected=this.point(key), matches=this.matches(key), byMode=new Map(), phaseAnchors=new Map();
+    if(selected) phaseAnchors.set(selected.phase,selected);
     const compound=this.rows.get(key)?.compound_id;
     const rank=new Map(this.data.adducts.map((item,index)=>[item.name,index]));
     for(const link of matches) {
       const target=this.point(link.target); if(!target) continue;
       if(compound && this.rows.get(link.target)?.compound_id!==compound) continue;
-      adducts.add(link.target);
+      if(selected?.phase===target.phase&&!this.coelutes(selected,target)) continue;
       if(target.stream===selected?.stream) continue;
       if(!byMode.has(target.stream)) byMode.set(target.stream,[]);
       byMode.get(target.stream).push(link);
     }
     // One representative ion per other mode is red. Further ion/adduct
     // candidates stay yellow; all original alternatives remain in evidence.
-    for(const links of byMode.values()) {
+    for(const [,links] of [...byMode.entries()].sort(([a],[b])=>a.localeCompare(b))) {
       links.sort((a,b)=>(rank.get(a.targetAdduct)??99)-(rank.get(b.targetAdduct)??99)||Math.abs(a.ppm)-Math.abs(b.ppm));
-      focus.add(links[0].target);
+      const chosen=links.find(link=>{const target=this.point(link.target),anchor=phaseAnchors.get(target.phase);return !anchor||this.coelutes(anchor,target);});
+      if(chosen) {const target=this.point(chosen.target);focus.add(chosen.target);if(!phaseAnchors.has(target.phase)) phaseAnchors.set(target.phase,target);}
     }
+    for(const link of matches) {
+      const target=this.point(link.target);if(!target||(compound&&this.rows.get(link.target)?.compound_id!==compound)) continue;
+      const anchor=phaseAnchors.get(target.phase);if(anchor&&this.coelutes(anchor,target)) adducts.add(link.target);
+    }
+    const localCluster=target=>{const point=this.point(target),anchor=point&&phaseAnchors.get(point.phase);return point&&(!anchor||Math.abs(point.rt-anchor.rt)<=(this.data.criteria.ch2_rt_tolerance_min??.5)+1e-12);};
     for(const root of this.hits.has(key)?[...focus]:[]) {
       // Selection highlights direct saved neighbours, not the full transitive
       // component used for cluster numbering. Never grow neighbours of neighbours.
       for(const member of this.adjacency.get(root)??[]) {
         if(focus.has(member)) continue;
         if(compound && this.rows.get(member)?.compound_id===compound) continue;
+        if(!localCluster(member)) continue;
         cluster.add(member);
         const memberCompound=this.rows.get(member)?.compound_id;
         if(memberCompound) {
-          for(const [target,row] of this.rows) if(row.compound_id===memberCompound && !focus.has(target)) cluster.add(target);
+          for(const [target,row] of this.rows) if(row.compound_id===memberCompound && !focus.has(target)&&localCluster(target)&&
+            this.coelutes(this.point(member),this.point(target))) cluster.add(target);
         } else {
           const representatives=new Map(),memberPoint=this.point(member);
           for(const link of this.matches(member)) {
             const target=this.point(link.target);if(!target||target.stream===memberPoint?.stream||focus.has(link.target)) continue;
+            if(!localCluster(link.target)||!this.coelutes(memberPoint,target)) continue;
             const prior=representatives.get(target.stream);
             if(!prior || (rank.get(link.targetAdduct)??99)<(rank.get(prior.targetAdduct)??99) ||
               ((rank.get(link.targetAdduct)??99)===(rank.get(prior.targetAdduct)??99) && Math.abs(link.ppm)<Math.abs(prior.ppm))) representatives.set(target.stream,link);
@@ -152,6 +162,13 @@ export class ModeViewerModel {
     const result={key,focus,cluster,adducts,matches};
     if(this.contextCache.size>128) this.contextCache.delete(this.contextCache.keys().next().value);
     this.contextCache.set(key,result); return result;
+  }
+  coelutes(a,b) {
+    if(!a||!b) return false;
+    if(a.phase!==b.phase) return true;
+    const tolerance=a.stream===b.stream?(this.data.criteria.same_mode_adduct_rt_tolerance_min??this.data.criteria.isotope_rt_tolerance_min??.05):
+      (this.data.criteria.opposite_polarity_rt_tolerance_min??.2);
+    return Math.abs(a.rt-b.rt)<=tolerance+1e-12;
   }
   style(key, context) {
     if(context.focus.has(key)) return 'focus';

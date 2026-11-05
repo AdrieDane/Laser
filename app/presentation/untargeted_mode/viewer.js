@@ -16,43 +16,72 @@ export function modeFigure(state) {
   for(const key of model.hits) if(visible.some(stream=>key.startsWith(stream.name+'\u0000'))) visibleKeys.add(key);
   for(const group of [context.focus,context.cluster,context.adducts]) for(const key of group) visibleKeys.add(key);
   if(state.grey) for(const stream of visible) for(const index of stream.background) visibleKeys.add(featureKey(stream.name,stream.ids[index]));
-  const layout={height:phases.length>1?610:490, margin:{l:65,r:12,t:55,b:48},
+  const layout={height:phases.length>1?630:590, margin:{l:62,r:15,t:70,b:48},
     paper_bgcolor:state.canvas,plot_bgcolor:state.canvas,font:{...plotFont,color:state.ink},
-    showlegend:true,legend:{orientation:'h',x:0,y:1.10,font:{size:10}},hovermode:'closest',
-    uirevision:state.view,dragmode:'pan',shapes,annotations};
-  phases.forEach((phase,panel)=>{
-    const suffix=panel?String(panel+1):'', xaxis='x'+suffix,yaxis='y'+suffix;
-    const buckets=new Map(traceOrder.map(role=>[role,[]]));
-    for(const key of visibleKeys) {
-      const point=model.point(key); if(!point || point.phase!==phase) continue;
-      if(!visible.some(stream=>stream.name===point.stream)) continue;
-      buckets.get(model.style(key,context)).push(point);
-    }
-    traceOrder.forEach(role=>{
-      const points=buckets.get(role), colour=MODE_COLOURS[role];
-      traces.push({type:'scattergl',mode:'markers',xaxis,yaxis,name:legendNames[role],legendgroup:role,
-        showlegend:panel===0, x:points.map(p=>p.rt), y:points.map(p=>p.negative?-p.mz:p.mz),
-        customdata:points.map(p=>[p.key,p.stream,p.id,p.mz,model.rows.get(p.key)?.compound_id??'',
-          model.rows.get(p.key)?.adduct??'',model.rows.get(p.key)?.p_value??null]),
-        marker:{color:colour,opacity:role==='background'?.32:1,size:role==='background'?4:role==='significant'?7:11,
-          symbol:role==='significant'?'diamond':'circle',line:{color:role==='significantCluster'?MODE_COLOURS.cluster:colour,
-            width:role==='significantCluster'?3:role==='focus'?2:0}},
-        hovertemplate:'%{customdata[4]}<br>%{customdata[1]} · feature %{customdata[2]}<br>'+
-          'm/z %{customdata[3]:.5f} · RT %{x:.3f} min<br>%{customdata[5]}<br>raw p %{customdata[6]:.3g}<extra>'+legendNames[role]+'</extra>'});
-    });
+    showlegend:true,legend:{orientation:'h',x:0,y:1.14,font:{size:10}},hovermode:'closest',
+    uirevision:state.view,dragmode:'zoom',shapes,annotations,meta:{pairs:[]}};
+  phases.forEach((phase,column)=>{
     let maxRT=1,maxMZ=100;
     for(const stream of visible.filter(item=>item.phase===phase)) {
       maxMZ=Math.max(maxMZ,stream.mz[stream.mz.length-1]??100);
       for(const value of stream.rt) if(value>maxRT) maxRT=value;
     }
-    const common={gridcolor:state.grid,zeroline:false,linecolor:state.grid,fixedrange:false};
-    layout['xaxis'+suffix]={...common,anchor:yaxis,domain:[0,1],title:{text:panel===phases.length-1?'Retention time (min)':''},range:[0,maxRT*1.02]};
-    layout['yaxis'+suffix]={...common,anchor:xaxis,title:{text:'m/z (+POS / −NEG)'},
-      domain:phases.length===1?[0,1]:panel===0?[.57,1]:[0,.43],range:[-maxMZ*1.04,maxMZ*1.04]};
-    shapes.push({type:'line',xref:xaxis+' domain',yref:yaxis,x0:0,x1:1,y0:0,y1:0,line:{color:state.ink,width:1}});
-    if(phases.length>1) annotations.push({xref:'paper',yref:'paper',x:0,y:panel===0?1.01:.45,text:phase,showarrow:false,font:{size:13,color:state.ink}});
+    const domain=phases.length===1?[0,1]:column===0?[0,.45]:[.55,1];
+    const axes=[];
+    for(const negative of [false,true]) {
+      const index=column*2+(negative?2:1),suffix=index===1?'':String(index),xaxis='x'+suffix,yaxis='y'+suffix;
+      axes.push({x:'xaxis'+suffix,y:'yaxis'+suffix});
+      const buckets=new Map(traceOrder.map(role=>[role,[]]));
+      for(const key of visibleKeys) {
+        const point=model.point(key);if(!point||point.phase!==phase||point.negative!==negative) continue;
+        buckets.get(model.style(key,context)).push(point);
+      }
+      traceOrder.forEach(role=>{
+        const points=buckets.get(role),colour=MODE_COLOURS[role];
+        traces.push({type:'scattergl',mode:'markers',xaxis,yaxis,name:legendNames[role],legendgroup:role,
+          showlegend:column===0&&!negative,x:points.map(p=>p.rt),y:points.map(p=>negative?-p.mz:p.mz),
+          customdata:points.map(p=>[p.key,p.stream,p.id,p.mz,model.rows.get(p.key)?.compound_id??'',
+            model.rows.get(p.key)?.adduct??'',model.rows.get(p.key)?.p_value??null]),
+          marker:{color:colour,opacity:role==='background'?.32:1,size:role==='background'?4:role==='significant'?7:11,
+            symbol:role==='significant'?'diamond':'circle',line:{color:role==='significantCluster'?MODE_COLOURS.cluster:colour,
+              width:role==='significantCluster'?3:role==='focus'?2:0}},
+          hovertemplate:'%{customdata[4]}<br>%{customdata[1]} · feature %{customdata[2]}<br>'+
+            'm/z %{customdata[3]:.5f} · RT %{x:.3f} min<br>%{customdata[5]}<br>raw p %{customdata[6]:.3g}<extra>'+legendNames[role]+'</extra>'});
+      });
+      const zoom=state.zoomByPhase?.[phase],rt=zoom?.rt??[0,maxRT*1.02],mass=zoom?.mz??[0,maxMZ*1.04];
+      const common={gridcolor:state.grid,zeroline:false,linecolor:state.grid,fixedrange:false,autorange:false};
+      layout['xaxis'+suffix]={...common,anchor:yaxis,domain,title:{text:negative?'Retention time (min)':''},range:rt};
+      layout['yaxis'+suffix]={...common,anchor:xaxis,title:{text:negative?'m/z (NEG)':'m/z (POS)'},
+        domain:negative?[0,.44]:[.56,1],range:negative?[-mass[1],-mass[0]]:mass};
+      annotations.push({xref:'paper',yref:'paper',x:domain[0],y:negative?.47:1.03,text:phase+(negative?' NEG':' POS'),
+        showarrow:false,xanchor:'left',font:{size:12,color:state.ink}});
+    }
+    layout.meta.pairs.push({phase,positive:axes[0],negative:axes[1],defaultRT:[0,maxRT*1.02],defaultMZ:[0,maxMZ*1.04]});
   });
   return {data:traces,layout};
+}
+
+export function linkedModeZoom(event, layout) {
+  const updates={};
+  const changed=axis=>Object.keys(event).some(key=>key.startsWith(axis+'.range')||key===axis+'.autorange');
+  const range=axis=>event[axis+'.range']??[event[axis+'.range[0]']??layout[axis]?.range?.[0],event[axis+'.range[1]']??layout[axis]?.range?.[1]];
+  for(const pair of layout.meta?.pairs??[]) {
+    for(const dimension of ['x','y']) {
+      const positive=pair.positive[dimension],negative=pair.negative[dimension];
+      const source=changed(positive)?positive:changed(negative)?negative:null;if(!source) continue;
+      const target=source===positive?negative:positive;
+      if(event[source+'.autorange']===true) {
+        updates[positive+'.range']=dimension==='x'?pair.defaultRT:pair.defaultMZ;
+        updates[negative+'.range']=dimension==='x'?pair.defaultRT:[-pair.defaultMZ[1],-pair.defaultMZ[0]];
+        updates[positive+'.autorange']=false;updates[negative+'.autorange']=false;
+      } else {
+        const values=range(source);if(values.length!==2||values.some(value=>!Number.isFinite(value))) continue;
+        updates[target+'.range']=dimension==='x'?values:[-values[1],-values[0]];
+        updates[target+'.autorange']=false;
+      }
+    }
+  }
+  return updates;
 }
 
 export function sampleFigure(state) {
@@ -69,11 +98,29 @@ export function sampleFigure(state) {
         hovertemplate:'<b>%{customdata}</b><br>%{y:.3g}<extra>%{fullData.name}</extra>'});
     }
   }
-  const title=row?row.compound_id+' · '+(row.adduct||'adduct unresolved'):'Select a significant feature';
+  const title=row?row.stream.replace('_',' ')+' · '+row.compound_id+' · '+(row.adduct||'adduct unresolved'):'Select a significant feature';
   return {data:traces,layout:{height:280,margin:{l:54,r:20,t:38,b:45},title:{text:title,x:.5,xanchor:'center',font:{size:13}},
     paper_bgcolor:state.canvas,plot_bgcolor:state.canvas,font:{...plotFont,color:state.ink},
     xaxis:{showticklabels:false,ticks:'',gridcolor:state.grid},yaxis:{title:{text:'intensity'},rangemode:'tozero',tickformat:'.2s',gridcolor:state.grid},
     barmode:'overlay',bargap:.12,showlegend:true,legend:{orientation:'h',y:-.08,x:0,font:{size:10}}}};
+}
+
+export function sampleFigures(state) {
+  if(!state.selected) return [{mode:'empty',figure:sampleFigure(state)}];
+  const {model}=state,compound=model.rows.get(state.selected)?.compound_id;
+  const rank=new Map(model.data.adducts.map((item,index)=>[item.name,index]));
+  const remaining=[...model.rows].filter(([,row])=>compound&&row.compound_id===compound)
+    .sort(([a,ra],[b,rb])=>(rank.get(ra.adduct)??99)-(rank.get(rb.adduct)??99)||a.localeCompare(b)).map(([key])=>key);
+  const keys=[state.selected,...[...model.context(state.selected).focus].filter(key=>key!==state.selected).sort(),...remaining];
+  const seen=new Set(),figures=[],anchors=new Map();
+  const selected=model.point(state.selected);if(selected) anchors.set(selected.phase,selected);
+  for(const key of keys) {
+    const point=state.model.point(key);if(!point||seen.has(point.stream)||!state.model.bars(key)) continue;
+    const anchor=anchors.get(point.phase);if(anchor&&!model.coelutes(anchor,point)) continue;
+    if(!anchor) anchors.set(point.phase,point);
+    seen.add(point.stream);figures.push({mode:point.stream,figure:sampleFigure({...state,selected:key})});
+  }
+  return figures;
 }
 
 function smallTable(parent, headers, rows) {
@@ -152,8 +199,10 @@ function createWorkspace(parent, data) {
   const greyLabel=node('label','','grey-switch'),grey=node('input');grey.type='checkbox';grey.checked=false;
   greyLabel.title='Up to 20,000 background points. Related detections are always shown.';
   greyLabel.append(grey,document.createTextNode('Show non-significant grey points'));controls.append(modes,greyLabel);
-  const top=node('div','','mode-top'),main=node('div','','mode-main'),plot=node('div','','mode-plot'),side=node('aside','','mode-side'),bar=node('div','','sample-bars');
-  main.append(controls,plot);side.appendChild(bar);
+  const top=node('div','','mode-top'),main=node('div','','mode-main'),plot=node('div','','mode-plot'),side=node('aside','','mode-side'),barStack=node('div','','sample-bar-stack');
+  const resets=new Map();
+  for(const phase of ['RP','NP']) {const button=node('button','Reset '+phase);button.type='button';controls.appendChild(button);resets.set(phase,button);}
+  main.append(controls,plot);side.appendChild(barStack);
   const legend=node('div','','colour-key');
   for(const [role,label] of [['focus','Selected / possible counterpart'],['cluster','Cluster member'],['adduct','Other adduct candidate'],['significantCluster','Significant cluster member']]) {
     const line=node('div'),swatch=node('span','','swatch');swatch.style.background=MODE_COLOURS[role];
@@ -175,18 +224,22 @@ function createWorkspace(parent, data) {
   }
   const detailFormula=node('p');evidence.isotopes.parentElement.appendChild(detailFormula);
   const review=node('button','Review selected feature','review-feature');review.type='button';details.appendChild(review);
-  root.append(top,tableTitle,tableTools,table,details);parent.appendChild(root);
-  const state={root,model:new ModeViewerModel(data),buttons,grey,plot,bar,filter,tableViewport,tableBody,tableCount,detailTitle,detailFormula,details,...evidence,
-    version:0,busy:false,grey:false,view:Object.keys(data.streams).some(s=>s.startsWith('RP'))?'RP POS and NEG':'NP POS and NEG',timings:[]};
+  main.append(tableTitle,tableTools,table);root.append(top,details);parent.appendChild(root);
+  const state={root,model:new ModeViewerModel(data),buttons,resets,grey,plot,barStack,barCharts:new Map(),filter,tableViewport,tableBody,tableCount,detailTitle,detailFormula,details,...evidence,
+    version:0,busy:false,grey:false,zoomByPhase:{},view:Object.keys(data.streams).some(s=>s.startsWith('RP'))?'RP POS and NEG':'NP POS and NEG',timings:[]};
   state.canvas=data.theme==='Midnight'?'#20313f':'#fff';state.ink=data.theme==='Midnight'?'#e7edf2':'#1d1d1f';state.grid=data.theme==='Midnight'?'#3b5262':'#e1e6ef';
   state.selected=null;
   state.select=(key,scroll=true)=>{if(!state.model.rows.has(key)) return;state.selected=key;renderRows(state,scroll);state.requestedAt=performance.now();state.version++;updateWorkspace(state);};
   for(const [view,button] of buttons) button.addEventListener('click',()=>{state.view=view;renderRows(state,false);state.requestedAt=performance.now();state.version++;updateWorkspace(state);});
+  for(const [phase,button] of resets) button.addEventListener('click',()=>{
+    const pair=state.plot.layout.meta?.pairs.find(pair=>pair.phase===phase);if(!pair) return;
+    state.zoomByPhase[phase]={rt:[...pair.defaultRT],mz:[...pair.defaultMZ]};state.requestedAt=performance.now();state.version++;updateWorkspace(state);
+  });
   grey.addEventListener('change',()=>{state.grey=grey.checked;state.requestedAt=performance.now();state.version++;updateWorkspace(state);});
   filter.addEventListener('input',()=>{tableViewport.scrollTop=0;renderRows(state,false);});
   tableViewport.addEventListener('scroll',()=>renderRows(state,false));
   review.addEventListener('click',()=>{if(state.selected) state.emit?.('review',state.selected.split('\u0000'));});
-  state.observer=new ResizeObserver(()=>{if(state.plot._fullLayout) {window.__laserStandardPlotly.Plots.resize(state.plot);window.__laserStandardPlotly.Plots.resize(state.bar);}});
+  state.observer=new ResizeObserver(()=>{if(state.plot._fullLayout) {window.__laserStandardPlotly.Plots.resize(state.plot);for(const chart of state.barCharts.values()) window.__laserStandardPlotly.Plots.resize(chart);}});
   state.observer.observe(top);
   return state;
 }
@@ -198,12 +251,32 @@ async function updateWorkspace(state) {
     do {
       const version=state.version,start=state.requestedAt??performance.now();
       for(const [view,button] of state.buttons) button.setAttribute('aria-pressed',String(view===state.view));
+      for(const [phase,button] of state.resets) button.hidden=!state.model.visibleStreams(state.view).some(stream=>stream.phase===phase);
       renderEvidence(state);
-      const figure=modeFigure(state),bars=sampleFigure(state),Plotly=window.__laserStandardPlotly;
-      await Promise.all([Plotly.react(state.plot,figure.data,figure.layout,{displaylogo:false,scrollZoom:true,responsive:true}),
-        Plotly.react(state.bar,bars.data,bars.layout,{displayModeBar:false,responsive:true})]);
+      const figure=modeFigure(state),bars=sampleFigures(state),Plotly=window.__laserStandardPlotly;
+      const modes=new Set(bars.map(item=>item.mode));
+      for(const [mode,chart] of state.barCharts) if(!modes.has(mode)) {Plotly.purge(chart);chart.remove();state.barCharts.delete(mode);}
+      const updates=[Plotly.react(state.plot,figure.data,figure.layout,{displaylogo:false,scrollZoom:true,responsive:true,doubleClick:false,modeBarButtonsToRemove:['zoomIn2d','zoomOut2d','autoScale2d','resetScale2d','select2d','lasso2d']})];
+      for(const item of bars) {
+        let chart=state.barCharts.get(item.mode);
+        if(!chart) {chart=node('div','','sample-bars');chart.dataset.mode=item.mode;state.barCharts.set(item.mode,chart);}
+        state.barStack.appendChild(chart);
+        updates.push(Plotly.react(chart,item.figure.data,item.figure.layout,{displayModeBar:false,responsive:true}));
+      }
+      await Promise.all(updates);state.root.dataset.barModes=JSON.stringify([...modes]);
       if(!state.bound) {
-        state.plot.on('plotly_click',event=>{const key=event.points?.[0]?.customdata?.[0];if(key&&state.model.rows.has(key)) state.select(key,true);});state.bound=true;
+        state.plot.on('plotly_click',event=>{const key=event.points?.[0]?.customdata?.[0];if(key&&state.model.rows.has(key)) state.select(key,true);});
+        state.plot.on('plotly_relayout',async event=>{
+          if(state.syncingZoom) return;
+          const updates=linkedModeZoom(event,state.plot.layout);
+          state.syncingZoom=true;
+          try {
+            if(Object.keys(updates).length) await Plotly.relayout(state.plot,updates);
+            for(const pair of state.plot.layout.meta?.pairs??[]) state.zoomByPhase[pair.phase]={
+              rt:[...state.plot.layout[pair.positive.x].range],mz:[...state.plot.layout[pair.positive.y].range]};
+            state.root.dataset.zoomRanges=JSON.stringify(state.zoomByPhase);
+          } finally {state.syncingZoom=false;}
+        });state.bound=true;
       }
       if(version===state.version) {
         await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
@@ -224,10 +297,10 @@ export default function({data,parentElement,setTriggerValue}) {
   ready.then(()=>{
     if(parentElement instanceof ShadowRoot && !parentElement.adoptedStyleSheets.includes(window.__laserStandardPlotStyles)) parentElement.adoptedStyleSheets=[...parentElement.adoptedStyleSheets,window.__laserStandardPlotStyles];
     if(!state||state.token!==data.token) {
-      if(state) {state.observer.disconnect();window.__laserStandardPlotly.purge(state.plot);window.__laserStandardPlotly.purge(state.bar);parentElement.replaceChildren();}
+      if(state) {state.observer.disconnect();window.__laserStandardPlotly.purge(state.plot);for(const chart of state.barCharts?.values()??[]) window.__laserStandardPlotly.purge(chart);parentElement.replaceChildren();}
       state=createWorkspace(parentElement,data);state.token=data.token;parentElement.__modeWorkspace=state;
       state.emit=setTriggerValue;renderRows(state,true);state.requestedAt=performance.now();state.version++;updateWorkspace(state);
     } else state.emit=setTriggerValue;
   }).catch(error=>{parentElement.appendChild(node('p','Viewer could not load: '+error.message));console.error(error);});
-  return ()=>requestAnimationFrame(()=>{if(!host.isConnected && state) {state.observer.disconnect();window.__laserStandardPlotly.purge(state.plot);window.__laserStandardPlotly.purge(state.bar);}});
+  return ()=>requestAnimationFrame(()=>{if(!host.isConnected && state) {state.observer.disconnect();window.__laserStandardPlotly.purge(state.plot);for(const chart of state.barCharts.values()) window.__laserStandardPlotly.purge(chart);}});
 }
