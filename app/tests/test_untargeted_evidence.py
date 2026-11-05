@@ -48,15 +48,15 @@ def test_example_mass_links_all_modes_with_adduct_changes_and_phase_rt_rules():
     assert set(proton.target_adduct) >= {'[M+NH4]+', '[M+HCOO]-', '[M+CH3COO]-'}
 
 
-def test_doubly_charged_source_converts_to_singly_charged_negative_ion():
-    source = pd.DataFrame({'feature_id': ['negative'], 'mz': [998.992723533379],
+def test_doubly_charged_negative_source_converts_to_singly_charged_positive_ion():
+    source = pd.DataFrame({'feature_id': ['positive'], 'mz': [1001.007276466621],
                            'rt': [5.], 'already_annotated': [True]})
-    hits = {'RP_Pos': pd.DataFrame({'feature_id': ['hit'], 'mz': [501.007276466621],
+    hits = {'RP_Neg': pd.DataFrame({'feature_id': ['hit'], 'mz': [498.992723533379],
         'rt': [5.], 'raw_p_significant': [True], 'isotope_charge_hypothesis': [2]})}
-    links = search_adduct_evidence({'RP_Neg': source}, hits, ppm=3., rt_tolerance=.1)
+    links = search_adduct_evidence({'RP_Pos': source}, hits, ppm=3., rt_tolerance=.1)
     assert len(links) == 1
-    assert links.iloc[0].source_adduct == '[M+2H]2+'
-    assert links.iloc[0].target_adduct == '[M-H]-'
+    assert links.iloc[0].source_adduct == '[M-2H]2-'
+    assert links.iloc[0].target_adduct == '[M+H]+'
     assert links.iloc[0].neutral_mass == pytest.approx(1000.)
     assert bool(links.iloc[0].target_is_annotated)
 
@@ -67,8 +67,9 @@ def test_isotope_constrained_formula_includes_phospholipid_and_charge_conversion
     text, count = _elemental_formula_candidates(neutral+1.007276466621, 'pos', 36., 3., m_plus_2_percent=9.)
     assert 'C36H72N1O8P1' in text
     assert count > 1  # Accurate mass and isotope ratios need not give a unique formula.
-    text2, _ = _elemental_formula_candidates((neutral+2*1.007276466621)/2, 'pos', 36., 3., charge=2)
-    assert '[M+2H]2+ C36H72N1O8P1' in text2
+    text2, _ = _elemental_formula_candidates((neutral-2*1.007276466621)/2, 'neg', 36., 3., charge=2)
+    assert '[M-2H]2- C36H72N1O8P1' in text2
+    assert _elemental_formula_candidates((neutral+2*1.007276466621)/2, 'pos', 36., 3., charge=2) == ('', 0)
     assert _elemental_formula_candidates(neutral, 'pos', np.nan, 3.) == ('', 0)
 
 
@@ -121,7 +122,7 @@ def test_detached_untargeted_job_freezes_inputs_and_exports_all_evidence(tmp_pat
     assert state['status'] == 'complete', (job/'untargeted.log').read_text()
     reopened, _ = load_untargeted_workflow(tmp_path)
     analysis = reopened['untargeted_analysis']
-    assert analysis['evidence_version'] == 3
+    assert analysis['evidence_version'] == 4
     assert not analysis['adduct_matches'].empty
     assert not analysis['raw_p_features'].empty
     assert analysis['features'].query("stream == 'RP_Pos' and feature_id == 'diff'").iloc[0].mz == 721.
@@ -231,3 +232,11 @@ def test_same_mode_adducts_require_tighter_coelution_than_opposite_polarity():
     query=pd.DataFrame({'feature_id':['hit'],'mz':[mz],'rt':[5.], 'raw_p_significant':[True], 'isotope_charge_hypothesis':[1]})
     result=search_adduct_evidence({'RP_Pos':source},{'RP_Pos':query},ppm=3.,rt_tolerance=.2)
     assert set(result.query("source_adduct == '[M+H]+' and target_adduct == '[M+Na]+'").target_feature_id)=={'near'}
+
+
+def test_user_excluded_ion_forms_are_not_supported():
+    from standard_lipidomics.untargeted_adducts import ADDUCTS
+    names={ion.name for ion in ADDUCTS}
+    assert '[M+2H]2+' not in names
+    assert '[M+Na-2H]-' not in names
+    assert '[M-2H]2-' in names

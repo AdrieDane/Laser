@@ -49,8 +49,8 @@ export function modeFigure(state) {
       });
       const zoom=state.zoomByPhase?.[phase],rt=zoom?.rt??[0,maxRT*1.02],mass=zoom?.mz??[0,maxMZ*1.04];
       const common={gridcolor:state.grid,zeroline:false,linecolor:state.grid,fixedrange:false,autorange:false};
-      layout['xaxis'+suffix]={...common,anchor:yaxis,domain,title:{text:negative?'Retention time (min)':''},range:rt};
-      layout['yaxis'+suffix]={...common,anchor:xaxis,title:{text:negative?'m/z (NEG)':'m/z (POS)'},
+      layout['xaxis'+suffix]={...common,anchor:yaxis,domain,uirevision:phase+':rt:'+(state.axisRevisions?.[phase]?.rt??0),title:{text:negative?'Retention time (min)':''},range:rt};
+      layout['yaxis'+suffix]={...common,anchor:xaxis,uirevision:phase+':mz:'+(state.axisRevisions?.[phase]?.mz??0),title:{text:negative?'m/z (NEG)':'m/z (POS)'},
         domain:negative?[0,.44]:[.56,1],range:negative?[-mass[1],-mass[0]]:mass};
       annotations.push({xref:'paper',yref:'paper',x:domain[0],y:negative?.47:1.03,text:phase+(negative?' NEG':' POS'),
         showarrow:false,xanchor:'left',font:{size:12,color:state.ink}});
@@ -245,13 +245,14 @@ function createWorkspace(parent, data) {
   const review=node('button','Review selected feature','review-feature');review.type='button';details.appendChild(review);
   main.append(tableTitle,tableTools,table);root.append(top,details);parent.appendChild(root);
   const state={root,model:new ModeViewerModel(data),buttons,resets,grey,plot,barStack,barCharts:new Map(),filter,tableViewport,tableBody,tableCount,detailTitle,detailFormula,details,...evidence,
-    version:0,busy:false,grey:false,zoomByPhase:{},view:Object.keys(data.streams).some(s=>s.startsWith('RP'))?'RP POS and NEG':'NP POS and NEG',timings:[]};
+    version:0,busy:false,grey:false,zoomByPhase:{},axisRevisions:{},view:Object.keys(data.streams).some(s=>s.startsWith('RP'))?'RP POS and NEG':'NP POS and NEG',timings:[]};
   state.canvas=data.theme==='Midnight'?'#20313f':'#fff';state.ink=data.theme==='Midnight'?'#e7edf2':'#1d1d1f';state.grid=data.theme==='Midnight'?'#3b5262':'#e1e6ef';
   state.selected=null;
   state.select=(key,scroll=true)=>{if(!state.model.rows.has(key)) return;state.selected=key;renderRows(state,scroll);state.requestedAt=performance.now();state.version++;updateWorkspace(state);};
   for(const [view,button] of buttons) button.addEventListener('click',()=>{state.view=view;renderRows(state,false);state.requestedAt=performance.now();state.version++;updateWorkspace(state);});
   for(const [phase,button] of resets) button.addEventListener('click',()=>{
     const pair=state.plot.layout.meta?.pairs.find(pair=>pair.phase===phase);if(!pair) return;
+    const revision=state.axisRevisions[phase]??{rt:0,mz:0};state.axisRevisions[phase]={rt:revision.rt+1,mz:revision.mz+1};
     state.zoomByPhase[phase]={rt:[...pair.defaultRT],mz:[...pair.defaultMZ]};state.requestedAt=performance.now();state.version++;updateWorkspace(state);
   });
   grey.addEventListener('change',()=>{state.grey=grey.checked;state.requestedAt=performance.now();state.version++;updateWorkspace(state);});
@@ -282,7 +283,7 @@ async function updateWorkspace(state) {
         state.barStack.appendChild(chart);
         updates.push(Plotly.react(chart,item.figure.data,item.figure.layout,{displayModeBar:false,responsive:true}));
       }
-      await Promise.all(updates);state.root.dataset.barModes=JSON.stringify([...modes]);
+      await Promise.all(updates);state.root.dataset.zoomRanges=JSON.stringify(state.zoomByPhase);state.root.dataset.barModes=JSON.stringify([...modes]);
       if(!state.bound) {
         const resetAxisFromPointer=event=>{
           const classes=event.composedPath().flatMap(element=>(element.getAttribute?.('class')??'').split(/\s+/));
@@ -296,6 +297,7 @@ async function updateWorkspace(state) {
           const pair=state.plot.layout.meta.pairs.find(pair=>pair.phase===reset.phase);
           const current=state.zoomByPhase[reset.phase]??{rt:[...state.plot.layout[pair.positive.x].range],mz:[...state.plot.layout[pair.positive.y].range]};
           state.zoomByPhase[reset.phase]={...current,[reset.dimension]:reset.range};
+          const revision=state.axisRevisions[reset.phase]??{rt:0,mz:0};state.axisRevisions[reset.phase]={...revision,[reset.dimension]:revision[reset.dimension]+1};
           state.requestedAt=performance.now();state.version++;updateWorkspace(state);
         };
         // Plotly's axis drag layer consumes clicks; intercept the second

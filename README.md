@@ -304,3 +304,9 @@ MS/MS spectra, so full chromatographic/MS/MS methods require richer inputs.
 Double-click an axis or its tick labels to reset only that dimension for its linked POS/NEG pair. The other dimension and chromatography retain their zoom.
 
 Click and drag pans the mode plots by default; the scroll wheel zooms and the toolbar can switch between Pan and box Zoom. POS/NEG panning remains linked within a chromatography.
+
+Current untargeted ion forms (evidence version 4): positive `[M+H]+`,
+`[M+NH4]+`, `[M+Na]+`, `[M+K]+`, `[M+H-H2O]+`; negative `[M-H]-`,
+`[M+HCOO]-`, `[M+CH3COO]-`, `[M+Cl]-`, `[M-H-H2O]-`, `[M-2H]2-`.
+Water-loss forms are marked as possible in-source fragments. Unsupported ion
+forms are filtered out when regrouping older saved evidence for display.

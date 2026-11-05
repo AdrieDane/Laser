@@ -9,7 +9,7 @@ import pandas as pd
 
 from standard_lipidomics.untargeted_adducts import ADDUCTS
 
-COMPOUND_VERSION = 2
+COMPOUND_VERSION = 3
 LABEL_COLUMNS = ('compound_id', 'adduct', 'adduct_alternatives', 'detected_modes', 'association_status', 'cluster_id')
 
 
@@ -31,6 +31,8 @@ def assign_compound_ids(analysis):
     same_mode = float(analysis.get('criteria', {}).get('same_mode_adduct_rt_tolerance_min', .05))
     links = analysis.get('adduct_matches', pd.DataFrame())
     if not links.empty:
+        allowed = {ion.name for ion in ADDUCTS}
+        links = links[links.source_adduct.isin(allowed) & links.target_adduct.isin(allowed)]
         grouped = defaultdict(list)
         for row in links.itertuples(index=False):
             grouped[(str(row.source_stream), str(row.source_feature_id), str(row.source_adduct))].append(row)

@@ -34,16 +34,14 @@ ADDUCTS = (
     Adduct('[M+Na]+', 'pos', 1, 22.989220702),
     Adduct('[M+K]+', 'pos', 1, 38.963157907),
     Adduct('[M+H-H2O]+', 'pos', 1, PROTON - 18.010564684, fragment=True),
-    Adduct('[M+2H]2+', 'pos', 2, 2 * PROTON),
     Adduct('[M-H]-', 'neg', 1, -PROTON),
     Adduct('[M+HCOO]-', 'neg', 1, 44.998202851, carbon=1),
     Adduct('[M+CH3COO]-', 'neg', 1, 59.013852915, carbon=2),
     Adduct('[M+Cl]-', 'neg', 1, 34.969401262),
-    Adduct('[M+Na-2H]-', 'neg', 1, 22.989220702 - 2 * PROTON),
     Adduct('[M-H-H2O]-', 'neg', 1, -PROTON - 18.010564684, fragment=True),
     Adduct('[M-2H]2-', 'neg', 2, -2 * PROTON),
 )
-EVIDENCE_VERSION = 3
+EVIDENCE_VERSION = 4
 MATCH_COLUMNS = ('source_stream', 'source_feature_id', 'source_mz', 'source_rt',
     'source_adduct', 'neutral_mass', 'target_stream', 'target_feature_id',
     'target_mz', 'expected_mz', 'target_rt', 'target_adduct', 'mass_error_ppm',

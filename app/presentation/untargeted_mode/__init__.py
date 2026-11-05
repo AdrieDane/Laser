@@ -108,6 +108,8 @@ def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
     links = analysis.get('adduct_matches', pd.DataFrame())
     link_rows = []
     if not links.empty:
+        allowed = {ion.name for ion in ADDUCTS}
+        links = links[links.source_adduct.isin(allowed) & links.target_adduct.isin(allowed)]
         for row in links.itertuples(index=False):
             link_rows.append([str(row.source_stream), str(row.source_feature_id), str(row.target_stream), str(row.target_feature_id),
                 str(row.source_adduct), str(row.target_adduct), float(row.mass_error_ppm),
