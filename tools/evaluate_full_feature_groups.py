@@ -62,6 +62,8 @@ def reference_pair_metrics(reference, predictions):
     predicted, correct = set(), set()
     for keys in groups.values():
         for a, b in combinations(keys, 2):
+            if a[0] == b[0]:
+                continue  # Same cross-mode scope as the expected-pair denominator.
             pair = tuple(sorted((a, b)))
             predicted.add(pair)
             if (

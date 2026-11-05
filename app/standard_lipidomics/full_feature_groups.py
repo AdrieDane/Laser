@@ -129,6 +129,9 @@ class BoundedFamilies:
         chosen = chosen.sort_values(['stage', 'rank_score', 'absolute_ppm', 'source_stream', 'source_feature_id',
                                       'target_stream', 'target_feature_id', 'source_adduct', 'target_adduct'],
                                      ascending=[True, False, True, True, True, True, True, True, True], kind='stable')
+        # Scalar writes to Arrow-backed strings copy the whole status column.
+        # Accumulate by original row index, then materialize the same column once.
+        statuses = dict.fromkeys(candidates.index, 'profile_not_supported')
         for number, row in enumerate(self._ordered_edges(chosen)):
             a = self.offsets[row.source_stream] + row.source_index
             b = self.offsets[row.target_stream] + row.target_index
@@ -140,13 +143,14 @@ class BoundedFamilies:
                                and not self.ions[self.adduct[n]].fragment for n in self.members.get(self.root(b), {b}))
                 if (source.fragment and not (intact_a or (row.source_stream == row.target_stream and not target.fragment))) or (
                         target.fragment and not (intact_b or (row.source_stream == row.target_stream and not source.fragment))):
-                    candidates.at[row.Index, 'selection_status'] = 'fragment_without_same_mode_intact_parent'
+                    statuses[row.Index] = 'fragment_without_same_mode_intact_parent'
                     continue
             status = self.join(a, b, row.source_adduct, row.target_adduct,
                                row.source_neutral_mass, row.target_neutral_mass, row.evidence_score)
-            candidates.at[row.Index, 'selection_status'] = status
+            statuses[row.Index] = status
             if progress and number % 25000 == 0:
                 progress(number/max(1, len(chosen)), f'Bounded ion-family assembly: {number:,}/{len(chosen):,} candidate links')
+        candidates['selection_status'] = candidates.index.map(statuses)
         return candidates
 
     def _ordered_edges(self, chosen):
@@ -176,26 +180,28 @@ class BoundedFamilies:
                            & (output.within_group_correlation >= .2) & output.median_paired_ratio.between(.001, 1.8)]
         supported = supported.assign(error=supported.mass_error_ppm.abs()).sort_values(
             ['error', 'stream', 'source_feature_id', 'target_feature_id', 'isotope_index'], kind='stable')
+        statuses = dict.fromkeys(output.index, 'unverified_envelope_candidate')
         for row in supported.itertuples():
             a = self.offsets[row.stream] + row.source_index
             b = self.offsets[row.stream] + row.target_index
             if not self.adduct[a] or self.isotope[a] or self.ions[self.adduct[a]].charge != row.charge_hypothesis:
                 continue
             if self.adduct[b] or self.root(b) != b:
-                output.at[row.Index, 'selection_status'] = 'already_in_supported_ion_family'
+                statuses[row.Index] = 'already_in_supported_ion_family'
                 continue
             root = self.root(a)
             nodes = self.members.get(root, {a})
             if any(self.mode[n] == row.stream and self.adduct[n] == self.adduct[a]
                    and self.isotope[n] == row.isotope_index for n in nodes):
-                output.at[row.Index, 'selection_status'] = 'competing_isotope_peak'
+                statuses[row.Index] = 'competing_isotope_peak'
                 continue
             if not self._rt_compatible(nodes | {b}):
                 continue
             self.parent[b] = root
             self.members[root] = nodes | {b}
             self.adduct[b], self.neutral[b], self.isotope[b] = self.adduct[a], self.neutral[a], row.isotope_index
-            output.at[row.Index, 'selection_status'] = 'conditional_isotope_member_unverified_envelope'
+            statuses[row.Index] = 'conditional_isotope_member_unverified_envelope'
+        output['selection_status'] = output.index.map(statuses)
         return output
 
     def table(self):

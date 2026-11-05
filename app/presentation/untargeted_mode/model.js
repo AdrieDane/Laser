@@ -142,9 +142,10 @@ export class ModeViewerModel {
       if(!byMode.has(target.stream)) byMode.set(target.stream,[]);
       byMode.get(target.stream).push(link);
     }
-    // One representative ion per other mode is red. Further ion/adduct
-    // candidates stay yellow; all original alternatives remain in evidence.
-    for(const [,links] of [...byMode.entries()].sort(([a],[b])=>a.localeCompare(b))) {
+    // Full families already provide one saved representative per mode, which
+    // may be reached indirectly. Direct alternatives must remain yellow.
+    // Legacy projects select a representative from their direct candidates.
+    for(const [,links] of (this.data.fullFeatureGrouping?[]:[...byMode.entries()].sort(([a],[b])=>a.localeCompare(b)))) {
       links.sort((a,b)=>Number(!!this.rows.get(b.target)?.mode_representative)-Number(!!this.rows.get(a.target)?.mode_representative)||
         (rank.get(a.targetAdduct)??99)-(rank.get(b.targetAdduct)??99)||Math.abs(a.ppm)-Math.abs(b.ppm));
       const chosen=links.find(link=>{const target=this.point(link.target),anchor=phaseAnchors.get(target.phase);return !anchor||this.coelutes(anchor,target);});

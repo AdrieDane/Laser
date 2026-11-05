@@ -212,6 +212,14 @@ check(JSON.stringify(reset.range)===JSON.stringify(figure.layout.meta.pairs[1].d
 const reverse=linkedModeZoom({'yaxis4.range':[-900,-500]},figure.layout);
 check(JSON.stringify(reverse['yaxis3.range'])==='[500,900]','NP negative zoom mirrors into NP positive');
 check(!Object.keys(reverse).some(key=>/^.[a-z]*axis2?\./.test(key)),'NP zoom leaves RP independent');
+// Full families can reach their saved representative through another ion;
+// an alternative with a direct edge must stay yellow, not become a second focus.
+const fullData=structuredClone(data);fullData.fullFeatureGrouping=true;
+fullData.links=fullData.links.filter(row=>!(row[0]==='RP_Pos'&&row[1]==='a'&&row[2]==='RP_Neg'&&row[3]==='neg'));
+const fullModel=new ModeViewerModel(fullData),fullContext=fullModel.context(selected);
+check(fullContext.focus.has(key('RP_Neg','neg')),'saved full-family representative remains selected');
+check(fullModel.style(key('RP_Neg','cl'),fullContext)==='adduct','direct alternative remains yellow when representative is indirect');
+check([...fullContext.focus].filter(k=>fullModel.point(k).stream==='RP_Neg').length===1,'one saved representative per other mode');
 // Stale saved evidence cannot highlight remote RT isomers as adducts or cluster members.
 const rp=model.streams.get('RP_Pos');
 const naIndex=rp.ids.indexOf('na'),cIndex=rp.ids.indexOf('c');
