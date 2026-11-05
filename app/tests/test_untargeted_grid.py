@@ -7,7 +7,7 @@ from standard_lipidomics.project_store import save_untargeted_workflow, load_unt
 
 def grid(phase='RP'):
     c_rt,h_rt=(.16,.30) if phase=='RP' else (.001,.002)
-    rows=[{'feature_id':f'{c},{h}','mz':900.74283+c*CH2+h*H2,'rt':14+c*c_rt+h*h_rt,'already_annotated':False}
+    rows=[{'feature_id':f'{c},{h}','mz':678.5068+c*CH2+h*H2,'rt':14+c*c_rt+h*h_rt,'already_annotated':False}
           for c in range(-3,4) for h in range(-2,3)]
     return pd.DataFrame(rows).sort_values('mz').reset_index(drop=True)
 
@@ -37,7 +37,7 @@ def test_a_single_ch2_series_does_not_invent_a_two_axis_grid():
 
 def test_flat_np_grids_are_supported_and_saved(tmp_path):
     source=grid('NP')
-    hits=pd.DataFrame([{'feature_id':'0,0','mz':900.74283,'rt':14.,'raw_p_significant':True,'isotope_charge_hypothesis':1}])
+    hits=pd.DataFrame([{'feature_id':'0,0','mz':678.5068,'rt':14.,'raw_p_significant':True,'isotope_charge_hypothesis':1}])
     links=search_lipid_grids({'NP_Pos':hits},{'NP_Pos':source},UntargetedComparisonCriteria('A','B'))
     assert len(links)==34
     result={'streams':{'NP_Pos':{'features':source}},'automatic_annotations':pd.DataFrame()}

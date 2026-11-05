@@ -13,6 +13,22 @@ tentative. Current user also requested a local PC annotation holdout in a copied
 project, with a full archive; this is an internal control, not new annotation
 accuracy. Personal project defaults belong to user settings, never source code.
 
+## Current untargeted evidence follow-up
+
+Evidence v4 excludes [M+2H]2+ and [M+Na-2H]- by explicit user request;
+[M-2H]2- remains supported. Connected lipid-grid v1 subsequently added CH2/H2
+families with occupied-cell, fitted-RT and RT-gap guards. All-four-mode blind
+manual-original-feature development evaluation is complete; report reference-link
+recovery separately from curated class/adduct agreement and never as molecular
+identification accuracy. RP-negative agreement remains limited. Formula/isotope/
+adduct/group-test function ASTs were verified unchanged by the grid extension.
+Private detailed reports, input/source fingerprints and holdout data stay outside
+Git. The broad 990-test suite passed, with later UI regressions checked separately.
+The latest abundance viewer uses a fixed 2x2 mode panel and one shared legend.
+Annotated cluster lipids have green centres/purple outlines; selected ions are
+larger bright green, significant cluster members orange/purple, other adducts yellow.
+The historical annotation optimization below remains paused.
+
 # Experiment reporting policy
 
 ## CURRENT user-requested041 EXPORTS COMPLETE — optimization remains PAUSED
