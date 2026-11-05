@@ -1,3 +1,18 @@
+# Current standard-tool scope (5 November 2026)
+
+The historical 33-dataset annotation optimization below remains PAUSED. The
+user authorized standard-tool UI/workflow changes and a separate, read-only
+untargeted evidence evaluation on one ALD acquisition, not resumption of the
+historical annotation optimization. Baseline a2f57ff and evidence revision
+da95441 completed the identical source-bound validation runner. Raw data and
+accepted annotation decisions were unchanged by evidence improvements. Private
+details and provenance are outside Git. Do not claim external validation or
+analytical FDR from this development comparison. Evidence version 3 improves
+isotope/CHNOPS candidate ranking and adduct coelution; formulas and ion IDs remain
+tentative. Current user also requested a local PC annotation holdout in a copied
+project, with a full archive; this is an internal control, not new annotation
+accuracy. Personal project defaults belong to user settings, never source code.
+
 # Experiment reporting policy
 
 ## CURRENT user-requested041 EXPORTS COMPLETE — optimization remains PAUSED
