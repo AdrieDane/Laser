@@ -161,7 +161,7 @@ def test_completed_untargeted_viewer_never_recalculates(tmp_path):
         next(b for b in app.button if b.label == 'Open completed untargeted analysis').click().run()
     assert not app.exception
     assert app.get('plotly_chart')
-    assert any('Features with significant raw p-value' == h.value for h in app.subheader)
+    assert app.session_state['standard_untargeted_mode_payload'][1]['statistics']
     assert not any(b.label == 'Run untargeted analysis' for b in app.button)
 
 

@@ -63,6 +63,9 @@ include = [
   "standard_lipidomics*",
 ]
 
+[tool.setuptools.package-data]
+"presentation.untargeted_mode" = ["*.js", "*.css"]
+
 [tool.setuptools.data-files]
 "rules" = [
   "app/rules/README.md",

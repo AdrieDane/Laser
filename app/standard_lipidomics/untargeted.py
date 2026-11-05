@@ -23,6 +23,7 @@ from standard_lipidomics.untargeted_adducts import (
     EVIDENCE_VERSION, adduct_options, search_adduct_evidence, attach_adduct_summaries, SearchProgress,
 )
 from standard_lipidomics.untargeted_series import attach_lipid_series
+from standard_lipidomics.untargeted_compounds import assign_compound_ids
 
 
 _NON_BIOLOGICAL_GROUP_TOKENS = {
@@ -1703,7 +1704,7 @@ def analyse_standard_untargeted(
         if by_stream
         else pd.DataFrame()
     )
-    return {
+    output = {
         "criteria": asdict(criteria),
         "evidence_version": EVIDENCE_VERSION,
         "adduct_matches": adduct_matches,
@@ -1728,6 +1729,9 @@ def analyse_standard_untargeted(
             "identifications or exact molecular formulas."
         ),
     }
+    if progress:
+        progress(.94, "Assigning tentative compound IDs")
+    return assign_compound_ids(output)
 
 
 __all__ = [

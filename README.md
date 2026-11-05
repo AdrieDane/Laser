@@ -152,6 +152,30 @@ hits and statistics are saved as project tables and restored in the viewer.
 Older projects open with their stored evidence; rerun the pipeline to generate
 the expanded searches.
 
+The completed untargeted viewer links a mirrored RT/m/z plot, the sample bars,
+and a detection table in the browser. Selection, mode switches and highlights
+do not rerun Streamlit. Choose **RP POS and NEG**, **NP POS and NEG**, or
+**All 4 modes** (separate RP/NP panels). Grey non-significant background points
+are off by default; enabling them shows a fixed sample of up to 20,000 points.
+Related cluster and adduct detections are always shown, including non-hits.
+Selected features and a representative possible counterpart per other mode
+are red; other significant features are blue, cluster members purple, and
+additional adduct candidates yellow. Significant cluster neighbours have a red
+fill and purple border. The table can select detections and filter by compound,
+feature, mode or m/z. **Review selected feature** opens the saved review controls.
+
+Tentative ion groups receive shared `compound_0001` IDs across adducts and modes;
+each table row retains its original feature ID, m/z, RT, likely adduct and mode.
+Grouping uses one consistent neutral-mass hypothesis and a co-eluting ion family
+within each chromatography; equal-mass RT isomers are not collapsed together.
+Ambiguous adduct alternatives remain available as evidence. These display IDs
+are not structural identifications. Homologous relationships between distinct
+compounds receive separate `cluster_0001` IDs, propagated to their adducts and
+mode counterparts. Both label tables are saved with the untargeted project.
+Existing results receive labels on opening without rerunning group tests; use
+Save untargeted analysis to persist them. Non-significant cluster counterparts
+use a browser-local mass/RT lookup against the already loaded feature coordinates.
+
 RT calibration brings over the four models and standard-review diagnostics from
 [LASER-4D `a188f72`](https://github.com/YRJJaspers/LASER-4D-lipidomics/tree/a188f72a4366055238b474ab0826964430f33ee5):
 constant shift, linear, robust linear, and monotonic piecewise linear. Its model

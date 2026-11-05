@@ -11,6 +11,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import streamlit as st
 from presentation.viewer_theme import viewer_plotly_chart
+from presentation.untargeted_mode import render_mode_view
 
 from standard_lipidomics.workflow import load_standard_feature_list
 from standard_lipidomics.untargeted_adducts import EVIDENCE_VERSION
@@ -308,17 +309,15 @@ def _render_standard_untargeted(result: dict) -> dict:
     if raw_p.empty:
         st.info("No unannotated feature passes the saved raw-p-value threshold.")
         return analysis
-    feature_list, sample_plot = st.columns([6.6, 4.15], gap="small")
-    with feature_list:
-        st.subheader("Features with significant raw p-value")
-        selected = _render_significant_features(raw_p)
-    with sample_plot:
-        figure = _untargeted_sample_bar_figure(result, selected)
-        if figure is not None:
-            viewer_plotly_chart(figure, width="stretch", key="standard-untargeted-selected-samples",
-                config={"displayModeBar": False})
-    _render_feature_chemical_evidence(selected, analysis)
-    _render_untargeted_volcano(analysis, criteria)
+    review_focus = render_mode_view(result, analysis)
+    if review_focus:
+        detections = analysis.get('compound_features', raw_p)
+        selected = detections[detections.stream.eq(review_focus[0]) & detections.feature_id.astype(str).eq(str(review_focus[1]))]
+        if not selected.empty:
+            st.subheader(f"Review: {review_focus[0]} · feature {review_focus[1]}")
+            _render_untargeted_review_controls(result, selected.iloc[0])
+    with st.expander("Volcano plots", expanded=False):
+        _render_untargeted_volcano(analysis, criteria)
     return analysis
 
 
@@ -988,6 +987,5 @@ def render_untargeted_workspace(result: dict) -> dict:
     analysis = _render_standard_untargeted(result)
     if analysis:
         result["untargeted_analysis"] = analysis
-        _render_standard_untargeted_feature_map(analysis, result)
         _render_untargeted_review_basket(result)
     return analysis

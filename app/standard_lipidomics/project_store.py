@@ -204,7 +204,7 @@ def _write_untargeted_project(
         role = f"stream__{slug}__features"
         paths[role] = atomic_write_csv(tables / "streams" / slug / "features.csv", frame)
         streams[str(name)] = {"slug": slug, "features_attrs": _json_attrs(frame.attrs)}
-    for key in ("features", "significant_features", "raw_p_features", "adduct_matches", "homologous_matches", "group_catalog", "skipped_streams"):
+    for key in ("features", "significant_features", "raw_p_features", "compound_features", "cluster_members", "adduct_matches", "homologous_matches", "group_catalog", "skipped_streams"):
         frame = analysis.get(key)
         if isinstance(frame, pd.DataFrame):
             role = f"untargeted_{key}"
@@ -229,6 +229,7 @@ def _write_untargeted_project(
         "criteria": dict(analysis.get("criteria") or {}),
         "method": str(analysis.get("method", "")),
         "evidence_version": analysis.get("evidence_version", 0),
+        "compound_version": analysis.get("compound_version", 0),
         "interpretation_boundary": str(analysis.get("interpretation_boundary", "")),
         "inputs": dict(inputs or {}),
     })
@@ -285,9 +286,10 @@ def load_untargeted_workflow(project: str | Path) -> tuple[dict, dict]:
         "criteria": run.get("criteria", {}),
         "method": run.get("method", ""),
         "evidence_version": run.get("evidence_version", 0),
+        "compound_version": run.get("compound_version", 0),
         "interpretation_boundary": run.get("interpretation_boundary", ""),
     }
-    for key in ("features", "significant_features", "raw_p_features", "adduct_matches", "homologous_matches", "group_catalog", "skipped_streams"):
+    for key in ("features", "significant_features", "raw_p_features", "compound_features", "cluster_members", "adduct_matches", "homologous_matches", "group_catalog", "skipped_streams"):
         analysis[key] = load_project_table(saved, f"untargeted_{key}")
     by_stream = {}
     features = analysis["features"]
