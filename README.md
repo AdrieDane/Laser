@@ -164,7 +164,7 @@ automatic selection. Choose **RP POS and NEG**, **NP POS and NEG**, or
 are off by default; enabling them shows a fixed sample of up to 20,000 points.
 Related cluster and adduct detections are always shown, including non-hits.
 Selected features and a representative possible counterpart per other mode
-are red; other significant features are blue, cluster members purple, and
+are orange; significant increases are red and decreases blue (B versus A), cluster members purple, and
 additional adduct candidates yellow. Significant cluster neighbours have a red
 fill and purple border. The table can select detections and filter by compound,
 feature, mode or m/z. **Review selected feature** opens the saved review controls.
@@ -279,3 +279,5 @@ The source repository is not modified by this extraction. Future changes can
 be developed and released independently in this repository.
 
 Selecting a compound automatically shows one sample abundance plot for each detected mode, using that mode's original sample values and group colours. The significant-feature table stays immediately below the mode plots. Saved evidence with distant same-mode RT values is excluded from coloured adduct highlights.
+
+All mode-viewer points use equal-sized circles. Significance direction is comparison group B relative to reference group A. Selection overrides significance colour; selected-cluster neighbours are purple, with significant neighbours orange and bordered purple.

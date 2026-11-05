@@ -4,8 +4,8 @@ const node = (tag, text='', className='') => {
 };
 const numberText = (value, digits=3) => value==null || !Number.isFinite(Number(value))?'—':Number(value).toFixed(digits);
 const plotFont = {family:'Arial, sans-serif',size:12};
-const traceOrder=['background','significant','adduct','cluster','significantCluster','focus'];
-const legendNames={background:'Not significant',significant:'Other significant features',adduct:'Other adduct candidate',
+const traceOrder=['background','significantDown','significantUp','adduct','cluster','significantCluster','focus'];
+const legendNames={background:'Not significant',significantDown:'Significantly lower (B vs A)',significantUp:'Significantly higher (B vs A)',adduct:'Other adduct candidate',
   cluster:'Cluster member',significantCluster:'Significant cluster member',focus:'Selected / possible counterpart'};
 
 export function modeFigure(state) {
@@ -42,9 +42,7 @@ export function modeFigure(state) {
           showlegend:column===0&&!negative,x:points.map(p=>p.rt),y:points.map(p=>negative?-p.mz:p.mz),
           customdata:points.map(p=>[p.key,p.stream,p.id,p.mz,model.rows.get(p.key)?.compound_id??'',
             model.rows.get(p.key)?.adduct??'',model.rows.get(p.key)?.p_value??null]),
-          marker:{color:colour,opacity:role==='background'?.32:1,size:role==='background'?4:role==='significant'?7:11,
-            symbol:role==='significant'?'diamond':'circle',line:{color:role==='significantCluster'?MODE_COLOURS.cluster:colour,
-              width:role==='significantCluster'?3:role==='focus'?2:0}},
+          marker:{color:colour,opacity:role==='background'?.32:1,size:8,symbol:'circle',line:{color:role==='significantCluster'?MODE_COLOURS.cluster:colour,width:role==='significantCluster'?2:0}},
           hovertemplate:'%{customdata[4]}<br>%{customdata[1]} · feature %{customdata[2]}<br>'+
             'm/z %{customdata[3]:.5f} · RT %{x:.3f} min<br>%{customdata[5]}<br>raw p %{customdata[6]:.3g}<extra>'+legendNames[role]+'</extra>'});
       });
@@ -206,7 +204,7 @@ function createWorkspace(parent, data) {
   const legend=node('div','','colour-key');
   for(const [role,label] of [['focus','Selected / possible counterpart'],['cluster','Cluster member'],['adduct','Other adduct candidate'],['significantCluster','Significant cluster member']]) {
     const line=node('div'),swatch=node('span','','swatch');swatch.style.background=MODE_COLOURS[role];
-    if(role==='significantCluster') swatch.style.border='3px solid '+MODE_COLOURS.cluster;
+    if(role==='significantCluster') swatch.style.border='2px solid '+MODE_COLOURS.cluster;
     line.append(swatch,document.createTextNode(label));legend.appendChild(line);
   }
   side.appendChild(legend);top.append(main,side);
