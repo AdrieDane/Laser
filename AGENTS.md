@@ -15,14 +15,22 @@ accuracy. Personal project defaults belong to user settings, never source code.
 
 ## Current untargeted evidence follow-up
 
-Stage 2 is now explicitly authorized. Implementation adds a project method schema,
+Stage 2 is COMPLETE. Implementation adds a project method schema,
 launcher editor, frozen saved/worker settings, selectable soft chemistry/class
 priors and a formate/acetate CH2 ambiguity guard. User supplied RP/NP protocol;
 new inputs-only project metadata records it, preserving the existing IS CSV and
 current-scoring default. Historical Stage 1 text below describes its frozen state.
-See docs/validation/untargeted_stage2/README.md. Stage 2 source-bound comparison is
-pending; freeze/push implementation before evaluating both fixed arms, report all
-four modes/all classes plus PC, gains AND losses, then stop before Stage 3. No
+See docs/validation/untargeted_stage2/README.md. Source 3db7c78, checker-only fix
+8cad478: attempt001 failed key dtype comparison and was preserved; attempt002
+completed both fixed arms. Current-scoring complete assignments equal Stage1;
+both PC regressions10/14. Method-aware all-class recovery RPpos46->45/1694,
+RPneg3/679, NPpos37/757, NPneg5/538 unchanged; gains0/loss1. Unconfirmed extras
+553->551,546->546,193->195,217->217. All252 class/mode cells/private transitions
+reported; full app1028passed8skipped91subtests plus13 checker tests. No inference
+weight/source retuning. Experimental option retained; CURRENT DEFAULT unchanged.
+Settings roundtrip/frozen worker/disabled-ion browser and chemistry guards pass.
+Statistics/formula/isotope outputs and checkpoint files unchanged. STOP at Stage2
+checkpoint before Stage3. No
 new dataset, full-feature grouping, formula-model replacement or default promotion.
 
 The user requested a staged implementation plan on 5 November 2026. Follow

@@ -30,7 +30,8 @@ stages cover acquisition-specific adduct chemistry, full-feature ion grouping,
 complete isotope patterns, external formula engines, joint inference and optional
 raw chromatogram/MS/MS evidence. [Stage 2](docs/validation/untargeted_stage2/README.md)
 adds project method settings and experimental method-aware adduct scoring;
-its development comparison is in progress. Current scoring remains the default.
+its development comparison is complete. It retained 10/14 PC counterparts but
+lost one all-class reference link, so current scoring remains the default.
 
 ## Run the app
 
