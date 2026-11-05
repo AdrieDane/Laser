@@ -17,7 +17,7 @@ export class ModeViewerModel {
     this.data=data; this.streams=new Map(); this.points=new Map(); this.rows=new Map();
     this.hits=new Set(); this.links=new Map(); this.adjacency=new Map(); this.queryCache=new Map();
     this.componentCache=new Map(); this.contextCache=new Map();
-    this.clusterIds=new Map(); this.namedClusters=new Map();
+    this.clusterCompounds=new Map(); this.clusterIds=new Map(); this.namedClusters=new Map();
     for(const [name, source] of Object.entries(data.streams)) {
       const stream={...source, name, mz:decode64(source.mz), rt:decode64(source.rt), levels:decode64(source.levels)};
       stream.sampleIndex=new Map(source.sampleIds.map((id,index)=>[String(id),index]));
@@ -30,7 +30,7 @@ export class ModeViewerModel {
       if(row.raw_p_significant) this.hits.add(key);
     }
     for(const row of data.clusterMembers??[]) {
-      const key=featureKey(row.stream,row.feature_id);this.clusterIds.set(key,row.cluster_id);
+      const key=featureKey(row.stream,row.feature_id);this.clusterIds.set(key,row.cluster_id);if(row.compound_id) this.clusterCompounds.set(key,row.compound_id);
       if(!this.namedClusters.has(row.cluster_id)) this.namedClusters.set(row.cluster_id,new Set());
       this.namedClusters.get(row.cluster_id).add(key);
     }
@@ -55,7 +55,8 @@ export class ModeViewerModel {
   point(key) {
     const point=this.points.get(key); if(!point) return null;
     return {key,stream:point.stream.name,id:point.stream.ids[point.index],
-      mz:point.stream.mz[point.index],rt:point.stream.rt[point.index],negative:point.stream.negative,phase:point.stream.phase};
+      mz:point.stream.mz[point.index],rt:point.stream.rt[point.index],negative:point.stream.negative,phase:point.stream.phase,lipidId:point.stream.lipidIds?.[point.stream.ids[point.index]]??'',
+      compoundId:this.rows.get(key)?.compound_id??this.clusterCompounds.get(key)??'',clusterId:this.rows.get(key)?.cluster_id??this.clusterIds.get(key)??''};
   }
   matches(key) {
     if(this.queryCache.has(key)) return this.queryCache.get(key);

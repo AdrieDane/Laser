@@ -165,8 +165,8 @@ are off by default; enabling them shows a fixed sample of up to 20,000 points.
 Related cluster and adduct detections are always shown, including non-hits.
 Selected features and a representative possible counterpart per other mode
 are orange; significant increases are red and decreases blue (B versus A), cluster members purple, and
-additional adduct candidates yellow. Significant cluster neighbours have a red
-fill and purple border. The table can select detections and filter by compound,
+additional adduct candidates yellow. Significant cluster neighbours have an orange
+fill and purple border. Hover shows original feature, compound and cluster IDs, plus accepted lipid identities when available. The table can select detections and filter by compound,
 feature, mode or m/z. **Review selected feature** opens the saved review controls.
 Purple highlights are restricted to direct neighbours of the selected
 significant feature and their possible mode counterparts. They do not expand

@@ -119,6 +119,7 @@ def test_browser_model_colours_modes_background_and_sample_levels(tmp_path):
     if not node:
         pytest.skip('Node runtime required for browser-model checks')
     result,analysis=example()
+    result['automatic_annotations']=pd.DataFrame([{'stream':'RP_Pos','feature_id':'c','name':'PC(36:2)','adduct':'[M+H]+'}])
     payload=build_mode_payload(result,analysis)
     (tmp_path/'payload.json').write_text(json.dumps(payload,allow_nan=False))
     source=ROOT/'presentation/untargeted_mode'
@@ -129,7 +130,7 @@ import {ModeViewerModel,featureKey,modeFigure,sampleFigure,sampleFigures,linkedM
 const data=JSON.parse(readFileSync('./payload.json'));
 const model=new ModeViewerModel(data), key=(s,id)=>featureKey(s,id), selected=key('RP_Pos','a'), context=model.context(selected);
 const check=(condition,message)=>{if(!condition) throw Error(message);};
-check(model.style(selected,context)==='focus','selected red');
+check(model.style(selected,context)==='focus','selected orange');
 check(model.style(key('RP_Neg','neg'),context)==='focus','negative counterpart red');
 check(model.style(key('NP_Pos','np'),context)==='focus','NP counterpart red');
 for(const point of [key('RP_Pos','na'),key('RP_Neg','cl')]) check(model.style(point,context)==='adduct','additional adduct yellow');
@@ -141,6 +142,10 @@ const initial=modeFigure({...state,selected:null});
 check(initial.data.filter(t=>!t.name.startsWith('Significantly')).every(t=>t.x.length===0),'initial plot contains only significant points');
 let figure=modeFigure(state);
 check(figure.data.every(t=>t.marker.symbol==='circle'&&t.marker.size===8),'all markers equal circles');
+const annotated=figure.data.flatMap(t=>t.customdata).find(row=>row[0]===key('RP_Pos','c'));
+check(annotated[2]==='c'&&annotated[7].startsWith('cluster_'),'feature and cluster IDs in hover');
+check(annotated[8]==='Lipid: PC(36:2) [M+H]+','accepted lipid ID in hover');
+check(figure.data.find(t=>t.name==='Other adduct candidate').marker.color==='#f2c230','adducts remain yellow');
 check(figure.data.find(t=>t.name==='Selected / possible counterpart').marker.color==='#f28c28','selection orange');
 const clusterMarker=figure.data.find(t=>t.name==='Significant cluster member').marker;
 check(clusterMarker.color==='#f28c28'&&clusterMarker.line.color==='#8b5cf6'&&clusterMarker.line.width===2,'significant cluster orange with purple border');

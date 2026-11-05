@@ -2,6 +2,7 @@
 from base64 import b64encode
 from dataclasses import asdict
 from pathlib import Path
+from html import escape
 
 import numpy as np
 import pandas as pd
@@ -23,6 +24,31 @@ def _packed(values, dtype='<f8'):
 def _records(frame):
     clean = frame.replace([np.inf, -np.inf], np.nan).astype(object)
     return clean.where(pd.notna(clean), None).to_dict('records')
+
+
+
+def _lipid_labels(result):
+    """Only accepted identities; alternative candidates are not annotations."""
+    frame = result.get('automatic_annotations', pd.DataFrame())
+    labels = {}
+    if not isinstance(frame, pd.DataFrame) or frame.empty:
+        return labels
+    stream_col = next((c for c in ('stream', 'standard_stream') if c in frame), None)
+    fid_col = next((c for c in ('feature_id', 'feat_feature_id') if c in frame), None)
+    name_col = next((c for c in ('feature_identity', 'name', 'species') if c in frame), None)
+    if not all((stream_col, fid_col, name_col)):
+        return labels
+    for row in frame.to_dict('records'):
+        if pd.isna(row[name_col]):
+            continue
+        key = (str(row[stream_col]), str(row[fid_col]))
+        label = str(row[name_col])
+        if pd.notna(row.get('adduct')):
+            label += ' ' + str(row['adduct'])
+        labels.setdefault(key, [])
+        if label not in labels[key]:
+            labels[key].append(label)
+    return {key: escape('; '.join(values)) for key, values in labels.items()}
 
 
 def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
@@ -47,6 +73,7 @@ def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
                       for row in _records(statistic_frame.sort_values(['compound_id', 'stream', 'mz'], kind='stable'))]
     selected_ids = {(str(row['stream']), str(row['feature_id'])) for row in statistics}
     streams = {}
+    lipid_labels = _lipid_labels(result)
     group_names = set()
     for name, item in result.get('streams', {}).items():
         features = item.get('features', pd.DataFrame())
@@ -75,7 +102,8 @@ def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
         streams[str(name)] = {'ids': coords.feature_id.tolist(), 'mz': _packed(coords.mz.to_numpy(float)),
             'rt': _packed(coords.rt.to_numpy(float)), 'background': sorted(indices.tolist()),
             'samples': list(samples), 'groups': groups, 'groupLabels': labels,
-            'sampleIds': sample_rows.feature_id.astype(str).tolist(), 'levels': _packed(matrix)}
+            'sampleIds': sample_rows.feature_id.astype(str).tolist(), 'levels': _packed(matrix),
+            'lipidIds': {fid: label for (stream, fid), label in lipid_labels.items() if stream == str(name)}}
     palette = {group: qualitative.Safe[index % len(qualitative.Safe)] for index, group in enumerate(sorted(group_names))}
     links = analysis.get('adduct_matches', pd.DataFrame())
     link_rows = []
