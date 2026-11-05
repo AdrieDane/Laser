@@ -195,7 +195,7 @@ def evaluate(preparation, predictions, out):
             'top5':bool(formula_ranks and min(formula_ranks)<=5),
             'joint_top1':bool(joint_ranks and min(joint_ranks)==1),
             'joint_top5':bool(joint_ranks and min(joint_ranks)<=5),
-            'seconds':output.get('seconds',0)})
+            'seconds':output.get('seconds')})
     frame = pd.DataFrame(rows)
     out.mkdir(exist_ok=False, parents=True)
     frame.to_csv(out/'query_scores.csv',index=False)

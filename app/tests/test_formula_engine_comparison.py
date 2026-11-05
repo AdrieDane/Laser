@@ -27,6 +27,7 @@ def test_missing_engine_output_is_not_an_exclusion(tmp_path, monkeypatch):
     assert scored.pool_recall.sum()==1
     assert scored.top1.sum()==1
     assert scored.status.ne('complete').sum()==2
+    assert scored.seconds.isna().all()  # Missing native timing is not zero runtime.
     metrics=json.loads((tmp_path/'scored/metrics.json').read_text())
     all_modes=[r for r in metrics if r['scope']=='all']
     assert sum(r['N'] for r in all_modes)==3

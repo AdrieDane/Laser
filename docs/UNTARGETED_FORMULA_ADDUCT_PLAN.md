@@ -28,7 +28,7 @@ validation supports a default change; merging code does not itself promote it.
 | 2 | Acquisition settings and adduct chemistry | 1 | Complete; experimental option, current default retained |
 | 3 | Ion grouping across the full feature list | 1, 2 | LASER comparison complete; current default retained, Binner pending |
 | 4 | Complete isotope patterns and measurement quality | 2, 3 | Software/internal comparison complete; verified isotope validation open |
-| 5 | Lipid formula candidates and external engine comparison | 1, 4 | Explicitly authorized; implementation and native-engine preflight in progress |
+| 5 | Lipid formula candidates and external engine comparison | 1, 4 | Local comparison complete; experimental only, native comparison partly pending |
 | 6 | Joint formula and adduct inference across modes | 3, 4, 5 | Not started |
 | 7 | Optional chromatographic trace evidence | 1, 3 and available traces | Not started |
 | 8 | Optional MS/MS evidence and formula comparison | 1, 5 and available spectra | Not started |
