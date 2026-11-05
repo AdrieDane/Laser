@@ -1,6 +1,6 @@
 # Stage 3: full-feature ion grouping
 
-5 November 2026. Implementation ready; frozen LASER comparison pending.
+5 November 2026. Implementation and frozen LASER comparison complete; current default retained.
 Native Binner comparison is unavailable pending a trusted executable. Stage 3 is
 not fully closed and Stage 4 has not started. Current grouping remains the default.
 
@@ -104,6 +104,100 @@ python3 tools/evaluate_full_feature_groups.py \
   --method /private/project/metadata/acquisition_method.json \
   --output /private/new-stage-3-attempt --node /path/to/node
 ```
+
+## Completed native comparison and decision
+
+Producer `5625abe`; all three fixed arms completed against the same frozen
+acquisition. **Keep current grouping as the default.** Exact selected-PC positive
+counterparts regress from **10/14 to 9/14** in both full-feature engines. Wider
+reference eligibility increases recovery, while conditional adduct agreement is
+weaker in several modes. Each full engine loses 15 previous original-ion/adduct
+reference matches (RP positive 2, RP negative 2, NP positive 9, NP negative 2).
+No class/mode splice, weight tuning or promotion followed evaluation.
+
+All-manual original-ion/adduct recovery (3,668 rows, including 46 unresolved
+mappings; not molecular-identification accuracy):
+
+| Mode | Current | Full strict | Full soft |
+| --- | --- | --- | --- |
+| RP_Pos | 2.7% (46/1694) | 48.5% (822/1694) | 55.4% (939/1694) |
+| RP_Neg | 0.4% (3/679) | 39.0% (265/679) | 44.3% (301/679) |
+| NP_Pos | 4.9% (37/757) | 62.0% (469/757) | 65.3% (494/757) |
+| NP_Neg | 0.9% (5/538) | 62.1% (334/538) | 66.4% (357/538) |
+
+The complete ledger is eligible for assignment in the full engines, whereas the
+current engine's evaluated output contains significance-selected families. This
+scope expansion contributes to recovery gains; the table is not an accuracy gain
+on identical assigned subsets.
+
+Conditional assigned-adduct agreement:
+
+| Mode | Current | Full strict | Full soft |
+| --- | --- | --- | --- |
+| RP_Pos | 90.2% (46/51) | 78.5% (822/1047) | 74.2% (939/1265) |
+| RP_Neg | 100.0% (3/3) | 56.9% (265/466) | 54.7% (301/550) |
+| NP_Pos | 75.5% (37/49) | 74.1% (469/633) | 71.4% (494/692) |
+| NP_Neg | 83.3% (5/6) | 71.4% (334/468) | 70.4% (357/507) |
+
+Assignment coverage among eligible reference ions:
+
+| Mode | Current | Full strict | Full soft |
+| --- | --- | --- | --- |
+| RP_Pos | 3.0% (51/1680) | 62.3% (1047/1680) | 75.3% (1265/1680) |
+| RP_Neg | 0.4% (3/671) | 69.4% (466/671) | 82.0% (550/671) |
+| NP_Pos | 6.6% (49/745) | 85.0% (633/745) | 92.9% (692/745) |
+| NP_Neg | 1.1% (6/526) | 89.0% (468/526) | 96.4% (507/526) |
+
+Unconfirmed extras in displayed significant families, with the historical scope
+held constant (unknown identities, not established false positives):
+
+| Mode | Current | Full strict | Full soft |
+| --- | --- | --- | --- |
+| RP_Pos | 553 | 583 | 607 |
+| RP_Neg | 546 | 574 | 580 |
+| NP_Pos | 193 | 179 | 205 |
+| NP_Neg | 217 | 201 | 218 |
+
+Full PC reference recovery, separate from the selected counterpart regression:
+
+| Mode | Current | Full strict | Full soft |
+| --- | --- | --- | --- |
+| RP_Pos | 9.1% (20/220) | 67.7% (149/220) | 72.3% (159/220) |
+| RP_Neg | No reference | No reference | No reference |
+| NP_Pos | 11.7% (24/206) | 66.0% (136/206) | 66.0% (136/206) |
+| NP_Neg | No reference | No reference | No reference |
+
+Compatible reference-pair recovery is 21/960 current, 395/960 strict and 407/960
+soft. Conditional pair agreement is 21/35 (60.0%), 395/564 (70.0%) and 407/593
+(68.6%); discordant pairs are 14, 169 and 186 respectively. Exact-name reference
+pairs are a surrogate, not independently verified ion-family purity or an FDR.
+Both full ledgers retain all 254,324 original keys. They assign 96,129 and 142,088
+monoisotopic ions respectively, including accepted and non-significant observations;
+these counts are not confirmed identifications. All 756 class/mode/arm cells and
+all three 60-slot PC tables are retained privately, including losses.
+
+The shared candidate pool contains 4,852,684 adduct relationships and 155,681
+unverified isotope candidates. Grouping times are 2.77 s current, 156.32 s full
+strict and 176.90 s full soft; export/report time is additional. An initial attempt
+was preserved and stopped during strict assembly after over 11 minutes: scalar
+writes to Arrow-backed status strings repeatedly copied a large column. Batched
+status recording fixes that cost without changing evidence rules. The new source
+was committed before a fresh complete comparison. A cross-mode pair-denominator
+checker correction and one-representative-per-mode viewer fix are included.
+
+The full suite passes **1,039 tests**, with 8 skipped and 91 subtests passed.
+All 251,431 original statistical/evidence rows are unchanged. Source and input
+fingerprints pass; all prepared input/raw/IS copies are unchanged and the new
+project remains inputs-only. Independent full-ledger checks verify original keys,
+unique monoisotopic mode/adduct slots, neutral-mass spans and complete RT bounds
+against saved settings. The report checker reads the frozen 4 ppm tolerance;
+its initial hard-coded 3 ppm check was corrected without changing predictions.
+
+Browser-model tests on 60 uncached selections per full engine verify one focus
+per mode and build both plot descriptions below one second. These timings exclude
+browser Plotly rendering/DOM, transfer and initialization; they do not establish
+end-to-end browser latency. Native Binner execution remains unperformed. Stage 3
+is not fully closed and Stage 4 has not started.
 
 ## Binner compatibility and remaining blocker
 

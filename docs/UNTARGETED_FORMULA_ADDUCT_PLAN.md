@@ -25,7 +25,7 @@ validation supports a default change; merging code does not itself promote it.
 | --- | --- | --- | --- |
 | 1 | Frozen baseline and evaluation contract | None | Complete; checkpoint ready for review |
 | 2 | Acquisition settings and adduct chemistry | 1 | Complete; experimental option, current default retained |
-| 3 | Ion grouping across the full feature list | 1, 2 | Implementation ready; LASER evaluation pending, Binner unavailable |
+| 3 | Ion grouping across the full feature list | 1, 2 | LASER comparison complete; current default retained, Binner pending |
 | 4 | Complete isotope patterns and measurement quality | 2, 3 | Not started |
 | 5 | Lipid formula candidates and external engine comparison | 1, 4 | Not started |
 | 6 | Joint formula and adduct inference across modes | 3, 4, 5 | Not started |

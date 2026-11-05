@@ -32,6 +32,10 @@ raw chromatogram/MS/MS evidence. [Stage 2](docs/validation/untargeted_stage2/REA
 adds project method settings and experimental method-aware adduct scoring;
 its development comparison is complete. It retained 10/14 PC counterparts but
 lost one all-class reference link, so current scoring remains the default.
+[Stage 3](docs/validation/untargeted_stage3/README.md) adds experimental full-feature
+strict/soft ion grouping. Its complete development comparison increases reference
+coverage but regresses selected-PC counterparts to 9/14; current grouping remains
+the default. The native Binner benchmark is still pending a trusted executable.
 
 ## Run the app
 
@@ -135,15 +139,16 @@ the archive/overwrite choice.
 
 The viewer lists all unannotated features below the selected **unadjusted raw
 p-value** threshold. A separate column shows whether each also passes the
-fold-change and detection filters used by the volcano/map. Select a list row
+fold-change and detection filters. Select a list row
 to see sample bars with metadata group colours, isotope partners, candidate
 formulas, adduct links, and CH₂-series neighbours. Non-significant and annotated
 features remain searchable as supporting counterparts.
 
 Adduct searches infer neutral masses under H, NH₄, Na, K and water-loss positive
-ions, plus deprotonated, formate, acetate, chloride, Na−2H and water-loss negative
-ions. Doubly protonated/deprotonated ions are also considered; isotope spacing
-constrains charge when available. Matches require mass tolerance and co-elution
+ions, plus deprotonated, formate, acetate, chloride and water-loss negative
+ions. Doubly deprotonated ions remain supported; doubly protonated and Na−2H
+negative ions are excluded. Isotope spacing constrains charge when available.
+Matches require mass tolerance and co-elution
 within the same chromatography. RP↔NP links compare mass without equating their
 retention times. Every compatible source/target adduct hypothesis is retained;
 none is silently converted to an identification. The common ion families follow

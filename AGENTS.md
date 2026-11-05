@@ -15,6 +15,26 @@ accuracy. Personal project defaults belong to user settings, never source code.
 
 ## Current untargeted evidence follow-up
 
+Stage 3 native comparison COMPLETE, source 5625abe; default CURRENT retained.
+All 254324 original keys retained in strict/soft; all 251431 original non-label
+statistical/evidence rows unchanged. Full suite1039passed8skipped91subtests.
+Selected PC counterparts10/14 ->9/14 BOTH engines (regression, not promotion).
+All-manual recovery current RPpos46/1694 RPneg3/679 NPpos37/757 NPneg5/538;
+strict822/265/469/334, soft939/301/494/357 with SAME mode denominators.
+Both lose15previous matches (2/2/9/2); strict gains778/264/441/331, soft895/300/466/354.
+Extras current553/546/193/217; strict583/574/179/201; soft607/580/205/218.
+Broader full-ledger eligibility contributes to recovery; do not call it accuracy.
+Pair recovery21/960 ->395/960/407/960; conditional agreement21/35 ->395/564/407/593.
+Attempt001 c444296 preserved/interrupted status-copy bottleneck, hard/soft unscored;
+complete002 5625abe fixes status writes, viewer representative and checker scope,
+NO evidence-weight/rule tuning. Groupingseconds2.77/156.32/176.90; browser-model
+compute only, not end-to-end render latency. Independent keys/mass/RT/slot/source/
+input proof passes; private reporting check3ppm corrected to actual frozen4ppm,
+no predictions modified. All94prepared copies including68raw andIS unchanged;
+new project output folders empty. Detailed private report outsideGit; safe aggregate
+results docs/validation/untargeted_stage3/README.md. Binner still unperformed,
+Stage3 NOT fully closed; STOP before Stage4. Historical optimization staysPAUSED.
+
 Latest user "continue" authorizes Stage 3 only. New full-feature strict/soft
 engines are selectable, CURRENT remains default. All original features retained;
 physical grouping independent of p/contrast, bounded neutral/RT unions rather
