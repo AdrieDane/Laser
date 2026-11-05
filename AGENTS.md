@@ -25,7 +25,7 @@ adduct/group-test function ASTs were verified unchanged by the grid extension.
 Private detailed reports, input/source fingerprints and holdout data stay outside
 Git. The broad 990-test suite passed, with later UI regressions checked separately.
 The latest abundance viewer uses a fixed 2x2 mode panel and one shared legend.
-Annotated cluster lipids have green centres/purple outlines; selected ions are
+Annotated cluster lipids have purple centres/green outlines; selected ions are
 larger bright green, significant cluster members orange/purple, other adducts yellow.
 The historical annotation optimization below remains paused.
 

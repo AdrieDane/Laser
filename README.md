@@ -318,4 +318,4 @@ steps to local family discovery. It requires a two-axis seed, a fitted RT trend,
 occupied adjacent grid cells and no RT-gap jumping. No manual identities enter
 the search. Formula and adduct predictors are unchanged by this grid extension.
 
-Annotated lipids within the selected cluster use a small green centre with a purple outline; hover retains their accepted lipid identity. Selected detections remain larger and bright green, and significant cluster members remain orange with a purple outline.
+Annotated lipids within the selected cluster use a purple centre with a green outline; hover retains their accepted lipid identity. Selected detections remain larger and bright green, and significant cluster members remain orange with a purple outline.

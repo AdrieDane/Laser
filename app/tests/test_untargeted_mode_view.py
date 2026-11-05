@@ -135,7 +135,7 @@ check(model.style(key('RP_Neg','neg'),context)==='focus','negative counterpart r
 check(model.style(key('NP_Pos','np'),context)==='focus','NP counterpart red');
 for(const point of [key('RP_Pos','na'),key('RP_Neg','cl')]) check(model.style(point,context)==='adduct','additional adduct yellow');
 for(const point of [key('RP_Neg','cn'),key('NP_Pos','npc')]) check(model.style(point,context)==='cluster','unannotated cluster and counterparts purple');
-check(model.style(key('RP_Pos','c'),context)==='annotatedCluster','annotated cluster marked with green core');
+check(model.style(key('RP_Pos','c'),context)==='annotatedCluster','annotated cluster marked with green outline');
 check(model.style(key('RP_Pos','cs'),context)==='significantCluster','significant cluster orange with purple border');
 check(model.style(key('RP_Pos','u'),context)==='significantUp','unrelated hit keeps significance colour');
 const state={model,selected,view:'RP POS and NEG',grey:false,canvas:'#fff',ink:'#111',grid:'#ddd'};
@@ -149,7 +149,7 @@ const annotated=figure.data.flatMap(t=>t.customdata).find(row=>row[0]===key('RP_
 check(annotated[2]==='c'&&annotated[4].startsWith('compound_')&&annotated[7].startsWith('cluster_'),'feature, compound and cluster IDs in hover');
 check(annotated[8]==='Lipid: PC(36:2) [M+H]+','accepted lipid ID in hover');
 const annotatedMarker=figure.data.find(t=>t.name==='Annotated lipid in cluster').marker;
-check(annotatedMarker.color==='#2dbd64'&&annotatedMarker.line.color==='#8b5cf6'&&annotatedMarker.line.width===3,'small green core and purple outline');
+check(annotatedMarker.color==='#8b5cf6'&&annotatedMarker.line.color==='#2dbd64'&&annotatedMarker.line.width===3,'purple core and green outline');
 check(figure.data.find(t=>t.name==='Other adduct candidate').marker.color==='#f2c230','adducts remain yellow');
 check(figure.data.find(t=>t.name==='Selected / possible counterpart').marker.color==='#00e51b','selection bright green');
 const clusterMarker=figure.data.find(t=>t.name==='Significant cluster member').marker;

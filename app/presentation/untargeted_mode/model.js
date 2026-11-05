@@ -1,5 +1,5 @@
 export const MODE_COLOURS = {
-  significantUp:'#d62728', significantDown:'#2677c9', focus:'#00e51b', cluster:'#8b5cf6', significantCluster:'#f28c28', annotatedCluster:'#2dbd64', adduct:'#f2c230', background:'#aeb6c1'
+  significantUp:'#d62728', significantDown:'#2677c9', focus:'#00e51b', cluster:'#8b5cf6', significantCluster:'#f28c28', annotatedCluster:'#8b5cf6', adduct:'#f2c230', background:'#aeb6c1'
 };
 export const featureKey = (stream, id) => stream + '\u0000' + String(id);
 const decode64 = value => {
