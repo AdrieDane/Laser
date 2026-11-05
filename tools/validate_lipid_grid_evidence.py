@@ -1,3 +1,4 @@
+# ruff: noqa: E402
 """Blind connected-grid queries followed by manual-class/reference-grid scoring.
 
 This is development evidence, not externally validated chemical identification.
@@ -98,6 +99,10 @@ def score_pairs(pairs, lookup, expected):
     return pd.DataFrame(records)
 
 
+def fingerprint(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--project", type=Path, required=True)
@@ -105,6 +110,40 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
+    sources = [
+        Path(__file__),
+        *(
+            ROOT / "app/standard_lipidomics" / name
+            for name in [
+                "untargeted_grid.py",
+                "untargeted.py",
+                "untargeted_adducts.py",
+                "project_store.py",
+            ]
+        ),
+    ]
+    input_paths = [
+        *(args.project / f"peakgrouplist_{mode}.txt" for mode in MODES),
+        *(
+            args.validation / name
+            for name in [
+                "ald_blind_evidence_predictions.csv",
+                "curated_original_feature_mapping.csv",
+                "ald_series_candidates.csv",
+            ]
+        ),
+    ]
+    source_hashes = {str(path.relative_to(ROOT)): fingerprint(path) for path in sources}
+    input_hashes = {str(path): fingerprint(path) for path in input_paths}
+    revision = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
+    ).strip()
+    (args.output / "provenance.json").write_text(
+        json.dumps(
+            {"revision": revision, "sources": source_hashes, "inputs": input_hashes},
+            indent=2,
+        )
+    )
     result, _ = load_untargeted_workflow(args.project)
     criteria = UntargetedComparisonCriteria(**result["untargeted_analysis"]["criteria"])
     predictions = pd.read_csv(
@@ -198,13 +237,16 @@ def main():
     pd.DataFrame(class_summaries).to_csv(
         args.output / "grid_class_mode_summary.csv", index=False
     )
-    sources = [Path(__file__), ROOT / "app/standard_lipidomics/untargeted_grid.py"]
-    fingerprint = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+    assert source_hashes == {
+        str(path.relative_to(ROOT)): fingerprint(path) for path in sources
+    }
+    assert input_hashes == {str(path): fingerprint(path) for path in input_paths}
     receipt = {
         "revision": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
         ).strip(),
-        "sources": {str(p.relative_to(ROOT)): fingerprint(p) for p in sources},
+        "sources": source_hashes,
+        "inputs": input_hashes,
         "original_inputs": {
             mode: fingerprint(args.project / f"peakgrouplist_{mode}.txt")
             for mode in MODES
