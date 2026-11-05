@@ -134,7 +134,8 @@ check(model.style(selected,context)==='focus','selected green');
 check(model.style(key('RP_Neg','neg'),context)==='focus','negative counterpart red');
 check(model.style(key('NP_Pos','np'),context)==='focus','NP counterpart red');
 for(const point of [key('RP_Pos','na'),key('RP_Neg','cl')]) check(model.style(point,context)==='adduct','additional adduct yellow');
-for(const point of [key('RP_Pos','c'),key('RP_Neg','cn'),key('NP_Pos','npc')]) check(model.style(point,context)==='cluster','non-significant cluster and counterparts purple');
+for(const point of [key('RP_Neg','cn'),key('NP_Pos','npc')]) check(model.style(point,context)==='cluster','unannotated cluster and counterparts purple');
+check(model.style(key('RP_Pos','c'),context)==='annotatedCluster','annotated cluster marked with green core');
 check(model.style(key('RP_Pos','cs'),context)==='significantCluster','significant cluster orange with purple border');
 check(model.style(key('RP_Pos','u'),context)==='significantUp','unrelated hit keeps significance colour');
 const state={model,selected,view:'RP POS and NEG',grey:false,canvas:'#fff',ink:'#111',grid:'#ddd'};
@@ -147,6 +148,8 @@ check(figure.data.every(t=>t.marker.symbol==='circle'&&t.marker.size===(t.name==
 const annotated=figure.data.flatMap(t=>t.customdata).find(row=>row[0]===key('RP_Pos','c'));
 check(annotated[2]==='c'&&annotated[4].startsWith('compound_')&&annotated[7].startsWith('cluster_'),'feature, compound and cluster IDs in hover');
 check(annotated[8]==='Lipid: PC(36:2) [M+H]+','accepted lipid ID in hover');
+const annotatedMarker=figure.data.find(t=>t.name==='Annotated lipid in cluster').marker;
+check(annotatedMarker.color==='#2dbd64'&&annotatedMarker.line.color==='#8b5cf6'&&annotatedMarker.line.width===3,'small green core and purple outline');
 check(figure.data.find(t=>t.name==='Other adduct candidate').marker.color==='#f2c230','adducts remain yellow');
 check(figure.data.find(t=>t.name==='Selected / possible counterpart').marker.color==='#00e51b','selection bright green');
 const clusterMarker=figure.data.find(t=>t.name==='Significant cluster member').marker;
@@ -176,6 +179,8 @@ check(panel.data.filter(t=>t.showlegend&&t.name==='Case').length===1,'shared sam
 check(panel.layout.annotations.some(a=>a.text.includes('m/z ')&&a.text.includes('RT ')&&a.text.includes('Feature a')&&a.text.includes('compound_')),'complete per-panel detection header');
 const emptyPanel=samplePanelFigure({...state,selected:null});
 check(emptyPanel.data.length===0&&emptyPanel.layout.annotations.length===8,'empty slots retained when not detected');
+const singlePanel=samplePanelFigure({...state,selected:key('RP_Pos','u')});
+check(singlePanel.modes.length===1&&singlePanel.layout.annotations.filter(a=>a.text==='Not detected').length===3,'undetected modes remain empty in a selected compound panel');
 const zoom=linkedModeZoom({'xaxis.range[0]':9,'xaxis.range[1]':11,'yaxis.range[0]':600,'yaxis.range[1]':800},figure.layout);
 check(JSON.stringify(zoom['xaxis2.range'])==='[9,11]','RT linked within RP');
 check(JSON.stringify(zoom['yaxis2.range'])==='[-800,-600]','mirrored RP mass zoom');

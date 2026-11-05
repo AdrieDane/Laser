@@ -4,9 +4,9 @@ const node = (tag, text='', className='') => {
 };
 const numberText = (value, digits=3) => value==null || !Number.isFinite(Number(value))?'—':Number(value).toFixed(digits);
 const plotFont = {family:'Arial, sans-serif',size:12};
-const traceOrder=['background','significantDown','significantUp','adduct','cluster','significantCluster','focus'];
+const traceOrder=['background','significantDown','significantUp','adduct','cluster','annotatedCluster','significantCluster','focus'];
 const legendNames={background:'Not significant',significantDown:'Significantly lower (B vs A)',significantUp:'Significantly higher (B vs A)',adduct:'Other adduct candidate',
-  cluster:'Cluster member',significantCluster:'Significant cluster member',focus:'Selected / possible counterpart'};
+  cluster:'Cluster member',annotatedCluster:'Annotated lipid in cluster',significantCluster:'Significant cluster member',focus:'Selected / possible counterpart'};
 
 export function modeFigure(state) {
   const {model}=state, context=model.context(state.selected), visible=model.visibleStreams(state.view);
@@ -42,7 +42,7 @@ export function modeFigure(state) {
           showlegend:column===0&&!negative,x:points.map(p=>p.rt),y:points.map(p=>negative?-p.mz:p.mz),
           customdata:points.map(p=>[p.key,p.stream,p.id,p.mz,p.compoundId||model.point(context.clusterOrigins?.get(p.key))?.compoundId||'unassigned',
             model.rows.get(p.key)?.adduct??'',model.rows.get(p.key)?.p_value??null,p.clusterId||model.point(context.clusterOrigins?.get(p.key))?.clusterId||'unassigned',p.lipidId?'Lipid: '+p.lipidId:'']),
-          marker:{color:colour,opacity:role==='background'?.32:1,size:role==='focus'?12:8,symbol:'circle',line:{color:role==='significantCluster'?MODE_COLOURS.cluster:colour,width:role==='significantCluster'?2:0}},
+          marker:{color:colour,opacity:role==='background'?.32:1,size:role==='focus'?12:8,symbol:'circle',line:{color:['significantCluster','annotatedCluster'].includes(role)?MODE_COLOURS.cluster:colour,width:role==='annotatedCluster'?3:role==='significantCluster'?2:0}},
           hovertemplate:'Compound: %{customdata[4]}<br>Cluster: %{customdata[7]}<br>%{customdata[1]} · feature %{customdata[2]}<br>'+
             '%{customdata[8]}<br>'+
             'm/z %{customdata[3]:.5f} · RT %{x:.3f} min<br>%{customdata[5]}<br>raw p %{customdata[6]:.3g}<extra>'+legendNames[role]+'</extra>'});
@@ -250,12 +250,6 @@ function createWorkspace(parent, data) {
   const resets=new Map();
   for(const phase of ['RP','NP']) {const button=node('button','Reset '+phase);button.type='button';controls.appendChild(button);resets.set(phase,button);}
   main.append(controls,plot);side.appendChild(barStack);
-  const legend=node('div','','colour-key');
-  for(const [role,label] of [['focus','Selected / possible counterpart'],['cluster','Cluster member'],['adduct','Other adduct candidate'],['significantCluster','Significant cluster member']]) {
-    const line=node('div'),swatch=node('span','','swatch');swatch.style.background=MODE_COLOURS[role];
-    if(role==='significantCluster') swatch.style.border='2px solid '+MODE_COLOURS.cluster;
-    line.append(swatch,document.createTextNode(label));legend.appendChild(line);
-  }
   top.append(main,side);
   const tableTitle=node('h3','Significant compounds and linked detections'),tableTools=node('div','','table-tools'),filter=node('input');
   filter.type='search';filter.placeholder='Find compound, feature, m/z or mode';filter.setAttribute('aria-label','Find feature');
@@ -272,7 +266,7 @@ function createWorkspace(parent, data) {
   const detailFormula=node('p');evidence.isotopes.parentElement.appendChild(detailFormula);
   const review=node('button','Review selected feature','review-feature');review.type='button';details.appendChild(review);
   main.append(tableTitle,tableTools,table);root.append(top,details);parent.appendChild(root);
-  const state={root,model:new ModeViewerModel(data),buttons,resets,grey,plot,barStack,barCharts:new Map(),filter,tableViewport,tableBody,tableCount,detailTitle,detailFormula,details,...evidence,
+  const state={root,model:new ModeViewerModel(data),buttons,resets,plot,barStack,barCharts:new Map(),filter,tableViewport,tableBody,tableCount,detailTitle,detailFormula,details,...evidence,
     version:0,busy:false,grey:false,zoomByPhase:{},axisRevisions:{},view:Object.keys(data.streams).some(s=>s.startsWith('RP'))?'RP POS and NEG':'NP POS and NEG',timings:[]};
   state.canvas=data.theme==='Midnight'?'#20313f':'#fff';state.ink=data.theme==='Midnight'?'#e7edf2':'#1d1d1f';state.grid=data.theme==='Midnight'?'#3b5262':'#e1e6ef';
   state.selected=null;

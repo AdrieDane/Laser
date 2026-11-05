@@ -1,5 +1,5 @@
 export const MODE_COLOURS = {
-  significantUp:'#d62728', significantDown:'#2677c9', focus:'#00e51b', cluster:'#8b5cf6', significantCluster:'#f28c28', adduct:'#f2c230', background:'#aeb6c1'
+  significantUp:'#d62728', significantDown:'#2677c9', focus:'#00e51b', cluster:'#8b5cf6', significantCluster:'#f28c28', annotatedCluster:'#2dbd64', adduct:'#f2c230', background:'#aeb6c1'
 };
 export const featureKey = (stream, id) => stream + '\u0000' + String(id);
 const decode64 = value => {
@@ -188,7 +188,7 @@ export class ModeViewerModel {
   }
   style(key, context) {
     if(context.focus.has(key)) return 'focus';
-    if(context.cluster.has(key)) return this.hits.has(key)?'significantCluster':'cluster';
+    if(context.cluster.has(key)) return this.hits.has(key)?'significantCluster':this.point(key)?.lipidId?'annotatedCluster':'cluster';
     if(context.adducts.has(key)) return 'adduct';
     return this.hits.has(key)?(Number(this.rows.get(key)?.log2_fold_change_b_vs_a)>0?'significantUp':'significantDown'):'background';
   }
