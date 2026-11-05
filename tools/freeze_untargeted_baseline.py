@@ -47,6 +47,18 @@ def ratio(numerator, denominator):
             "percent": 100 * numerator / denominator if denominator else None}
 
 
+def verify_unchanged_feature_evidence(before, after, label_columns=()):
+    """Feature keys may be rendered as text; all other evidence stays exact."""
+    import pandas as pd
+    columns = [name for name in before if name not in label_columns]
+    left, right = before[columns].copy(), after[columns].copy()
+    if "feature_id" in columns:
+        left["feature_id"] = left.feature_id.astype(str)
+        right["feature_id"] = right.feature_id.astype(str)
+    pd.testing.assert_frame_equal(left, right, check_exact=True)
+    return columns
+
+
 def project_files(project):
     """Current saved workflows and metadata; archives are not new acquisitions."""
     for item in sorted(Path(project).iterdir()):
@@ -168,10 +180,10 @@ def worker(source, project, keys, output, node, method_file=None):
     elapsed = time.monotonic() - start
     payload = build_mode_payload(result, analysis)
     from standard_lipidomics.untargeted_compounds import LABEL_COLUMNS
-    original_columns = [c for c in original_features if c not in LABEL_COLUMNS]
-    pd.testing.assert_frame_equal(original_features[original_columns], analysis["features"][original_columns])
+    original_columns = verify_unchanged_feature_evidence(original_features, analysis["features"], LABEL_COLUMNS)
     write_json(output / "unchanged_statistics.json", {"all_original_non_label_columns_equal": True,
-        "tested_feature_count": len(original_features), "columns": original_columns})
+        "tested_feature_count": len(original_features), "columns": original_columns,
+        "feature_id_comparison": "Exact text keys; numeric statistical/evidence columns and dtypes checked exactly"})
     for name in ("compound_features", "adduct_matches", "homologous_matches", "lipid_grid_matches", "cluster_members"):
         if name not in analysis:
             continue

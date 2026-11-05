@@ -125,3 +125,17 @@ def test_unresolved_target_reference_stays_in_counterpart_denominator():
         [{"stream": "RP_Pos", "feature_id": "1", "representatives": []}], ledger)
     assert metric == {"n": 0, "N": 1, "percent": 0.0}
     assert next(r for r in rows if r["target_mode"] == "NP_Pos")["status"] == "unresolved_reference_mapping"
+
+
+def test_evidence_identity_allows_text_feature_keys_but_rejects_numeric_drift():
+    before = pd.DataFrame({'feature_id': [1, 2], 'p_value': [.001, .03]})
+    after = before.copy()
+    after['feature_id'] = after.feature_id.astype(str)
+    TOOL['verify_unchanged_feature_evidence'](before, after)
+    after.loc[0, 'p_value'] += 1e-15
+    with pytest.raises(AssertionError):
+        TOOL['verify_unchanged_feature_evidence'](before, after)
+    after = before.copy()
+    after['feature_id'] = ['001', '2']
+    with pytest.raises(AssertionError):
+        TOOL['verify_unchanged_feature_evidence'](before, after)
