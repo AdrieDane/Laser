@@ -206,6 +206,9 @@ function renderEvidence(state) {
   const {model}=state,row=model.rows.get(state.selected),point=model.point(state.selected),context=model.context(state.selected);
   state.detailTitle.textContent=(row?.compound_id??'Feature')+' · '+(point?.stream??'')+' · feature '+(point?.id??'');
   state.detailFormula.textContent=row?.chemical_composition_hypothesis??'No isotope-supported formula is saved for this detection.';
+  if(row?.full_isotope_status) state.detailFormula.textContent+='\nComplete isotope model: '+
+    (row.full_isotope_formula?row.full_isotope_formula+' '+row.full_isotope_adduct+' · ':'')+
+    row.full_isotope_status+(row.full_isotope_quality?' · '+row.full_isotope_quality:'');
   const isotope=[];
   for(const n of [1,2]) {
     const prefix='isotope_m_plus_'+n;

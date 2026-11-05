@@ -81,8 +81,11 @@ class UntargetedComparisonCriteria:
         SCIENTIFIC_DEFAULTS.untargeted_isotope_rt_tolerance_min
     )
     ion_grouping_mode: str = 'current'
+    isotope_model: str = 'current'
 
     def __post_init__(self) -> None:
+        if self.isotope_model not in {'current', 'complete'}:
+            raise ValueError('Unknown isotope model.')
         if self.ion_grouping_mode not in {'current', 'full_feature_hard', 'full_feature_soft'}:
             raise ValueError('Unknown ion-grouping mode.')
         if not self.group_a or not self.group_b or self.group_a == self.group_b:
@@ -1750,7 +1753,10 @@ def analyse_standard_untargeted(
         from standard_lipidomics.full_feature_groups import build_full_feature_groups
         output.update(build_full_feature_groups(result, criteria, method,
             (lambda fraction, message: progress(.94+.015*fraction, message)) if progress else None))
-    return assign_compound_ids(output, result=result)
+    output = assign_compound_ids(output, result=result)
+    from standard_lipidomics.complete_isotopes import apply_complete_isotopes
+    return apply_complete_isotopes(result, output, criteria,
+        (lambda fraction, message: progress(.956+.039*fraction, message)) if progress else None)
 
 
 __all__ = [

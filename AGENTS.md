@@ -15,6 +15,19 @@ accuracy. Personal project defaults belong to user settings, never source code.
 
 ## Current untargeted evidence follow-up
 
+The user explicitly authorized Stage 4 with "do it" after its explanation.
+This supersedes the older stop-before-Stage4 text for this stage only. Add an
+experimental complete-ion isotope model; preserve defaults, statistical values,
+accepted annotations and ion grouping. Use maintained IsoSpec, full adduct/charge
+composition, resolution-aware measurements and per-sample/QC quality flags.
+Evaluate all four modes on the same frozen acquisition; keep labelled standards
+separate. No verified isotope gold set exists: raw-supported observations or
+formula-conditioned measurements must not be called independent recognition
+precision/recall. Report candidate recall with explicit eligibility, all losses
+and unresolved cases. Freeze and push source before real evaluation, publish safe
+aggregates only, keep private study detail outsideGit. Binner remains pending.
+Do not start Stage5 or resume historical annotation optimization automatically.
+
 Stage 3 native comparison COMPLETE, source 5625abe; default CURRENT retained.
 All 254324 original keys retained in strict/soft; all 251431 original non-label
 statistical/evidence rows unchanged. Full suite1039passed8skipped91subtests.

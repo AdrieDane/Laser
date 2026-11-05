@@ -36,6 +36,10 @@ lost one all-class reference link, so current scoring remains the default.
 strict/soft ion grouping. Its complete development comparison increases reference
 coverage but regresses selected-PC counterparts to 9/14; current grouping remains
 the default. The native Binner benchmark is still pending a trusted executable.
+[Stage 4](docs/validation/untargeted_stage4/README.md) adds optional complete-ion
+isotope evidence using IsoSpec, per-sample/QC ratios and explicit quality flags.
+It preserves existing statistics, compound assignments and legacy formula labels;
+the current isotope model remains the default.
 
 ## Run the app
 

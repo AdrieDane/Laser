@@ -128,6 +128,11 @@ def _untargeted_criteria(
             help="At least this percentage of samples in group A or B must carry a non-zero feature intensity.",
         )
     with st.expander("Feature-evidence search settings", expanded=False):
+        isotope_model = st.selectbox('Isotope model', ('current', 'complete'),
+            index=('current', 'complete').index(saved_criteria.get('isotope_model', 'current')),
+            format_func=lambda value: {'current': 'Current isotope evidence',
+                                      'complete': 'Complete ion isotope patterns (experimental)'}[value],
+            key='standard-untargeted-isotope-model')
         grouping = st.selectbox('Ion grouping', ('current', 'full_feature_hard', 'full_feature_soft'),
             index=('current', 'full_feature_hard', 'full_feature_soft').index(saved_criteria.get('ion_grouping_mode', 'current')),
             format_func=lambda value: {'current': 'Current grouping', 'full_feature_hard': 'Full feature list — strict profiles (experimental)',
@@ -159,6 +164,7 @@ def _untargeted_criteria(
         isotope_rt_tolerance_min=float(isotope_rt), ch2_rt_tolerance_min=float(series_rt),
         same_mode_adduct_rt_tolerance_min=float(same_mode_rt),
         ion_grouping_mode=grouping,
+        isotope_model=isotope_model,
     ), labels
 
 
