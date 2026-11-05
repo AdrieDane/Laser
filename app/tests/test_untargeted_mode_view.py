@@ -175,6 +175,7 @@ check(bars.every(item=>item.figure.layout.height===280),'all sample plots same h
 check(bars.every(item=>item.figure.layout.title.text.includes(item.mode.replace('_',' '))),'mode in each title');
 const panel=samplePanelFigure(state);
 check(panel.layout.yaxis4&&panel.layout.xaxis4,'fixed 2 by 2 sample panels');
+check(JSON.stringify(panel.layout.annotations.slice(0,4).map(a=>a.text.match(/<b>(.*?)<\/b>/)[1]))===JSON.stringify(['RP POS','NP POS','RP NEG','NP NEG']),'positive modes above negative modes, RP left and NP right');
 check(panel.data.filter(t=>t.showlegend&&t.name==='Case').length===1,'shared sample legend');
 check(panel.layout.annotations.some(a=>a.text.includes('m/z ')&&a.text.includes('RT ')&&a.text.includes('Feature a')&&a.text.includes('compound_')),'complete per-panel detection header');
 const emptyPanel=samplePanelFigure({...state,selected:null});

@@ -310,7 +310,7 @@ Water-loss forms are marked as possible in-source fragments. Unsupported ion
 forms are filtered out when regrouping older saved evidence for display.
 
 
-Sample abundances use a fixed 2 × 2 panel: RP POS/NEG above NP POS/NEG, with a
+Sample abundances use a fixed 2 × 2 panel: RP POS and NP POS above RP NEG and NP NEG, with a
 single shared group legend below. Missing modes retain an empty slot. Each
 panel header includes m/z, RT, tentative adduct, compound ID and feature ID.
 Connected lipid-grid version 1 adds H2/double-bond differences and mixed CH2/H2

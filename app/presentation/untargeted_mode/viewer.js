@@ -144,7 +144,7 @@ export function sampleFigures(state) {
 
 export function samplePanelFigure(state) {
   const found=new Map(sampleFigures(state).filter(item=>item.mode!=='empty').map(item=>[item.mode,item]));
-  const modes=['RP_Pos','RP_Neg','NP_Pos','NP_Neg'],traces=[],annotations=[],legendGroups=new Set();
+  const modes=['RP_Pos','NP_Pos','RP_Neg','NP_Neg'],traces=[],annotations=[],legendGroups=new Set();
   const layout={height:640,margin:{l:48,r:12,t:66,b:65},paper_bgcolor:state.canvas,plot_bgcolor:state.canvas,
     font:{...plotFont,color:state.ink},showlegend:true,barmode:'overlay',bargap:.12,
     legend:{orientation:'h',x:.5,xanchor:'center',y:-.06,font:{size:10}},annotations};
