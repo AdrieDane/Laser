@@ -320,4 +320,4 @@ the search. Formula and adduct predictors are unchanged by this grid extension.
 
 Annotated lipids within the selected cluster use a purple centre with a green outline; hover retains their accepted lipid identity. Selected detections remain larger and bright green, and significant cluster members remain orange with a purple outline.
 
-Abundance panels use compact three-line headers: mode; m/z, RT and adduct; then compound and feature IDs. Each POS/NEG scatter pair displays one shared retention-time scale in the middle, with RP and NP independent.
+Abundance panels use compact three-line headers: mode; m/z, RT and adduct; then compound and feature IDs. Each POS/NEG scatter pair displays one shared retention-time tick scale in the middle, with the negative-mode label and retention-time title below the bottom panel. RP and NP remain independent.

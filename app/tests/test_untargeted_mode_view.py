@@ -145,7 +145,9 @@ check(modeFigure({...state,dragMode:'zoom'}).layout.dragmode==='zoom','zoom tool
 check(initial.data.filter(t=>!t.name.startsWith('Significantly')).every(t=>t.x.length===0),'initial plot contains only significant points');
 let figure=modeFigure(state);
 check(figure.layout.xaxis.showticklabels===true&&figure.layout.xaxis2.showticklabels===false,'one visible RT scale between POS and NEG');
-check(figure.layout.xaxis.title.text==='Retention time (min)'&&figure.layout.xaxis2.title.text==='','RT title in the middle only');
+check(figure.layout.xaxis.anchor==='free'&&figure.layout.xaxis.position===.5,'shared RT scale centred between panels');
+check(figure.layout.xaxis.title.text===''&&figure.layout.xaxis2.title.text==='Retention time (min)','RT title below the bottom panel');
+check(figure.layout.annotations.find(item=>item.text==='RP NEG').y<0,'negative mode label below the bottom panel');
 check(figure.layout.xaxis2.matches==='x','paired panels share the RT scale');
 check(figure.data.every(t=>t.marker.symbol==='circle'&&t.marker.size===(t.name==='Selected / possible counterpart'?12:8)),'circles equal except larger selection');
 const annotated=figure.data.flatMap(t=>t.customdata).find(row=>row[0]===key('RP_Pos','c'));

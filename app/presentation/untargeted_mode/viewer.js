@@ -16,7 +16,7 @@ export function modeFigure(state) {
   for(const key of model.hits) if(visible.some(stream=>key.startsWith(stream.name+'\u0000'))) visibleKeys.add(key);
   for(const group of [context.focus,context.cluster,context.adducts]) for(const key of group) visibleKeys.add(key);
   if(state.grey) for(const stream of visible) for(const index of stream.background) visibleKeys.add(featureKey(stream.name,stream.ids[index]));
-  const layout={height:phases.length>1?630:590, margin:{l:62,r:15,t:70,b:20},
+  const layout={height:phases.length>1?630:590, margin:{l:62,r:15,t:70,b:52},
     paper_bgcolor:state.canvas,plot_bgcolor:state.canvas,font:{...plotFont,color:state.ink},
     showlegend:true,legend:{orientation:'h',x:0,y:1.14,font:{size:10}},hovermode:'closest',
     uirevision:state.view,dragmode:state.dragMode??'pan',shapes,annotations,meta:{pairs:[]}};
@@ -49,13 +49,13 @@ export function modeFigure(state) {
       });
       const zoom=state.zoomByPhase?.[phase],rt=zoom?.rt??[0,maxRT*1.02],mass=zoom?.mz??[0,maxMZ*1.04];
       const common={gridcolor:state.grid,zeroline:false,linecolor:state.grid,fixedrange:false,autorange:false};
-      layout['xaxis'+suffix]={...common,anchor:yaxis,domain,uirevision:phase+':rt:'+(state.axisRevisions?.[phase]?.rt??0),
+      layout['xaxis'+suffix]={...common,anchor:negative?yaxis:'free',position:negative?undefined:.5,domain,uirevision:phase+':rt:'+(state.axisRevisions?.[phase]?.rt??0),
         showticklabels:!negative,ticks:negative?'':undefined,matches:negative?axes[0].x.replace('axis',''):undefined,
-        title:{text:negative?'':'Retention time (min)'},range:rt};
+        title:{text:negative?'Retention time (min)':'',standoff:12},range:rt};
       layout['yaxis'+suffix]={...common,anchor:xaxis,uirevision:phase+':mz:'+(state.axisRevisions?.[phase]?.mz??0),title:{text:negative?'m/z (NEG)':'m/z (POS)'},
         domain:negative?[0,.44]:[.56,1],range:negative?[-mass[1],-mass[0]]:mass};
-      annotations.push({xref:'paper',yref:'paper',x:domain[0],y:negative?.47:1.03,text:phase+(negative?' NEG':' POS'),
-        showarrow:false,xanchor:'left',font:{size:12,color:state.ink}});
+      annotations.push({xref:'paper',yref:'paper',x:domain[0],y:negative?-.045:1.03,text:phase+(negative?' NEG':' POS'),
+        showarrow:false,xanchor:'left',yanchor:negative?'top':'auto',font:{size:12,color:state.ink}});
     }
     layout.meta.pairs.push({phase,positive:axes[0],negative:axes[1],defaultRT:[0,maxRT*1.02],defaultMZ:[0,maxMZ*1.04]});
   });
