@@ -128,6 +128,11 @@ def _untargeted_criteria(
             help="At least this percentage of samples in group A or B must carry a non-zero feature intensity.",
         )
     with st.expander("Feature-evidence search settings", expanded=False):
+        grouping = st.selectbox('Ion grouping', ('current', 'full_feature_hard', 'full_feature_soft'),
+            index=('current', 'full_feature_hard', 'full_feature_soft').index(saved_criteria.get('ion_grouping_mode', 'current')),
+            format_func=lambda value: {'current': 'Current grouping', 'full_feature_hard': 'Full feature list — strict profiles (experimental)',
+                                      'full_feature_soft': 'Full feature list — soft evidence (experimental)'}[value],
+            key='standard-untargeted-ion-grouping')
         ppm = st.number_input("Mass tolerance (ppm)", min_value=.1, max_value=100.,
             value=float(saved_criteria.get("cross_mode_ppm_tolerance", SCIENTIFIC_DEFAULTS.standard_ppm_tolerance)),
             key="standard-untargeted-evidence-ppm")
@@ -153,6 +158,7 @@ def _untargeted_criteria(
         cross_mode_ppm_tolerance=float(ppm), opposite_polarity_rt_tolerance_min=float(coelution),
         isotope_rt_tolerance_min=float(isotope_rt), ch2_rt_tolerance_min=float(series_rt),
         same_mode_adduct_rt_tolerance_min=float(same_mode_rt),
+        ion_grouping_mode=grouping,
     ), labels
 
 

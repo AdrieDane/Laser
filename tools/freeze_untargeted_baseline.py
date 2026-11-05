@@ -158,7 +158,7 @@ def score_representatives(queries, representatives, reference):
     return rows, ratio(sum(r["status"] == "correct_feature_and_adduct" for r in eligible), len(eligible))
 
 
-def worker(source, project, keys, output, node, method_file=None):
+def worker(source, project, keys, output, node, method_file=None, grouping_mode=None, candidate_cache=None):
     """Runs in a fresh process: no reference CSV or identity labels are loaded."""
     sys.path.insert(0, str(source / "app"))
     import pandas as pd
@@ -173,6 +173,12 @@ def worker(source, project, keys, output, node, method_file=None):
         result["acquisition_method"] = method
         analysis["acquisition_method"] = method
     original_features = analysis["features"].copy()
+    if grouping_mode is not None:
+        analysis['criteria'] = {**analysis['criteria'], 'ion_grouping_mode': str(grouping_mode)}
+    if candidate_cache is not None:
+        result['_ion_candidate_cache'] = tuple(pd.read_parquet(candidate_cache / (name + '.parquet'))
+            for name in ('ion_relationships', 'ion_isotope_candidates'))
+        result['_ion_cache_provenance'] = json.loads((candidate_cache/'full_group_provenance.json').read_text())
     write_json(output / "saved_settings.json", {"criteria": analysis["criteria"], "settings": saved["settings"],
         "saved_versions": {k: analysis[k] for k in ("compound_version", "evidence_version", "lipid_grid_version")}})
     start = time.monotonic()
@@ -184,10 +190,16 @@ def worker(source, project, keys, output, node, method_file=None):
     write_json(output / "unchanged_statistics.json", {"all_original_non_label_columns_equal": True,
         "tested_feature_count": len(original_features), "columns": original_columns,
         "feature_id_comparison": "Exact text keys; numeric statistical/evidence columns and dtypes checked exactly"})
-    for name in ("compound_features", "adduct_matches", "homologous_matches", "lipid_grid_matches", "cluster_members"):
+    for name in ("compound_features", "adduct_matches", "homologous_matches", "lipid_grid_matches", "cluster_members",
+                 "ion_feature_ledger", "ion_relationships", "ion_isotope_candidates"):
         if name not in analysis:
             continue
         analysis[name].to_csv(output / f"{name}.csv", index=False)
+        if name.startswith('ion_'):
+            analysis[name].to_parquet(output / f'{name}.parquet', index=False)
+    if analysis.get('ion_group_version'):
+        write_json(output/'full_group_provenance.json', {name:analysis.get(name) for name in
+            ('ion_group_version', 'ion_group_settings', 'ion_group_source_signature')})
     write_json(output / "payload.json", payload)
     assets = source / "app/presentation/untargeted_mode"
     (output / "viewer.mjs").write_text((assets / "model.js").read_text() + "\n" + (assets / "viewer.js").read_text())

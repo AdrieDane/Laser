@@ -15,6 +15,17 @@ accuracy. Personal project defaults belong to user settings, never source code.
 
 ## Current untargeted evidence follow-up
 
+Latest user "continue" authorizes Stage 3 only. New full-feature strict/soft
+engines are selectable, CURRENT remains default. All original features retained;
+physical grouping independent of p/contrast, bounded neutral/RT unions rather
+than connected components; candidate isotope evidence explicitly unverified.
+See docs/validation/untargeted_stage3/README.md. Push implementation before frozen
+three-arm comparison, report all four modes/all classes/PC, losses and extras.
+Native Binner executable unavailable: official hosts present expired TLS cert
+(17 Feb 2026); no unverified JAR run or email sent. Four-mode input export ready,
+native benchmark pending trusted distribution. Do not claim Binner was benchmarked
+or Stage3 fully complete while this remains. Do not advance to Stage4 automatically.
+
 Stage 2 is COMPLETE. Implementation adds a project method schema,
 launcher editor, frozen saved/worker settings, selectable soft chemistry/class
 priors and a formate/acetate CH2 ambiguity guard. User supplied RP/NP protocol;

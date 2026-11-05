@@ -206,7 +206,7 @@ def _write_untargeted_project(
         role = f"stream__{slug}__features"
         paths[role] = atomic_write_csv(tables / "streams" / slug / "features.csv", frame)
         streams[str(name)] = {"slug": slug, "features_attrs": _json_attrs(frame.attrs)}
-    for key in ("features", "significant_features", "raw_p_features", "compound_features", "cluster_members", "adduct_matches", "homologous_matches", "lipid_grid_matches", "group_catalog", "skipped_streams"):
+    for key in ("features", "significant_features", "raw_p_features", "compound_features", "cluster_members", "adduct_matches", "homologous_matches", "lipid_grid_matches", "group_catalog", "skipped_streams", "ion_feature_ledger", "ion_relationships", "ion_isotope_candidates"):
         frame = analysis.get(key)
         if isinstance(frame, pd.DataFrame):
             role = f"untargeted_{key}"
@@ -233,6 +233,10 @@ def _write_untargeted_project(
         "method": str(analysis.get("method", "")),
         "evidence_version": analysis.get("evidence_version", 0),
         "compound_version": analysis.get("compound_version", 0),
+        "ion_group_version": analysis.get("ion_group_version", 0),
+        "ion_grouping_mode": analysis.get("ion_grouping_mode", "current"),
+        "ion_group_settings": analysis.get("ion_group_settings"),
+        "ion_group_source_signature": analysis.get("ion_group_source_signature"),
         "lipid_grid_version": analysis.get("lipid_grid_version", 0),
         "lipid_grid_method_id": analysis.get("lipid_grid_method_id"),
         "acquisition_method": method,
@@ -294,13 +298,23 @@ def load_untargeted_workflow(project: str | Path) -> tuple[dict, dict]:
         "method": run.get("method", ""),
         "evidence_version": run.get("evidence_version", 0),
         "compound_version": run.get("compound_version", 0),
+        "ion_group_version": run.get("ion_group_version", 0),
+        "ion_grouping_mode": run.get("ion_grouping_mode", "current"),
+        "ion_group_settings": run.get("ion_group_settings"),
+        "ion_group_source_signature": run.get("ion_group_source_signature"),
         "lipid_grid_version": run.get("lipid_grid_version", 0),
         "lipid_grid_method_id": run.get("lipid_grid_method_id"),
         "acquisition_method": normalize_acquisition_method(run.get("acquisition_method")),
         "interpretation_boundary": run.get("interpretation_boundary", ""),
     }
-    for key in ("features", "significant_features", "raw_p_features", "compound_features", "cluster_members", "adduct_matches", "homologous_matches", "lipid_grid_matches", "group_catalog", "skipped_streams"):
+    for key in ("features", "significant_features", "raw_p_features", "compound_features", "cluster_members", "adduct_matches", "homologous_matches", "lipid_grid_matches", "group_catalog", "skipped_streams", "ion_feature_ledger", "ion_relationships", "ion_isotope_candidates"):
         analysis[key] = load_project_table(saved, f"untargeted_{key}")
+        if key in {"ion_feature_ledger", "ion_relationships", "ion_isotope_candidates"}:
+            text = set(analysis[key].select_dtypes(include=['object', 'str', 'string']))
+            text.update(c for c in analysis[key] if c.endswith(('_id', '_adduct', '_stream', '_class_hint', '_ion_state')))
+            text.update({'adduct', 'association_status', 'detected_modes', 'adduct_alternatives', 'pairing_method', 'relationship', 'selection_status'} & set(analysis[key]))
+            for column in text:
+                analysis[key][column] = analysis[key][column].fillna('').astype(str)
     by_stream = {}
     features = analysis["features"]
     if "raw_p_significant" not in features:

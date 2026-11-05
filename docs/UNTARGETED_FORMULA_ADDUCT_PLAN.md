@@ -1,6 +1,6 @@
 # Untargeted formula prediction and adduct annotation plan
 
-Created 5 November 2026. Stages 1 and 2 completed; Stage 3 has not started.
+Created 5 November 2026. Stages 1 and 2 completed; Stage 3 in progress.
 See the [frozen baseline and evaluation contract](validation/untargeted_stage1/README.md).
 
 Improve the interpretation of untargeted lipidomics features by combining ion
@@ -25,7 +25,7 @@ validation supports a default change; merging code does not itself promote it.
 | --- | --- | --- | --- |
 | 1 | Frozen baseline and evaluation contract | None | Complete; checkpoint ready for review |
 | 2 | Acquisition settings and adduct chemistry | 1 | Complete; experimental option, current default retained |
-| 3 | Ion grouping across the full feature list | 1, 2 | Not started |
+| 3 | Ion grouping across the full feature list | 1, 2 | Implementation ready; LASER evaluation pending, Binner unavailable |
 | 4 | Complete isotope patterns and measurement quality | 2, 3 | Not started |
 | 5 | Lipid formula candidates and external engine comparison | 1, 4 | Not started |
 | 6 | Joint formula and adduct inference across modes | 3, 4, 5 | Not started |

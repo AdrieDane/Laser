@@ -24,7 +24,7 @@ from freeze_untargeted_baseline import (
 def scored_ledger(ledger, predictions):
     frame = ledger.copy()
     assert not predictions.duplicated(['stream', 'feature_id']).any()
-    assigned = {(r.stream, str(r.feature_id)): r.adduct for r in predictions.itertuples() if r.adduct}
+    assigned = {(r.stream, str(r.feature_id)): r.adduct for r in predictions.itertuples() if r.adduct and getattr(r, 'isotope_index', 0) == 0}
     frame['assigned_adduct'] = [assigned.get((r.stream, str(r.feature_id)), '') for r in frame.itertuples()]
     frame['correct_adduct'] = frame.mapped & frame.assigned_adduct.ne('') & frame.assigned_adduct.eq(frame.adduct)
     return frame

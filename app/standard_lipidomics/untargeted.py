@@ -21,7 +21,7 @@ from scipy.stats import spearmanr, ttest_ind
 from scientific_defaults import SCIENTIFIC_DEFAULTS
 from standard_lipidomics.sample_groups import biological_label, biological_group
 from standard_lipidomics.untargeted_adducts import (
-    EVIDENCE_VERSION, adduct_options, search_adduct_evidence, attach_adduct_summaries, SearchProgress,
+    EVIDENCE_VERSION, MATCH_COLUMNS, adduct_options, search_adduct_evidence, attach_adduct_summaries, SearchProgress,
 )
 from standard_lipidomics.untargeted_series import attach_lipid_series
 from standard_lipidomics.untargeted_grid import search_lipid_grids, GRID_VERSION
@@ -80,8 +80,11 @@ class UntargetedComparisonCriteria:
     isotope_rt_tolerance_min: float = (
         SCIENTIFIC_DEFAULTS.untargeted_isotope_rt_tolerance_min
     )
+    ion_grouping_mode: str = 'current'
 
     def __post_init__(self) -> None:
+        if self.ion_grouping_mode not in {'current', 'full_feature_hard', 'full_feature_soft'}:
+            raise ValueError('Unknown ion-grouping mode.')
         if not self.group_a or not self.group_b or self.group_a == self.group_b:
             raise ValueError("Choose two different sample groups.")
         if not 0.0 < float(self.p_value_threshold) <= 1.0:
@@ -1691,14 +1694,14 @@ def analyse_standard_untargeted(
     restricted = any(state == 'disabled' for settings in method['methods'].values()
                      for ions in settings['adducts'].values() for state in ions.values())
     restricted = restricted or any(set(settings['polarities']) != {'pos', 'neg'} for settings in method['methods'].values())
-    if method['adduct_scoring'] == 'legacy' and not restricted:
+    if method['adduct_scoring'] == 'legacy' and not restricted and criteria.ion_grouping_mode == 'current':
         by_stream = _attach_cross_acquisition_evidence(result, by_stream, criteria,
             progress=(lambda count, total, message: progress(.65 + .08 * (count - 1) / max(total, 1), message)) if progress else None)
     adduct_matches = search_adduct_evidence(_coordinate_sources(result), by_stream,
         ppm=criteria.cross_mode_ppm_tolerance,
         rt_tolerance=criteria.opposite_polarity_rt_tolerance_min,
         same_mode_rt_tolerance=criteria.same_mode_adduct_rt_tolerance_min, method=method,
-        progress=(lambda count, total, message: progress(.73 + .12 * (count - 1) / max(total, 1), message)) if progress else None)
+        progress=(lambda count, total, message: progress(.73 + .12 * (count - 1) / max(total, 1), message)) if progress else None) if criteria.ion_grouping_mode == 'current' else pd.DataFrame(columns=MATCH_COLUMNS)
     by_stream = attach_adduct_summaries(by_stream, adduct_matches)
     if progress:
         progress(.85, "Finding local CH2 homologous series")
@@ -1743,6 +1746,10 @@ def analyse_standard_untargeted(
     }
     if progress:
         progress(.94, "Assigning tentative compound IDs")
+    if criteria.ion_grouping_mode != 'current':
+        from standard_lipidomics.full_feature_groups import build_full_feature_groups
+        output.update(build_full_feature_groups(result, criteria, method,
+            (lambda fraction, message: progress(.94+.015*fraction, message)) if progress else None))
     return assign_compound_ids(output, result=result)
 
 

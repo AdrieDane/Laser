@@ -19,6 +19,7 @@ export class ModeViewerModel {
     this.hits=new Set(); this.links=new Map(); this.adjacency=new Map(); this.queryCache=new Map();
     this.familyAdjacency=new Map(); this.componentCache=new Map(); this.contextCache=new Map();
     this.clusterCompounds=new Map(); this.clusterIds=new Map(); this.namedClusters=new Map();
+    this.compoundRows=new Map();
     for(const [name, source] of Object.entries(data.streams)) {
       const stream={...source, name, mz:decode64(source.mz), rt:decode64(source.rt), levels:decode64(source.levels)};
       stream.sampleIndex=new Map(source.sampleIds.map((id,index)=>[String(id),index]));
@@ -28,6 +29,8 @@ export class ModeViewerModel {
     }
     for(const row of data.statistics) {
       const key=featureKey(row.stream,row.feature_id); this.rows.set(key,row);
+      if(!this.compoundRows.has(row.compound_id)) this.compoundRows.set(row.compound_id,[]);
+      this.compoundRows.get(row.compound_id).push([key,row]);
       if(row.raw_p_significant) this.hits.add(key);
     }
     for(const row of data.clusterMembers??[]) {
@@ -70,7 +73,7 @@ export class ModeViewerModel {
     const saved=this.links.get(key)??[];
     // Saved searches cover raw-p hits. Non-significant cluster neighbours need
     // a small display-only mass/RT lookup against already-loaded coordinates.
-    if(this.hits.has(key)) {this.queryCache.set(cacheKey,saved); return saved;}
+    if(this.hits.has(key)||this.data.fullFeatureGrouping) {this.queryCache.set(cacheKey,saved); return saved;}
     const point=this.point(key); if(!point) return saved;
     const row=this.rows.get(key), observedCharge=chargeOverride??row?.isotope_charge_hypothesis;
     const sources=this.data.adducts.filter(a=>a.polarity===(point.negative?'neg':'pos') && (!observedCharge || a.charge===observedCharge) && (!this.allowedIons.has(point.stream)||this.allowedIons.get(point.stream).has(a.name)));
@@ -123,6 +126,13 @@ export class ModeViewerModel {
     }), byMode=new Map(), phaseAnchors=new Map();
     if(selected) phaseAnchors.set(selected.phase,selected);
     const compound=this.rows.get(key)?.compound_id;
+    if(this.data.fullFeatureGrouping && compound) {
+      for(const [member,row] of this.compoundRows.get(compound)??[]) {
+        const point=this.point(member);if(!point||row.isotope_index>0) continue;
+        if(point.stream!==selected?.stream && row.mode_representative) {focus.add(member);if(!phaseAnchors.has(point.phase)) phaseAnchors.set(point.phase,point);}
+        else if(member!==key) adducts.add(member);
+      }
+    }
     const rank=new Map(this.data.adducts.map((item,index)=>[item.name,index]));
     for(const link of matches) {
       const target=this.point(link.target); if(!target) continue;

@@ -147,6 +147,7 @@ def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
             'clusterMembers': cluster_members,
             'adducts': [asdict(adduct) for adduct in ADDUCTS], 'criteria': dict(analysis.get('criteria', {})),
             'acquisitionMethodId': method_id(method),
+            'fullFeatureGrouping': analysis.get('criteria', {}).get('ion_grouping_mode', 'current') != 'current',
             'adductPolicies': {stream: [ion.name for ion in ADDUCTS if ion_state(method, stream, ion.name) != 'disabled'] for stream in streams}}
 
 

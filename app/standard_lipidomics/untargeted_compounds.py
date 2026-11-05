@@ -13,7 +13,7 @@ from standard_lipidomics.acquisition_method import (
     record_method_on_analysis, ion_state,
 )
 
-COMPOUND_VERSION = 6
+COMPOUND_VERSION = 7
 LABEL_COLUMNS = ('compound_id', 'adduct', 'adduct_alternatives', 'detected_modes', 'association_status', 'cluster_id',
                  'predicted_chemical_formula', 'formula_status')
 
@@ -23,6 +23,11 @@ def _key(stream, feature):
 
 
 def assign_compound_ids(analysis, result=None):
+    if analysis.get('criteria', {}).get('ion_grouping_mode', 'current') != 'current':
+        from standard_lipidomics.full_feature_groups import apply_full_feature_display
+        if result is None:
+            raise ValueError('Full-feature grouping requires original stream tables.')
+        return apply_full_feature_display(analysis, result)
     method = normalize_acquisition_method(analysis.get('acquisition_method', (result or {}).get('acquisition_method')))
     raw = analysis.get('raw_p_features', analysis.get('significant_features', pd.DataFrame()))
     if raw.empty:
