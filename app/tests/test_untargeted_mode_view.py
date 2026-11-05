@@ -21,7 +21,7 @@ def example():
     ch2 = 14.015650064
     coordinates = {
         'RP_Pos': [('a',mass,10.5),('na',neutral+22.989220702,10.5),('c',mass+ch2,10.55),
-                   ('cs',mass+2*ch2,10.6),('u',1000.,12.),('bg',1100.,13.)],
+                   ('cs',mass+2*ch2,10.6),('u',mass+5*ch2,10.65),('bg',1100.,13.)],
         'RP_Neg': [('neg',neutral-proton,10.5),('cl',neutral+34.969401262,10.5),
                    ('cn',neutral+ch2-proton,10.55),('csneg',neutral+2*ch2-proton,10.6)],
         'NP_Pos': [('np',mass,5.3),('npc',mass+ch2,5.4)],
@@ -59,6 +59,8 @@ def example():
     homologous=pd.DataFrame([{'stream':'RP_Pos','source_feature_id':'a','target_feature_id':target,'ch2_steps':step,
                              'mass_error_ppm':0.,'rt_delta_seconds':step*3.,'target_lipid_classes':''}
                             for target,step in [('c',1),('cs',2)]])
+    homologous=pd.concat([homologous,pd.DataFrame([{'stream':'RP_Pos','source_feature_id':'c','target_feature_id':'u',
+        'ch2_steps':4,'mass_error_ppm':0.,'rt_delta_seconds':6.,'target_lipid_classes':''}])],ignore_index=True)
     analysis={'features':tested,'raw_p_features':raw,'significant_features':raw.copy(),'adduct_matches':pd.DataFrame(links),
               'homologous_matches':homologous,'criteria':{'group_a':'Control','group_b':'Case','cross_mode_ppm_tolerance':3.,
               'opposite_polarity_rt_tolerance_min':.1},'by_stream':{s:f.copy() for s,f in tested.groupby('stream')}}
@@ -79,7 +81,7 @@ def test_compound_ids_link_adducts_and_modes_but_keep_cluster_compounds_distinct
     assert rows.loc[('RP_Pos','cs'),'cluster_id']==cluster
     assert rows.loc[('NP_Pos','np'),'cluster_id']==cluster
     assert ('RP_Pos','c') in set(zip(output['cluster_members'].stream,output['cluster_members'].feature_id))
-    assert rows.loc[('RP_Pos','u'),'cluster_id']==''
+    assert rows.loc[('RP_Pos','u'),'cluster_id']==cluster
     assert rows.loc[('RP_Neg','cl'),'adduct']=='[M+Cl]-'
 
 
@@ -135,6 +137,8 @@ for(const point of [key('RP_Pos','c'),key('RP_Neg','cn'),key('NP_Pos','npc')]) c
 check(model.style(key('RP_Pos','cs'),context)==='significantCluster','significant cluster red/purple');
 check(model.style(key('RP_Pos','u'),context)==='significant','unrelated hit not red');
 const state={model,selected,view:'RP POS and NEG',grey:false,canvas:'#fff',ink:'#111',grid:'#ddd'};
+const initial=modeFigure({...state,selected:null});
+check(initial.data.filter(t=>t.name!=='Other significant features').every(t=>t.x.length===0),'initial plot contains only significant points');
 let figure=modeFigure(state);
 check(figure.data.find(t=>t.name==='Not significant').x.length===0,'grey off by default');
 check(figure.data.flatMap(t=>t.customdata).some(row=>row[0]===key('RP_Pos','c')),'related non-hit visible with grey off');

@@ -69,7 +69,7 @@ export function sampleFigure(state) {
         hovertemplate:'<b>%{customdata}</b><br>%{y:.3g}<extra>%{fullData.name}</extra>'});
     }
   }
-  const title=row?row.compound_id+' · '+(row.adduct||'adduct unresolved'):'Selected feature';
+  const title=row?row.compound_id+' · '+(row.adduct||'adduct unresolved'):'Select a significant feature';
   return {data:traces,layout:{height:280,margin:{l:54,r:20,t:38,b:45},title:{text:title,x:.5,xanchor:'center',font:{size:13}},
     paper_bgcolor:state.canvas,plot_bgcolor:state.canvas,font:{...plotFont,color:state.ink},
     xaxis:{showticklabels:false,ticks:'',gridcolor:state.grid},yaxis:{title:{text:'intensity'},rangemode:'tozero',tickformat:'.2s',gridcolor:state.grid},
@@ -90,6 +90,8 @@ function smallTable(parent, headers, rows) {
 }
 
 function renderEvidence(state) {
+  state.details.style.display=state.selected?'':'none';
+  if(!state.selected) return;
   const {model}=state,row=model.rows.get(state.selected),point=model.point(state.selected),context=model.context(state.selected);
   state.detailTitle.textContent=(row?.compound_id??'Feature')+' · '+(point?.stream??'')+' · feature '+(point?.id??'');
   state.detailFormula.textContent=row?.chemical_composition_hypothesis??'No isotope-supported formula is saved for this detection.';
@@ -174,24 +176,23 @@ function createWorkspace(parent, data) {
   const detailFormula=node('p');evidence.isotopes.parentElement.appendChild(detailFormula);
   const review=node('button','Review selected feature','review-feature');review.type='button';details.appendChild(review);
   root.append(top,tableTitle,tableTools,table,details);parent.appendChild(root);
-  const state={root,model:new ModeViewerModel(data),buttons,grey,plot,bar,filter,tableViewport,tableBody,tableCount,detailTitle,detailFormula,...evidence,
+  const state={root,model:new ModeViewerModel(data),buttons,grey,plot,bar,filter,tableViewport,tableBody,tableCount,detailTitle,detailFormula,details,...evidence,
     version:0,busy:false,grey:false,view:Object.keys(data.streams).some(s=>s.startsWith('RP'))?'RP POS and NEG':'NP POS and NEG',timings:[]};
   state.canvas=data.theme==='Midnight'?'#20313f':'#fff';state.ink=data.theme==='Midnight'?'#e7edf2':'#1d1d1f';state.grid=data.theme==='Midnight'?'#3b5262':'#e1e6ef';
-  const first=[...state.model.rows.entries()].find(([,row])=>row.raw_p_significant && row.stream.startsWith(state.view.split(' ')[0]))??
-    [...state.model.rows.entries()].find(([,row])=>row.raw_p_significant)??[...state.model.rows.entries()][0];state.selected=first?.[0];
+  state.selected=null;
   state.select=(key,scroll=true)=>{if(!state.model.rows.has(key)) return;state.selected=key;renderRows(state,scroll);state.requestedAt=performance.now();state.version++;updateWorkspace(state);};
   for(const [view,button] of buttons) button.addEventListener('click',()=>{state.view=view;renderRows(state,false);state.requestedAt=performance.now();state.version++;updateWorkspace(state);});
   grey.addEventListener('change',()=>{state.grey=grey.checked;state.requestedAt=performance.now();state.version++;updateWorkspace(state);});
   filter.addEventListener('input',()=>{tableViewport.scrollTop=0;renderRows(state,false);});
   tableViewport.addEventListener('scroll',()=>renderRows(state,false));
-  review.addEventListener('click',()=>state.emit?.('review',state.selected.split('\u0000')));
+  review.addEventListener('click',()=>{if(state.selected) state.emit?.('review',state.selected.split('\u0000'));});
   state.observer=new ResizeObserver(()=>{if(state.plot._fullLayout) {window.__laserStandardPlotly.Plots.resize(state.plot);window.__laserStandardPlotly.Plots.resize(state.bar);}});
   state.observer.observe(top);
   return state;
 }
 
 async function updateWorkspace(state) {
-  if(state.busy||!state.selected) return;
+  if(state.busy) return;
   state.busy=true;
   try {
     do {
@@ -208,7 +209,7 @@ async function updateWorkspace(state) {
         await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
         const elapsed=performance.now()-start;state.timings.push(Math.round(elapsed));state.timings=state.timings.slice(-60);
         state.root.dataset.updateMs=String(Math.round(elapsed));state.root.dataset.timings=JSON.stringify(state.timings);
-        state.root.dataset.selection=state.selected.replace('\u0000','::');state.root.dataset.view=state.view;
+        state.root.dataset.selection=state.selected?.replace('\u0000','::')??'';state.root.dataset.view=state.view;
         break;
       }
     } while(true);

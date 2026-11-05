@@ -107,11 +107,14 @@ export class ModeViewerModel {
   }
   context(key) {
     if(this.contextCache.has(key)) return this.contextCache.get(key);
+    if(!key) return {key:null,focus:new Set(),cluster:new Set(),adducts:new Set(),matches:[]};
     const focus=new Set([key]), cluster=new Set(), adducts=new Set();
     const selected=this.point(key), matches=this.matches(key), byMode=new Map();
+    const compound=this.rows.get(key)?.compound_id;
     const rank=new Map(this.data.adducts.map((item,index)=>[item.name,index]));
     for(const link of matches) {
       const target=this.point(link.target); if(!target) continue;
+      if(compound && this.rows.get(link.target)?.compound_id!==compound) continue;
       adducts.add(link.target);
       if(target.stream===selected?.stream) continue;
       if(!byMode.has(target.stream)) byMode.set(target.stream,[]);
@@ -123,12 +126,26 @@ export class ModeViewerModel {
       links.sort((a,b)=>(rank.get(a.targetAdduct)??99)-(rank.get(b.targetAdduct)??99)||Math.abs(a.ppm)-Math.abs(b.ppm));
       focus.add(links[0].target);
     }
-    for(const root of [...focus]) {
-      for(const member of this.cluster(root)) {
+    for(const root of this.hits.has(key)?[...focus]:[]) {
+      // Selection highlights direct saved neighbours, not the full transitive
+      // component used for cluster numbering. Never grow neighbours of neighbours.
+      for(const member of this.adjacency.get(root)??[]) {
         if(focus.has(member)) continue;
-        if(this.rows.get(key)?.compound_id && this.rows.get(member)?.compound_id===this.rows.get(key)?.compound_id) continue;
+        if(compound && this.rows.get(member)?.compound_id===compound) continue;
         cluster.add(member);
-        for(const link of this.matches(member)) if(!focus.has(link.target)) cluster.add(link.target);
+        const memberCompound=this.rows.get(member)?.compound_id;
+        if(memberCompound) {
+          for(const [target,row] of this.rows) if(row.compound_id===memberCompound && !focus.has(target)) cluster.add(target);
+        } else {
+          const representatives=new Map(),memberPoint=this.point(member);
+          for(const link of this.matches(member)) {
+            const target=this.point(link.target);if(!target||target.stream===memberPoint?.stream||focus.has(link.target)) continue;
+            const prior=representatives.get(target.stream);
+            if(!prior || (rank.get(link.targetAdduct)??99)<(rank.get(prior.targetAdduct)??99) ||
+              ((rank.get(link.targetAdduct)??99)===(rank.get(prior.targetAdduct)??99) && Math.abs(link.ppm)<Math.abs(prior.ppm))) representatives.set(target.stream,link);
+          }
+          for(const link of representatives.values()) cluster.add(link.target);
+        }
       }
     }
     for(const member of focus) {cluster.delete(member);adducts.delete(member);}

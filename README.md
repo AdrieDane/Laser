@@ -158,7 +158,8 @@ the expanded searches.
 
 The completed untargeted viewer links a mirrored RT/m/z plot, the sample bars,
 and a detection table in the browser. Selection, mode switches and highlights
-do not rerun Streamlit. Choose **RP POS and NEG**, **NP POS and NEG**, or
+do not rerun Streamlit. Initially only significant points are shown, with no
+automatic selection. Choose **RP POS and NEG**, **NP POS and NEG**, or
 **All 4 modes** (separate RP/NP panels). Grey non-significant background points
 are off by default; enabling them shows a fixed sample of up to 20,000 points.
 Related cluster and adduct detections are always shown, including non-hits.
@@ -167,6 +168,9 @@ are red; other significant features are blue, cluster members purple, and
 additional adduct candidates yellow. Significant cluster neighbours have a red
 fill and purple border. The table can select detections and filter by compound,
 feature, mode or m/z. **Review selected feature** opens the saved review controls.
+Purple highlights are restricted to direct neighbours of the selected
+significant feature and their possible mode counterparts. They do not expand
+through the entire connected cluster; selecting another feature replaces them.
 
 Tentative ion groups receive shared `compound_0001` IDs across adducts and modes;
 each table row retains its original feature ID, m/z, RT, likely adduct and mode.
