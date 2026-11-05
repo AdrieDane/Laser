@@ -16,7 +16,7 @@ export function modeFigure(state) {
   for(const key of model.hits) if(visible.some(stream=>key.startsWith(stream.name+'\u0000'))) visibleKeys.add(key);
   for(const group of [context.focus,context.cluster,context.adducts]) for(const key of group) visibleKeys.add(key);
   if(state.grey) for(const stream of visible) for(const index of stream.background) visibleKeys.add(featureKey(stream.name,stream.ids[index]));
-  const layout={height:phases.length>1?630:590, margin:{l:62,r:15,t:70,b:48},
+  const layout={height:phases.length>1?630:590, margin:{l:62,r:15,t:70,b:20},
     paper_bgcolor:state.canvas,plot_bgcolor:state.canvas,font:{...plotFont,color:state.ink},
     showlegend:true,legend:{orientation:'h',x:0,y:1.14,font:{size:10}},hovermode:'closest',
     uirevision:state.view,dragmode:state.dragMode??'pan',shapes,annotations,meta:{pairs:[]}};
@@ -49,7 +49,9 @@ export function modeFigure(state) {
       });
       const zoom=state.zoomByPhase?.[phase],rt=zoom?.rt??[0,maxRT*1.02],mass=zoom?.mz??[0,maxMZ*1.04];
       const common={gridcolor:state.grid,zeroline:false,linecolor:state.grid,fixedrange:false,autorange:false};
-      layout['xaxis'+suffix]={...common,anchor:yaxis,domain,uirevision:phase+':rt:'+(state.axisRevisions?.[phase]?.rt??0),title:{text:negative?'Retention time (min)':''},range:rt};
+      layout['xaxis'+suffix]={...common,anchor:yaxis,domain,uirevision:phase+':rt:'+(state.axisRevisions?.[phase]?.rt??0),
+        showticklabels:!negative,ticks:negative?'':undefined,matches:negative?axes[0].x.replace('axis',''):undefined,
+        title:{text:negative?'':'Retention time (min)'},range:rt};
       layout['yaxis'+suffix]={...common,anchor:xaxis,uirevision:phase+':mz:'+(state.axisRevisions?.[phase]?.mz??0),title:{text:negative?'m/z (NEG)':'m/z (POS)'},
         domain:negative?[0,.44]:[.56,1],range:negative?[-mass[1],-mass[0]]:mass};
       annotations.push({xref:'paper',yref:'paper',x:domain[0],y:negative?.47:1.03,text:phase+(negative?' NEG':' POS'),
@@ -145,26 +147,26 @@ export function sampleFigures(state) {
 export function samplePanelFigure(state) {
   const found=new Map(sampleFigures(state).filter(item=>item.mode!=='empty').map(item=>[item.mode,item]));
   const modes=['RP_Pos','NP_Pos','RP_Neg','NP_Neg'],traces=[],annotations=[],legendGroups=new Set();
-  const layout={height:640,margin:{l:48,r:12,t:66,b:65},paper_bgcolor:state.canvas,plot_bgcolor:state.canvas,
+  const layout={height:520,margin:{l:44,r:8,t:50,b:38},paper_bgcolor:state.canvas,plot_bgcolor:state.canvas,
     font:{...plotFont,color:state.ink},showlegend:true,barmode:'overlay',bargap:.12,
-    legend:{orientation:'h',x:.5,xanchor:'center',y:-.06,font:{size:10}},annotations};
+    legend:{orientation:'h',x:.5,xanchor:'center',y:-.035,font:{size:10}},annotations};
   modes.forEach((mode,index)=>{
     const suffix=index===0?'':String(index+1),xaxis='x'+suffix,yaxis='y'+suffix;
-    const column=index%2,row=Math.floor(index/2),domain=column===0?[0,.43]:[.57,1];
+    const column=index%2,row=Math.floor(index/2),domain=column===0?[0,.45]:[.55,1];
     const item=found.get(mode),point=item&&state.model.point(item.key),detail=item&&state.model.rows.get(item.key);
-    const header=point?'<b>'+mode.replace('_',' ').toUpperCase()+'</b><br>m/z '+numberText(point.mz,5)+' · RT '+numberText(point.rt,3)+' min<br>'+
-      (detail?.adduct||'adduct unresolved')+' · '+(detail?.compound_id||'compound unassigned')+'<br>Feature '+point.id:
-      '<b>'+mode.replace('_',' ').toUpperCase()+'</b><br>m/z — · RT —<br>Adduct — · Compound —<br>Feature —';
-    annotations.push({xref:'paper',yref:'paper',x:(domain[0]+domain[1])/2,y:row===0?1.09:.50,
+    const header=point?'<b>'+mode.replace('_',' ').toUpperCase()+'</b><br>m/z '+numberText(point.mz,5)+' · RT '+numberText(point.rt,3)+' min · '+
+      (detail?.adduct||'adduct unresolved')+'<br>'+(detail?.compound_id||'compound unassigned')+' · Feature '+point.id:
+      '<b>'+mode.replace('_',' ').toUpperCase()+'</b><br>m/z — · RT — · Adduct —<br>Compound — · Feature —';
+    annotations.push({xref:'paper',yref:'paper',x:(domain[0]+domain[1])/2,y:row===0?1.10:.53,
       xanchor:'center',yanchor:'top',showarrow:false,text:header,font:{size:10,color:state.ink}});
     layout['xaxis'+suffix]={domain,anchor:yaxis,showticklabels:false,ticks:'',gridcolor:state.grid,visible:!!point};
-    layout['yaxis'+suffix]={domain:row===0?[.61,.93]:[.03,.35],anchor:xaxis,title:{text:column===0?'intensity':''},
+    layout['yaxis'+suffix]={domain:row===0?[.57,1]:[0,.43],anchor:xaxis,title:{text:column===0?'intensity':''},
       gridcolor:state.grid,rangemode:'tozero',tickformat:'.2s',visible:!!point};
     if(item) for(const trace of item.figure.data) {
       const showlegend=!legendGroups.has(trace.name);legendGroups.add(trace.name);
       traces.push({...trace,xaxis,yaxis,legendgroup:trace.name,showlegend});
     }
-    if(!point) annotations.push({xref:'paper',yref:'paper',x:(domain[0]+domain[1])/2,y:row===0?.77:.19,
+    if(!point) annotations.push({xref:'paper',yref:'paper',x:(domain[0]+domain[1])/2,y:row===0?.785:.215,
       text:state.selected?'Not detected':'Select a feature',showarrow:false,font:{size:12,color:state.ink}});
   });
   return {data:traces,layout,modes:[...found.keys()]};
