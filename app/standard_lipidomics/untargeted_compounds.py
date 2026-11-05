@@ -9,7 +9,7 @@ import pandas as pd
 
 from standard_lipidomics.untargeted_adducts import ADDUCTS
 
-COMPOUND_VERSION = 1
+COMPOUND_VERSION = 2
 LABEL_COLUMNS = ('compound_id', 'adduct', 'adduct_alternatives', 'detected_modes', 'association_status', 'cluster_id')
 
 
@@ -28,6 +28,7 @@ def assign_compound_ids(analysis):
     priorities = {adduct.name: index for index, adduct in enumerate(ADDUCTS)}
     candidates, alternatives = [], {}
     coelution = float(analysis.get('criteria', {}).get('opposite_polarity_rt_tolerance_min', .1))
+    same_mode = float(analysis.get('criteria', {}).get('same_mode_adduct_rt_tolerance_min', .05))
     links = analysis.get('adduct_matches', pd.DataFrame())
     if not links.empty:
         grouped = defaultdict(list)
@@ -48,7 +49,7 @@ def assign_compound_ids(analysis):
                 members.setdefault(target, {'stream': target[0], 'feature_id': target[1], 'mz': float(row.target_mz),
                     'rt': float(row.target_rt), 'adduct': str(row.target_adduct), 'neutral_mass': float(first.neutral_mass),
                     'already_annotated': bool(row.target_is_annotated), '_error': abs(float(row.mass_error_ppm))})
-            members = _coeluting_families(members, anchor, coelution)
+            members = _coeluting_families(members, anchor, coelution, same_mode)
             score = (-len({key[0] for key in members}), -len(members), priorities.get(str(adduct), 99), anchor)
             candidates.append((score, anchor, members))
     claimed, groups = set(), []
@@ -87,7 +88,7 @@ def assign_compound_ids(analysis):
     return output
 
 
-def _coeluting_families(members, anchor, tolerance):
+def _coeluting_families(members, anchor, tolerance, same_mode=.05):
     """Do not collapse equal-mass RT isomers when linking RP to NP."""
     phases = defaultdict(list)
     for key, value in members.items():
@@ -100,6 +101,21 @@ def _coeluting_families(members, anchor, tolerance):
             local = [item for item in ordered[index:] if item[1]['rt'] - first['rt'] <= tolerance + 1e-12]
             if phase == anchor[0].split('_')[0] and anchor not in {key for key, _ in local}:
                 continue
+            # A cross-chromatography link must not merge distant adduct RT
+            # families within a single mode. Select one narrow family per mode.
+            narrow = []
+            for mode in sorted({key[0] for key, _ in local}):
+                candidates = [item for item in local if item[0][0] == mode]
+                families = []
+                for offset, (_, first_mode) in enumerate(candidates):
+                    family = [item for item in candidates[offset:] if item[1]['rt']-first_mode['rt'] <= same_mode+1e-12]
+                    if mode == anchor[0] and anchor not in {key for key, _ in family}:
+                        continue
+                    score = (-len(family), sum(value.get('_error', 0.) for _, value in family), first_mode['rt'])
+                    families.append((score, family))
+                if families:
+                    narrow.extend(min(families, key=lambda item: item[0])[1])
+            local = narrow
             rank = (-len({key[0] for key, _ in local}), -len({value['adduct'] for _, value in local}),
                     -len(local), sum(value.get('_error', 0.) for _, value in local), first['rt'])
             windows.append((rank, local))

@@ -187,3 +187,17 @@ console.log('browser model checks passed');
 '''
     completed=subprocess.run([node,'--input-type=module'],input=script,cwd=tmp_path,capture_output=True,text=True,check=False)
     assert completed.returncode==0,completed.stderr
+
+
+def test_cross_mode_links_cannot_merge_distant_adducts_within_one_mode():
+    _, analysis = example()
+    # A source in the other chromatography sees two equal-neutral-mass ions,
+    # but the delayed ion cannot be an adduct of the main coeluting family.
+    row = analysis['adduct_matches'].query("target_feature_id == 'np'").iloc[0].copy()
+    row['target_feature_id'] = 'np_delayed'
+    row['target_adduct'] = '[M+Na]+'
+    row['target_mz'] = float(row.target_mz) - 1.007276466621 + 22.989220702
+    row['target_rt'] = 5.38
+    analysis['adduct_matches'] = pd.concat([analysis['adduct_matches'], row.to_frame().T], ignore_index=True)
+    output = assign_compound_ids(analysis)
+    assert 'np_delayed' not in set(output['compound_features'].feature_id)
