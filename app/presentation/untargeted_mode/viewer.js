@@ -83,6 +83,26 @@ export function linkedModeZoom(event, layout) {
   return updates;
 }
 
+export function axisResetZoom(axis, layout) {
+  for(const pair of layout.meta?.pairs??[]) for(const dimension of ['x','y']) {
+    if(axis===pair.positive[dimension]||axis===pair.negative[dimension])
+      return {phase:pair.phase,dimension:dimension==='x'?'rt':'mz',range:[...(dimension==='x'?pair.defaultRT:pair.defaultMZ)]};
+  }
+  return null;
+}
+
+export function axisFromClasses(classes) {
+  for(const name of classes) {
+    const match=/^([xy])(\d*)(?:tick|title)$/.exec(name);
+    if(match) return match[1]+'axis'+match[2];
+  }
+  const subplot=classes.map(name=>/^x(\d*)y(\d*)$/.exec(name)).find(Boolean);
+  if(!subplot) return null;
+  if(classes.some(name=>['ewdrag','edrag','wdrag'].includes(name))) return 'xaxis'+subplot[1];
+  if(classes.some(name=>['nsdrag','ndrag','sdrag'].includes(name))) return 'yaxis'+subplot[2];
+  return null;
+}
+
 export function sampleFigure(state) {
   const {model}=state, bars=model.bars(state.selected), row=model.rows.get(state.selected);
   const traces=[];
@@ -264,6 +284,15 @@ async function updateWorkspace(state) {
       }
       await Promise.all(updates);state.root.dataset.barModes=JSON.stringify([...modes]);
       if(!state.bound) {
+        state.plot.addEventListener('dblclick',event=>{
+          const classes=event.composedPath().flatMap(element=>(element.getAttribute?.('class')??'').split(/\s+/));
+          const reset=axisResetZoom(axisFromClasses(classes),state.plot.layout);if(!reset) return;
+          event.preventDefault();event.stopImmediatePropagation();
+          const pair=state.plot.layout.meta.pairs.find(pair=>pair.phase===reset.phase);
+          const current=state.zoomByPhase[reset.phase]??{rt:[...state.plot.layout[pair.positive.x].range],mz:[...state.plot.layout[pair.positive.y].range]};
+          state.zoomByPhase[reset.phase]={...current,[reset.dimension]:reset.range};
+          state.requestedAt=performance.now();state.version++;updateWorkspace(state);
+        },true);
         state.plot.on('plotly_click',event=>{const key=event.points?.[0]?.customdata?.[0];if(key&&state.model.rows.has(key)) state.select(key,true);});
         state.plot.on('plotly_relayout',async event=>{
           if(state.syncingZoom) return;

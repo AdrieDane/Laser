@@ -126,7 +126,7 @@ def test_browser_model_colours_modes_background_and_sample_levels(tmp_path):
     (tmp_path/'viewer.mjs').write_text((source/'model.js').read_text()+'\n'+(source/'viewer.js').read_text())
     script=r'''
 import {readFileSync} from 'node:fs';
-import {ModeViewerModel,featureKey,modeFigure,sampleFigure,sampleFigures,linkedModeZoom} from './viewer.mjs';
+import {ModeViewerModel,featureKey,modeFigure,sampleFigure,sampleFigures,linkedModeZoom,axisResetZoom,axisFromClasses} from './viewer.mjs';
 const data=JSON.parse(readFileSync('./payload.json'));
 const model=new ModeViewerModel(data), key=(s,id)=>featureKey(s,id), selected=key('RP_Pos','a'), context=model.context(selected);
 const check=(condition,message)=>{if(!condition) throw Error(message);};
@@ -172,6 +172,11 @@ const zoom=linkedModeZoom({'xaxis.range[0]':9,'xaxis.range[1]':11,'yaxis.range[0
 check(JSON.stringify(zoom['xaxis2.range'])==='[9,11]','RT linked within RP');
 check(JSON.stringify(zoom['yaxis2.range'])==='[-800,-600]','mirrored RP mass zoom');
 check(!Object.keys(zoom).some(key=>/axis[34]/.test(key)),'RP zoom leaves NP independent');
+check(axisFromClasses(['text','x2tick'])==='xaxis2','tick double click identifies axis');
+check(axisFromClasses(['nsdrag','x3y3'])==='yaxis3','drag band identifies mass axis');
+const reset=axisResetZoom('yaxis4',figure.layout);
+check(reset.phase==='NP'&&reset.dimension==='mz','axis reset limited to dimension and chromatography');
+check(JSON.stringify(reset.range)===JSON.stringify(figure.layout.meta.pairs[1].defaultMZ),'reset to original mass extent');
 const reverse=linkedModeZoom({'yaxis4.range':[-900,-500]},figure.layout);
 check(JSON.stringify(reverse['yaxis3.range'])==='[500,900]','NP negative zoom mirrors into NP positive');
 check(!Object.keys(reverse).some(key=>/^.[a-z]*axis2?\./.test(key)),'NP zoom leaves RP independent');

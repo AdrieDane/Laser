@@ -300,3 +300,5 @@ networks. [Seven Golden Rules](https://doi.org/10.1186/1471-2105-8-105) and
 [SIRIUS](https://pmc.ncbi.nlm.nih.gov/articles/PMC2639009/) motivate chemical and
 isotope constraints. Exported feature tables lack scan-level peak shapes and
 MS/MS spectra, so full chromatographic/MS/MS methods require richer inputs.
+
+Double-click an axis or its tick labels to reset only that dimension for its linked POS/NEG pair. The other dimension and chromatography retain their zoom.
