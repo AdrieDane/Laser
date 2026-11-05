@@ -29,6 +29,30 @@ before evaluation, report gains/losses/extras, publish only safe aggregates.
 Stage3 Binner and Stage4 verified isotope gold remain open. Do not auto-start
 Stage6 or resume historical annotation optimization.
 
+Stage5 LASER and native msbuddy comparisons COMPLETE; SIRIUS6.5.4 and MZmine4.11.0
+native startup verified but study comparisons unavailable without compatible login.
+Do not call Stage5 fully closed. No accounts created; no study spectra uploaded.
+Local inference source5c193e9; native adapter/evaluator6e9801c, native worker identical.
+3413 natural formula queries: RPpos1592,RPneg585,NPpos724,NPneg512; all3668 ledger rows
+and all252 original class/mode cells retained. Known-adduct conditional top1:
+current1179/291/473/314; Stage4 843/264/421/261; lipid-aware1527/443/670/444;
+native msbuddy1500/462/705/437 in that mode order. These are NOT adduct accuracies.
+New top1 gains981/losses154 vs current; native gains980/losses133. Generated truth
+new3409/3413, native3299/3413; top5new3357, native3294. All four new generation misses
+outside frozen4ppm, no relaxed tolerance. No generated truth lost to budget32.
+Library-absent127 top1current66/new106/native106; not untouched validation.
+Blind new jointtop1 855/72/49/56 =1032/3413 remains weak; default CURRENT retained.
+Native msbuddy1.0.0/Python3.12.12/SciPy1.17.1/model hashes frozen before prediction;
+4/4 synthetic top1 including negative charge2. Native3338complete,75mass exclusions
+retained,0study-batch failures; loop6.41s excludes initial DB loading. Initial3.10
+SciPy loader failure and first native synthetic OpenMP-path failure preserved;
+no study predictions in those failed native setups. No scientific retuning.
+All251431 old feature/statistical rows and1624compound rows EXACTLY unchanged in
+real production overlay762queries/68.60s; all94prepared copies/68raw/IS/method unchanged,
+inputs-only result folders empty. Full1072passed8skipped91subtests plus updated
+missing-native-timing test passed. Private report outputs/untargeted_stage_5/report.html;
+safe aggregate docs/validation/untargeted_stage5. Stage6 NOT started. STOP for review.
+
 Stage 4 software/internal comparison COMPLETE, producer81e8aa2. Defaults CURRENT.
 IsoSpecPy2.6.1 full-ion compositions, resolution-aware centroid approximation,
 per-sample/QC ratios, missingness/saturation/interference flags; ADDITIVE only.

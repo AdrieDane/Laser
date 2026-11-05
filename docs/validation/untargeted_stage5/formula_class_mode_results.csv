@@ -1055,3 +1055,267 @@ Engine,Scope,Mode,Queries,Generated truth,Scored truth,Formula top 1,Formula top
 "Lipid-aware, adduct/charge blind",TG[O],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
 "Lipid-aware, adduct/charge blind",TG[O],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
 "Lipid-aware, adduct/charge blind",TG[O],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",all,RP_Pos,1592,"95.8% (1,525/1,592)","95.8% (1,525/1,592)","94.2% (1,500/1,592)","95.7% (1,523/1,592)","94.2% (1,500/1,592)","95.7% (1,523/1,592)",54,56
+"Native msbuddy, supplied adduct",all,RP_Neg,585,96.2% (563/585),96.2% (563/585),79.0% (462/585),96.1% (562/585),79.0% (462/585),96.1% (562/585),2,2
+"Native msbuddy, supplied adduct",all,NP_Pos,724,99.7% (722/724),99.7% (722/724),97.4% (705/724),99.7% (722/724),97.4% (705/724),99.7% (722/724),0,0
+"Native msbuddy, supplied adduct",all,NP_Neg,512,95.5% (489/512),95.5% (489/512),85.4% (437/512),95.1% (487/512),85.4% (437/512),95.1% (487/512),19,20
+"Native msbuddy, supplied adduct",library_known,RP_Pos,1585,"95.9% (1,520/1,585)","95.9% (1,520/1,585)","94.3% (1,495/1,585)","95.8% (1,518/1,585)","94.3% (1,495/1,585)","95.8% (1,518/1,585)",52,54
+"Native msbuddy, supplied adduct",library_known,RP_Neg,576,96.4% (555/576),96.4% (555/576),79.3% (457/576),96.2% (554/576),79.3% (457/576),96.2% (554/576),2,2
+"Native msbuddy, supplied adduct",library_known,NP_Pos,713,99.9% (712/713),99.9% (712/713),97.8% (697/713),99.9% (712/713),97.8% (697/713),99.9% (712/713),0,0
+"Native msbuddy, supplied adduct",library_known,NP_Neg,412,94.4% (389/412),94.4% (389/412),84.7% (349/412),94.2% (388/412),84.7% (349/412),94.2% (388/412),19,20
+"Native msbuddy, supplied adduct",library_absent,RP_Pos,7,71.4% (5/7),71.4% (5/7),71.4% (5/7),71.4% (5/7),71.4% (5/7),71.4% (5/7),2,2
+"Native msbuddy, supplied adduct",library_absent,RP_Neg,9,88.9% (8/9),88.9% (8/9),55.6% (5/9),88.9% (8/9),55.6% (5/9),88.9% (8/9),0,0
+"Native msbuddy, supplied adduct",library_absent,NP_Pos,11,90.9% (10/11),90.9% (10/11),72.7% (8/11),90.9% (10/11),72.7% (8/11),90.9% (10/11),0,0
+"Native msbuddy, supplied adduct",library_absent,NP_Neg,100,100.0% (100/100),100.0% (100/100),88.0% (88/100),99.0% (99/100),88.0% (88/100),99.0% (99/100),0,0
+"Native msbuddy, supplied adduct",1-acyl LPC,RP_Pos,47,100.0% (47/47),100.0% (47/47),97.9% (46/47),100.0% (47/47),97.9% (46/47),100.0% (47/47),0,0
+"Native msbuddy, supplied adduct",1-acyl LPC,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",1-acyl LPC,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",1-acyl LPC,NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",1-acyl LPE,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",1-acyl LPE,RP_Neg,35,100.0% (35/35),100.0% (35/35),80.0% (28/35),100.0% (35/35),80.0% (28/35),100.0% (35/35),0,0
+"Native msbuddy, supplied adduct",1-acyl LPE,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",1-acyl LPE,NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",2-acyl LPC,RP_Pos,37,100.0% (37/37),100.0% (37/37),100.0% (37/37),100.0% (37/37),100.0% (37/37),100.0% (37/37),0,0
+"Native msbuddy, supplied adduct",2-acyl LPC,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",2-acyl LPC,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",2-acyl LPC,NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",2-acyl LPE,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",2-acyl LPE,RP_Neg,27,100.0% (27/27),100.0% (27/27),77.8% (21/27),100.0% (27/27),77.8% (21/27),100.0% (27/27),0,0
+"Native msbuddy, supplied adduct",2-acyl LPE,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",2-acyl LPE,NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",AC,RP_Pos,47,100.0% (47/47),100.0% (47/47),100.0% (47/47),100.0% (47/47),100.0% (47/47),100.0% (47/47),0,0
+"Native msbuddy, supplied adduct",AC,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",AC,NP_Pos,53,100.0% (53/53),100.0% (53/53),100.0% (53/53),100.0% (53/53),100.0% (53/53),100.0% (53/53),0,0
+"Native msbuddy, supplied adduct",AC,NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",AC-OH,RP_Pos,21,100.0% (21/21),100.0% (21/21),100.0% (21/21),100.0% (21/21),100.0% (21/21),100.0% (21/21),0,0
+"Native msbuddy, supplied adduct",AC-OH,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",AC-OH,NP_Pos,25,100.0% (25/25),100.0% (25/25),100.0% (25/25),100.0% (25/25),100.0% (25/25),100.0% (25/25),0,0
+"Native msbuddy, supplied adduct",AC-OH,NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",BMP,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",BMP,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",BMP,NP_Pos,25,100.0% (25/25),100.0% (25/25),92.0% (23/25),100.0% (25/25),92.0% (23/25),100.0% (25/25),0,0
+"Native msbuddy, supplied adduct",BMP,NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",C1P[d],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",C1P[d],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",C1P[d],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",C1P[d],NP_Neg,9,100.0% (9/9),100.0% (9/9),100.0% (9/9),100.0% (9/9),100.0% (9/9),100.0% (9/9),0,0
+"Native msbuddy, supplied adduct",CE,RP_Pos,104,100.0% (104/104),100.0% (104/104),99.0% (103/104),100.0% (104/104),99.0% (103/104),100.0% (104/104),0,0
+"Native msbuddy, supplied adduct",CE,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",CE,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",CE,NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",CL,RP_Pos,107,43.9% (47/107),43.9% (47/107),38.3% (41/107),43.9% (47/107),38.3% (41/107),43.9% (47/107),54,54
+"Native msbuddy, supplied adduct",CL,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",CL,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",CL,NP_Neg,43,62.8% (27/43),62.8% (27/43),48.8% (21/43),62.8% (27/43),48.8% (21/43),62.8% (27/43),16,16
+"Native msbuddy, supplied adduct",Cer[d],RP_Pos,38,100.0% (38/38),100.0% (38/38),100.0% (38/38),100.0% (38/38),100.0% (38/38),100.0% (38/38),0,0
+"Native msbuddy, supplied adduct",Cer[d],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",Cer[d],NP_Pos,26,100.0% (26/26),100.0% (26/26),100.0% (26/26),100.0% (26/26),100.0% (26/26),100.0% (26/26),0,0
+"Native msbuddy, supplied adduct",Cer[d],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",DG,RP_Pos,120,100.0% (120/120),100.0% (120/120),100.0% (120/120),100.0% (120/120),100.0% (120/120),100.0% (120/120),0,0
+"Native msbuddy, supplied adduct",DG,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",DG,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",DG,NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",DG[O],RP_Pos,51,100.0% (51/51),100.0% (51/51),100.0% (51/51),100.0% (51/51),100.0% (51/51),100.0% (51/51),0,0
+"Native msbuddy, supplied adduct",DG[O],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",DG[O],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",DG[O],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",DG[P],RP_Pos,40,100.0% (40/40),100.0% (40/40),100.0% (40/40),100.0% (40/40),100.0% (40/40),100.0% (40/40),0,0
+"Native msbuddy, supplied adduct",DG[P],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",DG[P],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",DG[P],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",DLCL,RP_Pos,9,100.0% (9/9),100.0% (9/9),0.0% (0/9),77.8% (7/9),0.0% (0/9),77.8% (7/9),0,0
+"Native msbuddy, supplied adduct",DLCL,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",DLCL,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",DLCL,NP_Neg,4,100.0% (4/4),100.0% (4/4),0.0% (0/4),75.0% (3/4),0.0% (0/4),75.0% (3/4),0,0
+"Native msbuddy, supplied adduct",FA,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",FA,RP_Neg,31,100.0% (31/31),100.0% (31/31),100.0% (31/31),100.0% (31/31),100.0% (31/31),100.0% (31/31),0,0
+"Native msbuddy, supplied adduct",FA,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",FA,NP_Neg,11,100.0% (11/11),100.0% (11/11),100.0% (11/11),100.0% (11/11),100.0% (11/11),100.0% (11/11),0,0
+"Native msbuddy, supplied adduct",FA-OH,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",FA-OH,RP_Neg,29,100.0% (29/29),100.0% (29/29),100.0% (29/29),100.0% (29/29),100.0% (29/29),100.0% (29/29),0,0
+"Native msbuddy, supplied adduct",FA-OH,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",FA-OH,NP_Neg,6,100.0% (6/6),100.0% (6/6),100.0% (6/6),100.0% (6/6),100.0% (6/6),100.0% (6/6),0,0
+"Native msbuddy, supplied adduct",GA1[d],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GA1[d],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GA1[d],NP_Pos,2,100.0% (2/2),100.0% (2/2),100.0% (2/2),100.0% (2/2),100.0% (2/2),100.0% (2/2),0,0
+"Native msbuddy, supplied adduct",GA1[d],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GD1[d],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GD1[d],RP_Neg,23,34.8% (8/23),34.8% (8/23),30.4% (7/23),34.8% (8/23),30.4% (7/23),34.8% (8/23),0,0
+"Native msbuddy, supplied adduct",GD1[d],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GD1[d],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GD1[t],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GD1[t],RP_Neg,8,62.5% (5/8),62.5% (5/8),50.0% (4/8),62.5% (5/8),50.0% (4/8),62.5% (5/8),0,0
+"Native msbuddy, supplied adduct",GD1[t],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GD1[t],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GD2[d],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GD2[d],RP_Neg,3,100.0% (3/3),100.0% (3/3),100.0% (3/3),100.0% (3/3),100.0% (3/3),100.0% (3/3),0,0
+"Native msbuddy, supplied adduct",GD2[d],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GD2[d],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GD3[d],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GD3[d],RP_Neg,4,100.0% (4/4),100.0% (4/4),100.0% (4/4),100.0% (4/4),100.0% (4/4),100.0% (4/4),0,0
+"Native msbuddy, supplied adduct",GD3[d],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GD3[d],NP_Neg,4,25.0% (1/4),25.0% (1/4),25.0% (1/4),25.0% (1/4),25.0% (1/4),25.0% (1/4),0,1
+"Native msbuddy, supplied adduct",GM1[d],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GM1[d],RP_Neg,2,0.0% (0/2),0.0% (0/2),0.0% (0/2),0.0% (0/2),0.0% (0/2),0.0% (0/2),2,2
+"Native msbuddy, supplied adduct",GM1[d],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GM1[d],NP_Neg,3,0.0% (0/3),0.0% (0/3),0.0% (0/3),0.0% (0/3),0.0% (0/3),0.0% (0/3),3,3
+"Native msbuddy, supplied adduct",GM2[d],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GM2[d],RP_Neg,3,100.0% (3/3),100.0% (3/3),66.7% (2/3),100.0% (3/3),66.7% (2/3),100.0% (3/3),0,0
+"Native msbuddy, supplied adduct",GM2[d],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GM2[d],NP_Neg,3,100.0% (3/3),100.0% (3/3),33.3% (1/3),100.0% (3/3),33.3% (1/3),100.0% (3/3),0,0
+"Native msbuddy, supplied adduct",GM3[d],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GM3[d],RP_Neg,8,100.0% (8/8),100.0% (8/8),100.0% (8/8),100.0% (8/8),100.0% (8/8),100.0% (8/8),0,0
+"Native msbuddy, supplied adduct",GM3[d],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",GM3[d],NP_Neg,10,100.0% (10/10),100.0% (10/10),90.0% (9/10),100.0% (10/10),90.0% (9/10),100.0% (10/10),0,0
+"Native msbuddy, supplied adduct",Hex2Cer[d],RP_Pos,18,100.0% (18/18),100.0% (18/18),100.0% (18/18),100.0% (18/18),100.0% (18/18),100.0% (18/18),0,0
+"Native msbuddy, supplied adduct",Hex2Cer[d],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",Hex2Cer[d],NP_Pos,16,100.0% (16/16),100.0% (16/16),81.2% (13/16),100.0% (16/16),81.2% (13/16),100.0% (16/16),0,0
+"Native msbuddy, supplied adduct",Hex2Cer[d],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",Hex2Cer[t],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",Hex2Cer[t],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",Hex2Cer[t],NP_Pos,5,80.0% (4/5),80.0% (4/5),60.0% (3/5),80.0% (4/5),60.0% (3/5),80.0% (4/5),0,0
+"Native msbuddy, supplied adduct",Hex2Cer[t],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",HexCer[d],RP_Pos,46,100.0% (46/46),100.0% (46/46),100.0% (46/46),100.0% (46/46),100.0% (46/46),100.0% (46/46),0,0
+"Native msbuddy, supplied adduct",HexCer[d],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",HexCer[d],NP_Pos,19,100.0% (19/19),100.0% (19/19),100.0% (19/19),100.0% (19/19),100.0% (19/19),100.0% (19/19),0,0
+"Native msbuddy, supplied adduct",HexCer[d],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",HexCer[t],RP_Pos,34,100.0% (34/34),100.0% (34/34),100.0% (34/34),100.0% (34/34),100.0% (34/34),100.0% (34/34),0,0
+"Native msbuddy, supplied adduct",HexCer[t],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",HexCer[t],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",HexCer[t],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPA,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPA,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPA,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPA,NP_Neg,17,100.0% (17/17),100.0% (17/17),70.6% (12/17),100.0% (17/17),70.6% (12/17),100.0% (17/17),0,0
+"Native msbuddy, supplied adduct",LPC,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPC,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPC,NP_Pos,64,100.0% (64/64),100.0% (64/64),98.4% (63/64),100.0% (64/64),98.4% (63/64),100.0% (64/64),0,0
+"Native msbuddy, supplied adduct",LPC,NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPC[O+P],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPC[O+P],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPC[O+P],NP_Pos,10,100.0% (10/10),100.0% (10/10),100.0% (10/10),100.0% (10/10),100.0% (10/10),100.0% (10/10),0,0
+"Native msbuddy, supplied adduct",LPC[O+P],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPC[O],RP_Pos,15,100.0% (15/15),100.0% (15/15),100.0% (15/15),100.0% (15/15),100.0% (15/15),100.0% (15/15),0,0
+"Native msbuddy, supplied adduct",LPC[O],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPC[O],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPC[O],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPC[P],RP_Pos,10,100.0% (10/10),100.0% (10/10),100.0% (10/10),100.0% (10/10),100.0% (10/10),100.0% (10/10),0,0
+"Native msbuddy, supplied adduct",LPC[P],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPC[P],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPC[P],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPE,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPE,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPE,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPE,NP_Neg,21,100.0% (21/21),100.0% (21/21),95.2% (20/21),100.0% (21/21),95.2% (20/21),100.0% (21/21),0,0
+"Native msbuddy, supplied adduct",LPE[O+P],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPE[O+P],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPE[O+P],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPE[O+P],NP_Neg,6,100.0% (6/6),100.0% (6/6),100.0% (6/6),100.0% (6/6),100.0% (6/6),100.0% (6/6),0,0
+"Native msbuddy, supplied adduct",LPE[O],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPE[O],RP_Neg,7,100.0% (7/7),100.0% (7/7),85.7% (6/7),100.0% (7/7),85.7% (6/7),100.0% (7/7),0,0
+"Native msbuddy, supplied adduct",LPE[O],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPE[O],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPE[P],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPE[P],RP_Neg,12,100.0% (12/12),100.0% (12/12),83.3% (10/12),100.0% (12/12),83.3% (10/12),100.0% (12/12),0,0
+"Native msbuddy, supplied adduct",LPE[P],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPE[P],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPG,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPG,RP_Neg,13,100.0% (13/13),100.0% (13/13),69.2% (9/13),100.0% (13/13),69.2% (9/13),100.0% (13/13),0,0
+"Native msbuddy, supplied adduct",LPG,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPG,NP_Neg,16,100.0% (16/16),100.0% (16/16),50.0% (8/16),93.8% (15/16),50.0% (8/16),93.8% (15/16),0,0
+"Native msbuddy, supplied adduct",LPI,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPI,RP_Neg,10,100.0% (10/10),100.0% (10/10),70.0% (7/10),90.0% (9/10),70.0% (7/10),90.0% (9/10),0,0
+"Native msbuddy, supplied adduct",LPI,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPI,NP_Neg,12,100.0% (12/12),100.0% (12/12),50.0% (6/12),100.0% (12/12),50.0% (6/12),100.0% (12/12),0,0
+"Native msbuddy, supplied adduct",LPS,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",LPS,RP_Neg,24,100.0% (24/24),100.0% (24/24),62.5% (15/24),100.0% (24/24),62.5% (15/24),100.0% (24/24),0,0
+"Native msbuddy, supplied adduct",LPS,NP_Pos,14,100.0% (14/14),100.0% (14/14),78.6% (11/14),100.0% (14/14),78.6% (11/14),100.0% (14/14),0,0
+"Native msbuddy, supplied adduct",LPS,NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",MLCL,RP_Pos,6,100.0% (6/6),100.0% (6/6),16.7% (1/6),100.0% (6/6),16.7% (1/6),100.0% (6/6),0,0
+"Native msbuddy, supplied adduct",MLCL,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",MLCL,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",MLCL,NP_Neg,6,100.0% (6/6),100.0% (6/6),33.3% (2/6),100.0% (6/6),33.3% (2/6),100.0% (6/6),0,0
+"Native msbuddy, supplied adduct",PA,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PA,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PA,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PA,NP_Neg,62,100.0% (62/62),100.0% (62/62),100.0% (62/62),100.0% (62/62),100.0% (62/62),100.0% (62/62),0,0
+"Native msbuddy, supplied adduct",PC,RP_Pos,179,100.0% (179/179),100.0% (179/179),100.0% (179/179),100.0% (179/179),100.0% (179/179),100.0% (179/179),0,0
+"Native msbuddy, supplied adduct",PC,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PC,NP_Pos,205,99.5% (204/205),99.5% (204/205),97.1% (199/205),99.5% (204/205),97.1% (199/205),99.5% (204/205),0,0
+"Native msbuddy, supplied adduct",PC,NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PC[O+P],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PC[O+P],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PC[O+P],NP_Pos,79,100.0% (79/79),100.0% (79/79),100.0% (79/79),100.0% (79/79),100.0% (79/79),100.0% (79/79),0,0
+"Native msbuddy, supplied adduct",PC[O+P],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PC[O],RP_Pos,61,100.0% (61/61),100.0% (61/61),96.7% (59/61),100.0% (61/61),96.7% (59/61),100.0% (61/61),0,0
+"Native msbuddy, supplied adduct",PC[O],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PC[O],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PC[O],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PC[P],RP_Pos,50,100.0% (50/50),100.0% (50/50),100.0% (50/50),100.0% (50/50),100.0% (50/50),100.0% (50/50),0,0
+"Native msbuddy, supplied adduct",PC[P],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PC[P],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PC[P],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PE,RP_Pos,47,100.0% (47/47),100.0% (47/47),100.0% (47/47),100.0% (47/47),100.0% (47/47),100.0% (47/47),0,0
+"Native msbuddy, supplied adduct",PE,RP_Neg,53,98.1% (52/53),98.1% (52/53),86.8% (46/53),98.1% (52/53),86.8% (46/53),98.1% (52/53),0,0
+"Native msbuddy, supplied adduct",PE,NP_Pos,53,100.0% (53/53),100.0% (53/53),100.0% (53/53),100.0% (53/53),100.0% (53/53),100.0% (53/53),0,0
+"Native msbuddy, supplied adduct",PE,NP_Neg,56,100.0% (56/56),100.0% (56/56),100.0% (56/56),100.0% (56/56),100.0% (56/56),100.0% (56/56),0,0
+"Native msbuddy, supplied adduct",PE[O+P],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PE[O+P],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PE[O+P],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PE[O+P],NP_Neg,72,100.0% (72/72),100.0% (72/72),100.0% (72/72),100.0% (72/72),100.0% (72/72),100.0% (72/72),0,0
+"Native msbuddy, supplied adduct",PE[O],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PE[O],RP_Neg,38,100.0% (38/38),100.0% (38/38),71.1% (27/38),100.0% (38/38),71.1% (27/38),100.0% (38/38),0,0
+"Native msbuddy, supplied adduct",PE[O],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PE[O],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PE[P],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PE[P],RP_Neg,75,100.0% (75/75),100.0% (75/75),78.7% (59/75),100.0% (75/75),78.7% (59/75),100.0% (75/75),0,0
+"Native msbuddy, supplied adduct",PE[P],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PE[P],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PG,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PG,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PG,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PG,NP_Neg,40,100.0% (40/40),100.0% (40/40),100.0% (40/40),100.0% (40/40),100.0% (40/40),100.0% (40/40),0,0
+"Native msbuddy, supplied adduct",PI,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PI,RP_Neg,23,100.0% (23/23),100.0% (23/23),95.7% (22/23),100.0% (23/23),95.7% (22/23),100.0% (23/23),0,0
+"Native msbuddy, supplied adduct",PI,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PI,NP_Neg,24,100.0% (24/24),100.0% (24/24),100.0% (24/24),100.0% (24/24),100.0% (24/24),100.0% (24/24),0,0
+"Native msbuddy, supplied adduct",PS,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",PS,RP_Neg,78,98.7% (77/78),98.7% (77/78),87.2% (68/78),98.7% (77/78),87.2% (68/78),98.7% (77/78),0,0
+"Native msbuddy, supplied adduct",PS,NP_Pos,47,100.0% (47/47),100.0% (47/47),97.9% (46/47),100.0% (47/47),97.9% (46/47),100.0% (47/47),0,0
+"Native msbuddy, supplied adduct",PS,NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",S1P[d],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",S1P[d],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",S1P[d],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",S1P[d],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",SLBPA,RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",SLBPA,RP_Neg,5,100.0% (5/5),100.0% (5/5),0.0% (0/5),100.0% (5/5),0.0% (0/5),100.0% (5/5),0,0
+"Native msbuddy, supplied adduct",SLBPA,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",SLBPA,NP_Neg,9,100.0% (9/9),100.0% (9/9),100.0% (9/9),100.0% (9/9),100.0% (9/9),100.0% (9/9),0,0
+"Native msbuddy, supplied adduct",SM4[d],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",SM4[d],RP_Neg,38,100.0% (38/38),100.0% (38/38),81.6% (31/38),100.0% (38/38),81.6% (31/38),100.0% (38/38),0,0
+"Native msbuddy, supplied adduct",SM4[d],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",SM4[d],NP_Neg,41,97.6% (40/41),97.6% (40/41),87.8% (36/41),97.6% (40/41),87.8% (36/41),97.6% (40/41),0,0
+"Native msbuddy, supplied adduct",SM4[t],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",SM4[t],RP_Neg,36,100.0% (36/36),100.0% (36/36),69.4% (25/36),100.0% (36/36),69.4% (25/36),100.0% (36/36),0,0
+"Native msbuddy, supplied adduct",SM4[t],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",SM4[t],NP_Neg,37,100.0% (37/37),100.0% (37/37),70.3% (26/37),100.0% (37/37),70.3% (26/37),100.0% (37/37),0,0
+"Native msbuddy, supplied adduct",SM[d],RP_Pos,46,100.0% (46/46),100.0% (46/46),100.0% (46/46),100.0% (46/46),100.0% (46/46),100.0% (46/46),0,0
+"Native msbuddy, supplied adduct",SM[d],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",SM[d],NP_Pos,51,100.0% (51/51),100.0% (51/51),98.0% (50/51),100.0% (51/51),98.0% (50/51),100.0% (51/51),0,0
+"Native msbuddy, supplied adduct",SM[d],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",SM[t],RP_Pos,15,100.0% (15/15),100.0% (15/15),100.0% (15/15),100.0% (15/15),100.0% (15/15),100.0% (15/15),0,0
+"Native msbuddy, supplied adduct",SM[t],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",SM[t],NP_Pos,30,100.0% (30/30),100.0% (30/30),100.0% (30/30),100.0% (30/30),100.0% (30/30),100.0% (30/30),0,0
+"Native msbuddy, supplied adduct",SM[t],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",SPH[d],RP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",SPH[d],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",SPH[d],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",SPH[d],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",TG,RP_Pos,279,97.5% (272/279),97.5% (272/279),97.1% (271/279),97.5% (272/279),97.1% (271/279),97.5% (272/279),0,2
+"Native msbuddy, supplied adduct",TG,RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",TG,NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",TG,NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",TG[O],RP_Pos,165,100.0% (165/165),100.0% (165/165),100.0% (165/165),100.0% (165/165),100.0% (165/165),100.0% (165/165),0,0
+"Native msbuddy, supplied adduct",TG[O],RP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",TG[O],NP_Pos,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0
+"Native msbuddy, supplied adduct",TG[O],NP_Neg,0,Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),Unavailable (0 queries),0,0

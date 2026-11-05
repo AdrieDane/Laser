@@ -1,7 +1,8 @@
 # Stage 5: lipid formulas and external engine comparison
 
-Local four-arm comparison completed on source `5c193e9`; native comparison is
-partially pending. No default promotion. This stage does not start
+Local four-arm comparison completed on source `5c193e9`; native msbuddy completed
+with adapter/evaluator source `6e9801c`. SIRIUS and MZmine remain unavailable without
+compatible login/activation. No default promotion. This stage does not start
 joint cross-mode inference (Stage 6), resume historical annotation optimization,
 or close the outstanding Binner/verified-isotope requirements.
 
@@ -78,7 +79,7 @@ artifacts must be checked against publisher hashes; dependency environments,
 database/model hashes, command lines and input conversions are frozen before
 execution. A separate supported Python environment isolates msbuddy from LASER.
 The first Python 3.10/SciPy 1.15.3 setup failed during macOS library loading,
-before any prediction; a Python 3.12/C-based SciPy setup is being prepared.
+before any prediction. The completed native run uses Python 3.12.12/SciPy 1.17.1.
 
 [msbuddy](https://msbuddy.readthedocs.io/en/latest/quickstart.html) receives explicit
 adducts. Its instrument preset is unset to retain the requested 4 ppm tolerance;
@@ -105,30 +106,33 @@ promotion; implementing a selectable candidate model is not promotion.
 
 ## Frozen local results
 
-[Complete local class/mode table](local_class_mode_results.csv), including all
-63 classes × four modes, library-known/library-absent strata and empty cells.
+[Complete five-arm class/mode table](formula_class_mode_results.csv), including
+all 63 classes × four modes, library-known/library-absent strata and empty cells.
+[All class/mode gains and losses](all_class_mode_transitions.csv) retain regressions.
 
 All four arms completed all 3,413 predefined queries, without query timeouts.
 The table reports **conditional neutral-formula top-1 agreement with the supplied
 adduct**, not adduct accuracy or untouched validation. Reference counts include
 all formula-bearing natural lipids; 255 other ledger rows remain documented.
 
-| Mode | Current | Stage 4 | Lipid-aware | Gains / losses vs current |
-| --- | ---: | ---: | ---: | ---: |
-| RP positive | 74.1% (1179/1592) | 53.0% (843/1592) | 95.9% (1527/1592) | +379 / -31 |
-| RP negative | 49.7% (291/585) | 45.1% (264/585) | 75.7% (443/585) | +215 / -63 |
-| NP positive | 65.3% (473/724) | 58.1% (421/724) | 92.5% (670/724) | +217 / -20 |
-| NP negative | 61.3% (314/512) | 51.0% (261/512) | 86.7% (444/512) | +170 / -40 |
+| Mode | Current | Stage 4 | Lipid-aware | Native msbuddy | Lipid-aware gains / losses vs current |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| RP positive | 74.1% (1179/1592) | 53.0% (843/1592) | 95.9% (1527/1592) | 94.2% (1500/1592) | +379 / -31 |
+| RP negative | 49.7% (291/585) | 45.1% (264/585) | 75.7% (443/585) | 79.0% (462/585) | +215 / -63 |
+| NP positive | 65.3% (473/724) | 58.1% (421/724) | 92.5% (670/724) | 97.4% (705/724) | +217 / -20 |
+| NP negative | 61.3% (314/512) | 51.0% (261/512) | 86.7% (444/512) | 85.4% (437/512) | +170 / -40 |
 
 Pooled top 1: 2257/3413 current, 1789/3413 Stage 4, 3084/3413 lipid-aware.
-New-model generated truth is 3409/3413 and top 5 is 3357/3413. Four references
+Native msbuddy top 1 is 3104/3413; generated truth is 3299/3413 and top 5 is
+3294/3413. New-model generated truth is 3409/3413 and top 5 is 3357/3413. Four references
 lie outside the frozen 4 ppm tolerance; no tolerance was relaxed after inspection.
 None of the generated correct formulas was lost to the 32-candidate isotope budget,
 although the budget was reached for 1522 known-adduct and 2953 blind queries.
 
 The existing public library covers 3286 queries; 127 are library-absent. On those
-127 queries, top 1 is 66 current, 34 Stage 4 and 106 lipid-aware. This is still
-same-acquisition development evidence, not a held-out family benchmark.
+127 queries, top 1 is 66 current, 34 Stage 4, 106 lipid-aware and 106 msbuddy.
+These strata refer to LASER's pre-existing library, not the external database's
+exposure. This is same-acquisition development evidence, not a held-out family benchmark.
 
 With both adduct and charge hidden, lipid-aware **joint formula/adduct top 1** is
 855/1592 RP positive, 72/585 RP negative, 49/724 NP positive and 56/512 NP negative:
@@ -152,5 +156,42 @@ The verified SIRIUS 6.5.4 native synthetic test refused execution without login.
 Verified MZmine 4.11.0 reports no compatible logged-in user; its legacy `.mzuser`
 format is unsupported. Neither produced study predictions. These are unavailable
 comparisons, not measured 0% accuracy. No account was created. Native msbuddy setup
-continues separately. Stage 5 is not fully closed while required native comparisons
-remain unavailable; Stage 6 remains unstarted.
+is complete, as described below. Stage 5 is not fully closed while required native
+comparisons remain unavailable; Stage 6 remains unstarted.
+
+## Completed native msbuddy comparison
+
+[Runtime and public model hashes](native_msbuddy_runtime.json) freeze msbuddy 1.0.0,
+Python 3.12.12, NumPy 2.2.6, SciPy 1.17.1, LightGBM 4.6.0, scikit-learn 1.6.1,
+all 27 resolved dependencies and the three official database/model files. The
+native worker is byte-identical to the pre-evaluation `5c193e9` worker. The later
+evaluator change represents missing native per-query timing as unavailable,
+instead of a misleading zero. There were no scientific rule/weight changes.
+
+Synthetic protonated/ammoniated/deprotonated/doubly deprotonated controls all
+recover their expected top formula (4/4). Native attempt 001 preserves a synthetic
+startup failure caused by a missing OpenMP loader path; no study data were scored.
+Attempt 002 uses scikit-learn's hashed bundled OpenMP library via an isolated
+loader path and then runs all study queries. No system library was installed.
+
+All 3413 query IDs are retained: 3338 native completed queries and 75 outside the
+native `1<m/z<1500` range (54 RP positive, 2 RP negative, 0 NP positive, 19 NP negative).
+There were no study-batch failures/timeouts. Three supported queries returned no
+candidates; 39 supported queries lack the reference formula in the candidate pool.
+All 42 negative charge-two reference queries remain included; charge-two behavior
+also passes the synthetic control. Native FDR values are not validated analytical
+FDR for this acquisition and are not used as the primary evaluation.
+
+Native gains/losses versus current top 1 are +364/-43 RP positive, +213/-42 RP
+negative, +242/-10 NP positive, +161/-38 NP negative. Compared with the lipid-aware
+arm, native gains/losses are +52/-79, +99/-80, +47/-12, +48/-55 in the same order.
+No per-mode winner outputs were combined. The annotation loop took 6.41 seconds,
+excluding initial database loading; individual query times were not measured.
+
+Decision: retain the lipid-aware candidate generator as experimental and keep
+msbuddy as a reproducible optional comparator. Neither result establishes a best
+joint formula/adduct algorithm or supports changing defaults. LASER's larger pool
+and top-5 coverage and msbuddy's slightly higher conditional pooled top 1 are both
+useful evidence for the next separately authorized joint-inference stage. Different
+library exposure, native mass scope and per-sample versus aggregate evidence
+prevent an intrinsic algorithm-winner claim.

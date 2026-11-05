@@ -1,0 +1,103 @@
+{
+  "engine": "msbuddy",
+  "version": "1.0.0",
+  "source_revision": "6e9801cc2456b3c3bcd6a8c8381daae6d53cd396",
+  "local_formula_inference_source": "5c193e9",
+  "python": "3.12.12",
+  "dependencies": {
+    "chemparse": "0.3.2",
+    "lightgbm": "4.6.0",
+    "cloudpickle": "3.1.2",
+    "numpy": "2.2.6",
+    "filelock": "4.2.9",
+    "pandas": "3.1.1",
+    "joblib": "1.6.0",
+    "msbuddy": "1.0.0",
+    "requests": "2.34.2",
+    "certifi": "2026.10.23",
+    "PySocks": "1.7.1",
+    "scikit-learn": "1.6.1",
+    "soupsieve": "4.0.1",
+    "numba": "0.68.1",
+    "tqdm": "4.70.1",
+    "urllib3": "2.8.0",
+    "llvmlite": "0.50.0",
+    "brain-isotopic-distribution": "1.5.19",
+    "scipy": "1.17.1",
+    "tzdata": "2026.6",
+    "gdown": "6.5.1",
+    "typing_extensions": "4.16.0",
+    "beautifulsoup4": "4.15.0",
+    "python-dateutil": "4.0.0",
+    "threadpoolctl": "3.8.0",
+    "charset-normalizer": "3.5.2",
+    "idna": "3.20"
+  },
+  "model_hashes": {
+    "common_db_v0.2.4.joblib": "cd3509150091a911ef8da85874bf71015fe7d0969b32dd97ccabefd9193dd8ec",
+    "formula_db_v0.2.4.joblib": "9bac35f339f3d4c98eea558ffa95af37ba432d4d599148a98b27f8888d135997",
+    "ml_v0.3.0.joblib": "d24aa86b2ec0eea956993c8f9559c3e52e1d9ad31589513668a30268bfe4bee8"
+  },
+  "libomp_sha256": "7fe04d06d824817d39e4c99ec44e837fd6b5f0f75f2cc3e77a384c298f3f1709",
+  "requirements_sha256": "6ff2b07297caaca377926e3114b7c0c9ab893b360235eeea61212b301443b9c7",
+  "element_ranges": {
+    "C": [
+      1,
+      180
+    ],
+    "H": [
+      0,
+      400
+    ],
+    "N": [
+      0,
+      6
+    ],
+    "O": [
+      0,
+      60
+    ],
+    "P": [
+      0,
+      3
+    ],
+    "S": [
+      0,
+      3
+    ],
+    "F": [
+      0,
+      0
+    ],
+    "Cl": [
+      0,
+      0
+    ],
+    "Br": [
+      0,
+      0
+    ],
+    "I": [
+      0,
+      0
+    ],
+    "Na": [
+      0,
+      0
+    ],
+    "K": [
+      0,
+      0
+    ]
+  },
+  "mass_tolerance_ppm": 4,
+  "ms1_only": true,
+  "adduct_supplied": true,
+  "query_N": 3413,
+  "native_range_exclusions": 75,
+  "native_errors": 0,
+  "synthetic_top1": 4,
+  "synthetic_N": 4,
+  "annotation_loop_seconds": 6.405548832990462,
+  "default_changed": false
+}
