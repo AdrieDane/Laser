@@ -23,10 +23,12 @@ targeted-extraction, or dataset-specific workflows.
 
 The [staged formula prediction and adduct annotation plan](docs/UNTARGETED_FORMULA_ADDUCT_PLAN.md)
 defines nine implementation stages, their validation requirements and review
-checkpoints. Stage 1 freezes the baseline and evaluation definitions. Later
+checkpoints. [Stage 1 is complete](docs/validation/untargeted_stage1/README.md):
+the baseline and evaluation definitions are frozen, and the selected-PC 10/14
+counterpart result was reproduced in two identical replays. Later
 stages cover acquisition-specific adduct chemistry, full-feature ion grouping,
 complete isotope patterns, external formula engines, joint inference and optional
-raw chromatogram/MS/MS evidence. Implementation stages have not started.
+raw chromatogram/MS/MS evidence. Stage 2 has not started.
 
 ## Run the app
 

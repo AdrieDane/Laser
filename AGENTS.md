@@ -17,7 +17,14 @@ accuracy. Personal project defaults belong to user settings, never source code.
 
 The user requested a staged implementation plan on 5 November 2026. Follow
 [the untargeted formula and adduct plan](docs/UNTARGETED_FORMULA_ADDUCT_PLAN.md).
-The plan is published; no implementation stage has started. Start a stage when
+Stage 1 is complete: see docs/validation/untargeted_stage1/README.md. The private
+checkpoint freezes revision 678ca0c and reproduces 10/14 positive PC counterparts
+in two identical browser-selector replays. All 3,668 reference rows/63 labels are
+development data; 46 mappings remain unresolved, and independent validation is
+explicitly empty. Current project has no raw traces/MS/MS or verified isotope
+gold set. No runtime algorithm/default changes or external engine benchmark were
+made. External versions are pinned, with compatibility gaps recorded. Stage 2 has
+NOT started. Start a stage when
 the user requests it or explicitly asks to continue, finish its validation and
 checkpoint summary, then stop before the next stage. Do not interpret the plan
 as resuming historical annotation optimization. Keep conditional adduct accuracy,

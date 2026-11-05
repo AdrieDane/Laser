@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-11-05",
+  "purpose": "Version and compatibility pins, not engine performance evidence",
+  "tools": {
+    "MZmine": {
+      "version": "mzmine 4.11.0",
+      "tag": "v4.11",
+      "release_url": "https://github.com/mzmine/mzmine/releases/tag/v4.11",
+      "artifact": "mzmine_macOS_arm_portable_academia-4.11.0.zip",
+      "artifact_url": "https://github.com/mzmine/mzmine/releases/download/v4.11/mzmine_macOS_arm_portable_academia-4.11.0.zip",
+      "publisher_sha256": "sha256:8f567185eaa77e762d9b154998a84660db8254fe840d32cb5ffe5ec8f4b99485",
+      "status": "pinned_not_executed",
+      "source_commit": "23a45f6c3aa9bee28312bed36fe83b224a049e80",
+      "inputs": [
+        "Imported aligned feature lists for table-only comparison",
+        "Raw mzML/mzXML plus traces for full metaCorrelate route"
+      ],
+      "charge_policy": "Configured ion types must match row polarity and charge. Explicitly test negative charge 2; preserve unsupported queries in coverage.",
+      "runtime": "Bundled JVM; official minimum 16 GB RAM/4 cores; academic macOS ARM artifact pinned; local launch/license not tested.",
+      "defaults_inspected": {
+        "formula_feature_list_cutoff_mz": 800,
+        "formula_network_cutoff_mz": 800,
+        "formula_fallback_adduct": "[M+H]+",
+        "shape_pearson_r": 0.85,
+        "shape_min_points": 5,
+        "shape_min_points_each_edge": 2
+      },
+      "comparison_requirements": [
+        "Set cutoff above complete lipid query range or disable it",
+        "Explicit polarity/adduct library and elemental ranges; no positive fallback for negative queries",
+        "Table-only and trace-supported routes scored separately",
+        "Hash final exported batch XML and record JVM/threads/memory/license before execution"
+      ]
+    },
+    "SIRIUS": {
+      "version": "SIRIUS v6.5.4",
+      "tag": "v6.5.4",
+      "release_url": "https://github.com/sirius-ms/sirius/releases/tag/v6.5.4",
+      "artifact": "sirius-6.5.4-macos-arm64.zip",
+      "artifact_url": "https://github.com/sirius-ms/sirius/releases/download/v6.5.4/sirius-6.5.4-macos-arm64.zip",
+      "publisher_sha256": "sha256:6aae01b91328931e1c66d6867003fcf81b69a01e67534ea4936a7e62feb33d71",
+      "status": "pinned_not_executed",
+      "inputs": [
+        ".ms/.mgf spectra or raw .mzML/.mzXML"
+      ],
+      "charge_policy": "Official v6 documentation: singly charged monomers only; retain negative charge-2 queries as unsupported, not silently dropped.",
+      "runtime": "Bundled CLI/GUI on macOS ARM/x64, Linux and Windows; 16 GB recommended, about 2 GB/core. Local formula route distinct from licensed web services. Not launched.",
+      "defaults_inspected": {
+        "adduct_fallback": "Configured fallback set used when adduct unknown; raw preprocessing may propose several",
+        "same_ion_formula_adduct_ambiguity": "Different neutral formula/adduct explanations may share ion composition and scores"
+      },
+      "comparison_requirements": [
+        "Separate MS1-only and MS/MS arms",
+        "Explicit fallback adducts; record unsupported charges and fragment/dimer handling",
+        "Freeze CLI options and any formula databases/model files before execution"
+      ],
+      "source_commit": "4a749a8b010205bd6240bd2e9619d95600dfd855"
+    },
+    "msbuddy": {
+      "version": "1.0.0",
+      "release_url": "https://pypi.org/project/msbuddy/1.0.0/",
+      "artifact": "msbuddy-1.0.0-py3-none-any.whl",
+      "artifact_url": "https://files.pythonhosted.org/packages/b4/ce/71ab42461e1d62474e13df6a69d244360c275e4307d29e1dc2665a4365b3/msbuddy-1.0.0-py3-none-any.whl",
+      "publisher_sha256": "sha256:0b3a8d9080669337f33891fc799bbbe770888d776301dcde59d51d9edbbeb7a8",
+      "status": "wheel_downloaded_hash_verified_not_executed",
+      "inputs": [
+        "m/z and polarity minimum; API or MGF with optional MS1 isotope pattern/MS/MS"
+      ],
+      "charge_policy": "Explicit supplied adduct required; wheel parser supports signed charges, but charge-2 end-to-end formula execution remains unverified. No adduct-identification comparison for this engine.",
+      "runtime": "Separate Python 3.12 environment planned: repository guidance says >=3.9,<3.13 although wheel metadata only says >=3.8. Current LASER uses Python 3.13. Requires numba/LightGBM plus downloadable formula/model databases. No installation into LASER.",
+      "defaults_inspected": {
+        "ms1_tolerance_ppm": 5,
+        "ms2_tolerance_ppm": 10,
+        "timeout_seconds": 300,
+        "halogen": false,
+        "parallel": false,
+        "max_isotope_count": 4,
+        "fallback_adducts": [
+          "[M+H]+",
+          "[M-H]-"
+        ],
+        "instrument_preset_overrides_tolerances": true
+      },
+      "comparison_requirements": [
+        "Pin isolated environment and downloaded databases/model hashes before execution",
+        "Enumerate external adduct hypotheses explicitly; no reference adduct supplied in joint-blind arm",
+        "Keep supplied-known-adduct formula arm separate from joint inference",
+        "Record timeouts and >1500 Da scope limitations as failures/unsupported on full query list"
+      ]
+    },
+    "Binner": {
+      "version": "1.0.0",
+      "release_url": "https://binner.med.umich.edu/",
+      "artifact": "binner-1.0.0.jar",
+      "artifact_url": "https://metscape.ncibi.org/jar/binner-1.0.0.jar",
+      "publisher_sha256": null,
+      "status": "version_pinned_artifact_download_failed_tls_not_executed",
+      "inputs": [
+        "TSV: unique feature key, m/z, RT, per-sample intensities",
+        "Annotation TSV: annotation, mass, mode, charge, tier"
+      ],
+      "charge_policy": "Charges declared in annotation file; supported charge-2 behavior must pass synthetic conversion check before benchmark.",
+      "runtime": "Java application; exact compatible JRE and local macOS launch remain unverified.",
+      "defaults_inspected": {
+        "annotation_library": "User-supplied carrier/loss/adduct definitions and tiers"
+      },
+      "comparison_requirements": [
+        "Obtain trusted JAR and SHA256 before execution; do not bypass TLS verification",
+        "Freeze JRE, annotation TSV, RT units, missing-value policy and correlation settings",
+        "Use all original features and identical specimen mapping; do not include group labels as inference features"
+      ]
+    },
+    "IDSL.UFA": {
+      "version": "2.0",
+      "release_url": "https://CRAN.R-project.org/package=IDSL.UFA",
+      "artifact": "IDSL.UFA_2.0.tar.gz",
+      "artifact_url": "https://cran.r-project.org/src/contrib/IDSL.UFA_2.0.tar.gz",
+      "download_sha256": "14b545244c90a08b43e5023b2f435a0e5b54709c9b122527778d1804ee1f6da6",
+      "status": "source_downloaded_hash_recorded_not_executed",
+      "inputs": [
+        "IDSL.IPA chromatographic/isotope profile outputs plus prioritized formula space"
+      ],
+      "charge_policy": "Adduct/charge settings in method input; detailed support/defaults remain to be verified before optional trace-stage execution.",
+      "runtime": "R >=4.0; IDSL.IPA >=2.7 and readxl; no package compilation in UFA itself. Requires complete R dependency lock at Stage 7.",
+      "comparison_requirements": [
+        "Deferred while raw isotope profiles absent",
+        "Freeze isotope database and R dependency versions before execution"
+      ]
+    }
+  },
+  "mzmine_pinned_parameter_source_sha256": {
+    "RDBERestrictionParameters.java": "2bf3669518765219426e8259e6731ccd05956da34c472b449f8dda657ec74354",
+    "FormulaPredictionFeatureListParameters.java": "07a52d0e2a0edb536611c9734b133f046167b6bcc3e61efa47d8b08fb835929b",
+    "AdvancedCorrelateGroupingParameters.java": "ec5f0fe5f9f716f525383fa95e30982edae10f57896b7dd17f86e60cb53eb34f",
+    "FormulaPredictionIonNetworkParameters.java": "2c476762bd6ceb35378dec99d7e318c5bb4cafa67c631dd352a86d72c795a2f7",
+    "FormulaPredictionParameters.java": "65c1f169f14345f549eb17993c179af597740f11b525a7bf0cad5e75130ef5d9",
+    "FeatureShapeCorrelationParameters.java": "485cfda976cd2ea5d834568d6a9329fd127d6e24f1f53cb24e0f6999208876e6",
+    "CorrelateGroupingParameters.java": "8503c5f043db507d8f249a697bad5e622f88b0e95e838cbb803bc5e271063c74",
+    "ImageCorrelateGroupingParameters.java": "42fec35cefcc9fda32a5a57f80bb6fddb95aa8d7701d3cdc1382270771549902",
+    "ElementalHeuristicParameters.java": "7be08104b39a5424a14274fbfc199bac3755f3da2af86a62846fb9688c1abd9f",
+    "LegacyIonNetworkLibrary.java": "1f637ebf98e07ac24f4af9f1aaab4fbce12f308dbf7193fc44001e7be323fd01"
+  },
+  "official_documentation": [
+    "https://mzmine.github.io/mzmine_documentation/latest/module_docs/id_ion_networking/metacorr/metacorr.html",
+    "https://mzmine.github.io/mzmine_documentation/latest/module_docs/id_ion_networking/iin/iin.html",
+    "https://mzmine.github.io/mzmine_documentation/latest/module_docs/id_spectra_chem_formula/chem-formula-pred.html",
+    "https://v6.docs.sirius-ms.io/adducts/",
+    "https://msbuddy.readthedocs.io/en/latest/quickstart.html",
+    "https://binner.med.umich.edu/",
+    "https://CRAN.R-project.org/package=IDSL.UFA"
+  ]
+}
