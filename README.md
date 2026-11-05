@@ -38,6 +38,10 @@ Hub launcher. Set `LASER_STANDARD_HOST` or `LASER_STANDARD_PORT` before launch
 to override those defaults.
 
 Set `LASER_STANDARD_PROJECT` to prefill the XCMS project folder.
+All five modules also share a saved per-user `project_folder` preference. On
+macOS it is stored in `~/Library/Application Support/LASER Standard Lipidomics/settings.json`;
+Windows uses AppData/Roaming and Linux uses the XDG configuration directory.
+`LASER_STANDARD_PROJECT` takes precedence over this saved preference.
 
 ### Project modules and results
 

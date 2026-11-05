@@ -1,6 +1,5 @@
 """Streamlit presentation layer for conventional XCMS lipidomics."""
 from __future__ import annotations
-import os
 import json
 from pathlib import Path
 import pandas as pd
@@ -18,6 +17,7 @@ from matlab_annotation.configuration import (
 from standard_lipidomics.grid_browser import render_standard_grid_browser
 from standard_lipidomics.report import render_standard_lipidomics_report
 from scientific_defaults import SCIENTIFIC_DEFAULTS
+from standard_lipidomics.preferences import default_project
 from standard_lipidomics.project_store import (
     load_annotation_workflow,
     load_untargeted_workflow,
@@ -69,10 +69,7 @@ from presentation.standard_untargeted import (
 LASER_ENGINE = "LASER reference matcher"
 MATLAB_ENGINE = "Automatic MATLAB engine (XCMS)"
 MATLAB_ENGINE_CACHE_VERSION = 28
-DEFAULT_MATLAB_XCMS_PROJECT = os.environ.get(
-    "LASER_STANDARD_PROJECT",
-    "",
-)
+DEFAULT_MATLAB_XCMS_PROJECT = default_project()
 
 
 def _render_composition_range_settings(
@@ -238,7 +235,7 @@ def render_standard_lipidomics_mode(default_reference: Path) -> None:
         _render_standard_results()
         return
     annotation_project = render_standard_pipeline_entry(
-        default_project=DEFAULT_MATLAB_XCMS_PROJECT,
+        default_project=default_project(),
         back_action=lambda: None,
     )
     if annotation_project is None:
@@ -331,7 +328,7 @@ def _render_annotation_input(default_project: str) -> str | None:
 
 def _render_saved_workflow_open(workflow: str) -> None:
     project = st.text_input(
-        "Project folder", value=DEFAULT_MATLAB_XCMS_PROJECT,
+        "Project folder", value=default_project(),
         key="standard-open-project-folder",
     )
     open_annotation = workflow == "annotation"
