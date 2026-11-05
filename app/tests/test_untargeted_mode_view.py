@@ -139,6 +139,8 @@ check(model.style(key('RP_Pos','cs'),context)==='significantCluster','significan
 check(model.style(key('RP_Pos','u'),context)==='significantUp','unrelated hit keeps significance colour');
 const state={model,selected,view:'RP POS and NEG',grey:false,canvas:'#fff',ink:'#111',grid:'#ddd'};
 const initial=modeFigure({...state,selected:null});
+check(initial.layout.dragmode==='pan','click and drag pans by default');
+check(modeFigure({...state,dragMode:'zoom'}).layout.dragmode==='zoom','zoom toolbar choice retained');
 check(initial.data.filter(t=>!t.name.startsWith('Significantly')).every(t=>t.x.length===0),'initial plot contains only significant points');
 let figure=modeFigure(state);
 check(figure.data.every(t=>t.marker.symbol==='circle'&&t.marker.size===(t.name==='Selected / possible counterpart'?12:8)),'circles equal except larger selection');

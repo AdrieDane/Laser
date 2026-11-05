@@ -19,7 +19,7 @@ export function modeFigure(state) {
   const layout={height:phases.length>1?630:590, margin:{l:62,r:15,t:70,b:48},
     paper_bgcolor:state.canvas,plot_bgcolor:state.canvas,font:{...plotFont,color:state.ink},
     showlegend:true,legend:{orientation:'h',x:0,y:1.14,font:{size:10}},hovermode:'closest',
-    uirevision:state.view,dragmode:'zoom',shapes,annotations,meta:{pairs:[]}};
+    uirevision:state.view,dragmode:state.dragMode??'pan',shapes,annotations,meta:{pairs:[]}};
   phases.forEach((phase,column)=>{
     let maxRT=1,maxMZ=100;
     for(const stream of visible.filter(item=>item.phase===phase)) {
@@ -295,6 +295,7 @@ async function updateWorkspace(state) {
         },true);
         state.plot.on('plotly_click',event=>{const key=event.points?.[0]?.customdata?.[0];if(key&&state.model.rows.has(key)) state.select(key,true);});
         state.plot.on('plotly_relayout',async event=>{
+          if(['pan','zoom'].includes(event.dragmode)) state.dragMode=event.dragmode;
           if(state.syncingZoom) return;
           const updates=linkedModeZoom(event,state.plot.layout);
           state.syncingZoom=true;
