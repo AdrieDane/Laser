@@ -281,3 +281,22 @@ be developed and released independently in this repository.
 Selecting a compound automatically shows one sample abundance plot for each detected mode, using that mode's original sample values and group colours. The significant-feature table stays immediately below the mode plots. Saved evidence with distant same-mode RT values is excluded from coloured adduct highlights.
 
 All mode-viewer points use equal-sized circles. Significance direction is comparison group B relative to reference group A. Selection overrides significance colour; selected-cluster neighbours are purple, with significant neighbours orange and bordered purple.
+
+Untargeted evidence version 3 uses carbon isotope abundance odds, M+2-supported
+charge selection, and a physical carbon-count bound to reject impossible isotope
+partners. Formula candidates use a wider vectorized CHNOPS search and soft
+lipid-headgroup/H:C priors. They remain tentative ranked candidates; the code is
+not a full implementation of SIRIUS or the Seven Golden Rules. Same-mode adduct
+coelution defaults to 0.05 min, independently configurable from opposite-polarity
+coelution. QC/blank/standard comparisons are rejected by the analysis backend,
+even when conflicting metadata labels them as study samples. Their abundance
+bars remain visible. The evaluation runner preserves original-feature mappings,
+full manual denominators, source/input hashes and all four modes.
+
+For further method development, [CAMERA](https://pmc.ncbi.nlm.nih.gov/articles/PMC3658281/)
+and [Ion Identity Molecular Networking](https://www.nature.com/articles/s41467-021-23953-9)
+support combining coelution, isotope and abundance evidence in consistent ion
+networks. [Seven Golden Rules](https://doi.org/10.1186/1471-2105-8-105) and
+[SIRIUS](https://pmc.ncbi.nlm.nih.gov/articles/PMC2639009/) motivate chemical and
+isotope constraints. Exported feature tables lack scan-level peak shapes and
+MS/MS spectra, so full chromatographic/MS/MS methods require richer inputs.

@@ -108,7 +108,7 @@ export class ModeViewerModel {
   context(key) {
     if(this.contextCache.has(key)) return this.contextCache.get(key);
     if(!key) return {key:null,focus:new Set(),cluster:new Set(),adducts:new Set(),matches:[]};
-    const focus=new Set([key]), cluster=new Set(), adducts=new Set();
+    const focus=new Set([key]), cluster=new Set(), adducts=new Set(), clusterOrigins=new Map();
     const selected=this.point(key), matches=this.matches(key), byMode=new Map(), phaseAnchors=new Map();
     if(selected) phaseAnchors.set(selected.phase,selected);
     const compound=this.rows.get(key)?.compound_id;
@@ -140,11 +140,11 @@ export class ModeViewerModel {
         if(focus.has(member)) continue;
         if(compound && this.rows.get(member)?.compound_id===compound) continue;
         if(!localCluster(member)) continue;
-        cluster.add(member);
+        cluster.add(member);clusterOrigins.set(member,member);
         const memberCompound=this.rows.get(member)?.compound_id;
         if(memberCompound) {
           for(const [target,row] of this.rows) if(row.compound_id===memberCompound && !focus.has(target)&&localCluster(target)&&
-            this.coelutes(this.point(member),this.point(target))) cluster.add(target);
+            this.coelutes(this.point(member),this.point(target))) {cluster.add(target);clusterOrigins.set(target,member);}
         } else {
           const representatives=new Map(),memberPoint=this.point(member);
           for(const link of this.matches(member)) {
@@ -154,12 +154,12 @@ export class ModeViewerModel {
             if(!prior || (rank.get(link.targetAdduct)??99)<(rank.get(prior.targetAdduct)??99) ||
               ((rank.get(link.targetAdduct)??99)===(rank.get(prior.targetAdduct)??99) && Math.abs(link.ppm)<Math.abs(prior.ppm))) representatives.set(target.stream,link);
           }
-          for(const link of representatives.values()) cluster.add(link.target);
+          for(const link of representatives.values()) {cluster.add(link.target);clusterOrigins.set(link.target,member);}
         }
       }
     }
     for(const member of focus) {cluster.delete(member);adducts.delete(member);}
-    const result={key,focus,cluster,adducts,matches};
+    const result={key,focus,cluster,adducts,matches,clusterOrigins};
     if(this.contextCache.size>128) this.contextCache.delete(this.contextCache.keys().next().value);
     this.contextCache.set(key,result); return result;
   }

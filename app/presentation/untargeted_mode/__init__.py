@@ -117,9 +117,17 @@ def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
                      int(row.ch2_steps), float(row.mass_error_ppm), float(row.rt_delta_seconds),
                      str(row.target_lipid_classes) if pd.notna(row.target_lipid_classes) else '']
                     for row in homologous.itertuples(index=False)]
+    # Give otherwise ungrouped local neighbours their own tentative display ID.
+    # Never infer that two unrelated neighbours are the same compound.
+    cluster_members = _records(analysis.get('cluster_members', pd.DataFrame()))
+    next_compound = max((int(row['compound_id'].split('_')[-1]) for row in statistics if row.get('compound_id')), default=0)
+    for row in sorted(cluster_members, key=lambda value: (str(value['stream']), str(value['feature_id']))):
+        if not row.get('compound_id'):
+            next_compound += 1
+            row['compound_id'] = f'compound_{next_compound:04d}'
     return {'token': token, 'theme': theme, 'streams': streams, 'statistics': statistics,
             'links': link_rows, 'clusters': cluster_rows, 'palette': palette,
-            'clusterMembers': _records(analysis.get('cluster_members', pd.DataFrame())),
+            'clusterMembers': cluster_members,
             'adducts': [asdict(adduct) for adduct in ADDUCTS], 'criteria': dict(analysis.get('criteria', {}))}
 
 

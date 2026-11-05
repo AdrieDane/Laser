@@ -143,7 +143,7 @@ check(initial.data.filter(t=>!t.name.startsWith('Significantly')).every(t=>t.x.l
 let figure=modeFigure(state);
 check(figure.data.every(t=>t.marker.symbol==='circle'&&t.marker.size===8),'all markers equal circles');
 const annotated=figure.data.flatMap(t=>t.customdata).find(row=>row[0]===key('RP_Pos','c'));
-check(annotated[2]==='c'&&annotated[7].startsWith('cluster_'),'feature and cluster IDs in hover');
+check(annotated[2]==='c'&&annotated[4].startsWith('compound_')&&annotated[7].startsWith('cluster_'),'feature, compound and cluster IDs in hover');
 check(annotated[8]==='Lipid: PC(36:2) [M+H]+','accepted lipid ID in hover');
 check(figure.data.find(t=>t.name==='Other adduct candidate').marker.color==='#f2c230','adducts remain yellow');
 check(figure.data.find(t=>t.name==='Selected / possible counterpart').marker.color==='#f28c28','selection orange');

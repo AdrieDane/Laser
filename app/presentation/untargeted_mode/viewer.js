@@ -40,8 +40,8 @@ export function modeFigure(state) {
         const points=buckets.get(role),colour=MODE_COLOURS[role];
         traces.push({type:'scattergl',mode:'markers',xaxis,yaxis,name:legendNames[role],legendgroup:role,
           showlegend:column===0&&!negative,x:points.map(p=>p.rt),y:points.map(p=>negative?-p.mz:p.mz),
-          customdata:points.map(p=>[p.key,p.stream,p.id,p.mz,p.compoundId||'unassigned',
-            model.rows.get(p.key)?.adduct??'',model.rows.get(p.key)?.p_value??null,p.clusterId||'unassigned',p.lipidId?'Lipid: '+p.lipidId:'']),
+          customdata:points.map(p=>[p.key,p.stream,p.id,p.mz,p.compoundId||model.point(context.clusterOrigins?.get(p.key))?.compoundId||'unassigned',
+            model.rows.get(p.key)?.adduct??'',model.rows.get(p.key)?.p_value??null,p.clusterId||model.point(context.clusterOrigins?.get(p.key))?.clusterId||'unassigned',p.lipidId?'Lipid: '+p.lipidId:'']),
           marker:{color:colour,opacity:role==='background'?.32:1,size:8,symbol:'circle',line:{color:role==='significantCluster'?MODE_COLOURS.cluster:colour,width:role==='significantCluster'?2:0}},
           hovertemplate:'Compound: %{customdata[4]}<br>Cluster: %{customdata[7]}<br>%{customdata[1]} · feature %{customdata[2]}<br>'+
             '%{customdata[8]}<br>'+
