@@ -12,6 +12,9 @@ import pandas as pd
 import numpy as np
 
 from completed_project import load_completed_project
+from standard_lipidomics.project_layout import workflow_folder, xcms_project_root
+from standard_lipidomics.mass_calibration import write_calibrated_xcms_files
+from standard_lipidomics.rt_calibration import calibrate_standard_rt_bytes, freeze_rt_calibration
 from output_io import atomic_write_csv, atomic_write_json
 from saved_project import (
     create_saved_project_from_run,
@@ -42,24 +45,6 @@ def _json_attrs(attrs: Mapping[str, Any]) -> dict[str, Any]:
         except (TypeError, ValueError):
             continue
     return output
-
-
-def xcms_project_root(path: str | Path) -> Path:
-    """Use the project folder, even when its old Processing/Annotation is selected."""
-    root = Path(path).expanduser().resolve()
-    if root.is_file():
-        root = root.parent
-    if root.name.casefold() == "annotation" and root.parent.name.casefold() == "processing":
-        return root.parent.parent
-    if root.name.casefold() in {"metadata", "laser_calibrated_xcms"}:
-        return root.parent
-    return root
-
-
-def workflow_folder(project: str | Path, workflow: str) -> Path:
-    if workflow not in {"Annotation", "Untargeted"}:
-        raise ValueError(f"Unknown LASER workflow: {workflow}")
-    return xcms_project_root(project) / "LASER" / workflow
 
 
 def stage_project_metadata(
@@ -120,6 +105,9 @@ def _save_with_history(
             archive = moved
     try:
         paths = writer(destination)
+        legacy = moved / "Untargeted" if moved is not None and destination.name == "LASER" else None
+        if legacy is not None and legacy.is_dir():
+            shutil.copytree(legacy, destination / "Untargeted")
     except Exception:
         if destination.exists():
             shutil.rmtree(destination)
@@ -159,7 +147,11 @@ def _read_metadata(project: Mapping[str, Any]) -> dict[str, Any]:
 
 def load_annotation_workflow(project: str | Path) -> tuple[dict, dict]:
     """Reconstruct the analysis result from saved tables, without annotation."""
-    saved = load_completed_project(workflow_folder(project, "Annotation"))
+    selected = Path(project).expanduser().resolve()
+    root = selected if (selected / "LASER_PROJECT.json").is_file() else workflow_folder(project, "Annotation")
+    if not (root / "LASER_PROJECT.json").is_file():
+        root = root / "Annotation"  # Projects saved by earlier LASER versions.
+    saved = load_completed_project(root)
     metadata = _read_metadata(saved)
     result: dict[str, Any] = dict(metadata.get("result_values") or {})
     result["engine"] = metadata.get("engine", "matlab")
@@ -263,7 +255,10 @@ def save_untargeted_workflow(
 
 def load_untargeted_workflow(project: str | Path) -> tuple[dict, dict]:
     """Open saved untargeted tables directly, without rerunning statistics."""
-    root = workflow_folder(project, "Untargeted")
+    selected = Path(project).expanduser().resolve()
+    root = selected if (selected / "LASER_PROJECT.json").is_file() else workflow_folder(project, "Untargeted")
+    if not (root / "LASER_PROJECT.json").is_file():
+        root = xcms_project_root(project) / "LASER" / "Untargeted"
     manifest_path = root / "LASER_PROJECT.json"
     if not manifest_path.is_file():
         raise ValueError(f"No saved untargeted analysis was found in {root}.")
@@ -303,3 +298,46 @@ def load_untargeted_workflow(project: str | Path) -> tuple[dict, dict]:
                 "untargeted_sample_metadata_audit"):
         result[key] = load_project_table(saved, key)
     return result, saved
+
+
+def save_calibration_workflow(
+    project: str | Path, sources: Mapping[str, str | Path | bytes],
+    calibrations: Mapping[str, object], *, existing: str = "archive",
+    rt_calibrations: Mapping[str, dict] | None = None,
+) -> tuple[dict[str, Path], Path | None]:
+    """Save reviewed calibration files, models and metadata with version history."""
+    # Read sources before any directory can be moved into history.
+    payloads = {name: value if isinstance(value, bytes) else Path(value).read_bytes()
+                for name, value in sources.items()}
+    metadata: dict[str, bytes] = {}
+    root = xcms_project_root(project)
+    folders = [root, root / "metadata"]
+    folders.extend(Path(value).parent for value in sources.values() if not isinstance(value, bytes))
+    for folder in folders:
+        for pattern in ("*.xlsx", "*.xls", "internal_standards.tsv"):
+            for path in folder.glob(pattern):
+                if not path.name.startswith("~$"):
+                    metadata[path.name] = path.read_bytes()
+
+    def write(destination: Path) -> dict[str, Path]:
+        paths = write_calibrated_xcms_files(payloads, calibrations, destination)
+        manifest_path = destination / "LASER_standard_mass_calibration.json"
+        manifest = json.loads(manifest_path.read_text())
+        manifest["project"] = str(root)
+        manifest["saved_at"] = datetime.now(timezone.utc).isoformat()
+        manifest["rt_calibration_source"] = "LASER-4D a188f72"
+        for name, path in paths.items():
+            rt_model = (rt_calibrations or {}).get(name)
+            if rt_model is not None:
+                path.write_bytes(calibrate_standard_rt_bytes(path, rt_model))
+            manifest["streams"][name]["rt_calibration"] = freeze_rt_calibration(rt_model)
+            manifest["streams"][name]["rt_status"] = "applied" if rt_model else "not_applied"
+        for name, value in sources.items():
+            manifest["streams"][name]["source"] = (
+                "uploaded_bytes" if isinstance(value, bytes) else str(Path(value).resolve()))
+        atomic_write_json(manifest_path, manifest)
+        for name, payload in metadata.items():
+            (destination / name).write_bytes(payload)
+        return paths
+
+    return _save_with_history(workflow_folder(project, "Calibration"), write, existing=existing)

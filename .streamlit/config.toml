@@ -1,0 +1,12 @@
+# Appearance follows LASER-4D a188f72.
+[theme]
+base = "light"
+primaryColor = "#0068D9"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#1D1D1F"
+font = "sans serif"
+
+[browser]
+gatherUsageStats = false
+serverAddress = "localhost"

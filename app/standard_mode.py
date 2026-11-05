@@ -1,12 +1,14 @@
 """Streamlit presentation layer for conventional XCMS lipidomics."""
 from __future__ import annotations
 import os
+import json
 from pathlib import Path
 import pandas as pd
 import streamlit as st
 
 from annotator.composition_ranges import CompositionRangeSettings
-from annotator.standard_annotated_inputs import append_standard_annotations
+from annotator.standard_annotated_inputs import append_standard_annotations, remove_standard_annotation_columns
+from saved_project import resolve_artifact_path
 from standard_lipidomics.workflow import (
     discover_standard_streams,
 )
@@ -25,6 +27,7 @@ from standard_lipidomics.project_store import (
     workflow_folder,
     xcms_project_root,
 )
+from standard_lipidomics.project_layout import available_calibrations
 from standard_lipidomics.workflow import load_standard_feature_list
 from application.standard_workflow import (
     LASER_STANDARD_ENGINE,
@@ -97,6 +100,8 @@ def _run_standard_cached(
     range_source: str,
     composition_ranges: CompositionRangeSettings,
     _sources: dict[str, bytes],
+    source_signature: tuple = (),
+    grid_coherence_version: str = "v1",
 ) -> dict:
     return standard_annotation_service.run(
         StandardAnnotationRequest(
@@ -120,6 +125,7 @@ def _run_standard_cached(
                 "np_rt_tolerance_min": np_rt_tolerance_min,
                 "use_grid_coherence": use_grid_coherence,
                 "grid_coherence_threshold": grid_coherence_threshold,
+                "grid_coherence_version": grid_coherence_version,
             },
         )
     ).to_mapping()
@@ -145,6 +151,7 @@ def _run_matlab_cached(
     use_pe_rebuild: bool = True,
     pe_rebuild_score_threshold: float = 0.10,
     use_experimental_pe_selector: bool = False,
+    grid_coherence_version: str = "v1",
 ) -> dict:
     return standard_annotation_service.run(
         StandardAnnotationRequest(
@@ -162,6 +169,7 @@ def _run_matlab_cached(
                 "minimum_anchors": minimum_anchors,
                 "use_grid_coherence": use_grid_coherence,
                 "grid_coherence_threshold": grid_coherence_threshold,
+                "grid_coherence_version": grid_coherence_version,
                 "composition_ranges": composition_ranges.to_dict(),
                 "use_pe_rebuild": use_pe_rebuild,
                 "pe_rebuild_score_threshold": pe_rebuild_score_threshold,
@@ -222,11 +230,16 @@ def render_standard_lipidomics_mode(default_reference: Path) -> None:
         back_action=lambda: None,
     )
     if annotation_project is None:
-        if st.session_state.get(STANDARD_PIPELINE_PAGE_KEY) == "select":
-            _render_saved_workflow_open()
+        return
+    page = st.session_state.get(STANDARD_PIPELINE_PAGE_KEY)
+    if page in {"open_annotation", "open_untargeted"}:
+        _render_saved_workflow_open("annotation" if page == "open_annotation" else "untargeted")
         return
     if st.session_state.get(STANDARD_PIPELINE_PAGE_KEY) == "untargeted":
         _render_untargeted_input(annotation_project)
+        return
+    annotation_project = _render_annotation_input(annotation_project)
+    if annotation_project is None:
         return
     engine = st.radio(
         "Annotation engine",
@@ -253,31 +266,65 @@ def render_standard_lipidomics_mode(default_reference: Path) -> None:
     _render_standard_results()
 
 
-def _render_saved_workflow_open() -> None:
-    st.divider()
-    st.subheader("Open saved LASER results")
+def _render_annotation_input(default_project: str) -> str | None:
+    project = st.text_input("Project folder", value=default_project, key="standard-annotation-project")
+    kind = st.radio("Annotation input", ("Raw XCMS data", "Calibrated XCMS data"),
+                    horizontal=True, key="standard-annotation-input-kind")
+    if not project.strip():
+        st.info("Enter the project folder to detect its XCMS inputs.")
+        return None
+    root = xcms_project_root(project)
+    try:
+        if kind == "Raw XCMS data":
+            sources = discover_standard_streams(root)
+            if not sources:
+                raise ValueError("No raw XCMS peak-group lists were found in the project input folder.")
+            source = root
+        else:
+            choices = available_calibrations(root)
+            if not choices:
+                raise ValueError("No saved calibration was found. Run Calibration and save it first.")
+            def label(name: str) -> str:
+                path = choices[name]
+                try:
+                    manifest = json.loads((path / "LASER_standard_mass_calibration.json").read_text())
+                    date = str(manifest.get("saved_at", ""))
+                    streams = ", ".join(manifest.get("streams", {}))
+                    return " · ".join(value for value in (name, date, streams) if value)
+                except (OSError, ValueError):
+                    return name
+            selected = st.selectbox("Calibration version", list(choices), format_func=label,
+                                    key=f"standard-calibration-choice-{root}")
+            source = choices[selected]
+            sources = discover_standard_streams(source)
+            if not sources:
+                raise ValueError("The selected calibration contains no XCMS peak-group lists.")
+        st.caption(f"Detected {', '.join(sources)} · {source}")
+        return str(source)
+    except (OSError, ValueError) as exc:
+        st.error(str(exc))
+        return None
+
+
+def _render_saved_workflow_open(workflow: str) -> None:
     project = st.text_input(
-        "XCMS project folder",
-        value=DEFAULT_MATLAB_XCMS_PROJECT,
+        "Project folder", value=DEFAULT_MATLAB_XCMS_PROJECT,
         key="standard-open-project-folder",
     )
-    annotation_col, untargeted_col = st.columns(2)
-    open_annotation = annotation_col.button(
-        "Open saved annotation", disabled=not bool(project), width="stretch"
-    )
-    open_untargeted = untargeted_col.button(
-        "Open saved untargeted analysis", disabled=not bool(project), width="stretch"
-    )
-    if not (open_annotation or open_untargeted):
+    open_annotation = workflow == "annotation"
+    requested = st.button(
+        "Open completed annotation" if open_annotation else "Open completed untargeted analysis",
+        disabled=not bool(project.strip()), type="primary", width="stretch")
+    if not requested:
         return
     try:
         root = xcms_project_root(project)
         if open_annotation:
-            result, saved = load_annotation_workflow(root)
+            result, saved = load_annotation_workflow(project)
             page = "menu"
             workflow = "annotation"
         else:
-            result, saved = load_untargeted_workflow(root)
+            result, saved = load_untargeted_workflow(project)
             page = "untargeted"
             workflow = "untargeted"
         st.session_state.standard_annotation_result = result
@@ -301,6 +348,16 @@ def _render_saved_workflow_open() -> None:
             ) or discover_standard_streams(root)
         except ValueError:
             st.session_state.standard_input_sources = discover_standard_streams(root)
+        if workflow == "annotation":
+            # Reopen the exact selected input even if the current calibration
+            # was subsequently overwritten or moved into history.
+            snapshots = {}
+            for stream in result.get("streams", {}):
+                path = resolve_artifact_path(saved, f"annotated_input_{stream}")
+                if path is not None and path.is_file():
+                    snapshots[stream] = remove_standard_annotation_columns(path)
+            if snapshots:
+                st.session_state.standard_input_sources = snapshots
         if workflow == "untargeted":
             analysis = result["untargeted_analysis"]
             criteria = analysis.get("criteria", {})
@@ -324,7 +381,7 @@ def _render_saved_workflow_open() -> None:
 
 def _render_untargeted_input(default_project: str) -> None:
     project = st.text_input(
-        "XCMS project folder", value=default_project,
+        "Project folder", value=default_project,
         key="standard-untargeted-input-project",
     )
     if not st.button("Load XCMS features for untargeted analysis", type="primary"):
@@ -342,6 +399,9 @@ def _render_untargeted_input(default_project: str) -> None:
             "automatic_annotations": pd.DataFrame(),
             "xcms_input_dir": str(xcms_project_root(project)),
         }
+        for key in ("standard_untargeted_analysis", "standard_untargeted_signature",
+                    "standard_untargeted_review_basket", "standard_report_html", "standard_report_signature"):
+            st.session_state.pop(key, None)
         st.session_state.standard_annotation_result = result
         st.session_state.standard_results_page = "untargeted"
         st.session_state.standard_loaded_workflow = "untargeted"
@@ -568,8 +628,8 @@ def _render_standard_project_save(result: dict) -> None:
     destination = workflow_folder(source_project, "Annotation")
     st.code(str(destination))
     existing = st.radio(
-        "When an export already exists",
-        ("Archive previous export", "Overwrite previous export"),
+        "When an old project exists",
+        ("Archive old project", "Overwrite old project"),
         horizontal=True, key="standard-annotation-existing",
     )
     include_html = st.checkbox(
@@ -615,7 +675,9 @@ def _save_current_annotation(
             "The original XCMS peak-group lists are unavailable; annotated "
             "peak lists cannot be regenerated. Restore them in the project folder."
         )
-    stage_project_metadata(source_project, input_sources)
+    # Keep original XCMS lists intact when annotation used calibrated input.
+    raw_sources = discover_standard_streams(xcms_project_root(source_project))
+    stage_project_metadata(source_project, raw_sources)
     input_settings = dict(config.get("inputs", {}))
     if input_settings.get("project") in (None, "REPLACE_WITH_XCMS_PROJECT"):
         input_settings["project"] = str(xcms_project_root(source_project))
@@ -647,12 +709,13 @@ def _render_untargeted_save(result: dict, analysis: dict) -> None:
         st.error("Choose an XCMS project folder before saving.")
         return
     destination = workflow_folder(source_project, "Untargeted")
-    with st.expander("Save untargeted analysis", expanded=True):
+    with st.container(border=True):
+        st.subheader("Save untargeted analysis")
         st.caption("Remake the untargeted exports from the current result and review decisions.")
         st.code(str(destination))
         existing = st.radio(
-            "When an export already exists",
-            ("Archive previous export", "Overwrite previous export"),
+            "When an old project exists",
+            ("Archive old project", "Overwrite old project"),
             horizontal=True, key="standard-untargeted-existing",
         )
         if not st.button("Save untargeted analysis", type="primary", width="stretch"):
@@ -677,7 +740,7 @@ def _save_current_untargeted(
     if not source_project:
         raise ValueError("Choose an XCMS project folder before saving.")
     stage_project_metadata(
-        source_project, st.session_state.get("standard_input_sources", {})
+        source_project, discover_standard_streams(xcms_project_root(source_project))
     )
     return save_untargeted_workflow(
         source_project, result, analysis,

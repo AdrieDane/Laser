@@ -133,6 +133,7 @@ class AutomaticAnchorSettings:
     minimum_carbon_span: int = 4
     minimum_double_bond_span: int = 2
     grid_coherence_rt_tolerance_seconds: float = 10.0
+    grid_coherence_version: str = "v1"
     use_grid_coherence: bool = True
     grid_coherence_threshold: float = (
         SCIENTIFIC_DEFAULTS.grid_coherence_threshold

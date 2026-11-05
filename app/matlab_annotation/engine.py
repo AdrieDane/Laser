@@ -1334,7 +1334,7 @@ def _calculate_matlab_grid_coherence(
         rt_tolerance=(float(settings.grid_coherence_rt_tolerance_seconds) / 60.0),
         ccs_tolerance_percent=1.0,
         use_ccs=False,
-        threshold=threshold,
+        threshold=threshold, version=settings.grid_coherence_version,
     )
     # Positional lyso candidates contain both identity alternatives for the
     # same precursor-mass features.  Letting those provisional alternatives
@@ -1363,16 +1363,18 @@ def _calculate_matlab_grid_coherence(
             rt_tolerance=(float(settings.grid_coherence_rt_tolerance_seconds) / 60.0),
             ccs_tolerance_percent=1.0,
             use_ccs=False,
-            threshold=threshold,
+            threshold=threshold, version=settings.grid_coherence_version,
         )
         coherence_columns = [
             "grid_coherence_score",
             "grid_coherence_neighbors",
             "grid_coherence_dimensions",
+            "grid_coherence_method", "grid_coherence_worst_axis", "grid_coherence_local_distance",
             "grid_coherence_assessed",
             "grid_coherence_outlier",
             "grid_coherence_pass",
         ]
+        coherence_columns = [column for column in coherence_columns if column in resolved]
         scored.loc[resolved.index, coherence_columns] = resolved[coherence_columns]
     scored["grid_coherence_threshold"] = threshold
     return scored, _matlab_grid_coherence_audit(scored, settings, threshold)
@@ -1406,6 +1408,7 @@ def _copy_grid_coherence(
         "grid_coherence_outlier",
         "grid_coherence_pass",
         "grid_coherence_threshold",
+        "grid_coherence_method", "grid_coherence_worst_axis", "grid_coherence_local_distance",
     ]
     available = [column for column in coherence_columns if column in scored_candidates]
     if not available:
@@ -1973,6 +1976,7 @@ def _assemble_automatic_phase_result(
     rp_isomer_audits, rp_isomer_anchors, rp_isomer_models = [], [], []
     for stream_name, stream in streams.items():
         stream["criteria"]["rt_model_source"] = f"matlab_{phase.lower()}_rtdb"
+        stream["criteria"]["grid_coherence_version"] = settings.grid_coherence_version
         stream["criteria"]["use_grid_coherence"] = bool(
             settings.use_grid_coherence
         )

@@ -137,6 +137,9 @@ def _metadata_workbooks(project: str | Path) -> list[Path]:
         candidate = parent / "Processing" / "Annotation"
         if candidate not in directories:
             directories.append(candidate)
+    if root.is_dir():
+        from standard_lipidomics.workflow import discover_standard_streams
+        directories.extend(path.parent for path in discover_standard_streams(root).values())
     paths: list[Path] = []
     for directory in directories:
         if not directory.is_dir():

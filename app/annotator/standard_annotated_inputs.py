@@ -129,6 +129,26 @@ def append_standard_annotations(
     return b"".join(output)
 
 
+def remove_standard_annotation_columns(source: str | Path | bytes) -> bytes:
+    """Recover the exact selected input stored in a saved annotated peak list."""
+    raw = _source_bytes(source)
+    lines = raw.splitlines(keepends=True)
+    if not lines:
+        raise ValueError("The saved annotated peak list is empty.")
+    fields = lines[0].rstrip(b"\r\n").split(b"\t")
+    if fields[1:3] != [b"laser_annotation", b"adduct"]:
+        raise ValueError("The saved peak list has no LASER annotation columns.")
+    output = []
+    for line in lines:
+        ending = b"\r\n" if line.endswith(b"\r\n") else line[-1:] if line.endswith((b"\r", b"\n")) else b""
+        content = line[:-len(ending)] if ending else line
+        fields = content.split(b"\t")
+        if len(fields) < 3:
+            raise ValueError("The saved annotated peak list has a truncated row.")
+        output.append(b"\t".join(fields[:1] + fields[3:]) + ending)
+    return b"".join(output)
+
+
 def write_standard_annotated_inputs(
     sources: Mapping[str, str | Path | bytes | BinaryIO],
     annotations: pd.DataFrame,

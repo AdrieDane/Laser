@@ -7,6 +7,7 @@ from typing import Callable
 
 import pandas as pd
 import streamlit as st
+from presentation.viewer_theme import viewer_plotly_chart
 
 from scientific_defaults import SCIENTIFIC_DEFAULTS
 from standard_adducts import preferred_standard_adduct, primary_adduct_rows
@@ -225,7 +226,7 @@ class StandardGridPage:
         )
         valid = set(state["plot_df"]["key"]) | set(alternatives["key"]) | set(best["key"])
         with plot_col:
-            st.plotly_chart(
+            viewer_plotly_chart(
                 figure, width="stretch", key="standard-grid-viewer", on_select="ignore",
                 config={"scrollZoom": True, "displaylogo": False,
                         "doubleClick": "reset+autosize", "responsive": True,

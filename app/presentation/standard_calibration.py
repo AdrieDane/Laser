@@ -10,6 +10,8 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
+from presentation.app_theme import page_header
+from presentation.standard_rt_calibration import render_rt_calibration
 from annotator.mass_calibrants import (
     build_mass_reference_panel,
     detect_mass_calibration_candidates,
@@ -27,8 +29,10 @@ from resource_paths import REFERENCE_DATA_DIRECTORY
 from scientific_defaults import SCIENTIFIC_DEFAULTS
 from standard_lipidomics.mass_calibration import (
     freeze_mass_calibration,
-    write_calibrated_xcms_files,
+    apply_standard_mass_calibration,
 )
+from standard_lipidomics.project_store import save_calibration_workflow
+from standard_lipidomics.project_layout import workflow_folder, xcms_project_root
 from standard_lipidomics.workflow import (
     discover_standard_streams,
     load_standard_feature_list,
@@ -44,6 +48,9 @@ _OUTPUT_KEY = "standard_calibration_output_directory"
 _STREAMS_KEY = "standard_calibration_streams"
 _INDEX_KEY = "standard_calibration_index"
 _MODELS_KEY = "standard_calibration_models"
+_RT_MODELS_KEY = "standard_calibration_rt_models"
+_STAGE_KEY = "standard_calibration_stage"
+_KINDS_KEY = "standard_calibration_kinds"
 _FINISHED_KEY = "standard_calibration_finished"
 _REFERENCE = REFERENCE_DATA_DIRECTORY / "4d_lipid_reference.csv"
 
@@ -69,7 +76,7 @@ def selected_standard_stages() -> StandardPipelineStageSelection:
 
 
 def _clear_calibration_run(*, keep_paths: bool = True) -> None:
-    for key in (_STREAMS_KEY, _INDEX_KEY, _MODELS_KEY, _FINISHED_KEY):
+    for key in (_STREAMS_KEY, _INDEX_KEY, _MODELS_KEY, _RT_MODELS_KEY, _STAGE_KEY, _KINDS_KEY, _FINISHED_KEY):
         st.session_state.pop(key, None)
     if not keep_paths:
         st.session_state.pop(_INPUT_KEY, None)
@@ -85,61 +92,26 @@ def reset_standard_pipeline() -> None:
 
 
 def render_standard_stage_selection(*, back_action: Callable[[], object]) -> None:
-    """Render the same explicit stage-choice pattern used by the 4D workflow."""
-    st.title("Standard lipidomics")
-    st.caption(
-        "Choose independent modules. Calibration writes reusable XCMS files; "
-        "annotation reads XCMS files and never launches calibration itself."
+    """Five independent modules on the LASER start page."""
+    st.title("LASER Standard Lipidomics")
+    st.caption("Choose a module, then enter your project folder. LASER finds the input files and saved results.")
+    modules = (
+        ("Calibration", "Review mass calibration and save reusable XCMS files.", "calibration"),
+        ("Annotation", "Annotate raw XCMS data or choose a saved calibration.", "annotation"),
+        ("Untargeted analysis", "Compare XCMS features between biological groups.", "untargeted"),
+        ("Open completed annotation", "Reopen a saved annotation workspace.", "open_annotation"),
+        ("Open completed untargeted analysis", "Reopen saved untargeted results and review decisions.", "open_untargeted"),
     )
-    previous = selected_standard_stages()
-    calibration = st.toggle(
-        "XCMS m/z calibration",
-        value=previous.run_calibration,
-        key="standard-pipeline-run-calibration",
-        help=(
-            "Review one precursor-mass model per available RP/NP and POS/NEG "
-            "stream, then export annotation-ready XCMS peak-group lists."
-        ),
-    )
-    annotation = st.toggle(
-        "Annotation",
-        value=previous.run_annotation,
-        key="standard-pipeline-run-annotation",
-        help=(
-            "Run either standard annotation engine from original or previously "
-            "calibrated XCMS peak-group lists."
-        ),
-    )
-    untargeted = st.toggle(
-        "Untargeted analysis",
-        value=previous.run_untargeted,
-        key="standard-pipeline-run-untargeted",
-        help="Compare XCMS features between biological groups. Off by default.",
-    )
-    selection = StandardPipelineStageSelection(
-        run_calibration=bool(calibration), run_annotation=bool(annotation),
-        run_untargeted=bool(untargeted),
-    )
-    st.session_state[STANDARD_PIPELINE_SELECTION_KEY] = selection
-    back_col, continue_col = st.columns(2, gap="medium")
-    if back_col.button("Back to start", width="stretch", key="standard-stage-back"):
-        reset_standard_pipeline()
-        back_action()
-        st.rerun()
-    if continue_col.button(
-        "Continue",
-        type="primary",
-        width="stretch",
-        key="standard-stage-continue",
-        disabled=not selection.any_selected,
-        help=None if selection.any_selected else "Select at least one module.",
-    ):
-        _clear_calibration_run(keep_paths=True)
-        st.session_state[STANDARD_PIPELINE_PAGE_KEY] = (
-            "calibration" if selection.run_calibration else
-            "annotation" if selection.run_annotation else "untargeted"
-        )
-        st.rerun()
+    with st.container(key="home-module-buttons"):
+        for label, description, page in modules:
+            if st.button(label, key=f"standard-module-{page}", width="stretch", help=description):
+                _clear_calibration_run(keep_paths=False)
+                st.session_state.pop(STANDARD_ANNOTATION_PROJECT_KEY, None)
+                st.session_state[STANDARD_PIPELINE_SELECTION_KEY] = StandardPipelineStageSelection(
+                    run_calibration=page == "calibration", run_annotation=page == "annotation",
+                    run_untargeted=page == "untargeted")
+                st.session_state[STANDARD_PIPELINE_PAGE_KEY] = page
+                st.rerun()
 
 
 def render_standard_pipeline_entry(
@@ -155,12 +127,10 @@ def render_standard_pipeline_entry(
     if page == "calibration":
         render_standard_calibration(default_project=default_project)
         return None
-    title_col, back_col = st.columns([5, 1])
-    title_col.title(
-        "Standard lipidomics · Annotation" if page == "annotation"
-        else "Standard lipidomics · Untargeted analysis"
-    )
-    if back_col.button("Back to modules", width="stretch"):
+    titles = {"annotation": "Annotation", "untargeted": "Untargeted analysis",
+              "open_annotation": "Open completed annotation",
+              "open_untargeted": "Open completed untargeted analysis"}
+    if page_header(titles.get(page, "LASER Standard Lipidomics"), key="standard-module-back"):
         st.session_state[STANDARD_PIPELINE_PAGE_KEY] = "select"
         st.rerun()
     st.caption(
@@ -228,24 +198,18 @@ def _search_calibrants(features: pd.DataFrame, *, stream: str, prefix: str) -> d
 
 def _render_calibration_setup(default_project: str) -> None:
     default_input = str(st.session_state.get(_INPUT_KEY, default_project))
-    default_output = str(st.session_state.get(_OUTPUT_KEY, ""))
     with st.form("standard-xcms-calibration-setup", border=True):
         input_directory = st.text_input(
-            "XCMS project folder",
+            "Project folder",
             value=default_input,
             help=(
                 "Project root, Processing/Annotation folder, or any folder "
                 "containing peakgrouplist_<phase>_<polarity>.txt files."
             ),
         )
-        output_directory = st.text_input(
-            "Calibrated XCMS output folder",
-            value=default_output,
-            help=(
-                "LASER writes standalone peakgrouplist files and a JSON audit "
-                "manifest here. Existing calibration outputs are not overwritten."
-            ),
-        )
+        st.caption("Calibration exports are saved in the project's Calibration folder.")
+        mass_enabled = st.checkbox("m/z calibration", value=True)
+        rt_enabled = st.checkbox("RT calibration", value=False)
         phase_choice = st.radio(
             "Chromatography", ("Both", "RP", "NP"), horizontal=True
         )
@@ -253,6 +217,9 @@ def _render_calibration_setup(default_project: str) -> None:
             "Review XCMS calibration", type="primary", width="stretch"
         )
     if not start:
+        return
+    if not (mass_enabled or rt_enabled):
+        st.error("Select m/z calibration, RT calibration, or both.")
         return
     if not input_directory:
         st.error("Choose the XCMS project folder.")
@@ -271,14 +238,15 @@ def _render_calibration_setup(default_project: str) -> None:
     if not streams:
         st.error("No selected XCMS peak-group lists were found.")
         return
-    output = Path(output_directory).expanduser() if output_directory else (
-        Path(input_directory).expanduser().resolve() / "LASER_calibrated_XCMS"
-    )
-    st.session_state[_INPUT_KEY] = str(Path(input_directory).expanduser().resolve())
-    st.session_state[_OUTPUT_KEY] = str(output.resolve())
+    root = xcms_project_root(input_directory)
+    st.session_state[_INPUT_KEY] = str(root)
+    st.session_state[_OUTPUT_KEY] = str(workflow_folder(root, "Calibration"))
     st.session_state[_STREAMS_KEY] = streams
     st.session_state[_INDEX_KEY] = 0
     st.session_state[_MODELS_KEY] = {}
+    st.session_state[_RT_MODELS_KEY] = {}
+    st.session_state[_KINDS_KEY] = (mass_enabled, rt_enabled)
+    st.session_state[_STAGE_KEY] = "mass" if mass_enabled else "rt"
     st.session_state.pop(_FINISHED_KEY, None)
     st.rerun()
 
@@ -290,17 +258,12 @@ def _finish_calibration() -> None:
     all_sources = discover_standard_streams(input_directory)
     sources = {stream: all_sources[stream] for stream in streams}
     calibrations = dict(st.session_state.get(_MODELS_KEY, {}))
-    paths = write_calibrated_xcms_files(
-        sources, calibrations, output_directory, overwrite=False
-    )
     st.session_state[_FINISHED_KEY] = {
         "output_directory": str(output_directory.resolve()),
-        "paths": {stream: str(path.resolve()) for stream, path in paths.items()},
+        "sources": sources, "models": calibrations,
+        "rt_models": dict(st.session_state.get(_RT_MODELS_KEY, {})), "paths": {}, "saved": False,
         "applied": tuple(stream for stream in streams if stream in calibrations),
     }
-    st.session_state[STANDARD_ANNOTATION_PROJECT_KEY] = str(
-        output_directory.resolve()
-    )
     for key in (_STREAMS_KEY, _INDEX_KEY, _MODELS_KEY):
         st.session_state.pop(key, None)
     st.rerun()
@@ -312,20 +275,37 @@ def _render_finished() -> None:
     rows = [
         {
             "stream": stream,
-            "calibration": "applied" if stream in applied else "not applied",
+            "m/z calibration": "applied" if stream in applied else "not applied",
+            "RT calibration": "applied" if stream in finished.get("rt_models", {}) else "not applied",
             "XCMS file": path,
         }
         for stream, path in finished["paths"].items()
     ]
-    st.success(
-        "Calibration module complete. Annotation-ready XCMS files were exported "
-        f"to {finished['output_directory']}."
-    )
-    st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
-    st.caption(
-        "LASER_standard_mass_calibration.json records every source, fitted model, "
-        "and skipped stream. Annotation can use this folder directly."
-    )
+    if finished["saved"]:
+        st.success(f"Calibration saved: {finished['output_directory']}")
+        st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
+    else:
+        st.success("Calibration review complete. Save this calibration to use it in annotation.")
+    st.caption(f"Save location: {finished['output_directory']}")
+    existing = st.radio(
+        "When an old project exists", ("Archive old project", "Overwrite old project"),
+        horizontal=True, key="standard-calibration-existing")
+    if st.button("Save calibration", type="primary", width="stretch"):
+        try:
+            paths, archive = save_calibration_workflow(
+                st.session_state[_INPUT_KEY], finished["sources"], finished["models"],
+                existing="archive" if existing.startswith("Archive") else "overwrite",
+                rt_calibrations=finished.get("rt_models", {}))
+            finished["paths"] = {name: str(path) for name, path in paths.items()}
+            finished["saved"] = True
+            st.session_state[STANDARD_ANNOTATION_PROJECT_KEY] = st.session_state[_INPUT_KEY]
+            st.session_state["standard-annotation-input-kind"] = "Calibrated XCMS data"
+            st.success("Calibration saved.")
+            if archive:
+                st.caption(f"Previous calibration archived at {archive}")
+        except (OSError, ValueError) as exc:
+            st.error(f"Calibration could not be saved: {exc}")
+    st.caption("The calibration audit contains the reviewed models and skipped streams. Archived calibrations remain available in Annotation.")
     selection = selected_standard_stages()
     left, right = st.columns(2, gap="medium")
     if left.button(
@@ -354,18 +334,12 @@ def _render_finished() -> None:
 
 def render_standard_calibration(*, default_project: str) -> None:
     """Render a calibration-only workflow that has no annotation side effects."""
-    title_col, back_col = st.columns([5, 1])
-    title_col.title("Standard lipidomics · XCMS m/z calibration")
-    if back_col.button(
-        "Back to modules", width="stretch", key="standard-calibration-back"
-    ):
+    if page_header("Calibration", key="standard-calibration-back"):
         _clear_calibration_run(keep_paths=True)
         st.session_state[STANDARD_PIPELINE_PAGE_KEY] = "select"
         st.rerun()
-    st.caption(
-        "This module only calibrates and exports XCMS peak-group lists. It does "
-        "not start annotation."
-    )
+    st.caption("Review independent m/z and RT calibrations for each XCMS stream.")
+    st.info("RT calibration uses reviewed standards. Saved XCMS files use the reference RT scale and retain the original RTs in audit columns.")
     if st.session_state.get(_FINISHED_KEY):
         _render_finished()
         return
@@ -389,6 +363,29 @@ def render_standard_calibration(*, default_project: str) -> None:
     source = discover_standard_streams(st.session_state[_INPUT_KEY])[stream]
     features = load_standard_feature_list(source)
     prefix = _prefix(stream)
+    mass_enabled, rt_enabled = st.session_state.get(_KINDS_KEY, (True, False))
+    if st.session_state.get(_STAGE_KEY) == "rt":
+        features = apply_standard_mass_calibration(features, st.session_state.get(_MODELS_KEY, {}).get(stream))
+        rt_decision = render_rt_calibration(features, load_reference(_REFERENCE), stream=stream, prefix=prefix)
+        if rt_decision.action == "none":
+            return
+        if rt_decision.action == "back":
+            if mass_enabled:
+                st.session_state[_STAGE_KEY] = "mass"
+            elif index > 0:
+                st.session_state[_INDEX_KEY] = index - 1
+            else:
+                _clear_calibration_run(keep_paths=True)
+        else:
+            rt_models = dict(st.session_state.get(_RT_MODELS_KEY, {}))
+            if rt_decision.action == "apply":
+                rt_models[stream] = rt_decision.calibration
+            else:
+                rt_models.pop(stream, None)
+            st.session_state[_RT_MODELS_KEY] = rt_models
+            st.session_state[_INDEX_KEY] = index + 1
+            st.session_state[_STAGE_KEY] = "mass" if mass_enabled else "rt"
+        st.rerun()
     _initialize_controls(prefix)
     phase, polarity = stream.split("_", 1)
     st.caption(
@@ -430,7 +427,10 @@ def render_standard_calibration(*, default_project: str) -> None:
         calibration["source_mass_search_signature"] = decision.search_signature
         models[stream] = freeze_mass_calibration(calibration)
     st.session_state[_MODELS_KEY] = models
-    st.session_state[_INDEX_KEY] = index + 1
+    if rt_enabled:
+        st.session_state[_STAGE_KEY] = "rt"
+    else:
+        st.session_state[_INDEX_KEY] = index + 1
     st.rerun()
 
 

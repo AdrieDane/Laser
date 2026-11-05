@@ -27,6 +27,9 @@ GRID_COHERENCE_COLUMNS = [
     "grid_coherence_score",
     "grid_coherence_neighbors",
     "grid_coherence_dimensions",
+    "grid_coherence_method",
+    "grid_coherence_worst_axis",
+    "grid_coherence_local_distance",
     "grid_coherence_assessed",
     "grid_coherence_outlier",
     "grid_coherence_pass",
@@ -63,7 +66,7 @@ def _empty_scores(data: pd.DataFrame) -> pd.DataFrame:
     return scored
 
 
-def score_grid_coherence(
+def _score_grid_coherence_v1(
     annotations: pd.DataFrame,
     ppm_tolerance: float,
     rt_tolerance: float,
@@ -223,3 +226,13 @@ def score_grid_coherence(
             "_ccs_norm", "_origin_distance",
         ]
     )
+
+
+def score_grid_coherence(*args, version: str = "v1", **kwargs) -> pd.DataFrame:
+    """Select the requested scientific method; historical V1 stays the default."""
+    if version == "v2":
+        from annotator.grid_coherence_v2 import score_grid_coherence as score_v2
+        return score_v2(*args, **kwargs)
+    if version != "v1":
+        raise ValueError(f"Unknown grid coherence version: {version}")
+    return _score_grid_coherence_v1(*args, **kwargs)

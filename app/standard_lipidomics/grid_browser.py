@@ -25,6 +25,7 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+from presentation.viewer_theme import viewer_plotly_chart
 
 from annotator.grid_coherence import GRID_COHERENCE_COLUMNS
 from presentation.standard_grid.state import (
@@ -656,7 +657,7 @@ def _render_statistics(active_row, sample_cols: list[str]):
         showlegend=False,
         bargap=0.12,
     )
-    st.plotly_chart(
+    viewer_plotly_chart(
         fig,
         width="stretch",
         key="standard-stats::viewer",
@@ -839,7 +840,7 @@ def _render_species_candidate_diagnostics(
         body_height=max(220, 32 * len(detail) + 45),
     )
     with st.container(border=True, key=f"{key_prefix}-diagnostics-shell"):
-        st.plotly_chart(
+        viewer_plotly_chart(
             fig_header,
             width="stretch",
             key=f"{key_prefix}-detail-header",
@@ -851,7 +852,7 @@ def _render_species_candidate_diagnostics(
             },
         )
         with st.container(height=360, border=False):
-            st.plotly_chart(
+            viewer_plotly_chart(
                 fig_body,
                 width="stretch",
                 key=f"{key_prefix}-detail-body",

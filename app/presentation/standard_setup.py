@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass
+import hashlib
 from pathlib import Path
 from typing import Any
 
@@ -16,6 +17,7 @@ from standard_lipidomics.workflow import (
     STREAM_ORDER,
     discover_standard_streams,
 )
+from standard_lipidomics.project_layout import xcms_project_root
 from standard_lipidomics.policy import (
     DEFAULT_MATLAB_POLICY_PATH,
     discover_matlab_fa_ranges,
@@ -50,6 +52,7 @@ class MatlabFormState:
     use_pe_rebuild: bool = True
     pe_rebuild_score_threshold: float = 0.10
     use_experimental_pe_selector: bool = False
+    grid_coherence_version: str = "v1"
 
 
 @dataclass(frozen=True)
@@ -69,6 +72,7 @@ class LaserFormState:
     grid_coherence_threshold: float
     detect: bool
     run: bool
+    grid_coherence_version: str = "v1"
 
 
 def _matlab_form(
@@ -84,12 +88,7 @@ def _matlab_form(
                   "phase identity."),
         )
         phases = ("RP", "NP") if phase_choice == "Both" else (phase_choice,)
-        input_directory = st.text_input(
-            "XCMS project folder", value=default_project,
-            help=("The project root or its Processing/Annotation folder, the folder "
-                  "containing peakgrouplist_<phase>_Pos.txt and/or "
-                  "peakgrouplist_<phase>_Neg.txt. LASER detects them automatically."),
-        )
+        input_directory = default_project
         with st.expander("Annotation settings", expanded=False):
             reference_directory = st.text_input(
                 "MATLAB reference bundle (Code / DataBase / RTDB)",
@@ -140,6 +139,8 @@ def _matlab_form(
                 "Use grid coherence as an annotation filter", value=True,
                 key="standard_matlab_use_grid_coherence",
                 help="Exclude assessed local grid outliers from the final annotation table.")
+            grid_version = st.selectbox("Grid coherence method", ("Grid coherence V1", "Grid coherence V2"),
+                                        key="standard-matlab-grid-version")
             coherence = st.number_input(
                 "Minimum grid coherence", min_value=0.0, max_value=1.0,
                 value=SCIENTIFIC_DEFAULTS.grid_coherence_threshold, step=0.05,
@@ -180,6 +181,7 @@ def _matlab_form(
         composition_ranges=composition_ranges, submitted=submitted,
         use_pe_rebuild=bool(pe_rebuild), pe_rebuild_score_threshold=float(pe_score),
         use_experimental_pe_selector=bool(experimental_pe),
+        grid_coherence_version="v2" if grid_version.endswith("V2") else "v1",
     )
 
 
@@ -243,6 +245,7 @@ def _run_matlab_form(
             use_pe_rebuild=state.use_pe_rebuild,
             pe_rebuild_score_threshold=state.pe_rebuild_score_threshold,
             use_experimental_pe_selector=state.use_experimental_pe_selector,
+            grid_coherence_version=state.grid_coherence_version,
         )
     except MatlabAnnotationError as error:
         bar.empty()
@@ -257,15 +260,16 @@ def _run_matlab_form(
     st.session_state.pop("standard-results-enable-untargeted", None)
     st.session_state.standard_auto_save_annotation_pending = True
     st.session_state.standard_auto_save_untargeted_pending = True
-    st.session_state.standard_project_directory = str(project.resolve())
-    st.session_state.standard_input_sources = dict(sources)
+    st.session_state.standard_project_directory = str(xcms_project_root(project))
+    st.session_state.standard_input_sources = {name: path.read_bytes() for name, path in sources.items()}
     for key in ("standard_report_html", "standard_report_signature",
                 "standard_untargeted_review_basket", "standard_untargeted_analysis",
                 "standard_untargeted_signature"):
         st.session_state.pop(key, None)
     st.session_state.standard_headless_config = {
         "workflow": "standard", "engine": "matlab",
-        "inputs": {"project": str(project.resolve()),
+        "inputs": {"project": str(xcms_project_root(project)),
+                   "xcms_source": str(project.resolve()),
                    "matlab_reference": str(Path(state.reference_directory).expanduser().resolve())},
         "annotation": {
             "phases": list(state.phases), "only_accepted": True,
@@ -277,6 +281,7 @@ def _run_matlab_form(
             "minimum_anchors": state.minimum_anchors,
             "use_grid_coherence": state.use_grid_coherence,
             "grid_coherence_threshold": state.grid_coherence_threshold,
+            "grid_coherence_version": state.grid_coherence_version,
             "use_post_regression_completion": True,
             "post_regression_confidence_threshold": 0.50,
             "post_regression_ambiguity_margin": 0.10,
@@ -348,7 +353,7 @@ def _laser_reference_inputs(
 
 def _laser_annotation_criteria(
     use_np_rt: bool,
-) -> tuple[float, float, bool, float, bool, float]:
+) -> tuple[float, float, bool, float, bool, float, str]:
     first, second, third = st.columns(3)
     ppm = first.number_input(
         "m/z tolerance (ppm)", min_value=0.1,
@@ -371,13 +376,15 @@ def _laser_annotation_criteria(
         "Use grid coherence as an annotation filter", value=True,
         key="standard_laser_use_grid_coherence",
         help="Exclude assessed local grid outliers from final annotations.")
+    grid_version = st.selectbox("Grid coherence method", ("Grid coherence V1", "Grid coherence V2"),
+                                key="standard-laser-grid-version")
     threshold = threshold_col.number_input(
         "Minimum grid coherence", min_value=0.0, max_value=1.0,
         value=SCIENTIFIC_DEFAULTS.grid_coherence_threshold, step=0.05,
         key="standard_laser_grid_coherence_threshold",
         help="Scores below this value are filtered while the option is enabled.")
     return (float(ppm), float(rt_tolerance), bool(adapt), float(np_tolerance),
-            bool(use_coherence), float(threshold))
+            bool(use_coherence), float(threshold), "v2" if grid_version.endswith("V2") else "v1")
 
 
 def _laser_form(
@@ -385,9 +392,7 @@ def _laser_form(
     render_composition_ranges: Callable[[str], Any],
 ) -> LaserFormState:
     with st.form("standard-lipidomics-inputs", border=True):
-        project = st.text_input(
-            "MATLAB/XCMS project folder", value=default_project,
-            help="Choose the project root or Processing/Annotation folder.")
+        project = default_project
         use_np_rt = st.checkbox(
             "Use anchored NP retention-time grid", value=True,
             help="Apply the NP reference only after guarded dataset calibration.")
@@ -406,7 +411,7 @@ def _laser_form(
         composition_ranges=composition, ppm=criteria[0], rt_tolerance=criteria[1],
         adapt_class_rt=criteria[2], np_rt_tolerance=criteria[3],
         use_grid_coherence=criteria[4], grid_coherence_threshold=criteria[5],
-        detect=detect, run=run,
+        detect=detect, run=run, grid_coherence_version=criteria[6],
     )
 
 
@@ -446,7 +451,7 @@ def _store_laser_result(
     result: dict, state: LaserFormState, reference: Path, policy: Path,
     np_reference: Path | None, sources: dict[str, bytes],
 ) -> None:
-    project = (str(Path(state.input_directory).expanduser().resolve())
+    project = (str(xcms_project_root(state.input_directory))
                if state.input_directory else None)
     st.session_state.standard_annotation_result = result
     st.session_state.standard_results_page = "menu"
@@ -464,6 +469,7 @@ def _store_laser_result(
         "workflow": "standard", "engine": "laser",
         "inputs": {
             "project": project or "REPLACE_WITH_XCMS_PROJECT",
+            "xcms_source": str(Path(state.input_directory).expanduser().resolve()) if state.input_directory else None,
             "reference": str(reference.resolve()),
             "matlab_policy": str(policy.resolve()),
             "np_rt_reference": str(np_reference.resolve()) if np_reference else None,
@@ -476,6 +482,7 @@ def _store_laser_result(
             "np_rt_tolerance_min": state.np_rt_tolerance,
             "use_grid_coherence": state.use_grid_coherence,
             "grid_coherence_threshold": state.grid_coherence_threshold,
+            "grid_coherence_version": state.grid_coherence_version,
             "composition_ranges": state.composition_ranges.to_dict(),
         },
         "output": {"directory": "results/standard", "overwrite": False},
@@ -509,6 +516,9 @@ def _execute_laser_form(state: LaserFormState, run_cached: Callable[..., dict]) 
             state.np_rt_tolerance, state.use_grid_coherence,
             state.grid_coherence_threshold, carbon_range, db_range,
             str(range_path) if range_path else "", state.composition_ranges, sources,
+            grid_coherence_version=state.grid_coherence_version,
+            source_signature=tuple((name, hashlib.sha256(data).hexdigest())
+                                   for name, data in sorted(sources.items())),
         )
     _store_laser_result(result, state, reference, policy, np_reference, sources)
 

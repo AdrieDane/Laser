@@ -150,6 +150,7 @@ def build_automatic_anchor_settings(
             "positional_isomer_local_composition_distance",
             defaults.positional_isomer_local_composition_distance,
         )),
+        grid_coherence_version=str(values.get("grid_coherence_version", "v1")),
         use_grid_coherence=bool(values.get(
             "use_grid_coherence", defaults.use_grid_coherence,
         )),
@@ -292,6 +293,7 @@ class LaserReferenceEngine:
                 "np_rt_tolerance_min", 0.30,
             )),
             use_grid_coherence=bool(values.get("use_grid_coherence", True)),
+            grid_coherence_version=str(values.get("grid_coherence_version", "v1")),
             grid_coherence_threshold=_float_setting(values.get(
                 "grid_coherence_threshold",
                 SCIENTIFIC_DEFAULTS.grid_coherence_threshold,

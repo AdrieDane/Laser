@@ -39,37 +39,78 @@ to override those defaults.
 
 Set `LASER_STANDARD_PROJECT` to prefill the XCMS project folder.
 
-### Project results
+### Project modules and results
 
-The GUI can run annotation and untargeted analysis together or run untargeted
-analysis from XCMS peak-group lists alone. Untargeted analysis is off by default.
-Completed runs are saved automatically in the XCMS project folder. Both result
-pages also have a **Save** button that remakes exports from the current result
-without rerunning annotation. The default is to archive the previous export;
-**Overwrite previous export** is also available.
+The start page has five modules: **Calibration**, **Annotation**, **Untargeted
+analysis**, **Open completed annotation**, and **Open completed untargeted
+analysis**. Enter the **project folder** in any module; LASER discovers the XCMS
+input files and saved results. The XCMS input subfolder can have another name
+when it is the only input folder. Direct peak lists, `metadata/`, and the older
+`Processing/Annotation` input layout remain supported.
 
 ```text
 project folder/
-  metadata/                 # XCMS peak-group lists and sample metadata
-  LASER/
-    Annotation/
-      LASER_PROJECT.json
-      annotated_peaklists/
-      tables/
-    Untargeted/
-      LASER_PROJECT.json
-      tables/
-    Archive/
-      Annotation/<timestamp>/
-      Untargeted/<timestamp>/
+  XCMS/                     # original peak-group lists and sample workbooks
+  Calibration/              # current calibrated lists and model audit
+  LASER/                    # annotation exports and saved GUI workspace
+    LASER_PROJECT.json
+    annotated_peaklists/
+    tables/
+  Untargeted/               # untargeted exports and saved GUI workspace
+    LASER_PROJECT.json
+    tables/
+  Archive/
+    Calibration/<timestamp>/
+    LASER/<timestamp>/
+    Untargeted/<timestamp>/
+  metadata/                 # portable copies of original inputs and metadata
 ```
 
-Existing XCMS layouts with `Processing/Annotation` remain supported. On the
-first save, LASER copies discovered XCMS peak lists, sample workbooks, and
-`internal_standards.tsv` into `metadata/` while leaving source files in place. On the
-start screen, enter the project folder and choose **Open saved annotation** or
-**Open saved untargeted analysis** to restore the saved GUI workspace without
-rerunning annotation or untargeted statistics.
+**Calibration** supports independent m/z and RT calibration, or both, for each
+available RP/NP and positive/negative stream. Review the standards and click
+**Save calibration**. **Annotation** offers **Raw XCMS data** or **Calibrated XCMS
+data**. For calibrated data, choose the current export or an archived version
+from **Calibration version**; dates and available streams identify each version.
+The selected files are recorded with the saved annotation.
+
+RT calibration brings over the four models and standard-review diagnostics from
+[LASER-4D `a188f72`](https://github.com/YRJJaspers/LASER-4D-lipidomics/tree/a188f72a4366055238b474ab0826964430f33ee5):
+constant shift, linear, robust linear, and monotonic piecewise linear. Its model
+maps library RT to observed RT. For the standard XCMS workflow, the export
+applies the inverse to express measured peak RTs on the library scale, including
+RT boundaries. This lets both annotation engines consume a saved calibration.
+Original RT values are retained in `LASER_original_*` audit columns; original
+XCMS files are unchanged. RT models, reviewed anchors, fit metrics and
+leave-one-standard-out diagnostics are saved in the calibration audit. Existing
+automatic annotation-time RT models still operate on the selected inputs.
+
+Annotation settings offer **Grid coherence V1** (the existing default) and
+**Grid coherence V2**, copied from the same LASER-4D commit. V2 measures the worst
+axis deviation from the local median using robust within-cluster spread and
+native-unit noise floors. Duplicate candidates at one composition node cannot
+increase support, and sparse nodes remain unassessed. Standard lipidomics uses
+m/z and RT evidence without CCS. The run settings and saved tables record the
+selected method. The LASER-4D internal method identifier `local_median_mad_v3`
+is retained for provenance; this tool labels the option **Grid coherence V2**.
+
+Calibration, annotation and untargeted results each have a **Save** button with
+**Archive old project** (default) and **Overwrite old project** options. Failed
+writes restore the previous result. Annotation and completed untargeted analyses
+also save automatically, archiving the previous version. Their start-page
+**Open completed…** modules restore the saved GUI workspace without rerunning
+annotation or statistics. Older saves under `LASER/Annotation` and
+`LASER/Untargeted` remain readable. To reopen an archived annotation or
+untargeted result, enter its timestamped result folder in the corresponding
+**Open completed…** module. Saved annotation peak lists retain the exact chosen
+input, so resaving cannot silently substitute a newer calibration.
+
+The **Minimal** and **Midnight** appearances, controls and page headers follow
+the same newest LASER-4D branch (`codex/annotation-viewer-performance`, commit
+`a188f72`, 4 November 2026). Change appearance using **Theme** on the start page.
+
+These changes have software and synthetic-data validation. They do not establish
+a new study-data annotation benchmark or an accuracy improvement for V2 or RT
+calibration.
 
 ## Windows dataset scanner — ready-to-run download
 

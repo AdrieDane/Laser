@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+from presentation.viewer_theme import viewer_plotly_chart
 
 from standard_traces import StandardSampleTrace, load_standard_feature_traces
 from viewer_common import apply_matlab_plot_style, stable_color_map
@@ -205,7 +206,7 @@ def _standard_trace_figure(
                 x0=lower, x1=upper,
                 fillcolor="rgba(0,114,178,0.08)", line_width=0,
             )
-    st.plotly_chart(
+    viewer_plotly_chart(
         figure,
         width="stretch",
         key=key,
@@ -365,7 +366,7 @@ def _render_alternative_traces(
         x_range = [min(item[0] for item in ranges), max(item[1] for item in ranges)]
         figure.update_xaxes(range=x_range)
         _apply_trace_y_range(figure, all_traces, x_range)
-    st.plotly_chart(
+    viewer_plotly_chart(
         figure,
         width="stretch",
         key=f"standard-same-id-chromatograms::{stream_name}::{species_id}",

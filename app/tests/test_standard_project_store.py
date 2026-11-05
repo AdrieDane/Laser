@@ -57,8 +57,8 @@ def test_annotation_saves_in_project_and_reopens_without_annotation(tmp_path):
         annotated_inputs={"RP_Pos": b"annotated"},
     )
     assert archive is None
-    assert paths["project_manifest"] == project / "LASER" / "Annotation" / "LASER_PROJECT.json"
-    assert (project / "LASER" / "Annotation" / "annotated_peaklists" /
+    assert paths["project_manifest"] == project / "LASER" / "LASER_PROJECT.json"
+    assert (project / "LASER" / "annotated_peaklists" /
             "peakgrouplist_RP_Pos_annotated.txt").read_bytes() == b"annotated"
     assert (metadata / "peakgrouplist_RP_Pos.txt").read_text() == "input"
     restored, _ = load_annotation_workflow(project)
@@ -79,7 +79,7 @@ def test_resave_archives_previous_export_and_overwrite_removes_previous(tmp_path
     assert load_annotation_workflow(project)[0]["identified_lipids"].iloc[0]["feature_identity"] == "PC(36:2)"
     _, overwritten = save_annotation_workflow(project, result, existing="overwrite")
     assert overwritten is None
-    assert len(list((project / "LASER" / "Archive" / "Annotation").iterdir())) == 1
+    assert len(list((project / "Archive" / "LASER").iterdir())) == 1
 
 
 def test_failed_resave_restores_previous_annotation(tmp_path):

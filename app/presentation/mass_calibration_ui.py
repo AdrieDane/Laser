@@ -11,6 +11,7 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+from presentation.viewer_theme import viewer_plotly_chart
 
 from annotator.mass_calibrants import MASS_REFERENCE_PANELS
 from annotator.mass_calibrants import evaluate_lipid_validation_panel
@@ -242,7 +243,7 @@ def _render_fit_result(
     )
     figure.update_xaxes(fixedrange=True)
     figure.update_yaxes(fixedrange=True)
-    st.plotly_chart(
+    viewer_plotly_chart(
         figure, width="stretch", key=_key(view, "calibration_line"),
         config={"displayModeBar": False, "scrollZoom": False},
     )

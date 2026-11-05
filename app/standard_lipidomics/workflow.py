@@ -17,6 +17,7 @@ import numpy as np
 import pandas as pd
 
 from scientific_defaults import SCIENTIFIC_DEFAULTS
+from standard_lipidomics.rt_calibration import restore_rt_provenance
 
 from annotator.export import build_annotated_features_export
 from annotator.features import load_feature_list, read_raw
@@ -119,31 +120,34 @@ def discover_standard_streams(directory: str | Path) -> dict[str, Path]:
     if not root.is_dir():
         raise ValueError(f"Standard-lipidomics input folder not found: {root}")
 
-    metadata_root = root / "metadata"
-    search_directories = [metadata_root, root] if metadata_root.is_dir() else [root]
-    for candidate_root in (root, *root.parents):
-        metadata = candidate_root / "metadata"
-        if metadata.is_dir() and metadata not in search_directories:
-            search_directories.append(metadata)
-        candidate = candidate_root / "Processing" / "Annotation"
-        if candidate.is_dir() and candidate not in search_directories:
-            search_directories.append(candidate)
-
-    for search_directory in search_directories:
+    def find(folder: Path) -> dict[str, Path]:
         found: dict[str, Path] = {}
-        paths = sorted(search_directory.glob("*.txt")) + sorted(
-            search_directory.glob("*.tsv")
-        )
-        for path in paths:
+        for path in sorted(folder.glob("*.txt")) + sorted(folder.glob("*.tsv")):
+            if "peakgrouplist" not in path.name.casefold() or "annotated" in path.stem.casefold():
+                continue
             try:
                 stream = parse_standard_stream(path)
             except ValueError:
                 continue
-            if "peakgrouplist" in path.name.casefold():
-                found.setdefault(stream.name, path)
+            if stream.name in found:
+                raise ValueError(f"Multiple XCMS lists for {stream.name} in {folder}.")
+            found[stream.name] = path
+        return {name: found[name] for name in STREAM_ORDER if name in found}
+
+    # An explicitly selected export (including an archived calibration) wins.
+    # Never fall back to an unrelated ancestor project's inputs.
+    directories = [root, root / "XCMS", root / "Processing" / "Annotation"]
+    for folder in directories:
+        found = find(folder)
         if found:
-            return {name: found[name] for name in STREAM_ORDER if name in found}
-    return {}
+            return found
+    excluded = {"laser", "untargeted", "calibration", "archive", "laser_calibrated_xcms", "processing", "metadata"}
+    matches = [find(folder) for folder in sorted(root.iterdir())
+               if folder.is_dir() and folder.name.casefold() not in excluded]
+    matches = [found for found in matches if found]
+    if len(matches) > 1:
+        raise ValueError("Multiple XCMS input folders were found. Keep one input folder in the project.")
+    return matches[0] if matches else find(root / "metadata")
 
 
 def _source_bytes(source: str | Path | bytes | BinaryIO) -> bytes:
@@ -223,7 +227,7 @@ def load_standard_feature_list(source: str | Path | bytes | BinaryIO) -> pd.Data
         features.attrs["sample_group_mapping_status"] = (
             "unavailable" if not group_columns else "group_size_mismatch"
         )
-    return restore_calibrated_xcms_provenance(features, raw)
+    return restore_rt_provenance(restore_calibrated_xcms_provenance(features, raw), raw)
 
 
 def _median_absolute_deviation(values: pd.Series | np.ndarray) -> float:
@@ -448,6 +452,7 @@ def _calculate_standard_grid_coherence(
     rt_tolerance_min: float,
     threshold: float,
     used_for_annotation: bool,
+    version: str = "v1",
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Score the complete standard-mode candidate neighbourhood.
 
@@ -463,7 +468,7 @@ def _calculate_standard_grid_coherence(
         rt_tolerance=float(rt_tolerance_min),
         ccs_tolerance_percent=1.0,
         use_ccs=False,
-        threshold=threshold,
+        threshold=threshold, version=version,
     )
     scored["grid_coherence_threshold"] = threshold
     assessed = (
@@ -678,6 +683,7 @@ def annotate_standard_stream(
     np_rt_tolerance_min: float = 0.30,
     use_grid_coherence: bool = True,
     grid_coherence_threshold: float = DEFAULT_GRID_COHERENCE_THRESHOLD,
+    grid_coherence_version: str = "v1",
     mass_calibration: object = None,
 ) -> dict:
     """Annotate one conventional stream without CCS or MS/MS evidence.
@@ -837,6 +843,7 @@ def annotate_standard_stream(
         rt_tolerance_min=rt_tolerance_min,
         threshold=grid_coherence_threshold,
         used_for_annotation=bool(use_grid_coherence),
+        version=grid_coherence_version,
     )
     # Keep the complete scored pool available to the grid browser.  It is
     # deliberately broader than the final selected annotation table so the
@@ -959,6 +966,7 @@ def annotate_standard_stream(
             "mass_calibration": freeze_mass_calibration(mass_calibration),
             "use_grid_coherence": bool(use_grid_coherence),
             "grid_coherence_threshold": float(grid_coherence_threshold),
+            "grid_coherence_version": grid_coherence_version,
         },
     }
 
@@ -1066,6 +1074,7 @@ def annotate_standard_batch(
     np_rt_tolerance_min: float = 0.30,
     use_grid_coherence: bool = True,
     grid_coherence_threshold: float = DEFAULT_GRID_COHERENCE_THRESHOLD,
+    grid_coherence_version: str = "v1",
     mass_calibrations: Mapping[str, object] | None = None,
 ) -> dict:
     """Annotate all supplied conventional streams and combine stable exports."""
@@ -1093,6 +1102,7 @@ def annotate_standard_batch(
             np_rt_tolerance_min=np_rt_tolerance_min,
             use_grid_coherence=use_grid_coherence,
             grid_coherence_threshold=grid_coherence_threshold,
+            grid_coherence_version=grid_coherence_version,
             mass_calibration=(mass_calibrations or {}).get(name),
         )
         results[name] = result
@@ -1162,6 +1172,7 @@ def annotate_standard_batch(
         "np_rt_reference_applied": np_rt_reference is not None,
         "grid_coherence_enabled": bool(use_grid_coherence),
         "grid_coherence_threshold": float(grid_coherence_threshold),
+        "grid_coherence_version": grid_coherence_version,
         "composition_range_settings": (
             composition_ranges.to_dict() if composition_ranges is not None else None
         ),

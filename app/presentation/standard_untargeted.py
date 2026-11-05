@@ -10,6 +10,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import streamlit as st
+from presentation.viewer_theme import viewer_plotly_chart
 
 from standard_lipidomics.workflow import load_standard_feature_list
 from scientific_defaults import SCIENTIFIC_DEFAULTS
@@ -254,7 +255,7 @@ def _render_untargeted_volcano(
                          hovermode="closest")
     figure.update_xaxes(title_text="log2 fold change (B vs A)", row=2)
     figure.update_yaxes(title_text="−log10(raw p-value)", col=1)
-    st.plotly_chart(figure, width="stretch", config={"displaylogo": False})
+    viewer_plotly_chart(figure, width="stretch", config={"displaylogo": False})
 
 
 def _render_significant_features(significant: pd.DataFrame) -> None:
@@ -678,7 +679,7 @@ def _render_cross_mode_abundance_correlation(
                 yaxis_title=f"{target_stream} feature {target_feature} · log₂(intensity + 1)",
                 legend=dict(orientation="h", yanchor="bottom", y=1.01, x=0.0),
             )
-            st.plotly_chart(
+            viewer_plotly_chart(
                 figure, width="stretch", config={"displaylogo": False},
                 key=f"standard-untargeted-correlation::{source_stream}::{source_feature}::{target_stream}::{target_feature}",
             )
@@ -743,7 +744,7 @@ def _render_selected_untargeted_abundance(
         hovermode="closest",
         legend=dict(orientation="h", yanchor="bottom", y=1.01, x=0.0),
     )
-    st.plotly_chart(
+    viewer_plotly_chart(
         figure, width="stretch",
         key=f"standard-untargeted-abundance::{stream}::{feature_id}",
         config={"displaylogo": False},
@@ -960,7 +961,7 @@ def _render_standard_untargeted_feature_map(
     if table.empty:
         st.info("No unannotated features with valid RT and m/z are available.")
         return
-    event = st.plotly_chart(
+    event = viewer_plotly_chart(
         _build_untargeted_map_figure(
             table, significant, background, threshold, current),
         width="stretch", key=f"standard-untargeted-map::{family}",

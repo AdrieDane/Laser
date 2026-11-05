@@ -8,6 +8,7 @@ from typing import Callable, Mapping
 import numpy as np
 import pandas as pd
 import streamlit as st
+from presentation.viewer_theme import viewer_plotly_chart
 
 from presentation.standard_grid.diagnostics import build_standard_diagnostic_figures
 
@@ -109,12 +110,12 @@ def _render_figures(
         "doubleClick": False, "responsive": True,
     }
     with st.container(border=True, key="standard-annotation-diagnostics-shell"):
-        st.plotly_chart(
+        viewer_plotly_chart(
             header, width="stretch", key="standard-detail-header::viewer",
             config=config,
         )
         with st.container(height=470, border=False):
-            st.plotly_chart(
+            viewer_plotly_chart(
                 body, width="stretch", key="standard-detail::viewer",
                 config=config,
             )
