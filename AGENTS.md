@@ -1,5 +1,24 @@
 # Current standard-tool scope (5 November 2026)
 
+6 November: user explicitly authorized Stage 7 with "continue with the next step".
+This supersedes historical STOP-before-Stage7 instructions for Stage 7 ONLY.
+Implement optional original-feature chromatographic evidence, preserving CURRENT
+defaults, statistics, accepted annotations and all original inputs. Freeze/push
+source, settings and native environments before actual study scoring. Compare
+all 3413 natural formula-query keys, all 3668 manual rows and all 252 class/mode
+cells; separately retain normal 762-query/15-PC regression. Report gains AND
+losses, wrong peaks/adducts, abstentions, extras, trace availability and cost.
+No reference formula/adduct/charge/class/name hints in blind workers. No lag
+alignment to manufacture shape agreement, no synthetic scan densification, no
+cross-injection shape correlation. Missing/ambiguous native peak mappings stay
+unavailable. No post-hoc tuning or per-mode/class winner splicing. Raw-supported
+isotope measurements are not verified isotope truth. Native CAMERA and IDSL.UFA
+must retain unsupported/failed cases; MZmine login remains pending. Never claim
+fully completed native comparison while any required engine is unperformed.
+Keep private crosswalks/raw profiles outside Git. Stop before Stage 8; historical
+33-dataset annotation optimization remains PAUSED. Background/headless only;
+do not control the user's Safari.
+
 The historical 33-dataset annotation optimization below remains PAUSED. The
 user authorized standard-tool UI/workflow changes and a separate, read-only
 untargeted evidence evaluation on one ALD acquisition, not resumption of the

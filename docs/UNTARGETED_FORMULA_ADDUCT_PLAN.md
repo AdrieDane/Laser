@@ -33,7 +33,7 @@ validation supports a default change; merging code does not itself promote it.
 | 4 | Complete isotope patterns and measurement quality | 2, 3 | Software/internal comparison complete; verified isotope validation open |
 | 5 | Lipid formula candidates and external engine comparison | 1, 4 | LASER/msbuddy comparisons complete; experimental only, SIRIUS/MZmine activation pending |
 | 6 | Joint formula and adduct inference across modes | 3, 4, 5 | Software/internal comparison complete; CURRENT retained after counterpart regressions; experimental option only |
-| 7 | Optional chromatographic trace evidence | 1, 3 and available traces | Not started |
+| 7 | Optional chromatographic trace evidence | 1, 3 and available traces | Authorized; implementation/protocol checkpoint, CURRENT unchanged; native comparisons pending |
 | 8 | Optional MS/MS evidence and formula comparison | 1, 5 and available spectra | Not started |
 | 9 | Final validation, saved projects and default selection | 1–6; available parts of 7–8 | Not started |
 

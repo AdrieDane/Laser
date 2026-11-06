@@ -44,6 +44,10 @@ def assign_compound_ids(analysis, result=None):
     if result is not None and not links.empty:
         from standard_lipidomics.untargeted_profiles import link_profile_evidence
         links = link_profile_evidence(result, analysis, links)
+    trace_active = analysis.get('criteria', {}).get('trace_model', 'current') == 'peak_shape'
+    if trace_active and not links.empty:
+        from standard_lipidomics.trace_evidence import annotate_trace_links
+        links = annotate_trace_links(links, analysis.get('trace_pair_evidence', pd.DataFrame()))
     if not links.empty:
         allowed = {ion.name for ion in ADDUCTS}
         links = links[links.source_adduct.isin(allowed) & links.target_adduct.isin(allowed)]
@@ -59,14 +63,20 @@ def assign_compound_ids(analysis, result=None):
                 'rt': float(first.source_rt), 'adduct': adduct, 'neutral_mass': float(first.neutral_mass), 'already_annotated': False, '_error': 0., '_quality': 1., '_chemistry': float(first.source_chemistry_penalty), 'adduct_class_hint': str(first.source_class_hint)}}
             alternatives.setdefault(anchor, set()).add(str(adduct))
             # One neutral mass and one adduct per measured feature within a group.
-            for row in sorted(group, key=lambda row: abs(row.mass_error_ppm)):
+            for row in sorted(group, key=lambda row: (
+                    -int(trace_active and getattr(row,'trace_status','') == 'supported'), abs(row.mass_error_ppm))):
                 target = _key(row.target_stream, row.target_feature_id)
                 alternatives.setdefault(target, set()).add(str(row.target_adduct))
                 if getattr(row, 'profile_status', '') == 'discordant':
                     continue
+                if trace_active and row.trace_status == 'discordant':
+                    continue
                 supported = getattr(row, 'profile_status', '') == 'supported'
                 quality = (.5 * row.abundance_spearman + .5 * row.within_group_correlation
                            if supported else .15) - .08 * abs(float(row.mass_error_ppm))
+                if trace_active and row.trace_status == 'supported':
+                    from standard_lipidomics.trace_evidence import SETTINGS
+                    quality += SETTINGS['ranking_bonus'] * float(row.median_shape_r)
                 members.setdefault(target, {'stream': target[0], 'feature_id': target[1], 'mz': float(row.target_mz),
                     'rt': float(row.target_rt), 'adduct': str(row.target_adduct), 'neutral_mass': float(first.neutral_mass),
                     'already_annotated': bool(row.target_is_annotated), '_error': abs(float(row.mass_error_ppm)), '_quality': quality,

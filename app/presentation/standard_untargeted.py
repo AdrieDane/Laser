@@ -157,6 +157,13 @@ def _untargeted_criteria(
             format_func=lambda value: {'current': 'Current grouping', 'full_feature_hard': 'Full feature list — strict profiles (experimental)',
                                       'full_feature_soft': 'Full feature list — soft evidence (experimental)'}[value],
             key='standard-untargeted-ion-grouping')
+        trace_enabled = grouping == 'current' and joint_model == 'current'
+        trace_model = st.selectbox('Chromatographic evidence', ('current','peak_shape'),
+            index=('current','peak_shape').index(saved_criteria.get('trace_model','current')) if trace_enabled else 0,
+            format_func=lambda value: {'current':'Table-based evidence','peak_shape':'Raw peak shapes (experimental)'}[value],
+            disabled=not trace_enabled, key='standard-untargeted-trace-model',
+            help='Uses original per-injection XCMS peak boundaries and RT maps in metadata/trace_sources. Missing or ambiguous traces retain the table-based result.')
+        trace_model = trace_model if trace_enabled else 'current'
         ppm = st.number_input("Mass tolerance (ppm)", min_value=.1, max_value=100.,
             value=float(saved_criteria.get("cross_mode_ppm_tolerance", SCIENTIFIC_DEFAULTS.standard_ppm_tolerance)),
             key="standard-untargeted-evidence-ppm")
@@ -186,6 +193,7 @@ def _untargeted_criteria(
         isotope_model=isotope_model,
         formula_model=formula_model, formula_scoring_limit=int(formula_limit),
         joint_model=joint_model, use_msbuddy=bool(use_msbuddy),
+        trace_model=trace_model,
     ), labels
 
 

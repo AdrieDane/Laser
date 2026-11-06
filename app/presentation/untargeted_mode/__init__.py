@@ -196,7 +196,14 @@ def build_mode_payload(result, analysis, *, token='preview', theme='Minimal', re
             for row in _records(compact[columns]):
                 k = str(row['source_stream'])+'\0'+str(row['source_feature_id'])
                 joint_support.setdefault(k, []).append(row)
+    trace_evidence = {}
+    for row in _records(analysis.get('trace_pair_evidence',pd.DataFrame())):
+        for source,target in [('source_feature_id','target_feature_id'),('target_feature_id','source_feature_id')]:
+            k = str(row['stream'])+'\0'+str(row[source])
+            if len(trace_evidence.setdefault(k,[])) < 24:
+                trace_evidence[k].append({**row,'feature_id':str(row[target])})
     return {'token': token, 'theme': theme, 'streams': streams, 'statistics': statistics,
+            'traceEvidence':trace_evidence, 'traceStatus':(analysis.get('trace_provenance') or {}).get('status','not requested'),
             'links': link_rows, 'clusters': cluster_rows, 'palette': palette,
             'familyClusters': [[str(row.stream), str(row.source_feature_id), str(row.target_feature_id)] for row in grid_links.itertuples(index=False)],
             'clusterMembers': cluster_members,

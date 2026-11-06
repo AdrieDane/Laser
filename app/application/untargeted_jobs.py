@@ -78,7 +78,10 @@ def start_untargeted_job(project, criteria, *, result=None, provenance='', exist
             inputs={'project': str(root), 'annotation_source': provenance})
         from standard_lipidomics.msbuddy_runtime import freeze_runtime
         runtime = freeze_runtime() if criteria.use_msbuddy else None
+        from standard_lipidomics.trace_evidence import freeze_sources
+        trace_context = freeze_sources(root, streams=result['streams']) if criteria.trace_model != 'current' else None
         atomic_write_json(directory / 'request.json', {'project': str(root), 'criteria': vars(criteria), 'msbuddy_runtime': runtime,
+            'trace_context': trace_context,
             'existing': existing, 'annotation_source': provenance, 'created_at': _now()})
         atomic_write_json(directory / 'status.json', {'status': 'queued', 'progress': 0.,
             'message': 'Starting untargeted analysis', 'updated_at': _now()})
@@ -107,16 +110,22 @@ def run_untargeted_job(directory):
         progress(.02, 'Loading frozen inputs')
         result, _ = load_untargeted_workflow(directory / 'input_snapshot')
         result['_msbuddy_runtime'] = request.get('msbuddy_runtime')
+        result['_trace_context'] = request.get('trace_context')
         criteria = UntargetedComparisonCriteria(**request['criteria'])
         analysis = analyse_standard_untargeted(result, criteria, progress=progress)
         native_status = analysis.get('msbuddy_provenance', {}).get('status')
-        warning = 'msbuddy was unavailable; LASER evidence was saved' if criteria.use_msbuddy and native_status != 'complete' else ''
+        warnings = []
+        if criteria.use_msbuddy and native_status != 'complete':
+            warnings.append('msbuddy was unavailable; LASER evidence was saved')
+        if criteria.trace_model != 'current' and analysis.get('trace_provenance',{}).get('status') != 'complete':
+            warnings.append('Raw peak-shape support was unavailable; table-based links were retained')
+        warning = '; '.join(warnings)
         progress(.96, 'Saving untargeted analysis')
         paths, archive = save_untargeted_workflow(request['project'], result, analysis,
             inputs={'project': request['project'], 'annotation_source': request['annotation_source'],
                     'input_snapshot': str(directory / 'input_snapshot')}, existing=request['existing'])
         atomic_write_json(directory / 'status.json', {'status': 'complete', 'progress': 1.,
-            'message': 'Untargeted analysis complete'+('; '+warning if warning else ''), 'warnings': [warning] if warning else [], 'project_manifest': str(paths['project_manifest']),
+            'message': 'Untargeted analysis complete'+('; '+warning if warning else ''), 'warnings': warnings, 'project_manifest': str(paths['project_manifest']),
             'archive': str(archive) if archive else None, 'updated_at': _now()})
         print('Untargeted analysis complete', flush=True)
         return 0

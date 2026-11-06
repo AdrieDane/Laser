@@ -217,6 +217,9 @@ function renderEvidence(state) {
   smallTable(state.joint,['Rank','Neutral formula','Adduct','Joint cost','Native rank','Local support','Other-phase support','Isotope status'],hypotheses);
   const associations=(model.data.jointAssociations?.[state.selected]??[]).map(a=>[a.stream,a.feature_id,a.formula,a.adduct,a.status]);
   smallTable(state.associations,['Mode','Feature','Neutral formula','Adduct','Association'],associations);
+  const traces=(model.data.traceEvidence?.[state.selected]??[]).map(e=>[
+    e.feature_id,e.kind,e.trace_status,e.usable_samples,numberText(e.median_shape_r,3),numberText(e.median_overlap,3)]);
+  smallTable(state.traces,['Feature','Relationship','Peak-shape evidence','Usable injections','Median shape r','Overlap'],traces);
   const support=(model.data.jointSupport?.[state.selected]??[]).map(e=>[
     e.source_formula+' '+e.source_adduct,e.target_stream,e.target_feature_id,e.target_adduct,
     numberText(e.formula_mass_error_ppm,2),e.paired_sample_count,numberText(e.abundance_spearman,3),
@@ -296,7 +299,7 @@ function createWorkspace(parent, data) {
   const tableViewport=node('div','','feature-viewport'),tableBody=node('div','','feature-body');tableViewport.appendChild(tableBody);table.append(header,tableViewport);
   const details=node('div','','mode-evidence'),detailTitle=node('h3');details.appendChild(detailTitle);
   const evidence={};
-  for(const [key,title] of [['detections','Compound detections'],['isotopes','Isotopes and candidate formulas'],['joint','Joint formula/adduct alternatives'],['jointSupport','Joint supporting ions'],['associations','Cross-phase alternatives'],['clusters','Cluster members across modes'],['adducts','Adduct evidence']]) {
+  for(const [key,title] of [['detections','Compound detections'],['isotopes','Isotopes and candidate formulas'],['traces','Within-injection peak shapes'],['joint','Joint formula/adduct alternatives'],['jointSupport','Joint supporting ions'],['associations','Cross-phase alternatives'],['clusters','Cluster members across modes'],['adducts','Adduct evidence']]) {
     const section=node('details'),summary=node('summary',title),content=node('div','','evidence-scroll');section.open=key==='isotopes';section.append(summary,content);details.appendChild(section);evidence[key]=content;
   }
   const detailFormula=node('p');evidence.isotopes.parentElement.appendChild(detailFormula);

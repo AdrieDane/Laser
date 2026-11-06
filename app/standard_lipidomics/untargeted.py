@@ -86,8 +86,13 @@ class UntargetedComparisonCriteria:
     formula_scoring_limit: int = 32
     joint_model: str = 'current'
     use_msbuddy: bool = False
+    trace_model: str = 'current'
 
     def __post_init__(self) -> None:
+        if self.trace_model not in {'current', 'peak_shape'}:
+            raise ValueError('Unknown chromatographic evidence model.')
+        if self.trace_model != 'current' and (self.joint_model != 'current' or self.ion_grouping_mode != 'current'):
+            raise ValueError('Peak-shape evidence currently requires current ion grouping and sequential assignment.')
         if self.joint_model not in {'current', 'joint_ms1'}:
             raise ValueError('Unknown joint formula/adduct model.')
         if type(self.use_msbuddy) is not bool or (self.use_msbuddy and self.joint_model == 'current'):
@@ -1763,7 +1768,16 @@ def analyse_standard_untargeted(
             "identifications or exact molecular formulas."
         ),
     }
-    if progress:
+    if criteria.trace_model != 'current':
+        from standard_lipidomics.trace_evidence import collect_trace_evidence, freeze_sources
+        context = result.get('_trace_context')
+        if context is None:
+            context = freeze_sources(result.get('xcms_input_dir') or '.', streams=result['streams'])
+        output = collect_trace_evidence(result, output, context,
+            (lambda fraction, message: progress(.91+.045*fraction, message)) if progress else None)
+        if progress:
+            progress(.956, 'Assigning trace-supported tentative compound IDs')
+    elif progress:
         progress(.94, "Assigning tentative compound IDs")
     if criteria.ion_grouping_mode != 'current':
         from standard_lipidomics.full_feature_groups import build_full_feature_groups
