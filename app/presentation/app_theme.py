@@ -49,6 +49,7 @@ _TITLED_SETTING = r'''
         [data-testid="stSidebar"],
         .st-key-review-controls-panel, .st-key-review-controls-panel-hidden,
         .st-key-standard-review-controls-panel, .st-key-standard-review-controls-panel-hidden,
+        .st-key-standard-grid-stream-row,
         [class*="st-key-settings-surface-"],
         __HORIZONTAL_SETTINGS_ROW__
       ) *) > :not(:is(
@@ -643,6 +644,12 @@ __PAGE_LOADING_MONITOR_SUPPRESSION__
       }
       .st-key-standard-grid-stream-row [data-testid="stSelectbox"] {
         margin: 0 !important;
+      }
+      .st-key-standard-grid-stream-row [data-testid="stWidgetLabel"] {
+        display: none !important;
+      }
+      body:has(.annotation-viewer-active) [data-testid="stMainBlockContainer"] > [data-testid="stVerticalBlock"] {
+        gap: 0.45rem !important;
       }
       [class*="st-key-review-controls-collapse"] .stButton button,
       [class*="st-key-review-controls-reveal"] .stButton button {
