@@ -1,0 +1,83 @@
+{
+  "arms": {
+    "natural_current": {
+      "original_keys_and_coordinates_exact": true,
+      "parent_mass_4ppm": true,
+      "same_mode_3sec_phase_12sec": true,
+      "one_mode_adduct": true,
+      "rows": 7512,
+      "worker_original_statistics_exact": true
+    },
+    "natural_trace": {
+      "original_keys_and_coordinates_exact": true,
+      "parent_mass_4ppm": true,
+      "same_mode_3sec_phase_12sec": true,
+      "one_mode_adduct": true,
+      "rows": 7501,
+      "worker_original_statistics_exact": true
+    },
+    "natural_conservative": {
+      "original_keys_and_coordinates_exact": true,
+      "parent_mass_4ppm": true,
+      "same_mode_3sec_phase_12sec": true,
+      "one_mode_adduct": true,
+      "rows": 7512,
+      "worker_original_statistics_exact": true
+    },
+    "routine_current": {
+      "original_keys_and_coordinates_exact": true,
+      "parent_mass_4ppm": true,
+      "same_mode_3sec_phase_12sec": true,
+      "one_mode_adduct": true,
+      "rows": 1624,
+      "worker_original_statistics_exact": true
+    },
+    "routine_trace": {
+      "original_keys_and_coordinates_exact": true,
+      "parent_mass_4ppm": true,
+      "same_mode_3sec_phase_12sec": true,
+      "one_mode_adduct": true,
+      "rows": 1610,
+      "worker_original_statistics_exact": true
+    },
+    "routine_conservative": {
+      "original_keys_and_coordinates_exact": true,
+      "parent_mass_4ppm": true,
+      "same_mode_3sec_phase_12sec": true,
+      "one_mode_adduct": true,
+      "rows": 1624,
+      "worker_original_statistics_exact": true
+    }
+  },
+  "all_original_feature_rows": 254324,
+  "old_statistical_rows": 251431,
+  "raw_p_rows": 762,
+  "significant_rows": 387,
+  "old_nonlabel_statistics_and_evidence_exact": true,
+  "conservative_all_assignments_identical_to_current": true,
+  "actual_worker_save_reopen_and_viewer_payload_exact": true,
+  "independent_baseline": "exact hash-verified frozen Parquet duplicates, all used snapshot hashes retained",
+  "whole_original_checkpoint_verified_before_workers": true,
+  "post_run_native_package_and_all_raw_context_hashes_exact": true,
+  "default_changed": false,
+  "host_IO_recovery": "redundant CSV reads/clone attempts stalled; no prediction or statistical recomputation, no reduced numerical checks",
+  "prepared_project": {
+    "original_files": 94,
+    "derived_metadata_files": 5,
+    "all_sha256_unchanged": true,
+    "method_unchanged": true,
+    "output_folders_empty": {
+      "Calibration": true,
+      "LASER": true,
+      "Untargeted": true,
+      "Archive": true
+    }
+  },
+  "tests": {
+    "passed": 1106,
+    "skipped": 9,
+    "subtests_passed": 91
+  },
+  "whole_checkpoint_postrun_redundant_csv_read": "host read stalled; initial full frozen fingerprint plus independent exact hash-verified Parquet checks and all worker numerical comparisons retained",
+  "native_constants_initial_freeze_limit": "Old package-file manifest omitted the isotope constants data file; its additional hash was recorded during preparation before any native ranking. Release schema2 now pins it. No study native accuracy is reported."
+}

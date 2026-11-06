@@ -4,6 +4,7 @@ args <- commandArgs(trailingOnly=TRUE);stopifnot(length(args)%in%c(2L,3L))
 .libPaths(c(args[1],.libPaths()));library(IDSL.UFA)
 script <- sub("^--file=","",grep("^--file=",commandArgs(FALSE),value=TRUE)[1])
 source(file.path(dirname(normalizePath(script)),"ufa_trace_lib.R"))
+initial_spec <- ufa_cache_spec()
 out <- args[2];if (dir.exists(out)) stop("Preserve earlier pilots")
 dir.create(out,recursive=TRUE)
 cases <- list(c("C42H82NO8P","[M+H]+","1"),c("C42H82NO8P","[M-H]-","-1"),
@@ -89,12 +90,14 @@ began <- proc.time()[[3]]
 for (i in 1:100) stopifnot(!is.null(ufa_annotate(last$db,last$spectra,last$anchor,.5)))
 scoring_100_seconds <- proc.time()[[3]]-began
 passed <- cold_seconds<=30 && warm_seconds<=5 && scoring_100_seconds<=10
+stopifnot(identical(initial_spec,ufa_cache_spec()))
 receipt <- list(controls=controls,interference_abstention_controls=3L,centroid_tie_order_exact=TRUE,
   native_profiles_512_cold_seconds=cold_seconds,native_profiles_512_warm_seconds=warm_seconds,
   scoring_100_seconds=scoring_100_seconds,correctness_passed=TRUE,runtime_gate_passed=passed,
   gate=list(cold_512_max_seconds=30,warm_512_max_seconds=5,scoring_100_max_seconds=10),
   anchor_settings=UFA_ANCHOR_SETTINGS,cache_spec=ufa_cache_spec(),study_data_used=FALSE,
-  native_unmodified_profile_parity=TRUE,profile_parity_N=if(length(args)==3L)522L else 10L)
+  native_unmodified_profile_parity=TRUE,cache_descriptor_stable=TRUE,
+  profile_parity_N=if(length(args)==3L)522L else 10L)
 jsonlite::write_json(receipt,file.path(out,"receipt.json"),auto_unbox=TRUE,pretty=TRUE,digits=NA)
 if (!passed) stop("Synthetic runtime gate failed; do not launch full study scoring")
 cat("ALL SYNTHETIC CORRECTNESS, CACHE, LOSSLESS-PRUNING AND RUNTIME GATES PASSED\n")

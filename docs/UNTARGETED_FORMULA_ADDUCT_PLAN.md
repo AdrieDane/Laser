@@ -250,6 +250,8 @@ one positive mode while concealing losses in other modes or classes.
 
 ## Stage 7 Optional chromatographic trace evidence
 
+**6 November follow-up:** conservative trace reproduces CURRENT exactly and recovers the four legacy routine losses, with no incremental gain. CURRENT stays default. Native UFA passes controlled anchoring/cache parity but two full profile pools exceed fixed preparation caps, so study formula accuracy remains unavailable. All modes/classes, original statistics and inputs are retained. See [full follow-up results](validation/untargeted_stage7_followup/README.md). External benchmarking remains incomplete; stop before Stage 8.
+
 **Deliverables**
 
 - Import or extract chromatographic traces mapped to original XCMS feature IDs.

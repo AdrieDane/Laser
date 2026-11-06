@@ -1,5 +1,27 @@
 # Current standard-tool scope (5 November 2026)
 
+6 November Stage7 FOLLOW-UP SOFTWARE/INTERNAL COMPARISON COMPLETE; CURRENT retained.
+Inference frozen0ca4bd0. Conservative veto restores four routine losses relative to
+legacy, but ALL predictions equal CURRENT exactly in natural3413 and routine762;
+no incremental gain. Natural original-ion/adduct coverage unchanged790/1694,
+328/679,506/757,364/538; extras1201/1102/882/908. Routine46/1694,3/679,37/757,5/538;
+extras461/464/171/194. Pair recovery446/960 natural,21/960 routine; PC9/14 and10/14.
+All3668manual rows/46unmapped/252class-mode cells retained, no post-score tuning.
+Native profile caches H+40396 and negative2H32495 pass8 original-native probes each;
+H-minus52307 and NH4+132209 exceed600sec caps. NO native study matching/accuracy
+reported; full3413 scope unavailable. Host file-read stalls observed. Release-only
+cache schema2 additionally pins isotope constants and uses JIT-stable source-text
+hashes;522-profile exact native/synthetic parity plus descriptor-stability gate pass.
+Original initial constants-file freeze gap is explicit; extra hash recorded during
+preparation. No numerical inference changes after freeze. All254324coordinates/
+251431stats exact,762raw/387significant retained, actual worker typed reopen/viewer
+exact. Independent exact hashed-Parquet check replaces stalled redundant CSV reads;
+initial full saved-checkpoint fingerprint plus all post-run raw/native hashes pass.
+All94original inputs+5derived metadata+method unchanged; result folders empty.
+1106passed9skipped91subtests. Safe results docs/validation/untargeted_stage7_followup;
+private report outputs/untargeted_stage7_followup/report.html. External engines and
+verified isotope gold remain OPEN. Stop before8; historical optimization PAUSED.
+
 6 November: user explicitly authorized Stage7 follow-up with "oke do it" after
 recommendations to audit four routine losses, implement a conservative global
 trace rule, repair UFA observed-major-isotope anchoring/caching, pilot synthetic

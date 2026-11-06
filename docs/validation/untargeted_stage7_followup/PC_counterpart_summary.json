@@ -1,0 +1,32 @@
+{
+  "natural_current": {
+    "n": 9,
+    "N": 14,
+    "percent": 64.28571428571429
+  },
+  "natural_trace": {
+    "n": 9,
+    "N": 14,
+    "percent": 64.28571428571429
+  },
+  "natural_conservative": {
+    "n": 9,
+    "N": 14,
+    "percent": 64.28571428571429
+  },
+  "routine_current": {
+    "n": 10,
+    "N": 14,
+    "percent": 71.42857142857143
+  },
+  "routine_trace": {
+    "n": 10,
+    "N": 14,
+    "percent": 71.42857142857143
+  },
+  "routine_conservative": {
+    "n": 10,
+    "N": 14,
+    "percent": 71.42857142857143
+  }
+}

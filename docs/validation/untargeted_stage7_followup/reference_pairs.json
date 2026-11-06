@@ -1,0 +1,86 @@
+{
+  "natural_current": {
+    "reference_pair_agreement": {
+      "n": 446,
+      "N": 659,
+      "percent": 67.6783004552352
+    },
+    "compatible_mapped_reference_pair_recovery": {
+      "n": 446,
+      "N": 960,
+      "percent": 46.458333333333336
+    },
+    "discordant_reference_pairs": 213,
+    "denominator_limitation": "Mapped exact-name cross-mode reference pairs; same-phase RT separation <=12 s. Unknown extras not false positives."
+  },
+  "natural_trace": {
+    "reference_pair_agreement": {
+      "n": 451,
+      "N": 657,
+      "percent": 68.64535768645358
+    },
+    "compatible_mapped_reference_pair_recovery": {
+      "n": 451,
+      "N": 960,
+      "percent": 46.979166666666664
+    },
+    "discordant_reference_pairs": 206,
+    "denominator_limitation": "Mapped exact-name cross-mode reference pairs; same-phase RT separation <=12 s. Unknown extras not false positives."
+  },
+  "natural_conservative": {
+    "reference_pair_agreement": {
+      "n": 446,
+      "N": 659,
+      "percent": 67.6783004552352
+    },
+    "compatible_mapped_reference_pair_recovery": {
+      "n": 446,
+      "N": 960,
+      "percent": 46.458333333333336
+    },
+    "discordant_reference_pairs": 213,
+    "denominator_limitation": "Mapped exact-name cross-mode reference pairs; same-phase RT separation <=12 s. Unknown extras not false positives."
+  },
+  "routine_current": {
+    "reference_pair_agreement": {
+      "n": 21,
+      "N": 35,
+      "percent": 60.0
+    },
+    "compatible_mapped_reference_pair_recovery": {
+      "n": 21,
+      "N": 960,
+      "percent": 2.1875
+    },
+    "discordant_reference_pairs": 14,
+    "denominator_limitation": "Mapped exact-name cross-mode reference pairs; same-phase RT separation <=12 s. Unknown extras not false positives."
+  },
+  "routine_trace": {
+    "reference_pair_agreement": {
+      "n": 19,
+      "N": 32,
+      "percent": 59.375
+    },
+    "compatible_mapped_reference_pair_recovery": {
+      "n": 19,
+      "N": 960,
+      "percent": 1.9791666666666667
+    },
+    "discordant_reference_pairs": 13,
+    "denominator_limitation": "Mapped exact-name cross-mode reference pairs; same-phase RT separation <=12 s. Unknown extras not false positives."
+  },
+  "routine_conservative": {
+    "reference_pair_agreement": {
+      "n": 21,
+      "N": 35,
+      "percent": 60.0
+    },
+    "compatible_mapped_reference_pair_recovery": {
+      "n": 21,
+      "N": 960,
+      "percent": 2.1875
+    },
+    "discordant_reference_pairs": 14,
+    "denominator_limitation": "Mapped exact-name cross-mode reference pairs; same-phase RT separation <=12 s. Unknown extras not false positives."
+  }
+}

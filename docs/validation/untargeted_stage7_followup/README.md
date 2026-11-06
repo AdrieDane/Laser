@@ -1,5 +1,97 @@
 # Stage 7 repair and validation follow-up
 
+## Follow-up outcome — 6 November 2026
+
+**Keep CURRENT.** The conservative option restores all four correct routine calls
+lost by legacy trace, but every assignment equals CURRENT exactly in both scopes.
+It provides no demonstrated incremental original-ion/adduct gain here. No rule was
+strengthened after scoring to manufacture a gain. The four inspected losses were
+development cases, not an independent validation set.
+
+| Scope | Mode | CURRENT = conservative, all-manual coverage | Unconfirmed extras, both |
+|---|---|---:|---:|
+| natural | RP_Pos | 790/1694 (46.64%) | 1201 |
+| natural | RP_Neg | 328/679 (48.31%) | 1102 |
+| natural | NP_Pos | 506/757 (66.84%) | 882 |
+| natural | NP_Neg | 364/538 (67.66%) | 908 |
+| routine | RP_Pos | 46/1694 (2.72%) | 461 |
+| routine | RP_Neg | 3/679 (0.44%) | 464 |
+| routine | NP_Pos | 37/757 (4.89%) | 171 |
+| routine | NP_Neg | 5/538 (0.93%) | 194 |
+
+All-manual percentages include every curated row, including accepted/non-significant
+ions not offered a normal raw-p query and unresolved mappings. They are **not overall
+adduct annotation accuracy**. Extras are unconfirmed, not measured false positives.
+Full denominators: 3668 manual rows, 46 unmapped, 63 classes × four modes; natural
+3413 artificial query keys and separately routine762 queries. The full current /
+legacy / conservative comparison, assignment coverage, conditional agreement,
+abstentions, wrong adducts and gains/losses are in
+[all-mode results](all_mode_before_after.csv) and
+[all class/mode results](all_class_mode_adduct_recovery.csv). Natural legacy gains36 /
+losses16; routine legacy gains0/losses4. Conservative gains0/losses0 versus CURRENT.
+
+Natural reference-pair recovery: current446/960, legacy451/960, conservative446/960.
+Routine:21/960,19/960,21/960. Fixed PC counterpart regression remains natural9/14
+and routine10/14 in every arm. [Pair details](reference_pairs.json),
+[PC summary](PC_counterpart_summary.json),
+[curated family consistency](curated_group_consistency.csv),
+[actual viewer slot status counts](all_mode_slot_status_summary.csv).
+These are curated original-ion/assignment agreement and coverage, not confirmed
+molecular identities, independent validation or analytical FDR.
+
+### Native formula comparison remains unavailable
+
+Two complete caches passed eight fixed unmodified-native probes each: protonated
+40396 profiles (495.5s), doubly charged negative32495 (573.8s). Deprotonated52307 and
+ammonium132209 pools exceeded their fixed600s caps; no timeout was extended. They
+reached45056 and40960 progress respectively, without complete validated persisted
+caches. File-read stalls in native isotope constants were observed; total times
+include host I/O. The entire required shared universe was unavailable, so **no
+native study ranking or formula accuracy was computed**, in any mode. All3413
+queries and all252 class/mode cells remain explicit, with unavailable values rather
+than zero accuracy. [Preparation status](native_preparation_status.csv),
+[complete conditional formula scope](native_all_class_mode_formula_comparison.csv).
+
+The repaired observed-major-isotope bridge and lossless optimizations pass all
+synthetic controls and exact parity with522 unmodified native profiles, including
+C120 dominant M+1, both polarities, charge2, sulfur/chloride, interference and ties.
+The release additionally pins the isotope-constants file in cache schema2 and uses
+JIT-stable deparsed function hashes. A new check asserts cache descriptors remain
+identical before and after native execution. These are descriptor safeguards only;
+no profile/scoring arithmetic changed. A command-line reference-path mistake in
+pilot006 was preserved; corrected007 and strengthened008 passed. Pilot008 cold512
+profiles=2.821s, warm=0.008s,100 indexed queries=0.098s.
+[Synthetic receipts](synthetic_controls.json), [source/protocol](provenance.json).
+The scientific experiment remains frozen to0ca4bd0/cache schema1; the subsequent
+schema2 descriptor guard was tested synthetically, not used to rerank study data.
+The old initial package-file manifest omitted native isotope constants; an extra
+fingerprint was recorded during preparation before any matching. This limit is
+retained, not presented as an initial frozen-data hash.
+
+### Preservation and limits
+
+All254324 original coordinates and251431 statistical rows are exact, with762 raw-p
+and387 fold-filtered rows. Each worker verifies original non-label statistical and
+evidence columns; actual routine save/reopen and viewer payload are exact. A fresh
+independent check verifies original-key/mass/RT constraints and all old statistics
+against exact hash-verified frozen Parquet duplicates. Redundant178MB CSV reads in
+the host filesystem stalled; failed read/clone checks and first scorer schema error
+were preserved privately. No numerical tolerance was loosened, no inference rerun
+or candidate/denominator filtering used for this recovery. All94 prepared files,
+five derived metadata inputs, raw sources, native package code, IS and method
+hashes match; project result folders remain empty. The full original saved project
+was fingerprinted before workers. [Verification](validation_checks.json).
+
+Software suite:1106 passed,9 skipped,91 subtests passed. Browser timing covers the
+JavaScript model, not a new full-browser latency benchmark. Cached trace observations
+were replayed with exact source/settings/pair-set proof; this is not new raw scanning
+or biological testing. Native known-adduct formula comparisons remain conditional,
+not blind adduct accuracy; first-QC raw profiles and LASER sample areas/budget32
+have different evidence footprints. No verified isotope-member gold. CAMERA is not
+rerun; prior timeouts, account-dependent engines and external validation stay open.
+Stop for review before Stage8; historical annotation optimization remains paused.
+
+
 Authorized 6 November 2026 with “oke do it”. CURRENT stays the default. This is
 another development experiment on the same acquisition; the four lost routine
 calls were inspected during development and are not an independent holdout.

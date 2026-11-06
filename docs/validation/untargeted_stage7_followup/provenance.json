@@ -1,0 +1,90 @@
+{
+  "stage": "7-followup",
+  "source_revision": "0ca4bd0db9271ee11cc10fe5122263474e54b793",
+  "source_archive_sha256": "e1318eb59adef4873d8dfa6d8a36375edab69c46af17bc7bc06e8092ad1ee45a",
+  "frozen_utc": "2026-11-06T22:53:34.738094+00:00",
+  "pilot_receipt_sha256": "038885b155596615bf3e8a008ae6cee6f7a7379f6cd6eea6bb5c9c63302d0497",
+  "native_package_hash_manifest_sha256": "1a3b04e3a6d87cd5d80111a33344ad2ed4797ac1be41b2dd19fd8895af96e0d7",
+  "queries": 3413,
+  "routine_queries": 762,
+  "manual_rows": 3668,
+  "unmapped": 46,
+  "class_mode_cells": 252,
+  "independent_validation": false,
+  "default_promotion": false,
+  "development_exposure": "four routine losses inspected; global policy only; no feature/class/mode exceptions",
+  "trace_settings": {
+    "ppm": 4.0,
+    "padding_min": 0.05,
+    "min_points": 5,
+    "min_edge_points": 2,
+    "relative_threshold": 0.1,
+    "snr_proxy_min": 5.0,
+    "max_gap_factor": 3.0,
+    "shape_r_min": 0.85,
+    "overlap_min": 0.5,
+    "min_samples": 2,
+    "agreement_fraction": 0.8,
+    "discordant_r_max": 0.5,
+    "discordant_overlap_max": 0.25,
+    "ranking_bonus": 0.25
+  },
+  "new_trace_policy": {
+    "joint_r_below": 0.5,
+    "joint_overlap_below": 0.25,
+    "replicate_fraction": 0.8,
+    "minimum_usable_injections": 2,
+    "ranking_bonus": 0,
+    "supported_sort_promotion": false
+  },
+  "cache_seconds_per_adduct": 600,
+  "cache_concurrency": 4,
+  "native_score_seconds_per_mode": 120,
+  "native_score_concurrency": 2,
+  "new_raw_trace_measurements": false,
+  "known_adduct_UFA_conditional": true,
+  "candidate_universe": "same complete unranked Stage5 generator; no native success-only pool",
+  "no_posthoc_tuning": true,
+  "release_cache_descriptor_schema": 2,
+  "release_cache_descriptor_changes": "native isotope-constants SHA256 and JIT-stable function-text hashes only; generator/scoring arithmetic unchanged",
+  "release_synthetic_profile_parity_N": 522,
+  "native_study_ranking_performed": false,
+  "preparation_status": [
+    {
+      "adduct": "[M+H]+",
+      "requested_formulas": 40396,
+      "status": "complete",
+      "process_seconds": 495.482,
+      "validated_persisted_profiles": 40396,
+      "last_progress_count": 40396,
+      "unmodified_native_probe_parity": 8
+    },
+    {
+      "adduct": "[M+NH4]+",
+      "requested_formulas": 132209,
+      "status": "time budget exceeded",
+      "process_seconds": 600.029,
+      "validated_persisted_profiles": 0,
+      "last_progress_count": 40960,
+      "unmodified_native_probe_parity": null
+    },
+    {
+      "adduct": "[M-H]-",
+      "requested_formulas": 52307,
+      "status": "time budget exceeded",
+      "process_seconds": 600.029,
+      "validated_persisted_profiles": 0,
+      "last_progress_count": 45056,
+      "unmodified_native_probe_parity": null
+    },
+    {
+      "adduct": "[M-2H]2-",
+      "requested_formulas": 32495,
+      "status": "complete",
+      "process_seconds": 573.756,
+      "validated_persisted_profiles": 32495,
+      "last_progress_count": 32495,
+      "unmodified_native_probe_parity": 8
+    }
+  ]
+}

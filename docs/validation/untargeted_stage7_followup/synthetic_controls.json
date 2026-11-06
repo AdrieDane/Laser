@@ -1,0 +1,115 @@
+{
+  "controls": [
+    {
+      "formula": "C42H82NO8P",
+      "adduct": "[M+H]+",
+      "charge": 1,
+      "observed_anchor_order": 0,
+      "native_top1_correct": true,
+      "cold_warm_exact": true,
+      "pruned_unpruned_exact": true
+    },
+    {
+      "formula": "C42H82NO8P",
+      "adduct": "[M-H]-",
+      "charge": -1,
+      "observed_anchor_order": 0,
+      "native_top1_correct": true,
+      "cold_warm_exact": true,
+      "pruned_unpruned_exact": true
+    },
+    {
+      "formula": "C73H142O17P2",
+      "adduct": "[M-2H]2-",
+      "charge": -2,
+      "observed_anchor_order": 0,
+      "native_top1_correct": true,
+      "cold_warm_exact": true,
+      "pruned_unpruned_exact": true
+    },
+    {
+      "formula": "C120H236O6",
+      "adduct": "[M+NH4]+",
+      "charge": 1,
+      "observed_anchor_order": 1,
+      "native_top1_correct": true,
+      "cold_warm_exact": true,
+      "pruned_unpruned_exact": true
+    },
+    {
+      "formula": "C120H236O6",
+      "adduct": "[M-H]-",
+      "charge": -1,
+      "observed_anchor_order": 1,
+      "native_top1_correct": true,
+      "cold_warm_exact": true,
+      "pruned_unpruned_exact": true
+    },
+    {
+      "formula": "C120H236O6",
+      "adduct": "[M-2H]2-",
+      "charge": -2,
+      "observed_anchor_order": 1,
+      "native_top1_correct": true,
+      "cold_warm_exact": true,
+      "pruned_unpruned_exact": true
+    },
+    {
+      "formula": "C48H93NO11S",
+      "adduct": "[M-H]-",
+      "charge": -1,
+      "observed_anchor_order": 0,
+      "native_top1_correct": true,
+      "cold_warm_exact": true,
+      "pruned_unpruned_exact": true
+    },
+    {
+      "formula": "C42H82NO8P",
+      "adduct": "[M+Cl]-",
+      "charge": -1,
+      "observed_anchor_order": 0,
+      "native_top1_correct": true,
+      "cold_warm_exact": true,
+      "pruned_unpruned_exact": true
+    }
+  ],
+  "interference_abstention_controls": 3,
+  "centroid_tie_order_exact": true,
+  "native_profiles_512_cold_seconds": 2.821,
+  "native_profiles_512_warm_seconds": 0.00800000000000001,
+  "scoring_100_seconds": 0.0979999999999999,
+  "correctness_passed": true,
+  "runtime_gate_passed": true,
+  "gate": {
+    "cold_512_max_seconds": 30,
+    "warm_512_max_seconds": 5,
+    "scoring_100_max_seconds": 10
+  },
+  "anchor_settings": {
+    "ppm": 4,
+    "max_order": 4,
+    "min_points": 5,
+    "edges": 2,
+    "relative_height": 0.1,
+    "shape_r": 0.85,
+    "overlap": 0.5,
+    "tie_fraction": 0.05
+  },
+  "cache_spec": {
+    "schema": 2,
+    "engine": "2.0",
+    "IPA": "2.9",
+    "peak_spacing": 0.005,
+    "native_isotope_constants": "8b0680c9a14deabf8df6bd6122594bc3a1ac8dbb762892c48bcd21951ce28f1e",
+    "intensity_cutoff": "min(c(c, 10))",
+    "optimizer": "exact-element-memo-cartesian-tail-v2",
+    "optimizer_code": "cdcb8211490415fd982a9bcde2e9a70f29b5d1cd5047de5dbfc7a99c5fefa8e9",
+    "batch_size": 256,
+    "generator": "dab6b19cd53a97849579f554eabba35fa51da93a1d530a6538eb8b9d984738ed",
+    "native_profile": "a14073aaf3c3ffebb7c85d5b32124904c8317b1a3dcc998636b7cc6b28fe894a"
+  },
+  "study_data_used": false,
+  "native_unmodified_profile_parity": true,
+  "cache_descriptor_stable": true,
+  "profile_parity_N": 522
+}

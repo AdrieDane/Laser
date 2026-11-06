@@ -68,12 +68,13 @@ ufa_exact_generator <- function() {
 UFA_EXACT_GENERATOR <- NULL
 
 ufa_cache_spec <- function() {
-  list(schema=1L, engine=as.character(packageVersion("IDSL.UFA")),
+  list(schema=2L, engine=as.character(packageVersion("IDSL.UFA")),
        IPA=as.character(packageVersion("IDSL.IPA")), peak_spacing=.005,
+       native_isotope_constants=digest::digest(file=system.file("extdata","IUPAC_Isotopes.rda",package="IDSL.UFA",mustWork=TRUE),algo="sha256"),
        intensity_cutoff="min(c(c, 10))",optimizer="exact-element-memo-cartesian-tail-v2",
        optimizer_code=digest::digest(paste(deparse(body(ufa_exact_generator),width.cutoff=500L),collapse="\n"),algo="sha256",serialize=FALSE),batch_size=256L,
-       generator=digest::digest(body(IDSL.UFA::molecularFormula2IPdb),algo="sha256"),
-       native_profile=digest::digest(body(get("isotopic_profile_calculator",asNamespace("IDSL.UFA"))),algo="sha256"))
+       generator=digest::digest(paste(deparse(body(IDSL.UFA::molecularFormula2IPdb),width.cutoff=500L),collapse="\n"),algo="sha256",serialize=FALSE),
+       native_profile=digest::digest(paste(deparse(body(get("isotopic_profile_calculator",asNamespace("IDSL.UFA"))),width.cutoff=500L),collapse="\n"),algo="sha256",serialize=FALSE))
 }
 
 ufa_cached_database <- function(formulas, adduct, directory) {
