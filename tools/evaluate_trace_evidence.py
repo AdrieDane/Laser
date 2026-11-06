@@ -49,7 +49,7 @@ def worker(args):
     from standard_lipidomics.untargeted import UntargetedComparisonCriteria, _coordinate_sources
     from standard_lipidomics.untargeted_adducts import search_adduct_evidence
     from standard_lipidomics.untargeted_compounds import assign_compound_ids, LABEL_COLUMNS
-    from standard_lipidomics.trace_evidence import collect_trace_evidence
+    from standard_lipidomics.trace_evidence import collect_trace_evidence, candidate_pairs, summarize_measurements, digest, SETTINGS, VERSION
     from presentation.untargeted_mode import build_mode_payload
     output.mkdir(parents=True, exist_ok=False)
     result, _ = load_untargeted_workflow(args.checkpoint/'project')
@@ -67,7 +67,7 @@ def worker(args):
         queries = original['raw_p_features'].copy(deep=True)
         keys = queries[['stream','feature_id']].to_dict('records')
     criteria = replace(UntargetedComparisonCriteria(**original['criteria']), ion_grouping_mode='current',
-        joint_model='current', use_msbuddy=False, trace_model='peak_shape' if args.arm == 'trace' else 'current')
+        joint_model='current', use_msbuddy=False, trace_model={'current':'current','trace':'peak_shape','conservative':'peak_shape_conservative'}[args.arm])
     significant = queries.copy() if args.scope == 'natural' else original['significant_features'].copy(deep=True)
     analysis = {**original, 'criteria':asdict(criteria), 'raw_p_features':queries,
         'significant_features':significant, 'acquisition_method':json.loads((args.preparation/'method.json').read_text())}
@@ -80,13 +80,30 @@ def worker(args):
             rt_tolerance=criteria.opposite_polarity_rt_tolerance_min,
             same_mode_rt_tolerance=criteria.same_mode_adduct_rt_tolerance_min,
             method=analysis['acquisition_method'], progress=lambda n,t,m:print(m,flush=True))
-    if args.arm == 'trace':
+    if args.arm != 'current':
         # Physical isotope endpoints are diagnostic only. Do not supply a source
         # charge, formula or adduct to the natural-query ion grouping control.
         if args.scope == 'natural':
             analysis['raw_p_features'] = isotope_trace_queries(queries,original['features'])
-        analysis = collect_trace_evidence(result, analysis, json.loads(args.context.read_text()),
-            progress=lambda f,m:print(f'{f:.3f} {m}',flush=True))
+        if args.trace_cache:
+            cached=args.trace_cache.resolve()
+            provenance=json.loads((cached/'trace_provenance.json').read_text())
+            assert provenance['settings']==SETTINGS
+            assert all(digest(Path(p))==sha for p,sha in provenance['files_sha256'].items())
+            pairs=candidate_pairs(analysis)
+            dtype={'source_feature_id':str,'target_feature_id':str,'feature_id':str,'sample':str,'stream':str}
+            tables={name:pd.read_csv(cached/(name+'.csv'),dtype=dtype,float_precision='round_trip')
+                for name in ['trace_pair_evidence','trace_pair_samples','trace_sample_quality','trace_points']}
+            old_pairs=tables['trace_pair_evidence'][pairs.columns].sort_values(list(pairs.columns)).reset_index(drop=True)
+            pd.testing.assert_frame_equal(pairs.sort_values(list(pairs.columns)).reset_index(drop=True),old_pairs)
+            tables['trace_pair_evidence']=summarize_measurements(pairs,tables['trace_pair_samples'],conservative=args.arm=='conservative')
+            analysis={**analysis,**tables,'trace_provenance':{**provenance,'version':VERSION,
+                'policy':'replicated joint discordance; veto only' if args.arm=='conservative' else 'legacy bonus and veto',
+                'raw_files_processed':0,'measurements_reused':True,
+                'cache_sha256':{p.name:digest(p) for p in cached.glob('trace_*.csv')}}}
+        else:
+            analysis = collect_trace_evidence(result, analysis, json.loads(args.context.read_text()),
+                progress=lambda f,m:print(f'{f:.3f} {m}',flush=True))
         analysis['raw_p_features'] = queries
     analysis = assign_compound_ids(analysis, result=result)
     for name in ('features','raw_p_features','significant_features'):
@@ -106,7 +123,7 @@ def worker(args):
     seconds = time.monotonic()-began
     analysis['compound_features'].to_csv(output/'assignments.csv',index=False)
     render(source,output,result,analysis,keys,args.node)
-    if args.arm == 'trace' and args.scope == 'routine':
+    if args.arm != 'current' and args.scope == 'routine':
         save_untargeted_workflow(output/'saved_project',result,analysis)
         reopened,_ = load_untargeted_workflow(output/'saved_project')
         for name in ('features','raw_p_features','significant_features','trace_pair_evidence','trace_pair_samples','trace_sample_quality','trace_points'):
@@ -114,13 +131,14 @@ def worker(args):
         assert build_mode_payload(result,analysis) == build_mode_payload(reopened,reopened['untargeted_analysis'])
     write_json(output/'receipt.json',{'arm':args.arm,'scope':args.scope,'query_N':len(queries),
         'seconds':seconds,'criteria':asdict(criteria),'original_statistics_exact':True,
-        'labels_withheld':True,'saved_roundtrip_exact':args.arm=='trace' and args.scope=='routine'})
+        'labels_withheld':True,'saved_roundtrip_exact':args.arm!='current' and args.scope=='routine'})
 
 
 if __name__ == '__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     for name in ('source','checkpoint','preparation','output','context','node'):
         parser.add_argument('--'+name,type=Path,required=True)
-    parser.add_argument('--arm',choices=['current','trace'],required=True)
+    parser.add_argument('--arm',choices=['current','trace','conservative'],required=True)
+    parser.add_argument('--trace-cache',type=Path)
     parser.add_argument('--scope',choices=['natural','routine'],required=True)
     worker(parser.parse_args())

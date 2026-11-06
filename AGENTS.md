@@ -1,5 +1,25 @@
 # Current standard-tool scope (5 November 2026)
 
+6 November: user explicitly authorized Stage7 follow-up with "oke do it" after
+recommendations to audit four routine losses, implement a conservative global
+trace rule, repair UFA observed-major-isotope anchoring/caching, pilot synthetic
+controls, and then freeze/run full four-mode evaluation. This supersedes the
+older STOP-for-review for this follow-up ONLY, not Stage8. Keep CURRENT default;
+retain legacy selectable outputs and every old checkpoint. Four-loss audit is
+DEVELOPMENT exposure, not an independent holdout. No feature/class exceptions,
+no post-full-scoring tuning or per-mode winner splicing. Freeze/push source,
+settings, native cache descriptors and input hashes BEFORE study predictions.
+All3413 natural queries,3668 manual rows,252 class-mode cells, plus normal762/
+15PC regressions remain primary. Preserve stats/inputs. Cached raw observations
+may be reused only with explicit hashes/pair-set/source proof, not as a new raw
+measurement run. Native UFA must pass high-carbon, both-polarity, charge2 and
+interference controls; observed anchor chosen from data, never truth or by picking
+the anchor that gives the best formula. Lossless spectrum pruning/cache reuse
+must reproduce native unpruned/cold results. Gate native bulk preparation/scoring
+by fixed short runtime limits; unavailable/failed/ambiguous cases stay in full
+denominators. No more CAMERA runs; retain prior failures, account and isotope-gold
+limits. Only safe aggregates in Git. Background only, no Safari. Stop before8.
+
 Stage7 SOFTWARE/INTERNAL COMPARISON COMPLETE (6 November); CURRENT retained.
 Trace inference3f5a84c, compatibility replay28a45a4. Same3413-query all-manual
 original-ion/adduct agreement RPpos790->797/1694,RPneg328->334/679,

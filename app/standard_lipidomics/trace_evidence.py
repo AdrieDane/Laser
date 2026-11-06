@@ -16,7 +16,7 @@ from standard_traces import _iter_ms1_scans
 from standard_lipidomics.sample_groups import biological_group
 from standard_lipidomics.isotope_quality import IsotopeIndex
 
-VERSION = 1
+VERSION = 2
 SETTINGS = {'ppm': 4., 'padding_min': .05, 'min_points': 5, 'min_edge_points': 2,
     'relative_threshold': .1, 'snr_proxy_min': 5., 'max_gap_factor': 3.,
     'shape_r_min': .85, 'overlap_min': .5, 'min_samples': 2, 'agreement_fraction': .8,
@@ -272,21 +272,10 @@ def collect_trace_evidence(result, analysis, context, progress=None):
                 sample_rows.append({'stream':mode,'source_feature_id':row.source_feature_id,
                     'target_feature_id':row.target_feature_id,'kind':row.kind,'sample':sample['sample'],**measurement})
     measurements = pd.DataFrame(sample_rows)
-    measured_groups = {k:g for k,g in measurements.groupby(['stream','source_feature_id','target_feature_id','kind'],sort=False)} if len(measurements) else {}
-    summaries = []
-    for row in pairs.itertuples():
-        subset = measured_groups.get((row.stream,row.source_feature_id,row.target_feature_id,row.kind),pd.DataFrame())
-        usable = subset[subset.status.eq('measured')] if len(subset) else subset
-        n = len(usable)
-        correlation = float(usable.shape_r.median()) if n else None
-        overlap = float(usable.overlap.median()) if n else None
-        fraction = float(((usable.shape_r >= SETTINGS['shape_r_min']) & (usable.overlap >= SETTINGS['overlap_min'])).mean()) if n else 0.
-        status = 'not evaluable'
-        if n >= SETTINGS['min_samples']:
-            status = 'supported' if fraction >= SETTINGS['agreement_fraction'] else (
-                'discordant' if correlation < SETTINGS['discordant_r_max'] or overlap < SETTINGS['discordant_overlap_max'] else 'ambiguous')
-        summaries.append({'stream':row.stream,'source_feature_id':row.source_feature_id,'target_feature_id':row.target_feature_id,
-            'kind':row.kind,'trace_status':status,'usable_samples':n,'median_shape_r':correlation,'median_overlap':overlap,'support_fraction':fraction})
+    conservative = analysis.get('criteria',{}).get('trace_model') == 'peak_shape_conservative'
+    summaries_frame = summarize_measurements(pairs,measurements,conservative=conservative)
+    summaries = summaries_frame.to_dict('records')
+    provenance['policy'] = 'replicated joint discordance; veto only' if conservative else 'legacy bonus and veto'
     provenance.update(raw_files_processed=completed, pairs=len(pairs),
         supported_pairs=sum(r['trace_status']=='supported' for r in summaries),
         discordant_pairs=sum(r['trace_status']=='discordant' for r in summaries))
@@ -307,3 +296,29 @@ def annotate_trace_links(links, evidence):
     for field in ('trace_status','usable_samples','median_shape_r','median_overlap'):
         output[field] = [row.get(field,'not evaluable' if field=='trace_status' else None) for row in values]
     return output
+
+
+def summarize_measurements(pairs, measurements, *, conservative=False):
+    """Aggregate real same-injection observations; no reference identities.
+
+    Conservative policy requires replicated low correlation AND low overlap.
+    Strong overlap with dissimilar shapes remains ambiguous.
+    """
+    measured_groups = {k:g for k,g in measurements.groupby(['stream','source_feature_id','target_feature_id','kind'],sort=False)} if len(measurements) else {}
+    summaries = []
+    for row in pairs.itertuples():
+        subset = measured_groups.get((row.stream,row.source_feature_id,row.target_feature_id,row.kind),pd.DataFrame())
+        usable = subset[subset.status.eq('measured')] if len(subset) else subset
+        n = len(usable)
+        correlation = float(usable.shape_r.median()) if n else None
+        overlap = float(usable.overlap.median()) if n else None
+        fraction = float(((usable.shape_r >= SETTINGS['shape_r_min']) & (usable.overlap >= SETTINGS['overlap_min'])).mean()) if n else 0.
+        discordance = float(((usable.shape_r < SETTINGS['discordant_r_max']) & (usable.overlap < SETTINGS['discordant_overlap_max'])).mean()) if n else 0.
+        status = 'not evaluable'
+        if n >= SETTINGS['min_samples']:
+            status = 'supported' if fraction >= SETTINGS['agreement_fraction'] else (
+                'discordant' if (discordance >= SETTINGS['agreement_fraction'] if conservative else
+                    correlation < SETTINGS['discordant_r_max'] or overlap < SETTINGS['discordant_overlap_max']) else 'ambiguous')
+        summaries.append({'stream':row.stream,'source_feature_id':row.source_feature_id,'target_feature_id':row.target_feature_id,
+            'kind':row.kind,'trace_status':status,'usable_samples':n,'median_shape_r':correlation,'median_overlap':overlap,'support_fraction':fraction,**({'discordance_fraction':discordance} if conservative else {})})
+    return pd.DataFrame(summaries)

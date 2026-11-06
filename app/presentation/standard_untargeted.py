@@ -158,9 +158,10 @@ def _untargeted_criteria(
                                       'full_feature_soft': 'Full feature list — soft evidence (experimental)'}[value],
             key='standard-untargeted-ion-grouping')
         trace_enabled = grouping == 'current' and joint_model == 'current'
-        trace_model = st.selectbox('Chromatographic evidence', ('current','peak_shape'),
-            index=('current','peak_shape').index(saved_criteria.get('trace_model','current')) if trace_enabled else 0,
-            format_func=lambda value: {'current':'Table-based evidence','peak_shape':'Raw peak shapes (experimental)'}[value],
+        trace_model = st.selectbox('Chromatographic evidence', ('current','peak_shape','peak_shape_conservative'),
+            index=('current','peak_shape','peak_shape_conservative').index(saved_criteria.get('trace_model','current')) if trace_enabled else 0,
+            format_func=lambda value: {'current':'Table-based evidence','peak_shape':'Raw peak shapes — legacy (experimental)',
+                'peak_shape_conservative':'Conservative peak-shape veto (experimental)'}[value],
             disabled=not trace_enabled, key='standard-untargeted-trace-model',
             help='Uses original per-injection XCMS peak boundaries and RT maps in metadata/trace_sources. Missing or ambiguous traces retain the table-based result.')
         trace_model = trace_model if trace_enabled else 'current'

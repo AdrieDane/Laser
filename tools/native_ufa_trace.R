@@ -6,6 +6,21 @@ config <- jsonlite::read_json(args[1],simplifyVector=FALSE)
 .libPaths(c(config$r_library,.libPaths()))
 library(IDSL.UFA)
 library(mzR)
+script <- sub("^--file=","",grep("^--file=",commandArgs(FALSE),value=TRUE)[1])
+source(file.path(dirname(normalizePath(script)),"ufa_trace_lib.R"))
+if (is.null(config$profile_manifest)) stop("Build the shared native profile cache before study scoring")
+manifest <- jsonlite::read_json(config$profile_manifest,simplifyVector=FALSE)
+stopifnot(identical(manifest$spec$engine,as.character(packageVersion("IDSL.UFA"))),
+          identical(manifest$spec$IPA,as.character(packageVersion("IDSL.IPA"))))
+databases <- list()
+needed <- unique(vapply(config$queries,function(q)q$adduct,character(1)))
+for (adduct in intersect(names(manifest$adducts),needed)) {
+  entry <- manifest$adducts[[adduct]]
+  stopifnot(digest::digest(file=entry$path,algo="sha256")==entry$sha256)
+  record <- readRDS(entry$path)
+  stopifnot(identical(record$spec,ufa_cache_spec()))
+  databases[[adduct]] <- record$db
+}
 output <- args[2]
 if (dir.exists(output)) stop("Preserve earlier native attempts")
 dir.create(output,recursive=TRUE)
@@ -20,6 +35,7 @@ aligned <- approx(unlist(config$sample$raw_rt_min),unlist(config$sample$correcte
                   xout=times,rule=1)$y
 close(ms)
 connection <- file(file.path(output,"predictions.jsonl"),"wt")
+lossless_checks <- 0L
 for (q in config$queries) {
   print(paste(config$stream,q$query_id));flush.console()
   prediction <- list(query_id=q$query_id,stream=q$stream,feature_id=q$feature_id,
@@ -30,34 +46,14 @@ for (q in config$queries) {
                       aligned<=q$boundaries$rt_end_corrected_min)
       if (length(chosen)<2) stop("Insufficient native scan coverage")
       window <- spectra[chosen]
-      raw <- lapply(window,function(s) {
-        index <- which(abs(s[,1]-q$mz)<=q$mz*4e-6)
-        if (!length(index)) return(c(0,0))
-        c(s[index[which.min(abs(s[index,1]-q$mz))],2],length(index))
-      })
-      raw <- do.call(rbind,raw)
-      height <- max(raw[,1])
-      if (height<=0) stop("No observed target centroid")
-      if (any(raw[raw[,1]>=.2*height,2]>1)) stop("Ambiguous target mass centroids")
-      z <- abs(q$charge)
-      isotope <- vapply(window,function(s) {
-        index <- which(abs(s[,1]-q$mz-1.003354835336/z)<=(q$mz+1.003354835336/z)*4e-6)
-        if (!length(index)) return(0)
-        s[index[which.min(abs(s[index,1]-q$mz-1.003354835336/z))],2]
-      },numeric(1))
-      pl <- matrix(0,nrow=1,ncol=11)
-      pl[1,c(1,2,3,4,8,11)] <- c(1,length(window),q$rt,height,q$mz,100*sum(isotope)/sum(raw[,1]))
-      pool <- vapply(q$candidates,function(c)c$formula,character(1))
-      db <- molecularFormula2IPdb(pool,IonPathways=q$adduct,peak_spacing=.005,
-          intensity_cutoff_str="min(c(c, 10))",number_processing_threads=1,allowedVerbose=FALSE)
-      # This bridge supplies original monoisotopic feature coordinates. Native
-      # UFA anchors on the most abundant isotope. Do not silently score a mixed
-      # candidate pool whose anchor definitions differ (common for high C).
-      if (any(db$IndexMAIso!=1L)) {
-        stop("Unsupported most-abundant-isotope anchor; original-monoisotope bridge is not validated for this candidate pool")
+      # The observed anchor is chosen independently of candidate formulas/ranks.
+      anchor <- ufa_observed_anchor(window,q$mz,q$charge,times=aligned[chosen])
+      db <- ufa_subset_database(databases[[q$adduct]],vapply(q$candidates,function(c)c$ion_formula,character(1)))
+      result <- ufa_annotate(db,window,anchor,q$rt)
+      if (lossless_checks<4L) {
+        stopifnot(identical(result,ufa_annotate(db,window,anchor,q$rt,prune=FALSE)))
+        lossless_checks <- lossless_checks+1L
       }
-      result <- molecular_formula_annotator(db,window,pl,1,massAccuracy=.01,maxNEME=5,
-          minPCS=950,minNDCS=2,minRCS=5,scoreCoefficients=rep(1,5),number_processing_threads=1)
       candidates <- list()
       if (!is.null(result)) {
         for (i in seq_len(nrow(result))) {
@@ -70,7 +66,8 @@ for (q in config$queries) {
         }
       }
       list(query_id=q$query_id,stream=q$stream,feature_id=q$feature_id,status="complete",candidates=candidates,
-           generated_N=q$generated_N,native_DB_N=length(db$MolecularFormula),scan_N=length(window),actual_observed_apex_height=height)
+           generated_N=q$generated_N,native_DB_N=length(db$MolecularFormula),scan_N=length(window),
+           observed_anchor=anchor,profile_cache_reused=TRUE,lossless_native_window_pruning=TRUE)
     },error=function(e) {prediction$status <- paste("unavailable:",conditionMessage(e));prediction})
   } else if (q$status=="ready") prediction$status <- "empty generated candidate pool"
   writeLines(jsonlite::toJSON(prediction,auto_unbox=TRUE,null="null",na="null",digits=NA),connection)
@@ -80,5 +77,7 @@ close(connection)
 writeLines(capture.output(sessionInfo()),file.path(output,"sessionInfo.txt"))
 jsonlite::write_json(list(engine="IDSL.UFA",version=as.character(packageVersion("IDSL.UFA")),
     stream=config$stream,queries=length(config$queries),seconds=proc.time()[[3]]-start,
-    known_adduct_conditional=TRUE,shared_unranked_candidate_universe=TRUE,native_IPA_peak_detection=FALSE),
+    known_adduct_conditional=TRUE,shared_unranked_candidate_universe=TRUE,native_IPA_peak_detection=FALSE,
+    bridge_version=UFA_BRIDGE_VERSION,anchor_settings=UFA_ANCHOR_SETTINGS,
+    actual_query_lossless_checks=lossless_checks,profile_cache_sha256=digest::digest(file=config$profile_manifest,algo="sha256")),
     file.path(output,"receipt.json"),auto_unbox=TRUE,pretty=TRUE)

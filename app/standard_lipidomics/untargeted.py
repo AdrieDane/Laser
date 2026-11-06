@@ -89,7 +89,7 @@ class UntargetedComparisonCriteria:
     trace_model: str = 'current'
 
     def __post_init__(self) -> None:
-        if self.trace_model not in {'current', 'peak_shape'}:
+        if self.trace_model not in {'current', 'peak_shape', 'peak_shape_conservative'}:
             raise ValueError('Unknown chromatographic evidence model.')
         if self.trace_model != 'current' and (self.joint_model != 'current' or self.ion_grouping_mode != 'current'):
             raise ValueError('Peak-shape evidence currently requires current ion grouping and sequential assignment.')

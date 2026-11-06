@@ -9,6 +9,7 @@ import pytest
 from standard_lipidomics.trace_evidence import (
     trace_quality, shape_pair, candidate_pairs, collect_trace_evidence,
     annotate_trace_links, digest, freeze_sources,
+    summarize_measurements,
 )
 from standard_lipidomics.untargeted import UntargetedComparisonCriteria
 from standard_lipidomics.untargeted_compounds import assign_compound_ids, LABEL_COLUMNS
@@ -90,8 +91,34 @@ def test_trace_criteria_defaults_and_untested_combinations():
     criteria=UntargetedComparisonCriteria('A','B')
     assert criteria.trace_model=='current'
     assert replace(criteria,trace_model='peak_shape').trace_model=='peak_shape'
+    assert replace(criteria,trace_model='peak_shape_conservative').trace_model=='peak_shape_conservative'
     with pytest.raises(ValueError,match='requires current'):
         replace(criteria,trace_model='peak_shape',ion_grouping_mode='full_feature_soft')
+
+
+@pytest.mark.parametrize('observations,expected',[
+    ([(.2,.8)]*5,'ambiguous'), # Poor shape with substantial coelution is not a refutation.
+    ([(.2,.1)]*3+[(.2,.8)]*2,'ambiguous'), # Discordance must replicate across injections.
+    ([(.2,.1)]*5,'discordant'),
+    ([(.95,.9)]*5,'supported'),
+    ([(.2,.1)],'not evaluable'),
+])
+def test_conservative_trace_requires_joint_replicated_disagreement(observations,expected):
+    pairs=pd.DataFrame([{'stream':'RP_Pos','source_feature_id':'a','target_feature_id':'b','kind':'ion'}])
+    measurements=pd.DataFrame([{'stream':'RP_Pos','source_feature_id':'a','target_feature_id':'b','kind':'ion',
+        'sample':str(i),'status':'measured','shape_r':r,'overlap':o} for i,(r,o) in enumerate(observations)])
+    actual=summarize_measurements(pairs,measurements,conservative=True)
+    assert actual.trace_status.tolist()==[expected]
+
+
+def test_conservative_positive_support_never_reranks_table_based_assignments():
+    result,analysis=example()
+    baseline=assign_compound_ids(analysis,result=result)
+    pairs=candidate_pairs(analysis)
+    evidence=pairs.assign(trace_status='supported',usable_samples=5,median_shape_r=.99,median_overlap=.95)
+    actual=assign_compound_ids({**analysis,'criteria':{**analysis['criteria'],'trace_model':'peak_shape_conservative'},
+        'trace_pair_evidence':evidence},result=result)
+    pd.testing.assert_frame_equal(baseline['compound_features'],actual['compound_features'],check_exact=True)
 
 
 def test_complete_two_injection_collection_and_source_drift(tmp_path,monkeypatch):
