@@ -1,0 +1,5 @@
+arm,groups_with_at_least_two_curated_ions,single_curated_name_groups,single_name_and_all_adducts_correct,mixed_curated_name_groups,limitation
+saved_current_762,26,12,12,14,"Curated-name consistency of reference-covered ions only; extras unconfirmed, isomers unresolved"
+sequential,565,341,332,224,"Curated-name consistency of reference-covered ions only; extras unconfirmed, isomers unresolved"
+joint_laser,172,123,123,49,"Curated-name consistency of reference-covered ions only; extras unconfirmed, isomers unresolved"
+joint_msbuddy,234,179,178,55,"Curated-name consistency of reference-covered ions only; extras unconfirmed, isomers unresolved"

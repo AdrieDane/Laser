@@ -46,7 +46,9 @@ The comparison includes all formula-bearing reference queries, with native exter
 tool availability reported separately. Current defaults are unchanged.
 [Stage 6](docs/validation/untargeted_stage6/README.md) adds experimental joint
 formula/ion hypotheses with optional isolated msbuddy, competing assignments and
-abstention. It is under blind development validation and is not the default.
+abstention. Its completed internal comparison improves forced formula/adduct
+ranking but regresses resolved counterpart recovery, so CURRENT remains the default.
+Joint mode is experimental; saved evidence now preserves IDs, empty labels and precision.
 
 ## Run the app
 

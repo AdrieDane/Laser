@@ -1,0 +1,129 @@
+{
+  "date": "2026-11-06",
+  "scientific_source_revision": "8f276b0",
+  "renderer_revision": "2a2e4fd",
+  "persistence_fix": "e6aeac8",
+  "query_N": 3413,
+  "all_reference_N": 3668,
+  "class_mode_cells": 252,
+  "default_changed": false,
+  "independent_validation": false,
+  "formula_adduct_forced_top1": {
+    "stage5": 1032,
+    "joint_laser": 2526,
+    "joint_msbuddy": 2692
+  },
+  "original_reference_ion_adduct_recovery": {
+    "sequential": 1988,
+    "joint_laser": 1539,
+    "joint_msbuddy": 1881
+  },
+  "PC_positive_counterparts": {
+    "saved_current_762": {
+      "n": 10,
+      "N": 14,
+      "percent": 71.42857142857143
+    },
+    "sequential": {
+      "n": 9,
+      "N": 14,
+      "percent": 64.28571428571429
+    },
+    "joint_laser": {
+      "n": 2,
+      "N": 14,
+      "percent": 14.285714285714286
+    },
+    "joint_msbuddy": {
+      "n": 3,
+      "N": 14,
+      "percent": 21.428571428571427
+    },
+    "production_msbuddy_762": {
+      "n": 4,
+      "N": 14,
+      "percent": 28.571428571428573
+    }
+  },
+  "reference_pairs": {
+    "saved_current_762": {
+      "reference_pair_agreement": {
+        "n": 21,
+        "N": 35,
+        "percent": 60.0
+      },
+      "compatible_mapped_reference_pair_recovery": {
+        "n": 21,
+        "N": 960,
+        "percent": 2.1875
+      },
+      "discordant_reference_pairs": 14,
+      "denominator_limitation": "Mapped exact-name cross-mode reference pairs; same-phase RT separation <=12 s. Unknown extras not false positives."
+    },
+    "sequential": {
+      "reference_pair_agreement": {
+        "n": 446,
+        "N": 659,
+        "percent": 67.6783004552352
+      },
+      "compatible_mapped_reference_pair_recovery": {
+        "n": 446,
+        "N": 960,
+        "percent": 46.458333333333336
+      },
+      "discordant_reference_pairs": 213,
+      "denominator_limitation": "Mapped exact-name cross-mode reference pairs; same-phase RT separation <=12 s. Unknown extras not false positives."
+    },
+    "joint_laser": {
+      "reference_pair_agreement": {
+        "n": 153,
+        "N": 196,
+        "percent": 78.06122448979592
+      },
+      "compatible_mapped_reference_pair_recovery": {
+        "n": 153,
+        "N": 960,
+        "percent": 15.9375
+      },
+      "discordant_reference_pairs": 43,
+      "denominator_limitation": "Mapped exact-name cross-mode reference pairs; same-phase RT separation <=12 s. Unknown extras not false positives."
+    },
+    "joint_msbuddy": {
+      "reference_pair_agreement": {
+        "n": 217,
+        "N": 269,
+        "percent": 80.66914498141264
+      },
+      "compatible_mapped_reference_pair_recovery": {
+        "n": 217,
+        "N": 960,
+        "percent": 22.604166666666668
+      },
+      "discordant_reference_pairs": 52,
+      "denominator_limitation": "Mapped exact-name cross-mode reference pairs; same-phase RT separation <=12 s. Unknown extras not false positives."
+    }
+  },
+  "full_application_tests": {
+    "passed": 1086,
+    "skipped": 9,
+    "subtests_passed": 91
+  },
+  "preservation": {
+    "original_features": 254324,
+    "statistical_rows": 251431,
+    "prepared_files": 94,
+    "raw_files": 68,
+    "production_queries": 762,
+    "native_cases": 4187,
+    "viewer_roundtrip_exact": true
+  },
+  "status": "Software and internal comparison complete; joint grouping rejected for default promotion; experimental option only",
+  "open": [
+    "independent acquisition validation",
+    "verified isotope-member gold",
+    "Binner native comparison",
+    "SIRIUS/MZmine study comparison",
+    "end-to-end browser latency"
+  ],
+  "next_stage_started": false
+}

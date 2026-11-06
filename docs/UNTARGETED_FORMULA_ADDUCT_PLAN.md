@@ -2,6 +2,9 @@
 
 Created 5 November 2026. Stages 1 and 2 completed; Stage 3 comparison published;
 Stage 4 software/internal comparison published; verified isotope validation open.
+Stages 5 (LASER/msbuddy) and 6 internal comparisons are published; CURRENT remains
+the default. Stage 6 improves forced formula/adduct ranking but regresses resolved
+counterpart recovery, so its joint option remains experimental.
 See the [frozen baseline and evaluation contract](validation/untargeted_stage1/README.md).
 
 Improve the interpretation of untargeted lipidomics features by combining ion
@@ -29,7 +32,7 @@ validation supports a default change; merging code does not itself promote it.
 | 3 | Ion grouping across the full feature list | 1, 2 | LASER comparison complete; current default retained, Binner pending |
 | 4 | Complete isotope patterns and measurement quality | 2, 3 | Software/internal comparison complete; verified isotope validation open |
 | 5 | Lipid formula candidates and external engine comparison | 1, 4 | LASER/msbuddy comparisons complete; experimental only, SIRIUS/MZmine activation pending |
-| 6 | Joint formula and adduct inference across modes | 3, 4, 5 | Authorized; experimental implementation and blind validation in progress |
+| 6 | Joint formula and adduct inference across modes | 3, 4, 5 | Software/internal comparison complete; CURRENT retained after counterpart regressions; experimental option only |
 | 7 | Optional chromatographic trace evidence | 1, 3 and available traces | Not started |
 | 8 | Optional MS/MS evidence and formula comparison | 1, 5 and available spectra | Not started |
 | 9 | Final validation, saved projects and default selection | 1–6; available parts of 7–8 | Not started |
@@ -354,3 +357,4 @@ identifiers rather than private filesystem paths or subject identifiers.
 | Stage | Date | Source revision | Decision | Public summary and report identifier | Next stage |
 | --- | --- | --- | --- | --- | --- |
 | Plan | 5 November 2026 | See the commit adding this document | Plan published; no implementation stage started | This document | 1 |
+| 6 | 6 November 2026 | Inference 8f276b0; renderer 2a2e4fd; persistence e6aeac8 | CURRENT retained; forced ranks improve, resolved counterparts regress; no default promotion | [Safe aggregates](validation/untargeted_stage6/README.md); private report ALD_stage6_003 | Stop for review before 7 |

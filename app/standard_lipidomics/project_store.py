@@ -263,7 +263,7 @@ def _write_untargeted_project(
         settings=dict(analysis.get("criteria") or {}),
         inputs=dict(inputs or {}), annotation_manifest=manifest,
         polarity="both",
-        table_frames=frames if analysis.get("criteria", {}).get("joint_model", "current") != "current" else None,
+        table_frames=frames if (analysis.get("criteria") or {}).get("joint_model", "current") != "current" else None,
     )
     return paths
 

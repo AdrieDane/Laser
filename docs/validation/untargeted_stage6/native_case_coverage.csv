@@ -1,0 +1,8 @@
+arm,mode,status,cases,candidates
+joint_msbuddy,NP_Neg,complete,2958,13626
+joint_msbuddy,NP_Neg,unsupported native precursor range,114,0
+joint_msbuddy,NP_Pos,complete,3620,12981
+joint_msbuddy,RP_Neg,complete,3498,14883
+joint_msbuddy,RP_Neg,unsupported native precursor range,12,0
+joint_msbuddy,RP_Pos,complete,7690,18523
+joint_msbuddy,RP_Pos,unsupported native precursor range,270,0

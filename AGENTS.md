@@ -27,6 +27,30 @@ statistics, inputs and defaults. No post-hoc parameter tuning or per-mode winner
 splicing. Stage5 SIRIUS/MZmine, Binner and verified isotope gold remain open.
 Do not start Stage7 or resume historical annotation optimization automatically.
 
+Stage 6 software/internal comparison COMPLETE (6 November 2026); CURRENT remains
+the default. Inference 8f276b0, display-only compatibility 2a2e4fd, typed persistence
+fix e6aeac8. All 3413 natural formula queries, 3668 reference rows and 252 class-mode
+cells retained. Forced formula/adduct top 1: Stage 5 1032/3413 -> LASER 2526, native 2692.
+Matched sequential original-ion/adduct recovery (RP positive/negative, NP positive/negative):
+790/1694, 328/679, 506/757, 364/538 -> LASER 763/195/333/248; native 889/271/391/330.
+Extras: sequential 1201/1102/882/908 -> LASER 828/764/536/545; native 897/818/624/619.
+These are curated original-ion/adduct agreement rates, not confirmed identity.
+Pair recovery 446/960 -> 153/960, 217/960; matched PC 9/14 -> 2/14, 3/14.
+Normal 762-query native PC 4/14 versus saved-current 10/14 confirms a regression
+beyond scope effects. Joint mode stays experimental, rejected for default promotion;
+no post-hoc tuning. Typed artifacts preserve IDs/blanks/precision; real 762-query
+viewer payload is EXACT after reopening. All original 251431 statistical rows and
+2915 old compound rows unchanged. All 254324 original coordinates and family bounds
+independently verified. All 94 prepared inputs, 68 raw files, IS and method unchanged;
+result folders empty. Native: 18162 blind ion cases, 17766 complete, 396 range exclusions.
+Durable native installation passes 4/4 synthetic controls; production 4187 cases.
+Full suite: 1086 passed, 9 skipped, 91 subtests. Source/checker/display failures and
+serialization attempts preserved privately; scientific hashes unchanged through display
+recovery. Private report outputs/untargeted_stage_6/report.html; safe aggregates in
+docs/validation/untargeted_stage6. No independent validation or calibrated confidence.
+Previous pending engines and verified isotope gold remain OPEN. Stop for review;
+Stage 7 not started.
+
 User explicitly authorized Stage 5 with "do it" after its description.
 Supersedes the older stop-before-Stage5 text for this stage only. Implement
 lipid-aware structured candidates with a broader de-novo route, then compare

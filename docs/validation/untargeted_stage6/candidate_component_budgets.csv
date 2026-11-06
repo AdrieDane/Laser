@@ -1,0 +1,3 @@
+arm,queries,generated_hypotheses,source_budgets_reached,components,oversized_components,beam_pruned_components
+joint_laser,3413,1991792,2953,3186,0,4
+joint_msbuddy,3413,1991792,2953,3184,0,6

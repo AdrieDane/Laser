@@ -1,0 +1,4 @@
+arm,inference_seconds,N,median_ms,max_ms,scope
+sequential,25.48440912499791,3413,0.7344169999996666,303.88537499999984,sampleFigures model only; not end-to-end Plotly/browser rendering
+joint_laser,,3413,0.3445829999998295,38.04833400000007,sampleFigures model only; not end-to-end Plotly/browser rendering
+joint_msbuddy,691.355066417018,3413,0.5106249999998909,112.4842910000002,sampleFigures model only; not end-to-end Plotly/browser rendering
