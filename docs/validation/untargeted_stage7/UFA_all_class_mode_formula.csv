@@ -1,4 +1,4 @@
-class,mode,N,before_top1,after_top1,queries_touched_before_stop,native_formula_accuracy
+class,mode,N,stage5_known_adduct_top1_reference,native_top1_not_evaluated,queries_touched_before_stop,native_formula_accuracy
 all,RP_Pos,1592,1527,,137,not evaluated: input anchor convention failed required domain control
 all,RP_Neg,585,443,,362,not evaluated: input anchor convention failed required domain control
 all,NP_Pos,724,670,,0,not evaluated: input anchor convention failed required domain control
