@@ -50,6 +50,12 @@ for (q in config$queries) {
       pool <- vapply(q$candidates,function(c)c$formula,character(1))
       db <- molecularFormula2IPdb(pool,IonPathways=q$adduct,peak_spacing=.005,
           intensity_cutoff_str="min(c(c, 10))",number_processing_threads=1,allowedVerbose=FALSE)
+      # This bridge supplies original monoisotopic feature coordinates. Native
+      # UFA anchors on the most abundant isotope. Do not silently score a mixed
+      # candidate pool whose anchor definitions differ (common for high C).
+      if (any(db$IndexMAIso!=1L)) {
+        stop("Unsupported most-abundant-isotope anchor; original-monoisotope bridge is not validated for this candidate pool")
+      }
       result <- molecular_formula_annotator(db,window,pl,1,massAccuracy=.01,maxNEME=5,
           minPCS=950,minNDCS=2,minRCS=5,scoreCoefficients=rep(1,5),number_processing_threads=1)
       candidates <- list()

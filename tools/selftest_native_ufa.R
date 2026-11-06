@@ -22,4 +22,8 @@ for (adduct in c("[M+H]+","[M-H]-","[M-2H]2-")) {
   stopifnot(nrow(ans)>0,ans$IonFormula[1]==db$MolecularFormula[1])
   cat(adduct,"synthetic top-1 passed\n")
 }
-cat("NATIVE UFA SYNTHETIC CONTROLS PASSED\n")
+high <- molecularFormula2IPdb("C120H236O6",IonPathways="[M+NH4]+",peak_spacing=.005,
+    intensity_cutoff_str="min(c(c, 10))",number_processing_threads=1,allowedVerbose=FALSE)
+stopifnot(high$IndexMAIso[1]!=1L)
+cat("Three supported-ion controls passed; unsupported high-carbon anchor detected.\n")
+cat("This does not validate a full original-monoisotope study comparison.\n")
