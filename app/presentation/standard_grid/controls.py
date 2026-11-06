@@ -171,11 +171,11 @@ def render_review_controls(
     """Render view, criteria, and grid controls and return their values."""
     visible = bool(st.session_state.setdefault(CONTROLS_STATE, True))
     if not visible:
-        st.button("›", help="Show review controls", on_click=_set_visible, args=(True,))
+        st.button("›", help="Show review controls", key="standard-review-controls-reveal", width="content", on_click=_set_visible, args=(True,))
     panel_key = "standard-review-controls-panel" + ("" if visible else "-hidden")
     with st.container(border=True, key=panel_key):
         if visible:
-            st.button("‹", help="Hide review controls", on_click=_set_visible, args=(False,))
+            st.button("‹", help="Hide review controls", key="standard-review-controls-collapse", width="content", on_click=_set_visible, args=(False,))
         st.markdown("**View**")
         x_dimension = st.selectbox(
             "X dimension", DIMENSIONS, index=0,

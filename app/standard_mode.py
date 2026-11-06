@@ -771,8 +771,12 @@ def _save_current_untargeted(
     )
 
 
-def _standard_results_page_header(title: str) -> None:
-    if page_header(title, key=f"standard-back-to-start-{title}"):
+def _standard_results_page_header(title: str, *, annotation_actions: bool = False) -> None:
+    def save_action():
+        if st.button("Save annotation", key="standard-save-from-annotation"):
+            st.session_state.standard_results_page = "save"
+            st.rerun()
+    if page_header(title, key=f"standard-back-to-start-{title}", actions=save_action if annotation_actions else None):
         st.session_state.pop("standard_annotation_result", None)
         st.session_state.pop("standard_results_page", None)
         st.session_state[STANDARD_PIPELINE_PAGE_KEY] = "select"
@@ -870,10 +874,7 @@ def _render_standard_results() -> None:
     if page == "save":
         _render_standard_project_save(result)
         return
-    _standard_results_page_header("Annotation review")
-    if st.button("Save annotation", key="standard-save-from-annotation"):
-        st.session_state.standard_results_page = "save"
-        st.rerun()
+    _standard_results_page_header("Annotation review", annotation_actions=True)
     _render_standard_annotation_workspace(result)
 
 

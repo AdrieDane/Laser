@@ -76,10 +76,6 @@ class StandardGridPage:
     run_grid_threshold: float = 0.45
 
     def initialise(self) -> bool:
-        st.subheader(
-            "Lipid class grid browser",
-            help=_browser_help(bool(self.result.get("benchmark_context"))),
-        )
         streams = [
             name for name, stream_result in self.result.get("streams", {}).items()
             if not stream_result.get("reference", pd.DataFrame()).empty
@@ -87,7 +83,10 @@ class StandardGridPage:
         if not streams:
             st.info("No reference-supported streams are available for the grid browser.")
             return False
-        self.stream = st.selectbox("Stream", streams, key="standard_grid_stream")
+        with st.container(horizontal=True, vertical_alignment="center", key="standard-grid-stream-row"):
+            st.subheader("Lipid class grid browser", anchor=False,
+                         help=_browser_help(bool(self.result.get("benchmark_context"))))
+            self.stream = st.selectbox("Stream", streams, key="standard_grid_stream", label_visibility="collapsed", width=180)
         self.stream_result = self.result["streams"][self.stream]
         status = self.result.get("benchmark_context", {}).get(
             "status_by_stream", {}

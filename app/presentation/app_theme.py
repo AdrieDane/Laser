@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 import streamlit as st
 from streamlit.delta_generator import DeltaGenerator
 
@@ -19,10 +20,12 @@ def settings_panel(title: str | None, *, key: str, grouped: bool = False) -> Del
 
 
 def page_header(title: str, *, key: str, back_label: str = "Back to start",
-                help: str | None = None) -> bool:
+                help: str | None = None, actions: Callable | None = None) -> bool:
     """Keep the page title and a content-sized home action aligned and responsive."""
     with st.container(horizontal=True, vertical_alignment="center", key=f"page-header-{key}"):
         st.title(title, help=help)
+        if actions is not None:
+            actions()
         return st.button(back_label, key=key, width="content")
 
 
@@ -45,6 +48,7 @@ _TITLED_SETTING = r'''
 [data-testid="stElementContainer"]:not(:where(
         [data-testid="stSidebar"],
         .st-key-review-controls-panel, .st-key-review-controls-panel-hidden,
+        .st-key-standard-review-controls-panel, .st-key-standard-review-controls-panel-hidden,
         [class*="st-key-settings-surface-"],
         __HORIZONTAL_SETTINGS_ROW__
       ) *) > :not(:is(
@@ -616,8 +620,29 @@ __PAGE_LOADING_MONITOR_SUPPRESSION__
         z-index: 20;
         width: 2rem;
       }
-      [class*="st-key-review-controls-panel-hidden"] {
+      [class*="st-key-review-controls-panel-hidden"],
+      .st-key-standard-review-controls-panel-hidden {
         display: none !important;
+      }
+      .st-key-standard-review-controls-reveal button,
+      .st-key-standard-review-controls-collapse button {
+        width: 1.85rem !important;
+        min-width: 1.85rem !important;
+        min-height: 1.85rem !important;
+        height: 1.85rem !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+      }
+      body:has(.annotation-viewer-active) [class*="st-key-page-header-standard-back-to-start-"] h1 {
+        margin: 0 !important;
+        padding-block: 0.1rem !important;
+      }
+      .st-key-standard-grid-stream-row h3 {
+        margin: 0 !important;
+        padding-block: 0.1rem !important;
+      }
+      .st-key-standard-grid-stream-row [data-testid="stSelectbox"] {
+        margin: 0 !important;
       }
       [class*="st-key-review-controls-collapse"] .stButton button,
       [class*="st-key-review-controls-reveal"] .stButton button {
