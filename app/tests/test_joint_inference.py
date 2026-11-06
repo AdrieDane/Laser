@@ -154,6 +154,14 @@ def test_joint_evidence_is_additive_and_roundtrips_with_unavailable_native(tmp_p
     assert saved['criteria']['joint_model'] == 'joint_ms1'
     assert len(saved['joint_hypotheses']) == len(out['joint_hypotheses'])
     assert saved['joint_provenance'] == out['joint_provenance']
+    from presentation.untargeted_mode import build_mode_payload
+    assert build_mode_payload(loaded, saved) == build_mode_payload(result, out)
+    for name in ('joint_hypotheses', 'joint_feature_ledger', 'joint_compound_features',
+                 'joint_support', 'msbuddy_candidates', 'msbuddy_cases'):
+        if not len(out[name].columns):
+            assert saved[name].shape == out[name].shape
+        else:
+            pd.testing.assert_frame_equal(saved[name], out[name], check_exact=True)
 
 
 def test_RT_bounds_remain_separate_between_chromatographies():

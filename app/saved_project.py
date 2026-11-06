@@ -183,6 +183,7 @@ def create_saved_project_from_run(
     annotation_manifest: str | Path | None,
     polarity: str | None = None,
     allow_parent_paths: bool = False,
+    table_frames: Mapping[str, pd.DataFrame] | None = None,
 ) -> Path:
     """Register machine-readable run outputs as one reopenable LASER project."""
     root = Path(project_directory).expanduser().resolve()
@@ -224,11 +225,13 @@ def create_saved_project_from_run(
         )
         if suffix in {".csv", ".tsv"}:
             try:
-                table = pd.read_csv(
-                    path,
-                    sep="\t" if suffix == ".tsv" else ",",
-                    low_memory=False,
-                )
+                table = table_frames.get(role) if table_frames is not None else None
+                if table is None:
+                    table = pd.read_csv(
+                        path,
+                        sep="\t" if suffix == ".tsv" else ",",
+                        low_memory=False,
+                    )
                 columnar = atomic_write_parquet(
                     path.with_suffix(path.suffix + ".parquet"),
                     table,

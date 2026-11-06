@@ -197,6 +197,10 @@ def _write_untargeted_project(
     method = normalize_acquisition_method(analysis.get("acquisition_method", result.get("acquisition_method")))
     tables = root / "tables"
     paths: dict[str, Path] = {}
+    # Experimental evidence includes text IDs, empty labels and full-precision
+    # costs. Build its typed artifacts from the actual frames, rather than
+    # inferring their types again from portable CSV exports.
+    frames: dict[str, pd.DataFrame] = {}
     streams: dict[str, Any] = {}
     for name, stream in dict(result.get("streams") or {}).items():
         frame = stream.get("features")
@@ -205,22 +209,26 @@ def _write_untargeted_project(
         slug = str(name).replace("/", "_")
         role = f"stream__{slug}__features"
         paths[role] = atomic_write_csv(tables / "streams" / slug / "features.csv", frame)
+        frames[role] = frame
         streams[str(name)] = {"slug": slug, "features_attrs": _json_attrs(frame.attrs)}
     for key in ("features", "significant_features", "raw_p_features", "compound_features", "cluster_members", "adduct_matches", "homologous_matches", "lipid_grid_matches", "group_catalog", "skipped_streams", "ion_feature_ledger", "ion_relationships", "ion_isotope_candidates", "isotope_candidate_scores", "isotope_peak_evidence", "formula_search_audit", "joint_hypotheses", "joint_feature_ledger", "joint_compound_features", "joint_relationships", "joint_support", "joint_associations", "joint_selected_links", "joint_component_audit", "joint_search_audit", "msbuddy_candidates", "msbuddy_cases"):
         frame = analysis.get(key)
         if isinstance(frame, pd.DataFrame):
             role = f"untargeted_{key}"
             paths[role] = atomic_write_csv(tables / f"{role}.csv", frame)
+            frames[role] = frame
     for key in ("untargeted_review_basket", "untargeted_reacquisition_list",
                 "untargeted_sample_metadata_audit"):
         frame = result.get(key)
         if isinstance(frame, pd.DataFrame):
             paths[key] = atomic_write_csv(tables / f"{key}.csv", frame)
+            frames[key] = frame
     source_annotations = result.get("automatic_annotations")
     if isinstance(source_annotations, pd.DataFrame):
         paths["automatic_annotations"] = atomic_write_csv(
             tables / "automatic_annotations.csv", source_annotations
         )
+        frames["automatic_annotations"] = source_annotations
     paths["standard_stream_metadata"] = atomic_write_json(
         root / "standard_stream_metadata.json",
         {"engine": "untargeted", "streams": streams},
@@ -255,6 +263,7 @@ def _write_untargeted_project(
         settings=dict(analysis.get("criteria") or {}),
         inputs=dict(inputs or {}), annotation_manifest=manifest,
         polarity="both",
+        table_frames=frames if analysis.get("criteria", {}).get("joint_model", "current") != "current" else None,
     )
     return paths
 
