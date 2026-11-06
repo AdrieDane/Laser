@@ -634,7 +634,7 @@ __PAGE_LOADING_MONITOR_SUPPRESSION__
         padding: 0 !important;
         line-height: 1 !important;
       }
-      body:has(.annotation-viewer-active) [class*="st-key-page-header-standard-back-to-start-"] h1 {
+      [class*="st-key-page-header-standard-back-to-start-"] h1 {
         margin: 0 !important;
         padding-block: 0.1rem !important;
       }
@@ -648,7 +648,7 @@ __PAGE_LOADING_MONITOR_SUPPRESSION__
       .st-key-standard-grid-stream-row [data-testid="stWidgetLabel"] {
         display: none !important;
       }
-      body:has(.annotation-viewer-active) [data-testid="stMainBlockContainer"] > [data-testid="stVerticalBlock"] {
+      body:has(.st-key-standard-grid-stream-row) [data-testid="stMainBlockContainer"] > [data-testid="stVerticalBlock"] {
         gap: 0.45rem !important;
       }
       [class*="st-key-review-controls-collapse"] .stButton button,

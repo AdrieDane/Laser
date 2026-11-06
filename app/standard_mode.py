@@ -898,6 +898,8 @@ def _render_annotation_job() -> None:
         return
     if state["status"] == "complete":
         st.success(f"{title} complete")
+        for warning in state.get('warnings', []):
+            st.warning(warning)
     elif state["status"] == "failed":
         st.error(f"{title} failed: {state['message']}")
     else:
