@@ -1,7 +1,80 @@
 # Stage 7: original-feature chromatographic evidence
 
-Authorized 6 November 2026. Implementation/protocol checkpoint; study scoring has
-not yet started. CURRENT remains the default. Stage 8 is not authorized.
+Authorized 6 November 2026. **Software/internal comparison complete; CURRENT
+remains the default after a routine-workflow regression.** Native CAMERA is still
+finishing its bounded mode attempts; UFA comparison is open after an input-adapter
+contract failure, and native MZmine activation remains pending. Stage 8 has not
+started. This is one development acquisition, not independent validation.
+
+## Completed LASER comparison
+
+Matched 3,413-query original-ion/adduct agreement (all 3,668 manual rows retained):
+
+| Mode | Table-based before | Peak shapes after | Unconfirmed extras before → after |
+| --- | --- | --- | --- |
+| RP positive | 46.6% (790/1694) | 47.0% (797/1694) | 1201 → 1200 |
+| RP negative | 48.3% (328/679) | 49.2% (334/679) | 1102 → 1107 |
+| NP positive | 66.8% (506/757) | 67.4% (510/757) | 882 → 874 |
+| NP negative | 67.7% (364/538) | 68.2% (367/538) | 908 → 900 |
+
+These are correct adduct calls on the same original feature, not lipid-identity
+accuracy. There are 36 gains and 16 losses: net +20; extras fall by 12 overall.
+Expected original-feature/adduct pairs improve from 446/960 to 451/960. Matched
+PC counterpart recovery stays 9/14. Four-mode, all-class counts, full manual
+and assigned-ion denominators, abstentions and all 252 class/mode cells are in
+[the aggregate tables](all_class_mode_adduct_recovery.csv).
+
+The separate **normal 762-query workflow regresses**, so the option is experimental:
+
+| Mode | Before | After | Unconfirmed extras before → after |
+| --- | --- | --- | --- |
+| RP positive | 2.7% (46/1694) | 2.7% (45/1694) | 461 → 454 |
+| RP negative | 0.4% (3/679) | 0.4% (3/679) | 464 → 456 |
+| NP positive | 4.9% (37/757) | 4.5% (34/757) | 171 → 170 |
+| NP negative | 0.9% (5/538) | 0.9% (5/538) | 194 → 193 |
+
+Routine all-manual percentages are coverage: most manual entries are accepted
+lipids or not normal raw-p query roots. They are **not conditional adduct accuracy**.
+The aggregate table separately reports agreement among assigned reference ions
+and assignment coverage. Four correct calls are lost with no gains; extras fall
+by 17. Pair recovery falls 21/960 → 19/960. Normal PC counterparts stay 10/14.
+Extras here require nonempty adduct calls; the original saved display included
+219 additional unassigned rows, whose historical counts are preserved separately.
+
+All 251,431 original statistical rows/evidence columns are exact. The real routine
+trace analysis and viewer payload are exact after save/reopen. All 254,324 original
+coordinates and all 94 original prepared inputs are retained. Five derived trace
+metadata files were added to the inputs-only test project; no saved results added.
+Independent QA found 31 inconsistent original apex/window rows (11/4/2/14 in
+RPpos/RPneg/NPpos/NPneg). None were queried by the trace measurements or conditional
+QC formula inputs. The release rejects those windows explicitly; original metadata
+is retained without repair. Tests: 1,100 passed, nine skipped, 91 subtests. An initial
+wrong-interpreter test invocation lacked the isolated isotope dependency; the
+failed invocation is retained privately and the declared runtime passes.
+
+Trace inference source 3f5a84c; replay 28a45a4 includes numeric-key and original-column
+checker compatibility only. Current control was copied byte-identically from the
+completed prior replay and exactly reproduces Stage6 sequential assignments.
+Source24c5edc adds the unused-invalid-window safeguard. No weights, thresholds,
+query scopes or class/mode outputs were selected after scoring. All failed setup,
+checker and adapter attempts remain preserved outside Git. Model-only selector
+timing does not establish full browser-render latency.
+
+**Native UFA trial is not an accuracy benchmark.** Three low-carbon charge controls
+passed, but an independent C120 ammonium-ion control exposed a format mismatch:
+original monoisotope anchor yields zero native hits; the required most-abundant
+isotope anchor yields the correct formula. The prototype supplied original
+monoisotopic XCMS coordinates to native `MassMAIso` inputs. That trial was stopped;
+partial outputs remain private, with all query statuses retained. No native formula
+accuracy is reported. Source dcb753f withholds scores for pools requiring a different
+anchor. An appropriate raw-envelope anchor bridge and reusable database preparation
+are future work; per-query database generation also confounded this prototype's
+runtime. This is an adapter limitation, not evidence that native UFA predicts poorly.
+
+The protocol below was fixed before study scoring. Native account/format/timeout
+limitations must remain open; do not describe Stage7 as fully benchmarked.
+
+## Installation and frozen protocol
 
 The optional **Raw peak shapes (experimental)** route uses original XCMS
 `groupidx` memberships, per-injection peak boundaries and the original global
