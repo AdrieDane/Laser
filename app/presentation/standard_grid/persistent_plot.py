@@ -51,7 +51,7 @@ export default function(component) {
   window.__laserStandardSelections ??= new Map();
   const selection = () => {
     if (!window.__laserStandardSelections.has(state.data.channel))
-      window.__laserStandardSelections.set(state.data.channel, {keys:state.data.selected ?? [], anchor:null});
+      window.__laserStandardSelections.set(state.data.channel, {keys:state.data.selected ?? [], anchor:null, activeKey:state.data.activeKey});
     return window.__laserStandardSelections.get(state.data.channel);
   };
   const paint = () => {
@@ -105,6 +105,31 @@ export default function(component) {
       if (base) point.style.fill=keys.has(key) ? '#d62728' : base;
     }
   };
+  const centerSelectedRow = () => {
+    if (state.data.role !== 'diagnostic' || !state.graph._fullLayout) return;
+    const current = selection();
+    const active = current.keys.includes(current.activeKey) ? current.activeKey : current.keys.at(-1);
+    const index = state.data.orderedKeys.indexOf(active);
+    if (index < 0) return;
+    const signature = state.data.channel + '::' + active;
+    if (state.centeredSelection === signature) return;
+    // Cross the component's shadow boundary, stopping at the inner scroll panel.
+    // Never move the document or the main grid viewer.
+    let viewport = host.parentElement;
+    while (viewport && viewport !== document.body && viewport !== document.documentElement) {
+      const overflow = getComputedStyle(viewport).overflowY;
+      if (/^(auto|scroll)$/.test(overflow) && viewport.scrollHeight > viewport.clientHeight) {
+        const axis = state.graph._fullLayout.yaxis;
+        const rowY = state.graph.getBoundingClientRect().top + axis._offset + axis.c2p(index);
+        const viewportY = viewport.getBoundingClientRect().top + viewport.clientTop;
+        const target = viewport.scrollTop + rowY - viewportY - viewport.clientHeight / 2;
+        viewport.scrollTop = Math.max(0, Math.min(viewport.scrollHeight - viewport.clientHeight, target));
+        state.centeredSelection = signature;
+        return;
+      }
+      viewport = viewport.parentElement ?? viewport.getRootNode()?.host;
+    }
+  };
   const choose = (key, modifiers, boxKeys=null) => {
     if (!key && !boxKeys) return;
     const current=selection(), ordered=state.data.orderedKeys;
@@ -118,13 +143,14 @@ export default function(component) {
       current.keys=current.keys.includes(key) ? current.keys.filter(k=>k!==key) : [...current.keys,key];
       current.anchor=key;
     } else {current.keys=[key];current.anchor=key;}
+    current.activeKey=key;
     document.dispatchEvent(new CustomEvent('laser-standard-selection',{detail:{channel:state.data.channel}}));
     state.emit('point',{customdata:['','',key], selectedKeys:current.keys, activeKey:key,
       ctrlKey:!!modifiers.ctrlKey,metaKey:!!modifiers.metaKey,shiftKey:!!modifiers.shiftKey,
       view:{xaxis:state.graph._fullLayout?.xaxis?.range,yaxis:state.graph._fullLayout?.yaxis?.range},timestamp:Date.now()});
   };
   state.paint=paint;
-  const receive = event => {if (event.detail?.channel===state.data.channel) state.paint();};
+  const receive = event => {if (event.detail?.channel===state.data.channel) {state.paint();centerSelectedRow();}};
   if (state.receive) document.removeEventListener('laser-standard-selection',state.receive);
   state.receive=receive;document.addEventListener('laser-standard-selection',receive);
   const ready = window.__laserStandardPlotly ? Promise.resolve() : new Promise(resolve =>
@@ -160,6 +186,7 @@ export default function(component) {
       state.bound=true;
     }
     paint();
+    centerSelectedRow();
   }).catch(error=>console.error('LASER reviewer plot update failed',error));
   return ()=>{state.cleanup=requestAnimationFrame(()=>{
     if (host.isConnected) return;
@@ -181,4 +208,5 @@ def persistent_review_plot(figure, *, key, channel, ordered_keys, selected_keys,
         data={"spec": pio.to_json(figure, validate=False), "height": int(figure.layout.height or 450),
               "channel": str(st.session_state.get("standard_review_run_token", "")) + "::" + channel, "role": role, "orderedKeys": list(ordered_keys),
               "rowIds": list(row_ids), "selected": list(selected_keys), "validKeys": list(valid_keys if valid_keys is not None else ordered_keys),
+              "activeKey": st.session_state.get("standard_active_grid_keys", {}).get(channel),
               "config": config or {}}, on_point_change=on_point_change, default={})
