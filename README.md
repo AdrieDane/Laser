@@ -44,6 +44,9 @@ the current isotope model remains the default.
 backbone and broader de-novo candidates with an explicit isotope-scoring budget.
 The comparison includes all formula-bearing reference queries, with native external
 tool availability reported separately. Current defaults are unchanged.
+[Stage 6](docs/validation/untargeted_stage6/README.md) adds experimental joint
+formula/ion hypotheses with optional isolated msbuddy, competing assignments and
+abstention. It is under blind development validation and is not the default.
 
 ## Run the app
 

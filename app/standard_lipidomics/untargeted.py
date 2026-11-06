@@ -84,8 +84,16 @@ class UntargetedComparisonCriteria:
     isotope_model: str = 'current'
     formula_model: str = 'current'
     formula_scoring_limit: int = 32
+    joint_model: str = 'current'
+    use_msbuddy: bool = False
 
     def __post_init__(self) -> None:
+        if self.joint_model not in {'current', 'joint_ms1'}:
+            raise ValueError('Unknown joint formula/adduct model.')
+        if type(self.use_msbuddy) is not bool or (self.use_msbuddy and self.joint_model == 'current'):
+            raise ValueError('msbuddy requires joint formula/adduct inference.')
+        if self.joint_model != 'current' and (self.formula_model != 'lipid_aware' or self.isotope_model != 'complete'):
+            raise ValueError('Joint inference requires lipid-aware formulas and complete isotope evidence.')
         if self.formula_model not in {'current', 'lipid_aware'}:
             raise ValueError('Unknown formula model.')
         if self.formula_model == 'lipid_aware' and self.isotope_model != 'complete':
@@ -1763,6 +1771,10 @@ def analyse_standard_untargeted(
             (lambda fraction, message: progress(.94+.015*fraction, message)) if progress else None))
     output = assign_compound_ids(output, result=result)
     from standard_lipidomics.complete_isotopes import apply_complete_isotopes
+    if criteria.joint_model != 'current':
+        from standard_lipidomics.joint_inference import apply_joint_inference
+        return apply_joint_inference(result, output, criteria,
+            (lambda fraction, message: progress(.956+.039*fraction, message)) if progress else None)
     return apply_complete_isotopes(result, output, criteria,
         (lambda fraction, message: progress(.956+.039*fraction, message)) if progress else None)
 

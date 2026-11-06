@@ -141,6 +141,17 @@ def _untargeted_criteria(
         formula_limit = st.number_input('Maximum candidates scored with isotope evidence', min_value=1, max_value=256,
             value=int(saved_criteria.get('formula_scoring_limit', 32)), disabled=formula_model != 'lipid_aware',
             key='standard-untargeted-formula-limit')
+        joint_model = st.selectbox('Formula and adduct assignment', ('current', 'joint_ms1'),
+            index=('current', 'joint_ms1').index(saved_criteria.get('joint_model', 'current')) if formula_model == 'lipid_aware' else 0,
+            format_func=lambda value: {'current': 'Current assignments', 'joint_ms1': 'Joint MS1 hypotheses (experimental)'}[value],
+            disabled=formula_model != 'lipid_aware', key='standard-untargeted-joint-model')
+        joint_model = joint_model if formula_model == 'lipid_aware' else 'current'
+        use_msbuddy = st.checkbox('Use msbuddy alongside LASER', value=bool(saved_criteria.get('use_msbuddy', False)),
+            disabled=joint_model == 'current', key='standard-untargeted-use-msbuddy') and joint_model != 'current'
+        if use_msbuddy:
+            from standard_lipidomics.msbuddy_runtime import configuration_path
+            if not configuration_path().is_file():
+                st.warning('msbuddy is not configured on this computer. LASER evidence will remain available.')
         grouping = st.selectbox('Ion grouping', ('current', 'full_feature_hard', 'full_feature_soft'),
             index=('current', 'full_feature_hard', 'full_feature_soft').index(saved_criteria.get('ion_grouping_mode', 'current')),
             format_func=lambda value: {'current': 'Current grouping', 'full_feature_hard': 'Full feature list — strict profiles (experimental)',
@@ -174,6 +185,7 @@ def _untargeted_criteria(
         ion_grouping_mode=grouping,
         isotope_model=isotope_model,
         formula_model=formula_model, formula_scoring_limit=int(formula_limit),
+        joint_model=joint_model, use_msbuddy=bool(use_msbuddy),
     ), labels
 
 

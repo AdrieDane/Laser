@@ -52,18 +52,42 @@ def _lipid_labels(result):
     return {key: escape('; '.join(values)) for key, values in labels.items()}
 
 
-def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
+def _joint_links(analysis):
+    frames = []
+    for table, status in [('joint_selected_links', 'joint_link_status'), ('joint_associations', 'association_status')]:
+        frame = analysis.get(table, pd.DataFrame())
+        if not frame.empty and status in frame:
+            frames.append(frame[frame[status].isin(['selected', 'already_connected'])])
+    rows = []
+    ions = {a.name: a for a in ADDUCTS}
+    for frame in frames:
+        for r in frame.to_dict('records'):
+            neutral = ions[r['source_adduct']].neutral(float(r['source_mz']))
+            expected = ions[r['target_adduct']].mz(neutral)
+            rows.append({**r, 'neutral_mass': neutral, 'mass_error_ppm': (r['target_mz']-expected)/expected*1e6,
+                         'rt_delta_seconds': (r['target_rt']-r['source_rt'])*60})
+    return pd.DataFrame(rows)
+
+
+def build_mode_payload(result, analysis, *, token='preview', theme='Minimal', refresh_legacy=True):
     """One compact load; all subsequent selection work stays in the browser."""
     from standard_lipidomics.untargeted_grid import search_lipid_grids, GRID_VERSION
     method = normalize_acquisition_method(analysis.get('acquisition_method', result.get('acquisition_method')))
-    if analysis.get('lipid_grid_version') != GRID_VERSION:
+    joint_active = analysis.get('criteria', {}).get('joint_model', 'current') != 'current' and 'joint_compound_features' in analysis
+    if refresh_legacy and not joint_active and analysis.get('lipid_grid_version') != GRID_VERSION:
         from standard_lipidomics.untargeted import _coordinate_sources, UntargetedComparisonCriteria
         analysis['lipid_grid_matches'] = search_lipid_grids(analysis.get('by_stream', {}), _coordinate_sources(result), UntargetedComparisonCriteria(**analysis['criteria']), method=method)
         analysis['lipid_grid_version'] = GRID_VERSION
         analysis['compound_version'] = None
-    if analysis.get('compound_version') != COMPOUND_VERSION:
+    if refresh_legacy and not joint_active and analysis.get('compound_version') != COMPOUND_VERSION:
         analysis.update(assign_compound_ids(analysis, result=result))
     compounds = analysis.get('compound_features', pd.DataFrame())
+    if joint_active:
+        compounds = analysis['joint_compound_features'].copy()
+        clusters = analysis.get('cluster_members', pd.DataFrame())
+        if not clusters.empty:
+            names = clusters.drop_duplicates(['stream', 'feature_id'])[['stream', 'feature_id', 'cluster_id']]
+            compounds = compounds.drop(columns=['cluster_id'], errors='ignore').merge(names, how='left', on=['stream', 'feature_id'], validate='one_to_one')
     raw = analysis.get('raw_p_features', analysis.get('significant_features', pd.DataFrame()))
     detail_columns = ['isotope_charge_hypothesis', 'chemical_composition_hypothesis']
     for number in (1, 2):
@@ -113,7 +137,7 @@ def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
             'sampleIds': sample_rows.feature_id.astype(str).tolist(), 'levels': _packed(matrix),
             'lipidIds': {fid: label for (stream, fid), label in lipid_labels.items() if stream == str(name)}}
     palette = {group: qualitative.Safe[index % len(qualitative.Safe)] for index, group in enumerate(sorted(group_names))}
-    links = analysis.get('adduct_matches', pd.DataFrame())
+    links = _joint_links(analysis) if joint_active else analysis.get('adduct_matches', pd.DataFrame())
     link_rows = []
     if not links.empty:
         allowed = {ion.name for ion in ADDUCTS}
@@ -136,18 +160,49 @@ def build_mode_payload(result, analysis, *, token='preview', theme='Minimal'):
     # Give otherwise ungrouped local neighbours their own tentative display ID.
     # Never infer that two unrelated neighbours are the same compound.
     cluster_members = _records(analysis.get('cluster_members', pd.DataFrame()))
+    if joint_active:
+        ids = {(r.stream, str(r.feature_id)): r.compound_id for r in analysis['joint_feature_ledger'].itertuples()}
+        for row in cluster_members:
+            row['compound_id'] = ids.get((str(row['stream']), str(row['feature_id'])), '')
     next_compound = max((int(row['compound_id'].split('_')[-1]) for row in statistics if row.get('compound_id')), default=0)
     for row in sorted(cluster_members, key=lambda value: (str(value['stream']), str(value['feature_id']))):
         if not row.get('compound_id'):
             next_compound += 1
             row['compound_id'] = f'compound_{next_compound:04d}'
+    joint_hypotheses, joint_associations, joint_support = {}, {}, {}
+    if joint_active:
+        frame = analysis.get('joint_hypotheses', pd.DataFrame())
+        if not frame.empty:
+            columns = [c for c in ('stream', 'feature_id', 'formula', 'adduct', 'joint_rank', 'joint_cost',
+                       'base_cost', 'native_rank', 'local_context_support', 'cross_phase_context_support', 'status') if c in frame]
+            ranked = frame[frame.joint_rank.notna()].sort_values('joint_rank', kind='stable').groupby(['stream', 'feature_id'], sort=False).head(8)
+            for row in _records(ranked[columns]):
+                joint_hypotheses.setdefault(str(row['stream'])+'\0'+str(row['feature_id']), []).append(row)
+        for row in _records(analysis.get('joint_associations', pd.DataFrame())):
+            for a, b in [('source', 'target'), ('target', 'source')]:
+                k = str(row[a+'_stream'])+'\0'+str(row[a+'_feature_id'])
+                joint_associations.setdefault(k, []).append({'stream': row[b+'_stream'], 'feature_id': row[b+'_feature_id'],
+                    'adduct': row[b+'_adduct'], 'formula': row['source_formula'], 'status': row['association_status']})
+        supporting = analysis.get('joint_support', pd.DataFrame())
+        if not supporting.empty:
+            columns = [c for c in ('source_stream', 'source_feature_id', 'source_formula', 'source_adduct', 'target_stream',
+                       'target_feature_id', 'target_adduct', 'formula_mass_error_ppm', 'paired_sample_count',
+                       'abundance_spearman', 'within_group_correlation', 'target_spectral_cost',
+                       'context_selected', 'target_budget_reached') if c in supporting]
+            compact = supporting.sort_values('context_cost', kind='stable').groupby(['source_stream', 'source_feature_id'], sort=False).head(24)
+            for row in _records(compact[columns]):
+                k = str(row['source_stream'])+'\0'+str(row['source_feature_id'])
+                joint_support.setdefault(k, []).append(row)
     return {'token': token, 'theme': theme, 'streams': streams, 'statistics': statistics,
             'links': link_rows, 'clusters': cluster_rows, 'palette': palette,
             'familyClusters': [[str(row.stream), str(row.source_feature_id), str(row.target_feature_id)] for row in grid_links.itertuples(index=False)],
             'clusterMembers': cluster_members,
             'adducts': [asdict(adduct) for adduct in ADDUCTS], 'criteria': dict(analysis.get('criteria', {})),
             'acquisitionMethodId': method_id(method),
-            'fullFeatureGrouping': analysis.get('criteria', {}).get('ion_grouping_mode', 'current') != 'current',
+            'fullFeatureGrouping': joint_active or analysis.get('criteria', {}).get('ion_grouping_mode', 'current') != 'current',
+            'jointHypotheses': joint_hypotheses, 'jointAssociations': joint_associations,
+            'jointSupport': joint_support,
+            'jointModel': joint_active, 'msbuddyStatus': (analysis.get('msbuddy_provenance') or {}).get('status', 'not requested'),
             'adductPolicies': {stream: [ion.name for ion in ADDUCTS if ion_state(method, stream, ion.name) != 'disabled'] for stream in streams}}
 
 

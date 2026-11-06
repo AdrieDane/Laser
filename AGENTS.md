@@ -15,6 +15,18 @@ accuracy. Personal project defaults belong to user settings, never source code.
 
 ## Current untargeted evidence follow-up
 
+6 November: user explicitly authorized Stage 6 with "do it" after its description.
+Supersedes the older STOP-before-Stage6 instructions for this stage only. Integrate
+optional isolated msbuddy in detached jobs and experimental joint MS1 formula/ion
+inference. Freeze/push source and protocol BEFORE actual blind evaluation. Keep all
+3413 formula queries/all3668 reference rows/all252 class-mode cells, unsupported
+queries, budgets and abstentions. No reference formulas/adducts/charges in workers.
+Compare forced ranking AND resolved assignments, original-feature links, wrong
+adducts/peaks, purity, extras and PC cases. Preserve accepted annotations, original
+statistics, inputs and defaults. No post-hoc parameter tuning or per-mode winner
+splicing. Stage5 SIRIUS/MZmine, Binner and verified isotope gold remain open.
+Do not start Stage7 or resume historical annotation optimization automatically.
+
 User explicitly authorized Stage 5 with "do it" after its description.
 Supersedes the older stop-before-Stage5 text for this stage only. Implement
 lipid-aware structured candidates with a broader de-novo route, then compare

@@ -29,7 +29,7 @@ validation supports a default change; merging code does not itself promote it.
 | 3 | Ion grouping across the full feature list | 1, 2 | LASER comparison complete; current default retained, Binner pending |
 | 4 | Complete isotope patterns and measurement quality | 2, 3 | Software/internal comparison complete; verified isotope validation open |
 | 5 | Lipid formula candidates and external engine comparison | 1, 4 | LASER/msbuddy comparisons complete; experimental only, SIRIUS/MZmine activation pending |
-| 6 | Joint formula and adduct inference across modes | 3, 4, 5 | Not started |
+| 6 | Joint formula and adduct inference across modes | 3, 4, 5 | Authorized; experimental implementation and blind validation in progress |
 | 7 | Optional chromatographic trace evidence | 1, 3 and available traces | Not started |
 | 8 | Optional MS/MS evidence and formula comparison | 1, 5 and available spectra | Not started |
 | 9 | Final validation, saved projects and default selection | 1–6; available parts of 7–8 | Not started |
@@ -216,6 +216,9 @@ are available for all four modes and declared classes, with separate library-kno
 and library-absent cases. Select an engine or combination from this evidence.
 
 ## Stage 6 Joint inference and cross mode consistency
+
+Implementation and fixed comparison contract:
+[Stage 6 validation](validation/untargeted_stage6/README.md).
 
 **Deliverables**
 

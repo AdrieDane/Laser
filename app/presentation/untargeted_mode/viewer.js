@@ -209,6 +209,19 @@ function renderEvidence(state) {
   if(row?.full_isotope_status) state.detailFormula.textContent+='\nComplete isotope model: '+
     (row.full_isotope_formula?row.full_isotope_formula+' '+row.full_isotope_adduct+' · ':'')+
     row.full_isotope_status+(row.full_isotope_quality?' · '+row.full_isotope_quality:'');
+  if(model.data.jointModel) state.detailFormula.textContent+='\nJoint assignment: '+(row?.joint_status??'unresolved')+
+    ' · cost margin '+numberText(row?.joint_margin,3)+' · msbuddy: '+model.data.msbuddyStatus;
+  const hypotheses=(model.data.jointHypotheses?.[state.selected]??[]).map(h=>[
+    h.joint_rank,h.formula,h.adduct,numberText(h.joint_cost,3),h.native_rank??'unavailable',
+    numberText(h.local_context_support,3),numberText(h.cross_phase_context_support,3),h.status]);
+  smallTable(state.joint,['Rank','Neutral formula','Adduct','Joint cost','Native rank','Local support','Other-phase support','Isotope status'],hypotheses);
+  const associations=(model.data.jointAssociations?.[state.selected]??[]).map(a=>[a.stream,a.feature_id,a.formula,a.adduct,a.status]);
+  smallTable(state.associations,['Mode','Feature','Neutral formula','Adduct','Association'],associations);
+  const support=(model.data.jointSupport?.[state.selected]??[]).map(e=>[
+    e.source_formula+' '+e.source_adduct,e.target_stream,e.target_feature_id,e.target_adduct,
+    numberText(e.formula_mass_error_ppm,2),e.paired_sample_count,numberText(e.abundance_spearman,3),
+    numberText(e.within_group_correlation,3),e.target_budget_reached?'competing features; scoring budget reached':e.context_selected?'supporting candidate':'alternative']);
+  smallTable(state.jointSupport,['Source hypothesis','Mode','Feature','Adduct','Δ mass (ppm)','Paired samples','Profile ρ','Within-group correlation','Evidence'],support);
   const isotope=[];
   for(const n of [1,2]) {
     const prefix='isotope_m_plus_'+n;
@@ -283,7 +296,7 @@ function createWorkspace(parent, data) {
   const tableViewport=node('div','','feature-viewport'),tableBody=node('div','','feature-body');tableViewport.appendChild(tableBody);table.append(header,tableViewport);
   const details=node('div','','mode-evidence'),detailTitle=node('h3');details.appendChild(detailTitle);
   const evidence={};
-  for(const [key,title] of [['detections','Compound detections'],['isotopes','Isotopes and candidate formulas'],['clusters','Cluster members across modes'],['adducts','Adduct evidence']]) {
+  for(const [key,title] of [['detections','Compound detections'],['isotopes','Isotopes and candidate formulas'],['joint','Joint formula/adduct alternatives'],['jointSupport','Joint supporting ions'],['associations','Cross-phase alternatives'],['clusters','Cluster members across modes'],['adducts','Adduct evidence']]) {
     const section=node('details'),summary=node('summary',title),content=node('div','','evidence-scroll');section.open=key==='isotopes';section.append(summary,content);details.appendChild(section);evidence[key]=content;
   }
   const detailFormula=node('p');evidence.isotopes.parentElement.appendChild(detailFormula);
