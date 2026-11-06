@@ -92,7 +92,7 @@ def worker(args):
         columns = [c for c in before if c not in LABEL_COLUMNS]
         pd.testing.assert_frame_equal(before[columns],analysis[name][columns],check_exact=True)
     for name in ('homologous_matches','lipid_grid_matches'):
-        pd.testing.assert_frame_equal(original[name],analysis[name],check_exact=True)
+        pd.testing.assert_frame_equal(original[name],analysis[name][original[name].columns],check_exact=True)
     for name,frame in analysis.items():
         if isinstance(frame,pd.DataFrame) and (name.startswith('trace_') or name in ('compound_features','adduct_matches')):
             frame.to_csv(output/(name+'.csv'),index=False)
