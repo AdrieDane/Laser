@@ -1,5 +1,6 @@
 """Conflicting hypotheses, ambiguity, physical bounds and additive persistence."""
 from dataclasses import asdict, replace
+import hashlib
 import json
 
 import pandas as pd
@@ -57,6 +58,7 @@ def test_runtime_freeze_preserves_venv_path_and_detects_drift(tmp_path, monkeypa
     venv.symlink_to(python)
     runtime = freeze_runtime({'schema_version': 1, 'python': str(venv), 'data': str(tmp_path), 'libomp': ''})
     assert runtime['available'] and runtime['python'] == str(venv)
+    assert runtime['python_sha256'] == hashlib.sha256(python.read_bytes()).hexdigest()
     assert verify_runtime(runtime)
     python.write_text('changed executable')
     assert not verify_runtime(runtime)

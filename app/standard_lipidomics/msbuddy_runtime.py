@@ -18,8 +18,11 @@ MODELS = {
 
 
 def digest(path):
+    value = hashlib.sha256()
     with Path(path).open('rb') as handle:
-        return hashlib.file_digest(handle, 'sha256').hexdigest()
+        for chunk in iter(lambda: handle.read(1024*1024), b''):
+            value.update(chunk)
+    return value.hexdigest()
 
 
 def configuration_path():
