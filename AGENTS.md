@@ -1,5 +1,34 @@
 # Current standard-tool scope (5 November 2026)
 
+Stage7 SOFTWARE/INTERNAL COMPARISON COMPLETE (6 November); CURRENT retained.
+Trace inference3f5a84c, compatibility replay28a45a4. Same3413-query all-manual
+original-ion/adduct agreement RPpos790->797/1694,RPneg328->334/679,
+NPpos506->510/757,NPneg364->367/538; extras1201->1200,1102->1107,882->874,908->900.
+Net36gains/16losses; pairs446->451/960; PC9/14 unchanged. Normal762-query
+workflow REGRESSES:46->45/1694,3->3/679,37->34/757,5->5/538; extras461->454,
+464->456,171->170,194->193; pairs21->19/960, PC10/14 unchanged. Keep experimental.
+These are curated original-ion/adduct agreement/coverage, NOT lipid identities.
+All3668manual rows/46unmapped/252class-mode cells retained; no posthoc tuning.
+All254324original coordinates/251431complete statistical rows unchanged. Eval-only
+significant-subset bug corrected by5293124/restored387rows, all predictions/traces/
+viewer payload unchanged, no inference rerun; original artifact retained privately.
+1100passed9skipped91subtests; wrong-interpreter failure log retained. Guard24c5edc
+rejects31inconsistent original peak windows, none used by study queries; no outputs
+changed. All94prepared files/68raw/IS/method unchanged; five derived metadata inputs
+added, result folders empty. Actual corrected routine save/reopen/viewer exact.
+CAMERA1.58/R4.3:negative modes completed, positive modes1800sec timeouts. Full native
+RPNeg79/679,NPneg119/538; extras9078/8875. Query-touching79/117, extras6011/2751.
+Different scope/first-QC footprint, not an intrinsic ranking. Rules API fixf5b1e82
+resumes hashed graph checkpoints within original cumulative budgets. Native UFA
+trial STOPPED: independent C120 control proves original-mono vs most-abundant
+anchor mismatch; no accuracy statistics. Guarddcb753f withholds unsupported pools;
+appropriate anchor bridge/reusable native DB remain OPEN. MZmine login, prior
+Binner/SIRIUS comparisons and verified isotope gold remain OPEN. Stage7 NOT fully
+externally benchmarked. Private report outputs/untargeted_stage_7/report.html;
+safe aggregates docs/validation/untargeted_stage7. STOP for review beforeStage8;
+historical33-dataset optimization remainsPAUSED. No raw/feature-level study data
+in Git. Background/headless only, no Safari control.
+
 6 November: user explicitly authorized Stage 7 with "continue with the next step".
 This supersedes historical STOP-before-Stage7 instructions for Stage 7 ONLY.
 Implement optional original-feature chromatographic evidence, preserving CURRENT

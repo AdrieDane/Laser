@@ -1,8 +1,8 @@
 # Stage 7: original-feature chromatographic evidence
 
 Authorized 6 November 2026. **Software/internal comparison complete; CURRENT
-remains the default after a routine-workflow regression.** Native CAMERA is still
-finishing its bounded mode attempts; UFA comparison is open after an input-adapter
+remains the default after a routine-workflow regression.** Native CAMERA completed the two negative modes; both positive modes exceeded
+the fixed processing budget. UFA comparison is open after an input-adapter
 contract failure, and native MZmine activation remains pending. Stage 8 has not
 started. This is one development acquisition, not independent validation.
 
@@ -41,7 +41,14 @@ by 17. Pair recovery falls 21/960 → 19/960. Normal PC counterparts stay 10/14.
 Extras here require nonempty adduct calls; the original saved display included
 219 additional unassigned rows, whose historical counts are preserved separately.
 
-All 251,431 original statistical rows/evidence columns are exact. The real routine
+All 251,431 original complete-feature statistical rows/evidence columns are exact.
+Independent saved-table validation also caught an evaluation-only subset mistake:
+762 raw-p rows had been copied into the significant-only table instead of its
+original 387 fold-filtered rows. Worker5293124 fixes the selection. The preserved
+original artifact is supplemented by a corrected typed project, restoring all
+387 original rows without rerunning inference. Every compound prediction, trace
+measurement and viewer payload is unchanged; the production analysis path was
+unaffected. The real routine
 trace analysis and viewer payload are exact after save/reopen. All 254,324 original
 coordinates and all 94 original prepared inputs are retained. Five derived trace
 metadata files were added to the inputs-only test project; no saved results added.
@@ -70,6 +77,40 @@ accuracy is reported. Source dcb753f withholds scores for pools requiring a diff
 anchor. An appropriate raw-envelope anchor bridge and reusable database preparation
 are future work; per-query database generation also confounded this prototype's
 runtime. This is an adapter limitation, not evidence that native UFA predicts poorly.
+
+## Bounded native CAMERA outcome
+
+Configured CAMERA1.58.0, one first-QC injection per mode. These are unique-adduct
+calls on original curated features, **not lipid identity accuracy**. Full-feature
+and query-touching pseudogroup scopes differ from LASER's selected compound
+families; evidence footprint and scope confound a direct algorithm ranking.
+
+| Mode | Full native agreement | Query-touching agreement | Unconfirmed extras full / query-touching | Status |
+| --- | --- | --- | --- | --- |
+| RP positive | unavailable (1694 manual) | unavailable (1694 manual) | unavailable | 1800-second limit |
+| RP negative | 11.6% (79/679) | 11.6% (79/679) | 9078 / 6011 | completed, 1125.4 seconds |
+| NP positive | unavailable (757 manual) | unavailable (757 manual) | unavailable | 1800-second limit |
+| NP negative | 22.1% (119/538) | 21.7% (117/538) | 8875 / 2751 | completed, 1665.5 seconds |
+
+All four modes and their full manual denominators remain in the
+[native all-class tables](CAMERA_all_class_mode_metrics.csv); unavailable modes
+are not filled with assumed zero accuracy or pooled as successes. Extras are
+unconfirmed, not proven false positives. CAMERA's negative-mode native graph
+checkpoints were preserved before its initial rules-import API failure; corrected
+source f5b1e82 reads the identical frozen rules as a data frame. Resume uses hashed
+original graph states without remeasuring/repartitioning peaks; original plus
+recovery time stays inside each original1800-second limit. Positive graph states
+never completed within the budget. This is an incomplete native comparison, not
+evidence of general superiority or inferiority of either method.
+
+Trace extraction/inference in the matched3413 replay took226.4seconds; routine
+trace replay124.2seconds. These exclude initial project loading and save/reopen.
+Actual JavaScript selector model-only timing for3413 selections: median1.1ms,
+maximum434.6ms; full Plotly/browser rendering was not benchmarked. Saved evidence
+is reused on selection and reopening; no raw extraction runs on point clicks.
+See [pair coverage](trace_pair_coverage.csv), [quality reasons](trace_quality_reasons.csv)
+and [UFA unavailable scope](UFA_all_class_mode_formula.csv). There is no verified
+isotope-member gold, no MS/MS, and no independent acquisition validation.
 
 The protocol below was fixed before study scoring. Native account/format/timeout
 limitations must remain open; do not describe Stage7 as fully benchmarked.

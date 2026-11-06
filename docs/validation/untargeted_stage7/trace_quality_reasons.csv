@@ -1,0 +1,57 @@
+scope,mode,status,N
+natural,NP_Neg,dominant neighbouring peak outside native boundaries,98
+natural,NP_Neg,gap-filled peak or multiple native peaks,1595
+natural,NP_Neg,insufficient peak points or apex edges,2015
+natural,NP_Neg,low signal relative to noise proxy,683
+natural,NP_Neg,multiple mass centroids in peak,55
+natural,NP_Neg,multiple peaks inside native boundaries,130
+natural,NP_Neg,usable,7514
+natural,NP_Pos,dominant neighbouring peak outside native boundaries,200
+natural,NP_Pos,gap-filled peak or multiple native peaks,1937
+natural,NP_Pos,insufficient peak points or apex edges,1944
+natural,NP_Pos,low signal relative to noise proxy,709
+natural,NP_Pos,multiple mass centroids in peak,94
+natural,NP_Pos,multiple peaks inside native boundaries,151
+natural,NP_Pos,usable,8465
+natural,RP_Neg,dominant neighbouring peak outside native boundaries,586
+natural,RP_Neg,gap-filled peak or multiple native peaks,2232
+natural,RP_Neg,insufficient peak points or apex edges,1786
+natural,RP_Neg,low signal relative to noise proxy,739
+natural,RP_Neg,multiple mass centroids in peak,58
+natural,RP_Neg,multiple peaks inside native boundaries,208
+natural,RP_Neg,usable,6616
+natural,RP_Pos,dominant neighbouring peak outside native boundaries,1218
+natural,RP_Pos,gap-filled peak or multiple native peaks,6680
+natural,RP_Pos,insufficient peak points or apex edges,4131
+natural,RP_Pos,low signal relative to noise proxy,2044
+natural,RP_Pos,multiple mass centroids in peak,150
+natural,RP_Pos,multiple peaks inside native boundaries,711
+natural,RP_Pos,usable,20316
+routine,NP_Neg,dominant neighbouring peak outside native boundaries,36
+routine,NP_Neg,gap-filled peak or multiple native peaks,747
+routine,NP_Neg,insufficient peak points or apex edges,662
+routine,NP_Neg,low signal relative to noise proxy,206
+routine,NP_Neg,multiple mass centroids in peak,6
+routine,NP_Neg,multiple peaks inside native boundaries,95
+routine,NP_Neg,usable,798
+routine,NP_Pos,dominant neighbouring peak outside native boundaries,29
+routine,NP_Pos,gap-filled peak or multiple native peaks,668
+routine,NP_Pos,insufficient peak points or apex edges,423
+routine,NP_Pos,low signal relative to noise proxy,159
+routine,NP_Pos,multiple mass centroids in peak,7
+routine,NP_Pos,multiple peaks inside native boundaries,31
+routine,NP_Pos,usable,813
+routine,RP_Neg,dominant neighbouring peak outside native boundaries,132
+routine,RP_Neg,gap-filled peak or multiple native peaks,2059
+routine,RP_Neg,insufficient peak points or apex edges,1151
+routine,RP_Neg,low signal relative to noise proxy,727
+routine,RP_Neg,multiple mass centroids in peak,17
+routine,RP_Neg,multiple peaks inside native boundaries,237
+routine,RP_Neg,usable,4137
+routine,RP_Pos,dominant neighbouring peak outside native boundaries,271
+routine,RP_Pos,gap-filled peak or multiple native peaks,2198
+routine,RP_Pos,insufficient peak points or apex edges,1331
+routine,RP_Pos,low signal relative to noise proxy,659
+routine,RP_Pos,multiple mass centroids in peak,34
+routine,RP_Pos,multiple peaks inside native boundaries,177
+routine,RP_Pos,usable,3760

@@ -1,0 +1,54 @@
+scope,mode,kind,status,N
+natural,NP_Neg,ion,ambiguous,232
+natural,NP_Neg,ion,discordant,109
+natural,NP_Neg,ion,not evaluable,186
+natural,NP_Neg,ion,supported,127
+natural,NP_Pos,ion,ambiguous,209
+natural,NP_Pos,ion,discordant,130
+natural,NP_Pos,ion,not evaluable,182
+natural,NP_Pos,ion,supported,111
+natural,NP_Pos,isotope,ambiguous,3
+natural,NP_Pos,isotope,not evaluable,3
+natural,NP_Pos,isotope,supported,7
+natural,RP_Neg,ion,ambiguous,136
+natural,RP_Neg,ion,discordant,108
+natural,RP_Neg,ion,not evaluable,211
+natural,RP_Neg,ion,supported,99
+natural,RP_Neg,isotope,not evaluable,1
+natural,RP_Pos,ion,ambiguous,427
+natural,RP_Pos,ion,discordant,191
+natural,RP_Pos,ion,not evaluable,548
+natural,RP_Pos,ion,supported,385
+natural,RP_Pos,isotope,ambiguous,11
+natural,RP_Pos,isotope,not evaluable,4
+natural,RP_Pos,isotope,supported,11
+routine,NP_Neg,ion,ambiguous,24
+routine,NP_Neg,ion,discordant,9
+routine,NP_Neg,ion,not evaluable,62
+routine,NP_Neg,ion,supported,2
+routine,NP_Neg,isotope,ambiguous,5
+routine,NP_Neg,isotope,not evaluable,19
+routine,NP_Neg,isotope,supported,11
+routine,NP_Pos,ion,ambiguous,16
+routine,NP_Pos,ion,discordant,3
+routine,NP_Pos,ion,not evaluable,30
+routine,NP_Pos,ion,supported,3
+routine,NP_Pos,isotope,ambiguous,16
+routine,NP_Pos,isotope,not evaluable,21
+routine,NP_Pos,isotope,supported,14
+routine,RP_Neg,ion,ambiguous,75
+routine,RP_Neg,ion,discordant,41
+routine,RP_Neg,ion,not evaluable,79
+routine,RP_Neg,ion,supported,38
+routine,RP_Neg,isotope,ambiguous,56
+routine,RP_Neg,isotope,discordant,1
+routine,RP_Neg,isotope,not evaluable,50
+routine,RP_Neg,isotope,supported,106
+routine,RP_Pos,ion,ambiguous,77
+routine,RP_Pos,ion,discordant,33
+routine,RP_Pos,ion,not evaluable,123
+routine,RP_Pos,ion,supported,38
+routine,RP_Pos,isotope,ambiguous,55
+routine,RP_Pos,isotope,discordant,1
+routine,RP_Pos,isotope,not evaluable,66
+routine,RP_Pos,isotope,supported,76

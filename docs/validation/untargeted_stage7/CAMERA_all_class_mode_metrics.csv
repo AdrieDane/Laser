@@ -1,0 +1,513 @@
+native_scope,scope,mode,manual_rows,unresolved_mappings,eligible_unique_ions,assigned_reference_ions,correct_assigned_adducts,incorrect_assigned_adducts,abstentions,conditional_adduct_agreement_percent,assignment_coverage_percent,all_manual_recovery_n,all_manual_recovery_percent,unconfirmed_extra_ions,mode_status,evaluated,extras_reason
+native_full,all_classes,RP_Pos,1694,14,1680,,,,,,,,,,time budget exceeded,False,
+native_full,all_classes,RP_Neg,679,8,671,172.0,79.0,93.0,499.0,45.93023255813954,25.63338301043219,79.0,11.634756995581737,9078.0,complete,True,
+native_full,all_classes,NP_Pos,757,12,745,,,,,,,,,,time budget exceeded,False,
+native_full,all_classes,NP_Neg,538,12,526,226.0,119.0,107.0,300.0,52.65486725663717,42.965779467680605,119.0,22.118959107806692,8875.0,complete,True,
+native_full,1-acyl LPC,RP_Pos,48,1,47,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,1-acyl LPC,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,1-acyl LPC,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,1-acyl LPC,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,1-acyl LPE,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,1-acyl LPE,RP_Neg,36,1,35,6.0,2.0,4.0,29.0,33.333333333333336,17.142857142857142,2.0,5.555555555555555,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,1-acyl LPE,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,1-acyl LPE,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,2-acyl LPC,RP_Pos,37,0,37,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,2-acyl LPC,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,2-acyl LPC,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,2-acyl LPC,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,2-acyl LPE,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,2-acyl LPE,RP_Neg,27,0,27,6.0,4.0,2.0,21.0,66.66666666666667,22.22222222222222,4.0,14.814814814814815,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,2-acyl LPE,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,2-acyl LPE,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,AC,RP_Pos,54,0,54,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,AC,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,AC,NP_Pos,53,0,53,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,AC,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,AC-OH,RP_Pos,27,0,27,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,AC-OH,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,AC-OH,NP_Pos,25,0,25,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,AC-OH,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,BMP,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,BMP,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,BMP,NP_Pos,26,1,25,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,BMP,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,C1P[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,C1P[d],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,C1P[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,C1P[d],NP_Neg,10,1,9,6.0,4.0,2.0,3.0,66.66666666666667,66.66666666666667,4.0,40.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,CE,RP_Pos,105,1,104,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,CE,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,CE,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,CE,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,CL,RP_Pos,108,1,107,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,CL,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,CL,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,CL,NP_Neg,44,1,43,22.0,20.0,2.0,21.0,90.9090909090909,51.16279069767442,20.0,45.45454545454545,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,Cer[d],RP_Pos,40,2,38,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,Cer[d],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,Cer[d],NP_Pos,30,2,28,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,Cer[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,DG,RP_Pos,121,1,120,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,DG,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,DG,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,DG,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,DG[O],RP_Pos,51,0,51,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,DG[O],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,DG[O],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,DG[O],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,DG[P],RP_Pos,40,0,40,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,DG[P],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,DG[P],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,DG[P],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,DLCL,RP_Pos,9,0,9,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,DLCL,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,DLCL,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,DLCL,NP_Neg,5,0,5,0.0,0.0,0.0,5.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,FA,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,FA,RP_Neg,31,0,31,24.0,24.0,0.0,7.0,100.0,77.41935483870968,24.0,77.41935483870968,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,FA,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,FA,NP_Neg,18,0,18,16.0,16.0,0.0,2.0,100.0,88.88888888888889,16.0,88.88888888888889,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,FA-OH,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,FA-OH,RP_Neg,29,0,29,13.0,12.0,1.0,16.0,92.3076923076923,44.827586206896555,12.0,41.37931034482759,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,FA-OH,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,FA-OH,NP_Neg,6,0,6,3.0,2.0,1.0,3.0,66.66666666666667,50.0,2.0,33.333333333333336,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GA1[d],RP_Pos,1,0,1,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GA1[d],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GA1[d],NP_Pos,2,0,2,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GA1[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD1[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD1[d],RP_Neg,23,0,23,3.0,1.0,2.0,20.0,33.333333333333336,13.043478260869565,1.0,4.3478260869565215,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD1[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD1[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD1[t],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD1[t],RP_Neg,8,0,8,0.0,0.0,0.0,8.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD1[t],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD1[t],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD2[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD2[d],RP_Neg,3,0,3,0.0,0.0,0.0,3.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD2[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD2[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD3[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD3[d],RP_Neg,4,0,4,1.0,1.0,0.0,3.0,100.0,25.0,1.0,25.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD3[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GD3[d],NP_Neg,4,0,4,2.0,2.0,0.0,2.0,100.0,50.0,2.0,50.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GM1[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GM1[d],RP_Neg,9,0,9,1.0,1.0,0.0,8.0,100.0,11.11111111111111,1.0,11.11111111111111,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GM1[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GM1[d],NP_Neg,3,0,3,0.0,0.0,0.0,3.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GM2[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GM2[d],RP_Neg,3,0,3,0.0,0.0,0.0,3.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GM2[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GM2[d],NP_Neg,3,0,3,0.0,0.0,0.0,3.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GM3[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GM3[d],RP_Neg,10,0,10,0.0,0.0,0.0,10.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,GM3[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,GM3[d],NP_Neg,10,0,10,6.0,2.0,4.0,4.0,33.333333333333336,60.0,2.0,20.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,Hex2Cer[d],RP_Pos,19,1,18,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,Hex2Cer[d],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,Hex2Cer[d],NP_Pos,26,1,25,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,Hex2Cer[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,Hex2Cer[t],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,Hex2Cer[t],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,Hex2Cer[t],NP_Pos,5,0,5,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,Hex2Cer[t],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,HexCer[d],RP_Pos,47,1,46,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,HexCer[d],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,HexCer[d],NP_Pos,21,1,20,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,HexCer[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,HexCer[t],RP_Pos,34,0,34,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,HexCer[t],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,HexCer[t],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,HexCer[t],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPA,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPA,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPA,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPA,NP_Neg,18,1,17,9.0,8.0,1.0,8.0,88.88888888888889,52.94117647058823,8.0,44.44444444444444,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC,NP_Pos,65,1,64,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC[O+P],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC[O+P],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC[O+P],NP_Pos,10,0,10,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC[O+P],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC[O],RP_Pos,15,0,15,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC[O],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC[O],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC[O],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC[P],RP_Pos,10,0,10,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC[P],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC[P],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPC[P],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE,NP_Neg,22,1,21,3.0,1.0,2.0,18.0,33.333333333333336,14.285714285714286,1.0,4.545454545454546,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE[O+P],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE[O+P],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE[O+P],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE[O+P],NP_Neg,6,0,6,0.0,0.0,0.0,6.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE[O],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE[O],RP_Neg,7,0,7,1.0,1.0,0.0,6.0,100.0,14.285714285714286,1.0,14.285714285714286,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE[O],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE[O],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE[P],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE[P],RP_Neg,12,0,12,2.0,0.0,2.0,10.0,0.0,16.666666666666668,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE[P],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPE[P],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPG,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPG,RP_Neg,17,1,16,0.0,0.0,0.0,16.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPG,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPG,NP_Neg,17,1,16,0.0,0.0,0.0,16.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPI,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPI,RP_Neg,12,0,12,1.0,0.0,1.0,11.0,0.0,8.333333333333334,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPI,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPI,NP_Neg,12,0,12,1.0,0.0,1.0,11.0,0.0,8.333333333333334,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPS,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPS,RP_Neg,24,0,24,5.0,0.0,5.0,19.0,0.0,20.833333333333332,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPS,NP_Pos,14,0,14,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,LPS,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,MLCL,RP_Pos,6,0,6,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,MLCL,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,MLCL,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,MLCL,NP_Neg,12,0,12,2.0,2.0,0.0,10.0,100.0,16.666666666666668,2.0,16.666666666666668,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PA,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PA,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PA,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PA,NP_Neg,63,1,62,37.0,35.0,2.0,25.0,94.5945945945946,59.67741935483871,35.0,55.55555555555556,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC,RP_Pos,220,1,219,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC,NP_Pos,206,1,205,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC[O+P],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC[O+P],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC[O+P],NP_Pos,79,0,79,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC[O+P],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC[O],RP_Pos,61,0,61,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC[O],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC[O],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC[O],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC[P],RP_Pos,50,0,50,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC[P],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC[P],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PC[P],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE,RP_Pos,76,1,75,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE,RP_Neg,97,1,96,24.0,13.0,11.0,72.0,54.166666666666664,25.0,13.0,13.402061855670103,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE,NP_Pos,54,1,53,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE,NP_Neg,57,1,56,24.0,11.0,13.0,32.0,45.833333333333336,42.857142857142854,11.0,19.29824561403509,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE[O+P],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE[O+P],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE[O+P],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE[O+P],NP_Neg,72,0,72,23.0,5.0,18.0,49.0,21.73913043478261,31.944444444444443,5.0,6.944444444444445,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE[O],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE[O],RP_Neg,38,0,38,11.0,2.0,9.0,27.0,18.181818181818183,28.94736842105263,2.0,5.2631578947368425,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE[O],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE[O],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE[P],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE[P],RP_Neg,75,0,75,22.0,10.0,12.0,53.0,45.45454545454545,29.333333333333332,10.0,13.333333333333334,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE[P],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PE[P],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PG,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PG,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PG,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PG,NP_Neg,41,1,40,17.0,10.0,7.0,23.0,58.8235294117647,42.5,10.0,24.390243902439025,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PI,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PI,RP_Neg,42,1,41,6.0,2.0,4.0,35.0,33.333333333333336,14.634146341463415,2.0,4.761904761904762,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PI,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PI,NP_Neg,25,1,24,9.0,0.0,9.0,15.0,0.0,37.5,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PS,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PS,RP_Neg,79,1,78,25.0,3.0,22.0,53.0,12.0,32.05128205128205,3.0,3.7974683544303796,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,PS,NP_Pos,57,1,56,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,PS,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,S1P[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,S1P[d],RP_Neg,2,2,0,0.0,0.0,0.0,0.0,,,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,S1P[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,S1P[d],NP_Neg,2,2,0,0.0,0.0,0.0,0.0,,,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,SLBPA,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,SLBPA,RP_Neg,6,0,6,0.0,0.0,0.0,6.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,SLBPA,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,SLBPA,NP_Neg,9,0,9,0.0,0.0,0.0,9.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM4[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM4[d],RP_Neg,47,1,46,14.0,0.0,14.0,32.0,0.0,30.434782608695652,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM4[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM4[d],NP_Neg,42,1,41,23.0,1.0,22.0,18.0,4.3478260869565215,56.09756097560975,1.0,2.380952380952381,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM4[t],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM4[t],RP_Neg,38,0,38,7.0,3.0,4.0,31.0,42.857142857142854,18.42105263157895,3.0,7.894736842105263,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM4[t],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM4[t],NP_Neg,37,0,37,23.0,0.0,23.0,14.0,0.0,62.16216216216216,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM[d],RP_Pos,52,1,51,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM[d],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM[d],NP_Pos,52,1,51,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM[t],RP_Pos,16,0,16,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM[t],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM[t],NP_Pos,30,0,30,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,SM[t],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,SPH[d],RP_Pos,2,2,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,SPH[d],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,SPH[d],NP_Pos,2,2,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,SPH[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,TG,RP_Pos,280,1,279,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,TG,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,TG,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,TG,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,TG[O],RP_Pos,165,0,165,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,TG[O],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_full,TG[O],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_full,TG[O],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,all_classes,RP_Pos,1694,14,1680,,,,,,,,,,time budget exceeded,False,
+native_query_touching_pseudogroups,all_classes,RP_Neg,679,8,671,172.0,79.0,93.0,499.0,45.93023255813954,25.63338301043219,79.0,11.634756995581737,6011.0,complete,True,
+native_query_touching_pseudogroups,all_classes,NP_Pos,757,12,745,,,,,,,,,,time budget exceeded,False,
+native_query_touching_pseudogroups,all_classes,NP_Neg,538,12,526,224.0,117.0,107.0,302.0,52.232142857142854,42.58555133079848,117.0,21.74721189591078,2751.0,complete,True,
+native_query_touching_pseudogroups,1-acyl LPC,RP_Pos,48,1,47,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,1-acyl LPC,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,1-acyl LPC,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,1-acyl LPC,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,1-acyl LPE,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,1-acyl LPE,RP_Neg,36,1,35,6.0,2.0,4.0,29.0,33.333333333333336,17.142857142857142,2.0,5.555555555555555,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,1-acyl LPE,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,1-acyl LPE,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,2-acyl LPC,RP_Pos,37,0,37,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,2-acyl LPC,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,2-acyl LPC,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,2-acyl LPC,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,2-acyl LPE,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,2-acyl LPE,RP_Neg,27,0,27,6.0,4.0,2.0,21.0,66.66666666666667,22.22222222222222,4.0,14.814814814814815,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,2-acyl LPE,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,2-acyl LPE,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,AC,RP_Pos,54,0,54,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,AC,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,AC,NP_Pos,53,0,53,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,AC,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,AC-OH,RP_Pos,27,0,27,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,AC-OH,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,AC-OH,NP_Pos,25,0,25,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,AC-OH,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,BMP,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,BMP,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,BMP,NP_Pos,26,1,25,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,BMP,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,C1P[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,C1P[d],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,C1P[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,C1P[d],NP_Neg,10,1,9,6.0,4.0,2.0,3.0,66.66666666666667,66.66666666666667,4.0,40.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,CE,RP_Pos,105,1,104,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,CE,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,CE,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,CE,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,CL,RP_Pos,108,1,107,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,CL,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,CL,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,CL,NP_Neg,44,1,43,22.0,20.0,2.0,21.0,90.9090909090909,51.16279069767442,20.0,45.45454545454545,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,Cer[d],RP_Pos,40,2,38,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,Cer[d],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,Cer[d],NP_Pos,30,2,28,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,Cer[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DG,RP_Pos,121,1,120,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DG,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DG,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DG,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DG[O],RP_Pos,51,0,51,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DG[O],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DG[O],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DG[O],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DG[P],RP_Pos,40,0,40,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DG[P],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DG[P],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DG[P],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DLCL,RP_Pos,9,0,9,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DLCL,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DLCL,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,DLCL,NP_Neg,5,0,5,0.0,0.0,0.0,5.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,FA,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,FA,RP_Neg,31,0,31,24.0,24.0,0.0,7.0,100.0,77.41935483870968,24.0,77.41935483870968,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,FA,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,FA,NP_Neg,18,0,18,14.0,14.0,0.0,4.0,100.0,77.77777777777777,14.0,77.77777777777777,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,FA-OH,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,FA-OH,RP_Neg,29,0,29,13.0,12.0,1.0,16.0,92.3076923076923,44.827586206896555,12.0,41.37931034482759,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,FA-OH,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,FA-OH,NP_Neg,6,0,6,3.0,2.0,1.0,3.0,66.66666666666667,50.0,2.0,33.333333333333336,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GA1[d],RP_Pos,1,0,1,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GA1[d],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GA1[d],NP_Pos,2,0,2,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GA1[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD1[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD1[d],RP_Neg,23,0,23,3.0,1.0,2.0,20.0,33.333333333333336,13.043478260869565,1.0,4.3478260869565215,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD1[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD1[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD1[t],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD1[t],RP_Neg,8,0,8,0.0,0.0,0.0,8.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD1[t],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD1[t],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD2[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD2[d],RP_Neg,3,0,3,0.0,0.0,0.0,3.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD2[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD2[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD3[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD3[d],RP_Neg,4,0,4,1.0,1.0,0.0,3.0,100.0,25.0,1.0,25.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD3[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GD3[d],NP_Neg,4,0,4,2.0,2.0,0.0,2.0,100.0,50.0,2.0,50.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GM1[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GM1[d],RP_Neg,9,0,9,1.0,1.0,0.0,8.0,100.0,11.11111111111111,1.0,11.11111111111111,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GM1[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GM1[d],NP_Neg,3,0,3,0.0,0.0,0.0,3.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GM2[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GM2[d],RP_Neg,3,0,3,0.0,0.0,0.0,3.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GM2[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GM2[d],NP_Neg,3,0,3,0.0,0.0,0.0,3.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GM3[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GM3[d],RP_Neg,10,0,10,0.0,0.0,0.0,10.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GM3[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,GM3[d],NP_Neg,10,0,10,6.0,2.0,4.0,4.0,33.333333333333336,60.0,2.0,20.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,Hex2Cer[d],RP_Pos,19,1,18,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,Hex2Cer[d],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,Hex2Cer[d],NP_Pos,26,1,25,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,Hex2Cer[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,Hex2Cer[t],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,Hex2Cer[t],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,Hex2Cer[t],NP_Pos,5,0,5,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,Hex2Cer[t],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,HexCer[d],RP_Pos,47,1,46,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,HexCer[d],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,HexCer[d],NP_Pos,21,1,20,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,HexCer[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,HexCer[t],RP_Pos,34,0,34,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,HexCer[t],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,HexCer[t],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,HexCer[t],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPA,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPA,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPA,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPA,NP_Neg,18,1,17,9.0,8.0,1.0,8.0,88.88888888888889,52.94117647058823,8.0,44.44444444444444,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC,NP_Pos,65,1,64,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC[O+P],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC[O+P],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC[O+P],NP_Pos,10,0,10,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC[O+P],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC[O],RP_Pos,15,0,15,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC[O],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC[O],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC[O],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC[P],RP_Pos,10,0,10,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC[P],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC[P],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPC[P],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE,NP_Neg,22,1,21,3.0,1.0,2.0,18.0,33.333333333333336,14.285714285714286,1.0,4.545454545454546,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE[O+P],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE[O+P],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE[O+P],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE[O+P],NP_Neg,6,0,6,0.0,0.0,0.0,6.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE[O],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE[O],RP_Neg,7,0,7,1.0,1.0,0.0,6.0,100.0,14.285714285714286,1.0,14.285714285714286,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE[O],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE[O],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE[P],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE[P],RP_Neg,12,0,12,2.0,0.0,2.0,10.0,0.0,16.666666666666668,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE[P],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPE[P],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPG,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPG,RP_Neg,17,1,16,0.0,0.0,0.0,16.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPG,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPG,NP_Neg,17,1,16,0.0,0.0,0.0,16.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPI,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPI,RP_Neg,12,0,12,1.0,0.0,1.0,11.0,0.0,8.333333333333334,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPI,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPI,NP_Neg,12,0,12,1.0,0.0,1.0,11.0,0.0,8.333333333333334,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPS,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPS,RP_Neg,24,0,24,5.0,0.0,5.0,19.0,0.0,20.833333333333332,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPS,NP_Pos,14,0,14,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,LPS,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,MLCL,RP_Pos,6,0,6,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,MLCL,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,MLCL,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,MLCL,NP_Neg,12,0,12,2.0,2.0,0.0,10.0,100.0,16.666666666666668,2.0,16.666666666666668,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PA,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PA,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PA,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PA,NP_Neg,63,1,62,37.0,35.0,2.0,25.0,94.5945945945946,59.67741935483871,35.0,55.55555555555556,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC,RP_Pos,220,1,219,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC,NP_Pos,206,1,205,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC[O+P],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC[O+P],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC[O+P],NP_Pos,79,0,79,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC[O+P],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC[O],RP_Pos,61,0,61,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC[O],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC[O],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC[O],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC[P],RP_Pos,50,0,50,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC[P],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC[P],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PC[P],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE,RP_Pos,76,1,75,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE,RP_Neg,97,1,96,24.0,13.0,11.0,72.0,54.166666666666664,25.0,13.0,13.402061855670103,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE,NP_Pos,54,1,53,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE,NP_Neg,57,1,56,24.0,11.0,13.0,32.0,45.833333333333336,42.857142857142854,11.0,19.29824561403509,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE[O+P],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE[O+P],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE[O+P],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE[O+P],NP_Neg,72,0,72,23.0,5.0,18.0,49.0,21.73913043478261,31.944444444444443,5.0,6.944444444444445,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE[O],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE[O],RP_Neg,38,0,38,11.0,2.0,9.0,27.0,18.181818181818183,28.94736842105263,2.0,5.2631578947368425,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE[O],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE[O],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE[P],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE[P],RP_Neg,75,0,75,22.0,10.0,12.0,53.0,45.45454545454545,29.333333333333332,10.0,13.333333333333334,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE[P],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PE[P],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PG,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PG,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PG,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PG,NP_Neg,41,1,40,17.0,10.0,7.0,23.0,58.8235294117647,42.5,10.0,24.390243902439025,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PI,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PI,RP_Neg,42,1,41,6.0,2.0,4.0,35.0,33.333333333333336,14.634146341463415,2.0,4.761904761904762,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PI,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PI,NP_Neg,25,1,24,9.0,0.0,9.0,15.0,0.0,37.5,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PS,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PS,RP_Neg,79,1,78,25.0,3.0,22.0,53.0,12.0,32.05128205128205,3.0,3.7974683544303796,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PS,NP_Pos,57,1,56,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,PS,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,S1P[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,S1P[d],RP_Neg,2,2,0,0.0,0.0,0.0,0.0,,,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,S1P[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,S1P[d],NP_Neg,2,2,0,0.0,0.0,0.0,0.0,,,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SLBPA,RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SLBPA,RP_Neg,6,0,6,0.0,0.0,0.0,6.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SLBPA,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SLBPA,NP_Neg,9,0,9,0.0,0.0,0.0,9.0,,0.0,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM4[d],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM4[d],RP_Neg,47,1,46,14.0,0.0,14.0,32.0,0.0,30.434782608695652,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM4[d],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM4[d],NP_Neg,42,1,41,23.0,1.0,22.0,18.0,4.3478260869565215,56.09756097560975,1.0,2.380952380952381,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM4[t],RP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM4[t],RP_Neg,38,0,38,7.0,3.0,4.0,31.0,42.857142857142854,18.42105263157895,3.0,7.894736842105263,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM4[t],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM4[t],NP_Neg,37,0,37,23.0,0.0,23.0,14.0,0.0,62.16216216216216,0.0,0.0,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM[d],RP_Pos,52,1,51,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM[d],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM[d],NP_Pos,52,1,51,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM[t],RP_Pos,16,0,16,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM[t],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM[t],NP_Pos,30,0,30,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SM[t],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SPH[d],RP_Pos,2,2,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SPH[d],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SPH[d],NP_Pos,2,2,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,SPH[d],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,TG,RP_Pos,280,1,279,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,TG,RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,TG,NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,TG,NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,TG[O],RP_Pos,165,0,165,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,TG[O],RP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,TG[O],NP_Pos,0,0,0,,,,,,,,,,time budget exceeded,False,No lipid-class identity is inferred for unconfirmed ions
+native_query_touching_pseudogroups,TG[O],NP_Neg,0,0,0,0.0,0.0,0.0,0.0,,,0.0,,,complete,True,No lipid-class identity is inferred for unconfirmed ions
