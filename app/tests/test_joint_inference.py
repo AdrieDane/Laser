@@ -48,6 +48,20 @@ def test_weak_and_oversized_components_are_not_silently_split():
     assert audit.status.iloc[0] == 'component budget exceeded'
 
 
+def test_impossible_context_ion_is_retained_as_invalid_not_sent_to_isotope_engine(monkeypatch):
+    engine = object.__new__(JointEngine)
+    engine.spectral = {}
+    monkeypatch.setattr('standard_lipidomics.joint_inference.score_envelope',
+                        lambda *args: pytest.fail('An oxygen-free formula cannot lose water'))
+    for adduct in ('[M+H-H2O]+', '[M-H-H2O]-'):
+        candidate = {'formula': 'C20H42', 'adduct': adduct}
+        score = engine.spectral_score('RP_Pos', 'synthetic', candidate)
+        assert score['status'] == 'invalid ion composition'
+        assert score['score'] is None
+        assert 'absent' in score['ion_composition_error']
+        assert engine.spectral_score('RP_Pos', 'synthetic', candidate) is score
+
+
 def test_runtime_freeze_preserves_venv_path_and_detects_drift(tmp_path, monkeypatch):
     monkeypatch.setattr('standard_lipidomics.msbuddy_runtime.MODELS', {})
     monkeypatch.setattr('standard_lipidomics.msbuddy_runtime.native_environment', lambda python: {'test': 'synthetic environment'})

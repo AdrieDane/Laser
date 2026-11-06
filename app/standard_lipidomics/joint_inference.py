@@ -179,6 +179,15 @@ class JointEngine:
     def spectral_score(self, stream, fid, candidate):
         cache_key = stream, str(fid), candidate['formula'], candidate['adduct']
         if cache_key not in self.spectral:
+            # Context searches try other ions of the source neutral formula.
+            # A water-loss ion cannot be constructed from an oxygen-free formula.
+            try:
+                ion_composition(candidate['formula'], candidate['adduct'])
+            except ValueError as error:
+                self.spectral[cache_key] = {'score': None, 'status': 'invalid ion composition',
+                    'ion_composition_error': str(error), 'spectral_block_cost': 8.,
+                    'native_rank': None, 'native_status': 'invalid ion composition'}
+                return self.spectral[cache_key]
             measured, _ = score_envelope(self.indexes[stream], fid, candidate['formula'], candidate['adduct'],
                 self.criteria, self.method['methods'][stream[:2]]['instrument'])
             native = self.native.get((key(stream, fid), candidate['adduct']), {})
@@ -239,7 +248,7 @@ class JointEngine:
                     chemistry = min(chemistry_penalty(self.chemistry, stream, item['adduct'], cls) for cls in classes)
                     item['chemistry_cost'] = chemistry
                     item['base_cost'] = item['spectral_block_cost']+candidate['structure_prior']+SETTINGS['chemistry_weight']*chemistry
-                    if item['status'] != 'parent mass incompatible':
+                    if item['status'] not in {'parent mass incompatible', 'invalid ion composition'}:
                         scored.append(item)
                 pool.append(item)
             self.sources[key(stream, fid)] = scored
@@ -320,7 +329,7 @@ class JointEngine:
                                  'context_cost': cost, 'target_status': score['status'], 'context_selected': False,
                                  'target_budget_reached': len(candidates) > SETTINGS['target_candidates_per_ion']}
                         self.support.append(entry)
-                        if score['status'] != 'parent mass incompatible':
+                        if score['status'] not in {'parent mass incompatible', 'invalid ion composition'}:
                             evaluated.append(entry)
                     evaluated.sort(key=lambda e: (e['context_cost'], e['target_feature_id']))
                     if not evaluated:
