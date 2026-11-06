@@ -84,7 +84,11 @@ def worker(args):
         analysis['raw_p_features'] = queries
     analysis = assign_compound_ids(analysis, result=result)
     for name in ('features','raw_p_features','significant_features'):
-        before = original[name] if name == 'features' else queries
+        before = (original[name] if name == 'features' else queries).copy()
+        # Display joins use lossless textual original keys; the old checkpoint
+        # contains integer keys. Verify their values while retaining exact tests
+        # for every numerical statistical/evidence column.
+        before['feature_id'] = before.feature_id.astype(str)
         columns = [c for c in before if c not in LABEL_COLUMNS]
         pd.testing.assert_frame_equal(before[columns],analysis[name][columns],check_exact=True)
     for name in ('homologous_matches','lipid_grid_matches'):
