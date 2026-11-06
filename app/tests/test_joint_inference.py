@@ -2,6 +2,9 @@
 from dataclasses import asdict, replace
 import hashlib
 import json
+import importlib.util
+from pathlib import Path
+import shutil
 
 import pandas as pd
 import pytest
@@ -60,6 +63,35 @@ def test_impossible_context_ion_is_retained_as_invalid_not_sent_to_isotope_engin
         assert score['score'] is None
         assert 'absent' in score['ion_composition_error']
         assert engine.spectral_score('RP_Pos', 'synthetic', candidate) is score
+
+
+def test_blind_replay_worker_preserves_statistics_with_new_table_placeholders(tmp_path, monkeypatch):
+    from standard_lipidomics.project_store import save_untargeted_workflow
+    root = Path(__file__).resolve().parents[2]
+    monkeypatch.syspath_prepend(str(root/'tools'))
+    bundled = Path('/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node')
+    node = shutil.which('node') or (str(bundled) if bundled.is_file() else None)
+    if not node:
+        pytest.skip('Node is required for the saved browser-selector replay')
+    result, analysis = example()
+    project = tmp_path/'checkpoint/project'
+    save_untargeted_workflow(project, result, analysis)
+    preparation = tmp_path/'preparation'
+    preparation.mkdir()
+    q = analysis['raw_p_features'].iloc[0]
+    (preparation/'blind_inputs.json').write_text(json.dumps([{'query_id': 'synthetic_1',
+        'stream': q.stream, 'feature_id': str(q.feature_id), 'mz': float(q.mz), 'rt': float(q.rt)}]))
+    (preparation/'method.json').write_text(json.dumps(default_acquisition_method()))
+    spec = importlib.util.spec_from_file_location('joint_replay_worker', root/'tools/evaluate_joint_ms1.py')
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    output = tmp_path/'results'
+    module.worker(root, project.parent, preparation, None, output, 'joint_laser', node)
+    receipt = json.loads((output/'receipt.json').read_text())
+    assert receipt['old_statistics_unchanged']
+    assert receipt['original_statistical_rows'] == len(analysis['features'])
+    assert len(pd.read_csv(output/'joint_feature_ledger.csv')) == sum(len(s['features']) for s in result['streams'].values())
+    assert len(json.loads((output/'representatives.json').read_text())) == 1
 
 
 def test_runtime_freeze_preserves_venv_path_and_detects_drift(tmp_path, monkeypatch):

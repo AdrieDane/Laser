@@ -110,7 +110,7 @@ export default function(component) {
     const current = selection();
     const active = current.keys.includes(current.activeKey) ? current.activeKey : current.keys.at(-1);
     const index = state.data.orderedKeys.indexOf(active);
-    if (index < 0) return;
+    if (index < 0) {state.centeredSelection = null;return;}
     const signature = state.data.channel + '::' + active;
     if (state.centeredSelection === signature) return;
     // Cross the component's shadow boundary, stopping at the inner scroll panel.

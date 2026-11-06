@@ -28,7 +28,10 @@ def worker(source, checkpoint, preparation, runtime_file, output, arm, node=None
     # cannot provide an accidental class/formula prior in either replay arm.
     result['automatic_annotations'] = pd.DataFrame()
     analysis = result['untargeted_analysis']
-    original = {name: value.copy(deep=True) for name, value in analysis.items() if isinstance(value, pd.DataFrame)}
+    # The backwards-compatible loader supplies empty placeholders for new tables.
+    # Those are outputs of this replay, rather than original statistical evidence.
+    original = {name: value.copy(deep=True) for name, value in analysis.items()
+                if isinstance(value, pd.DataFrame) and not name.startswith(('joint_', 'msbuddy_'))}
     queries = pd.DataFrame(inputs)[['stream', 'feature_id', 'mz', 'rt']].copy()
     queries['feature_id'] = queries.feature_id.astype(str)
     queries['raw_p_significant'], queries['significant'] = True, True
