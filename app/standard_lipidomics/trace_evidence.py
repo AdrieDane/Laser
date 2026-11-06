@@ -24,6 +24,17 @@ SETTINGS = {'ppm': 4., 'padding_min': .05, 'min_points': 5, 'min_edge_points': 2
 TEXT = {'stream': str, 'feature_id': str, 'sample': str}
 
 
+def valid_native_bounds(frame):
+    """An original apex outside its own bounds cannot define a trusted window."""
+    columns = ['target_mz','rt_start_corrected_min','rt_apex_corrected_min','rt_end_corrected_min']
+    if not set(columns).issubset(frame.columns):
+        return pd.Series(False,index=frame.index)
+    values = frame[columns].apply(pd.to_numeric,errors='coerce')
+    return (pd.Series(np.isfinite(values).all(axis=1),index=frame.index) & values.target_mz.gt(0)
+        & values.rt_start_corrected_min.le(values.rt_apex_corrected_min)
+        & values.rt_apex_corrected_min.le(values.rt_end_corrected_min))
+
+
 def digest(path, algorithm='sha256'):
     h = hashlib.new(algorithm)
     with Path(path).open('rb') as handle:
@@ -240,10 +251,15 @@ def collect_trace_evidence(result, analysis, context, progress=None):
             present = set(subset.feature_id)
             counts = subset.groupby('feature_id').size()
             single = subset[subset.feature_id.map(counts).eq(1) & ~subset.filled.astype(bool)]
+            valid = valid_native_bounds(single)
+            invalid_ids = set(single.loc[~valid,'feature_id'])
+            single = single[valid]
             traces = _sample_traces(sample,single) if len(single) else {}
             for fid in keys:
                 trace = traces.get(fid)
                 why = 'gap-filled peak or multiple native peaks' if fid in present else 'native peak mapping absent'
+                if fid in invalid_ids:
+                    why = 'invalid native peak boundaries or apex'
                 quality_rows.append({'stream':mode,'feature_id':fid,'sample':sample['sample'],
                     'raw_file':sample['raw_path'],**(trace['quality'] if trace else {'status':why})})
                 if trace and sample['sample'] == representative:

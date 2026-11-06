@@ -12,7 +12,7 @@ def prepare(args):
     from standard_lipidomics.untargeted import UntargetedComparisonCriteria
     from standard_lipidomics.lipid_formulas import formula_candidates, formula_text
     from standard_lipidomics.isotope_patterns import ion_composition
-    from standard_lipidomics.trace_evidence import digest
+    from standard_lipidomics.trace_evidence import digest, valid_native_bounds
     output=args.output.resolve()
     output.mkdir(parents=True,exist_ok=False)
     context=json.loads(args.context.read_text())
@@ -38,6 +38,8 @@ def prepare(args):
             pool=[{'formula':r['formula'],'ion_formula':formula_text(ion_composition(r['formula'],q['adduct'])[0])} for r in candidates]
             bounds=by_id.get(str(q['feature_id']),pd.DataFrame())
             status='ready' if len(bounds)==1 and not bool(bounds.iloc[0].filled) else 'native peak mapping missing, multiple or gap-filled'
+            if status=='ready' and not valid_native_bounds(bounds).all():
+                status='invalid native peak boundaries or apex'
             selected=bounds.iloc[0].to_dict() if status=='ready' else {}
             rows.append({**{k:q[k] for k in ('query_id','stream','feature_id','mz','rt','adduct','charge')},
                 'status':status,'candidates':sorted(pool,key=lambda r:r['formula']),

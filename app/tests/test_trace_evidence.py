@@ -128,6 +128,13 @@ def test_complete_two_injection_collection_and_source_drift(tmp_path,monkeypatch
     assert out['trace_pair_evidence'].trace_status.tolist()==['supported']
     assert out['trace_pair_evidence'].usable_samples.tolist()==[2]
     pd.testing.assert_frame_equal(out['adduct_matches'],links)
+    invalid=pd.read_csv(bounds)
+    invalid.loc[invalid.feature_id.eq('a'),'rt_apex_corrected_min']=.9
+    invalid.to_csv(bounds,index=False)
+    rejected=collect_trace_evidence(result,analysis,freeze_sources(tmp_path,metadata))
+    assert rejected['trace_pair_evidence'].trace_status.tolist()==['not evaluable']
+    assert rejected['trace_pair_evidence'].usable_samples.tolist()==[0]
+    assert rejected['trace_sample_quality'].loc[lambda f:f.feature_id.eq('a'),'status'].eq('invalid native peak boundaries or apex').all()
     (raw/'one.mzXML').write_text('changed source')
     assert collect_trace_evidence(result,analysis,context)['trace_provenance']['status']=='unavailable'
 
