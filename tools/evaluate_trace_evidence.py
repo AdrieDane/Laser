@@ -68,8 +68,9 @@ def worker(args):
         keys = queries[['stream','feature_id']].to_dict('records')
     criteria = replace(UntargetedComparisonCriteria(**original['criteria']), ion_grouping_mode='current',
         joint_model='current', use_msbuddy=False, trace_model='peak_shape' if args.arm == 'trace' else 'current')
+    significant = queries.copy() if args.scope == 'natural' else original['significant_features'].copy(deep=True)
     analysis = {**original, 'criteria':asdict(criteria), 'raw_p_features':queries,
-        'significant_features':queries.copy(), 'acquisition_method':json.loads((args.preparation/'method.json').read_text())}
+        'significant_features':significant, 'acquisition_method':json.loads((args.preparation/'method.json').read_text())}
     result['acquisition_method'] = analysis['acquisition_method']
     began = time.monotonic()
     # Natural-query replay must reproduce the Stage 6 matched sequential control.
@@ -89,7 +90,7 @@ def worker(args):
         analysis['raw_p_features'] = queries
     analysis = assign_compound_ids(analysis, result=result)
     for name in ('features','raw_p_features','significant_features'):
-        before = (original[name] if name == 'features' else queries).copy()
+        before = (original[name] if name == 'features' else significant if name == 'significant_features' else queries).copy()
         # Display joins use lossless textual original keys; the old checkpoint
         # contains integer keys. Verify their values while retaining exact tests
         # for every numerical statistical/evidence column.
