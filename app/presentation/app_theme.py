@@ -1081,13 +1081,23 @@ __PAGE_LOADING_REDUCED_MOTION__
       [class*="st-key-"][class*="-diagnostics-shell"] [data-testid="stVerticalBlock"] {
         gap: 0.05rem !important;
       }
-      /* In normal flow: never cover the reviewer, navigation, or narrow screens. */
+      /* Keep appearance available on every page without taking a header row. */
       .st-key-laser-theme-toolbar {
+        position: fixed !important;
+        right: max(1rem, env(safe-area-inset-right, 0px));
+        bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+        width: max-content !important;
+        max-width: calc(100vw - 2rem);
         min-height: 2.25rem;
-        margin-bottom: -0.35rem;
+        margin: 0 !important;
+        z-index: 100;
+        border-radius: 7px;
+        background: var(--app-surface);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
       }
-      .st-key-laser-theme-toolbar:not(:has([data-testid="stPopover"])) {
-        display: none;
+      body:has(.annotation-viewer-active) [data-testid="stMainBlockContainer"],
+      [data-testid="stMainBlockContainer"] {
+        padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)) !important;
       }
       [data-testid="stPopoverButton"] {
         background: var(--app-surface) !important;
@@ -1366,8 +1376,8 @@ def _remember_theme() -> None:
     )
 
 
-def apply_app_theme(*, show_selector: bool = True, viewer: bool = False) -> None:
-    """Apply this session's appearance; show its chooser only on the home page."""
+def apply_app_theme(*, viewer: bool = False) -> None:
+    """Apply this session's appearance and its fixed, page-independent chooser."""
     selected = current_theme()
     st.markdown(VIEWER_THEME_CSS if viewer else APP_THEME_CSS, unsafe_allow_html=True)
     midnight = VIEWER_MIDNIGHT_THEME_CSS if viewer else MIDNIGHT_THEME_CSS
@@ -1380,8 +1390,6 @@ def apply_app_theme(*, show_selector: bool = True, viewer: bool = False) -> None
     with st.container(
         key="laser-theme-toolbar", horizontal=True, horizontal_alignment="right"
     ):
-        if not show_selector:
-            return
         st.session_state[THEME_WIDGET_KEY] = selected
         with st.popover("Theme", icon=":material/palette:"):
             st.radio(

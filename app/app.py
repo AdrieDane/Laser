@@ -19,7 +19,6 @@ st.set_page_config(
 def main() -> None:
     """Render the standard-lipidomics workflow directly."""
     apply_app_theme(
-        show_selector=st.session_state.get("standard_pipeline_page", "select") == "select",
         viewer=bool(st.session_state.get("standard_annotation_result")),
     )
     render_standard_lipidomics_mode(
