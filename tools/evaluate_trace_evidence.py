@@ -11,6 +11,13 @@ import numpy as np
 import pandas as pd
 
 
+def isotope_trace_queries(queries, tested):
+    columns = [c for c in tested if c in ('isotope_m_plus_1_feature_id','isotope_m_plus_2_feature_id')]
+    physical = tested[['stream','feature_id',*columns]].copy()
+    physical['feature_id'] = physical.feature_id.astype(str)
+    return queries.merge(physical,on=['stream','feature_id'],how='left',validate='one_to_one')
+
+
 def render(source, output, result, analysis, keys, node):
     from presentation.untargeted_mode import build_mode_payload
     from freeze_untargeted_baseline import write_json
@@ -76,9 +83,7 @@ def worker(args):
         # Physical isotope endpoints are diagnostic only. Do not supply a source
         # charge, formula or adduct to the natural-query ion grouping control.
         if args.scope == 'natural':
-            columns = [c for c in original['features'] if c.startswith(('isotope_m_plus_1_feature_id','isotope_m_plus_2_feature_id'))]
-            analysis['raw_p_features'] = queries.merge(original['features'][['stream','feature_id',*columns]],
-                on=['stream','feature_id'], how='left', validate='one_to_one')
+            analysis['raw_p_features'] = isotope_trace_queries(queries,original['features'])
         analysis = collect_trace_evidence(result, analysis, json.loads(args.context.read_text()),
             progress=lambda f,m:print(f'{f:.3f} {m}',flush=True))
         analysis['raw_p_features'] = queries
