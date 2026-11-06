@@ -21,7 +21,8 @@ def prepare(args):
     inputs=json.loads((args.preparation/'known_adduct_inputs.json').read_text())
     assert all(not set(q)&{'formula','name','lipid_class'} for q in inputs)
     method=json.loads((args.preparation/'method.json').read_text())
-    criteria=UntargetedComparisonCriteria('conditional_A','conditional_B',formula_model='lipid_aware')
+    criteria=UntargetedComparisonCriteria('conditional_A','conditional_B',
+        formula_model='lipid_aware',isotope_model='complete')
     configs={}
     for mode,item in context['streams'].items():
         camera=json.loads((args.camera_configs/(mode+'_camera_config.json')).read_text())
