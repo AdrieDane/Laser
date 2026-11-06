@@ -74,6 +74,8 @@ def test_blind_replay_worker_preserves_statistics_with_new_table_placeholders(tm
     if not node:
         pytest.skip('Node is required for the saved browser-selector replay')
     result, analysis = example()
+    analysis['cluster_members'] = pd.DataFrame([{'stream': 'RP_Pos', 'feature_id': 0,
+        'cluster_id': 'synthetic_cluster', 'compound_id': 'legacy_compound'}])
     project = tmp_path/'checkpoint/project'
     save_untargeted_workflow(project, result, analysis)
     preparation = tmp_path/'preparation'

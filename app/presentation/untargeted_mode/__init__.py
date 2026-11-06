@@ -84,9 +84,12 @@ def build_mode_payload(result, analysis, *, token='preview', theme='Minimal', re
     compounds = analysis.get('compound_features', pd.DataFrame())
     if joint_active:
         compounds = analysis['joint_compound_features'].copy()
+        compounds['feature_id'] = compounds.feature_id.astype(str)
         clusters = analysis.get('cluster_members', pd.DataFrame())
         if not clusters.empty:
-            names = clusters.drop_duplicates(['stream', 'feature_id'])[['stream', 'feature_id', 'cluster_id']]
+            names = clusters[['stream', 'feature_id', 'cluster_id']].copy()
+            names['feature_id'] = names.feature_id.astype(str)
+            names = names.drop_duplicates(['stream', 'feature_id'])
             compounds = compounds.drop(columns=['cluster_id'], errors='ignore').merge(names, how='left', on=['stream', 'feature_id'], validate='one_to_one')
     raw = analysis.get('raw_p_features', analysis.get('significant_features', pd.DataFrame()))
     detail_columns = ['isotope_charge_hypothesis', 'chemical_composition_hypothesis']
