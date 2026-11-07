@@ -1,0 +1,793 @@
+scope,mode,engine,formula_N,manual_N,top1_n,top1_percent,top5_n,pool_recall_n,ranked_truth_n,unavailable_or_failed_n,native_top_rank_calls,reported_rank_tie_n,wrong_native_top_rank_n,measurement,truth_in_reported_rank_tie_n,abstentions_n,any_ranked_n
+all,RP_Pos,LASER lipid-aware,1592,1694,1527,95.91708542713567,1585,1592,1592,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,RP_Pos,native msbuddy,1592,1694,1500,94.2211055276382,1523,1525,1525,54,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,RP_Pos,native UFA,1592,1694,317,19.912060301507537,630,1592,879,478,1069.0,0.0,752.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,523.0,1069.0
+all,RP_Neg,LASER lipid-aware,585,679,443,75.72649572649573,567,584,584,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,RP_Neg,native msbuddy,585,679,462,78.97435897435898,562,563,563,2,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,RP_Neg,native UFA,585,679,10,1.709401709401709,85,584,337,212,350.0,0.0,340.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,235.0,350.0
+all,NP_Pos,LASER lipid-aware,724,757,670,92.5414364640884,714,724,724,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,NP_Pos,native msbuddy,724,757,705,97.3756906077348,722,722,722,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,NP_Pos,native UFA,724,757,98,13.535911602209945,251,724,339,251,427.0,0.0,329.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,297.0,427.0
+all,NP_Neg,LASER lipid-aware,512,538,444,86.71875,491,509,509,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,NP_Neg,native msbuddy,512,538,437,85.3515625,487,489,489,19,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,NP_Neg,native UFA,512,538,25,4.8828125,93,509,205,203,266.0,0.0,241.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,246.0,266.0
+library_known,RP_Pos,LASER lipid-aware,1585,1585,1520,95.89905362776024,1578,1585,1585,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_known,RP_Pos,native msbuddy,1585,1585,1495,94.3217665615142,1518,1520,1520,52,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_known,RP_Pos,native UFA,1585,1585,317,20.0,630,1585,879,473,1068.0,0.0,751.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,517.0,1068.0
+library_known,RP_Neg,LASER lipid-aware,576,576,435,75.52083333333333,558,575,575,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_known,RP_Neg,native msbuddy,576,576,457,79.34027777777777,554,555,555,2,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_known,RP_Neg,native UFA,576,576,10,1.7361111111111112,85,575,336,208,347.0,0.0,337.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,229.0,347.0
+library_known,NP_Pos,LASER lipid-aware,713,713,661,92.70687237026648,703,713,713,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_known,NP_Pos,native msbuddy,713,713,697,97.75596072931276,712,712,712,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_known,NP_Pos,native UFA,713,713,97,13.604488078541374,249,713,337,245,425.0,0.0,328.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,288.0,425.0
+library_known,NP_Neg,LASER lipid-aware,412,412,362,87.86407766990291,395,409,409,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_known,NP_Neg,native msbuddy,412,412,349,84.70873786407768,388,389,389,19,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_known,NP_Neg,native UFA,412,412,24,5.825242718446602,72,409,167,158,214.0,0.0,190.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,198.0,214.0
+library_absent,RP_Pos,LASER lipid-aware,7,109,7,100.0,7,7,7,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_absent,RP_Pos,native msbuddy,7,109,5,71.42857142857143,5,5,5,2,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_absent,RP_Pos,native UFA,7,109,0,0.0,0,7,0,5,1.0,0.0,1.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,6.0,1.0
+library_absent,RP_Neg,LASER lipid-aware,9,103,8,88.88888888888889,9,9,9,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_absent,RP_Neg,native msbuddy,9,103,5,55.55555555555556,8,8,8,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_absent,RP_Neg,native UFA,9,103,0,0.0,0,9,1,4,3.0,0.0,3.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,6.0,3.0
+library_absent,NP_Pos,LASER lipid-aware,11,44,9,81.81818181818181,11,11,11,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_absent,NP_Pos,native msbuddy,11,44,8,72.72727272727273,10,10,10,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_absent,NP_Pos,native UFA,11,44,1,9.090909090909092,2,11,2,6,2.0,0.0,1.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,9.0,2.0
+library_absent,NP_Neg,LASER lipid-aware,100,126,82,82.0,96,100,100,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_absent,NP_Neg,native msbuddy,100,126,88,88.0,99,100,100,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+library_absent,NP_Neg,native UFA,100,126,1,1.0,21,100,38,45,52.0,0.0,51.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,48.0,52.0
+1-acyl LPC,RP_Pos,LASER lipid-aware,47,48,46,97.87234042553192,47,47,47,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPC,RP_Pos,native msbuddy,47,48,46,97.87234042553192,47,47,47,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPC,RP_Pos,native UFA,47,48,9,19.148936170212767,35,47,36,10,36.0,0.0,27.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,11.0,36.0
+1-acyl LPC,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPC,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPC,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+1-acyl LPC,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPC,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPC,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+1-acyl LPC,NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPC,NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPC,NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+1-acyl LPE,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPE,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPE,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+1-acyl LPE,RP_Neg,LASER lipid-aware,35,36,30,85.71428571428571,35,35,35,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPE,RP_Neg,native msbuddy,35,36,28,80.0,35,35,35,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPE,RP_Neg,native UFA,35,36,0,0.0,11,35,22,12,22.0,0.0,22.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,13.0,22.0
+1-acyl LPE,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPE,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPE,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+1-acyl LPE,NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPE,NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+1-acyl LPE,NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+2-acyl LPC,RP_Pos,LASER lipid-aware,37,37,34,91.89189189189187,37,37,37,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPC,RP_Pos,native msbuddy,37,37,37,100.0,37,37,37,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPC,RP_Pos,native UFA,37,37,5,13.513513513513514,26,37,26,10,26.0,0.0,21.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,11.0,26.0
+2-acyl LPC,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPC,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPC,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+2-acyl LPC,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPC,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPC,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+2-acyl LPC,NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPC,NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPC,NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+2-acyl LPE,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPE,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPE,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+2-acyl LPE,RP_Neg,LASER lipid-aware,27,27,26,96.29629629629628,27,27,27,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPE,RP_Neg,native msbuddy,27,27,21,77.77777777777777,27,27,27,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPE,RP_Neg,native UFA,27,27,0,0.0,6,27,21,5,22.0,0.0,22.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,5.0,22.0
+2-acyl LPE,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPE,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPE,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+2-acyl LPE,NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPE,NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+2-acyl LPE,NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+AC,RP_Pos,LASER lipid-aware,47,54,47,100.0,47,47,47,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC,RP_Pos,native msbuddy,47,54,47,100.0,47,47,47,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC,RP_Pos,native UFA,47,54,28,59.57446808510638,34,47,34,13,34.0,0.0,6.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,13.0,34.0
+AC,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+AC,NP_Pos,LASER lipid-aware,53,53,53,100.0,53,53,53,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC,NP_Pos,native msbuddy,53,53,53,100.0,53,53,53,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC,NP_Pos,native UFA,53,53,24,45.283018867924525,38,53,38,13,38.0,0.0,14.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,15.0,38.0
+AC,NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC,NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC,NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+AC-OH,RP_Pos,LASER lipid-aware,21,27,21,100.0,21,21,21,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC-OH,RP_Pos,native msbuddy,21,27,21,100.0,21,21,21,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC-OH,RP_Pos,native UFA,21,27,10,47.61904761904762,11,21,11,10,11.0,0.0,1.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,10.0,11.0
+AC-OH,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC-OH,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC-OH,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+AC-OH,NP_Pos,LASER lipid-aware,25,25,25,100.0,25,25,25,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC-OH,NP_Pos,native msbuddy,25,25,25,100.0,25,25,25,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC-OH,NP_Pos,native UFA,25,25,10,40.0,16,25,16,6,16.0,0.0,6.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,9.0,16.0
+AC-OH,NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC-OH,NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+AC-OH,NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+BMP,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+BMP,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+BMP,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+BMP,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+BMP,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+BMP,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+BMP,NP_Pos,LASER lipid-aware,25,26,20,80.0,24,25,25,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+BMP,NP_Pos,native msbuddy,25,26,23,92.0,25,25,25,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+BMP,NP_Pos,native UFA,25,26,1,4.0,5,25,7,13,9.0,0.0,8.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,16.0,9.0
+BMP,NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+BMP,NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+BMP,NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+C1P[d],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+C1P[d],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+C1P[d],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+C1P[d],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+C1P[d],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+C1P[d],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+C1P[d],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+C1P[d],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+C1P[d],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+C1P[d],NP_Neg,LASER lipid-aware,9,10,9,100.0,9,9,9,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+C1P[d],NP_Neg,native msbuddy,9,10,9,100.0,9,9,9,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+C1P[d],NP_Neg,native UFA,9,10,0,0.0,2,9,2,5,4.0,0.0,4.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,5.0,4.0
+CE,RP_Pos,LASER lipid-aware,104,105,100,96.15384615384616,104,104,104,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CE,RP_Pos,native msbuddy,104,105,103,99.03846153846152,104,104,104,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CE,RP_Pos,native UFA,104,105,21,20.192307692307693,45,104,55,31,69.0,0.0,48.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,35.0,69.0
+CE,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CE,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CE,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+CE,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CE,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CE,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+CE,NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CE,NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CE,NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+CL,RP_Pos,LASER lipid-aware,107,108,90,84.11214953271028,107,107,107,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CL,RP_Pos,native msbuddy,107,108,41,38.3177570093458,47,47,47,54,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CL,RP_Pos,native UFA,107,108,3,2.803738317757009,7,107,20,47,58.0,0.0,55.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,49.0,58.0
+CL,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CL,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CL,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+CL,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CL,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CL,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+CL,NP_Neg,LASER lipid-aware,43,44,39,90.69767441860463,43,43,43,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CL,NP_Neg,native msbuddy,43,44,21,48.83720930232558,27,27,27,16,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+CL,NP_Neg,native UFA,43,44,0,0.0,0,43,4,26,7.0,0.0,7.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,36.0,7.0
+Cer[d],RP_Pos,LASER lipid-aware,38,40,38,100.0,38,38,38,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Cer[d],RP_Pos,native msbuddy,38,40,38,100.0,38,38,38,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Cer[d],RP_Pos,native UFA,38,40,23,60.526315789473685,25,38,25,10,25.0,0.0,2.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,13.0,25.0
+Cer[d],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Cer[d],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Cer[d],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+Cer[d],NP_Pos,LASER lipid-aware,26,30,26,100.0,26,26,26,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Cer[d],NP_Pos,native msbuddy,26,30,26,100.0,26,26,26,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Cer[d],NP_Pos,native UFA,26,30,12,46.15384615384615,13,26,13,12,13.0,0.0,1.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,13.0,13.0
+Cer[d],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Cer[d],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Cer[d],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+DG,RP_Pos,LASER lipid-aware,120,121,118,98.33333333333331,120,120,120,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG,RP_Pos,native msbuddy,120,121,120,100.0,120,120,120,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG,RP_Pos,native UFA,120,121,47,39.166666666666664,68,120,79,29,89.0,0.0,42.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,31.0,89.0
+DG,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+DG,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+DG,NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG,NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG,NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+DG[O],RP_Pos,LASER lipid-aware,51,51,50,98.03921568627452,51,51,51,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[O],RP_Pos,native msbuddy,51,51,51,100.0,51,51,51,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[O],RP_Pos,native UFA,51,51,23,45.09803921568628,25,51,26,17,31.0,0.0,8.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,20.0,31.0
+DG[O],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[O],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[O],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+DG[O],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[O],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[O],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+DG[O],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[O],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[O],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+DG[P],RP_Pos,LASER lipid-aware,40,40,40,100.0,40,40,40,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[P],RP_Pos,native msbuddy,40,40,40,100.0,40,40,40,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[P],RP_Pos,native UFA,40,40,16,40.0,20,40,25,11,29.0,0.0,13.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,11.0,29.0
+DG[P],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[P],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[P],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+DG[P],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[P],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[P],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+DG[P],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[P],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DG[P],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+DLCL,RP_Pos,LASER lipid-aware,9,9,9,100.0,9,9,9,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DLCL,RP_Pos,native msbuddy,9,9,0,0.0,7,9,9,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DLCL,RP_Pos,native UFA,9,9,0,0.0,0,9,2,5,3.0,0.0,3.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,6.0,3.0
+DLCL,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DLCL,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DLCL,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+DLCL,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DLCL,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DLCL,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+DLCL,NP_Neg,LASER lipid-aware,4,5,4,100.0,4,4,4,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DLCL,NP_Neg,native msbuddy,4,5,0,0.0,3,4,4,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+DLCL,NP_Neg,native UFA,4,5,0,0.0,0,4,2,1,2.0,0.0,2.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,2.0,2.0
+FA,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+FA,RP_Neg,LASER lipid-aware,31,31,30,96.7741935483871,31,31,31,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA,RP_Neg,native msbuddy,31,31,31,100.0,31,31,31,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA,RP_Neg,native UFA,31,31,4,12.903225806451612,23,31,23,6,23.0,0.0,19.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,8.0,23.0
+FA,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+FA,NP_Neg,LASER lipid-aware,11,18,11,100.0,11,11,11,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA,NP_Neg,native msbuddy,11,18,11,100.0,11,11,11,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA,NP_Neg,native UFA,11,18,0,0.0,0,11,0,11,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,11.0,0.0
+FA-OH,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA-OH,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA-OH,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+FA-OH,RP_Neg,LASER lipid-aware,29,29,27,93.10344827586206,29,29,29,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA-OH,RP_Neg,native msbuddy,29,29,29,100.0,29,29,29,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA-OH,RP_Neg,native UFA,29,29,5,17.24137931034483,18,29,18,9,18.0,0.0,13.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,11.0,18.0
+FA-OH,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA-OH,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA-OH,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+FA-OH,NP_Neg,LASER lipid-aware,6,6,6,100.0,6,6,6,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA-OH,NP_Neg,native msbuddy,6,6,6,100.0,6,6,6,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+FA-OH,NP_Neg,native UFA,6,6,0,0.0,0,6,0,6,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,6.0,0.0
+GA1[d],RP_Pos,LASER lipid-aware,0,1,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GA1[d],RP_Pos,native msbuddy,0,1,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GA1[d],RP_Pos,native UFA,0,1,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GA1[d],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GA1[d],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GA1[d],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GA1[d],NP_Pos,LASER lipid-aware,2,2,2,100.0,2,2,2,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GA1[d],NP_Pos,native msbuddy,2,2,2,100.0,2,2,2,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GA1[d],NP_Pos,native UFA,2,2,0,0.0,0,2,0,2,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,2.0,0.0
+GA1[d],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GA1[d],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GA1[d],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GD1[d],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[d],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[d],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GD1[d],RP_Neg,LASER lipid-aware,23,23,22,95.65217391304348,23,23,23,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[d],RP_Neg,native msbuddy,23,23,7,30.434782608695652,8,8,8,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[d],RP_Neg,native UFA,23,23,0,0.0,0,23,5,17,5.0,0.0,5.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,18.0,5.0
+GD1[d],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[d],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[d],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GD1[d],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[d],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[d],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GD1[t],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[t],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[t],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GD1[t],RP_Neg,LASER lipid-aware,8,8,7,87.5,8,8,8,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[t],RP_Neg,native msbuddy,8,8,4,50.0,5,5,5,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[t],RP_Neg,native UFA,8,8,0,0.0,0,8,1,7,1.0,0.0,1.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,7.0,1.0
+GD1[t],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[t],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[t],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GD1[t],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[t],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD1[t],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GD2[d],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD2[d],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD2[d],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GD2[d],RP_Neg,LASER lipid-aware,3,3,3,100.0,3,3,3,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD2[d],RP_Neg,native msbuddy,3,3,3,100.0,3,3,3,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD2[d],RP_Neg,native UFA,3,3,0,0.0,0,3,2,1,2.0,0.0,2.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,1.0,2.0
+GD2[d],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD2[d],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD2[d],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GD2[d],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD2[d],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD2[d],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GD3[d],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD3[d],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD3[d],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GD3[d],RP_Neg,LASER lipid-aware,4,4,4,100.0,4,4,4,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD3[d],RP_Neg,native msbuddy,4,4,4,100.0,4,4,4,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD3[d],RP_Neg,native UFA,4,4,0,0.0,0,4,2,2,2.0,0.0,2.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,2.0,2.0
+GD3[d],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD3[d],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD3[d],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GD3[d],NP_Neg,LASER lipid-aware,4,4,1,25.0,1,1,1,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD3[d],NP_Neg,native msbuddy,4,4,1,25.0,1,1,1,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GD3[d],NP_Neg,native UFA,4,4,0,0.0,0,1,0,2,2.0,0.0,2.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,2.0,2.0
+GM1[d],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM1[d],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM1[d],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GM1[d],RP_Neg,LASER lipid-aware,2,9,2,100.0,2,2,2,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM1[d],RP_Neg,native msbuddy,2,9,0,0.0,0,0,0,2,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM1[d],RP_Neg,native UFA,2,9,0,0.0,0,2,0,2,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,2.0,0.0
+GM1[d],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM1[d],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM1[d],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GM1[d],NP_Neg,LASER lipid-aware,3,3,3,100.0,3,3,3,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM1[d],NP_Neg,native msbuddy,3,3,0,0.0,0,0,0,3,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM1[d],NP_Neg,native UFA,3,3,0,0.0,0,3,2,1,2.0,0.0,2.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,1.0,2.0
+GM2[d],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM2[d],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM2[d],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GM2[d],RP_Neg,LASER lipid-aware,3,3,3,100.0,3,3,3,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM2[d],RP_Neg,native msbuddy,3,3,2,66.66666666666667,3,3,3,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM2[d],RP_Neg,native UFA,3,3,0,0.0,0,3,1,2,1.0,0.0,1.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,2.0,1.0
+GM2[d],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM2[d],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM2[d],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GM2[d],NP_Neg,LASER lipid-aware,3,3,2,66.66666666666667,3,3,3,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM2[d],NP_Neg,native msbuddy,3,3,1,33.333333333333336,3,3,3,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM2[d],NP_Neg,native UFA,3,3,0,0.0,0,3,1,2,1.0,0.0,1.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,2.0,1.0
+GM3[d],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM3[d],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM3[d],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GM3[d],RP_Neg,LASER lipid-aware,8,10,7,87.5,8,8,8,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM3[d],RP_Neg,native msbuddy,8,10,8,100.0,8,8,8,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM3[d],RP_Neg,native UFA,8,10,0,0.0,0,8,5,3,5.0,0.0,5.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,3.0,5.0
+GM3[d],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM3[d],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM3[d],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+GM3[d],NP_Neg,LASER lipid-aware,10,10,8,80.0,10,10,10,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM3[d],NP_Neg,native msbuddy,10,10,9,90.0,10,10,10,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+GM3[d],NP_Neg,native UFA,10,10,0,0.0,0,10,5,5,5.0,0.0,5.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,5.0,5.0
+Hex2Cer[d],RP_Pos,LASER lipid-aware,18,19,18,100.0,18,18,18,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[d],RP_Pos,native msbuddy,18,19,18,100.0,18,18,18,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[d],RP_Pos,native UFA,18,19,2,11.11111111111111,9,18,9,8,9.0,0.0,7.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,9.0,9.0
+Hex2Cer[d],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[d],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[d],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+Hex2Cer[d],NP_Pos,LASER lipid-aware,16,26,16,100.0,16,16,16,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[d],NP_Pos,native msbuddy,16,26,13,81.25,16,16,16,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[d],NP_Pos,native UFA,16,26,1,6.25,4,16,13,2,13.0,0.0,12.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,3.0,13.0
+Hex2Cer[d],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[d],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[d],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+Hex2Cer[t],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[t],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[t],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+Hex2Cer[t],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[t],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[t],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+Hex2Cer[t],NP_Pos,LASER lipid-aware,5,5,5,100.0,5,5,5,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[t],NP_Pos,native msbuddy,5,5,3,60.0,4,4,4,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[t],NP_Pos,native UFA,5,5,0,0.0,0,5,0,4,1.0,0.0,1.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,4.0,1.0
+Hex2Cer[t],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[t],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+Hex2Cer[t],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+HexCer[d],RP_Pos,LASER lipid-aware,46,47,45,97.82608695652172,45,46,46,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[d],RP_Pos,native msbuddy,46,47,46,100.0,46,46,46,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[d],RP_Pos,native UFA,46,47,18,39.130434782608695,32,46,34,9,37.0,0.0,19.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,9.0,37.0
+HexCer[d],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[d],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[d],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+HexCer[d],NP_Pos,LASER lipid-aware,19,21,19,100.0,19,19,19,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[d],NP_Pos,native msbuddy,19,21,19,100.0,19,19,19,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[d],NP_Pos,native UFA,19,21,0,0.0,6,19,9,7,11.0,0.0,11.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,8.0,11.0
+HexCer[d],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[d],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[d],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+HexCer[t],RP_Pos,LASER lipid-aware,34,34,34,100.0,34,34,34,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[t],RP_Pos,native msbuddy,34,34,34,100.0,34,34,34,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[t],RP_Pos,native UFA,34,34,13,38.23529411764706,22,34,24,6,28.0,0.0,15.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,6.0,28.0
+HexCer[t],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[t],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[t],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+HexCer[t],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[t],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[t],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+HexCer[t],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[t],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+HexCer[t],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPA,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPA,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPA,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPA,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPA,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPA,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPA,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPA,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPA,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPA,NP_Neg,LASER lipid-aware,17,18,11,64.70588235294117,15,17,17,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPA,NP_Neg,native msbuddy,17,18,12,70.58823529411765,17,17,17,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPA,NP_Neg,native UFA,17,18,0,0.0,8,17,10,7,10.0,0.0,10.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,7.0,10.0
+LPC,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPC,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPC,NP_Pos,LASER lipid-aware,64,65,62,96.875,63,64,64,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC,NP_Pos,native msbuddy,64,65,63,98.4375,64,64,64,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC,NP_Pos,native UFA,64,65,6,9.375,38,64,44,17,47.0,0.0,41.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,17.0,47.0
+LPC,NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC,NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC,NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPC[O+P],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O+P],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O+P],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPC[O+P],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O+P],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O+P],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPC[O+P],NP_Pos,LASER lipid-aware,10,10,10,100.0,10,10,10,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O+P],NP_Pos,native msbuddy,10,10,10,100.0,10,10,10,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O+P],NP_Pos,native UFA,10,10,2,20.0,4,10,4,6,4.0,0.0,2.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,6.0,4.0
+LPC[O+P],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O+P],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O+P],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPC[O],RP_Pos,LASER lipid-aware,15,15,14,93.33333333333331,15,15,15,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O],RP_Pos,native msbuddy,15,15,15,100.0,15,15,15,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O],RP_Pos,native UFA,15,15,2,13.333333333333334,10,15,10,5,10.0,0.0,8.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,5.0,10.0
+LPC[O],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPC[O],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPC[O],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[O],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPC[P],RP_Pos,LASER lipid-aware,10,10,10,100.0,10,10,10,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[P],RP_Pos,native msbuddy,10,10,10,100.0,10,10,10,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[P],RP_Pos,native UFA,10,10,0,0.0,6,10,6,4,6.0,0.0,6.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,4.0,6.0
+LPC[P],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[P],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[P],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPC[P],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[P],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[P],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPC[P],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[P],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPC[P],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPE,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPE,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPE,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPE,NP_Neg,LASER lipid-aware,21,22,21,100.0,21,21,21,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE,NP_Neg,native msbuddy,21,22,20,95.23809523809524,21,21,21,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE,NP_Neg,native UFA,21,22,8,38.095238095238095,9,21,9,12,9.0,0.0,1.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,12.0,9.0
+LPE[O+P],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O+P],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O+P],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPE[O+P],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O+P],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O+P],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPE[O+P],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O+P],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O+P],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPE[O+P],NP_Neg,LASER lipid-aware,6,6,6,100.0,6,6,6,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O+P],NP_Neg,native msbuddy,6,6,6,100.0,6,6,6,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O+P],NP_Neg,native UFA,6,6,2,33.333333333333336,3,6,3,3,3.0,0.0,1.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,3.0,3.0
+LPE[O],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPE[O],RP_Neg,LASER lipid-aware,7,7,7,100.0,7,7,7,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O],RP_Neg,native msbuddy,7,7,6,85.71428571428571,7,7,7,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O],RP_Neg,native UFA,7,7,0,0.0,4,7,4,2,4.0,0.0,4.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,3.0,4.0
+LPE[O],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPE[O],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[O],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPE[P],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[P],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[P],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPE[P],RP_Neg,LASER lipid-aware,12,12,10,83.33333333333333,12,12,12,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[P],RP_Neg,native msbuddy,12,12,10,83.33333333333333,12,12,12,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[P],RP_Neg,native UFA,12,12,0,0.0,7,12,8,3,8.0,0.0,8.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,4.0,8.0
+LPE[P],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[P],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[P],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPE[P],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[P],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPE[P],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPG,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPG,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPG,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPG,RP_Neg,LASER lipid-aware,13,17,11,84.61538461538461,13,13,13,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPG,RP_Neg,native msbuddy,13,17,9,69.23076923076923,13,13,13,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPG,RP_Neg,native UFA,13,17,0,0.0,1,13,8,5,8.0,0.0,8.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,5.0,8.0
+LPG,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPG,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPG,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPG,NP_Neg,LASER lipid-aware,16,17,12,75.0,16,16,16,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPG,NP_Neg,native msbuddy,16,17,8,50.0,15,16,16,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPG,NP_Neg,native UFA,16,17,3,18.75,6,16,10,6,10.0,0.0,7.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,6.0,10.0
+LPI,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPI,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPI,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPI,RP_Neg,LASER lipid-aware,10,12,7,70.0,10,10,10,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPI,RP_Neg,native msbuddy,10,12,7,70.0,9,10,10,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPI,RP_Neg,native UFA,10,12,0,0.0,0,10,7,3,7.0,0.0,7.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,3.0,7.0
+LPI,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPI,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPI,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPI,NP_Neg,LASER lipid-aware,12,12,11,91.66666666666669,12,12,12,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPI,NP_Neg,native msbuddy,12,12,6,50.0,12,12,12,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPI,NP_Neg,native UFA,12,12,0,0.0,0,12,7,5,7.0,0.0,7.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,5.0,7.0
+LPS,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPS,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPS,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+LPS,RP_Neg,LASER lipid-aware,24,24,22,91.66666666666669,24,24,24,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPS,RP_Neg,native msbuddy,24,24,15,62.5,24,24,24,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPS,RP_Neg,native UFA,24,24,0,0.0,2,24,9,15,9.0,0.0,9.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,15.0,9.0
+LPS,NP_Pos,LASER lipid-aware,14,14,13,92.85714285714286,14,14,14,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPS,NP_Pos,native msbuddy,14,14,11,78.57142857142857,14,14,14,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPS,NP_Pos,native UFA,14,14,0,0.0,7,14,8,6,8.0,0.0,8.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,6.0,8.0
+LPS,NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPS,NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+LPS,NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+MLCL,RP_Pos,LASER lipid-aware,6,6,6,100.0,6,6,6,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+MLCL,RP_Pos,native msbuddy,6,6,1,16.666666666666668,6,6,6,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+MLCL,RP_Pos,native UFA,6,6,1,16.666666666666668,1,6,1,5,1.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,5.0,1.0
+MLCL,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+MLCL,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+MLCL,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+MLCL,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+MLCL,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+MLCL,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+MLCL,NP_Neg,LASER lipid-aware,6,12,1,16.666666666666668,6,6,6,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+MLCL,NP_Neg,native msbuddy,6,12,2,33.333333333333336,6,6,6,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+MLCL,NP_Neg,native UFA,6,12,0,0.0,0,6,0,6,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,6.0,0.0
+PA,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PA,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PA,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PA,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PA,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PA,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PA,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PA,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PA,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PA,NP_Neg,LASER lipid-aware,62,63,52,83.87096774193549,61,62,62,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PA,NP_Neg,native msbuddy,62,63,62,100.0,62,62,62,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PA,NP_Neg,native UFA,62,63,1,1.6129032258064515,11,62,25,23,37.0,0.0,36.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,25.0,37.0
+PC,RP_Pos,LASER lipid-aware,179,220,173,96.64804469273744,179,179,179,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC,RP_Pos,native msbuddy,179,220,179,100.0,179,179,179,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC,RP_Pos,native UFA,179,220,34,18.99441340782123,101,179,132,25,150.0,0.0,116.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,29.0,150.0
+PC,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PC,NP_Pos,LASER lipid-aware,205,206,172,83.90243902439025,203,205,205,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC,NP_Pos,native msbuddy,205,206,199,97.07317073170732,204,204,204,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC,NP_Pos,native UFA,205,206,9,4.390243902439025,44,205,80,69,112.0,0.0,103.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,93.0,112.0
+PC,NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC,NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC,NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PC[O+P],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O+P],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O+P],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PC[O+P],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O+P],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O+P],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PC[O+P],NP_Pos,LASER lipid-aware,79,79,73,92.40506329113924,79,79,79,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O+P],NP_Pos,native msbuddy,79,79,79,100.0,79,79,79,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O+P],NP_Pos,native UFA,79,79,11,13.924050632911392,16,79,23,39,38.0,0.0,27.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,41.0,38.0
+PC[O+P],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O+P],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O+P],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PC[O],RP_Pos,LASER lipid-aware,61,61,57,93.44262295081968,61,61,61,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O],RP_Pos,native msbuddy,61,61,59,96.72131147540983,61,61,61,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O],RP_Pos,native UFA,61,61,18,29.50819672131147,27,61,31,24,36.0,0.0,18.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,25.0,36.0
+PC[O],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PC[O],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PC[O],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[O],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PC[P],RP_Pos,LASER lipid-aware,50,50,49,98.0,50,50,50,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[P],RP_Pos,native msbuddy,50,50,50,100.0,50,50,50,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[P],RP_Pos,native UFA,50,50,3,6.0,8,50,17,17,32.0,0.0,29.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,18.0,32.0
+PC[P],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[P],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[P],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PC[P],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[P],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[P],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PC[P],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[P],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PC[P],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PE,RP_Pos,LASER lipid-aware,47,76,46,97.87234042553192,47,47,47,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE,RP_Pos,native msbuddy,47,76,47,100.0,47,47,47,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE,RP_Pos,native UFA,47,76,5,10.638297872340424,20,47,28,18,28.0,0.0,23.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,19.0,28.0
+PE,RP_Neg,LASER lipid-aware,53,97,41,77.35849056603773,50,52,52,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE,RP_Neg,native msbuddy,53,97,46,86.79245283018868,52,52,52,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE,RP_Neg,native UFA,53,97,0,0.0,0,52,31,19,31.0,0.0,31.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,22.0,31.0
+PE,NP_Pos,LASER lipid-aware,53,54,52,98.1132075471698,52,53,53,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE,NP_Pos,native msbuddy,53,54,53,100.0,53,53,53,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE,NP_Pos,native UFA,53,54,3,5.660377358490566,23,53,33,4,44.0,0.0,41.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,9.0,44.0
+PE,NP_Neg,LASER lipid-aware,56,57,55,98.21428571428572,56,56,56,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE,NP_Neg,native msbuddy,56,57,56,100.0,56,56,56,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE,NP_Neg,native UFA,56,57,4,7.142857142857143,14,56,28,12,39.0,0.0,35.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,17.0,39.0
+PE[O+P],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O+P],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O+P],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PE[O+P],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O+P],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O+P],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PE[O+P],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O+P],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O+P],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PE[O+P],NP_Neg,LASER lipid-aware,72,72,67,93.05555555555556,72,72,72,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O+P],NP_Neg,native msbuddy,72,72,72,100.0,72,72,72,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O+P],NP_Neg,native UFA,72,72,5,6.944444444444445,21,72,34,23,44.0,0.0,39.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,28.0,44.0
+PE[O],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PE[O],RP_Neg,LASER lipid-aware,38,38,30,78.94736842105263,38,38,38,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O],RP_Neg,native msbuddy,38,38,27,71.05263157894737,38,38,38,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O],RP_Neg,native UFA,38,38,0,0.0,5,38,25,12,26.0,0.0,26.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,12.0,26.0
+PE[O],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PE[O],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[O],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PE[P],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[P],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[P],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PE[P],RP_Neg,LASER lipid-aware,75,75,53,70.66666666666667,73,75,75,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[P],RP_Neg,native msbuddy,75,75,59,78.66666666666667,75,75,75,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[P],RP_Neg,native UFA,75,75,0,0.0,2,75,50,21,53.0,0.0,53.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,22.0,53.0
+PE[P],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[P],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[P],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PE[P],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[P],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PE[P],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PG,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PG,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PG,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PG,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PG,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PG,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PG,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PG,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PG,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PG,NP_Neg,LASER lipid-aware,40,41,40,100.0,40,40,40,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PG,NP_Neg,native msbuddy,40,41,40,100.0,40,40,40,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PG,NP_Neg,native UFA,40,41,0,0.0,7,40,16,17,20.0,0.0,20.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,20.0,20.0
+PI,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PI,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PI,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PI,RP_Neg,LASER lipid-aware,23,42,13,56.52173913043478,23,23,23,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PI,RP_Neg,native msbuddy,23,42,22,95.65217391304348,23,23,23,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PI,RP_Neg,native UFA,23,42,0,0.0,1,23,14,7,15.0,0.0,15.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,8.0,15.0
+PI,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PI,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PI,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PI,NP_Neg,LASER lipid-aware,24,25,21,87.5,23,24,24,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PI,NP_Neg,native msbuddy,24,25,24,100.0,24,24,24,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PI,NP_Neg,native UFA,24,25,1,4.166666666666667,5,24,9,7,14.0,0.0,13.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,10.0,14.0
+PS,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PS,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PS,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+PS,RP_Neg,LASER lipid-aware,78,79,53,67.94871794871794,75,78,78,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PS,RP_Neg,native msbuddy,78,79,68,87.17948717948718,77,77,77,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PS,RP_Neg,native UFA,78,79,1,1.2820512820512822,4,78,33,36,36.0,0.0,35.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,42.0,36.0
+PS,NP_Pos,LASER lipid-aware,47,57,47,100.0,47,47,47,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PS,NP_Pos,native msbuddy,47,57,46,97.87234042553192,47,47,47,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PS,NP_Pos,native UFA,47,57,3,6.382978723404255,8,47,13,28,19.0,0.0,16.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,28.0,19.0
+PS,NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PS,NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+PS,NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+S1P[d],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+S1P[d],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+S1P[d],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+S1P[d],RP_Neg,LASER lipid-aware,0,2,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+S1P[d],RP_Neg,native msbuddy,0,2,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+S1P[d],RP_Neg,native UFA,0,2,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+S1P[d],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+S1P[d],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+S1P[d],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+S1P[d],NP_Neg,LASER lipid-aware,0,2,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+S1P[d],NP_Neg,native msbuddy,0,2,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+S1P[d],NP_Neg,native UFA,0,2,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+SLBPA,RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SLBPA,RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SLBPA,RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+SLBPA,RP_Neg,LASER lipid-aware,5,6,0,0.0,1,5,5,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SLBPA,RP_Neg,native msbuddy,5,6,0,0.0,5,5,5,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SLBPA,RP_Neg,native UFA,5,6,0,0.0,0,5,0,4,1.0,0.0,1.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,4.0,1.0
+SLBPA,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SLBPA,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SLBPA,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+SLBPA,NP_Neg,LASER lipid-aware,9,9,9,100.0,9,9,9,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SLBPA,NP_Neg,native msbuddy,9,9,9,100.0,9,9,9,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SLBPA,NP_Neg,native UFA,9,9,0,0.0,0,9,0,1,4.0,0.0,4.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,5.0,4.0
+SM4[d],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[d],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[d],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+SM4[d],RP_Neg,LASER lipid-aware,38,47,16,42.10526315789474,35,38,38,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[d],RP_Neg,native msbuddy,38,47,31,81.57894736842105,38,38,38,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[d],RP_Neg,native UFA,38,47,0,0.0,1,38,29,8,29.0,0.0,29.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,9.0,29.0
+SM4[d],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[d],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[d],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+SM4[d],NP_Neg,LASER lipid-aware,41,42,29,70.73170731707317,33,41,41,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[d],NP_Neg,native msbuddy,41,42,36,87.8048780487805,40,40,40,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[d],NP_Neg,native UFA,41,42,0,0.0,4,41,26,7,28.0,0.0,28.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,13.0,28.0
+SM4[t],RP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[t],RP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[t],RP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+SM4[t],RP_Neg,LASER lipid-aware,36,38,19,52.77777777777778,33,36,36,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[t],RP_Neg,native msbuddy,36,38,25,69.44444444444444,36,36,36,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[t],RP_Neg,native UFA,36,38,0,0.0,0,36,19,11,22.0,0.0,22.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,14.0,22.0
+SM4[t],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[t],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[t],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+SM4[t],NP_Neg,LASER lipid-aware,37,37,26,70.27027027027027,31,37,37,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[t],NP_Neg,native msbuddy,37,37,26,70.27027027027027,37,37,37,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM4[t],NP_Neg,native UFA,37,37,1,2.702702702702702,3,37,12,15,18.0,0.0,17.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,19.0,18.0
+SM[d],RP_Pos,LASER lipid-aware,46,52,46,100.0,46,46,46,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[d],RP_Pos,native msbuddy,46,52,46,100.0,46,46,46,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[d],RP_Pos,native UFA,46,52,23,50.0,33,46,35,5,38.0,0.0,15.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,8.0,38.0
+SM[d],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[d],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[d],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+SM[d],NP_Pos,LASER lipid-aware,51,52,45,88.23529411764706,46,51,51,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[d],NP_Pos,native msbuddy,51,52,50,98.03921568627452,51,51,51,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[d],NP_Pos,native UFA,51,52,13,25.49019607843137,21,51,28,10,40.0,0.0,27.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,11.0,40.0
+SM[d],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[d],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[d],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+SM[t],RP_Pos,LASER lipid-aware,15,16,14,93.33333333333331,14,15,15,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[t],RP_Pos,native msbuddy,15,16,15,100.0,15,15,15,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[t],RP_Pos,native UFA,15,16,0,0.0,0,15,1,5,6.0,0.0,6.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,9.0,6.0
+SM[t],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[t],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[t],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+SM[t],NP_Pos,LASER lipid-aware,30,30,30,100.0,30,30,30,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[t],NP_Pos,native msbuddy,30,30,30,100.0,30,30,30,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[t],NP_Pos,native UFA,30,30,3,10.0,8,30,10,13,14.0,0.0,11.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,16.0,14.0
+SM[t],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[t],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SM[t],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+SPH[d],RP_Pos,LASER lipid-aware,0,2,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SPH[d],RP_Pos,native msbuddy,0,2,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SPH[d],RP_Pos,native UFA,0,2,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+SPH[d],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SPH[d],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SPH[d],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+SPH[d],NP_Pos,LASER lipid-aware,0,2,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SPH[d],NP_Pos,native msbuddy,0,2,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SPH[d],NP_Pos,native UFA,0,2,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+SPH[d],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SPH[d],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+SPH[d],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+TG,RP_Pos,LASER lipid-aware,279,280,268,96.05734767025088,276,279,279,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG,RP_Pos,native msbuddy,279,280,271,97.1326164874552,272,272,272,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG,RP_Pos,native UFA,279,280,11,3.942652329749104,47,279,141,86,185.0,0.0,174.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,94.0,185.0
+TG,RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG,RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG,RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+TG,NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG,NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG,NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+TG,NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG,NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG,NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+TG[O],RP_Pos,LASER lipid-aware,165,165,154,93.33333333333331,163,165,165,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG[O],RP_Pos,native msbuddy,165,165,165,100.0,165,165,165,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG[O],RP_Pos,native UFA,165,165,2,1.2121212121212122,18,165,71,68,92.0,0.0,90.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,73.0,92.0
+TG[O],RP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG[O],RP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG[O],RP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+TG[O],NP_Pos,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG[O],NP_Pos,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG[O],NP_Pos,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0
+TG[O],NP_Neg,LASER lipid-aware,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG[O],NP_Neg,native msbuddy,0,0,0,,0,0,0,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+TG[O],NP_Neg,native UFA,0,0,0,,0,0,0,0,0.0,0.0,0.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,0.0,0.0

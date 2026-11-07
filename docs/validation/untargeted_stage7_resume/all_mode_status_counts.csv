@@ -1,0 +1,23 @@
+mode,status,N
+NP_Neg,complete,309
+NP_Neg,"native peak mapping missing, multiple or gap-filled",41
+NP_Neg,unavailable: Most-abundant isotope anchor is ambiguous,5
+NP_Neg,unavailable: Native profile generation unavailable for a requested candidate,5
+NP_Neg,"unavailable: Original monoisotopic trace is missing, sparse or ambiguous",138
+NP_Neg,unavailable: Strong interfering or unverified isotope-anchor signal,14
+NP_Pos,complete,473
+NP_Pos,"native peak mapping missing, multiple or gap-filled",66
+NP_Pos,"unavailable: Original monoisotopic trace is missing, sparse or ambiguous",170
+NP_Pos,unavailable: Strong interfering or unverified isotope-anchor signal,15
+RP_Neg,complete,373
+RP_Neg,"native peak mapping missing, multiple or gap-filled",72
+RP_Neg,unavailable: Most-abundant isotope anchor is ambiguous,5
+RP_Neg,unavailable: Native profile generation unavailable for a requested candidate,1
+RP_Neg,"unavailable: Original monoisotopic trace is missing, sparse or ambiguous",113
+RP_Neg,unavailable: Strong interfering or unverified isotope-anchor signal,21
+RP_Pos,complete,1114
+RP_Pos,"native peak mapping missing, multiple or gap-filled",158
+RP_Pos,unavailable: Most-abundant isotope anchor is ambiguous,9
+RP_Pos,unavailable: Native profile generation unavailable for a requested candidate,1
+RP_Pos,"unavailable: Original monoisotopic trace is missing, sparse or ambiguous",273
+RP_Pos,unavailable: Strong interfering or unverified isotope-anchor signal,37

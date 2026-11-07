@@ -1,0 +1,11 @@
+{
+  "full_suite_passed": 1105,
+  "full_suite_failed": 1,
+  "skipped": 9,
+  "subtests_passed": 91,
+  "failure": "detached-worker snapshot did not finish inside unchanged15-second test limit",
+  "focused_retry_passed": true,
+  "focused_retry_seconds": 4.27,
+  "test_and_production_source_unchanged": true,
+  "recovery": "inherited external Python bytecode cache for the launcher and child; no timeout relaxed"
+}

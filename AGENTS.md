@@ -1,5 +1,28 @@
 # Current standard-tool scope (5 November 2026)
 
+7 November NATIVE RESUMABLE PREPARATION/FULL CONDITIONAL COMPARISON COMPLETE.
+Source0a85337 frozen/pushed before study.4workers/1007atomic batches;257407requested,
+257397returned native profiles (10missing explicit);501.19s job timer,2446s wall
+becauseMacslept09:04–09:37. All4mode matching complete11–45s job timer;16actual
+pruned/unpruned cases exact. All3413keys/3668manual/46unmapped/252cells retained.
+Top1 known-adduct/charge formula agreement RPpos317/1592,RPneg10/585,NPpos98/724,
+NPneg25/512 =450/3413, versus frozen lipid-aware3084 andmsbuddy3104. Not adduct
+accuracy or intrinsic algorithm superiority: first-QC raw vs integrated/budget32,
+library priors and availability differ.2112native calls,1144unavailable,157nohits;
+1662called formulas disagree withcuration. VersusLASER gains5/losses2639. Keep
+CURRENT;do NOT promoteUFA. Native source emits sequential ordinal ranks after
+sorting IdentificationScore; raw-score ties unknown. Reporting terminology and
+class manual denominator corrected, predictions/top1counts unchanged; no reranking.
+522nativeparity+3072serial/parallel+256nativeprobes+32768stress/32probes pass;
+killed-writer/orphan/corruption/live-lock/resume pass. All94inputs+5metadata/raw/
+IS/method/2212runtimefiles+5stat/annotation snapshots unchanged; appsource identical
+todd0331d, no statistical/annotation pipeline rerun. ProfileSHA before/after exact;
+project result folders empty. Safe results docs/validation/untargeted_stage7_resume;
+private outputs/untargeted_stage7_resume/report.html. Suite1105passed9skipped91subtests;
+one15sec detached-worker timing failure passes unchanged-limit cache-isolated retry
+in4.27s; no app/testsource changes. Other external engines and
+independent isotope gold stillOPEN; stop before8;historical optimizationPAUSED.
+
 7 November user authorizes native profile preparation speed/resume repair, exact
 synthetic/realistic gates, then frozen full3413-query/63-class/four-mode conditional
 formula comparison. Same original data/statistics/accepted annotations/current

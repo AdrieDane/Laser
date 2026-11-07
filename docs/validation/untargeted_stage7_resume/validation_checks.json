@@ -1,0 +1,33 @@
+{
+  "original_prepared_files": 94,
+  "derived_trace_metadata_files": 5,
+  "original_raw_and_context_hashes_unchanged": true,
+  "all_source_and_staged_native_runtime_files_exact": 2212,
+  "frozen_saved_statistics_and_annotations_parquet_files_unchanged": 5,
+  "production_app_source_unchanged_since_dd0331d": true,
+  "current_predictions_stats_and_accepted_annotations_not_rerun_or_overwritten": true,
+  "profile_cache_hashes_match_before_and_after_matching": true,
+  "all_3413_query_keys_and_full_candidate_universe_retained": true,
+  "all_four_modes_finished": true,
+  "actual_native_pruning_equivalence_queries": 16,
+  "project_output_folders_still_empty": {
+    "Calibration": true,
+    "LASER": true,
+    "Untargeted": true,
+    "Archive": true
+  },
+  "default_unchanged": true,
+  "Stage8_started": false,
+  "runtime_and_profile_recipe_frozen_before_study": true,
+  "completed_profile_batches": 1007,
+  "profile_pairs_requested": 257407,
+  "returned_native_profiles": 257397,
+  "profile_controls": {
+    "unmodified_native_parity_profiles": 522,
+    "resume_native_probes": 256,
+    "full_serial_parallel_equality_profiles": 3072,
+    "stress_native_probes": 32
+  },
+  "primary_rank_policy": "native reported ordinal rank1; underlying IdentificationScore ties are not exposed by IDSL.UFA2.0",
+  "study_inference_reexecuted_after_scoring": false
+}

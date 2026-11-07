@@ -1,0 +1,10 @@
+{
+  "job_timer_clock": "Python monotonic timeout clock, which excludes macOS sleep",
+  "job_timer_preparation_seconds": 501.18705191701883,
+  "native_R_reported_elapsed_seconds": 2445.541,
+  "UTC_freeze_to_cache_pin_seconds": 2446.348048,
+  "host_sleep_observed": true,
+  "host_sleep_interval_local": "7 November 09:04\u201309:37 America/Denver",
+  "no_manual_budget_extension": true,
+  "matching_after_host_wake": true
+}

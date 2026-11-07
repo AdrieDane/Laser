@@ -1,0 +1,15 @@
+mode,observed_anchor_order,N
+NP_Neg,0.0,307
+NP_Neg,1.0,1
+NP_Neg,4.0,1
+NP_Neg,,203
+NP_Pos,0.0,471
+NP_Pos,1.0,2
+NP_Pos,,251
+RP_Neg,0.0,373
+RP_Neg,,212
+RP_Pos,0.0,1107
+RP_Pos,1.0,5
+RP_Pos,3.0,1
+RP_Pos,4.0,1
+RP_Pos,,478

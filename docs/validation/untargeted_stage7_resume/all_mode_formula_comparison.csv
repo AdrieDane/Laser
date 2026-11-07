@@ -1,0 +1,13 @@
+scope,mode,engine,formula_N,manual_N,top1_n,top1_percent,top5_n,pool_recall_n,ranked_truth_n,unavailable_or_failed_n,native_top_rank_calls,reported_rank_tie_n,wrong_native_top_rank_n,measurement,truth_in_reported_rank_tie_n,abstentions_n,any_ranked_n
+all,RP_Pos,LASER lipid-aware,1592,1694,1527,95.91708542713567,1585,1592,1592,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,RP_Pos,native msbuddy,1592,1694,1500,94.2211055276382,1523,1525,1525,54,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,RP_Pos,native UFA,1592,1694,317,19.912060301507537,630,1592,879,478,1069.0,0.0,752.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,523.0,1069.0
+all,RP_Neg,LASER lipid-aware,585,679,443,75.72649572649573,567,584,584,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,RP_Neg,native msbuddy,585,679,462,78.97435897435898,562,563,563,2,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,RP_Neg,native UFA,585,679,10,1.709401709401709,85,584,337,212,350.0,0.0,340.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,235.0,350.0
+all,NP_Pos,LASER lipid-aware,724,757,670,92.5414364640884,714,724,724,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,NP_Pos,native msbuddy,724,757,705,97.3756906077348,722,722,722,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,NP_Pos,native UFA,724,757,98,13.535911602209945,251,724,339,251,427.0,0.0,329.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,297.0,427.0
+all,NP_Neg,LASER lipid-aware,512,538,444,86.71875,491,509,509,0,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,NP_Neg,native msbuddy,512,538,437,85.3515625,487,489,489,19,,,,previous frozen conditional feature-area benchmark; original rank tie policy,,,
+all,NP_Neg,native UFA,512,538,25,4.8828125,93,509,205,203,266.0,0.0,241.0,raw first-QC; supplied adduct/charge; native ordinal top1; raw score ties unavailable,0.0,246.0,266.0

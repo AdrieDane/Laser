@@ -1,0 +1,48 @@
+{
+  "client_authorized_date": "2026-11-07",
+  "source_revision": "0a853379e90ab425bea59ccc6c69e5b726e68f92",
+  "source_archive_sha256": "6a512e34bf4a04d4e117437f7994bdb0e990e18e4e9907f49f75cac29518a9e8",
+  "runner_sha256": "1586bc0582cdf5e1da489409d8044646ba29b90d2bcb883fcf0c315b27feb6c5",
+  "frozen_utc": "2026-11-07T16:02:04.347218+00:00",
+  "native_package_manifest_sha256": "ae57ee1c2e7f77d0955475dedb70177f908012a77a868255fbaa6f95c87248f2",
+  "original_context_sha256": "53aa0c6d2f7a28c4d1f54e22b01080e46042296b294cd7cf10134b83fc374138",
+  "queries": 3413,
+  "manual_rows": 3668,
+  "unmapped": 46,
+  "class_mode_cells": 252,
+  "known_adduct_and_charge_supplied": true,
+  "reference_formula_class_names_supplied": false,
+  "complete_shared_unranked_pool": true,
+  "preparation_seconds_limit": 600,
+  "preparation_workers": 4,
+  "score_seconds_per_mode": 120,
+  "score_concurrency": 2,
+  "score_settings": {
+    "massAccuracy": 0.01,
+    "maxNEME": 5,
+    "minPCS": 950,
+    "minNDCS": 2,
+    "minRCS": 5,
+    "score_coefficients": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "rank_fractions_preserved": true,
+  "first_four_actual_eligible_queries_each_mode_require_full_native_pruning_parity": true,
+  "no_posthoc_tuning_or_winner_splicing": true,
+  "default_changed": false,
+  "Stage8": false,
+  "independent_validation": false,
+  "native_constants_sha256": "8b0680c9a14deabf8df6bd6122594bc3a1ac8dbb762892c48bcd21951ce28f1e",
+  "control_receipts_sha256": {
+    "controls_001/receipt.json": "502421c98f2440090f193ca55f4be72dcd350c78b12f615d709acdfcec358051",
+    "resume_controls_002/receipt.json": "153bfeaae224ccde77d8053353fb6b00806cc7e19089bdf40e4d14019beba160",
+    "stress_001/receipt.json": "f4d7b3f702bfe0b4ea44f39fc8e7018ab6e8bd533f5180ee897bcecc83ef3449"
+  },
+  "rank_policy_clarification": "Native source sorts IdentificationScore decreasing and emits ordinal1..N. Reported top1 preserves its order; raw-score uniqueness is unknown, not independently certified.",
+  "timeout_clock": "Python monotonic job timer excludes host sleep; wall/native elapsed also retained."
+}
