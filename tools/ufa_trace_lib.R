@@ -37,10 +37,20 @@ ufa_exact_generator <- function() {
     }
     list(mass=mass,probability=probability)
   }
-  found <- c(element=0L,mass=0L,abundance=0L)
+  found <- c(element=0L,mass=0L,abundance=0L,mass_allocation=0L,abundance_allocation=0L)
   transform <- function(x) {
     if (!is.call(x)) return(x)
     if (identical(x[[1]],as.name("function"))) return(x)
+    # These native work arrays are overwritten by the exact Cartesian result
+    # before any read. Avoid allocating the unpruned product of isotope counts.
+    if (found['mass']==0L && identical(x,quote(MZ <- rep(0,nIsotopicCombinations)))) {
+      found['mass_allocation'] <<- found['mass_allocation']+1L
+      return(quote(MZ <- numeric(0)))
+    }
+    if (identical(x,quote(RA <- rep(1,nIsotopicCombinations)))) {
+      found['abundance_allocation'] <<- found['abundance_allocation']+1L
+      return(quote(RA <- numeric(0)))
+    }
     if (identical(x[[1]],as.name("<-")) && identical(x[[2]],as.name("SUB_COMB"))) {
       found['element'] <<- found['element']+1L
       return(substitute({ORIGINAL;SUB_COMB <- .ufa_memoize(SUB_COMB)},list(ORIGINAL=x)))
@@ -57,64 +67,153 @@ ufa_exact_generator <- function() {
     x
   }
   body(profile) <- transform(body(profile))
-  stopifnot(all(found==1L))
+  if (any(found!=1L)) stop(paste("Native calculator structure changed:",paste(names(found),found,collapse=", ")))
   environment(profile) <- env
   parent <- new.env(parent=environment(generator))
   parent$isotopic_profile_calculator <- profile
+  # Native element_sorter reloads the same constants file on every batch.
+  # Memoize its pure result by both arguments in cloned environments only.
+  sorter <- get("element_sorter",asNamespace("IDSL.UFA"))
+  sorted_elements <- new.env(parent=emptyenv())
+  parent$element_sorter <- function(ElementList="all",alphabeticalOrder=TRUE) {
+    key <- digest::digest(list(ElementList,alphabeticalOrder))
+    if (!exists(key,sorted_elements,inherits=FALSE))
+      assign(key,sorter(ElementList,alphabeticalOrder),sorted_elements)
+    get(key,sorted_elements,inherits=FALSE)
+  }
+  filter <- get("molecular_formula_elements_filter",asNamespace("IDSL.UFA"))
+  environment(filter) <- parent
+  parent$molecular_formula_elements_filter <- filter
   environment(generator) <- parent
   generator
 }
 
 UFA_EXACT_GENERATOR <- NULL
+UFA_GENERATOR_SPEC <- NULL
 
 ufa_cache_spec <- function() {
-  list(schema=2L, engine=as.character(packageVersion("IDSL.UFA")),
+  list(schema=3L, R=as.character(getRversion()), engine=as.character(packageVersion("IDSL.UFA")),
        IPA=as.character(packageVersion("IDSL.IPA")), peak_spacing=.005,
        native_isotope_constants=digest::digest(file=system.file("extdata","IUPAC_Isotopes.rda",package="IDSL.UFA",mustWork=TRUE),algo="sha256"),
-       intensity_cutoff="min(c(c, 10))",optimizer="exact-element-memo-cartesian-tail-v2",
+       intensity_cutoff="min(c(c, 10))",optimizer="exact-element-memo-cartesian-tail-no-prealloc-v3",
        optimizer_code=digest::digest(paste(deparse(body(ufa_exact_generator),width.cutoff=500L),collapse="\n"),algo="sha256",serialize=FALSE),batch_size=256L,
        generator=digest::digest(paste(deparse(body(IDSL.UFA::molecularFormula2IPdb),width.cutoff=500L),collapse="\n"),algo="sha256",serialize=FALSE),
        native_profile=digest::digest(paste(deparse(body(get("isotopic_profile_calculator",asNamespace("IDSL.UFA"))),width.cutoff=500L),collapse="\n"),algo="sha256",serialize=FALSE))
 }
 
-ufa_cached_database <- function(formulas, adduct, directory) {
-  formulas <- sort(unique(formulas))
-  stopifnot(length(formulas)>0)
-  spec <- ufa_cache_spec()
-  key <- digest::digest(list(spec,formulas,adduct),algo="sha256")
-  dir.create(directory,recursive=TRUE,showWarnings=FALSE)
-  path <- file.path(directory,paste0(key,".rds"))
-  hit <- file.exists(path)
-  if (hit) {
-    record <- readRDS(path)
-    stopifnot(identical(record$key,key),identical(record$spec,spec))
-  } else {
-    if (is.null(UFA_EXACT_GENERATOR)) UFA_EXACT_GENERATOR <<- ufa_exact_generator()
-    batches <- split(formulas,ceiling(seq_along(formulas)/spec$batch_size))
-    parts <- vector("list",length(batches))
-    for (i in seq_along(batches)) {
-      parts[[i]] <- UFA_EXACT_GENERATOR(batches[[i]],IonPathways=adduct,
-          peak_spacing=spec$peak_spacing,intensity_cutoff_str=spec$intensity_cutoff,
-          number_processing_threads=1,allowedVerbose=FALSE)
-      if (i%%8L==0L || i==length(batches)) {
-        cat("Native cached profiles:",adduct,min(i*spec$batch_size,length(formulas)),"/",length(formulas),"\n")
-        flush.console()
-      }
+ufa_atomic_record <- function(record,path) {
+  temporary <- paste0(path,".tmp-",Sys.getpid())
+  on.exit(unlink(c(temporary,paste0(temporary,".sha256"))))
+  saveRDS(record,temporary,compress=FALSE)
+  sha <- digest::digest(file=temporary,algo="sha256")
+  writeLines(sha,paste0(temporary,".sha256"))
+  stopifnot(file.rename(temporary,path),file.rename(paste0(temporary,".sha256"),paste0(path,".sha256")))
+  sha
+}
+
+ufa_read_record <- function(path,key,spec) {
+  # A data file without its commit checksum was interrupted; never trust it.
+  if (!file.exists(path) || !file.exists(paste0(path,".sha256"))) return(NULL)
+  sha <- readLines(paste0(path,".sha256"),warn=FALSE)
+  if (length(sha)!=1L || digest::digest(file=path,algo="sha256")!=sha)
+    stop(paste("Corrupt native cache record:",path))
+  record <- readRDS(path)
+  stopifnot(identical(record$key,key),identical(record$spec,spec))
+  record
+}
+
+ufa_with_lock <- function(path,code) {
+  lock <- paste0(path,".lock")
+  token <- paste(Sys.info()[['nodename']],Sys.getpid(),format(Sys.time(),"%OS6"),sep=":")
+  repeat {
+    if (dir.create(lock,showWarnings=FALSE)) {
+      saveRDS(list(pid=Sys.getpid(),host=Sys.info()[['nodename']],token=token),file.path(lock,"owner.rds"))
+      break
     }
-    fields <- c("MassMAIso","MolecularFormula","IsotopicProfile","R13C","IndexMAIso","IPsize")
-    db <- setNames(lapply(fields,function(field) {
-      values <- lapply(parts,function(x)x[[field]])
-      if (field=="IsotopicProfile") unlist(values,recursive=FALSE) else unlist(values,use.names=FALSE)
-    }),fields)
-    db$AggregatedList <- getFromNamespace("aggregatedIPdbListGenerator","IDSL.UFA")(db$MassMAIso)
-    db <- db[c("AggregatedList",fields)]
-    record <- list(key=key,spec=spec,adduct=adduct,formulas=formulas,db=db)
-    temporary <- paste0(path,".tmp-",Sys.getpid())
-    saveRDS(record,temporary,compress=FALSE)
-    stopifnot(file.rename(temporary,path))
+    owner <- tryCatch(readRDS(file.path(lock,"owner.rds")),error=function(e)NULL)
+    if (!is.null(owner) && identical(owner$host,Sys.info()[['nodename']]) &&
+        !isTRUE(suppressWarnings(tools::pskill(owner$pid,0L)))) {
+      abandoned <- paste0(lock,".abandoned-",Sys.getpid())
+      if (file.rename(lock,abandoned)) unlink(abandoned,recursive=TRUE)
+    } else stop(paste("Native cache record is in use (retry after its writer stops):",path))
   }
-  list(db=record$db,path=normalizePath(path),cache_hit=hit,key=key,
-       sha256=digest::digest(file=path,algo="sha256"))
+  on.exit({
+    owner <- tryCatch(readRDS(file.path(lock,"owner.rds")),error=function(e)NULL)
+    if (!is.null(owner) && identical(owner$token,token)) unlink(lock,recursive=TRUE)
+  })
+  force(code)
+}
+
+ufa_cache_plan <- function(formulas,adduct,directory,spec=ufa_cache_spec()) {
+  formulas <- sort(unique(formulas));stopifnot(length(formulas)>0)
+  dir.create(directory,recursive=TRUE,showWarnings=FALSE)
+  key <- digest::digest(list(spec,formulas,adduct),algo="sha256")
+  batches <- split(formulas,ceiling(seq_along(formulas)/spec$batch_size))
+  chunks <- lapply(seq_along(batches),function(i) {
+    pool <- unname(batches[[i]])
+    chunk_key <- digest::digest(list(spec,pool,adduct),algo="sha256")
+    list(key=chunk_key,spec=spec,formulas=pool,adduct=adduct,
+         path=file.path(directory,paste0("batch-",chunk_key,".rds")),batch=i)
+  })
+  list(key=key,spec=spec,formulas=formulas,adduct=adduct,
+       path=file.path(directory,paste0(key,".rds")),chunks=chunks)
+}
+
+ufa_prepare_chunk <- function(task) {
+  record <- ufa_read_record(task$path,task$key,task$spec)
+  reused <- !is.null(record)
+  if (!reused) record <- ufa_with_lock(task$path,{
+    existing <- ufa_read_record(task$path,task$key,task$spec)
+    if (!is.null(existing)) existing else {
+      if (is.null(UFA_EXACT_GENERATOR) || !identical(UFA_GENERATOR_SPEC,task$spec)) {
+        UFA_EXACT_GENERATOR <<- ufa_exact_generator()
+        UFA_GENERATOR_SPEC <<- task$spec
+      }
+      db <- UFA_EXACT_GENERATOR(task$formulas,IonPathways=task$adduct,
+          peak_spacing=task$spec$peak_spacing,intensity_cutoff_str=task$spec$intensity_cutoff,
+          number_processing_threads=1,allowedVerbose=FALSE)
+      if (!is.list(db$IsotopicProfile)) stop("Native profile batch has no usable profiles")
+      value <- list(key=task$key,spec=task$spec,adduct=task$adduct,formulas=task$formulas,db=db)
+      ufa_atomic_record(value,task$path)
+      value
+    }
+  })
+  stopifnot(identical(record$formulas,task$formulas),identical(record$adduct,task$adduct))
+  list(path=task$path,adduct=task$adduct,batch=task$batch,formulas=length(task$formulas),reused=reused)
+}
+
+ufa_merge_parts <- function(parts) {
+  fields <- c("MassMAIso","MolecularFormula","IsotopicProfile","R13C","IndexMAIso","IPsize")
+  db <- setNames(lapply(fields,function(field) {
+    values <- lapply(parts,function(x)x[[field]])
+    if (field=="IsotopicProfile") unlist(values,recursive=FALSE) else unlist(values,use.names=FALSE)
+  }),fields)
+  db$AggregatedList <- getFromNamespace("aggregatedIPdbListGenerator","IDSL.UFA")(db$MassMAIso)
+  db[c("AggregatedList",fields)]
+}
+
+ufa_cached_database <- function(formulas,adduct,directory,merge_only=FALSE) {
+  plan <- ufa_cache_plan(formulas,adduct,directory)
+  record <- ufa_read_record(plan$path,plan$key,plan$spec)
+  hit <- !is.null(record);built <- reused <- 0L
+  if (!hit) record <- ufa_with_lock(plan$path,{
+    parts <- lapply(plan$chunks,function(task) {
+      chunk <- ufa_read_record(task$path,task$key,task$spec)
+      if (is.null(chunk)) {
+        if (merge_only) stop("Incomplete native profile universe: a committed batch is missing")
+        receipt <- ufa_prepare_chunk(task)
+        built <<- built+!receipt$reused;reused <<- reused+receipt$reused
+        chunk <- ufa_read_record(task$path,task$key,task$spec)
+      } else reused <<- reused+1L
+      chunk$db
+    })
+    db <- ufa_merge_parts(parts)
+    value <- list(key=plan$key,spec=plan$spec,adduct=adduct,formulas=plan$formulas,db=db)
+    ufa_atomic_record(value,plan$path);value
+  })
+  stopifnot(identical(record$formulas,plan$formulas),identical(record$adduct,adduct))
+  list(db=record$db,path=normalizePath(plan$path),cache_hit=hit,key=plan$key,
+       sha256=digest::digest(file=plan$path,algo="sha256"),built_chunks=built,reused_chunks=reused)
 }
 
 ufa_subset_database <- function(database, ion_formulas) {
@@ -211,4 +310,18 @@ ufa_annotate <- function(db,spectra,anchor,rt,prune=TRUE) {
   used <- if (prune) ufa_prune_spectra(spectra,db) else spectra
   IDSL.UFA::molecular_formula_annotator(db,used,peaklist,1,massAccuracy=.01,maxNEME=5,
     minPCS=950,minNDCS=2,minRCS=5,scoreCoefficients=rep(1,5),number_processing_threads=1)
+}
+
+ufa_native_candidates <- function(result,query) {
+  if (is.null(result)) return(list())
+  ions <- vapply(query$candidates,function(c)c$ion_formula,character(1))
+  index <- match(result$IonFormula,ions)
+  counts <- table(ions)
+  if (anyNA(index) || any(counts[result$IonFormula]!=1L))
+    stop("Native ion composition has an ambiguous neutral-formula crosswalk")
+  lapply(seq_len(nrow(result)),function(i)list(
+    formula=query$candidates[[index[i]]]$formula,adduct=query$adduct,charge=query$charge,
+    rank=as.numeric(result$rank[i]),native_ion_formula=result$IonFormula[i],
+    PCS=as.numeric(result$PCS[i]),NEME=as.numeric(result$normEucMassError[i]),
+    NDCS=as.integer(result$NDCS[i]),RCS=as.numeric(result$`ratioChromScan(%)`[i])))
 }

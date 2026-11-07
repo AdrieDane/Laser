@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "cold_process_seconds": 93.30529520800337,
+  "warm_process_seconds": 4.686096207995433,
+  "formula_adduct_pairs": 32768,
+  "full_universe": true,
+  "all_32_unmodified_native_probes_exact": true,
+  "warm_all_files_identical": true,
+  "protocol_frozen_before_generation": true,
+  "study_data_used": false
+}

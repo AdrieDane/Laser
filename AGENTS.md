@@ -1,5 +1,26 @@
 # Current standard-tool scope (5 November 2026)
 
+7 November user authorizes native profile preparation speed/resume repair, exact
+synthetic/realistic gates, then frozen full3413-query/63-class/four-mode conditional
+formula comparison. Same original data/statistics/accepted annotations/current
+settings. No trace retuning, scientific ranking/anchor/threshold/adduct changes,
+per-mode winner splicing or Stage8. Native known-adduct/charge scope remains
+conditional, not blind adduct accuracy. All failures and 252 cells retained.
+Full study workers receive no formula/class/name reference labels. Shared complete
+unranked candidate pools unchanged. Cache schema3 pins native constants/code,
+R version, and exact no-preallocation/sorter-memo clone. Durable SHA-verified256-
+formula batches, atomic commits and stale-writer recovery; load-balanced4workers.
+Pilot must test actual interruption/resume, cold/warm/parallel equality, corruption,
+incomplete merge rejection, unchanged native package/source hashes, high C/both
+polarities/charge2/interference. Realistic synthetic stress32768formula/adduct pairs
+must finish within120s, original522 exact-parity pilot remains<=120s and its original
+30/5/10s gates. Freeze/push source and all runtime/input/cache hashes BEFORE study
+preparation/ranking; new bulk preparation600s total4workers, native matching120s
+permode2workers, no post-score extensions or source/parameter tuning. Preserve old
+failed checkpoints. Raw inputs staged byte-exact outside synchronized folders to
+avoid previous host stalls; no raw uploads. Only safe aggregates published, push
+main/pull installed, report allscope metrics and limitations, stop beforeStage8.
+
 6 November Stage7 FOLLOW-UP SOFTWARE/INTERNAL COMPARISON COMPLETE; CURRENT retained.
 Inference frozen0ca4bd0. Conservative veto restores four routine losses relative to
 legacy, but ALL predictions equal CURRENT exactly in natural3413 and routine762;

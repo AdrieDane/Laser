@@ -51,24 +51,19 @@ for (q in config$queries) {
       db <- ufa_subset_database(databases[[q$adduct]],vapply(q$candidates,function(c)c$ion_formula,character(1)))
       result <- ufa_annotate(db,window,anchor,q$rt)
       if (lossless_checks<4L) {
-        stopifnot(identical(result,ufa_annotate(db,window,anchor,q$rt,prune=FALSE)))
+        if (!identical(result,ufa_annotate(db,window,anchor,q$rt,prune=FALSE)))
+          stop(structure(list(message="Native lossless-pruning equivalence failed",call=NULL),
+                         class=c("ufa_parity_error","error","condition")))
         lossless_checks <- lossless_checks+1L
       }
-      candidates <- list()
-      if (!is.null(result)) {
-        for (i in seq_len(nrow(result))) {
-          neutral <- q$candidates[vapply(q$candidates,function(c)c$ion_formula==result$IonFormula[i],logical(1))]
-          if (length(neutral)!=1L) stop("Native ion composition has an ambiguous neutral-formula crosswalk")
-          candidates[[i]] <- list(formula=neutral[[1]]$formula,adduct=q$adduct,charge=q$charge,
-            rank=as.integer(result$rank[i]),native_ion_formula=result$IonFormula[i],
-            PCS=as.numeric(result$PCS[i]),NEME=as.numeric(result$normEucMassError[i]),
-            NDCS=as.integer(result$NDCS[i]),RCS=as.numeric(result$`ratioChromScan(%)`[i]))
-        }
-      }
+      candidates <- ufa_native_candidates(result,q)
       list(query_id=q$query_id,stream=q$stream,feature_id=q$feature_id,status="complete",candidates=candidates,
            generated_N=q$generated_N,native_DB_N=length(db$MolecularFormula),scan_N=length(window),
            observed_anchor=anchor,profile_cache_reused=TRUE,lossless_native_window_pruning=TRUE)
-    },error=function(e) {prediction$status <- paste("unavailable:",conditionMessage(e));prediction})
+    },error=function(e) {
+      if(inherits(e,"ufa_parity_error"))stop(e)
+      prediction$status <- paste("unavailable:",conditionMessage(e));prediction
+    })
   } else if (q$status=="ready") prediction$status <- "empty generated candidate pool"
   writeLines(jsonlite::toJSON(prediction,auto_unbox=TRUE,null="null",na="null",digits=NA),connection)
   flush(connection)

@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "actual_killed_writer": true,
+  "completed_batch_unchanged": true,
+  "resumed_built_chunks": 2,
+  "resumed_reused_chunks": 1,
+  "cold_warm_parallel_native_exact": true,
+  "unmodified_native_profile_parity_N": 256,
+  "full_parallel_serial_profile_parity_N": 3072,
+  "fractional_native_ranks_preserved": true,
+  "incomplete_merge_rejected": true,
+  "uncommitted_orphan_rebuilt": true,
+  "corrupt_commit_rejected": true,
+  "live_lock_preserved": true,
+  "cache_descriptor_stable": true,
+  "seconds": 34.179,
+  "study_data_used": false,
+  "spec": {
+    "schema": 3,
+    "R": "4.3.2",
+    "engine": "2.0",
+    "IPA": "2.9",
+    "peak_spacing": 0.005,
+    "native_isotope_constants": "8b0680c9a14deabf8df6bd6122594bc3a1ac8dbb762892c48bcd21951ce28f1e",
+    "intensity_cutoff": "min(c(c, 10))",
+    "optimizer": "exact-element-memo-cartesian-tail-no-prealloc-v3",
+    "optimizer_code": "3653f3fdbc239b02870c0244a0e5e548f69e7a72b8cca259a738308807e45ec9",
+    "batch_size": 256,
+    "generator": "dab6b19cd53a97849579f554eabba35fa51da93a1d530a6538eb8b9d984738ed",
+    "native_profile": "a14073aaf3c3ffebb7c85d5b32124904c8317b1a3dcc998636b7cc6b28fe894a"
+  }
+}
