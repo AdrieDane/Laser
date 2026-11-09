@@ -554,6 +554,14 @@ def fit_project_rt_correction(
     mapping = np.asarray(pairs, dtype=np.int64)
     if mapping.ndim != 2 or mapping.shape[1] != 2:
         raise ValueError("alignment pairs must contain peak and target indices")
+    if not len(mapping):
+        # A single blank or a weak run has no 13C-supported peak near an RT
+        # database lipid; MATLAB would fail here too. Say so instead of
+        # numpy's "zero-size array to reduction operation maximum".
+        raise ValueError(
+            "no RT alignment anchors: no 13C-supported peak matched the RT "
+            "database (3 ppm, 300 s), so this phase cannot be annotated"
+        )
     target = mapping[:, 1]
     peak = mapping[:, 0]
     groups = y[target, 2].astype(np.int64) * 2 - (x[peak, 0] < 0)
