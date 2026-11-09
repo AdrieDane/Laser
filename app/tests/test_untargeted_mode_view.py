@@ -123,7 +123,7 @@ def test_browser_model_colours_modes_background_and_sample_levels(tmp_path):
     payload=build_mode_payload(result,analysis)
     (tmp_path/'payload.json').write_text(json.dumps(payload,allow_nan=False))
     source=ROOT/'presentation/untargeted_mode'
-    (tmp_path/'viewer.mjs').write_text((source/'model.js').read_text()+'\n'+(source/'viewer.js').read_text())
+    (tmp_path/'viewer.mjs').write_text((source/'model.js').read_text(encoding='utf-8')+'\n'+(source/'viewer.js').read_text(encoding='utf-8'), encoding='utf-8')
     script=r'''
 import {readFileSync} from 'node:fs';
 import {ModeViewerModel,featureKey,modeFigure,sampleFigure,sampleFigures,linkedModeZoom,axisResetZoom,axisFromClasses,samplePanelFigure} from './viewer.mjs';

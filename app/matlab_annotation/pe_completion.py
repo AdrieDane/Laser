@@ -319,7 +319,7 @@ def complete_rp_positive_pe(
         )
     proposed = detail[detail.pe_decision.eq("supported")].copy()
     try:
-        model = json.loads(settings.model_path.read_text())
+        model = json.loads(settings.model_path.read_text(encoding="utf-8"))
         if model.get("format") != "laser-pe-confidence-v1":
             raise ValueError("Unsupported PE confidence model")
     except (OSError, ValueError) as error:

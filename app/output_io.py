@@ -10,6 +10,7 @@ import os
 from pathlib import Path
 import platform
 import tempfile
+import time
 from typing import Any, Iterable
 
 import pandas as pd
@@ -80,6 +81,25 @@ def with_runtime_environment(manifest: dict[str, Any]) -> dict[str, Any]:
     return result
 
 
+def _replace_with_retry(source: Path, target: Path) -> None:
+    """``os.replace`` that tolerates brief reader locks on Windows.
+
+    Windows refuses to replace a file while another process (for example the
+    GUI polling a job's ``status.json``) has it open.  Such locks last
+    milliseconds, so retry briefly before reporting the failure.  Other
+    platforms replace open files atomically and take the first attempt.
+    """
+    attempts = 40 if os.name == "nt" else 1
+    for attempt in range(attempts):
+        try:
+            os.replace(source, target)
+            return
+        except PermissionError:
+            if attempt == attempts - 1:
+                raise
+            time.sleep(0.05)
+
+
 def _atomic_replace(path: Path, writer) -> Path:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -95,7 +115,7 @@ def _atomic_replace(path: Path, writer) -> Path:
         # identical on Windows, macOS and Linux.
         with temporary.open("r+b") as stream:
             os.fsync(stream.fileno())
-        os.replace(temporary, path)
+        _replace_with_retry(temporary, path)
         return path
     except Exception as exc:
         try:

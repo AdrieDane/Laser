@@ -129,7 +129,7 @@ def method_id(method):
 
 def load_acquisition_method(project):
     path = xcms_project_root(project) / "metadata" / METHOD_FILE
-    return normalize_acquisition_method(json.loads(path.read_text()) if path.is_file() else None)
+    return normalize_acquisition_method(json.loads(path.read_text(encoding="utf-8")) if path.is_file() else None)
 
 
 def save_acquisition_method(project, value):

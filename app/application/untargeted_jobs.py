@@ -46,7 +46,7 @@ def active_untargeted_job(project):
     pointer = xcms_project_root(project) / '.laser/jobs/untargeted/current.json'
     if not pointer.is_file():
         return None
-    directory = Path(json.loads(pointer.read_text())['directory'])
+    directory = Path(json.loads(pointer.read_text(encoding="utf-8"))['directory'])
     return directory if read_annotation_job(directory)['status'] in {'queued', 'running'} else None
 
 

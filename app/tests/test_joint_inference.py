@@ -103,7 +103,10 @@ def test_runtime_freeze_preserves_venv_path_and_detects_drift(tmp_path, monkeypa
     python.write_text('synthetic executable')
     python.chmod(0o755)
     venv = tmp_path/'venv-python'
-    venv.symlink_to(python)
+    try:
+        venv.symlink_to(python)
+    except OSError as error:  # Windows without Developer Mode/admin rights
+        pytest.skip(f'symbolic links unavailable: {error}')
     runtime = freeze_runtime({'schema_version': 1, 'python': str(venv), 'data': str(tmp_path), 'libomp': ''})
     assert runtime['available'] and runtime['python'] == str(venv)
     assert runtime['python_sha256'] == hashlib.sha256(python.read_bytes()).hexdigest()

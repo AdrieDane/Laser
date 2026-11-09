@@ -34,7 +34,7 @@ def run(inputs, data, output, ppm=4.):
                'timeout_seconds':30,'dependency_versions':{d.metadata['Name']:d.version for d in importlib.metadata.distributions()}}
     (output/'frozen_receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
     engine = Msbuddy(config)
-    queries = json.loads(inputs.read_text())
+    queries = json.loads(inputs.read_text(encoding="utf-8"))
     started = time.monotonic()
     with (output/'predictions.jsonl').open('w') as handle:
         for start in range(0,len(queries),128):

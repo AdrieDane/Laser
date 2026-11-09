@@ -44,11 +44,11 @@ Geen daarvan is nodig voor de standaard workflow.
 
 | Software | Versie getest | Status op deze pc |
 |---|---|---|
-| Windows 11 Pro | 10.0.26200, **Smart App Control: aan** | zie §6 |
+| Windows 11 Pro | 10.0.26200, **Smart App Control: aan** | zie §10 |
 | Python | 3.14.6 (`py -3.14`) | was al aanwezig |
 | Git | 2.54 | aanwezig |
-| R (alleen voor optionele `tools/*.R`) | 4.6.0 in `C:\Program Files\R\R-4.6.0` (niet in PATH) | aanwezig; xcms/MSnbase/jsonlite ja, CAMERA/IDSL.UFA nee |
-| WSL2 Ubuntu 24.04 | Python 3.12.3 zonder `python3-venv` | aanwezig, niet gebruikt |
+| R (alleen voor optionele `tools/*.R`) | 4.6.0 in `C:\Program Files\R\R-4.6.0` (niet in PATH) | aanwezig; xcms/MSnbase/jsonlite geïnstalleerd maar xcms laadt niet (§10), CAMERA/IDSL.UFA nee |
+| WSL2 Ubuntu 24.04 | Python 3.12.3, venv in `~/laser-venv` | gebruikt voor de volledige suite (§7) |
 
 Alle Python-pakketten staan in een geïsoleerde `.venv` in de repo (staat in
 `.gitignore`). Exacte versies: [`constraints-windows-lipidlive.txt`](constraints-windows-lipidlive.txt).
@@ -104,8 +104,8 @@ $T = "$env:TEMP\laser_smoke"
 .venv\Scripts\python.exe -m pytest -q -p no:cacheprovider
 .venv\Scripts\python.exe -m ruff check app
 ```
-De suite duurt ongeveer 3 minuten en start veel losse workerprocessen. Daardoor
-kunnen er kort consolevensters openen en sluiten.
+De suite duurt ongeveer 3 minuten. Voor de volledige suite inclusief IsoSpecPy, zonder
+consolevensters, gebruik WSL (§7).
 
 ## 6. Resultaten (9 november 2026)
 
@@ -126,52 +126,97 @@ duidelijkere foutmelding zou nuttig zijn.
 
 **GUI:** Streamlit start, `/_stcore/health` geeft `ok` en de startpagina geeft HTTP 200.
 
-### Testsuite: 1062 geslaagd, 42 gefaald, 11 overgeslagen (+91 subtests geslaagd)
+### Testsuite
 
-| Oorzaak | Aantal | Toelichting |
-|---|---|---|
-| IsoSpecPy-DLL geblokkeerd door Smart App Control | 33 | `test_complete_isotopes`, `test_lipid_formulas`, 7 van `test_joint_inference`. Alleen voor de optionele complete-isotopenmodus; de code eist exact IsoSpecPy 2.6.1 |
-| Streamlit AppTest: "Cannot update a disabled button" | 3 | `test_standard_project_modules`, 2× `test_untargeted_evidence`; vermoedelijk een verschil met Streamlit 1.67 |
-| Padscheidingsteken `\` in plaats van `/` | 2 | `test_untargeted_evaluation_contract`: manifest-sleutels zijn op Windows niet POSIX |
-| Symlink vereist adminrechten of Developer Mode (WinError 1314) | 1 | `test_joint_inference::test_runtime_freeze…` |
-| Bestandsvergrendeling (`PermissionError` op `status.json`) | 1 | `test_full_feature_groups`: Windows staat geen gelijktijdige vervanging toe |
-| Bestand gelezen als cp1252 in plaats van UTF-8 | 1 | `test_untargeted_mode_view` |
-| Streamlit-numeriek veld geeft `14.0` in plaats van `14` | 1 | `test_acquisition_method` |
+Na de Windows-fixes uit §8 (9 november 2026):
 
-De standaard-annotatietests (`test_matlab_annotation`, `test_standard_lipidomics`,
-`test_matching`, `test_standard_cli` en dergelijke) slagen allemaal.
+| Omgeving | Geslaagd | Gefaald | Overgeslagen |
+|---|---|---|---|
+| Windows native (`.venv`, Python 3.14) | 1070 | 33 | 12 |
+| WSL2 Ubuntu (`~/laser-venv`, Python 3.12) | 1102 | 1 | 12 |
 
-**Ruff:** 3 stijlmeldingen (E702, puntkomma's) in `app/tests/test_untargeted_grid.py`.
-Dit is upstream-code en niet functioneel.
+- **Windows, 33 fouten:** allemaal IsoSpecPy, waarvan Smart App Control de DLL
+  blokkeert (`test_complete_isotopes`, `test_lipid_formulas`, 8 in `test_joint_inference`).
+  Dit betreft alleen de optionele complete-isotopenmodus. In WSL slagen ze allemaal.
+- **WSL, 1 fout:** `test_empirical_candidates::test_provably_empty_mass_intervals…`
+  eist bit-identieke floats tussen twee varianten van dezelfde berekening. Onder
+  Linux verschilt `ref_rt` 1e-16 (afrondingspad van numpy); op Windows met numpy
+  2.4.4 slaagt de test. Dit is geen wetenschappelijke fout. De test is bewust niet
+  versoepeld, omdat upstream deze bit-exactheid bewaakt.
+- Vóór de fixes: Windows 1062/42/11 (incl. de 33 IsoSpecPy-fouten) en WSL 1099/4/12.
 
-### Oplossingen die tijdens de installatie zijn toegepast (geen codewijzigingen)
+**Ruff:** 3 stijlmeldingen (E702, puntkomma's) in `app/tests/test_untargeted_grid.py`
+(upstream-code, niet functioneel).
+
+### Oplossingen tijdens de installatie (alleen pakketversies)
 
 | Probleem | Oplossing |
 |---|---|
 | pandas 3.1.1: `timestamps.pyd` geblokkeerd, alle 122 testbestanden falen | pandas **3.0.2** |
 | scikit-learn 1.9.1: `_vector_sentinel` geblokkeerd | scikit-learn **1.8.0** |
-| numpy 2.5.4: 1-ULP-verschil in `ref_rt` (`test_empirical_candidates`) | numpy **2.4.4** (de versie die upstream gebruikt) |
+| numpy 2.5.4: 1-ULP-verschil in `ref_rt` | numpy **2.4.4** (de versie die upstream gebruikt) |
 | `.exe`-launchers geblokkeerd | `python -m standard_cli` / `python -m streamlit` |
 
-## 7. Beperkingen en openstaande punten
+## 7. WSL2-omgeving (volledige suite incl. IsoSpecPy)
 
-1. **Smart App Control** blokkeert ongesigneerde DLL's en exe's zonder
-   reputatie. Er kunnen ook later geblokkeerde bestanden opduiken, bijvoorbeeld na
-   een `pip upgrade`. Uitzetten is een systeembrede beslissing; op Windows 11 kan
-   het daarna niet zonder herinstallatie weer worden aangezet. Dat is dus niet gedaan.
-2. **IsoSpecPy / complete-isotopenmodus** werkt niet native. Alternatief: WSL2
-   Ubuntu (daar geldt Smart App Control niet). Daarvoor is `sudo apt install python3-venv`
-   in WSL nodig, of een gebruikersinstallatie van `uv`.
-3. **Windows-portabiliteit:** 9 tests falen door pad-, codering-, symlink- en
-   lock-verschillen. Dit raakt de standaard-annotatieworkflow niet. Upstream-CI
-   draait wel op Windows; of deze tests daar ook falen is niet nagegaan.
-4. **R-tools** (`tools/*.R`): R 4.6.0 staat niet in PATH. CAMERA en IDSL.UFA ontbreken.
-   Alleen relevant voor het reproduceren van de upstream-onderzoeksbenchmarks.
-5. **Geen echte voorbeelddata.** De validatie is alleen synthetisch.
-6. `AGENTS.md` (225 kB) bevat instructies voor de upstream-onderzoeksagent
+In WSL geldt Smart App Control niet. Er is geen sudo nodig: de venv wordt
+gebootstrapt met de pip-wheel die bij de Windows-Python wordt meegeleverd.
+
+```bash
+python3 -m venv --without-pip ~/laser-venv
+W=/mnt/c/Users/Adrie/AppData/Local/Python/pythoncore-3.14-64/Lib/ensurepip/_bundled/pip-26.1.2-py3-none-any.whl
+~/laser-venv/bin/python $W/pip install --no-index $W
+cd /mnt/c/Users/Adrie/Laser
+~/laser-venv/bin/python -m pip install -e ".[dev,calibration]" -c docs/constraints-windows-lipidlive.txt
+~/laser-venv/bin/python -m pytest -q -p no:cacheprovider
+```
+Vanuit Windows: `wsl.exe -d Ubuntu -e bash -lc '…'`. De WSL-suite opent geen
+Windows-consolevensters. Hij is wel iets trager (~3,5 min), door bestandstoegang via `/mnt/c`.
+
+## 8. Windows-fixes in de code (geen wetenschappelijke logica)
+
+| Wijziging | Effect |
+|---|---|
+| `application/annotation_jobs.py`: worker krijgt `PYTHONIOENCODING=utf-8` | **App-bug:** de untargeted-analyse crashte op Windows zodra een voortgangsbericht met `↔` naar het log ging (cp1252) |
+| idem: `CREATE_NO_WINDOW` in plaats van `DETACHED_PROCESS` | Worker blijft los van de serverterminal. Console-programma's die de worker start, openen geen zichtbare vensters meer |
+| idem: `status.json` lezen met korte retry bij `PermissionError` (alleen Windows) | Voorkomt sporadische fouten als de GUI leest terwijl de worker de status atomisch vervangt |
+| `output_io.py`: `os.replace` met korte retry bij `PermissionError` (alleen Windows) | Idem aan de schrijfkant; atomiciteit ongewijzigd |
+| JSON-bestanden van de app expliciet als UTF-8 lezen (9 modules) | **App-bug:** de methode-instellingen (`×`, `µ`, `Å`) werden op Windows bij elk opslaan/laden verminkt (`Ã—`, `Âµ`) |
+| `presentation/untargeted_mode/__init__.py`: JS/CSS als UTF-8 lezen | De untargeted viewer kon op Windows niet laden |
+| `tools/freeze_untargeted_baseline.py`: manifest-sleutels met `/` | Fingerprints identiek op alle platforms |
+| Tests: `.run()` na het invullen van de projectmap (3×) | Nieuwere Streamlit weigert terecht klikken op een nog uitgeschakelde knop (ook onder Linux) |
+| Tests: POSIX-paden, UTF-8 en symlinktest overslaan zonder symlinkrechten | Test-portabiliteit |
+
+Controle: de LASER-CLI-uitvoer op de synthetische data is byte-identiek aan die van vóór de fixes.
+
+## 9. Echte data: `26D0111_BarthTest`
+
+In deze map (Nextcloud) zitten geen XCMS-peakgrouplijsten, dus LASER kan haar niet direct gebruiken:
+
+- `Data/Processed/mexp_RP_{Pos,Neg}.Rdata` is een `MsExperiment` (verwijzingen
+  naar ruwe spectra op `G:\…`, niet aanwezig). `xexp_is_*.Rdata` bevat alleen de
+  detectie van interne standaarden. De volledige featuretabel
+  (`xexpfinal_<mode>.Rdata` in `lipidsencore`) bestaat nog niet.
+- Alleen RP; 5 Control, 5 Barth, 6 QC en 6 blanco's per polariteit.
+- Native R kan xcms niet laden: Smart App Control blokkeert
+  `fs.dll` in `AppData\Local\R\win-library\4.6`.
+
+LASER heeft per modus nodig: `peakgrouplist_RP_Pos.txt` / `_Neg.txt` (tab-gescheiden;
+`name`, `mzmed`, `rtmed` in minuten, eventueel `mzmin/mzmax/rtmin/rtmax/npeaks`,
+`Group_*`-tellingen, dan de sample-intensiteiten). Die kunnen uit een gegroepeerd
+`XcmsExperiment` worden gemaakt (`featureDefinitions` + `featureValues`, RT ÷ 60).
+
+## 10. Beperkingen en openstaande punten
+
+1. **Smart App Control** blokkeert ongesigneerde DLL's en exe's zonder reputatie,
+   ook in R-bibliotheken. Na upgrades kunnen nieuwe blokkades opduiken.
+   Uitzetten is systeembreed en op Windows 11 niet zonder herinstallatie terug te
+   draaien, dus dat is niet gedaan.
+2. **IsoSpecPy** werkt alleen in WSL (§7).
+3. **R-tools** (`tools/*.R`): R 4.6.0 staat niet in PATH. CAMERA en IDSL.UFA ontbreken,
+   en xcms laadt native niet (zie 1). Alleen relevant voor upstream-onderzoeksbenchmarks.
+4. **Geen echte testdata in LASER-formaat.** De validatie is alleen synthetisch (§9).
+5. `AGENTS.md` (225 kB) bevat instructies voor de upstream-onderzoeksagent
    (optimalisatiecycli op privédatasets van het CFM). Die zijn grotendeels niet van
    toepassing op deze fork, maar de beperkingen (geen ruwe data in Git, standaardinstellingen
    niet wijzigen) zijn verstandig om aan te houden.
-
-Nieuwe, nog niet gecommitte bestanden: dit document,
-`docs/constraints-windows-lipidlive.txt` en `tools/lipidlive/`.

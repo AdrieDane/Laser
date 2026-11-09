@@ -131,7 +131,7 @@ def run_native(inputs, runtime, ppm, progress=None):
             native_receipt = output/'frozen_receipt.json'
             receipt.update(status='complete' if code == 0 else 'partial native failure', exit_code=code,
                            input_sha256=digest(source), returned_cases=len(records),
-                           native=json.loads(native_receipt.read_text()) if native_receipt.is_file() else {})
+                           native=json.loads(native_receipt.read_text(encoding="utf-8")) if native_receipt.is_file() else {})
             if not verify_runtime(runtime):
                 raise ValueError('Frozen msbuddy runtime changed during execution')
     except (OSError, ValueError, KeyError) as exc:

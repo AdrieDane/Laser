@@ -86,7 +86,7 @@ def project_files(project):
 
 
 def fingerprint(files, root):
-    return {str(p.relative_to(root)): {"bytes": p.stat().st_size, "sha256": digest(p)}
+    return {p.relative_to(root).as_posix(): {"bytes": p.stat().st_size, "sha256": digest(p)}
             for p in files}
 
 

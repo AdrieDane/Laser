@@ -294,7 +294,7 @@ def load_untargeted_workflow(project: str | Path) -> tuple[dict, dict]:
         raise ValueError(f"No saved untargeted analysis was found in {root}.")
     from saved_project_contract import normalize_saved_project_manifest
 
-    manifest = normalize_saved_project_manifest(json.loads(manifest_path.read_text()))
+    manifest = normalize_saved_project_manifest(json.loads(manifest_path.read_text(encoding="utf-8")))
     if manifest["workflow"] != "untargeted":
         raise ValueError("The selected folder is not an untargeted LASER result.")
     saved = {"root": str(root), "artifacts": manifest["artifacts"],
@@ -380,7 +380,7 @@ def save_calibration_workflow(
     def write(destination: Path) -> dict[str, Path]:
         paths = write_calibrated_xcms_files(payloads, calibrations, destination)
         manifest_path = destination / "LASER_standard_mass_calibration.json"
-        manifest = json.loads(manifest_path.read_text())
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         manifest["project"] = str(root)
         manifest["saved_at"] = datetime.now(timezone.utc).isoformat()
         manifest["rt_calibration_source"] = "LASER-4D a188f72"

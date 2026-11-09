@@ -226,8 +226,8 @@ def render_mode_view(result, analysis):
         st.session_state.standard_untargeted_mode_payload = cached
     st.components.v2.component('standard_plotly_runtime', js=_runtime())(key='untargeted-mode-runtime', height=0)
     component = st.components.v2.component('untargeted_mode_workspace',
-        js=(HERE/'model.js').read_text() + '\n' + (HERE/'viewer.js').read_text(),
-        css=(HERE/'viewer.css').read_text())
+        js=(HERE/'model.js').read_text(encoding='utf-8') + '\n' + (HERE/'viewer.js').read_text(encoding='utf-8'),
+        css=(HERE/'viewer.css').read_text(encoding='utf-8'))
     event = component(key='untargeted-mode-workspace', data=cached[1], width='stretch',
         on_review_change=lambda: None, default={})
     selected = event.get('review')

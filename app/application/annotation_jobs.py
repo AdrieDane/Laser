@@ -8,6 +8,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import time
 import traceback
 from uuid import uuid4
 
@@ -21,15 +22,28 @@ def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+def _read_status(path: Path) -> dict:
+    """Read a status file, tolerating the worker's brief atomic replace on Windows."""
+    attempts = 40 if os.name == "nt" else 1
+    for attempt in range(attempts):
+        try:
+            return json.loads(path.read_text(encoding="utf-8"))
+        except PermissionError:
+            if attempt == attempts - 1:
+                raise
+            time.sleep(0.05)
+    raise AssertionError("unreachable")
+
+
 def read_annotation_job(directory: str | Path) -> dict:
     root = Path(directory)
-    state = json.loads((root / "status.json").read_text(encoding="utf-8"))
+    state = _read_status(root / "status.json")
     pid_path = root / "process.json"
     if state["status"] in {"queued", "running"} and pid_path.is_file():
-        pid = json.loads(pid_path.read_text())["pid"]
+        pid = json.loads(pid_path.read_text(encoding="utf-8"))["pid"]
         activity = process_activity(pid)
         if not activity["alive"]:
-            state = json.loads((root / "status.json").read_text(encoding="utf-8"))
+            state = _read_status(root / "status.json")
             if state["status"] in {"queued", "running"}:
                 state = {**state, "status": "failed", "message": "The process stopped before completion."}
         state = {**state, "activity": {**activity, "pid": pid}}
@@ -40,7 +54,7 @@ def active_annotation_job(project: str | Path) -> Path | None:
     pointer = xcms_project_root(project) / ".laser" / "jobs" / "annotation" / "current.json"
     if not pointer.is_file():
         return None
-    directory = Path(json.loads(pointer.read_text())["directory"])
+    directory = Path(json.loads(pointer.read_text(encoding="utf-8"))["directory"])
     return directory if read_annotation_job(directory)["status"] in {"queued", "running"} else None
 
 
@@ -51,7 +65,13 @@ def launch_worker(directory: Path, module: str, log_name: str):
     env["PYTHONPATH"] = str(app) + os.pathsep + env.get("PYTHONPATH", "")
     for name in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
         env.setdefault(name, "1")
-    options = {"creationflags": subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP} if os.name == "nt" else {"start_new_session": True}
+    # Logs are files: without this, Windows encodes worker output as cp1252
+    # and progress messages containing e.g. "↔" crash the job.
+    env.setdefault("PYTHONIOENCODING", "utf-8")
+    # A hidden console (instead of DETACHED_PROCESS) keeps the worker
+    # independent of the server terminal, while console programs it starts
+    # inherit that hidden console rather than opening visible windows.
+    options = {"creationflags": subprocess.CREATE_NO_WINDOW | subprocess.CREATE_NEW_PROCESS_GROUP} if os.name == "nt" else {"start_new_session": True}
     with (directory / log_name).open("ab") as log:
         return subprocess.Popen([sys.executable, "-u", "-m", module, str(directory)],
             cwd=app.parent, env=env, stdin=subprocess.DEVNULL, stdout=log, stderr=log,

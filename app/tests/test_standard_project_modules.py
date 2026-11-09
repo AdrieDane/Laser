@@ -160,7 +160,7 @@ def test_reopened_annotation_uses_saved_input_after_calibration_overwrite(tmp_pa
     (calibration / "peakgrouplist_RP_Pos.txt").write_bytes(RAW.replace(b"500.0", b"501.0"))
     app = AppTest.from_file(str(APP), default_timeout=60).run()
     app.button(key="standard-module-open_annotation").click().run()
-    app.text_input(key="standard-open-project-folder").set_value(str(tmp_path))
+    app.text_input(key="standard-open-project-folder").set_value(str(tmp_path)).run()
     next(b for b in app.button if b.label == "Open completed annotation").click().run()
     assert not app.exception
     assert app.session_state["standard_input_sources"]["RP_Pos"] == RAW

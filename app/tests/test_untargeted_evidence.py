@@ -157,7 +157,7 @@ def test_completed_untargeted_viewer_never_recalculates(tmp_path):
     save_untargeted_workflow(tmp_path, result, analysis)
     app = AppTest.from_file(str(APP), default_timeout=60).run()
     app.button(key='standard-module-open_untargeted').click().run()
-    app.text_input(key='standard-open-project-folder').set_value(str(tmp_path))
+    app.text_input(key='standard-open-project-folder').set_value(str(tmp_path)).run()
     with patch('standard_lipidomics.untargeted.analyse_standard_untargeted', side_effect=AssertionError('Viewer must not run pipeline')):
         next(b for b in app.button if b.label == 'Open completed untargeted analysis').click().run()
     assert not app.exception
@@ -196,7 +196,7 @@ def test_empty_analysis_saves_and_reopens_without_hits(tmp_path):
     save_untargeted_workflow(tmp_path, result, analysis)
     app = AppTest.from_file(str(APP), default_timeout=60).run()
     app.button(key='standard-module-open_untargeted').click().run()
-    app.text_input(key='standard-open-project-folder').set_value(str(tmp_path))
+    app.text_input(key='standard-open-project-folder').set_value(str(tmp_path)).run()
     next(b for b in app.button if b.label == 'Open completed untargeted analysis').click().run()
     assert not app.exception
     assert any('No unannotated feature' in i.value for i in app.info)

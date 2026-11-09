@@ -420,7 +420,7 @@ def complete_pe_stream(
         )
         return annotations.copy(), all_pairs.copy(), pd.DataFrame([audit]), empty, empty
     try:
-        payload = json.loads(settings.model_path.read_text())
+        payload = json.loads(settings.model_path.read_text(encoding="utf-8"))
         if payload.get("format") != "laser-pe-rebuild-v1":
             raise ValueError("Unsupported PE rebuild model")
         if payload.get("stream", "RP_Pos") != stream:

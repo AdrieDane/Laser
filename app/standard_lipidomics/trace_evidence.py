@@ -48,7 +48,7 @@ def freeze_sources(project, manifest_path=None, streams=None):
     try:
         root = Path(project).expanduser().resolve()
         path = Path(manifest_path) if manifest_path else root/'metadata/trace_sources/manifest.json'
-        manifest = json.loads(path.read_text())
+        manifest = json.loads(path.read_text(encoding="utf-8"))
         if manifest.get('schema_version') != 1 or manifest.get('peak_rt_basis') != 'corrected':
             raise ValueError('Unsupported trace bridge or unknown native peak RT basis.')
         bound_root = path.parent.resolve()

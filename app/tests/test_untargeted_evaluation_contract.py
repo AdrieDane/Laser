@@ -87,7 +87,7 @@ def test_canonical_inputs_and_raw_scans_are_frozen_but_old_archives_are_not(tmp_
         file = tmp_path / relative
         file.parent.mkdir(parents=True, exist_ok=True)
         file.write_text("synthetic")
-    paths = {str(p.relative_to(tmp_path)) for p in TOOL["project_files"](tmp_path)}
+    paths = {p.relative_to(tmp_path).as_posix() for p in TOOL["project_files"](tmp_path)}
     assert paths == {"XCMS/peakgrouplist_RP_Pos.txt", "Raw/RP_Pos/sample.mzXML"}
 
 
