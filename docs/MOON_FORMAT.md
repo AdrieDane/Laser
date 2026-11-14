@@ -45,7 +45,7 @@ list, and any extra fields. Per feature MATLAB (through Moon) needs:
 |---|---|---|
 | `mode` | yes | `stream` (`RP_Pos`, `RP_Neg`, `NP_Pos`, `NP_Neg`) |
 | `feature` | yes | Moon `FT<n>`: the 1-based row of the peak-group list (or its `feature` column). LASER's `feat_feature_id` is mapped to it through the same list |
-| `name` | yes | `name` without ` (IS)`; must be a pipeline name (`PC(34:1)`, `1-acylLPC(16:0)`). LASER already uses pipeline names |
+| `name` | yes | `name` without ` (IS)`, in the spelling MATLAB's `get_compound_index` finds (`PC(34:1)`, `LPC(O+P-18:2)`). LASER's names are the same except positional lyso isomers: the pipeline's `lipids.tsv` composes `"1-acyl " + class`, so the export writes `1-acyl LPC(16:0)` for LASER's `1-acylLPC(16:0)` (LASER's own name stays in `laser.name`; the import converts back). Without the space MATLAB reports `unknown_compound` (seen on production, 14 Nov 2026) |
 | `adduct` | yes, unless `set_as` is `inlier` | `adduct`, as `[M+H]+`, `[M-2H](2-)` |
 | `internal_standard` | no | `is_is` or ` (IS)` in the name |
 | `isotope` | no (default `M+0`) | only M+0 is exported |
@@ -114,7 +114,7 @@ can go to the upstream repository on its own branch or straight to `main`.
 
 ## 5. Verified
 
-- `app/tests/test_moon_format.py` 19 passed, `test_validation_cli.py` passes;
+- `app/tests/test_moon_format.py` 20 passed, `test_validation_cli.py` passes;
   ruff clean on the changed files. The full suite on Windows shows the same 10 failures as `main` without this branch (Windows portability, unrelated).
 - A real run (anonymised DEV set, engine `matlab`, 1935 annotations): the
   export gives exactly the features of Moon's own LASER converter (only when
