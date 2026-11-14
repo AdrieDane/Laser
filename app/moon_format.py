@@ -102,6 +102,25 @@ def laser_name(name: str) -> str:
     return _ACYL.sub(r"\1", name)
 
 
+_ADDUCT_ALIASES = {"[M+HCOO]-": "[M+CHO2]-", "[M+CH3COO]-": "[M+C2H3O2]-"}
+_CHARGE_PLAIN = re.compile(r"\](\d+)([+-])$")
+
+
+def pipeline_adduct(adduct: str) -> str:
+    """MATLAB's ``adduct.name_vis``: net formula in Hill order (``[M+CHO2]-``,
+    not ``[M+HCOO]-``) and charge > 1 in brackets (``[M-2H](2-)``, not
+    ``[M-2H]2-``). The reference matcher writes the latter; MATLAB then reports
+    ``adduct_not_in_column``. Seeds on adducts other than the class's main
+    adduct are refused by Moon/MATLAB (``not_main_adduct``)."""
+    a = _ADDUCT_ALIASES.get(adduct, adduct)
+    m = _CHARGE_PLAIN.search(a)
+    if m and int(m.group(1)) > 1:
+        a = a[:m.start()] + f"]({m.group(1)}{m.group(2)})"
+    elif m:
+        a = a[:m.start()] + f"]{m.group(2)}"
+    return a
+
+
 def split_is(name: str) -> tuple[str, bool]:
     """``'PC(28:0) (IS)'`` -> ``('PC(28:0)', True)``, as Moon does."""
     stripped = _IS_SUFFIX.sub("", name)
@@ -259,6 +278,7 @@ def annotations_to_moon(
             continue
         name, is_from_name = split_is(raw_name)
         name = pipeline_name(name)          # LASER's own name stays under laser.name
+        raw_adduct, adduct = adduct, pipeline_adduct(adduct)
         is_is = is_from_name or _truthy(_first(row, "is_is", "internal_standard"))
         key = (mode, peak.feature)
         if key in seen:
@@ -274,6 +294,7 @@ def annotations_to_moon(
             "matlab_compound": _float(_first(row, "matlab_compound")),
             "matlab_code": _float(_first(row, "matlab_code")),
             "name": raw_name if raw_name != name else None,
+            "adduct": raw_adduct if raw_adduct != adduct else None,
         }.items() if v not in (None, "")}
         seen[key] = len(feats)
         feats.append({"mode": mode, "feature": peak.feature, "name": name, "adduct": adduct,
@@ -428,7 +449,7 @@ def moon_to_crosswalk(doc: Mapping[str, Any], peaks: "PeakIndex | Mapping[str, s
 
 __all__ = [
     "FORMAT", "MAPPED_STATUS", "PeakIndex", "PeakRow", "annotations_to_moon", "lipid_class",
-    "laser_name", "moon_to_crosswalk", "moon_to_frame", "pipeline_name", "read_moon", "read_peaklist",
+    "laser_name", "moon_to_crosswalk", "moon_to_frame", "pipeline_adduct", "pipeline_name", "read_moon", "read_peaklist",
     "split_is", "stream_name",
     "validate_moon", "write_moon",
 ]
