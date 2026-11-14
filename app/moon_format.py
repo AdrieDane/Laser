@@ -87,6 +87,21 @@ def _truthy(value: Any) -> bool:
     return str(value).strip().lower() in ("true", "1", "yes")
 
 
+_ACYL = re.compile(r"^([12]-acyl)\s*(?=[A-Za-z])")
+
+
+def pipeline_name(name: str) -> str:
+    """LASER -> MATLAB spelling. The pipeline's lipids.tsv composes positional
+    lyso classes as ``"1-acyl " + class``, so ``get_compound_index`` only finds
+    ``1-acyl LPC(16:0)``; LASER writes ``1-acylLPC(16:0)``."""
+    return _ACYL.sub(r"\1 ", name)
+
+
+def laser_name(name: str) -> str:
+    """MATLAB -> LASER spelling (``1-acyl LPC(16:0)`` -> ``1-acylLPC(16:0)``)."""
+    return _ACYL.sub(r"\1", name)
+
+
 def split_is(name: str) -> tuple[str, bool]:
     """``'PC(28:0) (IS)'`` -> ``('PC(28:0)', True)``, as Moon does."""
     stripped = _IS_SUFFIX.sub("", name)
@@ -243,6 +258,7 @@ def annotations_to_moon(
             skip(row, "rt_mismatch", feature=peak.feature, rt=rt, peaklist_rt_s=peak.rt_seconds)
             continue
         name, is_from_name = split_is(raw_name)
+        name = pipeline_name(name)          # LASER's own name stays under laser.name
         is_is = is_from_name or _truthy(_first(row, "is_is", "internal_standard"))
         key = (mode, peak.feature)
         if key in seen:
@@ -355,6 +371,7 @@ def moon_to_frame(doc: Mapping[str, Any], peaks: "PeakIndex | Mapping[str, str |
     for f in doc.get("features") or []:
         stream = stream_name(_text(f.get("mode"))) or _text(f.get("mode"))
         species, is_from_name = split_is(_text(f.get("name")))
+        species = laser_name(species)
         peak = index.from_moon(stream, _text(f.get("feature")))
         matlab = f.get("matlab") if isinstance(f.get("matlab"), Mapping) else {}
         isotope = _text(f.get("isotope")).strip()
@@ -411,6 +428,7 @@ def moon_to_crosswalk(doc: Mapping[str, Any], peaks: "PeakIndex | Mapping[str, s
 
 __all__ = [
     "FORMAT", "MAPPED_STATUS", "PeakIndex", "PeakRow", "annotations_to_moon", "lipid_class",
-    "moon_to_crosswalk", "moon_to_frame", "read_moon", "read_peaklist", "split_is", "stream_name",
+    "laser_name", "moon_to_crosswalk", "moon_to_frame", "pipeline_name", "read_moon", "read_peaklist",
+    "split_is", "stream_name",
     "validate_moon", "write_moon",
 ]

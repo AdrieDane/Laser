@@ -229,3 +229,14 @@ def test_crosswalk_tool(project, tmp_path):
     again = subprocess.run([sys.executable, str(TOOL), str(moon), str(project), "--output", str(out)],
                            capture_output=True, text=True)
     assert again.returncode != 0 and "never overwritten" in again.stderr
+
+
+def test_positional_lyso_names_use_pipeline_spelling(project):
+    """MATLAB only finds '1-acyl LPC(16:0)' (lipids.tsv: '1-acyl ' + class)."""
+    doc, _ = annotations_to_moon([laser_row("RP_Pos", "101", "1-acylLPC(16:0)"),
+                                  laser_row("RP_Pos", "102", "LPC(O+P-18:2)")], project)
+    assert [(f["name"], f["laser"].get("name")) for f in doc["features"]] == [
+        ("1-acyl LPC(16:0)", "1-acylLPC(16:0)"), ("LPC(O+P-18:2)", None)]
+    frame = moon_to_frame({"features": [{"mode": "RP_Pos", "feature": "FT02", "name": "2-acyl LPE(18:1)",
+                                         "adduct": "[M+H]+"}]}, project)
+    assert (frame.loc[0, "name"], frame.loc[0, "class"]) == ("2-acylLPE(18:1)", "2-acylLPE")
