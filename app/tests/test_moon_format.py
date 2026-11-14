@@ -240,3 +240,13 @@ def test_positional_lyso_names_use_pipeline_spelling(project):
     frame = moon_to_frame({"features": [{"mode": "RP_Pos", "feature": "FT02", "name": "2-acyl LPE(18:1)",
                                          "adduct": "[M+H]+"}]}, project)
     assert (frame.loc[0, "name"], frame.loc[0, "class"]) == ("2-acylLPE(18:1)", "2-acylLPE")
+
+
+def test_matcher_adducts_use_pipeline_spelling(project):
+    """MATLAB's adduct.name_vis: [M+CHO2]- and [M-2H](2-), not [M+HCOO]- / [M-2H]2-."""
+    doc, _ = annotations_to_moon([laser_row("NP_Neg", "FT001", "PE(36:2)", adduct="[M+HCOO]-"),
+                                  laser_row("NP_Neg", "FT002", "CL(72:8)", adduct="[M-2H]2-"),
+                                  laser_row("NP_Neg", "FT003", "PE(38:4)", adduct="[M-H]-")], project)
+    assert [(f["adduct"], f["laser"].get("adduct")) for f in doc["features"]] == [
+        ("[M+CHO2]-", "[M+HCOO]-"), ("[M-2H](2-)", "[M-2H]2-"), ("[M-H]-", None)]
+    assert validate_moon(doc) == []
