@@ -303,6 +303,11 @@ For the input contract and scientific behavior, see
 [`docs/STANDARD_LIPIDOMICS_MODE.md`](docs/STANDARD_LIPIDOMICS_MODE.md) and
 [`docs/STANDARD_LIPIDOMICS_ANNOTATION_REFERENCE.md`](docs/STANDARD_LIPIDOMICS_ANNOTATION_REFERENCE.md).
 
+Add `--moon results/laser.moon` to also write the final annotations as a Moon
+annotation document for the MATLAB pipeline; `tools/moon_crosswalk.py` reads a
+MATLAB-curated `.moon` back as a manual crosswalk. See
+[`docs/MOON_FORMAT.md`](docs/MOON_FORMAT.md).
+
 ## Development
 
 The agreed next steps and validation gates are in the

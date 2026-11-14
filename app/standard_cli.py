@@ -39,6 +39,13 @@ def _parser() -> argparse.ArgumentParser:
         help="Chromatography phase for the MATLAB-equivalent engine",
     )
     parser.add_argument(
+        "--moon",
+        type=Path,
+        metavar="FILE",
+        help="Also write the final annotations as a Moon annotation document "
+        "(.moon, moon-annotation/1) for the MATLAB pipeline, plus FILE_report.json",
+    )
+    parser.add_argument(
         "--experimental-pe",
         action="store_true",
         help="Enable optional MATLAB-engine PE peak correction (off by default)",
@@ -84,7 +91,40 @@ def main() -> int:
         f"Wrote {len(annotated_inputs)} annotated peak-group lists to "
         f"{output / 'annotated_input_files'}"
     )
+    if args.moon is not None:
+        _write_moon(args, result.tables["automatic_annotations"])
     return 0
+
+
+def _write_moon(args: argparse.Namespace, annotations) -> None:
+    import json
+
+    from moon_format import annotations_to_moon, write_moon
+    from output_io import atomic_write_text
+    from version import __version__
+
+    path = args.moon.expanduser().resolve()
+    document, report = annotations_to_moon(
+        annotations,
+        discover_standard_streams(args.project),
+        laser_info={
+            "engine": args.engine,
+            "phase": args.phase,
+            "laser_version": __version__,
+            "project": str(args.project.expanduser().resolve()),
+        },
+    )
+    write_moon(document, path)
+    atomic_write_text(
+        path.with_name(path.stem + "_report.json"),
+        json.dumps(report, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    skipped = sum(report["skipped_by_reason"].values())
+    print(
+        f"Wrote {report['features']} Moon seed annotations to {path}"
+        + (f" ({skipped} rows not written; see {path.stem}_report.json)" if skipped else "")
+    )
 
 
 if __name__ == "__main__":
