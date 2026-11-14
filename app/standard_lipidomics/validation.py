@@ -27,6 +27,7 @@ _MANUAL_REQUIRED = {
     "crosswalk_status",
 }
 _LASER_REQUIRED = {"stream", "name", "class", "adduct", "feat_feature_id"}
+MAPPED_CROSSWALK_STATUSES = frozenset({"profile_match", "exact_feature_id"})
 _CHECKS = (
     "grid_coherence_assessed",
     "grid_coherence_pass",
@@ -157,7 +158,9 @@ def _normalise(frame: pd.DataFrame, *, manual: bool) -> pd.DataFrame:
         raise ValueError("Annotation names, classes and adducts must not be blank")
     if manual:
         x["crosswalk_status"] = frame.crosswalk_status.map(_text)
-        x["mapped"] = x.crosswalk_status.eq("profile_match")
+        # profile_match: mapped by intensity profile; exact_feature_id: the
+        # truth already names the original feature (a Moon .moon document).
+        x["mapped"] = x.crosswalk_status.isin(MAPPED_CROSSWALK_STATUSES)
         if (x.mapped & x.feature_id.eq("")).any():
             raise ValueError(
                 "A profile-matched manual entry has no original feature ID"
